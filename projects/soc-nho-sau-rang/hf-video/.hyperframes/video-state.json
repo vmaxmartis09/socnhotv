@@ -1,0 +1,205 @@
+{
+  "version": 1,
+  "historyId": "d0e0fac6-8e33-4b1d-ab5e-a53ccbf402f5",
+  "currentRevision": "e2676f5b-8dd6-4487-88b1-08069ac696bf",
+  "pendingChanges": false,
+  "files": {
+    "AGENTS.md": {
+      "hash": "1b36171117cb7c18f4100a0db6a3782ff2e096115995733200445cc2e80a4060",
+      "content": "/Users/vmaxmartis/.cache/hyperframes/history/d0e0fac6-8e33-4b1d-ab5e-a53ccbf402f5/blobs/1b/1b36171117cb7c18f4100a0db6a3782ff2e096115995733200445cc2e80a4060"
+    },
+    "CLAUDE.md": {
+      "hash": "1b36171117cb7c18f4100a0db6a3782ff2e096115995733200445cc2e80a4060",
+      "content": "/Users/vmaxmartis/.cache/hyperframes/history/d0e0fac6-8e33-4b1d-ab5e-a53ccbf402f5/blobs/1b/1b36171117cb7c18f4100a0db6a3782ff2e096115995733200445cc2e80a4060"
+    },
+    "hyperframes.json": {
+      "hash": "ad5dadeef78a520800a9e5cdd27a92ff5ac37f11b6a07f611b6b52b9f8c79a17",
+      "content": "/Users/vmaxmartis/.cache/hyperframes/history/d0e0fac6-8e33-4b1d-ab5e-a53ccbf402f5/blobs/ad/ad5dadeef78a520800a9e5cdd27a92ff5ac37f11b6a07f611b6b52b9f8c79a17"
+    },
+    "index.html": {
+      "hash": "8e85ca08c72ca7e0447dcb6e998c9e0fe319b7fb065fc247d3c85e3e7b9ddc12",
+      "content": "/Users/vmaxmartis/.cache/hyperframes/history/d0e0fac6-8e33-4b1d-ab5e-a53ccbf402f5/blobs/8e/8e85ca08c72ca7e0447dcb6e998c9e0fe319b7fb065fc247d3c85e3e7b9ddc12"
+    },
+    "meta.json": {
+      "hash": "c609ef980d71fcb1b6517dc326ba18f0b84389e8e2d43996ef1097fff12f0478",
+      "content": "/Users/vmaxmartis/.cache/hyperframes/history/d0e0fac6-8e33-4b1d-ab5e-a53ccbf402f5/blobs/c6/c609ef980d71fcb1b6517dc326ba18f0b84389e8e2d43996ef1097fff12f0478"
+    },
+    "package.json": {
+      "hash": "50a2249c19c27d0b70a26acafdea0a9eb5096141ec7234139ffaf625b0081260",
+      "content": "/Users/vmaxmartis/.cache/hyperframes/history/d0e0fac6-8e33-4b1d-ab5e-a53ccbf402f5/blobs/50/50a2249c19c27d0b70a26acafdea0a9eb5096141ec7234139ffaf625b0081260"
+    },
+    "assets/canh_01.mp4": {
+      "hash": "2d46ed75c415345ff1f08ad8004eac5e21a2975aa7f5988a54734b3cf5e3aa13",
+      "content": "/Users/vmaxmartis/.cache/hyperframes/history/d0e0fac6-8e33-4b1d-ab5e-a53ccbf402f5/blobs/2d/2d46ed75c415345ff1f08ad8004eac5e21a2975aa7f5988a54734b3cf5e3aa13"
+    },
+    "assets/canh_02.mp4": {
+      "hash": "400a4a63485ca3fdda8e3157e053228e61abca90d388c2d53c3bcec860ab8192",
+      "content": "/Users/vmaxmartis/.cache/hyperframes/history/d0e0fac6-8e33-4b1d-ab5e-a53ccbf402f5/blobs/40/400a4a63485ca3fdda8e3157e053228e61abca90d388c2d53c3bcec860ab8192"
+    },
+    "assets/canh_03.mp4": {
+      "hash": "a7c34ef2c20dfaa0385b75cc996e97a83c90732a10e8276c1706d94b9f3709ff",
+      "content": "/Users/vmaxmartis/.cache/hyperframes/history/d0e0fac6-8e33-4b1d-ab5e-a53ccbf402f5/blobs/a7/a7c34ef2c20dfaa0385b75cc996e97a83c90732a10e8276c1706d94b9f3709ff"
+    },
+    "assets/canh_04.mp4": {
+      "hash": "213f39eeff99b4fe93b7908459aff9db2438ffb91f3dfc6c9fc49e9f98dfe11d",
+      "content": "/Users/vmaxmartis/.cache/hyperframes/history/d0e0fac6-8e33-4b1d-ab5e-a53ccbf402f5/blobs/21/213f39eeff99b4fe93b7908459aff9db2438ffb91f3dfc6c9fc49e9f98dfe11d"
+    },
+    "assets/canh_05.mp4": {
+      "hash": "8d682c7b50b4e6d790800f0c34460a66166221ae29b132e387ed95b04f139a82",
+      "content": "/Users/vmaxmartis/.cache/hyperframes/history/d0e0fac6-8e33-4b1d-ab5e-a53ccbf402f5/blobs/8d/8d682c7b50b4e6d790800f0c34460a66166221ae29b132e387ed95b04f139a82"
+    },
+    "assets/canh_06.mp4": {
+      "hash": "a869aafde081332f2fc75b6456e9702e728a9820205234d5619e60d83acc2cae",
+      "content": "/Users/vmaxmartis/.cache/hyperframes/history/d0e0fac6-8e33-4b1d-ab5e-a53ccbf402f5/blobs/a8/a869aafde081332f2fc75b6456e9702e728a9820205234d5619e60d83acc2cae"
+    },
+    "assets/voice/canh_01.mp3": {
+      "hash": "f3badcc4add5fd6d79f99adbf91d19df446ee3f41ac24bda6e511514ed9d470b",
+      "content": "/Users/vmaxmartis/.cache/hyperframes/history/d0e0fac6-8e33-4b1d-ab5e-a53ccbf402f5/blobs/f3/f3badcc4add5fd6d79f99adbf91d19df446ee3f41ac24bda6e511514ed9d470b"
+    },
+    "assets/voice/canh_02.mp3": {
+      "hash": "2d02d4cfb8f46b46838fe57c094a4c1e2c579168041f799eec961ac1b509a0cb",
+      "content": "/Users/vmaxmartis/.cache/hyperframes/history/d0e0fac6-8e33-4b1d-ab5e-a53ccbf402f5/blobs/2d/2d02d4cfb8f46b46838fe57c094a4c1e2c579168041f799eec961ac1b509a0cb"
+    },
+    "assets/voice/canh_03.mp3": {
+      "hash": "c43e1cad8fc3654b2ac373e61897303bf773c3622cb048c34384a3418671cbee",
+      "content": "/Users/vmaxmartis/.cache/hyperframes/history/d0e0fac6-8e33-4b1d-ab5e-a53ccbf402f5/blobs/c4/c43e1cad8fc3654b2ac373e61897303bf773c3622cb048c34384a3418671cbee"
+    },
+    "assets/voice/canh_04.mp3": {
+      "hash": "62c59d69969a723ec5b6d144ab37d0cbbb192ee8bbecc8bcfeb9d74736b734ce",
+      "content": "/Users/vmaxmartis/.cache/hyperframes/history/d0e0fac6-8e33-4b1d-ab5e-a53ccbf402f5/blobs/62/62c59d69969a723ec5b6d144ab37d0cbbb192ee8bbecc8bcfeb9d74736b734ce"
+    },
+    "assets/voice/canh_05.mp3": {
+      "hash": "ec209d390932b49d958c7571aad7fa6ee3359da6d7582de8805f55cc6c8ddcc8",
+      "content": "/Users/vmaxmartis/.cache/hyperframes/history/d0e0fac6-8e33-4b1d-ab5e-a53ccbf402f5/blobs/ec/ec209d390932b49d958c7571aad7fa6ee3359da6d7582de8805f55cc6c8ddcc8"
+    },
+    "assets/voice/canh_06.mp3": {
+      "hash": "a790cb3ab5b9a644aec4af713a70a259ba28776e84cc4cf291e76206c07eb47d",
+      "content": "/Users/vmaxmartis/.cache/hyperframes/history/d0e0fac6-8e33-4b1d-ab5e-a53ccbf402f5/blobs/a7/a790cb3ab5b9a644aec4af713a70a259ba28776e84cc4cf291e76206c07eb47d"
+    }
+  },
+  "revisions": {
+    "e2676f5b-8dd6-4487-88b1-08069ac696bf": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793550526725,
+      "endedAt": 1793550526729,
+      "files": {
+        "assets/voice/canh_01.mp3": {
+          "before": null,
+          "after": "/Users/vmaxmartis/.cache/hyperframes/history/d0e0fac6-8e33-4b1d-ab5e-a53ccbf402f5/blobs/f3/f3badcc4add5fd6d79f99adbf91d19df446ee3f41ac24bda6e511514ed9d470b"
+        },
+        "assets/voice/canh_02.mp3": {
+          "before": null,
+          "after": "/Users/vmaxmartis/.cache/hyperframes/history/d0e0fac6-8e33-4b1d-ab5e-a53ccbf402f5/blobs/2d/2d02d4cfb8f46b46838fe57c094a4c1e2c579168041f799eec961ac1b509a0cb"
+        },
+        "assets/voice/canh_03.mp3": {
+          "before": null,
+          "after": "/Users/vmaxmartis/.cache/hyperframes/history/d0e0fac6-8e33-4b1d-ab5e-a53ccbf402f5/blobs/c4/c43e1cad8fc3654b2ac373e61897303bf773c3622cb048c34384a3418671cbee"
+        },
+        "assets/voice/canh_04.mp3": {
+          "before": null,
+          "after": "/Users/vmaxmartis/.cache/hyperframes/history/d0e0fac6-8e33-4b1d-ab5e-a53ccbf402f5/blobs/62/62c59d69969a723ec5b6d144ab37d0cbbb192ee8bbecc8bcfeb9d74736b734ce"
+        },
+        "assets/voice/canh_05.mp3": {
+          "before": null,
+          "after": "/Users/vmaxmartis/.cache/hyperframes/history/d0e0fac6-8e33-4b1d-ab5e-a53ccbf402f5/blobs/ec/ec209d390932b49d958c7571aad7fa6ee3359da6d7582de8805f55cc6c8ddcc8"
+        },
+        "assets/voice/canh_06.mp3": {
+          "before": null,
+          "after": "/Users/vmaxmartis/.cache/hyperframes/history/d0e0fac6-8e33-4b1d-ab5e-a53ccbf402f5/blobs/a7/a790cb3ab5b9a644aec4af713a70a259ba28776e84cc4cf291e76206c07eb47d"
+        },
+        "index.html": {
+          "before": "/Users/vmaxmartis/.cache/hyperframes/history/d0e0fac6-8e33-4b1d-ab5e-a53ccbf402f5/blobs/c1/c1dbc8bb3135dc815dfc828493caa44a5df3a7ceefc198af3c62b4f8a15522aa",
+          "after": "/Users/vmaxmartis/.cache/hyperframes/history/d0e0fac6-8e33-4b1d-ab5e-a53ccbf402f5/blobs/8e/8e85ca08c72ca7e0447dcb6e998c9e0fe319b7fb065fc247d3c85e3e7b9ddc12"
+        }
+      }
+    }
+  },
+  "checks": {
+    "latest": {
+      "revision": "e2676f5b-8dd6-4487-88b1-08069ac696bf",
+      "id": "c47c0240-ffa1-4028-b9dc-a4f83977aea7"
+    },
+    "revisions": {
+      "e2676f5b-8dd6-4487-88b1-08069ac696bf": [
+        {
+          "id": "c47c0240-ffa1-4028-b9dc-a4f83977aea7",
+          "scope": "project",
+          "report": "/Volumes/Data/socnhotv/projects/soc-nho-sau-rang/hf-video/.hyperframes/artifacts/checks/c47c0240-ffa1-4028-b9dc-a4f83977aea7.json",
+          "metadata": {
+            "ok": true,
+            "browserSkipped": false,
+            "options": {
+              "samples": 9,
+              "atTransitions": false,
+              "maxIssues": 80,
+              "collapseStatic": true,
+              "tolerance": 2,
+              "timeout": 10000,
+              "contrast": true,
+              "strict": false,
+              "snapshots": false,
+              "browserGpuMode": "auto"
+            }
+          },
+          "createdAt": 1793550530408,
+          "contentHash": "3327f4fb57ea74d8a3aee1505e1661efbc1ac3340a402b7d20b236352ba61b79",
+          "revision": "e2676f5b-8dd6-4487-88b1-08069ac696bf",
+          "inputFingerprint": "4db40861ef698a6f64248a8876254a75e3acbe82144d4a522b8fb06c731ffd89",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ]
+    },
+    "unversioned": [
+      {
+        "id": "77e3551a-c0c3-481f-8eb0-3428376b5b13",
+        "scope": "project",
+        "report": "/Volumes/Data/socnhotv/projects/soc-nho-sau-rang/hf-video/.hyperframes/artifacts/checks/77e3551a-c0c3-481f-8eb0-3428376b5b13.json",
+        "metadata": {
+          "ok": true,
+          "browserSkipped": false,
+          "options": {
+            "samples": 9,
+            "atTransitions": false,
+            "maxIssues": 80,
+            "collapseStatic": true,
+            "tolerance": 2,
+            "timeout": 10000,
+            "contrast": true,
+            "strict": false,
+            "snapshots": false,
+            "browserGpuMode": "auto"
+          }
+        },
+        "createdAt": 1793549624273,
+        "contentHash": "3327f4fb57ea74d8a3aee1505e1661efbc1ac3340a402b7d20b236352ba61b79",
+        "revision": null,
+        "inputFingerprint": "73a0b3c5063c5d17ccd5c499705a7becf873d9d854d9fa6c75221475fa69fab3",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      }
+    ]
+  },
+  "snapshots": {
+    "latest": null,
+    "revisions": {},
+    "unversioned": []
+  },
+  "renders": {
+    "latest": {
+      "id": "aab06108-b5ea-4be2-82e8-1d4ee8a4c5ae",
+      "completedAt": 1793550562019,
+      "output": "/Volumes/Data/socnhotv/projects/soc-nho-sau-rang/soc_bi_kham_rang_16x9_long_tieng.mp4",
+      "status": "completed",
+      "revision": "e2676f5b-8dd6-4487-88b1-08069ac696bf"
+    },
+    "retainedRevisions": [
+      "e2676f5b-8dd6-4487-88b1-08069ac696bf"
+    ]
+  },
+  "pendingArtifactCleanup": []
+}

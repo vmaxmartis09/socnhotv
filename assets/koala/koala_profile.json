@@ -1,0 +1,34 @@
+{
+  "id": "bac_si_koala",
+  "name": "Bác sĩ Koala (Bác sĩ Gấu Túi)",
+  "version": "1.0",
+  "purpose": "Nhân vật bác sĩ/nha sĩ hiền hậu, đồng hành cùng Sóc Nhỏ Bi",
+  "identity": {
+    "species": "Gấu túi koala nhân hóa",
+    "gender": "Nam",
+    "age_feel": "Lớn tuổi, hiền từ",
+    "personality": ["hiền", "kiên nhẫn", "ấm áp", "dạy dỗ nhẹ nhàng"]
+  },
+  "body": {
+    "height_cm": 150,
+    "height_ratio_to_bi": 1.5,
+    "build": "Tròn trịa, vững chãi, thân hơi đẫy (khác Bi thon gọn)",
+    "head_to_body_ratio": "Đầu to, khoảng 1/3.5 chiều cao",
+    "locked": true
+  },
+  "appearance": {
+    "fur": "Xám mềm, bụng sáng hơn",
+    "face": "Mũi đen to tròn, tai tròn xù lông, mắt nhỏ hiền sau kính tròn gọng vàng"
+  },
+  "outfit_default": {
+    "top": "Áo blouse trắng sạch có huy hiệu chữ thập xanh lá",
+    "accessories": ["gương soi trán", "ống nghe quanh cổ", "kính tròn gọng vàng"]
+  },
+  "art_style": {
+    "render": "3D Pixar / hoạt hình CGI",
+    "lighting": "Ánh sáng studio mềm",
+    "background": "Nền trơn xám sáng"
+  },
+  "prompt_lock": "a gentle elderly koala doctor, about 150cm tall (1.5x the height of Bi the squirrel), soft gray fur, large round black nose, fluffy round ears, kind small eyes behind round gold glasses, wearing a clean white doctor coat with a green cross badge, a head mirror on his forehead, a stethoscope around his neck, 3D Pixar-style soft render, soft studio lighting, plain light gray background",
+  "persona_set": {"dir": "assets/koala/persona/", "reference": "assets/koala/koala_01.png (tạo bằng Flow, chưa có)"}
+}

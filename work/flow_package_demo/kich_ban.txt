@@ -1,0 +1,3 @@
+# Mẫu 2 cảnh: [Prompt ảnh] | [Prompt video] | [chuyển cảnh]
+Sóc Nhỏ đứng chính diện trên bãi cỏ xanh trong công viên nắng sớm, mắt to bóng, mỉm cười, cây cối mờ phía sau | Sóc Nhỏ vẫy tay chào, nói "Xin chào các bạn, mình là Sóc Nhỏ!", camera đẩy nhẹ từ từ vào | fade:0.5
+Sóc Nhỏ cúi xuống dưới gốc cây sồi to, nhặt một quả hạt dẻ to tròn, ánh sáng ấm xuyên qua tán lá | Sóc Nhỏ giơ quả hạt dẻ lên, mắt sáng lên, nói "Wow, quả hạt dẻ to quá!", camera đứng yên, chuyển động nhẹ nhàng | cut

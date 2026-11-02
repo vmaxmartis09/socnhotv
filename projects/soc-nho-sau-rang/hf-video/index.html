@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="vi" data-resolution="landscape">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Sóc Bi đi khám răng</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: #000; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #000; }
+      .scene { position: absolute; inset: 0; }
+      .scene video { width: 100%; height: 100%; object-fit: cover; display: block; }
+      #fade { position: absolute; inset: 0; background: #000; z-index: 20; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-width="1920" data-height="1080" data-duration="45">
+      <div id="wrap-1" class="scene" style="z-index:1">
+        <video id="canh-1" src="assets/canh_01.mp4" data-start="0" data-duration="8" data-track-index="0" data-has-audio="true" playsinline data-automation='{"version":1,"lanes":[{"target":"volume","points":[{"t":0,"v":0.15},{"t":7.6,"v":0.15},{"t":8,"v":0}]}]}'></video>
+      </div>
+      <div id="wrap-2" class="scene" style="z-index:2">
+        <video id="canh-2" src="assets/canh_02.mp4" data-start="7.6" data-duration="8" data-track-index="1" data-has-audio="true" playsinline data-automation='{"version":1,"lanes":[{"target":"volume","points":[{"t":0,"v":0},{"t":0.4,"v":0.15},{"t":7.6,"v":0.15},{"t":8,"v":0}]}]}'></video>
+      </div>
+      <div id="wrap-3" class="scene" style="z-index:3">
+        <video id="canh-3" src="assets/canh_03.mp4" data-start="15.2" data-duration="8" data-track-index="2" data-has-audio="true" playsinline data-automation='{"version":1,"lanes":[{"target":"volume","points":[{"t":0,"v":0},{"t":0.4,"v":0.15},{"t":7.6,"v":0.15},{"t":8,"v":0}]}]}'></video>
+      </div>
+      <div id="wrap-4" class="scene" style="z-index:4">
+        <video id="canh-4" src="assets/canh_04.mp4" data-start="22.8" data-duration="8" data-track-index="3" data-has-audio="true" playsinline data-automation='{"version":1,"lanes":[{"target":"volume","points":[{"t":0,"v":0},{"t":0.4,"v":0.15},{"t":7.6,"v":0.15},{"t":8,"v":0}]}]}'></video>
+      </div>
+      <div id="wrap-5" class="scene" style="z-index:5">
+        <video id="canh-5" src="assets/canh_05.mp4" data-start="30.4" data-duration="7" data-track-index="4" data-has-audio="true" playsinline data-automation='{"version":1,"lanes":[{"target":"volume","points":[{"t":0,"v":0},{"t":0.4,"v":0.15},{"t":6.6,"v":0.15},{"t":7,"v":0}]}]}'></video>
+      </div>
+      <div id="wrap-6" class="scene" style="z-index:6">
+        <video id="canh-6" src="assets/canh_06.mp4" data-start="37.0" data-duration="8" data-track-index="5" data-has-audio="true" playsinline data-automation='{"version":1,"lanes":[{"target":"volume","points":[{"t":0,"v":0},{"t":0.4,"v":0.15},{"t":7.2,"v":0.15},{"t":8,"v":0}]}]}'></video>
+      </div>
+      <audio id="loi-bi-1" src="assets/voice/canh_01.mp3" data-start="0.4" data-duration="4.218" data-track-index="11" data-volume="1"></audio>
+      <audio id="loi-bi-2" src="assets/voice/canh_02.mp3" data-start="8.0" data-duration="3.608" data-track-index="12" data-volume="1"></audio>
+      <audio id="loi-bi-3" src="assets/voice/canh_03.mp3" data-start="15.6" data-duration="3.71" data-track-index="13" data-volume="1"></audio>
+      <audio id="loi-bi-4" src="assets/voice/canh_04.mp3" data-start="23.2" data-duration="3.845" data-track-index="14" data-volume="1"></audio>
+      <audio id="loi-bi-5" src="assets/voice/canh_05.mp3" data-start="30.8" data-duration="3.964" data-track-index="15" data-volume="1"></audio>
+      <audio id="loi-bi-6" src="assets/voice/canh_06.mp3" data-start="37.4" data-duration="4.254" data-track-index="16" data-volume="1"></audio>
+      <div id="fade" data-start="0" data-duration="45" data-track-index="10"></div>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#wrap-2", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "none" }, 7.6);
+      tl.fromTo("#wrap-3", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "none" }, 15.2);
+      tl.fromTo("#wrap-4", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "none" }, 22.8);
+      tl.fromTo("#wrap-5", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "none" }, 30.4);
+      tl.fromTo("#wrap-6", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "none" }, 37.0);
+      tl.fromTo("#fade", { opacity: 1 }, { opacity: 0, duration: 0.5, ease: "none" }, 0);
+      tl.to("#fade", { opacity: 1, duration: 0.8, ease: "none" }, 44.2);
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

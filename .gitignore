@@ -1,0 +1,30 @@
+.venv/
+__pycache__/
+*.py[cod]
+.env
+
+# Voice Vault: prompt cache và audio lớn không đưa vào git (dùng Git LFS nếu cần chia sẻ giọng)
+assets/voice_vault/*/*.pt
+assets/voice_vault/*/*.wav
+assets/voice_vault/*/*.npy
+
+# OmniVoice (clone riêng bằng git clone, xem docs/VOICE_CLONE.md)
+integrations/OmniVoice/
+
+output/
+
+# Node, macOS, build
+node_modules/
+dist/
+.DS_Store
+.env.local
+.env.*.local
+
+# Video/ảnh sinh ra, tệp nặng không đưa vào git
+*.mp4
+*.mov
+*.webm
+scratch/
+
+# Mẫu giọng gốc/clone: repo công khai nên không đưa âm thanh giọng vào git
+assets/voice_vault/*/*.mp3
