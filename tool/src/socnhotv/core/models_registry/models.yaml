@@ -1,0 +1,131 @@
+# Sổ cấu hình Model AI Video Studio
+# Thêm hoặc đổi model chỉ cần sửa sổ này, không cần sửa mã nguồn.
+
+models:
+  # Mock Models (dùng cho phát triển và kiểm thử miễn phí)
+  mock-image:
+    display_name: "Mock Image Generator"
+    provider: "mock"
+    model_id: "mock-v1"
+    kind: "image"
+    capabilities:
+      aspect_ratios: ["16:9", "9:16", "1:1", "4:5"]
+      resolutions: ["720p", "1080p"]
+      supports_reference: true
+      max_batch: 4
+    pricing:
+      cost_per_generation: 0.0
+
+  mock-video:
+    display_name: "Mock Video Generator"
+    provider: "mock"
+    model_id: "mock-video-v1"
+    kind: "video"
+    capabilities:
+      aspect_ratios: ["16:9", "9:16"]
+      durations_sec: [5, 8]
+      supports_first_frame: true
+      has_audio: false
+    pricing:
+      cost_per_second: 0.0
+
+  mock-voice:
+    display_name: "Mock Voice TTS"
+    provider: "mock"
+    model_id: "mock-voice-v1"
+    kind: "audio"
+    capabilities:
+      voices: ["soc-nho", "voice-koala"]
+      max_duration_sec: 120
+    pricing:
+      cost_per_minute: 0.0
+
+  # Google AI Models
+  gemini-2.5-flash-image:
+    display_name: "Google Gemini Flash Image"
+    provider: "google"
+    model_id: "gemini-2.5-flash"
+    kind: "image"
+    capabilities:
+      aspect_ratios: ["16:9", "9:16", "1:1", "4:5"]
+      resolutions: ["1080p"]
+      supports_reference: true
+      max_batch: 4
+    pricing:
+      cost_per_generation: 0.03
+
+  google-veo-2:
+    display_name: "Google Veo 2 Video"
+    provider: "google"
+    model_id: "veo-2.0-generate"
+    kind: "video"
+    capabilities:
+      aspect_ratios: ["16:9", "9:16"]
+      durations_sec: [5, 8]
+      supports_first_frame: true
+      has_audio: false
+    pricing:
+      cost_per_second: 0.15
+
+  # fal.ai Models
+  fal-flux-schnell:
+    display_name: "fal.ai FLUX.1 [schnell]"
+    provider: "fal"
+    model_id: "fal-ai/flux/schnell"
+    kind: "image"
+    capabilities:
+      aspect_ratios: ["16:9", "9:16", "1:1", "4:5"]
+      resolutions: ["720p", "1080p"]
+      supports_reference: true
+      max_batch: 4
+    pricing:
+      cost_per_generation: 0.003
+
+  fal-ltx-video:
+    display_name: "fal.ai LTX Video"
+    provider: "fal"
+    model_id: "fal-ai/ltx-video"
+    kind: "video"
+    capabilities:
+      aspect_ratios: ["16:9", "9:16"]
+      durations_sec: [5]
+      supports_first_frame: true
+      has_audio: false
+    pricing:
+      cost_per_second: 0.05
+
+  # Local Engines (OmniVoice, Whisper, HyperFrames)
+  local-omnivoice:
+    display_name: "OmniVoice SOTA Voice Cloner"
+    provider: "local_tool"
+    model_id: "omnivoice-mps"
+    kind: "audio"
+    capabilities:
+      voices: ["soc-nho"]
+      mastering: ["tiktok_-14lufs"]
+      max_duration_sec: 300
+    pricing:
+      cost_per_generation: 0.0
+
+  local-whisper:
+    display_name: "faster-whisper Subtitles"
+    provider: "local_tool"
+    model_id: "whisper-large-v3"
+    kind: "captions"
+    capabilities:
+      word_timestamps: true
+      languages: ["vi", "en"]
+    pricing:
+      cost_per_generation: 0.0
+
+  local-hyperframes:
+    display_name: "HeyGen HyperFrames Deterministic Editor"
+    provider: "local_tool"
+    model_id: "hyperframes-engine"
+    kind: "composition"
+    capabilities:
+      aspect_ratios: ["9:16", "16:9"]
+      safe_zone_tiktok: true
+      audio_ducking: true
+    pricing:
+      cost_per_generation: 0.0

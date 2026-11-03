@@ -39,7 +39,7 @@ Workspace > Kênh (Channel) và Dự án (Project).
 - Project (ví dụ "Sóc Nhỏ", "Gobi"): có riêng nhân vật, cảnh, kịch bản, thư viện ảnh/video, cài đặt giọng, style bible, và liên kết tới một hoặc nhiều Channel. Dữ liệu của dự án này không lẫn sang dự án khác.
 - Character: tên, mô tả khóa (prompt lock), ảnh tham chiếu nhiều góc, giọng nói (voice id), tỉ lệ cơ thể, "bộ nhớ nhân vật" (tính cách, thói quen, câu cửa miệng, những gì đã xảy ra ở các tập trước) được nạp vào prompt kịch bản tập sau để nhân vật nhất quán.
 - Script và Scene: kịch bản chia thành cảnh; mỗi cảnh có prompt ảnh, prompt video, thoại, nhân vật có mặt, thời lượng, kiểu chuyển cảnh.
-- Asset: ảnh, video, âm thanh, kèm thông tin sinh ra nó (model, prompt, đầu vào, giá) để tái lập và tránh tạo lại.
+- Asset: ảnh, video, âm thanh, kèm thông tin sinh ra nó (model, prompt, đầu vào, giá) để tái lập.
 - Video: sản phẩm cuối, tỉ lệ khung, trạng thái (nháp, đã dựng, đã lên lịch, đã đăng), liên kết Channel và bài đăng.
 - Job: mỗi lần gọi model, có trạng thái, log, chi phí ước tính và thực tế.
 
@@ -55,7 +55,8 @@ Mỗi kiểu đều ra một đồ thị node có sẵn (mẫu), người dùng 
 Mô phỏng quy trình thấy trong video: ảnh gốc và ảnh tham chiếu nối vào node tạo ảnh, kết quả nối tiếp sang node tạo video.
 - Node cơ bản: Văn bản/Prompt, Ảnh (tải lên hoặc từ thư viện), Nhân vật, Kịch bản (tách thành N cảnh), Tạo ảnh, Sửa ảnh, Tạo video, Giọng đọc, Nhóm (gom nhiều node), Dựng, Xuất.
 - Node Tạo ảnh có: ô prompt, cổng "Reference images" nhận nhiều ảnh, chọn model, chọn tỉ lệ khung và độ phân giải, nút "Run" có menu (chạy node này, chạy từ đây trở xuống, chạy cả đồ thị), các ảnh kết quả lướt qua lại được, nút thay ảnh, tải về, xóa.
-- Kết quả lưu theo mã băm của đầu vào; đổi một node chỉ chạy lại phần phụ thuộc, không tạo lại phần đã xong.
+- Mỗi node sinh bằng model giữ danh sách các lần sinh để duyệt, người dùng ghim một lần làm đầu ra. Đổi đầu vào của một node chỉ làm các node phía sau hiện nhãn "cũ", không tự chạy lại và không tự tốn tiền; "chạy cả chuỗi" chỉ chạy node cũ hoặc chưa có đầu ra. Quy tắc đầy đủ ở PROMPT_AI_VIDEO_CORE.md mục 3 và 11.
+- Node "Kiểm tra" (cổng chấm điểm) đặt trước bước tạo video để chỉ tốn tiền khi ảnh đạt tiêu chí.
 - Hiện trạng thái từng node (chờ, đang chạy, xong, lỗi), ước tính giá, tổng giá trước khi chạy cả đồ thị, và hộp xác nhận khi vượt ngưỡng do người dùng đặt.
 - Chạy song song theo số luồng người dùng chọn, có nút Dừng, bảng nhật ký, lưu và nạp đồ thị, undo/redo, thu phóng, minimap, căn lưới, copy/paste node, đồ thị mẫu.
 
@@ -74,14 +75,14 @@ Mô phỏng quy trình thấy trong video: ảnh gốc và ảnh tham chiếu n�
 # 8. Yêu cầu chất lượng
 - Cấu trúc thư mục rõ: app/, components/, features/ (workspace, projects, canvas, jobs, publish), lib/providers/, lib/repositories/, store/, messages/ (vi, en).
 - Kiểu dữ liệu bằng TypeScript và kiểm tra đầu vào bằng Zod ở mọi biên (form, API).
-- Kiểm thử đơn vị cho bộ chạy đồ thị (thứ tự phụ thuộc, bộ nhớ đệm theo mã băm, xử lý lỗi), và kiểm thử giao diện cho luồng tạo dự án đến chạy đồ thị ở chế độ mock.
+- Kiểm thử đơn vị cho bộ chạy đồ thị (thứ tự phụ thuộc, danh sách lần sinh và đánh dấu cũ, bộ nhớ đệm của node xác định, xử lý lỗi), và kiểm thử giao diện cho luồng tạo dự án đến chạy đồ thị ở chế độ mock.
 - README: cách cài, biến môi trường, cách bật Supabase, cách thêm provider mới.
 
 # 9. Giao hàng theo bước (dừng và báo sau mỗi bước)
 1. Khung ứng dụng: Next.js, Tailwind, KokonutUI, theme sáng/tối, i18n vi/en, layout responsive, LocalRepository, và docs/UI_CATALOG.md (danh mục component của ba thư viện kèm bảng ánh xạ màn hình, theo mục 2b) cùng bộ token thiết kế.
 2. Workspace: Channel và Project, tạo/sửa/xóa, chuyển dự án, dữ liệu tách theo dự án.
 3. Nhân vật và kịch bản: Character (ảnh tham chiếu, bộ nhớ), Script/Scene, tải kịch bản từ máy.
-4. Canvas node với React Flow: các node cơ bản, bộ chạy, bộ nhớ đệm, chế độ mock.
+4. Canvas node với React Flow: các node cơ bản, bộ chạy, lịch sử lần sinh và đánh dấu cũ, chế độ mock.
 5. Provider thật (Gemini/Veo trước), hàng đợi việc, ước tính giá và xác nhận.
 6. Tạo video theo kiểu: tỉ lệ khung, short, phim hoạt hình, tạo từ video có sẵn.
 7. Kênh và đăng bài: OAuth, lịch, duyệt tay trước khi đăng.

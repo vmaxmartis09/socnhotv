@@ -38,6 +38,7 @@ Danh mục node và vào/ra:
 | Nhân vật | - | chọn từ dự án | character (ảnh tham chiếu image[], mô tả khóa, voiceId, bộ nhớ) |
 | Kịch bản | text | cách tách cảnh | scenes (mỗi cảnh: prompt ảnh, prompt video, thoại, nhân vật, thời lượng, chuyển cảnh) |
 | Phân tích | video hoặc image | mục tiêu | script hoặc scenes (dữ liệu có cấu trúc, qua model nhìn) |
+| Kiểm tra | image hoặc video, text (câu hỏi hoặc tiêu chí) | kiểu (có/không, chọn một, chấm điểm), ngưỡng, số lần tự thử lại | pass/fail + điểm + độ tin cậy; cổng cho node phía sau (xem mục 11) |
 | Tạo ảnh | text, image[] tham chiếu | model, tỉ lệ, độ phân giải, số ảnh, seed | image[] |
 | Sửa ảnh | image, image[] tham chiếu, text | model, tỉ lệ | image |
 | Tạo video | image (khung đầu), text, image[] tham chiếu tùy chọn | model, thời lượng, tỉ lệ, có âm thanh hay không | video |
@@ -49,11 +50,13 @@ Chạy theo từng cảnh: node "Kịch bản" ra N cảnh, các node tạo ản
 
 # 3. Bộ chạy đồ thị
 - Kiểm tra đồ thị: không vòng lặp, cổng cùng kiểu, tham số hợp lệ. Sắp xếp theo thứ tự phụ thuộc.
-- Bộ nhớ đệm theo mã băm: hash(loại node, phiên bản node, tham số, hash các đầu vào, model). Trùng hash thì dùng lại artifact, không gọi lại model. Có nút buộc chạy lại.
+- Hai loại node, hai cách xử lý kết quả (chi tiết ở mục 11):
+  (a) Node xác định (đo, cắt, ghép, dựng, phụ đề, tách cảnh): bộ nhớ đệm theo mã băm hash(loại node, phiên bản node, tham số, hash các đầu vào). Trùng hash thì dùng lại artifact, không chạy lại.
+  (b) Node sinh bằng model (ảnh, video, giọng, văn bản): không dùng bộ nhớ đệm để chặn tạo lại. Mỗi lần chạy là một lần sinh (generation) mới, được lưu cùng hash các đầu vào lúc sinh; người dùng ghim một lần làm đầu ra. Node phía sau bị đánh dấu "cũ" khi hash đầu vào hiện tại khác hash đầu vào của lần sinh đang ghim.
 - Chạy: "chạy node này", "chạy từ node này trở xuống", "chạy cả đồ thị". Hàng đợi với số luồng song song tối đa chung và giới hạn riêng cho từng provider (rate limit). Việc dài (video) chạy dạng gửi -> thăm dò -> tải về, có hạn chót và hủy được.
-- Trạng thái mỗi node: chờ, sẵn sàng, đang chạy, xong, lỗi, đã hủy, dùng bộ nhớ đệm. Lỗi một cảnh không dừng các cảnh khác; chạy lại chỉ làm phần lỗi. Thử lại có giới hạn với lùi thời gian cho lỗi tạm thời (429, 5xx, hết thời gian), không thử lại lỗi do nội dung bị chặn hay do tham số sai.
+- Trạng thái mỗi node: chờ, sẵn sàng, đang chạy, xong, lỗi, đã hủy, cũ (stale). Lỗi một cảnh không dừng các cảnh khác; chạy lại chỉ làm phần lỗi. Thử lại có giới hạn với lùi thời gian cho lỗi tạm thời (429, 5xx, hết thời gian), không thử lại lỗi do nội dung bị chặn hay do tham số sai.
 - Phát sự kiện qua SSE: node đổi trạng thái, tiến độ, log, chi phí. Lưu nhật ký mỗi lần chạy (run) vào thư mục dự án.
-- Chi phí: trước khi chạy tính tổng ước tính từ các node chưa có trong bộ nhớ đệm, hiện cho người dùng xác nhận; có trần chi phí mỗi lần chạy và mỗi ngày do người dùng đặt, vượt trần thì dừng. Ghi sổ chi phí thực tế từng artifact.
+- Chi phí: trước khi chạy tính tổng ước tính từ các node sẽ thực sự chạy (node chưa có đầu ra, node cũ, và node người dùng chọn "tạo lại"; node có đầu ra được ghim và không cũ thì không tính), hiện cho người dùng xác nhận; có trần chi phí mỗi lần chạy và mỗi ngày do người dùng đặt, vượt trần thì dừng. Ghi sổ chi phí thực tế từng artifact.
 
 # 4. Provider adapter (gọi model trả phí)
 Giao diện chung, mỗi nhà cung cấp một adapter:
@@ -103,15 +106,15 @@ Mẫu C, từ video có sẵn: Phân tích (cấu trúc, nhịp cảnh, thoại)
 - Đăng bài chỉ qua OAuth chính thức của nền tảng, mặc định duyệt tay trước khi đăng.
 
 # 9. Kiểm thử và nghiệm thu
-- Kiểm thử đơn vị: kiểm tra đồ thị (vòng lặp, sai kiểu cổng), thứ tự chạy, bộ nhớ đệm theo hash, thử lại và hủy, trần chi phí.
+- Kiểm thử đơn vị: kiểm tra đồ thị (vòng lặp, sai kiểu cổng), thứ tự chạy, bộ nhớ đệm của node xác định, danh sách lần sinh và ghim, đánh dấu cũ khi đầu vào đổi, thử lại và hủy, trần chi phí.
 - Kiểm thử hợp đồng cho từng provider adapter bằng phản hồi ghi sẵn (không gọi mạng); kiểm thử tool adapter bằng lệnh giả.
-- Kiểm thử đầu cuối bằng mock: mẫu A với 2 cảnh ra được MP4 ở hai tỉ lệ, đổi một node thì chỉ chạy lại phần phụ thuộc.
+- Kiểm thử đầu cuối bằng mock: mẫu A với 2 cảnh ra được MP4 ở hai tỉ lệ; đổi một node thì các node phía sau chỉ bị đánh dấu cũ, và "chạy cả chuỗi" chỉ chạy các node cũ hoặc chưa có đầu ra.
 - Chạy thật có kiểm soát: 1 cảnh, 1 ảnh, 1 video ngắn, báo số tiền thực tế so với ước tính.
 - Nghiệm thu: một lệnh API tạo dự án mẫu A, chạy, và trả về đường dẫn MP4 cùng sổ chi phí.
 
 # 10. Giao hàng theo bước (dừng và báo sau mỗi bước)
 1. Hợp đồng dữ liệu, Artifact, Node, sổ model, kho tệp, API và SSE tối thiểu, mock provider.
-2. Bộ chạy đồ thị: thứ tự, bộ nhớ đệm, song song, hủy, thử lại, chi phí.
+2. Bộ chạy đồ thị: thứ tự, lần sinh và ghim, đánh dấu cũ, bộ nhớ đệm node xác định, song song, hủy, thử lại, chi phí.
 3. Tool adapter OmniVoice và ffmpeg/Whisper, node Giọng đọc và Phụ đề.
 4. Tool adapter HyperFrames (viết lại adapter thiếu, bỏ đường dẫn cứng), node Dựng, xuất nhiều tỉ lệ.
 5. Provider thật: Gemini (ảnh, Veo) và fal.ai, ước tính giá, xác nhận trước khi chạy.
@@ -120,7 +123,8 @@ Mẫu C, từ video có sẵn: Phân tích (cấu trúc, nhịp cảnh, thoại)
 8. Nối với giao diện canvas: ánh xạ cổng/loại node, hiển thị trạng thái và chi phí.
 
 # 11. Bổ sung rút ra từ khảo sát các tool hiện có (xem RESEARCH_AI_VIDEO_TOOLS.md)
-Các điểm sau ghi đè mục 3 khi mâu thuẫn:
+Đây là quy tắc chính thức cho node sinh bằng model; các mục 2, 3, 9, 10 đã được chỉnh cho khớp. Nếu còn chỗ mâu thuẫn, mục này thắng.
+- "Chạy cả chuỗi" bỏ qua node có đầu ra được ghim và không cũ; chỉ chạy node chưa có đầu ra hoặc đang cũ. Muốn làm lại một node phải bấm "tạo lại" ở chính node đó.
 - Kết quả sinh ra không tự bị ghi đè: mỗi node giữ danh sách các lần sinh (generation) kèm tham số và giá; người dùng ghim một lần làm đầu ra của node. Nút "tạo lại" thêm một lần sinh mới, không thay cái cũ. Khi đầu vào của node đổi, các node phía sau chỉ bị đánh dấu "cũ" (stale), không tự chạy lại. Bộ nhớ đệm theo mã băm chỉ dùng cho bước xác định (đo, cắt, ghép, dựng, phụ đề), không dùng để chặn việc tạo lại ảnh/video.
 - Chạy một node không tự chạy các node phía trên; thiếu đầu vào thì báo rõ "chưa chạy được: đang chờ ảnh đầu vào". Có lệnh riêng "chạy cả chuỗi".
 - Node "Kiểm tra" (cổng chấm điểm): hỏi model nhìn một câu có/không hoặc chấm điểm về ảnh hay video (ví dụ "nhân vật có đúng áo vàng, quần đen, đuôi xù không", "có chữ lạ trong ảnh không") và trả về đạt/không đạt kèm độ tin cậy. Đặt trước bước tạo video để chỉ tiêu tiền khi ảnh đạt; cho cấu hình tự thử lại tối đa N lần hoặc dừng chờ người duyệt.

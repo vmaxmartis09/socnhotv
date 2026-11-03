@@ -1,0 +1,40 @@
+{
+  "id": "graph_test",
+  "projectId": "soc-nho-tv",
+  "name": "Test Graph",
+  "nodes": [
+    {
+      "id": "node_img_1",
+      "type": "image_gen",
+      "params": {
+        "prompt": "Sóc Nhỏ Bi vui mừng ăn hạt dẻ",
+        "aspectRatio": "9:16"
+      },
+      "inputs": {},
+      "position": {
+        "x": 100.0,
+        "y": 200.0
+      },
+      "ui": {},
+      "state": "completed",
+      "isStale": false,
+      "pinnedGenerationId": "gen_a760c90f",
+      "generations": [
+        {
+          "id": "gen_a760c90f",
+          "nodeId": "node_img_1",
+          "params": {
+            "prompt": "Sóc Nhỏ Bi vui mừng ăn hạt dẻ",
+            "aspectRatio": "9:16"
+          },
+          "artifactId": "art_a272bd29b2d6",
+          "costUsd": 0.0,
+          "createdAt": "2026-11-03T14:54:06Z",
+          "isPinned": true
+        }
+      ]
+    }
+  ],
+  "edges": [],
+  "updatedAt": "2026-11-03T14:54:06Z"
+}

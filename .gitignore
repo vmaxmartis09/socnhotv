@@ -3,6 +3,7 @@
 tool/.venv/
 __pycache__/
 *.py[cod]
+*.egg-info/
 .env
 .env.local
 .env.*.local
@@ -24,6 +25,10 @@ data/projects/*/shots/*
 !data/projects/*/shots/.gitkeep
 data/projects/*/output/*
 !data/projects/*/output/.gitkeep
+data/projects/*/assets/*
+!data/projects/*/assets/.gitkeep
+data/projects/*/runs/*
+!data/projects/*/runs/.gitkeep
 output/
 
 # Third-party integrations

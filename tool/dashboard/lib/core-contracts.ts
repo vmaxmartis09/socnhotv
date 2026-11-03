@@ -1,0 +1,145 @@
+/**
+ * Tệp này được sinh tự động từ socnhotv.core.contracts.types.
+ * TUYỆT ĐỐI KHÔNG SỬA TAY ĐỂ TRÁNH LỆCH KIỂU GIỮA PYTHON CORE VÀ NEXT.JS UI.
+ */
+
+export type PortType =
+  | "text"
+  | "image"
+  | "image[]"
+  | "video"
+  | "audio"
+  | "script"
+  | "scenes"
+  | "character"
+  | "captions"
+  | "composition";
+
+export type ArtifactKind =
+  | "image"
+  | "video"
+  | "audio"
+  | "text"
+  | "captions"
+  | "composition";
+
+export type NodeState =
+  | "idle"
+  | "ready"
+  | "running"
+  | "completed"
+  | "failed"
+  | "cancelled"
+  | "cached";
+
+export type SSEEventType =
+  | "node_state"
+  | "node_progress"
+  | "node_log"
+  | "cost_update"
+  | "run_completed"
+  | "run_failed";
+
+export interface ArtifactMeta {
+  width?: number;
+  height?: number;
+  duration?: number;
+  fps?: number;
+  aspect?: string;
+}
+
+export interface ArtifactProvenance {
+  nodeId: string;
+  runId?: string;
+  provider: string;
+  model: string;
+  params?: Record<string, any>;
+  inputHashes?: string[];
+  costUsd: number;
+  createdAt: string;
+}
+
+export interface Artifact {
+  id: string;
+  kind: ArtifactKind;
+  uri: string;
+  mime: string;
+  size: number;
+  hash: string;
+  meta: ArtifactMeta;
+  provenance: ArtifactProvenance;
+}
+
+export interface Generation {
+  id: string;
+  nodeId: string;
+  params: Record<string, any>;
+  artifactId: string;
+  costUsd: number;
+  createdAt: string;
+  isPinned: boolean;
+}
+
+export interface PortDefinition {
+  name: string;
+  portType: PortType;
+  description?: string;
+  required?: boolean;
+}
+
+export interface NodeDefinition {
+  typeName: string;
+  displayName: string;
+  category: string;
+  description: string;
+  inputPorts: PortDefinition[];
+  outputPorts: PortDefinition[];
+  defaultParams: Record<string, any>;
+  mockable: boolean;
+}
+
+export interface NodePortInputRef {
+  nodeId: string;
+  outputPort: string;
+}
+
+export interface NodeInstance {
+  id: string;
+  type: string;
+  params: Record<string, any>;
+  inputs: Record<string, NodePortInputRef | any>;
+  position: { x: number; y: number };
+  ui?: Record<string, any>;
+  state: NodeState;
+  isStale: boolean;
+  pinnedGenerationId?: string | null;
+  generations: Generation[];
+}
+
+export interface Edge {
+  id: string;
+  sourceNodeId: string;
+  sourcePort: string;
+  targetNodeId: string;
+  targetPort: string;
+}
+
+export interface Graph {
+  id: string;
+  projectId: string;
+  name: string;
+  nodes: NodeInstance[];
+  edges: Edge[];
+  updatedAt: string;
+}
+
+export interface SSEEvent {
+  eventType: SSEEventType;
+  runId: string;
+  nodeId?: string;
+  state?: NodeState;
+  progress?: number;
+  message?: string;
+  costUsd?: number;
+  timestamp: string;
+}
