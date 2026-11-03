@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "schema_version": "1.0.0",
+  "active_project": "soc-nho-tv",
+  "projects": [
+    {
+      "id": "soc-nho-tv",
+      "name": "Sóc Nhỏ TV",
+      "description": "Kênh hoạt hình 3D giáo dục kỹ năng và khám phá cho trẻ em",
+      "path": "projects/soc-nho-tv",
+      "status": "active",
+      "default_character": "soc_nho",
+      "default_voice_id": "soc-nho",
+      "target_platforms": ["youtube", "tiktok"],
+      "created_at": "2026-11-03"
+    }
+  ],
+  "storage": {
+    "projects_root": "data/projects",
+    "shared_root": "data/shared"
+  }
+}
