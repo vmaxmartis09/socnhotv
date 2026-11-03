@@ -12,6 +12,7 @@ class ModelPricing(BaseModel):
     cost_per_second: Optional[float] = None
     cost_per_minute: Optional[float] = None
     cost_per_1k_tokens: Optional[float] = None
+    cost_per_1k_chars: Optional[float] = None
 
 
 class ModelSpec(BaseModel):
@@ -73,6 +74,9 @@ class ModelRegistry:
     def list_by_kind(self, kind: str) -> List[ModelSpec]:
         return [m for m in self._models.values() if m.kind == kind]
 
+    def list_by_provider(self, provider: str) -> List[ModelSpec]:
+        return [m for m in self._models.values() if m.provider == provider]
+
     def estimate_cost(
         self,
         model_key: str,
@@ -92,15 +96,25 @@ class ModelRegistry:
             return round(p.cost_per_generation * count, 4)
 
         if p.cost_per_second is not None:
-            duration = merged_params.get("duration", merged_params.get("durationSec", 5.0))
-            return round(p.cost_per_second * duration, 4)
+            duration = merged_params.get(
+                "duration_sec",
+                merged_params.get("duration", merged_params.get("durationSec", 5.0)),
+            )
+            return round(p.cost_per_second * float(duration), 4)
 
         if p.cost_per_minute is not None:
-            duration_sec = merged_params.get("duration", merged_params.get("durationSec", 60.0))
-            return round(p.cost_per_minute * (duration_sec / 60.0), 4)
+            duration_sec = merged_params.get(
+                "duration_sec",
+                merged_params.get("duration", merged_params.get("durationSec", 60.0)),
+            )
+            return round(p.cost_per_minute * (float(duration_sec) / 60.0), 4)
 
         if p.cost_per_1k_chars is not None:
             length = merged_params.get("text_length", len(str(merged_params.get("text", ""))))
             return round(p.cost_per_1k_chars * (length / 1000.0), 4)
+
+        if p.cost_per_1k_tokens is not None:
+            tokens = merged_params.get("tokens", max(1, len(str(merged_params.get("text", ""))) // 4))
+            return round(p.cost_per_1k_tokens * (tokens / 1000.0), 4)
 
         return 0.0

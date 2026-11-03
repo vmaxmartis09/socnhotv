@@ -12,6 +12,7 @@ models:
       aspect_ratios: ["16:9", "9:16", "1:1", "4:5"]
       resolutions: ["720p", "1080p"]
       supports_reference: true
+      supports_edit: true
       max_batch: 4
     pricing:
       cost_per_generation: 0.0
@@ -40,16 +41,28 @@ models:
     pricing:
       cost_per_minute: 0.0
 
-  # Google AI Models
-  gemini-2.5-flash-image:
-    display_name: "Google Gemini Flash Image"
+  # Google AI Models (Gemini / Nano Banana / Veo)
+  gemini-2.5-flash:
+    display_name: "Google Gemini 2.5 Flash (Text & Vision)"
     provider: "google"
     model_id: "gemini-2.5-flash"
+    kind: "text"
+    capabilities:
+      supports_vision: true
+      supports_json_schema: true
+    pricing:
+      cost_per_generation: 0.005
+
+  gemini-2.5-flash-image:
+    display_name: "Google Gemini Flash Image (Nano Banana)"
+    provider: "google"
+    model_id: "gemini-2.5-flash-image"
     kind: "image"
     capabilities:
       aspect_ratios: ["16:9", "9:16", "1:1", "4:5"]
       resolutions: ["1080p"]
       supports_reference: true
+      supports_edit: true
       max_batch: 4
     pricing:
       cost_per_generation: 0.03
@@ -57,7 +70,7 @@ models:
   google-veo-2:
     display_name: "Google Veo 2 Video"
     provider: "google"
-    model_id: "veo-2.0-generate"
+    model_id: "veo-2.0-generate-001"
     kind: "video"
     capabilities:
       aspect_ratios: ["16:9", "9:16"]
@@ -67,7 +80,20 @@ models:
     pricing:
       cost_per_second: 0.15
 
-  # fal.ai Models
+  google-veo-3.1-fast:
+    display_name: "Google Veo 3.1 Fast Preview"
+    provider: "google"
+    model_id: "veo-3.1-fast-generate-preview"
+    kind: "video"
+    capabilities:
+      aspect_ratios: ["16:9", "9:16"]
+      durations_sec: [4, 6, 8]
+      supports_first_frame: true
+      has_audio: true
+    pricing:
+      cost_per_second: 0.40
+
+  # fal.ai Models (Queue API)
   fal-flux-schnell:
     display_name: "fal.ai FLUX.1 [schnell]"
     provider: "fal"
@@ -76,10 +102,50 @@ models:
     capabilities:
       aspect_ratios: ["16:9", "9:16", "1:1", "4:5"]
       resolutions: ["720p", "1080p"]
-      supports_reference: true
+      supports_reference: false
       max_batch: 4
     pricing:
       cost_per_generation: 0.003
+
+  fal-flux-pro:
+    display_name: "fal.ai FLUX.1.1 [pro]"
+    provider: "fal"
+    model_id: "fal-ai/flux-pro/v1.1"
+    kind: "image"
+    capabilities:
+      aspect_ratios: ["16:9", "9:16", "1:1", "4:5"]
+      resolutions: ["1080p"]
+      supports_reference: true
+      max_batch: 4
+    pricing:
+      cost_per_generation: 0.04
+
+  fal-flux-kontext:
+    display_name: "fal.ai FLUX.1 Kontext (Edit & Reference)"
+    provider: "fal"
+    model_id: "fal-ai/flux-pro/kontext"
+    kind: "image"
+    capabilities:
+      aspect_ratios: ["16:9", "9:16", "1:1", "4:5"]
+      resolutions: ["1080p"]
+      supports_reference: true
+      supports_edit: true
+      max_batch: 4
+    pricing:
+      cost_per_generation: 0.04
+
+  fal-kling-v3-std:
+    display_name: "fal.ai Kling v3 Standard (Image-to-Video)"
+    provider: "fal"
+    model_id: "fal-ai/kling-video/v3/standard/image-to-video"
+    kind: "video"
+    capabilities:
+      aspect_ratios: ["16:9", "9:16", "1:1"]
+      durations_sec: [5, 8, 10]
+      supports_first_frame: true
+      has_audio: true
+    pricing:
+      cost_per_second: 0.084
 
   fal-ltx-video:
     display_name: "fal.ai LTX Video"
@@ -93,6 +159,20 @@ models:
       has_audio: false
     pricing:
       cost_per_second: 0.05
+
+  # Replicate Models (Khung mở rộng)
+  replicate-flux-schnell:
+    display_name: "Replicate FLUX.1 [schnell]"
+    provider: "replicate"
+    model_id: "black-forest-labs/flux-schnell"
+    kind: "image"
+    capabilities:
+      aspect_ratios: ["16:9", "9:16", "1:1", "4:5"]
+      resolutions: ["1080p"]
+      supports_reference: false
+      max_batch: 4
+    pricing:
+      cost_per_generation: 0.003
 
   # Local Engines (OmniVoice, Whisper, HyperFrames)
   local-omnivoice:
@@ -124,7 +204,7 @@ models:
     model_id: "hyperframes-engine"
     kind: "composition"
     capabilities:
-      aspect_ratios: ["9:16", "16:9"]
+      aspect_ratios: ["9:16", "16:9", "1:1", "4:5"]
       safe_zone_tiktok: true
       audio_ducking: true
     pricing:

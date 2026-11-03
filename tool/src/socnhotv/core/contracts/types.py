@@ -209,8 +209,36 @@ class GraphRunRequest(BaseModel):
     target_node_id: Optional[str] = Field(None, alias="targetNodeId")
     spending_limit_usd: Optional[float] = Field(None, alias="spendingLimitUsd")
     mock_mode: bool = Field(True, alias="mockMode")
+    confirm_paid_run: bool = Field(False, alias="confirmPaidRun")
+    source: str = Field("api", description="Nguồn gọi: ui | api | mcp")
     max_retries: int = Field(3, alias="maxRetries")
     concurrency_limit: int = Field(2, alias="concurrencyLimit")
+
+    model_config = ConfigDict(populate_by_name=True)
+
+
+class NodeCostEstimate(BaseModel):
+    """Chi tiết ước tính chi phí của một node sẽ chạy."""
+    node_id: str = Field(..., alias="nodeId")
+    node_type: str = Field(..., alias="nodeType")
+    model: str
+    provider: str
+    estimated_cost_usd: float = Field(0.0, alias="estimatedCostUsd")
+
+    model_config = ConfigDict(populate_by_name=True)
+
+
+class GraphCostEstimateResponse(BaseModel):
+    """Bảng ước tính giá và kiểm tra an toàn trước khi xác nhận chạy thật."""
+    project_id: str = Field(..., alias="projectId")
+    mode: RunMode
+    mock_mode: bool = Field(..., alias="mockMode")
+    nodes_to_execute: List[NodeCostEstimate] = Field(default_factory=list, alias="nodesToExecute")
+    skipped_nodes: List[str] = Field(default_factory=list, alias="skippedNodes")
+    total_estimated_cost_usd: float = Field(0.0, alias="totalEstimatedCostUsd")
+    requires_confirmation: bool = Field(False, alias="requiresConfirmation")
+    missing_api_keys: List[str] = Field(default_factory=list, alias="missingApiKeys")
+    spend_status: Dict[str, Any] = Field(default_factory=dict, alias="spendStatus")
 
     model_config = ConfigDict(populate_by_name=True)
 

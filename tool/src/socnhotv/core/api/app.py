@@ -18,6 +18,7 @@ from socnhotv.core.contracts.types import (
     ArtifactProvenance,
     Generation,
     Graph,
+    GraphCostEstimateResponse,
     GraphRunRequest,
     GraphRunSummary,
     GraphValidationResult,
@@ -36,7 +37,19 @@ from socnhotv.core.engine.graph_runner import (
 from socnhotv.core.engine.validator import validate_graph
 from socnhotv.core.models_registry.registry import ModelRegistry, ModelSpec
 from socnhotv.core.nodes.registry import NodeRegistry
-from socnhotv.core.providers.mock_provider import MockProvider
+from socnhotv.core.providers import (
+    FalProvider,
+    GoogleProvider,
+    KeyVault,
+    MissingApiKey,
+    MockProvider,
+    ProviderError,
+    ProviderRouter,
+    ReplicateProvider,
+    SpendCapExceeded,
+    SpendGuard,
+    redact_secrets,
+)
 from socnhotv.core.storage.project_store import ProjectStore, get_repo_root
 from socnhotv.core.api.data_routes import router as data_router
 from socnhotv.core.api.voice_routes import router as voice_router
@@ -61,16 +74,45 @@ app.add_middleware(
 
 # Quản lý hàng đợi SSE sự kiện theo project_id
 project_event_queues: Dict[str, List[asyncio.Queue]] = {}
-# Trạng thái khóa API trên máy chủ (chỉ lưu trạng thái đã đặt hay chưa, không bao giờ trả lại khóa)
-server_api_keys: Dict[str, Dict[str, Any]] = {
-    "gemini": {"provider": "gemini", "label": "Google Gemini & Veo", "configured": False, "updatedAt": None},
-    "fal": {"provider": "fal", "label": "fal.ai (Video Queue)", "configured": False, "updatedAt": None},
-    "openai": {"provider": "openai", "label": "OpenAI (GPT / Whisper)", "configured": False, "updatedAt": None},
-    "replicate": {"provider": "replicate", "label": "Replicate", "configured": False, "updatedAt": None},
-}
+# Quản lý tín hiệu hủy thực sự (cancel_event) cho các phiên chạy đang diễn ra theo project_id
+active_run_cancel_events: Dict[str, List[asyncio.Event]] = {}
+
+
+def get_key_vault() -> KeyVault:
+    """Trả về KeyVault phía máy chủ (cho phép override trong kiểm thử)."""
+    return KeyVault()
+
+
+def _parse_run_request(project_id: str, graph: Graph, payload: Dict[str, Any]) -> GraphRunRequest:
+    target_node_id = payload.get("targetNodeId") or payload.get("nodeId")
+    mode_str = payload.get("mode")
+    if not mode_str and target_node_id:
+        mode = RunMode.SINGLE_NODE
+    elif mode_str:
+        mode = RunMode(mode_str)
+    else:
+        mode = RunMode.ALL
+
+    confirm_paid_run = bool(
+        payload.get("confirmPaidRun") or payload.get("confirm_paid_run") or payload.get("confirmed", False)
+    )
+    return GraphRunRequest(
+        project_id=project_id,
+        graph_id=payload.get("graphId") or graph.id,
+        mode=mode,
+        target_node_id=target_node_id,
+        spending_limit_usd=payload.get("spendingLimitUsd"),
+        mock_mode=bool(payload.get("mockMode", True)),
+        confirm_paid_run=confirm_paid_run,
+        source=str(payload.get("source", "api")),
+        max_retries=int(payload.get("maxRetries", 3)),
+        concurrency_limit=int(payload.get("concurrencyLimit", 2)),
+    )
 
 
 def broadcast_event(project_id: str, event: SSEEvent) -> None:
+    if event.message:
+        event.message = redact_secrets(event.message)
     queues = project_event_queues.get(project_id, [])
     payload = event.model_dump_json(by_alias=True)
     for q in queues:
@@ -89,11 +131,61 @@ async def health_check():
 
 
 @app.get("/models", response_model=List[ModelSpec])
-async def list_models(kind: Optional[str] = None):
+async def list_models(kind: Optional[str] = None, provider: Optional[str] = None):
     registry = ModelRegistry.get_instance()
+    if provider:
+        items = registry.list_by_provider(provider)
+        return [m for m in items if m.kind == kind] if kind else items
     if kind:
         return registry.list_by_kind(kind)
     return registry.list_all()
+
+
+@app.get("/providers")
+async def list_providers():
+    """Trả về danh sách Provider adapter, khả năng hỗ trợ và trạng thái cấu hình (không trả khóa)."""
+    vault = get_key_vault()
+    registry = ModelRegistry.get_instance()
+    dummy_store = ProjectStore("soc-nho-tv")
+    dummy_key = "inspection_only_dummy_key_123456"
+
+    mock_caps = MockProvider(dummy_store).capabilities()
+    google_caps = GoogleProvider(dummy_store, key=dummy_key).capabilities()
+    fal_caps = FalProvider(dummy_store, key=dummy_key).capabilities()
+    rep_caps = ReplicateProvider(dummy_store, key=dummy_key).capabilities()
+
+    return {
+        "providers": [
+            {
+                "id": "mock",
+                "label": "Mock Provider (Chạy thử miễn phí)",
+                "configured": True,
+                "capabilities": mock_caps,
+                "models": [m.model_id for m in registry.list_by_provider("mock")],
+            },
+            {
+                "id": "google",
+                "label": "Google Gemini & Veo",
+                "configured": vault.has_valid_key("gemini"),
+                "capabilities": google_caps,
+                "models": [m.model_id for m in registry.list_by_provider("google")],
+            },
+            {
+                "id": "fal",
+                "label": "fal.ai (FLUX, Kontext, Kling v3, LTX Video)",
+                "configured": vault.has_valid_key("fal"),
+                "capabilities": fal_caps,
+                "models": [m.model_id for m in registry.list_by_provider("fal")],
+            },
+            {
+                "id": "replicate",
+                "label": "Replicate (Khung mở rộng)",
+                "configured": vault.has_valid_key("replicate"),
+                "capabilities": rep_caps,
+                "models": [m.model_id for m in registry.list_by_provider("replicate")],
+            },
+        ]
+    }
 
 
 @app.get("/node-types", response_model=List[NodeDefinition])
@@ -151,6 +243,36 @@ async def validate_project_graph(project_id: str, graph: Optional[Graph] = None)
     return validate_graph(graph)
 
 
+@app.get("/projects/{project_id}/spend")
+async def get_project_spend_status(project_id: str, source: str = Query("api")):
+    """Xem trạng thái trần chi tiêu dự án, trần 24 giờ và trần MCP/Agent."""
+    store = ProjectStore(project_id)
+    guard = SpendGuard(store.runs_dir)
+    return guard.preview(0.0, source=source)
+
+
+@app.post("/projects/{project_id}/estimate", response_model=GraphCostEstimateResponse)
+async def estimate_project_run(project_id: str, payload: Dict[str, Any] = Body(default_factory=dict)):
+    """Ước tính chi tiết từng node sẽ chạy, tổng chi phí USD, khóa API thiếu và trạng thái trần chi tiêu."""
+    store = ProjectStore(project_id)
+    if "graph" in payload and payload["graph"]:
+        graph = Graph.model_validate(payload["graph"])
+    else:
+        graph = store.get_graph()
+
+    req = _parse_run_request(project_id, graph, payload)
+    runner = GraphRunner(store=store, model_registry=ModelRegistry())
+    try:
+        return runner.plan_execution(
+            graph,
+            req,
+            vault=get_key_vault(),
+            guard=SpendGuard(store.runs_dir),
+        )
+    except GraphExecutionError as ge:
+        raise HTTPException(status_code=400, detail=redact_secrets(str(ge)))
+
+
 @app.post("/projects/{project_id}/run", response_model=GraphRunSummary)
 async def run_graph(project_id: str, payload: Dict[str, Any] = Body(...)):
     """Thực thi đồ thị node thông qua GraphRunner:
@@ -159,6 +281,7 @@ async def run_graph(project_id: str, payload: Dict[str, Any] = Body(...)):
     - FORCE_ALL: Chạy lại toàn bộ đồ thị.
     - SINGLE_NODE: Chạy 1 node cụ thể (targetNodeId).
     - DOWNSTREAM: Chạy 1 node và toàn bộ các node con cháu (descendants).
+    Ở chế độ thật (mockMode=False) có phát sinh chi phí, yêu cầu confirmPaidRun=True.
     """
     store = ProjectStore(project_id)
     if "graph" in payload and payload["graph"]:
@@ -166,55 +289,74 @@ async def run_graph(project_id: str, payload: Dict[str, Any] = Body(...)):
     else:
         graph = store.get_graph()
 
-    # Hỗ trợ backward compatibility với request cũ dạng {"nodeId": "...", "isMock": true}
-    target_node_id = payload.get("targetNodeId") or payload.get("nodeId")
-    mode_str = payload.get("mode")
-    if not mode_str and target_node_id:
-        mode = RunMode.SINGLE_NODE
-    elif mode_str:
-        mode = RunMode(mode_str)
-    else:
-        mode = RunMode.ALL
-
-    req = GraphRunRequest(
-        project_id=project_id,
-        graph_id=payload.get("graphId") or graph.id,
-        mode=mode,
-        target_node_id=target_node_id,
-        spending_limit_usd=payload.get("spendingLimitUsd"),
-        mock_mode=payload.get("mockMode", True),
-        max_retries=int(payload.get("maxRetries", 3)),
-        concurrency_limit=int(payload.get("concurrencyLimit", 2)),
-    )
+    req = _parse_run_request(project_id, graph, payload)
+    vault = get_key_vault()
+    guard = SpendGuard(store.runs_dir)
 
     def sse_callback(event: SSEEvent):
         broadcast_event(project_id, event)
 
-    provider = None
-    if not req.mock_mode:
-        # Chế độ thật: chỉ Google (Gemini/Veo) + OmniVoice local, có khóa chi tiêu cứng 5 đô
-        from socnhotv.core.providers.google_provider import GoogleProvider, MissingApiKey
-
+    # Kiểm tra trước chi phí & khóa API khi chạy chế độ thật trên đồ thị hợp lệ
+    if not req.mock_mode and validate_graph(graph).is_valid:
+        planner = GraphRunner(store=store, model_registry=ModelRegistry())
         try:
-            provider = GoogleProvider(store)
-        except MissingApiKey as e:
-            raise HTTPException(status_code=400, detail=str(e))
+            plan = planner.plan_execution(graph, req, vault=vault, guard=guard)
+        except GraphExecutionError as ge:
+            raise HTTPException(status_code=400, detail=redact_secrets(str(ge)))
+
+        if plan.total_estimated_cost_usd > 0 or plan.missing_api_keys:
+            if plan.missing_api_keys:
+                raise HTTPException(
+                    status_code=400,
+                    detail=f"Thiếu khóa API hợp lệ cho provider: {', '.join(plan.missing_api_keys)}",
+                )
+            if not plan.spend_status.get("canProceed", True):
+                raise HTTPException(
+                    status_code=400,
+                    detail=str(plan.spend_status.get("reason") or "Vượt trần chi tiêu cho phép."),
+                )
+            if not req.confirm_paid_run:
+                return JSONResponse(
+                    status_code=409,
+                    content={
+                        "detail": "Cần xác nhận chi phí trước khi gọi model trả phí (truyền confirmPaidRun=true).",
+                        "estimate": plan.model_dump(by_alias=True),
+                    },
+                )
+
+    cancel_event = asyncio.Event()
+    active_run_cancel_events.setdefault(project_id, []).append(cancel_event)
+
+    provider = ProviderRouter(
+        store=store,
+        guard=guard,
+        vault=vault,
+        mock_mode=req.mock_mode,
+        fallback_to_mock=False,
+        source=req.source,
+    )
 
     runner = GraphRunner(
         store=store,
         model_registry=ModelRegistry(),
         event_callback=sse_callback,
         provider=provider,
+        cancel_event=cancel_event,
     )
 
     try:
         summary = await runner.run(graph, req)
         return summary
-    except (BudgetExceededError, GraphExecutionError) as be:
-        raise HTTPException(status_code=400, detail=str(be))
+    except (BudgetExceededError, GraphExecutionError, MissingApiKey, SpendCapExceeded) as be:
+        raise HTTPException(status_code=400, detail=redact_secrets(str(be)))
+    except ProviderError as pe:
+        raise HTTPException(status_code=400, detail=redact_secrets(str(pe)))
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
+        raise HTTPException(status_code=500, detail=redact_secrets(str(e)))
+    finally:
+        ev_list = active_run_cancel_events.get(project_id, [])
+        if cancel_event in ev_list:
+            ev_list.remove(cancel_event)
 
 
 @app.get("/projects/{project_id}/events")
@@ -245,7 +387,12 @@ async def sse_events(project_id: str):
 
 @app.post("/projects/{project_id}/run/cancel")
 async def cancel_project_run(project_id: str):
-    """Dừng phiên chạy đồ thị hiện hành và phát sự kiện SSE hủy."""
+    """Kích hoạt cancel_event thực sự dừng các tác vụ đang chạy và phát sự kiện SSE hủy."""
+    signalled = 0
+    for ev in list(active_run_cancel_events.get(project_id, [])):
+        ev.set()
+        signalled += 1
+
     cancel_evt = SSEEvent(
         event_type=SSEEventType.RUN_FAILED,
         run_id=f"run_cancel_{int(time.time())}",
@@ -254,7 +401,7 @@ async def cancel_project_run(project_id: str):
         timestamp=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
     )
     broadcast_event(project_id, cancel_evt)
-    return {"status": "cancelled", "projectId": project_id}
+    return {"status": "cancelled", "projectId": project_id, "signalledRuns": signalled}
 
 
 def _default_studio_characters(project_id: str) -> List[Dict[str, Any]]:
@@ -627,8 +774,21 @@ async def studio_chat_command(project_id: str, payload: Dict[str, Any] = Body(..
     if not prompt:
         raise HTTPException(status_code=400, detail="Empty prompt")
 
-    provider = MockProvider(store)
-    result = await provider.text_complete(
+    mock_mode = bool(payload.get("mockMode", True))
+    vault = get_key_vault()
+    if not mock_mode and vault.has_valid_key("gemini"):
+        try:
+            key = vault.require_key("gemini")
+            provider = GoogleProvider(store, guard=SpendGuard(store.runs_dir), key=key)
+            return await provider.text_complete(
+                system="Bạn là trợ lý điều khiển AI Video Studio cho dự án Sóc Nhỏ TV.",
+                prompt=prompt,
+            )
+        except (ProviderError, MissingApiKey) as pe:
+            raise HTTPException(status_code=400, detail=redact_secrets(str(pe)))
+
+    provider_mock = MockProvider(store)
+    result = await provider_mock.text_complete(
         system="Bạn là trợ lý điều khiển AI Video Studio cho dự án Sóc Nhỏ TV.",
         prompt=prompt,
     )
@@ -638,41 +798,27 @@ async def studio_chat_command(project_id: str, payload: Dict[str, Any] = Body(..
 @app.get("/settings/api-keys")
 async def get_api_keys_status():
     """Trả về trạng thái khóa API theo từng nhà cung cấp (KHÔNG BAO GIỜ trả về khóa)."""
-    import os
-    env_map = {
-        "gemini": "GEMINI_API_KEY",
-        "fal": "FAL_KEY",
-        "openai": "OPENAI_API_KEY",
-        "replicate": "REPLICATE_API_TOKEN",
-    }
-    items = []
-    for k, info in server_api_keys.items():
-        has_env = bool(os.environ.get(env_map.get(k, "")))
-        items.append(
-            {
-                "provider": k,
-                "label": info["label"],
-                "configured": bool(info["configured"] or has_env),
-                "updatedAt": info["updatedAt"],
-            }
-        )
-    return {"providers": items}
+    vault = get_key_vault()
+    return {"providers": vault.list_status()}
 
 
 @app.post("/settings/api-keys")
 async def set_api_key(payload: Dict[str, Any] = Body(...)):
-    """Cập nhật khóa API trên máy chủ (chỉ ghi nhận trạng thái, không bao giờ trả lại khóa)."""
+    """Cập nhật hoặc kiểm tra khóa API trên máy chủ (KHÔNG BAO GIỜ trả lại khóa trong phản hồi)."""
     provider = str(payload.get("provider", "")).strip().lower()
-    api_key = str(payload.get("apiKey", "")).strip()
-    if provider not in server_api_keys:
-        raise HTTPException(status_code=400, detail=f"Unknown provider: {provider}")
-    server_api_keys[provider]["configured"] = len(api_key) >= 6
-    server_api_keys[provider]["updatedAt"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
-    return {
-        "provider": provider,
-        "configured": server_api_keys[provider]["configured"],
-        "updatedAt": server_api_keys[provider]["updatedAt"],
-    }
+    api_key = str(payload.get("apiKey", ""))
+    verify_live = bool(payload.get("verifyLive", False))
+
+    vault = get_key_vault()
+    try:
+        if verify_live and api_key.strip():
+            await vault.verify_key_live(provider, api_key=api_key)
+        status = vault.set_key(provider, api_key)
+        if verify_live and status.get("configured"):
+            status["verifiedLive"] = True
+        return status
+    except (MissingApiKey, ProviderError) as err:
+        raise HTTPException(status_code=400, detail=redact_secrets(str(err)))
 
 
 @app.get("/projects/{project_id}/files/{file_path:path}")

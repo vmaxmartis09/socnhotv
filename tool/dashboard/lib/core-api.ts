@@ -259,12 +259,26 @@ export function estimateNodeCostUsd(
   if (isMockMode) return 0.0;
   if (typeName === "image_gen" || typeName === "image_edit") {
     const n = Number(params.n || 1);
-    return Number((0.03 * n).toFixed(4));
+    const model = String(params.model || "gemini-2.5-flash-image");
+    const rate = model.includes("flux-schnell")
+      ? 0.003
+      : model.includes("flux-pro")
+        ? 0.04
+        : model.includes("kontext")
+          ? 0.04
+          : 0.03;
+    return Number((rate * n).toFixed(4));
   }
   if (typeName === "video_gen") {
     const dur = Number(params.durationSec || 8);
     const model = String(params.model || "google-veo-2");
-    const rate = model.includes("ltx") ? 0.04 : 0.15;
+    const rate = model.includes("ltx")
+      ? 0.04
+      : model.includes("kling")
+        ? 0.084
+        : model.includes("veo-3")
+          ? 0.4
+          : 0.15;
     return Number((dur * rate).toFixed(4));
   }
   if (typeName === "quality_check" || typeName === "vision_analyze") {
@@ -426,7 +440,25 @@ export async function saveGraphToCore(
   }
 }
 
-export async function runGraphOnCore(
+export interface CoreCostEstimateResponse {
+  projectId: string;
+  mode: RunMode;
+  mockMode: boolean;
+  nodesToExecute: Array<{
+    nodeId: string;
+    nodeType: string;
+    model: string;
+    provider: string;
+    estimatedCostUsd: number;
+  }>;
+  skippedNodes: string[];
+  totalEstimatedCostUsd: number;
+  requiresConfirmation: boolean;
+  missingApiKeys: string[];
+  spendStatus: Record<string, any>;
+}
+
+export async function estimateGraphOnCore(
   projectId: string,
   payload: {
     graph: Graph;
@@ -435,11 +467,38 @@ export async function runGraphOnCore(
     spendingLimitUsd?: number;
     mockMode: boolean;
   }
+): Promise<CoreCostEstimateResponse | null> {
+  try {
+    const res = await fetch(`${CORE_URL}/projects/${projectId}/estimate`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) return null;
+    return (await res.json()) as CoreCostEstimateResponse;
+  } catch {
+    return null;
+  }
+}
+
+export async function runGraphOnCore(
+  projectId: string,
+  payload: {
+    graph: Graph;
+    mode: RunMode;
+    targetNodeId?: string;
+    spendingLimitUsd?: number;
+    mockMode: boolean;
+    confirmPaidRun?: boolean;
+  }
 ): Promise<GraphRunSummary | null> {
   const res = await fetch(`${CORE_URL}/projects/${projectId}/run`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
+    body: JSON.stringify({
+      ...payload,
+      confirmPaidRun: payload.confirmPaidRun ?? true,
+    }),
   });
   if (!res.ok) {
     const detail = await res.text();

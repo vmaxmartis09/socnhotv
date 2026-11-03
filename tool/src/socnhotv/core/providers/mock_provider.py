@@ -14,13 +14,18 @@ from socnhotv.core.providers.base import BaseProvider
 from socnhotv.core.storage.project_store import ProjectStore
 
 
-def create_minimal_png_bytes(width: int = 1080, height: int = 1920) -> bytes:
-    """Tạo tệp PNG nhị phân hợp lệ 100% bằng Pillow cho Mock Image."""
+def create_minimal_png_bytes(width: int = 1080, height: int = 1920, label: str = "MOCK") -> bytes:
+    """Tạo tệp PNG nhị phân hợp lệ 100% bằng Pillow có in nhãn MOCK rõ ràng."""
     import io
-    from PIL import Image
+    from PIL import Image, ImageDraw
 
-    # Tạo ảnh RGB màu tím primary (#6d4aff)
     img = Image.new("RGB", (width, height), color=(109, 74, 255))
+    draw = ImageDraw.Draw(img)
+    box_w, box_h = min(width - 40, 360), min(height - 40, 120)
+    if box_w > 40 and box_h > 20:
+        x0, y0 = (width - box_w) // 2, (height - box_h) // 2
+        draw.rectangle([x0, y0, x0 + box_w, y0 + box_h], fill=(24, 24, 32), outline=(255, 180, 0), width=3)
+        draw.text((x0 + 24, y0 + box_h // 2 - 6), label, fill=(255, 255, 255))
     buf = io.BytesIO()
     img.save(buf, format="PNG")
     return buf.getvalue()
@@ -85,6 +90,7 @@ class MockProvider(BaseProvider):
         seed: Optional[int] = None,
         node_id: str = "unknown",
         run_id: str = "run_default",
+        model: Optional[str] = None,
     ) -> List[Artifact]:
         artifacts = []
         width, height = (1080, 1920) if aspect_ratio == "9:16" else (1920, 1080)
@@ -148,6 +154,10 @@ class MockProvider(BaseProvider):
         has_audio: bool = False,
         node_id: str = "unknown",
         run_id: str = "run_default",
+        last_frame_uri: Optional[str] = None,
+        references: Optional[List[str]] = None,
+        model: Optional[str] = None,
+        cancel_event: Optional[Any] = None,
     ) -> Artifact:
         width, height = (1080, 1920) if aspect_ratio == "9:16" else (1920, 1080)
         mp4_bytes = create_minimal_mp4_bytes()
@@ -223,6 +233,8 @@ class MockProvider(BaseProvider):
         prompt: str,
         node_id: str = "unknown",
         run_id: str = "run_default",
+        schema: Optional[Dict[str, Any]] = None,
+        model: Optional[str] = None,
     ) -> Dict[str, Any]:
         return {
             "title": "Phân cảnh trích xuất từ video nguồn (Mock)",
@@ -252,6 +264,7 @@ class MockProvider(BaseProvider):
         system: str,
         prompt: str,
         schema: Optional[Dict[str, Any]] = None,
+        model: Optional[str] = None,
     ) -> Dict[str, Any]:
         """Trợ lý theo quy tắc (Rule-based Assistant) khi ở chế độ chạy thử hoặc chưa có khóa API."""
         p_lower = prompt.lower().strip()
