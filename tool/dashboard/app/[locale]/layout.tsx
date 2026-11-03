@@ -4,9 +4,12 @@ import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
-import { Sidebar } from "@/components/navigation/Sidebar";
 import { Header } from "@/components/navigation/Header";
 import { BottomNav } from "@/components/navigation/BottomNav";
+import { AppRail } from "@/components/navigation/AppRail";
+import { ConfirmHost } from "@/components/ui/ConfirmHost";
+import { TooltipHost } from "@/components/ui/TooltipHost";
+import { FloatingPanels } from "@/components/studio/FloatingPanels";
 import { IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
 import "@/app/globals.css";
 
@@ -46,18 +49,20 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} className={`${sans.variable} ${mono.variable}`} suppressHydrationWarning>
-      <body className="h-dvh bg-background text-foreground font-sans antialiased flex overflow-hidden">
+      <body className="h-dvh bg-background text-foreground font-sans antialiased flex overflow-clip">
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider>
-            <Sidebar />
-            <div className="flex-1 flex flex-col min-w-0 h-dvh">
+            <div className="relative flex h-dvh min-w-0 flex-1 flex-col">
               <Header />
-              {/* The sheet: white page inset 8px from the window's right and bottom edges */}
-              <main className="flex flex-1 min-h-0 overflow-hidden bg-card pb-14 md:pb-0 md:mr-2 md:mb-2 md:rounded-2xl md:border md:border-border">
+              <main className="flex min-h-0 flex-1 overflow-clip bg-card pb-14 md:pb-0">
                 {children}
               </main>
+              <AppRail />
+              <FloatingPanels />
             </div>
             <BottomNav />
+            <ConfirmHost />
+            <TooltipHost />
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>

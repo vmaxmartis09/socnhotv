@@ -30,7 +30,7 @@ export function JobsCostTab() {
       {/* Spending vs Ceilings */}
       <section className="rounded-md border border-border bg-card p-3 space-y-2">
         <h3 className="font-semibold text-foreground">{t("budgetTitle")}</h3>
-        <div className="space-y-1 text-[11px] tnum">
+        <div className="space-y-1 text-[13px] tnum">
           <div className="flex justify-between">
             <span className="text-muted-foreground">
               {t("spentToday", { spent: totalSpentUsd.toFixed(2) })}
@@ -57,7 +57,7 @@ export function JobsCostTab() {
           {t("activeQueueTitle", { count: activeJobs.length })}
         </h3>
         {activeJobs.length === 0 ? (
-          <p className="text-[11px] text-muted-foreground">
+          <p className="text-[13px] text-muted-foreground">
             {t("noActiveJobs")}
           </p>
         ) : (
@@ -85,7 +85,7 @@ export function JobsCostTab() {
           {t("historyTitle", { count: completedJobs.length })}
         </h3>
         {completedJobs.length === 0 ? (
-          <p className="text-[11px] text-muted-foreground">{t("noHistory")}</p>
+          <p className="text-[13px] text-muted-foreground">{t("noHistory")}</p>
         ) : (
           <ul className="space-y-2">
             {completedJobs.map((j) => (
@@ -99,7 +99,7 @@ export function JobsCostTab() {
                     ${(j.actualCostUsd ?? 0).toFixed(2)} USD
                   </span>
                 </div>
-                <p className="text-[10px] text-muted-foreground">
+                <p className="text-xs text-muted-foreground">
                   {j.completedAt || j.createdAt}
                 </p>
               </li>

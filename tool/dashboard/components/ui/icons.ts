@@ -104,3 +104,26 @@ export const Send = createMorphIcon(lucide.Send, "Send");
 export const Key = createMorphIcon(lucide.Key, "Key");
 export const ListOrdered = createMorphIcon(lucide.ListOrdered, "ListOrdered");
 export const AlertTriangle = createMorphIcon(lucide.AlertTriangle, "AlertTriangle");
+
+// Biểu tượng cho node gọn, hub dự án và thanh công cụ
+export const Loader2 = createMorphIcon(lucide.Loader2, "Loader2");
+export const Circle = createMorphIcon(lucide.Circle, "Circle");
+export const CircleDot = createMorphIcon(lucide.CircleDot, "CircleDot");
+export const ChevronUp = createMorphIcon(lucide.ChevronUp, "ChevronUp");
+export const Mic = createMorphIcon(lucide.Mic, "Mic");
+export const ScrollText = createMorphIcon(lucide.ScrollText, "ScrollText");
+export const Clapperboard = createMorphIcon(lucide.Clapperboard, "Clapperboard");
+export const Images = createMorphIcon(lucide.Images, "Images");
+export const Video = createMorphIcon(lucide.Video, "Video");
+export const Download = createMorphIcon(lucide.Download, "Download");
+export const Wand2 = createMorphIcon(lucide.Wand2, "Wand2");
+export const CheckSquare = createMorphIcon(lucide.CheckSquare, "CheckSquare");
+export const Hash = createMorphIcon(lucide.Hash, "Hash");
+export const Info = createMorphIcon(lucide.Info, "Info");
+export const Keyboard = createMorphIcon(lucide.Keyboard, "Keyboard");
+export const House = createMorphIcon(lucide.House, "House");
+export const Activity = createMorphIcon(lucide.Activity, "Activity");
+export const ExternalLink = createMorphIcon(lucide.ExternalLink, "ExternalLink");
+export const Bot = createMorphIcon(lucide.Bot, "Bot");
+export const ChevronsDown = createMorphIcon(lucide.ChevronsDown, "ChevronsDown");
+export const Workflow = createMorphIcon(lucide.Workflow, "Workflow");

@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { useTranslations } from "next-intl";
 import type { Character } from "@/lib/repositories";
 import { Button } from "@/components/ui/Button";
+import { X, Check } from "@/components/ui/icons";
 
 const lines = (s: string) => s.split("\n").map((x) => x.trim()).filter(Boolean);
 
@@ -22,27 +23,32 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
 interface Props {
   /** Có `initial` => sửa; không có => tạo mới. */
   initial?: Character;
+  /** Điền sẵn khi tạo mới (ví dụ bản nháp do AI dựng) */
+  prefill?: Partial<Character>;
+  /** Hiển thị trong vùng mở rộng của panel (không có lớp phủ modal) */
+  inline?: boolean;
   projectId: string;
   onSave: (c: Character, isNew: boolean) => Promise<void>;
   onClose: () => void;
 }
 
-export function CharacterDialog({ initial, projectId, onSave, onClose }: Props) {
+export function CharacterDialog({ initial, prefill, projectId, onSave, onClose, inline = false }: Props) {
+  const base = initial ?? prefill;
   const t = useTranslations("characters");
   const isNew = !initial;
-  const [id, setId] = useState(initial?.id ?? "");
-  const [name, setName] = useState(initial?.name ?? "");
-  const [role, setRole] = useState<Character["role"]>(initial?.role ?? "supporting");
-  const [heightCm, setHeightCm] = useState(String(initial?.heightCm ?? 100));
-  const [scaleRatio, setScaleRatio] = useState(String(initial?.scaleRatio ?? 1));
-  const [description, setDescription] = useState(initial?.description ?? "");
+  const [id, setId] = useState(initial?.id ?? prefill?.id ?? "");
+  const [name, setName] = useState(base?.name ?? "");
+  const [role, setRole] = useState<Character["role"]>(base?.role ?? "supporting");
+  const [heightCm, setHeightCm] = useState(String(base?.heightCm ?? 100));
+  const [scaleRatio, setScaleRatio] = useState(String(base?.scaleRatio ?? 1));
+  const [description, setDescription] = useState(base?.description ?? "");
   const [tempo, setTempo] = useState(String(initial?.defaultTempo ?? 1));
-  const [voiceId, setVoiceId] = useState(initial?.voiceId ?? "");
-  const [promptLock, setPromptLock] = useState(initial?.promptLock ?? "");
-  const [personality, setPersonality] = useState(initial?.memory.personality ?? "");
-  const [catchphrases, setCatchphrases] = useState((initial?.memory.catchphrases ?? []).join("\n"));
-  const [habits, setHabits] = useState((initial?.memory.habits ?? []).join("\n"));
-  const [events, setEvents] = useState((initial?.memory.pastEventsSummary ?? []).join("\n"));
+  const [voiceId, setVoiceId] = useState(base?.voiceId ?? "");
+  const [promptLock, setPromptLock] = useState(base?.promptLock ?? "");
+  const [personality, setPersonality] = useState(base?.memory?.personality ?? "");
+  const [catchphrases, setCatchphrases] = useState((base?.memory?.catchphrases ?? []).join("\n"));
+  const [habits, setHabits] = useState((base?.memory?.habits ?? []).join("\n"));
+  const [events, setEvents] = useState((base?.memory?.pastEventsSummary ?? []).join("\n"));
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
 
@@ -84,23 +90,25 @@ export function CharacterDialog({ initial, projectId, onSave, onClose }: Props) 
     }
   }
 
-  return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4"
-      onMouseDown={(e) => e.target === e.currentTarget && onClose()}
-    >
+  const formEl = (
       <form
-        role="dialog"
-        aria-modal="true"
+        role={inline ? undefined : "dialog"}
+        aria-modal={inline ? undefined : true}
         aria-label={isNew ? t("createTitle") : t("editTitle")}
         onSubmit={submit}
-        className="max-h-full w-full max-w-xl space-y-3 overflow-y-auto rounded-lg border border-border bg-card p-5"
+        className={
+          inline
+            ? "space-y-3"
+            : "max-h-full w-full max-w-xl space-y-3 overflow-y-auto scroll-quiet rounded-lg border border-border bg-card p-5"
+        }
       >
-        <h2 className="text-base font-semibold text-foreground">
-          {isNew ? t("createTitle") : t("editTitle")}
-        </h2>
+        {!inline && (
+          <h2 className="text-base font-semibold text-foreground">
+            {isNew ? t("createTitle") : t("editTitle")}
+          </h2>
+        )}
 
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+        <div className={inline ? "grid grid-cols-2 gap-3" : "grid grid-cols-1 gap-3 sm:grid-cols-2"}>
           <Field label={t("fId")}>
             <input className={inputCls} value={id} disabled={!isNew} onChange={(e) => setId(e.target.value)} placeholder="soc_nho" />
           </Field>
@@ -136,7 +144,7 @@ export function CharacterDialog({ initial, projectId, onSave, onClose }: Props) 
         <Field label={t("fPersonality")}>
           <input className={inputCls} value={personality} onChange={(e) => setPersonality(e.target.value)} />
         </Field>
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+        <div className={inline ? "grid grid-cols-1 gap-3" : "grid grid-cols-1 gap-3 sm:grid-cols-3"}>
           <Field label={t("fCatch")}>
             <textarea className={inputCls} rows={3} value={catchphrases} onChange={(e) => setCatchphrases(e.target.value)} />
           </Field>
@@ -151,14 +159,23 @@ export function CharacterDialog({ initial, projectId, onSave, onClose }: Props) 
         {error && <p className="text-[13px] text-semantic-danger">{error}</p>}
 
         <div className="flex justify-end gap-2 pt-1">
-          <Button type="button" variant="outline" size="sm" onClick={onClose}>
-            {t("cancel")}
+          <Button type="button" variant="outline" size="icon" title={t("cancel")} aria-label={t("cancel")} onClick={onClose}>
+            <X className="h-4 w-4" />
           </Button>
-          <Button type="submit" size="sm" disabled={!canSave}>
-            {t("save")}
+          <Button type="submit" size="icon" title={t("save")} aria-label={t("save")} disabled={!canSave}>
+            <Check className="h-4 w-4" />
           </Button>
         </div>
       </form>
+  );
+
+  if (inline) return formEl;
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4"
+      onMouseDown={(e) => e.target === e.currentTarget && onClose()}
+    >
+      {formEl}
     </div>
   );
 }

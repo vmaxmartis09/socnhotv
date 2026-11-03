@@ -54,7 +54,7 @@ export function BottomNav() {
               }
             }}
             className={cn(
-              "relative flex min-w-11 flex-col items-center justify-center px-1.5 py-1 text-[11px] transition-colors",
+              "relative flex min-w-11 flex-col items-center justify-center px-1.5 py-1 text-[13px] transition-colors",
               isActive
                 ? "font-medium text-foreground after:absolute after:inset-x-2 after:-top-px after:h-0.5 after:bg-brand"
                 : "text-muted-foreground hover:text-foreground"

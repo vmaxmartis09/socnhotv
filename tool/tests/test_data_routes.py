@@ -81,3 +81,27 @@ def test_image_and_voice_upload_use_temp_root(tmp_path, monkeypatch):
     assert r.json()["files"][0]["name"] == "s.mp3"
     assert client.get("/data/voices/va/s.mp3").status_code == 200
     assert client.post("/data/voices/../samples", json={"name": "s.mp3", "data": b64}).status_code in (400, 404)
+
+
+def test_episode_script_ai_and_upload_use_temp_root(tmp_path, monkeypatch):
+    import base64
+    import json
+
+    from socnhotv.core.api import data_routes
+
+    proj = tmp_path / "data" / "projects" / "demo"
+    proj.mkdir(parents=True)
+    (proj / "project.json").write_text(json.dumps({"id": "demo", "characters": {}}), encoding="utf-8")
+    monkeypatch.setattr(data_routes, "get_repo_root", lambda: tmp_path)
+
+    assert client.post("/data/projects/demo/episodes", json={"title": "Tập Một"}).json()["id"] == "tap-mot"
+    assert client.post("/data/projects/demo/episodes", json={"title": " "}).status_code == 400
+    r = client.post("/data/projects/demo/scripts", json={"title": "Kịch bản A", "content": "# A", "episodeId": "tap-mot"})
+    assert r.json() == {"episodeId": "tap-mot", "name": "KICH-BAN-A.md"}
+    assert client.post("/data/projects/demo/ai/script", json={"prompt": "Bi học đánh răng"}).json()["mode"] == "mock"
+
+    b64 = base64.b64encode(b"x").decode()
+    assert client.post("/data/projects/demo/library/upload", json={"name": "a.png", "data": b64}).json()["kind"] == "image"
+    assert client.post("/data/projects/demo/library/upload", json={"name": "a.txt", "data": b64}).status_code == 400
+    lib = client.get("/data/projects/demo/library").json()
+    assert len(lib["images"]) == 1 and any(s["name"] == "KICH-BAN-A.md" for s in lib["scripts"])

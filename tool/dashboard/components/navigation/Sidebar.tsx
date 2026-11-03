@@ -34,9 +34,9 @@ export function Sidebar() {
   };
 
   return (
-    <aside className="hidden md:flex w-[220px] shrink-0 flex-col h-dvh bg-background px-2.5 pt-3 pb-2.5 select-none">
+    <aside className="hidden md:flex w-[228px] shrink-0 flex-col h-dvh bg-background px-4 pt-3 pb-2.5 select-none">
       {/* Product mark and name */}
-      <div className="flex items-center gap-2 px-2 pb-3">
+      <div className="flex items-center gap-2 px-1 pb-3">
         <Mark className="h-6 w-6" />
         <span className="text-sm font-semibold tracking-tight text-foreground">
           {c("appName")}
@@ -51,7 +51,7 @@ export function Sidebar() {
         <select
           value={activeProjectId}
           onChange={(e) => setActiveProjectId(e.target.value)}
-          className="h-8 w-full cursor-pointer rounded-md border border-border bg-card px-2 text-xs font-medium text-foreground"
+          className="h-8 w-full cursor-pointer rounded-md border border-border bg-card px-2 text-[13px] font-medium text-foreground"
         >
           {projects.map((p) => (
             <option key={p.id} value={p.id}>
@@ -62,7 +62,7 @@ export function Sidebar() {
       </label>
 
       {/* Episodes / Graphs header */}
-      <div className="mb-1.5 flex items-center justify-between px-2">
+      <div className="mb-1.5 flex items-center justify-between px-1">
         <span className="text-xs font-medium text-muted-foreground">
           {t("episodesLabel")}
         </span>
@@ -82,7 +82,7 @@ export function Sidebar() {
           onSubmit={handleCreateEpisode}
           className="mb-2 space-y-1.5 rounded-md border border-border bg-card p-2"
         >
-          <label className="block text-[11px] text-muted-foreground">
+          <label className="block text-[13px] text-muted-foreground">
             {t("newEpisodePrompt")}
           </label>
           <input
@@ -97,13 +97,13 @@ export function Sidebar() {
             <button
               type="button"
               onClick={() => setCreatingEp(false)}
-              className="h-6 rounded border border-border px-2 text-[11px] text-muted-foreground hover:text-foreground"
+              className="h-6 rounded border border-border px-2 text-[13px] text-muted-foreground hover:text-foreground"
             >
               {c("cancel")}
             </button>
             <button
               type="submit"
-              className="h-6 rounded bg-primary px-2 text-[11px] font-medium text-primary-foreground"
+              className="h-6 rounded bg-primary px-2 text-[13px] font-medium text-primary-foreground"
             >
               {c("create")}
             </button>
@@ -135,9 +135,9 @@ export function Sidebar() {
             >
               <div className="flex items-center gap-2">
                 <Film className="h-3.5 w-3.5 shrink-0" strokeWidth={1.5} />
-                <span className="truncate text-xs">{ep.title}</span>
+                <span className="truncate text-[13px]">{ep.title}</span>
               </div>
-              <div className="flex items-center justify-between pl-5 text-[11px] text-muted-foreground tnum">
+              <div className="flex items-center justify-between pl-5 text-xs text-muted-foreground tnum">
                 <span>
                   {count > 0
                     ? t("nodeCount", { count })

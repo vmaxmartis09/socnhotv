@@ -1,0 +1,206 @@
+{
+  "description": "",
+  "promptLock": "a slim, agile 3-4 year old boy squirrel named Bi, about 100cm tall, NOT fat, flat belly, short slender limbs, head about 1/4 of body height, reddish orange-brown fur with lighter belly and cheeks, big round glossy black eyes with highlights, light pink cheeks, two front teeth, small pointed ears with tufts, very large bushy tail curving up behind his back and darker red-brown toward the tip, fitted yellow crew-neck t-shirt, black shorts, dark sneakers with white soles, 3D Pixar-style soft render, soft studio lighting, plain light gray background",
+  "memory": {
+    "personality": "",
+    "catchphrases": [],
+    "habits": [],
+    "pastEvents": [],
+    "pastEventsSummary": []
+  },
+  "referenceLibrary": [
+    {
+      "id": "ref_soc_nho_01",
+      "url": "http://127.0.0.1:8000/data/projects/soc-nho-tv/files/characters/soc_nho/soc_nho_01.png",
+      "angle": "soc_nho_01.png",
+      "isPrimary": true,
+      "sourceType": "master_dna",
+      "createdAt": "2026-11-01T10:30:06.000Z",
+      "source": "master_dna"
+    },
+    {
+      "id": "ref_soc_nho_02",
+      "url": "http://127.0.0.1:8000/data/projects/soc-nho-tv/files/characters/soc_nho/soc_nho_02.png",
+      "angle": "soc_nho_02.png",
+      "isPrimary": false,
+      "sourceType": "master_dna",
+      "createdAt": "2026-11-01T10:30:26.000Z",
+      "source": "master_dna"
+    },
+    {
+      "id": "ref_soc_nho_03",
+      "url": "http://127.0.0.1:8000/data/projects/soc-nho-tv/files/characters/soc_nho/soc_nho_03.png",
+      "angle": "soc_nho_03.png",
+      "isPrimary": false,
+      "sourceType": "master_dna",
+      "createdAt": "2026-11-01T10:30:44.000Z",
+      "source": "master_dna"
+    },
+    {
+      "id": "ref_soc_nho_04",
+      "url": "http://127.0.0.1:8000/data/projects/soc-nho-tv/files/characters/soc_nho/soc_nho_04.png",
+      "angle": "soc_nho_04.png",
+      "isPrimary": false,
+      "sourceType": "master_dna",
+      "createdAt": "2026-11-01T10:31:01.000Z",
+      "source": "master_dna"
+    },
+    {
+      "id": "ref_soc_nho_05",
+      "url": "http://127.0.0.1:8000/data/projects/soc-nho-tv/files/characters/soc_nho/soc_nho_05.png",
+      "angle": "soc_nho_05.png",
+      "isPrimary": false,
+      "sourceType": "master_dna",
+      "createdAt": "2026-11-01T10:31:19.000Z",
+      "source": "master_dna"
+    },
+    {
+      "id": "ref_soc_nho_06",
+      "url": "http://127.0.0.1:8000/data/projects/soc-nho-tv/files/characters/soc_nho/soc_nho_06.png",
+      "angle": "soc_nho_06.png",
+      "isPrimary": false,
+      "sourceType": "master_dna",
+      "createdAt": "2026-11-01T10:31:38.000Z",
+      "source": "master_dna"
+    },
+    {
+      "id": "ref_soc_nho_07",
+      "url": "http://127.0.0.1:8000/data/projects/soc-nho-tv/files/characters/soc_nho/soc_nho_07.png",
+      "angle": "soc_nho_07.png",
+      "isPrimary": false,
+      "sourceType": "master_dna",
+      "createdAt": "2026-11-01T10:31:57.000Z",
+      "source": "master_dna"
+    },
+    {
+      "id": "ref_soc_nho_08",
+      "url": "http://127.0.0.1:8000/data/projects/soc-nho-tv/files/characters/soc_nho/soc_nho_08.png",
+      "angle": "soc_nho_08.png",
+      "isPrimary": false,
+      "sourceType": "master_dna",
+      "createdAt": "2026-11-01T10:32:16.000Z",
+      "source": "master_dna"
+    },
+    {
+      "id": "ref_soc_nho_09",
+      "url": "http://127.0.0.1:8000/data/projects/soc-nho-tv/files/characters/soc_nho/soc_nho_09.png",
+      "angle": "soc_nho_09.png",
+      "isPrimary": false,
+      "sourceType": "master_dna",
+      "createdAt": "2026-11-01T10:32:37.000Z",
+      "source": "master_dna"
+    },
+    {
+      "id": "ref_soc_nho_10",
+      "url": "http://127.0.0.1:8000/data/projects/soc-nho-tv/files/characters/soc_nho/soc_nho_10.png",
+      "angle": "soc_nho_10.png",
+      "isPrimary": false,
+      "sourceType": "master_dna",
+      "createdAt": "2026-11-01T10:32:57.000Z",
+      "source": "master_dna"
+    },
+    {
+      "id": "ref_soc_nho_11",
+      "url": "http://127.0.0.1:8000/data/projects/soc-nho-tv/files/characters/soc_nho/soc_nho_11.png",
+      "angle": "soc_nho_11.png",
+      "isPrimary": false,
+      "sourceType": "master_dna",
+      "createdAt": "2026-11-01T10:33:24.000Z",
+      "source": "master_dna"
+    },
+    {
+      "id": "ref_soc_nho_12",
+      "url": "http://127.0.0.1:8000/data/projects/soc-nho-tv/files/characters/soc_nho/soc_nho_12.png",
+      "angle": "soc_nho_12.png",
+      "isPrimary": false,
+      "sourceType": "master_dna",
+      "createdAt": "2026-11-01T10:33:45.000Z",
+      "source": "master_dna"
+    },
+    {
+      "id": "ref_soc_nho_13",
+      "url": "http://127.0.0.1:8000/data/projects/soc-nho-tv/files/characters/soc_nho/soc_nho_13.png",
+      "angle": "soc_nho_13.png",
+      "isPrimary": false,
+      "sourceType": "master_dna",
+      "createdAt": "2026-11-01T10:34:25.000Z",
+      "source": "master_dna"
+    },
+    {
+      "id": "ref_soc_nho_14",
+      "url": "http://127.0.0.1:8000/data/projects/soc-nho-tv/files/characters/soc_nho/soc_nho_14.png",
+      "angle": "soc_nho_14.png",
+      "isPrimary": false,
+      "sourceType": "master_dna",
+      "createdAt": "2026-11-01T10:34:46.000Z",
+      "source": "master_dna"
+    },
+    {
+      "id": "ref_soc_nho_15",
+      "url": "http://127.0.0.1:8000/data/projects/soc-nho-tv/files/characters/soc_nho/soc_nho_15.png",
+      "angle": "soc_nho_15.png",
+      "isPrimary": false,
+      "sourceType": "master_dna",
+      "createdAt": "2026-11-01T10:35:06.000Z",
+      "source": "master_dna"
+    },
+    {
+      "id": "ref_soc_nho_16",
+      "url": "http://127.0.0.1:8000/data/projects/soc-nho-tv/files/characters/soc_nho/soc_nho_16.png",
+      "angle": "soc_nho_16.png",
+      "isPrimary": false,
+      "sourceType": "master_dna",
+      "createdAt": "2026-11-01T10:35:30.000Z",
+      "source": "master_dna"
+    },
+    {
+      "id": "ref_soc_nho_17",
+      "url": "http://127.0.0.1:8000/data/projects/soc-nho-tv/files/characters/soc_nho/soc_nho_17.png",
+      "angle": "soc_nho_17.png",
+      "isPrimary": false,
+      "sourceType": "master_dna",
+      "createdAt": "2026-11-01T10:35:52.000Z",
+      "source": "master_dna"
+    },
+    {
+      "id": "ref_soc_nho_18",
+      "url": "http://127.0.0.1:8000/data/projects/soc-nho-tv/files/characters/soc_nho/soc_nho_18.png",
+      "angle": "soc_nho_18.png",
+      "isPrimary": false,
+      "sourceType": "master_dna",
+      "createdAt": "2026-11-01T10:36:13.000Z",
+      "source": "master_dna"
+    }
+  ],
+  "generatedClips": [
+    {
+      "id": "clip_ep1_c1",
+      "url": "http://127.0.0.1:8000/data/projects/soc-nho-tv/files/content/episodes/soc-nho-sau-rang/scenes/canh_01.mp4",
+      "thumbnailUrl": "http://127.0.0.1:8000/data/projects/soc-nho-tv/files/content/episodes/soc-nho-sau-rang/scenes/canh_01.jpg",
+      "episodeId": "soc-nho-sau-rang",
+      "episodeTitle": "Tập 1: Sóc Nhỏ và Chiếc Răng Sâu",
+      "sceneIndex": 1,
+      "sceneTitle": "Cảnh 1: Sóc Bi ở nhà cây, kệ đầy hũ kẹo",
+      "durationSec": 8,
+      "model": "google-veo-2",
+      "createdAt": "2026-11-01T22:41:00.000Z",
+      "sceneLabel": "Cảnh 1: Sóc Bi ở nhà cây, kệ đầy hũ kẹo"
+    }
+  ],
+  "appearances": [
+    {
+      "episodeId": "soc-nho-sau-rang",
+      "episodeTitle": "Tập 1: Sóc Nhỏ và Chiếc Răng Sâu",
+      "scenes": [
+        "Cảnh 1: Kệ kẹo nhà cây",
+        "Cảnh 2: Ăn kẹo quên đánh răng",
+        "Cảnh 3: Sáng dậy đau răng",
+        "Cảnh 4: Khám Bác sĩ Koala",
+        "Cảnh 5: Học chải răng",
+        "Cảnh 6: Răng sáng bóng"
+      ]
+    }
+  ],
+  "defaultTempo": 1,
+  "sampleAudioUrl": "http://127.0.0.1:8000/data/voices/soc-nho/cloned_default_sample.mp3"
+}

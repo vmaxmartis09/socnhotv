@@ -28,7 +28,7 @@ function ScaleLockComparison({ characters }: { characters: Character[] }) {
 
   return (
     <div className="rounded-md border border-border bg-muted/20 p-3 space-y-2">
-      <p className="text-[11px] font-medium text-foreground">
+      <p className="text-[13px] font-medium text-foreground">
         {t("scaleCompareTitle")}
       </p>
       <div className="flex items-end gap-5 border-b border-border pt-2">
@@ -36,7 +36,7 @@ function ScaleLockComparison({ characters }: { characters: Character[] }) {
           const barH = Math.max(18, Math.round((c.heightCm / tallest) * maxBarPx));
           return (
             <div key={c.id} className="flex flex-col items-center gap-1">
-              <span className="text-[11px] font-mono tnum text-muted-foreground">
+              <span className="text-[13px] font-mono tnum text-muted-foreground">
                 {c.heightCm} cm ({c.scaleRatio}x)
               </span>
               <div
@@ -50,7 +50,7 @@ function ScaleLockComparison({ characters }: { characters: Character[] }) {
           );
         })}
       </div>
-      <div className="flex gap-5 text-[11px] text-muted-foreground">
+      <div className="flex gap-5 text-[13px] text-muted-foreground">
         {characters.map((c) => (
           <span key={c.id} className="w-16 truncate text-center">
             {c.name.replace(/\s*\(.*\)/, "")}
@@ -428,7 +428,7 @@ export function ProjectTab() {
             <h3 className="truncate text-sm font-semibold text-foreground">
               {selectedChar.name}
             </h3>
-            <p className="text-[11px] text-muted-foreground tnum">
+            <p className="text-[13px] text-muted-foreground tnum">
               {selectedChar.role === "main"
                 ? t("profile.roleMain")
                 : t("profile.roleSupporting")}{" "}
@@ -437,7 +437,7 @@ export function ProjectTab() {
             </p>
           </div>
           {savedToast && (
-            <span className="rounded bg-semantic-success/15 px-2 py-0.5 text-[11px] font-medium text-semantic-success">
+            <span className="rounded bg-semantic-success/15 px-2 py-0.5 text-[13px] font-medium text-semantic-success">
               {t("profile.savedToast")}
             </span>
           )}
@@ -574,7 +574,7 @@ export function ProjectTab() {
                     promptLock: e.target.value,
                   })
                 }
-                className="w-full rounded border border-border bg-card p-2 font-mono text-[11px] text-foreground"
+                className="w-full rounded border border-border bg-card p-2 font-mono text-[13px] text-foreground"
               />
             </label>
 
@@ -718,7 +718,7 @@ export function ProjectTab() {
                       className="h-28 w-full object-cover object-top"
                     />
                     {asset.isPrimary && (
-                      <span className="absolute left-1.5 top-1.5 rounded bg-brand px-1.5 py-0.5 text-[10px] font-medium text-white">
+                      <span className="absolute left-1.5 top-1.5 rounded bg-brand px-1.5 py-0.5 text-xs font-medium text-white">
                         {t("images.primaryBadge")}
                       </span>
                     )}
@@ -736,7 +736,7 @@ export function ProjectTab() {
                   <p className="truncate font-medium text-foreground">
                     {t("images.angleLabel", { angle: asset.angle })}
                   </p>
-                  <p className="truncate text-[10px] text-muted-foreground">
+                  <p className="truncate text-xs text-muted-foreground">
                     {asset.source === "upload"
                       ? t("images.sourceUpload")
                       : t("images.sourceGenerated", {
@@ -744,7 +744,7 @@ export function ProjectTab() {
                         })}
                   </p>
                   {asset.prompt && (
-                    <p className="truncate font-mono text-[10px] text-muted-foreground">
+                    <p className="truncate font-mono text-xs text-muted-foreground">
                       {asset.prompt}
                     </p>
                   )}
@@ -754,7 +754,7 @@ export function ProjectTab() {
                       <button
                         type="button"
                         onClick={() => handleSetPrimaryPhoto(asset.id)}
-                        className="rounded border border-border px-1.5 py-0.5 text-[10px] text-foreground hover:bg-accent"
+                        className="rounded border border-border px-1.5 py-0.5 text-xs text-foreground hover:bg-accent"
                       >
                         {t("images.setPrimaryBtn")}
                       </button>
@@ -798,7 +798,7 @@ export function ProjectTab() {
                     alt={lightboxImage.angle}
                     className="max-h-[65dvh] w-full rounded border border-border object-contain bg-background"
                   />
-                  <p className="text-[11px] text-muted-foreground">
+                  <p className="text-[13px] text-muted-foreground">
                     {lightboxImage.source === "upload"
                       ? t("images.sourceUpload")
                       : `${lightboxImage.model || "AI"} — ${
@@ -835,7 +835,7 @@ export function ProjectTab() {
                         scene: clip.sceneLabel,
                       })}
                     </span>
-                    <span className="font-mono text-[11px] text-muted-foreground tnum">
+                    <span className="font-mono text-[13px] text-muted-foreground tnum">
                       {clip.durationSec}s
                     </span>
                   </div>
@@ -1011,7 +1011,7 @@ export function ProjectTab() {
                     <p className="font-medium text-foreground">
                       {ap.episodeTitle}
                     </p>
-                    <p className="text-[11px] text-muted-foreground">
+                    <p className="text-[13px] text-muted-foreground">
                       {ap.scenes.join(" · ")}
                     </p>
                   </li>
@@ -1036,7 +1036,7 @@ export function ProjectTab() {
                         <p className="font-mono font-medium text-foreground">
                           {n.id}
                         </p>
-                        <p className="text-[11px] text-muted-foreground">
+                        <p className="text-[13px] text-muted-foreground">
                           {n.data.nodeType}
                         </p>
                       </div>
@@ -1046,7 +1046,7 @@ export function ProjectTab() {
                           setSelectedNodeId(n.id);
                           flashNode(n.id);
                         }}
-                        className="rounded border border-border bg-card px-2 py-1 text-[11px] font-medium text-foreground hover:bg-accent"
+                        className="rounded border border-border bg-card px-2 py-1 text-[13px] font-medium text-foreground hover:bg-accent"
                       >
                         {t("usage.jumpToNodeBtn")}
                       </button>
@@ -1070,12 +1070,12 @@ export function ProjectTab() {
           <h3 className="text-sm font-semibold text-foreground">
             {project?.name || "Sóc Nhỏ TV"}
           </h3>
-          <span className="rounded border border-border bg-muted px-1.5 py-0.5 font-mono text-[11px] tnum">
+          <span className="rounded border border-border bg-muted px-1.5 py-0.5 font-mono text-[13px] tnum">
             {project?.defaultAspectRatio || "9:16"} ·{" "}
             {project?.defaultVoiceId || "soc-nho"}
           </span>
         </div>
-        <p className="text-[11px] text-muted-foreground leading-snug">
+        <p className="text-[13px] text-muted-foreground leading-snug">
           {project?.description}
         </p>
       </section>
@@ -1099,7 +1099,7 @@ export function ProjectTab() {
                 )}
               >
                 <span className="truncate">{ep.title}</span>
-                <span className="shrink-0 font-mono text-[11px] tnum">
+                <span className="shrink-0 font-mono text-[13px] tnum">
                   {ep.nodeCount} bước
                 </span>
               </button>
@@ -1117,14 +1117,14 @@ export function ProjectTab() {
           <button
             type="button"
             onClick={handleAddCharacter}
-            className="flex h-6 items-center gap-1 rounded border border-border bg-card px-2 text-[11px] font-medium text-foreground hover:bg-accent"
+            className="flex h-6 items-center gap-1 rounded border border-border bg-card px-2 text-[13px] font-medium text-foreground hover:bg-accent"
           >
             <Plus className="h-3 w-3" />
             <span>{t("addCharacterBtn")}</span>
           </button>
         </div>
 
-        <p className="text-[11px] text-muted-foreground leading-snug">
+        <p className="text-[13px] text-muted-foreground leading-snug">
           {t("dragHint")}
         </p>
 
@@ -1175,11 +1175,11 @@ export function ProjectTab() {
                     <p className="truncate font-semibold text-foreground">
                       {ch.name}
                     </p>
-                    <span className="shrink-0 font-mono text-[11px] tnum text-muted-foreground">
+                    <span className="shrink-0 font-mono text-[13px] tnum text-muted-foreground">
                       {ch.heightCm} cm ({ch.scaleRatio}x)
                     </span>
                   </div>
-                  <p className="truncate text-[11px] text-muted-foreground">
+                  <p className="truncate text-[13px] text-muted-foreground">
                     {ch.role === "main"
                       ? t("profile.roleMain")
                       : t("profile.roleSupporting")}{" "}
@@ -1192,7 +1192,7 @@ export function ProjectTab() {
                 <button
                   type="button"
                   onClick={() => handleDropCharacterToCanvas(ch)}
-                  className="rounded border border-border bg-card px-2 py-0.5 text-[11px] font-medium text-foreground hover:bg-accent"
+                  className="rounded border border-border bg-card px-2 py-0.5 text-[13px] font-medium text-foreground hover:bg-accent"
                 >
                   + {t("dropToCanvasBtn")}
                 </button>
@@ -1220,21 +1220,21 @@ export function ProjectTab() {
 
               {confirmDeleteCharId === ch.id && (
                 <div className="rounded border border-semantic-danger/40 bg-accent/50 p-2 space-y-1.5">
-                  <p className="text-[11px] text-semantic-danger">
+                  <p className="text-[13px] text-semantic-danger">
                     {t("deleteConfirmText", { name: ch.name })}
                   </p>
                   <div className="flex justify-end gap-1.5">
                     <button
                       type="button"
                       onClick={() => setConfirmDeleteCharId(null)}
-                      className="h-6 rounded border border-border bg-card px-2 text-[11px]"
+                      className="h-6 rounded border border-border bg-card px-2 text-[13px]"
                     >
                       {c("cancel")}
                     </button>
                     <button
                       type="button"
                       onClick={() => handleConfirmDeleteCharacter(ch.id)}
-                      className="h-6 rounded bg-semantic-danger px-2 text-[11px] font-medium text-white"
+                      className="h-6 rounded bg-semantic-danger px-2 text-[13px] font-medium text-white"
                     >
                       {c("delete")}
                     </button>

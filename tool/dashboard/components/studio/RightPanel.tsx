@@ -9,7 +9,7 @@ import { NodeTab } from "./tabs/NodeTab";
 import { ProjectTab } from "./tabs/ProjectTab";
 import { PublishTab } from "./tabs/PublishTab";
 import { JobsCostTab } from "./tabs/JobsCostTab";
-import { X, PanelRightClose } from "@/components/ui/icons";
+import { X, PanelRightClose, PanelRightOpen } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
 
 const TABS: RightPanelTab[] = ["chat", "node", "project", "publish", "jobs"];
@@ -132,6 +132,19 @@ export function RightPanel() {
             {renderActiveTabContent()}
           </div>
         </aside>
+      )}
+
+      {/* Nút mở lại panel khi đang thu gọn (thay cho nút ở thanh trên đã bỏ) */}
+      {rightPanelCollapsed && (
+        <button
+          type="button"
+          onClick={() => setRightPanelCollapsed(false)}
+          title={t("expand")}
+          aria-label={t("expand")}
+          className="hidden md:flex fixed right-3 top-3 z-30 h-8 w-8 items-center justify-center rounded-md border border-border bg-card text-muted-foreground transition-transform hover:text-foreground active:scale-90"
+        >
+          <PanelRightOpen className="h-4 w-4" />
+        </button>
       )}
 
       {/* Mobile Bottom Sheet (< 768px) */}

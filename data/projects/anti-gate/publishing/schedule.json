@@ -1,0 +1,58 @@
+{
+  "channels": [
+    {
+      "id": "chan_yt_1",
+      "name": "Sóc Nhỏ TV Official",
+      "platform": "youtube",
+      "connected": true,
+      "defaultHashtags": [
+        "#SocNhoTV",
+        "#HoatHinh3D",
+        "#ThieuNhi"
+      ],
+      "defaultPublishHours": "19:00",
+      "requireManualApproval": true
+    },
+    {
+      "id": "chan_tt_1",
+      "name": "@socnhotv.official",
+      "platform": "tiktok",
+      "connected": true,
+      "defaultHashtags": [
+        "#socnhotv",
+        "#cartoon3d",
+        "#learnontiktok"
+      ],
+      "defaultPublishHours": "20:00",
+      "requireManualApproval": true
+    }
+  ],
+  "posts": [
+    {
+      "id": "post_ep1_yt",
+      "projectId": "anti-gate",
+      "episodeId": "ep_01_kham_rang",
+      "title": "Tập 1: Sóc Nhỏ và Chiếc Răng Sâu (16:9)",
+      "channelId": "chan_yt_1",
+      "platform": "youtube",
+      "scheduledDate": "2026-11-05",
+      "scheduledTime": "19:00",
+      "aspectRatio": "16:9",
+      "status": "pending_approval",
+      "videoUri": "content/episodes/soc-nho-sau-rang/soc_bi_kham_rang_16x9_long_tieng_nhe.mp4"
+    },
+    {
+      "id": "post_ep1_tt",
+      "projectId": "anti-gate",
+      "episodeId": "ep_01_kham_rang",
+      "title": "Tập 1: Sóc Bi Đau Răng Vì Ăn Kẹo (Shorts 9:16)",
+      "channelId": "chan_tt_1",
+      "platform": "tiktok",
+      "scheduledDate": "2026-11-05",
+      "scheduledTime": "20:00",
+      "aspectRatio": "9:16",
+      "status": "draft",
+      "videoUri": "content/episodes/soc-nho-sau-rang/scenes/canh_01.mp4"
+    }
+  ]
+}

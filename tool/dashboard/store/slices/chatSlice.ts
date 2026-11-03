@@ -37,7 +37,23 @@ export interface PendingChatConfirmation {
   prompt: string;
 }
 
+export type ChatModel = "auto" | "gemini-2.5-pro" | "gemini-2.5-flash" | "rules";
+export type ChatFlowMode = "current" | "new" | "blank";
+export type ChatCharMode = "update" | "create";
+
+export type ChatFocus = "project" | "character" | "flow";
+
+export interface ChatContext {
+  focus: ChatFocus;
+  model: ChatModel;
+  flowMode: ChatFlowMode;
+  characterId: string | null;
+  characterMode: ChatCharMode;
+}
+
 export interface ChatSlice {
+  chatContext: ChatContext;
+  setChatContext: (patch: Partial<ChatContext>) => void;
   chatByProject: Record<string, ChatMessage[]>;
   pendingConfirmation: PendingChatConfirmation | null;
   addChatMessage: (projectId: string, msg: ChatMessage) => void;
@@ -62,6 +78,8 @@ export const createChatSlice: StateCreator<ChatSlice, [], [], ChatSlice> = (
   set
 ) => ({
   chatByProject: DEFAULT_WELCOME_MESSAGES,
+  chatContext: { focus: "character", model: "auto", flowMode: "current", characterId: null, characterMode: "update" },
+  setChatContext: (patch) => set((s) => ({ chatContext: { ...s.chatContext, ...patch } })),
   pendingConfirmation: null,
   addChatMessage: (projectId, msg) =>
     set((state) => ({

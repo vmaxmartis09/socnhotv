@@ -15,6 +15,8 @@ import {
   applyNodeChanges,
   applyEdgeChanges,
   ReactFlowProvider,
+  Panel,
+  ConnectionLineType,
   useReactFlow,
   type Connection,
   type OnNodesChange,
@@ -30,6 +32,7 @@ import {
   type NodeGenerationRecord,
 } from "@/store/slices/canvasSlice";
 import { StudioNode, type StudioCardNodeType } from "@/components/canvas/StudioNode";
+import { StudioStickToolbar, type CanvasMode } from "@/components/canvas/StudioStickToolbar";
 import {
   CanvasInteractionContext,
   type ActiveDragPort,
@@ -63,6 +66,7 @@ import {
   Search,
   X,
   Layers,
+  DollarSign,
 } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
 
@@ -82,7 +86,7 @@ const uid = (prefix: string) =>
     .toString(36)
     .slice(2, 5)}`;
 
-function toCoreGraph(
+export function toCoreGraph(
   projectId: string,
   nodes: Node<StudioNodeData>[],
   edges: Edge[]
@@ -180,6 +184,9 @@ function StudioCanvasInner() {
 
   const [snapToGrid, setSnapToGrid] = useState(true);
   const [addMenuOpen, setAddMenuOpen] = useState(false);
+  const [canvasMode, setCanvasMode] = useState<CanvasMode>("select");
+  // Phím tắt công cụ (V/H/N/[/]/G/S): bảng hành động được gán lại mỗi lần render, bên dưới
+  const toolKeyRef = useRef<Record<string, () => void>>({});
   const [addSearch, setAddSearch] = useState("");
   const [quickAddReq, setQuickAddReq] = useState<QuickAddRequest | null>(null);
   const [activeDragPort, setActiveDragPort] = useState<ActiveDragPort | null>(
@@ -249,8 +256,16 @@ function StudioCanvasInner() {
     );
   }, [nodes, isMockMode]);
 
-  // Debounced auto-save to Core
+  // Nạp đồ thị đã lưu của dự án từ Core mỗi khi vào/đổi dự án
+  const loadProjectGraph = useStudioStore((st) => st.loadProjectGraph);
+  const graphLoaded = useStudioStore((st) => Boolean(st.loadedGraphs[activeProjectId]));
   useEffect(() => {
+    loadProjectGraph(activeProjectId);
+  }, [activeProjectId, loadProjectGraph]);
+
+  // Debounced auto-save to Core (chỉ sau khi đã nạp đồ thị của dự án này)
+  useEffect(() => {
+    if (!graphLoaded) return;
     const timer = window.setTimeout(async () => {
       setSaveState("saving");
       const g = toCoreGraph(activeProjectId, nodes, edges);
@@ -258,7 +273,7 @@ function StudioCanvasInner() {
       setSaveState("saved");
     }, 650);
     return () => window.clearTimeout(timer);
-  }, [activeProjectId, nodes, edges, setSaveState]);
+  }, [activeProjectId, graphLoaded, nodes, edges, setSaveState]);
 
   const showBanner = useCallback(
     (tone: "error" | "info" | "success", text: string) => {
@@ -369,7 +384,7 @@ function StudioCanvasInner() {
         sourceHandle: conn.sourceHandle,
         target: conn.target,
         targetHandle: conn.targetHandle,
-        type: "smoothstep",
+        type: "default",
         style: { stroke: color, strokeWidth: 1.75 },
         data: { portType: srcPort.portType },
       };
@@ -455,7 +470,7 @@ function StudioCanvasInner() {
             sourceHandle: quickAddReq.portName,
             target: newNode.id,
             targetHandle: targetPort.name,
-            type: "smoothstep",
+            type: "default",
             style: {
               stroke: PORT_TYPE_COLORS[quickAddReq.portType] || "#737373",
               strokeWidth: 1.75,
@@ -473,7 +488,7 @@ function StudioCanvasInner() {
             sourceHandle: sourcePort.name,
             target: anchor.id,
             targetHandle: quickAddReq.portName,
-            type: "smoothstep",
+            type: "default",
             style: {
               stroke: PORT_TYPE_COLORS[sourcePort.portType] || "#737373",
               strokeWidth: 1.75,
@@ -637,6 +652,14 @@ function StudioCanvasInner() {
         handleDeleteSelected();
         return;
       }
+      if (!(e.metaKey || e.ctrlKey) && !e.altKey) {
+        const act = toolKeyRef.current[e.key.toLowerCase()];
+        if (act) {
+          e.preventDefault();
+          act();
+          return;
+        }
+      }
       if (!(e.metaKey || e.ctrlKey)) return;
       const k = e.key.toLowerCase();
       if (k === "z") {
@@ -664,6 +687,16 @@ function StudioCanvasInner() {
     handleCopy,
     handlePaste,
   ]);
+
+  toolKeyRef.current = {
+    v: () => setCanvasMode("select"),
+    h: () => setCanvasMode("pan"),
+    n: () => setAddMenuOpen((v) => !v),
+    "[": () => triggerStepRelativeToSelected("before"),
+    "]": () => triggerStepRelativeToSelected("after"),
+    g: () => handleAlignGroup(),
+    s: () => setSnapToGrid((v) => !v),
+  };
 
   // Validate graph via Core
   const handleValidateGraph = useCallback(async () => {
@@ -1063,206 +1096,68 @@ function StudioCanvasInner() {
         )}
 
         {/* Top Canvas Toolbar */}
-        <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border bg-card px-3 py-2 shrink-0 select-none">
-          <div className="flex flex-wrap items-center gap-1.5">
-            {/* + Add Node with search popover */}
-            <div className="relative">
-              <button
-                type="button"
-                onClick={() => setAddMenuOpen((v) => !v)}
-                aria-expanded={addMenuOpen}
-                className="flex h-7 items-center gap-1 rounded-md border border-border bg-card px-2.5 text-xs font-medium text-foreground hover:bg-accent"
-              >
-                <Plus className="h-3.5 w-3.5" />
-                <span>{t("tools.add")}</span>
-              </button>
-
-              {addMenuOpen && (
-                <div className="absolute left-0 top-8 z-40 w-[340px] rounded-lg border border-border bg-popover p-2.5 text-popover-foreground">
-                  <div className="relative mb-2">
-                    <Search className="pointer-events-none absolute left-2 top-2 h-3.5 w-3.5 text-muted-foreground" />
-                    <input
-                      type="search"
-                      value={addSearch}
-                      onChange={(e) => setAddSearch(e.target.value)}
-                      placeholder={t("addNodePlaceholder")}
-                      autoFocus
-                      className="h-7 w-full rounded border border-border bg-background pl-7 pr-2 text-xs text-foreground"
-                    />
-                  </div>
-                  <ul className="max-h-72 space-y-1 overflow-y-auto">
-                    {filteredAddDefs.map((def) => (
-                      <li key={def.typeName}>
-                        <button
-                          type="button"
-                          draggable
-                          onDragStart={(e) =>
-                            e.dataTransfer.setData(
-                              "application/x-studio-nodetype",
-                              def.typeName
-                            )
-                          }
-                          onClick={() => handlePlaceNewNode(def.typeName)}
-                          className="flex w-full flex-col gap-0.5 rounded-md border border-transparent px-2 py-1.5 text-left hover:border-border hover:bg-accent"
-                        >
-                          <div className="flex items-center justify-between">
-                            <span className="text-xs font-semibold text-foreground">
-                              {def.displayName}
-                            </span>
-                            <span className="rounded border border-border bg-card px-1.5 py-0.5 text-[10px] text-muted-foreground">
-                              {t(`categories.${def.category}` as any)}
-                            </span>
-                          </div>
-                          <p className="text-[11px] text-muted-foreground line-clamp-1">
-                            {def.description}
-                          </p>
-                          <p className="font-mono text-[10px] text-muted-foreground">
-                            In:{" "}
-                            {def.inputPorts.map((p) => p.name).join(", ") ||
-                              "—"}{" "}
-                            → Out:{" "}
-                            {def.outputPorts.map((p) => p.name).join(", ") ||
-                              "—"}
-                          </p>
-                        </button>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
-
-            {/* + Step before & + Step after for selected node */}
-            <button
-              type="button"
-              onClick={() => triggerStepRelativeToSelected("before")}
-              disabled={!selectedNodeId}
-              className="h-7 rounded-md border border-border bg-card px-2 text-xs text-foreground hover:bg-accent disabled:opacity-40"
-            >
-              {t("addStepBefore")}
-            </button>
-            <button
-              type="button"
-              onClick={() => triggerStepRelativeToSelected("after")}
-              disabled={!selectedNodeId}
-              className="h-7 rounded-md border border-border bg-card px-2 text-xs text-foreground hover:bg-accent disabled:opacity-40"
-            >
-              {t("addStepAfter")}
-            </button>
-
-            <span className="mx-0.5 h-4 w-px bg-border" aria-hidden="true" />
-
-            {/* Undo, Redo, Duplicate, Group/Align, Delete, Snap */}
-            <button
-              type="button"
-              onClick={undoCanvas}
-              disabled={undoStack.length === 0}
-              title={t("tools.undo")}
-              aria-label={t("tools.undo")}
-              className="flex h-7 w-7 items-center justify-center rounded-md border border-border bg-card text-foreground hover:bg-accent disabled:opacity-40"
-            >
-              <Undo2 className="h-3.5 w-3.5" />
-            </button>
-            <button
-              type="button"
-              onClick={redoCanvas}
-              disabled={redoStack.length === 0}
-              title={t("tools.redo")}
-              aria-label={t("tools.redo")}
-              className="flex h-7 w-7 items-center justify-center rounded-md border border-border bg-card text-foreground hover:bg-accent disabled:opacity-40"
-            >
-              <Redo2 className="h-3.5 w-3.5" />
-            </button>
-            <button
-              type="button"
-              onClick={handleDuplicateSelected}
-              title={t("tools.duplicate")}
-              aria-label={t("tools.duplicate")}
-              className="flex h-7 w-7 items-center justify-center rounded-md border border-border bg-card text-foreground hover:bg-accent"
-            >
-              <Copy className="h-3.5 w-3.5" />
-            </button>
-            <button
-              type="button"
-              onClick={handleAlignGroup}
-              title={t("tools.group")}
-              aria-label={t("tools.group")}
-              className="flex h-7 w-7 items-center justify-center rounded-md border border-border bg-card text-foreground hover:bg-accent"
-            >
-              <Layers className="h-3.5 w-3.5" />
-            </button>
-            <button
-              type="button"
-              onClick={handleDeleteSelected}
-              title={t("tools.delete")}
-              aria-label={t("tools.delete")}
-              className="flex h-7 w-7 items-center justify-center rounded-md border border-border bg-card text-foreground hover:bg-accent"
-            >
-              <Trash2 className="h-3.5 w-3.5" />
-            </button>
-            <button
-              type="button"
-              onClick={() => setSnapToGrid((v) => !v)}
-              className={cn(
-                "hidden sm:inline-flex h-7 items-center rounded-md border px-2 text-xs",
-                snapToGrid
-                  ? "border-foreground bg-accent text-foreground font-medium"
-                  : "border-border bg-card text-muted-foreground"
-              )}
-            >
-              {t("tools.snap")}
-            </button>
-          </div>
-
-          {/* Right cluster: Validate, Mock switch, Cost, Stop / Run All */}
-          <div className="flex items-center gap-1.5">
-            <button
-              type="button"
-              onClick={handleValidateGraph}
-              className="flex h-7 items-center gap-1 rounded-md border border-border bg-card px-2 text-xs text-foreground hover:bg-accent"
-            >
-              <Check className="h-3.5 w-3.5" />
-              <span className="hidden xl:inline">{t("validateBtn")}</span>
-            </button>
-
-            <button
-              type="button"
-              onClick={() => setIsMockMode(!isMockMode)}
-              className={cn(
-                "h-7 rounded-md border px-2 text-xs font-medium",
-                isMockMode
-                  ? "border-border bg-muted text-foreground"
-                  : "border-brand text-brand bg-card"
-              )}
-            >
-              {isMockMode ? t("mockMode") : t("liveMode")}
-            </button>
-
-            <span className="hidden lg:inline-flex h-7 items-center rounded-md border border-border bg-card px-2 text-xs text-muted-foreground tnum">
-              {t("estimatedCost", { cost: totalEstimatedCost.toFixed(2) })}
-            </span>
-
-            {isRunningGraph ? (
-              <Button
-                size="sm"
-                variant="outline"
-                onClick={handleStopRun}
-                className="h-7 px-2.5 text-xs border-semantic-danger text-semantic-danger"
-              >
-                <Square className="mr-1 h-3 w-3" />
-                <span>{t("stop")}</span>
-              </Button>
-            ) : (
-              <Button
-                size="sm"
-                onClick={() => handleRequestRun("all")}
-                className="h-7 px-2.5 text-xs font-medium"
-              >
-                <Play className="mr-1 h-3 w-3" />
-                <span>{t("runAll")}</span>
-              </Button>
+        <div className="absolute right-[72px] top-3 z-20 hidden items-center gap-1 rounded-full border border-border bg-card/90 p-1 backdrop-blur select-none md:flex">
+          {/* Kiểm tra đồ thị: chấm trạng thái hợp lệ / có lỗi */}
+          <button
+            type="button"
+            onClick={handleValidateGraph}
+            title={validationResult ? (validationResult.isValid ? "Đồ thị hợp lệ — kiểm tra lại" : `${validationResult.errors.length} lỗi — kiểm tra lại`) : t("validateBtn")}
+            aria-label={t("validateBtn")}
+            className="relative flex h-8 w-8 items-center justify-center rounded-full text-foreground transition-colors hover:bg-accent active:scale-90"
+          >
+            <Check className="h-4 w-4" />
+            {validationResult && (
+              <span className={cn("absolute right-1 top-1 h-2 w-2 rounded-full ring-2 ring-card", validationResult.isValid ? "bg-semantic-success" : "bg-semantic-danger")} />
             )}
-          </div>
+          </button>
+
+          {/* Thông tin: số bước (xong/tổng), chế độ, chi phí ước tính */}
+          <span title="Số bước đã xong / tổng" className="flex h-8 items-center gap-1 rounded-full bg-muted/50 px-2.5 text-xs tnum text-foreground">
+            <Layers className="h-3.5 w-3.5 text-muted-foreground" />
+            {nodes.filter((n) => n.data.status === "succeeded").length}/{nodes.length}
+          </span>
+
+          <button
+            type="button"
+            onClick={() => setIsMockMode(!isMockMode)}
+            title={isMockMode ? `${t("mockMode")} — bấm để chuyển sang API thật` : `${t("liveMode")} — bấm để chuyển sang chạy thử`}
+            aria-label={isMockMode ? t("mockMode") : t("liveMode")}
+            aria-pressed={!isMockMode}
+            className={cn(
+              "flex h-8 items-center gap-1.5 rounded-full px-2.5 text-xs transition-colors active:scale-95",
+              isMockMode ? "bg-muted/50 text-foreground" : "bg-brand/10 text-brand"
+            )}
+          >
+            <span className={cn("h-1.5 w-1.5 rounded-full", isMockMode ? "bg-muted-foreground" : "bg-brand")} />
+            <span className="font-medium">{isMockMode ? "Mock" : "Live"}</span>
+          </button>
+
+          <span title={`Chi phí ước tính cả chuỗi: $${totalEstimatedCost.toFixed(2)}${isMockMode ? " (chạy thử: thực tế $0)" : ""}`} className="flex h-8 items-center gap-1 rounded-full bg-muted/50 px-2.5 text-xs tnum text-foreground">
+            <DollarSign className="h-3.5 w-3.5 text-muted-foreground" />
+            {isMockMode ? "0.00" : totalEstimatedCost.toFixed(2)}
+          </span>
+
+          {isRunningGraph ? (
+            <button
+              type="button"
+              onClick={handleStopRun}
+              title={t("stop")}
+              aria-label={t("stop")}
+              className="flex h-8 w-8 items-center justify-center rounded-full border border-semantic-danger text-semantic-danger transition-transform active:scale-90"
+            >
+              <Square className="h-3 w-3" />
+            </button>
+          ) : (
+            <button
+              type="button"
+              onClick={() => handleRequestRun("all")}
+              title={t("runAll")}
+              aria-label={t("runAll")}
+              className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground transition-transform hover:bg-primary-hover active:scale-90"
+            >
+              <Play className="h-3.5 w-3.5" />
+            </button>
+          )}
         </div>
 
         {/* Quick-Add Filtered Node Menu (when user clicks + on an input/output port or + Bước trước/sau) */}
@@ -1296,11 +1191,11 @@ function StudioCanvasInner() {
                       <span className="text-xs font-semibold text-foreground">
                         {def.displayName}
                       </span>
-                      <span className="text-[10px] text-muted-foreground">
+                      <span className="text-xs text-muted-foreground">
                         {t(`categories.${def.category}` as any)}
                       </span>
                     </div>
-                    <span className="text-[11px] text-muted-foreground line-clamp-1">
+                    <span className="text-[13px] text-muted-foreground line-clamp-1">
                       {def.description}
                     </span>
                   </button>
@@ -1384,7 +1279,7 @@ function StudioCanvasInner() {
                       <h3 className="text-xs font-semibold text-foreground">
                         {t("tplSocNhoTitle")}
                       </h3>
-                      <p className="mt-1 text-[11px] text-muted-foreground leading-relaxed">
+                      <p className="mt-1 text-[13px] text-muted-foreground leading-relaxed">
                         {t("tplSocNhoDesc")}
                       </p>
                     </div>
@@ -1401,7 +1296,7 @@ function StudioCanvasInner() {
                       <h3 className="text-xs font-semibold text-foreground">
                         {t("tplBlankTitle")}
                       </h3>
-                      <p className="mt-1 text-[11px] text-muted-foreground leading-relaxed">
+                      <p className="mt-1 text-[13px] text-muted-foreground leading-relaxed">
                         {t("tplBlankDesc")}
                       </p>
                     </div>
@@ -1419,7 +1314,9 @@ function StudioCanvasInner() {
           ) : (
             <ReactFlow
               nodes={nodes}
-              edges={edges}
+              edges={edges.map((e) => (e.type === "smoothstep" || e.type === "step" ? { ...e, type: "default" } : e))}
+              defaultEdgeOptions={{ type: "default" }}
+              connectionLineType={ConnectionLineType.Bezier}
               onNodesChange={onNodesChange}
               onEdgesChange={onEdgesChange}
               onConnect={onConnect}
@@ -1428,21 +1325,100 @@ function StudioCanvasInner() {
               onNodeDragStart={() => pushUndoSnapshot()}
               onNodeClick={(_, n) => setSelectedNodeId(n.id)}
               snapToGrid={snapToGrid}
+              panOnDrag={canvasMode === "pan" ? true : [1, 2]}
+              selectionOnDrag={canvasMode === "select"}
+              nodesDraggable={canvasMode === "select"}
               snapGrid={[24, 24]}
               nodeTypes={nodeTypes}
-              fitView
-              fitViewOptions={{ padding: 0.22, minZoom: 0.35, maxZoom: 1.15 }}
+              defaultViewport={{ x: 72, y: 72, zoom: 1 }}
+              minZoom={0.4}
+              maxZoom={1.4}
               proOptions={{ hideAttribution: true }}
               className="bg-card"
             >
+              <Panel position="top-left" style={{ top: "calc(50% - 44px)", transform: "translateY(-50%)", margin: 12 }}>
+                <StudioStickToolbar
+                  mode={canvasMode}
+                  onMode={setCanvasMode}
+                  addOpen={addMenuOpen}
+                  onToggleAdd={() => setAddMenuOpen((v) => !v)}
+                  addMenu={
+                <div className="z-40 w-[340px] rounded-lg border border-border bg-popover p-2.5 text-popover-foreground">
+                    <div className="relative mb-2">
+                      <Search className="pointer-events-none absolute left-2 top-2 h-3.5 w-3.5 text-muted-foreground" />
+                      <input
+                        type="search"
+                        value={addSearch}
+                        onChange={(e) => setAddSearch(e.target.value)}
+                        placeholder={t("addNodePlaceholder")}
+                        autoFocus
+                        className="h-7 w-full rounded border border-border bg-background pl-7 pr-2 text-xs text-foreground"
+                      />
+                    </div>
+                    <ul className="max-h-72 space-y-1 overflow-y-auto">
+                      {filteredAddDefs.map((def) => (
+                        <li key={def.typeName}>
+                          <button
+                            type="button"
+                            draggable
+                            onDragStart={(e) =>
+                              e.dataTransfer.setData(
+                                "application/x-studio-nodetype",
+                                def.typeName
+                              )
+                            }
+                            onClick={() => handlePlaceNewNode(def.typeName)}
+                            className="flex w-full flex-col gap-0.5 rounded-md border border-transparent px-2 py-1.5 text-left hover:border-border hover:bg-accent"
+                          >
+                            <div className="flex items-center justify-between">
+                              <span className="text-xs font-semibold text-foreground">
+                                {def.displayName}
+                              </span>
+                              <span className="rounded border border-border bg-card px-1.5 py-0.5 text-xs text-muted-foreground">
+                                {t(`categories.${def.category}` as any)}
+                              </span>
+                            </div>
+                            <p className="text-[13px] text-muted-foreground line-clamp-1">
+                              {def.description}
+                            </p>
+                            <p className="font-mono text-xs text-muted-foreground">
+                              In:{" "}
+                              {def.inputPorts.map((p) => p.name).join(", ") ||
+                                "—"}{" "}
+                              → Out:{" "}
+                              {def.outputPorts.map((p) => p.name).join(", ") ||
+                                "—"}
+                            </p>
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+  
+                  }
+                  hasSelection={Boolean(selectedNodeId)}
+                  onStepBefore={() => triggerStepRelativeToSelected("before")}
+                  onStepAfter={() => triggerStepRelativeToSelected("after")}
+                  onDuplicate={handleDuplicateSelected}
+                  onDelete={handleDeleteSelected}
+                  onGroup={handleAlignGroup}
+                  onUndo={undoCanvas}
+                  onRedo={redoCanvas}
+                  canUndo={undoStack.length > 0}
+                  canRedo={redoStack.length > 0}
+                  snap={snapToGrid}
+                  onToggleSnap={() => setSnapToGrid((v) => !v)}
+                />
+              </Panel>
               <Controls
                 showInteractive={false}
-                className="!m-3 !border !border-border !bg-card !shadow-none !rounded-md"
+                position="bottom-right"
+                className="!mb-3 !ml-3 !mr-3 xl:!mr-[14rem] !mt-3 !border !border-border !bg-card !shadow-none !rounded-md"
               />
               <MiniMap
                 zoomable
                 pannable
-                className="!m-3 !border !border-border !bg-card !shadow-none !rounded-md"
+                className="!hidden xl:!block !m-3 !border !border-border !bg-card !shadow-none !rounded-md"
                 nodeColor={() => "hsl(var(--accent))"}
                 maskColor="rgba(0, 0, 0, 0.06)"
               />
@@ -1452,15 +1428,14 @@ function StudioCanvasInner() {
           {/* Port & Wire Data Type Legend (Bottom-Left of Canvas) */}
           <aside
             aria-label="Port data type legend"
-            className="pointer-events-none absolute bottom-3 left-14 z-10 flex items-center gap-3 rounded-md border border-border bg-card px-3 py-1.5 text-[11px] text-muted-foreground select-none"
+            className="pointer-events-none absolute bottom-3 right-16 xl:right-[17rem] z-10 flex items-center gap-3 rounded-md border border-border bg-card px-3 py-1.5 text-[13px] text-muted-foreground select-none"
           >
             {DATA_LEGEND.map((item) => (
-              <span key={item.type} className="flex items-center gap-1.5">
+              <span key={item.type} title={t(`legend.${item.type}`)} className="flex items-center gap-1.5">
                 <span
                   className={cn("h-2 w-2 rounded-full", item.color)}
                   aria-hidden="true"
                 />
-                <span>{t(`legend.${item.type}`)}</span>
               </span>
             ))}
           </aside>
@@ -1470,17 +1445,17 @@ function StudioCanvasInner() {
         <div className="md:hidden flex-1 overflow-y-auto px-4 py-4 space-y-3">
           <div className="flex items-center justify-between border-b border-border pb-2.5">
             <div>
-              <h2 className="text-xs font-semibold text-foreground">
+              <h2 className="text-sm font-semibold text-foreground">
                 {t("mobileListTitle")}
               </h2>
-              <p className="text-[11px] text-muted-foreground tnum">
+              <p className="text-[13px] text-muted-foreground tnum">
                 {t("estimatedCost", { cost: totalEstimatedCost.toFixed(2) })}
               </p>
             </div>
             <button
               type="button"
               onClick={() => setMobileSheetOpen(true)}
-              className="h-7 rounded-md border border-border bg-card px-2.5 text-xs font-medium text-foreground"
+              className="h-8 rounded-md border border-border bg-card px-3 text-[13px] font-medium text-foreground"
             >
               {t("openSheetBtn")}
             </button>
@@ -1497,17 +1472,17 @@ function StudioCanvasInner() {
                     setActiveRightTab("node");
                     setMobileSheetOpen(true);
                   }}
-                  className="rounded-lg border border-border bg-card p-3 space-y-1.5"
+                  className="rounded-lg border border-border bg-card p-3.5 space-y-1.5"
                 >
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-semibold text-foreground tnum">
+                    <span className="text-sm font-semibold text-foreground tnum">
                       {index + 1}. {def?.displayName || node.data.nodeType}
                     </span>
-                    <span className="text-[11px] text-muted-foreground">
+                    <span className="text-[13px] text-muted-foreground">
                       {t(`status.${node.data.status || "idle"}` as any)}
                     </span>
                   </div>
-                  <p className="text-[11px] text-muted-foreground">
+                  <p className="text-[13px] text-muted-foreground leading-snug">
                     {def?.description}
                   </p>
                 </li>

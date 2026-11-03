@@ -4,15 +4,15 @@ import { useEffect } from "react";
 import { useRouter } from "@/i18n/routing";
 import { useStudioStore } from "@/store";
 
+/** Studio là màn duy nhất: mở panel tương ứng rồi quay về canvas. */
 export default function ProjectsRedirectPage() {
   const router = useRouter();
-  const { setActiveRightTab, setRightPanelCollapsed } = useStudioStore();
+  const { setActiveRightTab } = useStudioStore();
 
   useEffect(() => {
     setActiveRightTab("project");
-    setRightPanelCollapsed(false);
     router.replace("/");
-  }, [router, setActiveRightTab, setRightPanelCollapsed]);
+  }, [router, setActiveRightTab]);
 
   return null;
 }

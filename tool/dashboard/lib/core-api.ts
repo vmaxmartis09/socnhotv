@@ -519,7 +519,8 @@ export async function cancelRunOnCore(projectId: string): Promise<void> {
 
 export async function sendChatToCore(
   projectId: string,
-  prompt: string
+  prompt: string,
+  context?: Record<string, unknown>
 ): Promise<{
   reply: string;
   mode: string;
@@ -531,7 +532,7 @@ export async function sendChatToCore(
     const res = await fetch(`${CORE_URL}/projects/${projectId}/chat`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ prompt }),
+      body: JSON.stringify({ prompt, context }),
     });
     if (res.ok) {
       return await res.json();
@@ -643,4 +644,15 @@ export function parseStudioCommandClientSide(prompt: string): {
     requiresConfirmation,
     confirmationMeta,
   };
+}
+
+/** Đọc đồ thị đã lưu của dự án từ Core; null nếu Core không phản hồi. */
+export async function fetchGraphFromCore(projectId: string): Promise<Graph | null> {
+  try {
+    const res = await fetch(`${CORE_URL}/projects/${projectId}/graph`, { cache: "no-store" });
+    if (!res.ok) return null;
+    return (await res.json()) as Graph;
+  } catch {
+    return null;
+  }
 }

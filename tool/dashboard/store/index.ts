@@ -50,7 +50,12 @@ export const useStudioStore = create<StudioStore>()(
         apiKeyStatus: state.apiKeyStatus,
         activeRightTab: state.activeRightTab,
         rightPanelWidth: state.rightPanelWidth,
-        rightPanelCollapsed: state.rightPanelCollapsed,
+      }),
+      // Panel nổi luôn khởi động ở trạng thái đóng, kể cả khi bản lưu cũ đang mở
+      merge: (persisted, current) => ({
+        ...current,
+        ...(persisted as object),
+        rightPanelCollapsed: true,
       }),
     }
   )

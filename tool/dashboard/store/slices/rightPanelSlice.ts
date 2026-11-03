@@ -1,6 +1,6 @@
 import type { StateCreator } from "zustand";
 
-export type RightPanelTab = "chat" | "node" | "project" | "publish" | "jobs";
+export type RightPanelTab = "chat" | "node" | "project" | "publish" | "jobs" | "shortcuts";
 export type CharacterProfileSection =
   | "profile"
   | "images"
@@ -34,7 +34,7 @@ export const createRightPanelSlice: StateCreator<
 > = (set) => ({
   activeRightTab: "chat",
   rightPanelWidth: 380,
-  rightPanelCollapsed: false,
+  rightPanelCollapsed: true,
   mobileSheetOpen: false,
   selectedCharacterId: null,
   activeCharacterSection: "profile",

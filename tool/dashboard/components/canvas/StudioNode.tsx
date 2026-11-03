@@ -1,5 +1,6 @@
 "use client";
 
+import { enterOnce } from "@/lib/motion";
 import React, { memo, useState } from "react";
 import { Handle, Position, type NodeProps, type Node } from "@xyflow/react";
 import { useTranslations } from "next-intl";
@@ -15,8 +16,31 @@ import {
   isPortCompatible,
 } from "@/lib/core-api";
 import { useCanvasInteraction } from "@/components/canvas/CanvasContext";
+import { NodeBody } from "./NodeBody";
 import { CharacterCard } from "@/components/canvas/CharacterCard";
-import { Play, Plus, ChevronDown, Sliders } from "@/components/ui/icons";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  Play,
+  Plus,
+  ChevronDown,
+  ChevronUp,
+  ChevronsDown,
+  Sliders,
+  Loader2,
+  Circle,
+  CircleDot,
+  CheckCircle2,
+  AlertTriangle,
+  RotateCcw,
+  FileText,
+  Users,
+  Layers,
+  Sparkles,
+  Volume2,
+  ShieldCheck,
+  Film,
+  Download,
+} from "@/components/ui/icons";
 
 export type StudioCardNodeType = Node<StudioNodeData, "studioCard">;
 export type StudioNodeType = StudioCardNodeType;
@@ -45,7 +69,6 @@ export const StudioNode = memo(function StudioNode({
     onOpenNodeInspector,
   } = useCanvasInteraction();
 
-  const [runMenuOpen, setRunMenuOpen] = useState(false);
 
   const def =
     nodeCatalog.find((d) => d.typeName === data.nodeType) ||
@@ -116,11 +139,143 @@ export const StudioNode = memo(function StudioNode({
     ? data.generations.findIndex((g) => g.id === data.pinnedGenerationId) + 1
     : data.generations.length;
 
+  const [open, setOpen] = useState(false);
+  const expanded = Boolean(selected) || open;
+
+  const CategoryIcon =
+    {
+      Input: FileText,
+      Identity: Users,
+      Structure: Layers,
+      Intelligence: Sparkles,
+      Generation: Sparkles,
+      Audio: Volume2,
+      Quality: ShieldCheck,
+      Composition: Film,
+      Output: Download,
+    }[def.category as string] || Layers;
+
+  const StatusIcon =
+    stateKey === "running"
+      ? Loader2
+      : stateKey === "succeeded" || stateKey === "completed"
+      ? CheckCircle2
+      : stateKey === "failed"
+      ? AlertTriangle
+      : stateKey === "stale"
+      ? RotateCcw
+      : stateKey === "ready"
+      ? CircleDot
+      : Circle;
+  const statusColor =
+    stateKey === "running"
+      ? "text-brand"
+      : stateKey === "failed"
+      ? "text-semantic-danger"
+      : stateKey === "succeeded" || stateKey === "completed"
+      ? "text-semantic-success"
+      : stateKey === "stale"
+      ? "text-semantic-warning"
+      : stateKey === "ready"
+      ? "text-foreground"
+      : "text-muted-foreground";
+
+  const summary = compactParams.join(" · ") || contentPreview || def.description;
+  const hasError = Boolean(data.errorMessage) || issues.length > 0 || data.status === "failed";
+
+  // Cổng đặt cố định theo px để dây nối không dịch chuyển khi node mở rộng/thu gọn
+  const portTop = (i: number) => 56 + i * 22;
+  const minH = 48 + Math.max(def.inputPorts.length, def.outputPorts.length, 1) * 22 + 8;
+
+  const portHandle = (
+    port: (typeof def.inputPorts)[number],
+    index: number,
+    side: "in" | "out"
+  ) => {
+    const isIn = side === "in";
+    const portColor = PORT_TYPE_COLORS[port.portType] || "#737373";
+    const drag = activeDragPort;
+    const other = drag && drag.nodeId !== id && drag.handleType === (isIn ? "source" : "target");
+    const compatible =
+      other &&
+      (isIn
+        ? isPortCompatible(drag!.portType, port.portType)
+        : isPortCompatible(port.portType, drag!.portType));
+    const connected = connectedPorts.has(`${id}:${side}:${port.name}`);
+    const missing = isIn && port.required && !connected;
+    return (
+      <React.Fragment key={`${side}:${port.name}`}>
+        <Handle
+          id={port.name}
+          type={isIn ? "target" : "source"}
+          position={isIn ? Position.Left : Position.Right}
+          title={`${port.name} · ${t(`portTypes.${port.portType}` as any)}${port.required ? " *" : ""}`}
+          aria-label={`${port.name} (${t(`portTypes.${port.portType}` as any)})`}
+          style={{
+            top: portTop(index),
+            [isIn ? "left" : "right"]: -8,
+            width: compatible ? 16 : 14,
+            height: compatible ? 16 : 14,
+            borderRadius: isIn ? "50%" : 4,
+            backgroundColor: portColor,
+            border: compatible
+              ? "2px solid hsl(var(--brand))"
+              : missing
+              ? "2px solid hsl(var(--danger))"
+              : "2px solid hsl(var(--card))",
+            boxShadow: missing ? "0 0 0 2px hsl(var(--danger) / 0.25)" : undefined,
+            opacity: other && !compatible ? 0.3 : 1,
+            transition: "all 150ms",
+          }}
+        />
+        {/* Nhãn cổng hiện khi rê chuột vào card */}
+        <span
+          style={{ top: portTop(index) - 9, [isIn ? "right" : "left"]: "calc(100% + 12px)" }}
+          className="pointer-events-none absolute z-10 whitespace-nowrap rounded border border-border bg-card px-1.5 py-0.5 text-[10px] text-foreground opacity-0 transition-opacity group-hover/node:opacity-100"
+        >
+          {port.name}
+          {port.required ? " *" : ""}
+        </span>
+      </React.Fragment>
+    );
+  };
+
+  const IconBtn = ({
+    label,
+    onClick,
+    children,
+    className,
+  }: {
+    label: string;
+    onClick: () => void;
+    children: React.ReactNode;
+    className?: string;
+  }) => (
+    <button
+      type="button"
+      title={label}
+      aria-label={label}
+      onClick={(e) => {
+        e.stopPropagation();
+        onClick();
+      }}
+      className={cn(
+        "nodrag flex h-6 w-6 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-foreground active:scale-90",
+        className
+      )}
+    >
+      {children}
+    </button>
+  );
+
   return (
-    <div
+    <motion.div
       tabIndex={0}
       role="group"
       aria-label={`${def.displayName} (${stateLabel})`}
+      initial={enterOnce(`node:${id}`, { opacity: 0 })}
+      animate={{ opacity: 1, width: expanded ? 366 : 270 }}
+      transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
       onKeyDown={(e) => {
         if (e.key === "Enter") {
           e.preventDefault();
@@ -129,409 +284,191 @@ export const StudioNode = memo(function StudioNode({
         }
       }}
       className={cn(
-        "w-[304px] rounded-[8px] border bg-card text-foreground select-none transition-colors",
+        "group/node relative rounded-[10px] border bg-card text-foreground select-none transition-colors",
+        stateKey === "stale" && "opacity-80",
+        stateKey === "running" && "node-running",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
         isFlashing
           ? "border-brand bg-brand/5"
-          : issues.length > 0 || data.status === "failed"
+          : hasError
           ? "border-semantic-danger"
           : selected
           ? "border-foreground"
-          : "border-border"
+          : "border-border hover:border-foreground/40"
       )}
-      style={{ boxShadow: "none" }}
+      style={{ boxShadow: "none", minHeight: minH }}
     >
-      {/* 1. Card Header (32px / h-8): Node type name, role badge from category, text state */}
-      <div className="flex h-8 items-center justify-between gap-1.5 border-b border-border bg-muted/40 px-2.5">
-        <div className="flex min-w-0 items-center gap-1.5">
-          <span className="truncate text-xs font-semibold text-foreground">
-            {def.displayName}
-          </span>
-          <span className="shrink-0 rounded border border-border bg-card px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground">
-            {categoryLabel}
-          </span>
+      {stateKey === "running" && (
+        <div className="pointer-events-none absolute inset-x-2 bottom-0 h-0.5 overflow-hidden rounded-full bg-muted">
+          <motion.div
+            className="h-full bg-brand"
+            animate={{ width: typeof data.progressPct === "number" ? `${Math.max(4, data.progressPct)}%` : ["10%", "90%", "10%"] }}
+            transition={typeof data.progressPct === "number" ? { duration: 0.3 } : { repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
+          />
         </div>
+      )}
+      {def.inputPorts.map((p, i) => portHandle(p, i, "in"))}
+      {def.outputPorts.map((p, i) => portHandle(p, i, "out"))}
+
+      {/* Dòng đầu: biểu tượng loại, tên, trạng thái, chạy, mở rộng */}
+      <div className="flex h-11 items-center gap-2 px-3">
         <span
-          className={cn(
-            "shrink-0 text-xs font-medium tnum",
-            stateKey === "running"
-              ? "text-brand"
-              : stateKey === "failed"
-              ? "text-semantic-danger"
-              : stateKey === "succeeded"
-              ? "text-semantic-success"
-              : stateKey === "stale"
-              ? "text-semantic-warning"
-              : "text-muted-foreground"
-          )}
+          title={categoryLabel}
+          className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-accent text-foreground"
         >
-          {stateLabel}
-          {stateKey === "running" &&
-            typeof data.progressPct === "number" &&
-            ` ${Math.round(data.progressPct)}%`}
+          <CategoryIcon className="h-3.5 w-3.5" />
         </span>
+        <span className="min-w-0 flex-1 truncate text-[15px] font-semibold" title={def.displayName}>
+          {def.displayName}
+        </span>
+        <span title={`${stateLabel}${stateKey === "running" && typeof data.progressPct === "number" ? ` ${Math.round(data.progressPct)}%` : ""}`} className={cn("flex h-6 w-6 items-center justify-center", statusColor)}>
+          <StatusIcon className={cn("h-3.5 w-3.5", stateKey === "running" && "animate-spin")} />
+        </span>
+        <IconBtn label={t("runNode")} onClick={() => onRequestRun("single_node", id)}>
+          <Play className="h-3 w-3" />
+        </IconBtn>
+        <IconBtn label={expanded ? "Thu gọn" : "Mở rộng"} onClick={() => setOpen((v) => !v)}>
+          {expanded ? <ChevronUp className="h-3.5 w-3.5" /> : <ChevronDown className="h-3.5 w-3.5" />}
+        </IconBtn>
       </div>
 
-      {/* 2. One-line role description written for video creators */}
-      <div className="border-b border-border/70 px-2.5 py-1.5">
-        <p className="truncate text-[11px] text-muted-foreground" title={def.description}>
-          {def.description}
-        </p>
-      </div>
-
-      {/* 3. Left Input Ports & Right Output Ports columns */}
-      <div className="grid grid-cols-2 divide-x divide-border/70 border-b border-border/70 text-[11px]">
-        {/* Left: Input ports */}
-        <div className="space-y-1.5 py-2 pl-2.5 pr-1.5">
-          {def.inputPorts.length === 0 ? (
-            <span className="block text-[10px] text-muted-foreground">
-              —
-            </span>
-          ) : (
-            def.inputPorts.map((port) => {
-              const isConnected = connectedPorts.has(`${id}:in:${port.name}`);
-              const portColor = PORT_TYPE_COLORS[port.portType] || "#737373";
-              const isCompatibleTarget =
-                activeDragPort &&
-                activeDragPort.nodeId !== id &&
-                activeDragPort.handleType === "source" &&
-                isPortCompatible(activeDragPort.portType, port.portType);
-              const isIncompatibleTarget =
-                activeDragPort &&
-                activeDragPort.nodeId !== id &&
-                activeDragPort.handleType === "source" &&
-                !isPortCompatible(activeDragPort.portType, port.portType);
-
-              return (
-                <div
-                  key={port.name}
-                  className={cn(
-                    "relative flex items-center justify-between gap-1 rounded px-1 py-0.5 transition-opacity",
-                    isCompatibleTarget && "bg-accent ring-1 ring-brand",
-                    isIncompatibleTarget && "opacity-35"
-                  )}
-                >
-                  <Handle
-                    id={port.name}
-                    type="target"
-                    position={Position.Left}
-                    aria-label={`${port.name} (${t(`portTypes.${port.portType}` as any)})`}
-                    style={{
-                      left: -11,
-                      width: 10,
-                      height: 10,
-                      backgroundColor: portColor,
-                      border: isCompatibleTarget
-                        ? "2px solid hsl(var(--brand))"
-                        : "2px solid hsl(var(--card))",
-                    }}
-                  />
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-center gap-1">
-                      <span className="truncate font-medium text-foreground">
-                        {port.name}
-                      </span>
-                      <span className="text-[10px] text-muted-foreground">
-                        · {t(`portTypes.${port.portType}` as any)}
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-1 text-[10px] text-muted-foreground">
-                      <span>
-                        {port.required ? t("portRequired") : t("portOptional")}
-                      </span>
-                      <span>·</span>
-                      <span
-                        className={cn(
-                          isConnected
-                            ? "text-foreground font-medium"
-                            : port.required
-                            ? "text-brand"
-                            : "text-muted-foreground"
-                        )}
-                      >
-                        {isConnected
-                          ? t("portConnected")
-                          : t("portDisconnected")}
-                      </span>
-                    </div>
-                  </div>
-                  {/* + Quick add upstream node button */}
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      onOpenQuickAdd({
-                        anchorNodeId: id,
-                        direction: "before",
-                        portName: port.name,
-                        portType: port.portType,
-                      });
-                    }}
-                    title={t("addUpstreamPort")}
-                    aria-label={`${t("addUpstreamPort")}: ${port.name}`}
-                    className="nodrag flex h-4 w-4 shrink-0 items-center justify-center rounded border border-border bg-card text-muted-foreground hover:bg-accent hover:text-foreground"
-                  >
-                    <Plus className="h-2.5 w-2.5" />
-                  </button>
-                </div>
-              );
-            })
-          )}
-        </div>
-
-        {/* Right: Output ports */}
-        <div className="space-y-1.5 py-2 pl-1.5 pr-2.5">
-          {def.outputPorts.length === 0 ? (
-            <span className="block text-right text-[10px] text-muted-foreground">
-              —
-            </span>
-          ) : (
-            def.outputPorts.map((port) => {
-              const isConnected = connectedPorts.has(`${id}:out:${port.name}`);
-              const portColor = PORT_TYPE_COLORS[port.portType] || "#737373";
-              const isCompatibleSource =
-                activeDragPort &&
-                activeDragPort.nodeId !== id &&
-                activeDragPort.handleType === "target" &&
-                isPortCompatible(port.portType, activeDragPort.portType);
-              const isIncompatibleSource =
-                activeDragPort &&
-                activeDragPort.nodeId !== id &&
-                activeDragPort.handleType === "target" &&
-                !isPortCompatible(port.portType, activeDragPort.portType);
-
-              return (
-                <div
-                  key={port.name}
-                  className={cn(
-                    "relative flex items-center justify-between gap-1 rounded px-1 py-0.5 text-right transition-opacity",
-                    isCompatibleSource && "bg-accent ring-1 ring-brand",
-                    isIncompatibleSource && "opacity-35"
-                  )}
-                >
-                  {/* + Quick add downstream node button */}
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      onOpenQuickAdd({
-                        anchorNodeId: id,
-                        direction: "after",
-                        portName: port.name,
-                        portType: port.portType,
-                      });
-                    }}
-                    title={t("addDownstreamPort")}
-                    aria-label={`${t("addDownstreamPort")}: ${port.name}`}
-                    className="nodrag flex h-4 w-4 shrink-0 items-center justify-center rounded border border-border bg-card text-muted-foreground hover:bg-accent hover:text-foreground"
-                  >
-                    <Plus className="h-2.5 w-2.5" />
-                  </button>
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-center justify-end gap-1">
-                      <span className="text-[10px] text-muted-foreground">
-                        {t(`portTypes.${port.portType}` as any)} ·
-                      </span>
-                      <span className="truncate font-medium text-foreground">
-                        {port.name}
-                      </span>
-                    </div>
-                    <div className="text-[10px] text-muted-foreground">
-                      <span
-                        className={cn(
-                          isConnected
-                            ? "text-foreground font-medium"
-                            : "text-muted-foreground"
-                        )}
-                      >
-                        {isConnected
-                          ? t("portConnected")
-                          : t("portDisconnected")}
-                      </span>
-                    </div>
-                  </div>
-                  <Handle
-                    id={port.name}
-                    type="source"
-                    position={Position.Right}
-                    aria-label={`${port.name} (${t(`portTypes.${port.portType}` as any)})`}
-                    style={{
-                      right: -11,
-                      width: 10,
-                      height: 10,
-                      backgroundColor: portColor,
-                      border: isCompatibleSource
-                        ? "2px solid hsl(var(--brand))"
-                        : "2px solid hsl(var(--card))",
-                    }}
-                  />
-                </div>
-              );
-            })
-          )}
-        </div>
-      </div>
-
-      {/* 4. Compact primary params (clickable to edit in Node tab) */}
-      <button
-        type="button"
-        onClick={(e) => {
-          e.stopPropagation();
-          setSelectedNodeId(id);
-          onOpenNodeInspector(id);
-        }}
-        title={t("editInNodeTab")}
-        className="nodrag flex w-full items-center justify-between gap-2 border-b border-border/70 px-2.5 py-1.5 text-left text-[11px] hover:bg-accent/50"
-      >
-        <div className="min-w-0 flex-1">
-          {compactParams.length > 0 && (
-            <p className="truncate font-mono text-[11px] text-foreground tnum">
-              {compactParams.join(" · ")}
-            </p>
-          )}
-          {contentPreview && (
-            <p className="line-clamp-2 text-[11px] text-muted-foreground">
-              {contentPreview}
-            </p>
-          )}
-          {!compactParams.length && !contentPreview && (
-            <span className="text-muted-foreground">{t("editInNodeTab")}</span>
-          )}
-        </div>
-        <Sliders className="h-3 w-3 shrink-0 text-muted-foreground" />
-      </button>
-
-      {/* 5. Real output preview when available (or Character avatar / next-step hint) */}
-      <div className="px-2.5 py-2 space-y-1.5">
-        {data.previewType === "image" && data.previewUrl ? (
-          <div className="overflow-hidden rounded border border-border bg-muted/20">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={data.previewUrl}
-              alt={def.displayName}
-              className="h-28 w-full object-cover object-top"
-            />
-          </div>
-        ) : data.previewType === "video" && data.previewUrl ? (
-          <div className="overflow-hidden rounded border border-border bg-muted/20">
-            <video
-              src={data.previewUrl}
-              controls
-              preload="metadata"
-              className="nodrag h-28 w-full object-cover"
-            />
-          </div>
-        ) : data.previewType === "audio" && data.previewUrl ? (
-          <div className="rounded border border-border bg-muted/20 p-1.5">
-            <audio
-              src={data.previewUrl}
-              controls
-              preload="metadata"
-              className="nodrag h-7 w-full"
-            />
-          </div>
-        ) : boundChar ? (
-          <CharacterCard character={boundChar} />
-        ) : null}
-
-        {data.summaryText && (
-          <p className="rounded border border-border/70 bg-muted/20 px-2 py-1 text-[11px] text-foreground line-clamp-2">
-            {data.summaryText}
+      {/* Tóm tắt một dòng khi thu gọn */}
+      {!expanded && (
+        <div className="px-3 pb-3">
+          <p className="truncate text-[13px] text-muted-foreground" title={summary}>
+            {summary}
           </p>
-        )}
-
-        <div className="flex items-center justify-between text-[10px] text-muted-foreground tnum">
-          {data.generations.length > 0 ? (
-            <span>
-              {t("pinnedGen", {
-                index: Math.max(1, pinnedIdx),
-                total: data.generations.length,
-              })}
-            </span>
-          ) : (
-            <span className="truncate">
-              {data.nextStepHint || t("noGenYet")}
-            </span>
-          )}
-        </div>
-
-        {(data.errorMessage || issues.length > 0) && (
-          <div className="rounded border border-semantic-danger/40 bg-card px-2 py-1 text-[11px] text-semantic-danger">
-            {data.errorMessage || issues[0]}
-          </div>
-        )}
-      </div>
-
-      {/* 6. Bottom bar: Run button with menu + estimated cost */}
-      <div className="relative flex h-8 items-center justify-between border-t border-border bg-muted/30 px-2.5 text-xs">
-        <span className="text-[11px] text-muted-foreground tnum">
-          {t("estimatedCost", { cost: estCost.toFixed(2) })}
-        </span>
-
-        <div className="relative flex items-center">
-          <button
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              onRequestRun("single_node", id);
-            }}
-            className="nodrag flex h-6 items-center gap-1 rounded-l border border-border bg-card px-2 text-[11px] font-medium text-foreground hover:bg-accent"
-          >
-            <Play className="h-3 w-3" />
-            <span>{t("runMenu")}</span>
-          </button>
-          <button
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              setRunMenuOpen((v) => !v);
-            }}
-            aria-label={t("runMenu")}
-            aria-expanded={runMenuOpen}
-            className="nodrag flex h-6 w-5 items-center justify-center rounded-r border border-l-0 border-border bg-card text-muted-foreground hover:bg-accent hover:text-foreground"
-          >
-            <ChevronDown className="h-3 w-3" />
-          </button>
-
-          {runMenuOpen && (
-            <div
-              onClick={(e) => e.stopPropagation()}
-              className="nodrag absolute bottom-7 right-0 z-30 w-44 rounded-md border border-border bg-popover p-1 text-xs text-popover-foreground"
-            >
-              <button
-                type="button"
-                onClick={() => {
-                  setRunMenuOpen(false);
-                  onRequestRun("single_node", id);
-                }}
-                className="flex w-full items-center rounded px-2 py-1 text-left hover:bg-accent"
-              >
-                {t("runNode")}
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  setRunMenuOpen(false);
-                  onRequestRun("downstream", id);
-                }}
-                className="flex w-full items-center rounded px-2 py-1 text-left hover:bg-accent"
-              >
-                {t("runFromHere")}
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  setRunMenuOpen(false);
-                  onRequestRun("all");
-                }}
-                className="flex w-full items-center rounded px-2 py-1 text-left hover:bg-accent"
-              >
-                {t("runAll")}
-              </button>
+          {boundChar?.referenceImages?.[0] && (
+            <div className="mt-1.5 flex items-center gap-1.5">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={boundChar.referenceImages[0]}
+                alt={boundChar.name}
+                className="h-7 w-7 rounded border border-border object-cover object-top"
+              />
+              <span className="truncate text-xs text-foreground">{boundChar.name}</span>
             </div>
           )}
         </div>
-      </div>
-    </div>
+      )}
+
+      {/* Phần mở rộng: thuộc tính, cổng, xem trước, chạy */}
+      <AnimatePresence initial={false}>
+        {expanded && (
+          <motion.div
+            key="body"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="overflow-hidden"
+          >
+            <div className="space-y-2 border-t border-border/70 px-2.5 py-2">
+              <p className="text-xs text-muted-foreground">{def.description}</p>
+
+              <div className="grid grid-cols-2 gap-x-2 gap-y-1">
+                <div className="space-y-1">
+                  {def.inputPorts.map((port) => {
+                    const connected = connectedPorts.has(`${id}:in:${port.name}`);
+                    return (
+                      <div key={port.name} className="flex items-center gap-1 text-xs">
+                        <span className="h-2 w-2 shrink-0 rounded-full" style={{ backgroundColor: PORT_TYPE_COLORS[port.portType] || "#737373" }} />
+                        <span className={cn("truncate", connected ? "text-foreground" : port.required ? "text-brand" : "text-muted-foreground")} title={`${t(`portTypes.${port.portType}` as any)} · ${port.required ? t("portRequired") : t("portOptional")}`}>
+                          {port.name}{port.required && !connected ? " *" : ""}
+                        </span>
+                        <button
+                          type="button"
+                          title={t("addUpstreamPort")}
+                          aria-label={`${t("addUpstreamPort")}: ${port.name}`}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onOpenQuickAdd({ anchorNodeId: id, direction: "before", portName: port.name, portType: port.portType });
+                          }}
+                          className="nodrag ml-auto flex h-4 w-4 shrink-0 items-center justify-center rounded border border-border text-muted-foreground hover:bg-accent hover:text-foreground"
+                        >
+                          <Plus className="h-2.5 w-2.5" />
+                        </button>
+                      </div>
+                    );
+                  })}
+                </div>
+                <div className="space-y-1">
+                  {def.outputPorts.map((port) => (
+                    <div key={port.name} className="flex items-center justify-end gap-1 text-xs">
+                      <button
+                        type="button"
+                        title={t("addDownstreamPort")}
+                        aria-label={`${t("addDownstreamPort")}: ${port.name}`}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onOpenQuickAdd({ anchorNodeId: id, direction: "after", portName: port.name, portType: port.portType });
+                        }}
+                        className="nodrag mr-auto flex h-4 w-4 shrink-0 items-center justify-center rounded border border-border text-muted-foreground hover:bg-accent hover:text-foreground"
+                      >
+                        <Plus className="h-2.5 w-2.5" />
+                      </button>
+                      <span className={cn("truncate", connectedPorts.has(`${id}:out:${port.name}`) ? "text-foreground" : "text-muted-foreground")} title={t(`portTypes.${port.portType}` as any)}>
+                        {port.name}
+                      </span>
+                      <span className="h-2 w-2 shrink-0 rounded-full" style={{ backgroundColor: PORT_TYPE_COLORS[port.portType] || "#737373" }} />
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSelectedNodeId(id);
+                  onOpenNodeInspector(id);
+                }}
+                title={t("editInNodeTab")}
+                className="nodrag flex w-full items-center justify-between gap-2 rounded-md border border-border px-2 py-1.5 text-left transition-colors hover:bg-accent/50"
+              >
+                <span className="min-w-0 flex-1">
+                  {compactParams.length > 0 && (
+                    <span className="block truncate font-mono text-xs tnum text-foreground">{compactParams.join(" · ")}</span>
+                  )}
+                </span>
+                <Sliders className="h-3.5 w-3.5 shrink-0 text-muted-foreground" />
+              </button>
+
+              <NodeBody
+                nodeType={def.typeName}
+                nodeId={id}
+                data={data}
+                character={boundChar}
+                connectedInputs={def.inputPorts.filter((pt) => connectedPorts.has(`${id}:in:${pt.name}`)).map((pt) => pt.name)}
+              />
+
+              {data.summaryText && (
+                <p className="line-clamp-2 rounded border border-border/70 bg-muted/20 px-2 py-1 text-xs text-foreground">{data.summaryText}</p>
+              )}
+
+              {hasError && (
+                <p className="rounded border border-semantic-danger/40 px-2 py-1 text-xs text-semantic-danger">
+                  {data.errorMessage || issues[0]}
+                </p>
+              )}
+
+              <div className="relative flex items-center justify-between text-xs text-muted-foreground tnum">
+                <span className="truncate">
+                  {data.generations.length > 0
+                    ? t("pinnedGen", { index: Math.max(1, pinnedIdx), total: data.generations.length })
+                    : data.nextStepHint || t("noGenYet")}
+                </span>
+                <span className="flex shrink-0 items-center gap-1">
+                  <span title={t("estimatedCost", { cost: estCost.toFixed(2) })}>${estCost.toFixed(2)}</span>
+                  <IconBtn label={t("runFromHere")} onClick={() => onRequestRun("downstream", id)}>
+                    <ChevronsDown className="h-3.5 w-3.5" />
+                  </IconBtn>
+                </span>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
   );
 });

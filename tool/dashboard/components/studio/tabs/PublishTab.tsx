@@ -82,7 +82,7 @@ export function PublishTab() {
   return (
     <div className="p-3.5 space-y-4 text-xs">
       {/* Safety notice */}
-      <div className="rounded-md border border-border bg-accent/50 p-2.5 text-[11px] text-foreground leading-snug">
+      <div className="rounded-md border border-border bg-accent/50 p-2.5 text-[13px] text-foreground leading-snug">
         {t("manualApproveNote")}
       </div>
 
@@ -99,13 +99,13 @@ export function PublishTab() {
             >
               <div>
                 <p className="font-medium text-foreground">{ch.name}</p>
-                <p className="text-[11px] text-muted-foreground uppercase">
+                <p className="text-[13px] text-muted-foreground uppercase">
                   {ch.platform} · {ch.defaultPublishHours}
                 </p>
               </div>
               <span
                 className={cn(
-                  "rounded px-1.5 py-0.5 text-[11px] font-medium",
+                  "rounded px-1.5 py-0.5 text-[13px] font-medium",
                   ch.connected
                     ? "bg-semantic-success/15 text-semantic-success"
                     : "bg-accent text-muted-foreground"
@@ -127,7 +127,7 @@ export function PublishTab() {
           <button
             type="button"
             onClick={() => setCreating((v) => !v)}
-            className="flex h-6 items-center gap-1 rounded border border-border bg-card px-2 text-[11px] font-medium text-foreground hover:bg-accent"
+            className="flex h-6 items-center gap-1 rounded border border-border bg-card px-2 text-[13px] font-medium text-foreground hover:bg-accent"
           >
             <Plus className="h-3 w-3" />
             <span>{t("newScheduleBtn")}</span>
@@ -167,13 +167,13 @@ export function PublishTab() {
               <button
                 type="button"
                 onClick={() => setCreating(false)}
-                className="h-6 rounded border border-border px-2 text-[11px] text-muted-foreground"
+                className="h-6 rounded border border-border px-2 text-[13px] text-muted-foreground"
               >
                 {c("cancel")}
               </button>
               <button
                 type="submit"
-                className="h-6 rounded bg-primary px-2.5 text-[11px] font-medium text-primary-foreground"
+                className="h-6 rounded bg-primary px-2.5 text-[13px] font-medium text-primary-foreground"
               >
                 {c("create")}
               </button>
@@ -192,14 +192,14 @@ export function PublishTab() {
                   <p className="truncate font-medium text-foreground">
                     {post.episodeTitle}
                   </p>
-                  <p className="text-[11px] text-muted-foreground tnum">
+                  <p className="text-[13px] text-muted-foreground tnum">
                     {post.channelName} ({post.platform.toUpperCase()}) ·{" "}
                     {post.scheduledAt}
                   </p>
                 </div>
                 <span
                   className={cn(
-                    "shrink-0 rounded px-1.5 py-0.5 text-[10px] font-medium",
+                    "shrink-0 rounded px-1.5 py-0.5 text-xs font-medium",
                     post.status === "approved" || post.status === "published"
                       ? "bg-semantic-success/15 text-semantic-success"
                       : "bg-accent text-foreground"
@@ -214,7 +214,7 @@ export function PublishTab() {
                   <button
                     type="button"
                     onClick={() => setConfirmPost(post)}
-                    className="inline-flex h-6 items-center gap-1 rounded border border-border bg-card px-2 text-[11px] font-medium text-foreground hover:bg-accent"
+                    className="inline-flex h-6 items-center gap-1 rounded border border-border bg-card px-2 text-[13px] font-medium text-foreground hover:bg-accent"
                   >
                     <Check className="h-3 w-3" />
                     <span>

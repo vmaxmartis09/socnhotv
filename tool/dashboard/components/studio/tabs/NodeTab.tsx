@@ -50,12 +50,12 @@ export function NodeTab() {
           <h3 className="text-sm font-semibold text-foreground">
             {def.displayName}
           </h3>
-          <span className="rounded border border-border bg-muted px-1.5 py-0.5 text-[11px] text-muted-foreground">
+          <span className="rounded border border-border bg-muted px-1.5 py-0.5 text-[13px] text-muted-foreground">
             {c(`categories.${def.category}` as any)}
           </span>
         </div>
-        <p className="text-[11px] text-muted-foreground">{def.description}</p>
-        <div className="flex items-center justify-between pt-1 text-[11px] tnum">
+        <p className="text-[13px] text-muted-foreground">{def.description}</p>
+        <div className="flex items-center justify-between pt-1 text-[13px] tnum">
           <span className="text-muted-foreground">
             {t("statusLabel")}:{" "}
             <strong className="font-medium text-foreground">
@@ -271,7 +271,7 @@ export function NodeTab() {
       {/* Ports status */}
       <section className="space-y-2 border-b border-border pb-3.5">
         <h4 className="font-semibold text-foreground">{t("portsTitle")}</h4>
-        <div className="grid grid-cols-2 gap-2 text-[11px]">
+        <div className="grid grid-cols-2 gap-2 text-[13px]">
           <div>
             <span className="mb-1 block font-medium text-muted-foreground">
               {t("inputsLabel")}
@@ -331,7 +331,7 @@ export function NodeTab() {
           })}
         </h4>
         {!node.data.generations || node.data.generations.length === 0 ? (
-          <p className="text-[11px] text-muted-foreground">
+          <p className="text-[13px] text-muted-foreground">
             {t("noGenerations")}
           </p>
         ) : (
@@ -351,12 +351,12 @@ export function NodeTab() {
                   )}
                 >
                   <div className="flex items-center justify-between">
-                    <span className="font-mono text-[11px] text-foreground tnum">
+                    <span className="font-mono text-[13px] text-foreground tnum">
                       #{node.data.generations.length - idx} · $
                       {gen.costUsd.toFixed(2)}
                     </span>
                     {isPinned ? (
-                      <span className="inline-flex items-center gap-1 rounded bg-accent px-1.5 py-0.5 text-[10px] font-medium text-foreground">
+                      <span className="inline-flex items-center gap-1 rounded bg-accent px-1.5 py-0.5 text-xs font-medium text-foreground">
                         <Check className="h-2.5 w-2.5" />
                         {t("pinnedBadge")}
                       </span>
@@ -364,7 +364,7 @@ export function NodeTab() {
                       <button
                         type="button"
                         onClick={() => pinNodeGeneration(node.id, gen.id)}
-                        className="inline-flex items-center gap-1 rounded border border-border bg-card px-1.5 py-0.5 text-[10px] text-foreground hover:bg-accent"
+                        className="inline-flex items-center gap-1 rounded border border-border bg-card px-1.5 py-0.5 text-xs text-foreground hover:bg-accent"
                       >
                         <Pin className="h-2.5 w-2.5" />
                         {t("pinBtn")}
@@ -372,7 +372,7 @@ export function NodeTab() {
                     )}
                   </div>
                   {gen.summaryText && (
-                    <p className="text-[11px] text-muted-foreground">
+                    <p className="text-[13px] text-muted-foreground">
                       {gen.summaryText}
                     </p>
                   )}

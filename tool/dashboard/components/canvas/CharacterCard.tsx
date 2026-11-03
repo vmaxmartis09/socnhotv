@@ -21,7 +21,7 @@ export function CharacterCard({ character: c }: { character: Character }) {
             {c.name.replace("Bạn ", "").charAt(0)}
           </div>
         )}
-        <div className="min-w-0 flex-1 text-[11px]">
+        <div className="min-w-0 flex-1 text-[13px]">
           <p className="truncate text-xs font-semibold text-foreground">{c.name}</p>
           <p className="text-muted-foreground">
             {c.role === "main" ? "Nhân vật chính" : "Nhân vật phụ"}
@@ -52,7 +52,7 @@ export function CharacterCard({ character: c }: { character: Character }) {
             />
           ))}
           {c.referenceImages.length > 6 && (
-            <span className="flex h-9 w-9 items-center justify-center rounded border border-border text-[10px] text-muted-foreground tnum">
+            <span className="flex h-9 w-9 items-center justify-center rounded border border-border text-xs text-muted-foreground tnum">
               +{c.referenceImages.length - 6}
             </span>
           )}
@@ -60,18 +60,18 @@ export function CharacterCard({ character: c }: { character: Character }) {
       )}
 
       {c.memory.personality && (
-        <p className="line-clamp-2 text-[11px] text-muted-foreground">
+        <p className="line-clamp-2 text-[13px] text-muted-foreground">
           <span className="font-medium text-foreground">Tính cách: </span>
           {c.memory.personality}
         </p>
       )}
       {c.memory.catchphrases.length > 0 && (
-        <p className="line-clamp-1 text-[11px] italic text-muted-foreground">
+        <p className="line-clamp-1 text-[13px] italic text-muted-foreground">
           “{c.memory.catchphrases[0]}”
         </p>
       )}
       {(c.description || c.promptLock) && (
-        <p className="line-clamp-2 text-[11px] text-muted-foreground">
+        <p className="line-clamp-2 text-[13px] text-muted-foreground">
           {c.description || c.promptLock}
         </p>
       )}

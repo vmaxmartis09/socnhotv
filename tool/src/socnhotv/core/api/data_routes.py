@@ -215,6 +215,42 @@ async def list_data_projects() -> List[Dict[str, Any]]:
     return [_project_view(d) for d in sorted(root.iterdir()) if (d / "project.json").exists()]
 
 
+@router.post("/projects")
+async def create_data_project(payload: Dict[str, Any] = Body(...)) -> Dict[str, Any]:
+    """Tạo dự án mới (thư mục data/projects/<id>/ + project.json) và đăng ký vào data/workspace.json."""
+    pid = str(payload.get("id") or "").strip()
+    if not re.fullmatch(r"[a-z0-9][a-z0-9_-]*", pid):
+        raise HTTPException(400, "id dự án chỉ gồm a-z, 0-9, _ và -")
+    root = get_repo_root() / "data"
+    d = root / "projects" / pid
+    if d.exists():
+        raise HTTPException(409, "Dự án đã tồn tại")
+    for sub in ("characters", "content/episodes", "assets", "library", "output", "publishing"):
+        (d / sub).mkdir(parents=True, exist_ok=True)
+    project = {
+        "id": pid,
+        "name": payload.get("name") or pid,
+        "description": payload.get("description", ""),
+        "version": "1.0.0",
+        "language": payload.get("language", "vi"),
+        "target_platforms": payload.get("targetPlatforms", ["youtube", "tiktok"]),
+        "default_aspect_ratio": payload.get("defaultAspectRatio", "9:16"),
+        "default_character": "",
+        "default_voice_id": "",
+        "characters": {},
+    }
+    _write_json(d / "project.json", project)
+    ws_path = root / "workspace.json"
+    ws = _read_json(ws_path, {})
+    if isinstance(ws.get("projects"), list):
+        ws["projects"].append(
+            {"id": pid, "name": project["name"], "description": project["description"],
+             "path": f"projects/{pid}", "status": "active", "created_at": dt.date.today().isoformat()}
+        )
+        _write_json(ws_path, ws)
+    return _project_view(d)
+
+
 @router.get("/projects/{project_id}")
 async def get_data_project(project_id: str) -> Dict[str, Any]:
     return _project_view(_project_dir(project_id))
@@ -244,6 +280,74 @@ async def list_data_characters(project_id: str) -> List[Dict[str, Any]]:
     d = _project_dir(project_id)
     p = _read_json(d / "project.json", {})
     return [_character_view(d, p, cid, c) for cid, c in p.get("characters", {}).items()]
+
+
+import re as _re
+
+_CHARACTER_SYSTEM = (
+    "Bạn là biên kịch nhân vật cho kênh hoạt hình 3D trẻ em Sóc Nhỏ TV (phong cách Pixar). "
+    "Từ mô tả của người dùng, trả về JSON hồ sơ nhân vật bằng tiếng Việt. promptLock là mô tả hình dáng "
+    "bằng tiếng Anh, ngắn gọn, bất biến, dùng để giữ nhận diện khi sinh ảnh."
+)
+
+_CHARACTER_SCHEMA = {
+    "type": "OBJECT",
+    "properties": {
+        "name": {"type": "STRING"},
+        "role": {"type": "STRING", "enum": ["main", "supporting"]},
+        "heightCm": {"type": "NUMBER"},
+        "description": {"type": "STRING"},
+        "personality": {"type": "STRING"},
+        "promptLock": {"type": "STRING"},
+        "catchphrases": {"type": "ARRAY", "items": {"type": "STRING"}},
+        "habits": {"type": "ARRAY", "items": {"type": "STRING"}},
+    },
+    "required": ["name", "role", "heightCm", "description", "personality", "promptLock"],
+}
+
+
+def _mock_character(prompt: str) -> Dict[str, Any]:
+    """Bản nháp theo quy tắc khi chưa có khóa Gemini hoặc đang ở chế độ chạy thử."""
+    text = prompt.strip()
+    m = _re.search(r"(?:tên(?: là)?|named?|call(?:ed)?)\s+([A-ZÀ-Ỹ][\wÀ-ỹ]*(?:\s+[A-ZÀ-Ỹ][\wÀ-ỹ]*){0,2})", text)
+    name = m.group(1) if m else (text.split(",")[0].split(".")[0][:28].strip().title() or "Nhân vật mới")
+    h = _re.search(r"(\d{2,3})\s*cm", text)
+    height = float(h.group(1)) if h else 120.0
+    traits = [w for w in ("vui", "nhút nhát", "thông minh", "tốt bụng", "nghịch ngợm", "hiền", "dũng cảm", "tò mò") if w in text.lower()]
+    return {
+        "name": name,
+        "role": "supporting",
+        "heightCm": height,
+        "description": text[:240],
+        "personality": ", ".join(traits) or "thân thiện, tò mò",
+        "promptLock": f"{text[:200]}, cute 3D Pixar-style woodland character, {int(height)}cm tall, soft studio lighting, plain light gray background",
+        "catchphrases": [],
+        "habits": [],
+    }
+
+
+@router.post("/projects/{project_id}/ai/character")
+async def ai_generate_character(project_id: str, payload: Dict[str, Any] = Body(...)) -> Dict[str, Any]:
+    """Tạo bản nháp hồ sơ nhân vật từ mô tả: Gemini khi có khóa và không ở chế độ thử, ngược lại theo quy tắc."""
+    _project_dir(project_id)
+    prompt = str(payload.get("prompt", "")).strip()
+    if not prompt:
+        raise HTTPException(400, "Thiếu mô tả nhân vật")
+    mock = bool(payload.get("mockMode", True))
+    if not mock:
+        from socnhotv.core.providers import GoogleProvider, KeyVault, SpendGuard
+        from socnhotv.core.storage.project_store import ProjectStore
+
+        vault = KeyVault()
+        if vault.has_valid_key("gemini"):
+            store = ProjectStore(project_id)
+            provider = GoogleProvider(store, guard=SpendGuard(store.runs_dir), key=vault.require_key("gemini"))
+            res = await provider.text_complete(_CHARACTER_SYSTEM, prompt, schema=_CHARACTER_SCHEMA)
+            try:
+                return {"mode": "gemini", "draft": json.loads(res.get("text", "{}"))}
+            except json.JSONDecodeError:
+                raise HTTPException(502, "Mô hình trả về dữ liệu không hợp lệ")
+    return {"mode": "mock", "draft": _mock_character(prompt)}
 
 
 @router.post("/projects/{project_id}/characters")
@@ -373,6 +477,218 @@ async def get_voice_file(voice_id: str, filename: str):
     if not f.is_file() or f.suffix.lower() not in AUDIO_EXT | {".json"}:
         raise HTTPException(404, "Không có tệp")
     return FileResponse(f)
+
+
+VIDEO_EXT = {".mp4", ".webm", ".mov"}
+
+
+def _file_url(project_id: str, d: Path, f: Path) -> str:
+    return f"/data/projects/{project_id}/files/{f.relative_to(d).as_posix()}"
+
+
+@router.get("/projects/{project_id}/library")
+async def get_project_library(project_id: str) -> Dict[str, Any]:
+    """Kho tư liệu của dự án: video, hình ảnh, kịch bản và tập phim (đọc từ assets/ và content/episodes/)."""
+    d = _project_dir(project_id)
+    videos: List[Dict[str, Any]] = []
+    images: List[Dict[str, Any]] = []
+
+    # Kho artifact có băm nội dung: assets/<hash>.<ext> kèm <hash>.meta.json
+    assets = d / "assets"
+    if assets.exists():
+        for meta_f in sorted(assets.glob("*.meta.json")):
+            m = _read_json(meta_f, {})
+            uri = m.get("uri")
+            f = d / uri if uri else None
+            if not f or not f.is_file():
+                continue
+            prov, meta = m.get("provenance", {}), m.get("meta", {})
+            item = {
+                "id": m.get("id", f.stem),
+                "name": f.name[:12],
+                "url": _file_url(project_id, d, f),
+                "source": "artifact",
+                "aspect": meta.get("aspect"),
+                "durationSec": meta.get("duration"),
+                "provider": prov.get("provider"),
+                "model": prov.get("model"),
+                "createdAt": prov.get("createdAt") or _iso(f.stat().st_mtime),
+            }
+            if m.get("kind") == "video":
+                videos.append(item)
+            elif m.get("kind") == "image":
+                images.append(item)
+
+    # Tập phim và kịch bản
+    episodes: List[Dict[str, Any]] = []
+    scripts: List[Dict[str, Any]] = []
+    ep_root = d / "content" / "episodes"
+    if ep_root.exists():
+        for ep in sorted(x for x in ep_root.iterdir() if x.is_dir()):
+            ep_videos = [f for f in ep.rglob("*") if f.is_file() and f.suffix.lower() in VIDEO_EXT]
+            ep_images = [f for f in ep.rglob("*") if f.is_file() and f.suffix.lower() in IMAGE_EXT]
+            title = ep.name
+            for md in sorted(ep.glob("*.md")):
+                text = md.read_text(encoding="utf-8", errors="replace")
+                heading = re.search(r"^#\s+(.+)$", text, re.M)
+                if md.name.upper().startswith("KICH") and heading:
+                    title = heading.group(1).strip()
+                scripts.append(
+                    {
+                        "id": f"{ep.name}/{md.name}",
+                        "name": md.name,
+                        "episodeId": ep.name,
+                        "url": _file_url(project_id, d, md),
+                        "preview": text[:320],
+                        "updatedAt": _iso(md.stat().st_mtime),
+                    }
+                )
+            for f in ep_videos:
+                videos.append(
+                    {"id": f"{ep.name}/{f.relative_to(ep).as_posix()}", "name": f.relative_to(ep).as_posix(), "url": _file_url(project_id, d, f),
+                     "source": "episode", "episodeId": ep.name, "createdAt": _iso(f.stat().st_mtime)}
+                )
+            for f in ep_images:
+                images.append(
+                    {"id": f"{ep.name}/{f.relative_to(ep).as_posix()}", "name": f.relative_to(ep).as_posix(), "url": _file_url(project_id, d, f),
+                     "source": "episode", "episodeId": ep.name, "createdAt": _iso(f.stat().st_mtime)}
+                )
+            episodes.append(
+                {"id": ep.name, "title": title, "videoCount": len(ep_videos), "imageCount": len(ep_images),
+                 "scriptCount": len(list(ep.glob("*.md"))), "updatedAt": _iso(ep.stat().st_mtime)}
+            )
+
+    return {"videos": videos, "images": images, "scripts": scripts, "episodes": episodes}
+
+
+def _slug(text: str, default: str = "muc") -> str:
+    import unicodedata
+
+    t = unicodedata.normalize("NFD", text.strip().lower().replace("đ", "d"))
+    t = "".join(ch for ch in t if unicodedata.category(ch) != "Mn")
+    t = _re.sub(r"[^a-z0-9]+", "-", t).strip("-")
+    return t or default
+
+
+def _unique_dir(root: Path, base: str) -> Path:
+    d, n = root / base, 2
+    while d.exists():
+        d = root / f"{base}-{n}"
+        n += 1
+    return d
+
+
+@router.post("/projects/{project_id}/episodes")
+async def create_episode(project_id: str, payload: Dict[str, Any] = Body(...)) -> Dict[str, Any]:
+    """Tạo thư mục tập mới trong content/episodes/. Body: {title}."""
+    d = _project_dir(project_id)
+    title = str(payload.get("title", "")).strip()
+    if not title:
+        raise HTTPException(400, "Thiếu tên tập")
+    ep = _unique_dir(d / "content" / "episodes", _slug(title, "tap"))
+    ep.mkdir(parents=True)
+    (ep / "KICH-BAN.md").write_text(f"# {title}\n\n", encoding="utf-8")
+    return {"id": ep.name, "title": title}
+
+
+_SCRIPT_SYSTEM = (
+    "Bạn là biên kịch video hoạt hình ngắn cho trẻ em. Viết kịch bản bằng Markdown tiếng Việt gồm: tiêu đề (#), "
+    "mục tiêu, bảng cảnh (| # | Giây | Cảnh | Lời thoại |) khoảng 6 cảnh, và lời thoại. Ngắn gọn, đúng thông điệp."
+)
+
+
+def _mock_script(prompt: str) -> str:
+    topic = prompt.strip().split("\n")[0][:80] or "Câu chuyện mới"
+    rows = "\n".join(
+        f"| {i} | {(i - 1) * 7}-{i * 7} | Cảnh {i}: {step} | (lời thoại cảnh {i}) |"
+        for i, step in enumerate(["Mở đầu giới thiệu nhân vật", "Vấn đề xuất hiện", "Nhân vật gặp khó khăn", "Người giúp đỡ xuất hiện", "Cách giải quyết", "Kết thúc và bài học"], 1)
+    )
+    return (
+        f"# {topic}\n\nMục tiêu: {prompt.strip()[:200]}\n\n## Kịch bản (lời thoại + hình)\n\n"
+        f"| # | Giây | Cảnh | Lời thoại |\n|---|------|------|-----------|\n{rows}\n"
+    )
+
+
+@router.post("/projects/{project_id}/ai/script")
+async def ai_generate_script(project_id: str, payload: Dict[str, Any] = Body(...)) -> Dict[str, Any]:
+    """Viết nháp kịch bản Markdown từ ý tưởng: Gemini khi có khóa và không ở chế độ thử, ngược lại theo mẫu."""
+    _project_dir(project_id)
+    prompt = str(payload.get("prompt", "")).strip()
+    if not prompt:
+        raise HTTPException(400, "Thiếu ý tưởng")
+    if not bool(payload.get("mockMode", True)):
+        from socnhotv.core.providers import GoogleProvider, KeyVault, SpendGuard
+        from socnhotv.core.storage.project_store import ProjectStore
+
+        vault = KeyVault()
+        if vault.has_valid_key("gemini"):
+            store = ProjectStore(project_id)
+            provider = GoogleProvider(store, guard=SpendGuard(store.runs_dir), key=vault.require_key("gemini"))
+            res = await provider.text_complete(_SCRIPT_SYSTEM, prompt)
+            return {"mode": "gemini", "markdown": res.get("text", "")}
+    return {"mode": "mock", "markdown": _mock_script(prompt)}
+
+
+@router.post("/projects/{project_id}/scripts")
+async def create_script(project_id: str, payload: Dict[str, Any] = Body(...)) -> Dict[str, Any]:
+    """Lưu kịch bản Markdown vào tập. Body: {title, content, episodeId?}; chưa có tập thì tạo tập mới theo tiêu đề."""
+    d = _project_dir(project_id)
+    title = str(payload.get("title", "")).strip()
+    content = str(payload.get("content", ""))
+    if not title:
+        raise HTTPException(400, "Thiếu tiêu đề")
+    eps = d / "content" / "episodes"
+    ep_id = str(payload.get("episodeId") or "")
+    if ep_id:
+        ep = eps / _safe_name(ep_id)
+        if not ep.is_dir():
+            raise HTTPException(404, "Không có tập này")
+    else:
+        ep = _unique_dir(eps, _slug(title, "tap"))
+        ep.mkdir(parents=True)
+    name = _slug(title, "kich-ban").upper() + ".md"
+    target, n = ep / name, 2
+    while target.exists():
+        target = ep / f"{Path(name).stem}-{n}.md"
+        n += 1
+    target.write_text(content, encoding="utf-8")
+    return {"episodeId": ep.name, "name": target.name}
+
+
+@router.post("/projects/{project_id}/library/upload")
+async def upload_library_file(project_id: str, payload: Dict[str, Any] = Body(...)) -> Dict[str, Any]:
+    """Tải ảnh/video lên kho (assets/ + meta.json). Body: {name, data(base64)}."""
+    import hashlib
+
+    d = _project_dir(project_id)
+    name = _safe_name(payload.get("name", "file"))
+    ext = Path(name).suffix.lower()
+    if ext in IMAGE_EXT:
+        kind = "image"
+    elif ext in VIDEO_EXT:
+        kind = "video"
+    else:
+        raise HTTPException(400, "Chỉ nhận ảnh (png/jpg/webp) hoặc video (mp4/webm/mov)")
+    raw = _decode(payload)
+    digest = hashlib.sha256(raw).hexdigest()
+    assets = d / "assets"
+    assets.mkdir(exist_ok=True)
+    target = assets / f"{digest}{ext}"
+    target.write_bytes(raw)
+    _write_json(
+        assets / f"{digest}.meta.json",
+        {
+            "id": f"art_{digest[:12]}",
+            "kind": kind,
+            "uri": f"assets/{target.name}",
+            "mime": "video/mp4" if kind == "video" else f"image/{ext.lstrip('.')}",
+            "size": len(raw),
+            "hash": f"sha256:{digest}",
+            "meta": {},
+            "provenance": {"provider": "upload", "model": name, "createdAt": dt.datetime.now(dt.timezone.utc).isoformat()},
+        },
+    )
+    return {"id": f"art_{digest[:12]}", "kind": kind, "url": _file_url(project_id, d, target)}
 
 
 @router.get("/projects/{project_id}/channels")

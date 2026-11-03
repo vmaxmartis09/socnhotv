@@ -7,7 +7,7 @@ import type {
   PortType,
 } from "@/lib/core-contracts";
 import type { Episode } from "@/lib/repositories/types";
-import { FALLBACK_NODE_TYPES } from "@/lib/core-api";
+import { FALLBACK_NODE_TYPES, fetchGraphFromCore } from "@/lib/core-api";
 
 export interface NodeGenerationRecord {
   id: string;
@@ -51,6 +51,24 @@ export const PORT_TYPE_COLORS: Record<PortType, string> = {
   audio: "#a86f0c",
 };
 
+/** Đồ thị mẫu 9 bước giữ nguyên cấu trúc nhưng bỏ nội dung riêng của Sóc Nhỏ khi dùng cho dự án khác. */
+export function genericizeTemplate(
+  tpl: { nodes: Node<StudioNodeData>[]; edges: Edge[] },
+  projectId: string
+): { nodes: Node<StudioNodeData>[]; edges: Edge[] } {
+  if (projectId === "soc-nho-tv") return tpl;
+  return {
+    edges: tpl.edges,
+    nodes: tpl.nodes.map((n) => {
+      const params = { ...(n.data.params || {}) };
+      if (n.data.nodeType === "text") params.content = "";
+      if (n.data.nodeType === "character") params.characterId = "";
+      if (n.data.nodeType === "export") params.outputFileName = `${projectId}_tap_01.mp4`;
+      return { ...n, data: { ...n.data, params } };
+    }),
+  };
+}
+
 export function buildSocNhoStoryTemplate(
   catalog: NodeDefinition[] = FALLBACK_NODE_TYPES
 ): { nodes: Node<StudioNodeData>[]; edges: Edge[] } {
@@ -62,7 +80,7 @@ export function buildSocNhoStoryTemplate(
     {
       id: "node_text",
       type: "studioCard",
-      position: { x: 40, y: 80 },
+      position: { x: 20, y: 20 },
       data: {
         nodeType: "text",
         status: "idle",
@@ -78,7 +96,7 @@ export function buildSocNhoStoryTemplate(
     {
       id: "node_script",
       type: "studioCard",
-      position: { x: 370, y: 80 },
+      position: { x: 350, y: 20 },
       data: {
         nodeType: "script",
         status: "idle",
@@ -94,7 +112,7 @@ export function buildSocNhoStoryTemplate(
     {
       id: "node_character",
       type: "studioCard",
-      position: { x: 370, y: 430 },
+      position: { x: 20, y: 370 },
       data: {
         nodeType: "character",
         status: "idle",
@@ -109,7 +127,7 @@ export function buildSocNhoStoryTemplate(
     {
       id: "node_image_gen",
       type: "studioCard",
-      position: { x: 700, y: 80 },
+      position: { x: 680, y: 20 },
       data: {
         nodeType: "image_gen",
         status: "idle",
@@ -126,7 +144,7 @@ export function buildSocNhoStoryTemplate(
     {
       id: "node_quality",
       type: "studioCard",
-      position: { x: 1030, y: 80 },
+      position: { x: 350, y: 370 },
       data: {
         nodeType: "quality_check",
         status: "idle",
@@ -141,7 +159,7 @@ export function buildSocNhoStoryTemplate(
     {
       id: "node_video_gen",
       type: "studioCard",
-      position: { x: 1360, y: 80 },
+      position: { x: 680, y: 370 },
       data: {
         nodeType: "video_gen",
         status: "idle",
@@ -158,7 +176,7 @@ export function buildSocNhoStoryTemplate(
     {
       id: "node_voice",
       type: "studioCard",
-      position: { x: 1030, y: 430 },
+      position: { x: 350, y: 720 },
       data: {
         nodeType: "voice_tts",
         status: "idle",
@@ -174,7 +192,7 @@ export function buildSocNhoStoryTemplate(
     {
       id: "node_render",
       type: "studioCard",
-      position: { x: 1690, y: 200 },
+      position: { x: 680, y: 600 },
       data: {
         nodeType: "hyperframes_render",
         status: "idle",
@@ -190,7 +208,7 @@ export function buildSocNhoStoryTemplate(
     {
       id: "node_export",
       type: "studioCard",
-      position: { x: 2020, y: 200 },
+      position: { x: 1010, y: 600 },
       data: {
         nodeType: "export",
         status: "idle",
@@ -218,7 +236,7 @@ export function buildSocNhoStoryTemplate(
     sourceHandle,
     target,
     targetHandle,
-    type: "smoothstep",
+    type: "default",
     style: {
       stroke: PORT_TYPE_COLORS[portType] || "#737373",
       strokeWidth: 1.75,
@@ -353,6 +371,14 @@ const DEFAULT_EPISODES: Episode[] = [
 
 const INITIAL_TEMPLATE = buildSocNhoStoryTemplate(FALLBACK_NODE_TYPES);
 
+export interface ProjectWorkspace {
+  episodes: Episode[];
+  activeEpisodeId: string;
+  graphsByEpisode: Record<string, { nodes: Node<StudioNodeData>[]; edges: Edge[] }>;
+  nodes: Node<StudioNodeData>[];
+  edges: Edge[];
+}
+
 export interface CanvasSlice {
   selectedNodeId: string | null;
   aspectRatio: "9:16" | "16:9" | "1:1" | "4:5";
@@ -373,13 +399,19 @@ export interface CanvasSlice {
   saveState: "saved" | "saving" | "unsaved";
   isRunningGraph: boolean;
   validationResult: GraphValidationResult | null;
+  /** Mỗi dự án có không gian làm việc riêng (tập + đồ thị); chuyển dự án sẽ tráo cả canvas. */
+  projectWorkspaces: Record<string, ProjectWorkspace>;
+  switchProject: (projectId: string) => void;
+  /** Dự án đã nạp đồ thị từ Core (hoặc xác nhận trống). Chỉ lưu tự động khi đã nạp, để không ghi đè đồ thị đã lưu bằng canvas trống. */
+  loadedGraphs: Record<string, boolean>;
+  loadProjectGraph: (projectId: string) => Promise<void>;
   setSelectedNodeId: (id: string | null) => void;
   setAspectRatio: (ratio: "9:16" | "16:9" | "1:1" | "4:5") => void;
   setZoomLevel: (zoom: number) => void;
   setIsMockMode: (mock: boolean) => void;
   setEpisodes: (episodes: Episode[]) => void;
   selectEpisode: (episodeId: string) => void;
-  createEpisode: (title: string) => Episode;
+  createEpisode: (title: string, opts?: { blank?: boolean }) => Episode;
   setNodeCatalog: (defs: NodeDefinition[], fromCore: boolean) => void;
   setNodesAndEdges: (
     nodes: Node<StudioNodeData>[],
@@ -443,6 +475,96 @@ export const createCanvasSlice: StateCreator<
   saveState: "saved",
   isRunningGraph: false,
   validationResult: null,
+  projectWorkspaces: {},
+  loadedGraphs: {},
+  loadProjectGraph: async (projectId) => {
+    const g = await fetchGraphFromCore(projectId);
+    if (!g) return; // Core không phản hồi: không đánh dấu đã nạp, tránh lưu đè
+    const s = get() as any;
+    if (s.activeProjectId !== projectId) return; // đã chuyển dự án khác trong lúc chờ
+    if (g.nodes.length > 0) {
+      const nodes: Node<StudioNodeData>[] = g.nodes.map((n: any) => ({
+        id: n.id,
+        type: "studioCard",
+        position: n.position ?? { x: 0, y: 0 },
+        data: {
+          nodeType: n.type,
+          status: (n.state || "idle") as NodeStatus,
+          isStale: Boolean(n.isStale),
+          params: n.params || {},
+          pinnedGenerationId: n.pinnedGenerationId ?? null,
+          generations: n.generations || [],
+        },
+      }));
+      const edges: Edge[] = g.edges.map((e: any) => ({
+        id: e.id,
+        source: e.sourceNodeId,
+        sourceHandle: e.sourcePort,
+        target: e.targetNodeId,
+        targetHandle: e.targetPort,
+        type: "default",
+      }));
+      set({
+        nodes,
+        edges,
+        graphsByEpisode: { ...s.graphsByEpisode, [s.activeEpisodeId]: { nodes, edges } },
+        loadedGraphs: { ...s.loadedGraphs, [projectId]: true },
+        saveState: "saved",
+      } as any);
+    } else {
+      set({ loadedGraphs: { ...s.loadedGraphs, [projectId]: true } } as any);
+    }
+  },
+  switchProject: (projectId) => {
+    const s = get() as any;
+    if (s.activeProjectId === projectId) return;
+    const current: ProjectWorkspace = {
+      episodes: s.episodes,
+      activeEpisodeId: s.activeEpisodeId,
+      graphsByEpisode: {
+        ...s.graphsByEpisode,
+        [s.activeEpisodeId]: { nodes: s.nodes, edges: s.edges },
+      },
+      nodes: s.nodes,
+      edges: s.edges,
+    };
+    const saved = { ...s.projectWorkspaces, [s.activeProjectId]: current };
+    let next: ProjectWorkspace | undefined = saved[projectId];
+    if (!next) {
+      // Dự án chưa mở lần nào: một tập trống, canvas trống để chọn mẫu
+      const epId = `ep_${projectId}_01`;
+      next = {
+        episodes: [
+          {
+            id: epId,
+            projectId,
+            episodeNumber: 1,
+            title: "Tập 1",
+            status: "draft",
+            nodeCount: 0,
+            updatedAt: new Date().toISOString(),
+          },
+        ],
+        activeEpisodeId: epId,
+        graphsByEpisode: { [epId]: { nodes: [], edges: [] } },
+        nodes: [],
+        edges: [],
+      };
+    }
+    set({
+      activeProjectId: projectId,
+      projectWorkspaces: saved,
+      episodes: next.episodes,
+      activeEpisodeId: next.activeEpisodeId,
+      graphsByEpisode: next.graphsByEpisode,
+      nodes: next.nodes,
+      edges: next.edges,
+      selectedNodeId: null,
+      undoStack: [],
+      redoStack: [],
+      saveState: "saved",
+    } as any);
+  },
   setSelectedNodeId: (id) => set({ selectedNodeId: id }),
   setAspectRatio: (aspectRatio) =>
     set((state) => ({
@@ -481,19 +603,21 @@ export const createCanvasSlice: StateCreator<
         saveState: "saved",
       };
     }),
-  createEpisode: (title) => {
+  createEpisode: (title, opts) => {
     const state = get();
     const nextNum = state.episodes.length + 1;
     const newEp: Episode = {
       id: `ep_0${nextNum}_${Date.now().toString(36)}`,
-      projectId: "soc-nho-tv",
+      projectId: (state as any).activeProjectId || "soc-nho-tv",
       episodeNumber: nextNum,
       title: title.trim() || `Tập ${nextNum}: Câu chuyện mới`,
       status: "draft",
-      nodeCount: 9,
+      nodeCount: opts?.blank ? 0 : 9,
       updatedAt: new Date().toISOString(),
     };
-    const tpl = buildSocNhoStoryTemplate(state.nodeCatalog);
+    const tpl = opts?.blank
+      ? { nodes: [] as Node<StudioNodeData>[], edges: [] as Edge[] }
+      : genericizeTemplate(buildSocNhoStoryTemplate(state.nodeCatalog), (state as any).activeProjectId || "soc-nho-tv");
     set({
       episodes: [...state.episodes, newEp],
       activeEpisodeId: newEp.id,
@@ -587,7 +711,7 @@ export const createCanvasSlice: StateCreator<
     set((state) => {
       const nextGraph =
         template === "soc_nho_story"
-          ? buildSocNhoStoryTemplate(state.nodeCatalog)
+          ? genericizeTemplate(buildSocNhoStoryTemplate(state.nodeCatalog), (state as any).activeProjectId)
           : {
               nodes: [
                 {

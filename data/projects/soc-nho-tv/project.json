@@ -20,7 +20,7 @@
       "name": "Sóc Nhỏ (Bi)",
       "role": "main",
       "height_cm": 100,
-      "scale_ratio": 1.0,
+      "scale_ratio": 1,
       "voice_id": "soc-nho",
       "profile_path": "characters/soc_nho/profile.md",
       "prompts_path": "characters/soc_nho/prompts.md",
@@ -33,7 +33,16 @@
       "height_cm": 150,
       "scale_ratio": 1.5,
       "profile_path": "characters/koala/koala_profile.json",
-      "dna_dir": "characters/koala"
+      "dna_dir": "characters/koala",
+      "voice_id": "voice-koala"
+    },
+    "soc_nho_copy": {
+      "name": "Sóc Nhỏ (Bi) (bản sao)",
+      "role": "supporting",
+      "height_cm": 100,
+      "scale_ratio": 1,
+      "voice_id": "soc-nho",
+      "dna_dir": "characters/soc_nho_copy"
     }
   },
   "scale_lock_path": "characters/SCALE_LOCK.md",
