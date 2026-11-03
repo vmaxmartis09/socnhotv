@@ -1,0 +1,26 @@
+{
+ "projects": [
+  "anti-gate",
+  "soc-nho-tv"
+ ],
+ "files": 66,
+ "mb": 59.3,
+ "skipped": [
+  [
+   "/data/projects/soc-nho-tv/files/content/episodes/soc-nho-sau-rang/soc_bi_kham_rang_16x9.mp4",
+   "67.4 MB"
+  ],
+  [
+   "/data/projects/soc-nho-tv/files/content/episodes/soc-nho-sau-rang/soc_bi_kham_rang_16x9_long_tieng.mp4",
+   "67.4 MB"
+  ],
+  [
+   "/data/projects/soc-nho-tv/files/content/episodes/soc-nho-sau-rang/soc_bi_kham_rang_16x9_khong_tieng.mp4",
+   "66.3 MB"
+  ],
+  [
+   "/data/projects/soc-nho-tv/files/content/episodes/soc-nho-sau-rang/soc_bi_kham_rang_16x9_long_tieng_nhe.mp4",
+   "23.9 MB"
+  ]
+ ]
+}

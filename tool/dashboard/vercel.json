@@ -1,0 +1,4 @@
+{
+  "framework": "nextjs",
+  "build": { "env": { "SNAPSHOT_MODE": "1", "NEXT_PUBLIC_CORE_URL": "/core" } }
+}
