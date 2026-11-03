@@ -1,47 +1,30 @@
 "use client";
 
 import React from "react";
+import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
-import { Sparkles, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 import { useStudioStore } from "@/store";
 
+/** Plain status line: a dot and a sentence. Mock mode is stated once, in words. */
 export function StatusIsland({ className }: { className?: string }) {
+  const s = useTranslations("shell");
   const { jobs, isMockMode } = useStudioStore();
-  const runningJobs = jobs.filter((j) => j.status === "running");
-  const failedJobs = jobs.filter((j) => j.status === "failed");
+  const running = jobs.filter((j) => j.status === "running").length;
+  const failed = jobs.filter((j) => j.status === "failed").length;
+
+  const tone = failed > 0 ? "bg-semantic-danger" : running > 0 ? "bg-brand" : "bg-semantic-success";
+  const text =
+    failed > 0 ? s("failed", { count: failed }) : running > 0 ? s("running", { count: running }) : s("ready");
 
   return (
-    <div
-      className={cn(
-        "inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border bg-card/80 backdrop-blur-md shadow-subtle text-xs select-none transition-all",
-        className
-      )}
-    >
-      {runningJobs.length > 0 ? (
-        <>
-          <Loader2 className="w-3.5 h-3.5 text-primary animate-spin" />
-          <span className="font-medium text-foreground">
-            Đang chạy {runningJobs.length} tác vụ...
-          </span>
-        </>
-      ) : failedJobs.length > 0 ? (
-        <>
-          <AlertCircle className="w-3.5 h-3.5 text-semantic-danger" />
-          <span className="font-medium text-semantic-danger">
-            {failedJobs.length} lỗi
-          </span>
-        </>
-      ) : (
-        <>
-          <CheckCircle2 className="w-3.5 h-3.5 text-semantic-success" />
-          <span className="text-muted-foreground">Sẵn sàng</span>
-        </>
-      )}
-
+    <div className={cn("flex items-center gap-2 text-sm text-muted-foreground select-none", className)}>
+      <span className={cn("h-1.5 w-1.5 rounded-full", tone)} aria-hidden="true" />
+      <span>{text}</span>
       {isMockMode && (
-        <span className="ml-1 px-1.5 py-0.5 rounded-sm bg-primary/10 text-primary text-[10px] font-semibold tracking-wider uppercase">
-          Mock Mode
-        </span>
+        <>
+          <span aria-hidden="true">·</span>
+          <span>{s("mock")}</span>
+        </>
       )}
     </div>
   );

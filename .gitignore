@@ -46,7 +46,10 @@ out/
 *.mp4
 *.mov
 *.webm
+*.tsbuildinfo
 
 # Temporary scratchpad
+.taste-skill/
+tool/dashboard/.taste-skill/
 scratch/
 tool/scratch/

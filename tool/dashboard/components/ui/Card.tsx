@@ -8,8 +8,8 @@ export const Card = forwardRef<
   <div
     ref={ref}
     className={cn(
-      "rounded-lg border border-border transition-all duration-200",
-      elevated ? "bg-card-elevated shadow-float" : "bg-card shadow-card",
+      "rounded-lg border border-border",
+      elevated ? "bg-card-elevated" : "bg-card",
       className
     )}
     {...props}

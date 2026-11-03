@@ -77,5 +77,40 @@
     "storageBackend": "Bộ lưu trữ dữ liệu",
     "localMode": "Local Repository (IndexedDB - Khuyên dùng, không cần tài khoản)",
     "supabaseMode": "Cloud Repository (Supabase)"
+  },
+  "overview": {
+    "findingEmpty": "Dự án này chưa dựng video nào. Việc tiếp theo: mở canvas tập 1.",
+    "findingBusy": "Đang chạy {count} tác vụ. Mở canvas để theo dõi.",
+    "findingDone": "Đã xong {count} tác vụ. Mở canvas để làm tiếp.",
+    "openCanvas": "Mở canvas tập 1",
+    "counts": "{episodes} tập · {characters} nhân vật · {channels} kênh",
+    "characters": "Nhân vật",
+    "scaleLock": "Khóa chiều cao",
+    "scaleLockNote": "Tỉ lệ giữ nguyên ở mọi cảnh.",
+    "voice": "Giọng",
+    "channels": "Kênh đăng",
+    "colChannel": "Kênh",
+    "colPlatform": "Nền tảng",
+    "colTime": "Đăng lúc",
+    "colState": "Trạng thái",
+    "connected": "Đã kết nối",
+    "notConnected": "Chưa kết nối",
+    "standards": "Chuẩn sản xuất",
+    "aspect": "Tỉ lệ mặc định",
+    "defaultVoice": "Giọng mặc định",
+    "editor": "Hậu kỳ",
+    "platforms": "Nền tảng đích",
+    "roleMain": "Chính",
+    "roleSupporting": "Phụ",
+    "cm": "{value} cm"
+  },
+  "shell": {
+    "ready": "Sẵn sàng",
+    "running": "Đang chạy {count} tác vụ",
+    "failed": "{count} lỗi",
+    "mock": "Chế độ chạy thử",
+    "storage": "Lưu trên máy này",
+    "storageNote": "IndexedDB, không tải gì lên mạng",
+    "project": "Dự án"
   }
 }

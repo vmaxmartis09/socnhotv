@@ -77,5 +77,40 @@
     "storageBackend": "Storage Engine",
     "localMode": "Local Repository (IndexedDB - Recommended, zero sign-in)",
     "supabaseMode": "Cloud Repository (Supabase)"
+  },
+  "overview": {
+    "findingEmpty": "No video has been built in this project yet. Next step: open the canvas for episode 1.",
+    "findingBusy": "{count} jobs are running. Open the canvas to follow them.",
+    "findingDone": "{count} jobs finished. Open the canvas to continue.",
+    "openCanvas": "Open episode 1 canvas",
+    "counts": "{episodes} episode · {characters} characters · {channels} channels",
+    "characters": "Characters",
+    "scaleLock": "Height lock",
+    "scaleLockNote": "Scale is fixed across every scene.",
+    "voice": "Voice",
+    "channels": "Publishing channels",
+    "colChannel": "Channel",
+    "colPlatform": "Platform",
+    "colTime": "Daily at",
+    "colState": "State",
+    "connected": "Connected",
+    "notConnected": "Not connected",
+    "standards": "Production standard",
+    "aspect": "Default ratio",
+    "defaultVoice": "Default voice",
+    "editor": "Post-production",
+    "platforms": "Target platforms",
+    "roleMain": "Lead",
+    "roleSupporting": "Supporting",
+    "cm": "{value} cm"
+  },
+  "shell": {
+    "ready": "Ready",
+    "running": "{count} jobs running",
+    "failed": "{count} failed",
+    "mock": "Test mode",
+    "storage": "Stored on this device",
+    "storageNote": "IndexedDB, nothing is uploaded",
+    "project": "Project"
   }
 }

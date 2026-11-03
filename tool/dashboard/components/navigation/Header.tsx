@@ -5,110 +5,83 @@ import { useTranslations } from "next-intl";
 import { useStudioStore } from "@/store";
 import { getRepository } from "@/lib/repositories";
 import { StatusIsland } from "@/components/ui/StatusIsland";
-import { Button } from "@/components/ui/Button";
 import { useTheme } from "@/components/theme/ThemeProvider";
 import { usePathname, useRouter } from "@/i18n/routing";
-import {
-  Sun,
-  Moon,
-  Laptop,
-  Languages,
-  ChevronDown,
-  FolderGit2,
-} from "lucide-react";
+import { cn } from "@/lib/utils";
+import { Sun, Moon, Laptop } from "lucide-react";
+import { Mark } from "@/components/brand/Mark";
+
+const PAGE_KEYS: Record<string, string> = {
+  "/": "dashboard",
+  "/studio": "studio",
+  "/projects": "projects",
+  "/characters": "characters",
+  "/publish": "publish",
+  "/settings": "settings",
+};
 
 export function Header() {
-  const t = useTranslations();
+  const t = useTranslations("nav");
   const { theme, setTheme, resolvedTheme } = useTheme();
-  const {
-    activeProjectId,
-    setActiveProjectId,
-    projects,
-    setProjects,
-  } = useStudioStore();
+  const { activeProjectId, projects, setProjects } = useStudioStore();
   const pathname = usePathname();
   const router = useRouter();
 
-  // Load initial projects from repository
   useEffect(() => {
     async function loadData() {
       const repo = getRepository();
-      const list = await repo.listProjects();
-      setProjects(list);
+      setProjects(await repo.listProjects());
     }
     loadData();
   }, [setProjects]);
 
-  const toggleTheme = () => {
-    if (theme === "light") setTheme("dark");
-    else if (theme === "dark") setTheme("system");
-    else setTheme("light");
-  };
+  const project = projects.find((p) => p.id === activeProjectId);
+  const key = PAGE_KEYS[pathname] ?? PAGE_KEYS["/" + pathname.split("/")[1]];
 
-  const switchLocale = (newLocale: "vi" | "en") => {
-    router.replace(pathname, { locale: newLocale });
-  };
+  const toggleTheme = () => setTheme(theme === "light" ? "dark" : theme === "dark" ? "system" : "light");
+  const switchLocale = (newLocale: "vi" | "en") => router.replace(pathname, { locale: newLocale });
+
+  const ThemeIcon = theme === "system" ? Laptop : resolvedTheme === "dark" ? Moon : Sun;
 
   return (
-    <header className="h-14 border-b border-border bg-card/40 backdrop-blur-md px-4 flex items-center justify-between sticky top-0 z-40">
-      {/* Project Switcher */}
-      <div className="flex items-center gap-2">
-        <div className="flex items-center gap-2 px-2.5 py-1.5 rounded-md border border-border bg-card shadow-subtle hover:border-primary/40 transition-colors cursor-pointer">
-          <FolderGit2 className="w-3.5 h-3.5 text-primary" />
-          <select
-            value={activeProjectId}
-            onChange={(e) => setActiveProjectId(e.target.value)}
-            className="bg-transparent text-xs font-semibold text-foreground focus:outline-none cursor-pointer pr-1"
-          >
-            {projects.map((p) => (
-              <option key={p.id} value={p.id} className="bg-card text-foreground">
-                {p.name}
-              </option>
-            ))}
-          </select>
-        </div>
+    <header className="flex h-12 shrink-0 items-center justify-between gap-3 bg-background px-3 md:pl-1 md:pr-3">
+      {/* Breadcrumb: scope, then page. On the phone the mark leads. */}
+      <div className="flex min-w-0 items-center gap-2 text-sm">
+        <Mark className="h-5 w-5 md:hidden" />
+        <span className="truncate text-muted-foreground">{project?.name}</span>
+        {key && (
+          <>
+            <span className="text-muted-foreground" aria-hidden="true">/</span>
+            <span className="truncate font-medium text-foreground">{t(key)}</span>
+          </>
+        )}
       </div>
 
-      {/* Center Island */}
-      <div className="hidden sm:flex">
-        <StatusIsland />
-      </div>
+      <div className="flex items-center gap-3">
+        <StatusIsland className="hidden sm:flex" />
 
-      {/* Right Controls: Theme & Locale */}
-      <div className="flex items-center gap-1.5">
-        {/* Language Switcher */}
-        <div className="flex items-center rounded-md border border-border bg-card p-0.5 text-xs">
-          <button
-            onClick={() => switchLocale("vi")}
-            className="px-2 py-0.5 rounded text-[11px] font-medium transition-colors hover:text-foreground text-muted-foreground focus:text-primary active:text-primary"
-          >
-            VI
-          </button>
-          <span className="text-border">|</span>
-          <button
-            onClick={() => switchLocale("en")}
-            className="px-2 py-0.5 rounded text-[11px] font-medium transition-colors hover:text-foreground text-muted-foreground focus:text-primary active:text-primary"
-          >
-            EN
-          </button>
+        <div className="flex items-center rounded-md border border-border bg-card text-xs" role="group" aria-label="Language">
+          {(["vi", "en"] as const).map((l) => (
+            <button
+              key={l}
+              onClick={() => switchLocale(l)}
+              className={cn(
+                "h-7 px-2 uppercase transition-colors first:rounded-l-md last:rounded-r-md",
+                "text-muted-foreground hover:text-foreground"
+              )}
+            >
+              {l}
+            </button>
+          ))}
         </div>
 
-        {/* Theme Toggle Button */}
-        <Button
-          variant="outline"
-          size="icon"
+        <button
           onClick={toggleTheme}
-          aria-label="Toggle Theme"
-          className="h-8 w-8"
+          aria-label="Toggle theme"
+          className="flex h-8 w-8 items-center justify-center rounded-md border border-border bg-card text-muted-foreground transition-colors hover:text-foreground"
         >
-          {theme === "system" ? (
-            <Laptop className="w-3.5 h-3.5 text-muted-foreground" />
-          ) : resolvedTheme === "dark" ? (
-            <Moon className="w-3.5 h-3.5 text-primary" />
-          ) : (
-            <Sun className="w-3.5 h-3.5 text-primary" />
-          )}
-        </Button>
+          <ThemeIcon className="h-4 w-4" strokeWidth={1.5} />
+        </button>
       </div>
     </header>
   );

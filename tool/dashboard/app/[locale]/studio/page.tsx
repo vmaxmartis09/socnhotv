@@ -17,6 +17,7 @@ import {
   ZoomOut,
   Plus,
   Film,
+  ArrowRight,
 } from "lucide-react";
 
 export default function StudioCanvasPage() {
@@ -102,9 +103,7 @@ export default function StudioCanvasPage() {
           </Card>
 
           {/* Flow Connector Arrow */}
-          <div className="text-primary font-bold text-lg select-none">
-            $\rightarrow$
-          </div>
+          <ArrowRight className="h-4 w-4 shrink-0 text-muted-foreground" aria-hidden="true" />
 
           {/* Node 2: Script & Prompt Generator */}
           <Card className="w-72 shadow-card">
@@ -126,9 +125,7 @@ export default function StudioCanvasPage() {
           </Card>
 
           {/* Flow Connector Arrow */}
-          <div className="text-primary font-bold text-lg select-none">
-            $\rightarrow$
-          </div>
+          <ArrowRight className="h-4 w-4 shrink-0 text-muted-foreground" aria-hidden="true" />
 
           {/* Node 3: HyperFrames Renderer */}
           <Card className="w-72 shadow-card border-semantic-success/30">

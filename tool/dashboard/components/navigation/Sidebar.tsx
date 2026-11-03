@@ -11,86 +11,82 @@ import {
   Users2,
   CalendarDays,
   Settings,
-  Sparkles,
-  Layers,
 } from "lucide-react";
 import { useStudioStore } from "@/store";
+import { Mark } from "@/components/brand/Mark";
 
 export function Sidebar() {
   const t = useTranslations("nav");
+  const s = useTranslations("shell");
   const pathname = usePathname();
-  const { activeProjectId } = useStudioStore();
+  const { activeProjectId, setActiveProjectId, projects } = useStudioStore();
 
   const navItems = [
     { href: "/", label: t("dashboard"), icon: LayoutDashboard },
-    { href: "/studio", label: t("studio"), icon: Film, highlight: true },
+    { href: "/studio", label: t("studio"), icon: Film },
     { href: "/projects", label: t("projects"), icon: FolderGit2 },
     { href: "/characters", label: t("characters"), icon: Users2 },
     { href: "/publish", label: t("publish"), icon: CalendarDays },
-    { href: "/settings", label: t("settings"), icon: Settings },
   ];
+  const settings = { href: "/settings", label: t("settings"), icon: Settings };
+
+  const isActive = (href: string) =>
+    pathname === href || (href !== "/" && pathname.startsWith(href));
+
+  const row = (item: { href: string; label: string; icon: typeof Film }) => {
+    const Icon = item.icon;
+    const active = isActive(item.href);
+    return (
+      <Link
+        key={item.href}
+        href={item.href}
+        aria-current={active ? "page" : undefined}
+        className={cn(
+          "flex h-8 items-center gap-2.5 rounded-md px-2.5 text-sm select-none transition-colors",
+          active
+            ? "bg-accent font-medium text-foreground"
+            : "text-muted-foreground hover:bg-accent/60 hover:text-foreground"
+        )}
+      >
+        <Icon className="h-4 w-4 shrink-0" strokeWidth={1.5} />
+        <span className="truncate">{item.label}</span>
+      </Link>
+    );
+  };
 
   return (
-    <aside className="hidden md:flex flex-col w-60 shrink-0 border-r border-border bg-card/60 backdrop-blur-md h-screen sticky top-0">
-      {/* Brand & Project Info */}
-      <div className="p-4 border-b border-border flex items-center justify-between">
-        <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-md bg-primary flex items-center justify-center text-primary-foreground shadow-subtle">
-            <Sparkles className="w-4 h-4" />
-          </div>
-          <div>
-            <h1 className="text-sm font-bold tracking-tight text-foreground leading-none">
-              AI Video Studio
-            </h1>
-            <p className="text-[11px] text-muted-foreground mt-0.5 truncate max-w-[140px]">
-              {activeProjectId}
-            </p>
-          </div>
-        </div>
+    <aside className="hidden md:flex w-[228px] shrink-0 flex-col h-dvh bg-background px-2 pt-3 pb-2">
+      {/* Product mark and name */}
+      <div className="flex items-center gap-2 px-2.5 pb-3">
+        <Mark className="h-6 w-6" />
+        <span className="text-sm font-semibold tracking-tight">AI Video Studio</span>
       </div>
 
-      {/* Nav List */}
-      <nav className="flex-1 p-3 space-y-1 overflow-y-auto">
-        {navItems.map((item) => {
-          const Icon = item.icon;
-          const isActive =
-            pathname === item.href ||
-            (item.href !== "/" && pathname.startsWith(item.href));
+      {/* Project switcher */}
+      <label className="mb-3 block px-1">
+        <span className="sr-only">{s("project")}</span>
+        <select
+          value={activeProjectId}
+          onChange={(e) => setActiveProjectId(e.target.value)}
+          className="h-8 w-full cursor-pointer rounded-md border border-border bg-card px-2 text-sm font-medium text-foreground"
+        >
+          {projects.map((p) => (
+            <option key={p.id} value={p.id}>
+              {p.name}
+            </option>
+          ))}
+        </select>
+      </label>
 
-          return (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={cn(
-                "flex items-center gap-3 px-3 py-2 rounded-md text-xs font-medium transition-all duration-150 select-none",
-                isActive
-                  ? "bg-primary text-primary-foreground shadow-subtle"
-                  : "text-muted-foreground hover:text-foreground hover:bg-muted/50",
-                item.highlight &&
-                  !isActive &&
-                  "text-primary font-semibold hover:bg-primary/10"
-              )}
-            >
-              <Icon className="w-4 h-4 shrink-0" />
-              <span>{item.label}</span>
-            </Link>
-          );
-        })}
-      </nav>
+      <nav className="flex-1 space-y-0.5 overflow-y-auto">{navItems.map(row)}</nav>
 
-      {/* Footer Info */}
-      <div className="p-3 border-t border-border">
-        <div className="p-2.5 rounded-md bg-muted/40 border border-border/50 text-[11px] text-muted-foreground">
-          <div className="flex items-center justify-between mb-1">
-            <span className="font-medium text-foreground">Storage Engine</span>
-            <span className="px-1.5 py-0.2 rounded bg-semantic-success/15 text-semantic-success text-[9px] font-semibold">
-              LOCAL
-            </span>
-          </div>
-          <p className="text-[10px] leading-relaxed">
-            Dữ liệu lưu tại máy (IndexedDB), bảo mật 100%.
-          </p>
-        </div>
+      <div className="space-y-2">
+        {row(settings)}
+        <p className="px-2.5 text-xs leading-snug text-muted-foreground">
+          {s("storage")}
+          <br />
+          {s("storageNote")}
+        </p>
       </div>
     </aside>
   );

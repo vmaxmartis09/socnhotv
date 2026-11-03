@@ -52,12 +52,19 @@ export type NodeState =
   | "cached";
 
 export type SSEEventType =
+  | "run_started"
   | "node_state"
   | "node_progress"
   | "node_log"
   | "cost_update"
   | "run_completed"
   | "run_failed";
+
+export type RunMode =
+  | "all"
+  | "force_all"
+  | "single_node"
+  | "downstream";
 
 export interface ArtifactMeta {
   width?: number;
@@ -161,6 +168,36 @@ export interface SSEEvent {
   message?: string;
   costUsd?: number;
   timestamp: string;
+}
+
+export interface GraphRunRequest {
+  projectId: string;
+  graphId?: string;
+  mode?: RunMode;
+  targetNodeId?: string;
+  spendingLimitUsd?: number;
+  mockMode?: boolean;
+  maxRetries?: number;
+  concurrencyLimit?: number;
+}
+
+export interface GraphValidationResult {
+  isValid: boolean;
+  errors: string[];
+  warnings: string[];
+  topologicalOrder: string[];
+}
+
+export interface GraphRunSummary {
+  runId: string;
+  projectId: string;
+  totalNodes: number;
+  executedNodes: string[];
+  skippedNodes: string[];
+  failedNodes: string[];
+  totalCostUsd: number;
+  isSuccess: boolean;
+  errors: Record<string, string>;
 }
 """
     TARGET_FILE.parent.mkdir(parents=True, exist_ok=True)

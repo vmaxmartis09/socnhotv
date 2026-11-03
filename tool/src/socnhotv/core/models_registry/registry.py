@@ -58,7 +58,14 @@ class ModelRegistry:
         self._models = parsed
 
     def get(self, key: str) -> Optional[ModelSpec]:
-        return self._models.get(key)
+        if key in self._models:
+            return self._models[key]
+        # Tìm kiếm dự phòng theo model_id hoặc chứa key
+        k_lower = key.lower()
+        for spec in self._models.values():
+            if spec.model_id.lower() == k_lower or k_lower in spec.key.lower():
+                return spec
+        return None
 
     def list_all(self) -> List[ModelSpec]:
         return list(self._models.values())
@@ -66,22 +73,34 @@ class ModelRegistry:
     def list_by_kind(self, kind: str) -> List[ModelSpec]:
         return [m for m in self._models.values() if m.kind == kind]
 
-    def estimate_cost(self, model_key: str, params: Dict[str, Any]) -> float:
+    def estimate_cost(
+        self,
+        model_key: str,
+        params: Optional[Dict[str, Any]] = None,
+        **kwargs: Any,
+    ) -> float:
         spec = self.get(model_key)
         if not spec or not spec.pricing:
             return 0.0
 
+        merged_params = dict(params or {})
+        merged_params.update(kwargs)
+
         p = spec.pricing
         if p.cost_per_generation is not None:
-            count = params.get("n", 1)
+            count = merged_params.get("n", merged_params.get("num_images", 1))
             return round(p.cost_per_generation * count, 4)
 
         if p.cost_per_second is not None:
-            duration = params.get("duration", 5.0)
+            duration = merged_params.get("duration", merged_params.get("durationSec", 5.0))
             return round(p.cost_per_second * duration, 4)
 
         if p.cost_per_minute is not None:
-            duration_sec = params.get("duration", 60.0)
+            duration_sec = merged_params.get("duration", merged_params.get("durationSec", 60.0))
             return round(p.cost_per_minute * (duration_sec / 60.0), 4)
+
+        if p.cost_per_1k_chars is not None:
+            length = merged_params.get("text_length", len(str(merged_params.get("text", ""))))
+            return round(p.cost_per_1k_chars * (length / 1000.0), 4)
 
         return 0.0

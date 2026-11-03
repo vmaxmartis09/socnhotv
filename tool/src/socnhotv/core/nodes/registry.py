@@ -144,7 +144,8 @@ class NodeRegistry:
                     PortDefinition(name="references", port_type=PortType.IMAGE_LIST, description="Ảnh tham chiếu DNA", required=False),
                 ],
                 output_ports=[
-                    PortDefinition(name="images", port_type=PortType.IMAGE_LIST, description="Danh sách ảnh sinh ra")
+                    PortDefinition(name="images", port_type=PortType.IMAGE_LIST, description="Danh sách ảnh sinh ra"),
+                    PortDefinition(name="image", port_type=PortType.IMAGE, description="Ảnh đại diện / khung đầu tiên sinh ra"),
                 ],
                 default_params={
                     "model": "mock-image",
@@ -185,8 +186,9 @@ class NodeRegistry:
                 category="Generation",
                 description="Biến ảnh khung đầu thành video chuyển động 3D qua model Veo / LTX",
                 input_ports=[
-                    PortDefinition(name="first_frame", port_type=PortType.IMAGE, description="Ảnh khung đầu (First frame)"),
-                    PortDefinition(name="prompt", port_type=PortType.TEXT, description="Prompt chuyển động camera"),
+                    PortDefinition(name="first_frame", port_type=PortType.IMAGE, description="Ảnh khung đầu (First frame)", required=False),
+                    PortDefinition(name="image", port_type=PortType.IMAGE, description="Ảnh khung đầu (alias)", required=False),
+                    PortDefinition(name="prompt", port_type=PortType.TEXT, description="Prompt chuyển động camera", required=False),
                     PortDefinition(name="references", port_type=PortType.IMAGE_LIST, description="Ảnh tham chiếu phụ", required=False),
                 ],
                 output_ports=[

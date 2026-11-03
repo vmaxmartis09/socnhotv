@@ -19,44 +19,26 @@ export function BottomNav() {
   ];
 
   return (
-    <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 h-14 border-t border-border bg-card/90 backdrop-blur-lg px-2 flex items-center justify-around select-none">
+    <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 h-14 border-t border-border bg-background px-2 flex items-center justify-around select-none">
       {mobileNav.map((item) => {
         const Icon = item.icon;
         const isActive =
           pathname === item.href ||
           (item.href !== "/" && pathname.startsWith(item.href));
 
-        if (item.isPrimary) {
-          return (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={cn(
-                "flex flex-col items-center justify-center -mt-5 w-12 h-12 rounded-full shadow-float transition-all",
-                isActive
-                  ? "bg-primary text-primary-foreground ring-4 ring-background"
-                  : "bg-primary/90 text-primary-foreground"
-              )}
-              aria-label={item.label}
-            >
-              <Icon className="w-5 h-5" />
-            </Link>
-          );
-        }
-
         return (
           <Link
             key={item.href}
             href={item.href}
             className={cn(
-              "flex flex-col items-center justify-center py-1 px-2 text-[10px] font-medium transition-colors",
+              "relative flex min-w-12 flex-col items-center justify-center px-2 py-1 text-xs transition-colors",
               isActive
-                ? "text-primary"
+                ? "font-medium text-foreground after:absolute after:inset-x-3 after:-top-px after:h-0.5 after:bg-brand"
                 : "text-muted-foreground hover:text-foreground"
             )}
           >
-            <Icon className="w-4 h-4 mb-0.5" />
-            <span className="truncate max-w-[54px]">{item.label}</span>
+            <Icon className="mb-0.5 h-4 w-4" strokeWidth={1.5} />
+            <span className="truncate max-w-[64px]">{item.label}</span>
           </Link>
         );
       })}

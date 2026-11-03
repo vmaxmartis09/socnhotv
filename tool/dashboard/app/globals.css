@@ -3,105 +3,105 @@
 @tailwind utilities;
 
 :root {
-  /* Soft Light Theme - Non-blinding soft white & subtle borders */
-  --background: 220 20% 97%;
-  --foreground: 222 47% 11%;
+  /* Framed sheet, warm stone frame. Colour lives on data, not chrome. */
+  --background: 38 36% 96%;      /* frame: sidebar + top bar ground */
+  --foreground: 40 8% 8%;
 
-  --card: 0 0% 100%;
-  --card-foreground: 222 47% 11%;
-  --card-elevated: 220 25% 99%;
+  --card: 0 0% 100%;             /* the sheet and its cards */
+  --card-foreground: 40 8% 8%;
+  --card-elevated: 37 29% 95%;
 
   --popover: 0 0% 100%;
-  --popover-foreground: 222 47% 11%;
+  --popover-foreground: 40 8% 8%;
 
-  /* Brand Accent: Indigo Violet */
-  --primary: 252 85% 62%;
+  /* Primary action is ink; the brand hue is kept for data and one underline */
+  --primary: 40 8% 8%;
   --primary-foreground: 0 0% 100%;
-  --primary-hover: 252 85% 56%;
-  --primary-soft: hsla(252, 85%, 62%, 0.12);
+  --primary-hover: 40 8% 16%;
+  --primary-soft: hsla(40, 8%, 8%, 0.06);
 
-  --secondary: 220 14% 94%;
-  --secondary-foreground: 222 47% 16%;
+  --brand: 22 75% 40%;           /* chestnut: Sóc Nhỏ's fur */
 
-  --muted: 220 14% 94%;
-  --muted-foreground: 215 16% 47%;
+  --secondary: 37 29% 95%;
+  --secondary-foreground: 40 8% 8%;
 
-  --accent: 220 14% 92%;
-  --accent-foreground: 222 47% 16%;
+  --muted: 37 29% 95%;
+  --muted-foreground: 38 6% 35%;
 
-  --border: 220 13% 90%;
-  --input: 220 13% 90%;
-  --ring: 252 85% 62%;
+  --accent: 38 22% 90%;          /* active nav pill, hover tone step */
+  --accent-foreground: 40 8% 8%;
+
+  --border: 38 19% 88%;
+  --input: 38 12% 78%;
+  --ring: 22 75% 40%;
 
   /* Context Semantics */
-  --success: 158 64% 45%;
-  --warning: 38 92% 50%;
-  --danger: 0 72% 51%;
-  --info: 217 91% 60%;
+  --success: 152 61% 30%;
+  --warning: 23 82% 31%;
+  --danger: 358 69% 45%;
+  --info: 192 65% 30%;
 
-  /* Canvas Data Edges */
-  --edge-text: 215 16% 55%;
-  --edge-image: 158 64% 45%;
-  --edge-video: 252 85% 62%;
-  --edge-audio: 38 92% 50%;
+  /* Canvas data edges: one hue per data type */
+  --edge-text: 38 6% 45%;
+  --edge-image: 192 65% 30%;
+  --edge-video: 22 75% 40%;
+  --edge-audio: 38 87% 35%;
 
-  /* Radii & Shadows */
   --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 14px;
-  --radius-xl: 20px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 16px;
 
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 14px -2px rgba(15, 23, 42, 0.07);
-  --shadow-float: 0 12px 30px -4px rgba(15, 23, 42, 0.12);
+  /* Flat at rest: depth is a tone step and a 1px edge */
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-float: 0 8px 24px -8px rgba(21, 20, 18, 0.18);
 }
 
 .dark {
-  /* Soft Dark Theme - Deep Slate & Navy Charcoal */
-  --background: 224 25% 8%;
-  --foreground: 210 30% 98%;
+  --background: 36 14% 7%;
+  --foreground: 38 31% 93%;
 
-  --card: 222 24% 12%;
-  --card-foreground: 210 30% 98%;
-  --card-elevated: 223 20% 16%;
+  --card: 40 12% 9%;
+  --card-foreground: 38 31% 93%;
+  --card-elevated: 38 13% 12%;
 
-  --popover: 222 24% 12%;
-  --popover-foreground: 210 30% 98%;
+  --popover: 38 13% 12%;
+  --popover-foreground: 38 31% 93%;
 
-  /* Brand Accent: Vibrant Violet */
-  --primary: 252 85% 64%;
-  --primary-foreground: 0 0% 100%;
-  --primary-hover: 252 85% 70%;
-  --primary-soft: hsla(252, 85%, 64%, 0.18);
+  --primary: 38 31% 93%;
+  --primary-foreground: 40 8% 8%;
+  --primary-hover: 0 0% 100%;
+  --primary-soft: hsla(38, 31%, 93%, 0.08);
 
-  --secondary: 222 20% 18%;
-  --secondary-foreground: 210 30% 98%;
+  --brand: 24 77% 60%;
 
-  --muted: 223 20% 16%;
-  --muted-foreground: 215 20% 65%;
+  --secondary: 38 13% 12%;
+  --secondary-foreground: 38 31% 93%;
 
-  --accent: 223 20% 20%;
-  --accent-foreground: 210 30% 98%;
+  --muted: 38 13% 12%;
+  --muted-foreground: 39 8% 61%;
 
-  --border: 220 18% 19%;
-  --input: 220 18% 19%;
-  --ring: 252 85% 64%;
+  --accent: 40 12% 15%;
+  --accent-foreground: 38 31% 93%;
 
-  /* Context Semantics */
-  --success: 158 64% 48%;
-  --warning: 38 92% 52%;
-  --danger: 0 72% 55%;
-  --info: 217 91% 65%;
+  --border: 40 11% 16%;
+  --input: 40 10% 24%;
+  --ring: 24 77% 60%;
 
-  /* Canvas Data Edges */
-  --edge-text: 215 20% 65%;
-  --edge-image: 158 64% 48%;
-  --edge-video: 252 85% 64%;
-  --edge-audio: 38 92% 52%;
+  --success: 151 50% 53%;
+  --warning: 34 71% 58%;
+  --danger: 357 82% 67%;
+  --info: 191 53% 55%;
 
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 4px 16px -2px rgba(0, 0, 0, 0.45);
-  --shadow-float: 0 12px 32px -4px rgba(0, 0, 0, 0.6);
+  --edge-text: 39 8% 61%;
+  --edge-image: 191 53% 55%;
+  --edge-video: 24 77% 60%;
+  --edge-audio: 34 71% 58%;
+
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-float: 0 8px 24px -8px rgba(0, 0, 0, 0.6);
 }
 
 * {
@@ -112,6 +112,17 @@ body {
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
   font-feature-settings: "rlig" 1, "calt" 1;
+  font-size: 14px;
+}
+
+/* Figures line up digit for digit */
+table, .tnum, [data-tnum] {
+  font-variant-numeric: tabular-nums;
+}
+
+:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
 }
 
 /* Reduced Motion Override */

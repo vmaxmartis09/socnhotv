@@ -170,6 +170,7 @@ class Graph(BaseModel):
 
 
 class SSEEventType(str, enum.Enum):
+    RUN_STARTED = "run_started"
     NODE_STATE = "node_state"
     NODE_PROGRESS = "node_progress"
     NODE_LOG = "node_log"
@@ -190,3 +191,51 @@ class SSEEvent(BaseModel):
     timestamp: str
 
     model_config = ConfigDict(populate_by_name=True)
+
+
+class RunMode(str, enum.Enum):
+    """Chế độ thực thi đồ thị node."""
+    ALL = "all"                              # Chạy toàn bộ đồ thị (bỏ qua node đã ghim hợp lệ & không stale)
+    FORCE_ALL = "force_all"                  # Chạy lại tất cả node, bỏ qua cache
+    SINGLE_NODE = "single_node"              # Chỉ chạy 1 node cụ thể
+    DOWNSTREAM = "downstream"                # Chạy từ 1 node và toàn bộ các node con cháu (descendants)
+
+
+class GraphRunRequest(BaseModel):
+    """Yêu cầu thực thi đồ thị node từ giao diện hoặc trợ lý AI."""
+    project_id: str = Field(..., alias="projectId")
+    graph_id: Optional[str] = Field(None, alias="graphId")
+    mode: RunMode = RunMode.ALL
+    target_node_id: Optional[str] = Field(None, alias="targetNodeId")
+    spending_limit_usd: Optional[float] = Field(None, alias="spendingLimitUsd")
+    mock_mode: bool = Field(True, alias="mockMode")
+    max_retries: int = Field(3, alias="maxRetries")
+    concurrency_limit: int = Field(2, alias="concurrencyLimit")
+
+    model_config = ConfigDict(populate_by_name=True)
+
+
+class GraphValidationResult(BaseModel):
+    """Kết quả kiểm tra tính hợp lệ của đồ thị trước khi chạy."""
+    is_valid: bool = Field(..., alias="isValid")
+    errors: List[str] = Field(default_factory=list)
+    warnings: List[str] = Field(default_factory=list)
+    topological_order: List[str] = Field(default_factory=list, alias="topologicalOrder")
+
+    model_config = ConfigDict(populate_by_name=True)
+
+
+class GraphRunSummary(BaseModel):
+    """Báo cáo tổng kết phiên thực thi đồ thị."""
+    run_id: str = Field(..., alias="runId")
+    project_id: str = Field(..., alias="projectId")
+    total_nodes: int = Field(..., alias="totalNodes")
+    executed_nodes: List[str] = Field(default_factory=list, alias="executedNodes")
+    skipped_nodes: List[str] = Field(default_factory=list, alias="skippedNodes")
+    failed_nodes: List[str] = Field(default_factory=list, alias="failedNodes")
+    total_cost_usd: float = Field(0.0, alias="totalCostUsd")
+    is_success: bool = Field(..., alias="isSuccess")
+    errors: Dict[str, str] = Field(default_factory=dict)
+
+    model_config = ConfigDict(populate_by_name=True)
+
