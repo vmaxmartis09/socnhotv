@@ -26,11 +26,17 @@ export type ArtifactKind =
 export type NodeState =
   | "idle"
   | "ready"
+  | "queued"
   | "running"
+  | "succeeded"
   | "completed"
   | "failed"
+  | "skipped"
   | "cancelled"
-  | "cached";
+  | "cached"
+  | "stale";
+
+export type NodeStatus = NodeState;
 
 export type SSEEventType =
   | "run_started"
@@ -44,6 +50,7 @@ export type SSEEventType =
 export type RunMode =
   | "all"
   | "force_all"
+  | "single"
   | "single_node"
   | "downstream";
 
@@ -114,13 +121,14 @@ export interface NodeInstance {
   id: string;
   type: string;
   params: Record<string, any>;
-  inputs: Record<string, NodePortInputRef | any>;
+  inputs?: Record<string, NodePortInputRef | any>;
   position: { x: number; y: number };
   ui?: Record<string, any>;
-  state: NodeState;
+  state?: NodeState;
+  status?: NodeState;
   isStale: boolean;
   pinnedGenerationId?: string | null;
-  generations: Generation[];
+  generations?: Generation[];
 }
 
 export interface Edge {
@@ -134,10 +142,10 @@ export interface Edge {
 export interface Graph {
   id: string;
   projectId: string;
-  name: string;
+  name?: string;
   nodes: NodeInstance[];
   edges: Edge[];
-  updatedAt: string;
+  updatedAt?: string;
 }
 
 export interface SSEEvent {

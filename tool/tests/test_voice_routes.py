@@ -1,0 +1,22 @@
+from fastapi.testclient import TestClient
+
+from socnhotv.core.api.app import app
+
+client = TestClient(app)
+
+
+def test_list_has_soc_nho_with_sample_and_usage():
+    v = {x["id"]: x for x in client.get("/voices").json()}
+    assert "soc-nho" in v and v["soc-nho"]["hasSample"]
+    assert any(u["characterId"] == "soc_nho" for u in v["soc-nho"]["usedBy"])
+    assert client.get(v["soc-nho"]["sampleUrl"]).status_code == 200
+
+
+def test_clone_requires_consent_valid_name_and_type():
+    body = b"x" * 10
+    r = client.post("/voices/clone?name=be-test&filename=a.mp3", content=body)
+    assert r.status_code == 400 and "đồng ý" in r.json()["detail"]
+    assert client.post("/voices/clone?name=BAD NAME&filename=a.mp3&consent=true", content=body).status_code == 400
+    assert client.post("/voices/clone?name=be-test&filename=a.exe&consent=true", content=body).status_code == 400
+    assert client.post("/voices/clone?name=soc-nho&filename=a.mp3&consent=true", content=body).status_code == 409
+    assert client.post("/voices/clone?name=be-test&filename=a.mp3&consent=true", content=b"").status_code == 400

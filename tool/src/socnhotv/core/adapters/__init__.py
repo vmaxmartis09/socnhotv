@@ -6,5 +6,6 @@
 from socnhotv.core.adapters.audio_mastering import AudioMastering
 from socnhotv.core.adapters.voice_adapter import VoiceAdapter
 from socnhotv.core.adapters.caption_adapter import CaptionAdapter
+from socnhotv.core.adapters.hyperframes_adapter import HyperFramesAdapter
 
-__all__ = ["AudioMastering", "VoiceAdapter", "CaptionAdapter"]
+__all__ = ["AudioMastering", "VoiceAdapter", "CaptionAdapter", "HyperFramesAdapter"]

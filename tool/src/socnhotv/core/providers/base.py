@@ -59,3 +59,12 @@ class BaseProvider(ABC):
         run_id: str = "run_default",
     ) -> Dict[str, Any]:
         pass
+
+    async def text_complete(
+        self,
+        system: str,
+        prompt: str,
+        schema: Optional[Dict[str, Any]] = None,
+    ) -> Dict[str, Any]:
+        """Hoàn thành văn bản hoặc lệnh điều khiển Studio (text.complete)."""
+        return {"text": prompt, "mode": "mock"}

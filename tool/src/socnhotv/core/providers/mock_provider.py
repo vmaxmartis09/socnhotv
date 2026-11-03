@@ -15,32 +15,15 @@ from socnhotv.core.storage.project_store import ProjectStore
 
 
 def create_minimal_png_bytes(width: int = 1080, height: int = 1920) -> bytes:
-    """Tạo tệp PNG nhị phân hợp lệ tối giản cho Mock Image."""
-    import zlib
+    """Tạo tệp PNG nhị phân hợp lệ 100% bằng Pillow cho Mock Image."""
+    import io
+    from PIL import Image
 
-    # PNG Signature
-    signature = b"\x89PNG\r\n\x1a\n"
-
-    # IHDR Chunk
-    ihdr_data = struct.pack(">IIBBBBB", width, height, 8, 2, 0, 0, 0)
-    ihdr_crc = struct.pack(">I", zlib.crc32(b"IHDR" + ihdr_data))
-    ihdr_chunk = struct.pack(">I", len(ihdr_data)) + b"IHDR" + ihdr_data + ihdr_crc
-
-    # IDAT Chunk (1 pixel hoặc scanlines tối giản nén zlib)
-    raw_scanlines = b"\x00" + b"\x6d\x4a\xff" * width  # màu tím primary
-    compressed_data = zlib.compress(raw_scanlines)
-    idat_crc = struct.pack(">I", zlib.crc32(b"IDAT" + compressed_data))
-    idat_chunk = (
-        struct.pack(">I", len(compressed_data))
-        + b"IDAT"
-        + compressed_data
-        + idat_crc
-    )
-
-    # IEND Chunk
-    iend_chunk = struct.pack(">I", 0) + b"IEND" + struct.pack(">I", zlib.crc32(b"IEND"))
-
-    return signature + ihdr_chunk + idat_chunk + iend_chunk
+    # Tạo ảnh RGB màu tím primary (#6d4aff)
+    img = Image.new("RGB", (width, height), color=(109, 74, 255))
+    buf = io.BytesIO()
+    img.save(buf, format="PNG")
+    return buf.getvalue()
 
 
 def create_minimal_mp4_bytes() -> bytes:
@@ -105,7 +88,27 @@ class MockProvider(BaseProvider):
     ) -> List[Artifact]:
         artifacts = []
         width, height = (1080, 1920) if aspect_ratio == "9:16" else (1920, 1080)
-        png_bytes = create_minimal_png_bytes(width=width, height=height)
+        # Ưu tiên lấy ảnh thật từ tập Sóc Nhỏ nếu tồn tại trong project_dir
+        real_scene_img = (
+            self.store.project_dir
+            / "content"
+            / "episodes"
+            / "soc-nho-sau-rang"
+            / "scenes"
+            / "canh_01.jpg"
+        )
+        real_char_img = (
+            self.store.project_dir / "characters" / "soc_nho" / "soc_nho_01.png"
+        )
+        if "master dna" in prompt.lower() and real_char_img.exists():
+            img_bytes = real_char_img.read_bytes()
+            ext = "png"
+        elif real_scene_img.exists():
+            img_bytes = real_scene_img.read_bytes()
+            ext = "jpg"
+        else:
+            img_bytes = create_minimal_png_bytes(width=width, height=height)
+            ext = "png"
 
         for i in range(max(1, n)):
             provenance = ArtifactProvenance(
@@ -126,8 +129,8 @@ class MockProvider(BaseProvider):
             )
             meta = ArtifactMeta(width=width, height=height, aspect=aspect_ratio)
             artifact = self.store.store_bytes(
-                data=png_bytes,
-                ext="png",
+                data=img_bytes,
+                ext=ext,
                 kind=ArtifactKind.IMAGE,
                 provenance=provenance,
                 meta=meta,
@@ -242,4 +245,139 @@ class MockProvider(BaseProvider):
                     "durationSec": 8.0,
                 },
             ],
+        }
+
+    async def text_complete(
+        self,
+        system: str,
+        prompt: str,
+        schema: Optional[Dict[str, Any]] = None,
+    ) -> Dict[str, Any]:
+        """Trợ lý theo quy tắc (Rule-based Assistant) khi ở chế độ chạy thử hoặc chưa có khóa API."""
+        p_lower = prompt.lower().strip()
+        actions: List[Dict[str, Any]] = []
+        reply = (
+            "[Chế độ chạy thử — Trợ lý quy tắc] Tôi đã nhận lệnh của bạn. "
+            "Bạn có thể yêu cầu thêm bước kiểm tra, đổi tỉ lệ 16:9 / 9:16, chạy từ một cảnh/node, mở lịch đăng hoặc xem hồ sơ nhân vật."
+        )
+        requires_confirmation = False
+        confirmation_meta: Optional[Dict[str, Any]] = None
+
+        if any(k in p_lower for k in ["kiểm tra", "quality", "check", "gate"]):
+            actions.append(
+                {
+                    "type": "add_node",
+                    "nodeType": "quality_check",
+                    "afterNodeType": "image_gen",
+                    "beforeNodeType": "video_gen",
+                    "summaryVi": "Đã thêm node Kiểm tra chất lượng (Gate) và nối giữa Tạo ảnh AI và Tạo video chuyển động",
+                    "summaryEn": "Added Quality Check (Gate) node and wired between AI Image Gen and Video Gen",
+                }
+            )
+            reply = (
+                "[Chế độ chạy thử] Đã thêm node Kiểm tra chất lượng (Gate) sau bước Tạo ảnh AI và nối đầu ra sang Tạo video chuyển động."
+            )
+        elif "16:9" in p_lower or "9:16" in p_lower or "1:1" in p_lower or "4:5" in p_lower:
+            ratio = "16:9" if "16:9" in p_lower else "1:1" if "1:1" in p_lower else "4:5" if "4:5" in p_lower else "9:16"
+            actions.append(
+                {
+                    "type": "set_aspect_ratio",
+                    "aspectRatio": ratio,
+                    "summaryVi": f"Đã đổi tỉ lệ khung hình sang {ratio}",
+                    "summaryEn": f"Changed aspect ratio to {ratio}",
+                }
+            )
+            reply = f"[Chế độ chạy thử] Đã chuyển tỉ lệ khung hình của đồ thị và các node sinh sang {ratio}."
+        elif any(k in p_lower for k in ["lên lịch", "schedule", "youtube", "tiktok"]) and any(
+            t in p_lower for t in ["19:00", "20:00", "lên lịch", "schedule", "đăng"]
+        ):
+            if "mở lịch" in p_lower or "open schedule" in p_lower or "xem lịch" in p_lower:
+                actions.append(
+                    {
+                        "type": "open_tab",
+                        "tab": "publish",
+                        "summaryVi": "Đã chuyển sang tab Lịch đăng & Kênh",
+                        "summaryEn": "Opened Schedule & Channels tab",
+                    }
+                )
+                reply = "[Chế độ chạy thử] Đã mở tab Lịch đăng & Kênh ở khung bên phải."
+            else:
+                platform = "tiktok" if "tiktok" in p_lower else "youtube"
+                publish_time = "20:00" if "20:00" in p_lower else "19:00"
+                requires_confirmation = True
+                confirmation_meta = {
+                    "kind": "publish",
+                    "platform": platform,
+                    "time": publish_time,
+                    "episodeTitle": "Tập 1: Sóc Nhỏ và Chiếc Răng Sâu",
+                }
+                actions.append(
+                    {
+                        "type": "schedule_post",
+                        "platform": platform,
+                        "time": publish_time,
+                        "episodeTitle": "Tập 1: Sóc Nhỏ và Chiếc Răng Sâu",
+                        "summaryVi": f"Chuẩn bị lên lịch đăng Tập 1 lúc {publish_time} lên {platform.upper()} (chờ xác nhận)",
+                        "summaryEn": f"Prepared schedule for Episode 1 at {publish_time} on {platform.upper()} (awaiting confirmation)",
+                    }
+                )
+                reply = (
+                    f"[Chế độ chạy thử] Lệnh đăng bài ra ngoài cần bạn xác nhận trước khi ghi lịch lên {platform.upper()} lúc {publish_time}."
+                )
+        elif any(k in p_lower for k in ["nhân vật", "koala", "sóc nhỏ", "soc nho", "character"]):
+            char_id = "koala" if "koala" in p_lower else "soc_nho"
+            actions.append(
+                {
+                    "type": "open_character",
+                    "tab": "project",
+                    "characterId": char_id,
+                    "summaryVi": f"Đã mở hồ sơ nhân vật {'Bác sĩ Koala' if char_id == 'koala' else 'Sóc Nhỏ (Bi)'}",
+                    "summaryEn": f"Opened character profile for {'Dr. Koala' if char_id == 'koala' else 'Little Squirrel (Bi)'}",
+                }
+            )
+            reply = (
+                f"[Chế độ chạy thử] Đã chuyển sang tab Dự án và mở hồ sơ đầy đủ của {'Bác sĩ Koala' if char_id == 'koala' else 'Sóc Nhỏ (Bi)'}."
+            )
+        elif any(k in p_lower for k in ["chạy", "run"]):
+            requires_confirmation = True
+            confirmation_meta = {
+                "kind": "run",
+                "mode": "downstream" if "từ" in p_lower or "from" in p_lower else "all",
+                "estimatedCostUsd": 0.0,
+            }
+            actions.append(
+                {
+                    "type": "run_graph",
+                    "mode": "downstream" if "từ" in p_lower or "from" in p_lower else "all",
+                    "summaryVi": "Yêu cầu chạy đồ thị (chờ xác nhận chi phí)",
+                    "summaryEn": "Requested graph run (awaiting cost confirmation)",
+                }
+            )
+            reply = "[Chế độ chạy thử] Đã chuẩn bị lệnh chạy đồ thị. Vui lòng xác nhận trong hộp thoại chi phí để bắt đầu."
+        elif any(k in p_lower for k in ["thêm node", "add node", "thêm bước", "giọng đọc", "tạo ảnh", "tạo video", "phụ đề"]):
+            node_type = (
+                "voice_tts"
+                if "giọng" in p_lower
+                else "captions"
+                if "phụ đề" in p_lower
+                else "video_gen"
+                if "video" in p_lower
+                else "image_gen"
+            )
+            actions.append(
+                {
+                    "type": "add_node",
+                    "nodeType": node_type,
+                    "summaryVi": f"Đã thêm node '{node_type}' vào đồ thị",
+                    "summaryEn": f"Added '{node_type}' node to graph",
+                }
+            )
+            reply = f"[Chế độ chạy thử] Đã thêm node '{node_type}' vào canvas."
+
+        return {
+            "reply": reply,
+            "mode": "rule_based_mock",
+            "actions": actions,
+            "requiresConfirmation": requires_confirmation,
+            "confirmationMeta": confirmation_meta,
         }

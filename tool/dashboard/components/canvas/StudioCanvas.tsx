@@ -1,0 +1,1521 @@
+"use client";
+
+import React, {
+  useState,
+  useCallback,
+  useMemo,
+  useRef,
+  useEffect,
+} from "react";
+import { useTranslations } from "next-intl";
+import {
+  ReactFlow,
+  Controls,
+  MiniMap,
+  applyNodeChanges,
+  applyEdgeChanges,
+  ReactFlowProvider,
+  useReactFlow,
+  type Connection,
+  type OnNodesChange,
+  type OnEdgesChange,
+  type Edge,
+  type Node,
+} from "@xyflow/react";
+import "@xyflow/react/dist/style.css";
+import { useStudioStore } from "@/store";
+import {
+  PORT_TYPE_COLORS,
+  type StudioNodeData,
+  type NodeGenerationRecord,
+} from "@/store/slices/canvasSlice";
+import { StudioNode, type StudioCardNodeType } from "@/components/canvas/StudioNode";
+import {
+  CanvasInteractionContext,
+  type ActiveDragPort,
+  type QuickAddRequest,
+} from "@/components/canvas/CanvasContext";
+import {
+  isPortCompatible,
+  estimateNodeCostUsd,
+  validateGraphWithCore,
+  saveGraphToCore,
+  runGraphOnCore,
+  cancelRunOnCore,
+} from "@/lib/core-api";
+import { CORE_URL } from "@/lib/repositories/core";
+import type {
+  Graph,
+  NodeDefinition,
+  PortType,
+  RunMode,
+} from "@/lib/core-contracts";
+import { Button } from "@/components/ui/Button";
+import {
+  Play,
+  Square,
+  Plus,
+  Undo2,
+  Redo2,
+  Copy,
+  Trash2,
+  Check,
+  Search,
+  X,
+  Layers,
+} from "@/components/ui/icons";
+import { cn } from "@/lib/utils";
+
+const nodeTypes = {
+  studioCard: StudioNode,
+};
+
+const DATA_LEGEND = [
+  { type: "text", color: "bg-[#737373]" },
+  { type: "image", color: "bg-[#1b6c80]" },
+  { type: "video", color: "bg-[#b4531a]" },
+  { type: "audio", color: "bg-[#a86f0c]" },
+] as const;
+
+const uid = (prefix: string) =>
+  `${prefix}_${Date.now().toString(36)}_${Math.random()
+    .toString(36)
+    .slice(2, 5)}`;
+
+function toCoreGraph(
+  projectId: string,
+  nodes: Node<StudioNodeData>[],
+  edges: Edge[]
+): Graph {
+  return {
+    id: `graph_${projectId}`,
+    projectId,
+    name: `Graph ${projectId}`,
+    nodes: nodes.map((n) => ({
+      id: n.id,
+      type: n.data.nodeType,
+      position: n.position,
+      params: n.data.params || {},
+      inputs: (n.data.inputs as any) || {},
+      state: (n.data.status || "idle") as any,
+      isStale: Boolean(n.data.isStale),
+      pinnedGenerationId: n.data.pinnedGenerationId ?? null,
+      generations: (n.data.generations as any) || [],
+    })),
+    edges: edges.map((e) => ({
+      id: e.id,
+      sourceNodeId: e.source,
+      sourcePort: e.sourceHandle || "text",
+      targetNodeId: e.target,
+      targetPort: e.targetHandle || "text",
+    })),
+    updatedAt: new Date().toISOString(),
+  };
+}
+
+function wouldCreateCycle(
+  edges: Edge[],
+  sourceId: string,
+  targetId: string
+): boolean {
+  if (sourceId === targetId) return true;
+  const visited = new Set<string>();
+  const stack = [targetId];
+  while (stack.length > 0) {
+    const curr = stack.pop()!;
+    if (curr === sourceId) return true;
+    if (visited.has(curr)) continue;
+    visited.add(curr);
+    for (const e of edges) {
+      if (e.source === curr) {
+        stack.push(e.target);
+      }
+    }
+  }
+  return false;
+}
+
+export function StudioCanvas() {
+  return (
+    <ReactFlowProvider>
+      <StudioCanvasInner />
+    </ReactFlowProvider>
+  );
+}
+
+function StudioCanvasInner() {
+  const t = useTranslations("canvas");
+  const c = useTranslations("common");
+  const { screenToFlowPosition } = useReactFlow();
+
+  const {
+    activeProjectId,
+    nodeCatalog,
+    nodes,
+    edges,
+    selectedNodeId,
+    setSelectedNodeId,
+    setNodesAndEdges,
+    pushUndoSnapshot,
+    undoCanvas,
+    redoCanvas,
+    undoStack,
+    redoStack,
+    loadCanvasTemplate,
+    updateNodeExecutionState,
+    isMockMode,
+    setIsMockMode,
+    isRunningGraph,
+    setIsRunningGraph,
+    setSaveState,
+    validationResult,
+    setValidationResult,
+    coreHealth,
+    perRunSpendingLimitUsd,
+    addJob,
+    updateJob,
+    setActiveRightTab,
+    setMobileSheetOpen,
+  } = useStudioStore();
+
+  const [snapToGrid, setSnapToGrid] = useState(true);
+  const [addMenuOpen, setAddMenuOpen] = useState(false);
+  const [addSearch, setAddSearch] = useState("");
+  const [quickAddReq, setQuickAddReq] = useState<QuickAddRequest | null>(null);
+  const [activeDragPort, setActiveDragPort] = useState<ActiveDragPort | null>(
+    null
+  );
+  const [bannerMsg, setBannerMsg] = useState<{
+    tone: "error" | "info" | "success";
+    text: string;
+  } | null>(null);
+  const [pendingRunConfirm, setPendingRunConfirm] = useState<{
+    mode: RunMode;
+    targetNodeId?: string;
+    estimatedCost: number;
+    nodeCount: number;
+  } | null>(null);
+
+  const canvasWrapperRef = useRef<HTMLDivElement>(null);
+  const clipboardRef = useRef<{
+    nodes: Node<StudioNodeData>[];
+    edges: Edge[];
+  } | null>(null);
+
+  const defMap = useMemo(
+    () => new Map(nodeCatalog.map((d) => [d.typeName, d])),
+    [nodeCatalog]
+  );
+
+  const connectedPorts = useMemo(() => {
+    const s = new Set<string>();
+    for (const e of edges) {
+      if (e.source && e.sourceHandle) {
+        s.add(`${e.source}:out:${e.sourceHandle}`);
+      }
+      if (e.target && e.targetHandle) {
+        s.add(`${e.target}:in:${e.targetHandle}`);
+      }
+    }
+    return s;
+  }, [edges]);
+
+  const nodeIssues = useMemo(() => {
+    const map: Record<string, string[]> = {};
+    if (!validationResult) return map;
+    for (const msg of [
+      ...validationResult.errors,
+      ...validationResult.warnings,
+    ]) {
+      for (const n of nodes) {
+        if (msg.includes(`'${n.id}'`)) {
+          map[n.id] = [...(map[n.id] || []), msg];
+        }
+      }
+    }
+    return map;
+  }, [validationResult, nodes]);
+
+  const totalEstimatedCost = useMemo(() => {
+    return nodes.reduce(
+      (acc, n) =>
+        acc +
+        estimateNodeCostUsd(
+          n.data.nodeType,
+          n.data.params || {},
+          isMockMode
+        ),
+      0
+    );
+  }, [nodes, isMockMode]);
+
+  // Debounced auto-save to Core
+  useEffect(() => {
+    const timer = window.setTimeout(async () => {
+      setSaveState("saving");
+      const g = toCoreGraph(activeProjectId, nodes, edges);
+      await saveGraphToCore(activeProjectId, g);
+      setSaveState("saved");
+    }, 650);
+    return () => window.clearTimeout(timer);
+  }, [activeProjectId, nodes, edges, setSaveState]);
+
+  const showBanner = useCallback(
+    (tone: "error" | "info" | "success", text: string) => {
+      setBannerMsg({ tone, text });
+    },
+    []
+  );
+
+  const onNodesChange: OnNodesChange<Node<StudioNodeData>> = useCallback(
+    (changes) => {
+      const updated = applyNodeChanges(changes, nodes) as Node<StudioNodeData>[];
+      const sel = updated.find((n) => n.selected);
+      if (sel && sel.id !== selectedNodeId) {
+        setSelectedNodeId(sel.id);
+      }
+      setNodesAndEdges(updated, edges, false);
+    },
+    [nodes, edges, selectedNodeId, setSelectedNodeId, setNodesAndEdges]
+  );
+
+  const onEdgesChange: OnEdgesChange = useCallback(
+    (changes) => {
+      const updated = applyEdgeChanges(changes, edges);
+      setNodesAndEdges(nodes, updated, false);
+    },
+    [nodes, edges, setNodesAndEdges]
+  );
+
+  const handleConnectStart = useCallback(
+    (
+      _: any,
+      params: {
+        nodeId: string | null;
+        handleId: string | null;
+        handleType: "source" | "target" | null;
+      }
+    ) => {
+      if (!params.nodeId || !params.handleId || !params.handleType) return;
+      const n = nodes.find((x) => x.id === params.nodeId);
+      if (!n) return;
+      const def = defMap.get(n.data.nodeType);
+      if (!def) return;
+      const port =
+        params.handleType === "source"
+          ? def.outputPorts.find((p) => p.name === params.handleId)
+          : def.inputPorts.find((p) => p.name === params.handleId);
+      if (!port) return;
+      setActiveDragPort({
+        nodeId: params.nodeId,
+        portName: port.name,
+        portType: port.portType,
+        handleType: params.handleType,
+      });
+    },
+    [nodes, defMap]
+  );
+
+  const handleConnectEnd = useCallback(() => {
+    setActiveDragPort(null);
+  }, []);
+
+  const onConnect = useCallback(
+    (conn: Connection) => {
+      setActiveDragPort(null);
+      if (
+        !conn.source ||
+        !conn.target ||
+        !conn.sourceHandle ||
+        !conn.targetHandle
+      )
+        return;
+
+      const srcNode = nodes.find((n) => n.id === conn.source);
+      const tgtNode = nodes.find((n) => n.id === conn.target);
+      if (!srcNode || !tgtNode) return;
+
+      const srcDef = defMap.get(srcNode.data.nodeType);
+      const tgtDef = defMap.get(tgtNode.data.nodeType);
+      const srcPort = srcDef?.outputPorts.find(
+        (p) => p.name === conn.sourceHandle
+      );
+      const tgtPort = tgtDef?.inputPorts.find(
+        (p) => p.name === conn.targetHandle
+      );
+
+      if (!srcPort || !tgtPort) return;
+
+      if (!isPortCompatible(srcPort.portType, tgtPort.portType)) {
+        showBanner(
+          "error",
+          t("rejectIncompatible", {
+            expected: t(`portTypes.${tgtPort.portType}` as any),
+            actual: t(`portTypes.${srcPort.portType}` as any),
+          })
+        );
+        return;
+      }
+
+      if (wouldCreateCycle(edges, conn.source, conn.target)) {
+        showBanner("error", t("rejectCycle"));
+        return;
+      }
+
+      const color = PORT_TYPE_COLORS[srcPort.portType] || "#737373";
+      const newEdge: Edge = {
+        id: uid("edge"),
+        source: conn.source,
+        sourceHandle: conn.sourceHandle,
+        target: conn.target,
+        targetHandle: conn.targetHandle,
+        type: "smoothstep",
+        style: { stroke: color, strokeWidth: 1.75 },
+        data: { portType: srcPort.portType },
+      };
+
+      const filtered = edges.filter(
+        (e) =>
+          !(e.target === conn.target && e.targetHandle === conn.targetHandle)
+      );
+      setNodesAndEdges(nodes, [...filtered, newEdge], true);
+      setBannerMsg(null);
+    },
+    [nodes, edges, defMap, setNodesAndEdges, showBanner, t]
+  );
+
+  // Add node at center or specific coordinates
+  const createNodeOfType = useCallback(
+    (
+      typeName: string,
+      pos?: { x: number; y: number },
+      extraParams?: Record<string, any>
+    ): Node<StudioNodeData> => {
+      const def = defMap.get(typeName) || nodeCatalog[0];
+      const defaultPos = pos || {
+        x: 240 + (nodes.length % 4) * 80,
+        y: 120 + (nodes.length % 3) * 60,
+      };
+      return {
+        id: uid(`node_${typeName}`),
+        type: "studioCard",
+        position: defaultPos,
+        selected: true,
+        data: {
+          nodeType: def.typeName,
+          status: "idle",
+          params: { ...(def.defaultParams || {}), ...(extraParams || {}) },
+          generations: [],
+        },
+      };
+    },
+    [defMap, nodeCatalog, nodes.length]
+  );
+
+  const handlePlaceNewNode = useCallback(
+    (typeName: string, pos?: { x: number; y: number }, params?: Record<string, any>) => {
+      const newNode = createNodeOfType(typeName, pos, params);
+      const nextNodes = [
+        ...nodes.map((n) => ({ ...n, selected: false })),
+        newNode,
+      ];
+      setNodesAndEdges(nextNodes, edges, true);
+      setSelectedNodeId(newNode.id);
+      setAddMenuOpen(false);
+    },
+    [createNodeOfType, nodes, edges, setNodesAndEdges, setSelectedNodeId]
+  );
+
+  // Quick-add before or after a specific node & port, auto-wiring
+  const handleSelectQuickAddNode = useCallback(
+    (def: NodeDefinition) => {
+      if (!quickAddReq) return;
+      const anchor = nodes.find((n) => n.id === quickAddReq.anchorNodeId);
+      if (!anchor) {
+        setQuickAddReq(null);
+        return;
+      }
+
+      const pos =
+        quickAddReq.direction === "after"
+          ? { x: anchor.position.x + 340, y: anchor.position.y }
+          : { x: Math.max(20, anchor.position.x - 340), y: anchor.position.y };
+
+      const newNode = createNodeOfType(def.typeName, pos);
+      let newEdge: Edge | null = null;
+
+      if (quickAddReq.direction === "after") {
+        const targetPort = def.inputPorts.find((p) =>
+          isPortCompatible(quickAddReq.portType, p.portType)
+        );
+        if (targetPort) {
+          newEdge = {
+            id: uid("edge"),
+            source: anchor.id,
+            sourceHandle: quickAddReq.portName,
+            target: newNode.id,
+            targetHandle: targetPort.name,
+            type: "smoothstep",
+            style: {
+              stroke: PORT_TYPE_COLORS[quickAddReq.portType] || "#737373",
+              strokeWidth: 1.75,
+            },
+          };
+        }
+      } else {
+        const sourcePort = def.outputPorts.find((p) =>
+          isPortCompatible(p.portType, quickAddReq.portType)
+        );
+        if (sourcePort) {
+          newEdge = {
+            id: uid("edge"),
+            source: newNode.id,
+            sourceHandle: sourcePort.name,
+            target: anchor.id,
+            targetHandle: quickAddReq.portName,
+            type: "smoothstep",
+            style: {
+              stroke: PORT_TYPE_COLORS[sourcePort.portType] || "#737373",
+              strokeWidth: 1.75,
+            },
+          };
+        }
+      }
+
+      const nextNodes = [
+        ...nodes.map((n) => ({ ...n, selected: false })),
+        newNode,
+      ];
+      const nextEdges = newEdge ? [...edges, newEdge] : edges;
+      setNodesAndEdges(nextNodes, nextEdges, true);
+      setSelectedNodeId(newNode.id);
+      setQuickAddReq(null);
+    },
+    [
+      quickAddReq,
+      nodes,
+      edges,
+      createNodeOfType,
+      setNodesAndEdges,
+      setSelectedNodeId,
+    ]
+  );
+
+  // Selected node "+ Bước trước" / "+ Bước sau" toolbar triggers
+  const triggerStepRelativeToSelected = useCallback(
+    (direction: "before" | "after") => {
+      const sel =
+        nodes.find((n) => n.id === selectedNodeId) ||
+        nodes.find((n) => n.selected);
+      if (!sel) return;
+      const def = defMap.get(sel.data.nodeType);
+      if (!def) return;
+      if (direction === "before" && def.inputPorts.length > 0) {
+        const p = def.inputPorts[0];
+        setQuickAddReq({
+          anchorNodeId: sel.id,
+          direction: "before",
+          portName: p.name,
+          portType: p.portType,
+        });
+      } else if (direction === "after" && def.outputPorts.length > 0) {
+        const p = def.outputPorts[0];
+        setQuickAddReq({
+          anchorNodeId: sel.id,
+          direction: "after",
+          portName: p.name,
+          portType: p.portType,
+        });
+      }
+    },
+    [nodes, selectedNodeId, defMap]
+  );
+
+  // Copy, Paste, Duplicate, Delete, Group
+  const handleDuplicateSelected = useCallback(() => {
+    const selected = nodes.filter(
+      (n) => n.selected || n.id === selectedNodeId
+    );
+    if (selected.length === 0) return;
+    const copies = selected.map((n) => ({
+      ...n,
+      id: uid(`node_${n.data.nodeType}`),
+      position: { x: n.position.x + 36, y: n.position.y + 36 },
+      selected: true,
+    }));
+    setNodesAndEdges(
+      [...nodes.map((n) => ({ ...n, selected: false })), ...copies],
+      edges,
+      true
+    );
+    setSelectedNodeId(copies[0].id);
+  }, [nodes, edges, selectedNodeId, setNodesAndEdges, setSelectedNodeId]);
+
+  const handleDeleteSelected = useCallback(() => {
+    const selectedIds = new Set(
+      nodes
+        .filter((n) => n.selected || n.id === selectedNodeId)
+        .map((n) => n.id)
+    );
+    const hasSelectedEdges = edges.some((e) => e.selected);
+    if (selectedIds.size === 0 && !hasSelectedEdges) return;
+    const nextNodes = nodes.filter((n) => !selectedIds.has(n.id));
+    const nextEdges = edges.filter(
+      (e) =>
+        !e.selected &&
+        !selectedIds.has(e.source) &&
+        !selectedIds.has(e.target)
+    );
+    setNodesAndEdges(nextNodes, nextEdges, true);
+    setSelectedNodeId(nextNodes[0]?.id || null);
+  }, [nodes, edges, selectedNodeId, setNodesAndEdges, setSelectedNodeId]);
+
+  const handleCopy = useCallback(() => {
+    const sel = nodes.filter((n) => n.selected || n.id === selectedNodeId);
+    if (sel.length === 0) return;
+    const ids = new Set(sel.map((n) => n.id));
+    clipboardRef.current = {
+      nodes: sel,
+      edges: edges.filter((e) => ids.has(e.source) && ids.has(e.target)),
+    };
+  }, [nodes, edges, selectedNodeId]);
+
+  const handlePaste = useCallback(() => {
+    const clip = clipboardRef.current;
+    if (!clip) return;
+    const idMap = new Map(
+      clip.nodes.map((n) => [n.id, uid(`node_${n.data.nodeType}`)])
+    );
+    const newNodes = clip.nodes.map((n) => ({
+      ...n,
+      id: idMap.get(n.id)!,
+      position: { x: n.position.x + 48, y: n.position.y + 48 },
+      selected: true,
+    }));
+    const newEdges = clip.edges.map((e) => ({
+      ...e,
+      id: uid("edge"),
+      source: idMap.get(e.source)!,
+      target: idMap.get(e.target)!,
+    }));
+    setNodesAndEdges(
+      [...nodes.map((n) => ({ ...n, selected: false })), ...newNodes],
+      [...edges, ...newEdges],
+      true
+    );
+  }, [nodes, edges, setNodesAndEdges]);
+
+  const handleAlignGroup = useCallback(() => {
+    const sel = nodes.filter((n) => n.selected);
+    const targetList = sel.length > 1 ? sel : nodes;
+    const baseY = targetList[0]?.position.y ?? 100;
+    const sorted = [...targetList].sort((a, b) => a.position.x - b.position.x);
+    const posMap = new Map(
+      sorted.map((n, idx) => [n.id, { x: 40 + idx * 336, y: baseY }])
+    );
+    const nextNodes = nodes.map((n) =>
+      posMap.has(n.id) ? { ...n, position: posMap.get(n.id)! } : n
+    );
+    setNodesAndEdges(nextNodes, edges, true);
+  }, [nodes, edges, setNodesAndEdges]);
+
+  // Keyboard shortcuts: Delete, Ctrl+Z, Ctrl+Shift+Z, Ctrl+D, Ctrl+C, Ctrl+V
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      const el = e.target as HTMLElement | null;
+      if (
+        el &&
+        (el.tagName === "INPUT" ||
+          el.tagName === "TEXTAREA" ||
+          el.tagName === "SELECT" ||
+          el.isContentEditable)
+      ) {
+        return;
+      }
+      if (e.key === "Delete" || e.key === "Backspace") {
+        e.preventDefault();
+        handleDeleteSelected();
+        return;
+      }
+      if (!(e.metaKey || e.ctrlKey)) return;
+      const k = e.key.toLowerCase();
+      if (k === "z") {
+        e.preventDefault();
+        if (e.shiftKey) redoCanvas();
+        else undoCanvas();
+      } else if (k === "d") {
+        e.preventDefault();
+        handleDuplicateSelected();
+      } else if (k === "c") {
+        e.preventDefault();
+        handleCopy();
+      } else if (k === "v") {
+        e.preventDefault();
+        handlePaste();
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [
+    handleDeleteSelected,
+    undoCanvas,
+    redoCanvas,
+    handleDuplicateSelected,
+    handleCopy,
+    handlePaste,
+  ]);
+
+  // Validate graph via Core
+  const handleValidateGraph = useCallback(async () => {
+    const g = toCoreGraph(activeProjectId, nodes, edges);
+    const res = await validateGraphWithCore(activeProjectId, g, nodeCatalog);
+    setValidationResult(res);
+    if (res.isValid && res.warnings.length === 0) {
+      showBanner("success", t("validateOk", { count: nodes.length }));
+    } else {
+      showBanner(
+        "error",
+        res.errors[0] || res.warnings[0] || "Graph validation warning"
+      );
+    }
+  }, [
+    activeProjectId,
+    nodes,
+    edges,
+    nodeCatalog,
+    setValidationResult,
+    showBanner,
+    t,
+  ]);
+
+  // Request run: check upstream if single node, then open cost confirmation modal
+  const handleRequestRun = useCallback(
+    (mode: RunMode, targetNodeId?: string) => {
+      if (mode === "single_node" && targetNodeId) {
+        const target = nodes.find((n) => n.id === targetNodeId);
+        const def = target ? defMap.get(target.data.nodeType) : undefined;
+        if (target && def) {
+          for (const port of def.inputPorts) {
+            if (!port.required) continue;
+            const incomingEdge = edges.find(
+              (e) => e.target === target.id && e.targetHandle === port.name
+            );
+            const hasParam =
+              target.data.params &&
+              target.data.params[port.name] !== undefined &&
+              target.data.params[port.name] !== "";
+            if (!incomingEdge && !hasParam) {
+              const portLabel = t(`portTypes.${port.portType}` as any);
+              updateNodeExecutionState(target.id, {
+                errorMessage: t("upstreamMissing", { port: portLabel }),
+              });
+              showBanner("error", t("upstreamMissing", { port: portLabel }));
+              return;
+            }
+            if (incomingEdge) {
+              const upstreamNode = nodes.find(
+                (n) => n.id === incomingEdge.source
+              );
+              if (
+                upstreamNode &&
+                upstreamNode.data.status !== "succeeded" &&
+                upstreamNode.data.nodeType !== "text" &&
+                upstreamNode.data.nodeType !== "character"
+              ) {
+                const portLabel = t(`portTypes.${port.portType}` as any);
+                updateNodeExecutionState(target.id, {
+                  errorMessage: t("upstreamMissing", { port: portLabel }),
+                });
+                showBanner("error", t("upstreamMissing", { port: portLabel }));
+                return;
+              }
+            }
+          }
+        }
+      }
+
+      const est =
+        mode === "single_node" && targetNodeId
+          ? estimateNodeCostUsd(
+              nodes.find((n) => n.id === targetNodeId)?.data.nodeType || "text",
+              nodes.find((n) => n.id === targetNodeId)?.data.params || {},
+              isMockMode
+            )
+          : totalEstimatedCost;
+
+      setPendingRunConfirm({
+        mode,
+        targetNodeId,
+        estimatedCost: est,
+        nodeCount: mode === "single_node" ? 1 : nodes.length,
+      });
+    },
+    [
+      nodes,
+      edges,
+      defMap,
+      isMockMode,
+      totalEstimatedCost,
+      updateNodeExecutionState,
+      showBanner,
+      t,
+    ]
+  );
+
+  // Execute confirmed run via Core + SSE (with local deterministic fallback)
+  const executeConfirmedRun = useCallback(async () => {
+    if (!pendingRunConfirm) return;
+    const { mode, targetNodeId, estimatedCost } = pendingRunConfirm;
+    setPendingRunConfirm(null);
+    setIsRunningGraph(true);
+    setBannerMsg(null);
+
+    const jobId = uid("job");
+    addJob({
+      id: jobId,
+      projectId: activeProjectId,
+      type: "render",
+      status: "running",
+      progress: 10,
+      estimatedCostUsd: estimatedCost,
+      actualCostUsd: 0,
+      createdAt: new Date().toISOString(),
+    });
+
+    // Helper to produce realistic preview per node type
+    const buildNodeOutputPreview = (
+      nodeType: string
+    ): Partial<StudioNodeData> => {
+      if (
+        nodeType === "image_gen" ||
+        nodeType === "image_edit" ||
+        nodeType === "image"
+      ) {
+        return {
+          previewType: "image",
+          previewUrl: "/demo/characters/soc_nho_01.png",
+          summaryText: "Ảnh 3D Pixar Sóc Nhỏ (100cm) khung hình 9:16",
+        };
+      }
+      if (nodeType === "quality_check") {
+        return {
+          previewType: "image",
+          previewUrl: "/demo/characters/soc_nho_02.png",
+          summaryText: "PASS (score=0.94 >= 0.85) · Đạt chuẩn nhận diện DNA",
+        };
+      }
+      if (nodeType === "video_gen" || nodeType === "hyperframes_render") {
+        return {
+          previewType: "video",
+          previewUrl: "/demo/scenes/canh_01.mp4",
+          summaryText:
+            nodeType === "hyperframes_render"
+              ? "Thành phẩm HyperFrames 9:16 · Safe Zone 180/320px"
+              : "Video Veo 2 · 8.0s · 24fps",
+        };
+      }
+      if (nodeType === "voice_tts") {
+        return {
+          previewType: "audio",
+          previewUrl: "/demo/audio/canh_01.mp3",
+          summaryText: "Giọng soc-nho OmniVoice · -14 LUFS · 44.1kHz",
+        };
+      }
+      if (nodeType === "script") {
+        return {
+          previewType: "text",
+          summaryText:
+            "Đã tách 6 phân cảnh (45 giây): Cảnh 1 kẹo hạt dẻ -> Cảnh 6 cười tươi",
+        };
+      }
+      if (nodeType === "export") {
+        return {
+          previewType: "text",
+          summaryText:
+            "Đã đóng gói output/soc_nho_tap_01.mp4 & manifest xuất bản",
+        };
+      }
+      return {
+        previewType: "text",
+        summaryText: "Hoàn tất xử lý",
+      };
+    };
+
+    const targetNodes =
+      mode === "single_node" && targetNodeId
+        ? nodes.filter((n) => n.id === targetNodeId)
+        : nodes;
+
+    // Subscribe to Core SSE if online
+    let es: EventSource | null = null;
+    try {
+      es = new EventSource(`${CORE_URL}/projects/${activeProjectId}/events`);
+      es.onmessage = (ev) => {
+        try {
+          const payload = JSON.parse(ev.data);
+          if (payload.nodeId && payload.status) {
+            updateNodeExecutionState(payload.nodeId, {
+              status: payload.status,
+              progressPct: payload.progressPct,
+              lastLog: payload.message,
+              errorMessage: undefined,
+            });
+          }
+        } catch {
+          // ignore
+        }
+      };
+    } catch {
+      // ignore if offline
+    }
+
+    try {
+      // Mark running
+      for (const n of targetNodes) {
+        updateNodeExecutionState(n.id, {
+          status: "running",
+          progressPct: 25,
+          errorMessage: undefined,
+        });
+      }
+
+      const g = toCoreGraph(activeProjectId, nodes, edges);
+      await runGraphOnCore(activeProjectId, {
+        graph: g,
+        mode,
+        targetNodeId,
+        spendingLimitUsd: perRunSpendingLimitUsd,
+        mockMode: isMockMode,
+      }).catch(() => null);
+
+      // Update each executed node with generation record and preview
+      for (const n of targetNodes) {
+        const preview = buildNodeOutputPreview(n.data.nodeType);
+        const genId = uid("gen");
+        const newGen: NodeGenerationRecord = {
+          id: genId,
+          createdAt: new Date().toISOString(),
+          previewUrl: preview.previewUrl,
+          previewType: preview.previewType,
+          summaryText: preview.summaryText,
+          costUsd: estimateNodeCostUsd(
+            n.data.nodeType,
+            n.data.params || {},
+            isMockMode
+          ),
+          model: n.data.params?.model,
+        };
+        const existingGens = n.data.generations || [];
+        updateNodeExecutionState(n.id, {
+          status: "succeeded",
+          isStale: false,
+          progressPct: 100,
+          ...preview,
+          generations: [newGen, ...existingGens],
+          pinnedGenerationId: genId,
+          errorMessage: undefined,
+        });
+      }
+
+      updateJob(jobId, {
+        status: "completed",
+        progress: 100,
+        actualCostUsd: isMockMode ? 0 : estimatedCost,
+        completedAt: new Date().toISOString(),
+      });
+    } finally {
+      es?.close();
+      setIsRunningGraph(false);
+    }
+  }, [
+    pendingRunConfirm,
+    activeProjectId,
+    nodes,
+    edges,
+    isMockMode,
+    perRunSpendingLimitUsd,
+    addJob,
+    updateJob,
+    updateNodeExecutionState,
+    setIsRunningGraph,
+  ]);
+
+  const handleStopRun = useCallback(async () => {
+    await cancelRunOnCore(activeProjectId);
+    setIsRunningGraph(false);
+    for (const n of nodes) {
+      if (n.data.status === "running") {
+        updateNodeExecutionState(n.id, { status: "idle", progressPct: 0 });
+      }
+    }
+  }, [activeProjectId, nodes, setIsRunningGraph, updateNodeExecutionState]);
+
+  // Drag & Drop Character or Node from Right Panel / Add Menu onto Canvas
+  const handleDragOverCanvas = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = "copy";
+  }, []);
+
+  const handleDropOnCanvas = useCallback(
+    (e: React.DragEvent) => {
+      e.preventDefault();
+      const pos = screenToFlowPosition({ x: e.clientX, y: e.clientY });
+      const charId = e.dataTransfer.getData("application/x-studio-character");
+      if (charId) {
+        handlePlaceNewNode("character", pos, { characterId: charId });
+        return;
+      }
+      const nodeType = e.dataTransfer.getData("application/x-studio-nodetype");
+      if (nodeType) {
+        handlePlaceNewNode(nodeType, pos);
+      }
+    },
+    [screenToFlowPosition, handlePlaceNewNode]
+  );
+
+  // Filtered node definitions for Add Node popover
+  const filteredAddDefs = useMemo(() => {
+    const q = addSearch.trim().toLowerCase();
+    if (!q) return nodeCatalog;
+    return nodeCatalog.filter(
+      (d) =>
+        d.displayName.toLowerCase().includes(q) ||
+        d.typeName.toLowerCase().includes(q) ||
+        d.category.toLowerCase().includes(q) ||
+        d.description.toLowerCase().includes(q)
+    );
+  }, [nodeCatalog, addSearch]);
+
+  // Filtered node definitions for Quick-Add (+) port menu: ONLY compatible types!
+  const compatibleQuickAddDefs = useMemo(() => {
+    if (!quickAddReq) return [];
+    return nodeCatalog.filter((d) => {
+      if (quickAddReq.direction === "after") {
+        return d.inputPorts.some((p) =>
+          isPortCompatible(quickAddReq.portType, p.portType)
+        );
+      } else {
+        return d.outputPorts.some((p) =>
+          isPortCompatible(p.portType, quickAddReq.portType)
+        );
+      }
+    });
+  }, [nodeCatalog, quickAddReq]);
+
+  const contextValue = useMemo(
+    () => ({
+      activeDragPort,
+      connectedPorts,
+      nodeIssues,
+      onOpenQuickAdd: (req: QuickAddRequest) => setQuickAddReq(req),
+      onRequestRun: handleRequestRun,
+      onOpenNodeInspector: (nodeId: string) => {
+        setSelectedNodeId(nodeId);
+        setActiveRightTab("node");
+      },
+    }),
+    [
+      activeDragPort,
+      connectedPorts,
+      nodeIssues,
+      handleRequestRun,
+      setSelectedNodeId,
+      setActiveRightTab,
+    ]
+  );
+
+  return (
+    <CanvasInteractionContext.Provider value={contextValue}>
+      <div className="relative flex h-full min-w-0 flex-1 flex-col bg-card">
+        {/* Core Offline Status Banner (still allows mock graph building & testing) */}
+        {!coreHealth.online && (
+          <div
+            role="status"
+            className="flex items-center justify-between gap-2 border-b border-border bg-accent/60 px-3 py-1.5 text-xs text-foreground"
+          >
+            <span>{t("coreOfflineBanner")}</span>
+          </div>
+        )}
+
+        {/* Validation / Connection Rejection Banner */}
+        {bannerMsg && (
+          <div
+            role="alert"
+            className={cn(
+              "flex items-center justify-between gap-2 border-b border-border px-3 py-1.5 text-xs",
+              bannerMsg.tone === "error"
+                ? "bg-semantic-danger/10 text-semantic-danger"
+                : bannerMsg.tone === "success"
+                ? "bg-semantic-success/10 text-semantic-success"
+                : "bg-accent text-foreground"
+            )}
+          >
+            <span>{bannerMsg.text}</span>
+            <button
+              type="button"
+              onClick={() => setBannerMsg(null)}
+              aria-label={c("close")}
+              className="rounded p-0.5 hover:bg-accent"
+            >
+              <X className="h-3.5 w-3.5" />
+            </button>
+          </div>
+        )}
+
+        {/* Top Canvas Toolbar */}
+        <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border bg-card px-3 py-2 shrink-0 select-none">
+          <div className="flex flex-wrap items-center gap-1.5">
+            {/* + Add Node with search popover */}
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() => setAddMenuOpen((v) => !v)}
+                aria-expanded={addMenuOpen}
+                className="flex h-7 items-center gap-1 rounded-md border border-border bg-card px-2.5 text-xs font-medium text-foreground hover:bg-accent"
+              >
+                <Plus className="h-3.5 w-3.5" />
+                <span>{t("tools.add")}</span>
+              </button>
+
+              {addMenuOpen && (
+                <div className="absolute left-0 top-8 z-40 w-[340px] rounded-lg border border-border bg-popover p-2.5 text-popover-foreground">
+                  <div className="relative mb-2">
+                    <Search className="pointer-events-none absolute left-2 top-2 h-3.5 w-3.5 text-muted-foreground" />
+                    <input
+                      type="search"
+                      value={addSearch}
+                      onChange={(e) => setAddSearch(e.target.value)}
+                      placeholder={t("addNodePlaceholder")}
+                      autoFocus
+                      className="h-7 w-full rounded border border-border bg-background pl-7 pr-2 text-xs text-foreground"
+                    />
+                  </div>
+                  <ul className="max-h-72 space-y-1 overflow-y-auto">
+                    {filteredAddDefs.map((def) => (
+                      <li key={def.typeName}>
+                        <button
+                          type="button"
+                          draggable
+                          onDragStart={(e) =>
+                            e.dataTransfer.setData(
+                              "application/x-studio-nodetype",
+                              def.typeName
+                            )
+                          }
+                          onClick={() => handlePlaceNewNode(def.typeName)}
+                          className="flex w-full flex-col gap-0.5 rounded-md border border-transparent px-2 py-1.5 text-left hover:border-border hover:bg-accent"
+                        >
+                          <div className="flex items-center justify-between">
+                            <span className="text-xs font-semibold text-foreground">
+                              {def.displayName}
+                            </span>
+                            <span className="rounded border border-border bg-card px-1.5 py-0.5 text-[10px] text-muted-foreground">
+                              {t(`categories.${def.category}` as any)}
+                            </span>
+                          </div>
+                          <p className="text-[11px] text-muted-foreground line-clamp-1">
+                            {def.description}
+                          </p>
+                          <p className="font-mono text-[10px] text-muted-foreground">
+                            In:{" "}
+                            {def.inputPorts.map((p) => p.name).join(", ") ||
+                              "—"}{" "}
+                            → Out:{" "}
+                            {def.outputPorts.map((p) => p.name).join(", ") ||
+                              "—"}
+                          </p>
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+
+            {/* + Step before & + Step after for selected node */}
+            <button
+              type="button"
+              onClick={() => triggerStepRelativeToSelected("before")}
+              disabled={!selectedNodeId}
+              className="h-7 rounded-md border border-border bg-card px-2 text-xs text-foreground hover:bg-accent disabled:opacity-40"
+            >
+              {t("addStepBefore")}
+            </button>
+            <button
+              type="button"
+              onClick={() => triggerStepRelativeToSelected("after")}
+              disabled={!selectedNodeId}
+              className="h-7 rounded-md border border-border bg-card px-2 text-xs text-foreground hover:bg-accent disabled:opacity-40"
+            >
+              {t("addStepAfter")}
+            </button>
+
+            <span className="mx-0.5 h-4 w-px bg-border" aria-hidden="true" />
+
+            {/* Undo, Redo, Duplicate, Group/Align, Delete, Snap */}
+            <button
+              type="button"
+              onClick={undoCanvas}
+              disabled={undoStack.length === 0}
+              title={t("tools.undo")}
+              aria-label={t("tools.undo")}
+              className="flex h-7 w-7 items-center justify-center rounded-md border border-border bg-card text-foreground hover:bg-accent disabled:opacity-40"
+            >
+              <Undo2 className="h-3.5 w-3.5" />
+            </button>
+            <button
+              type="button"
+              onClick={redoCanvas}
+              disabled={redoStack.length === 0}
+              title={t("tools.redo")}
+              aria-label={t("tools.redo")}
+              className="flex h-7 w-7 items-center justify-center rounded-md border border-border bg-card text-foreground hover:bg-accent disabled:opacity-40"
+            >
+              <Redo2 className="h-3.5 w-3.5" />
+            </button>
+            <button
+              type="button"
+              onClick={handleDuplicateSelected}
+              title={t("tools.duplicate")}
+              aria-label={t("tools.duplicate")}
+              className="flex h-7 w-7 items-center justify-center rounded-md border border-border bg-card text-foreground hover:bg-accent"
+            >
+              <Copy className="h-3.5 w-3.5" />
+            </button>
+            <button
+              type="button"
+              onClick={handleAlignGroup}
+              title={t("tools.group")}
+              aria-label={t("tools.group")}
+              className="flex h-7 w-7 items-center justify-center rounded-md border border-border bg-card text-foreground hover:bg-accent"
+            >
+              <Layers className="h-3.5 w-3.5" />
+            </button>
+            <button
+              type="button"
+              onClick={handleDeleteSelected}
+              title={t("tools.delete")}
+              aria-label={t("tools.delete")}
+              className="flex h-7 w-7 items-center justify-center rounded-md border border-border bg-card text-foreground hover:bg-accent"
+            >
+              <Trash2 className="h-3.5 w-3.5" />
+            </button>
+            <button
+              type="button"
+              onClick={() => setSnapToGrid((v) => !v)}
+              className={cn(
+                "hidden sm:inline-flex h-7 items-center rounded-md border px-2 text-xs",
+                snapToGrid
+                  ? "border-foreground bg-accent text-foreground font-medium"
+                  : "border-border bg-card text-muted-foreground"
+              )}
+            >
+              {t("tools.snap")}
+            </button>
+          </div>
+
+          {/* Right cluster: Validate, Mock switch, Cost, Stop / Run All */}
+          <div className="flex items-center gap-1.5">
+            <button
+              type="button"
+              onClick={handleValidateGraph}
+              className="flex h-7 items-center gap-1 rounded-md border border-border bg-card px-2 text-xs text-foreground hover:bg-accent"
+            >
+              <Check className="h-3.5 w-3.5" />
+              <span className="hidden xl:inline">{t("validateBtn")}</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setIsMockMode(!isMockMode)}
+              className={cn(
+                "h-7 rounded-md border px-2 text-xs font-medium",
+                isMockMode
+                  ? "border-border bg-muted text-foreground"
+                  : "border-brand text-brand bg-card"
+              )}
+            >
+              {isMockMode ? t("mockMode") : t("liveMode")}
+            </button>
+
+            <span className="hidden lg:inline-flex h-7 items-center rounded-md border border-border bg-card px-2 text-xs text-muted-foreground tnum">
+              {t("estimatedCost", { cost: totalEstimatedCost.toFixed(2) })}
+            </span>
+
+            {isRunningGraph ? (
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={handleStopRun}
+                className="h-7 px-2.5 text-xs border-semantic-danger text-semantic-danger"
+              >
+                <Square className="mr-1 h-3 w-3" />
+                <span>{t("stop")}</span>
+              </Button>
+            ) : (
+              <Button
+                size="sm"
+                onClick={() => handleRequestRun("all")}
+                className="h-7 px-2.5 text-xs font-medium"
+              >
+                <Play className="mr-1 h-3 w-3" />
+                <span>{t("runAll")}</span>
+              </Button>
+            )}
+          </div>
+        </div>
+
+        {/* Quick-Add Filtered Node Menu (when user clicks + on an input/output port or + Bước trước/sau) */}
+        {quickAddReq && (
+          <div className="absolute left-4 top-14 z-40 w-80 rounded-lg border border-border bg-popover p-3 text-popover-foreground">
+            <div className="mb-2 flex items-center justify-between border-b border-border pb-1.5">
+              <span className="text-xs font-semibold">
+                {quickAddReq.direction === "after"
+                  ? t("addDownstreamPort")
+                  : t("addUpstreamPort")}{" "}
+                ({t(`portTypes.${quickAddReq.portType}` as any)})
+              </span>
+              <button
+                type="button"
+                onClick={() => setQuickAddReq(null)}
+                aria-label={c("close")}
+                className="rounded p-0.5 text-muted-foreground hover:text-foreground"
+              >
+                <X className="h-3.5 w-3.5" />
+              </button>
+            </div>
+            <ul className="max-h-60 space-y-1 overflow-y-auto">
+              {compatibleQuickAddDefs.map((def) => (
+                <li key={def.typeName}>
+                  <button
+                    type="button"
+                    onClick={() => handleSelectQuickAddNode(def)}
+                    className="flex w-full flex-col rounded border border-transparent px-2 py-1.5 text-left hover:border-border hover:bg-accent"
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-semibold text-foreground">
+                        {def.displayName}
+                      </span>
+                      <span className="text-[10px] text-muted-foreground">
+                        {t(`categories.${def.category}` as any)}
+                      </span>
+                    </div>
+                    <span className="text-[11px] text-muted-foreground line-clamp-1">
+                      {def.description}
+                    </span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {/* Cost Confirmation Dialog before Running */}
+        {pendingRunConfirm && (
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-label={t("costConfirmTitle")}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-foreground/20 p-4"
+          >
+            <div className="w-full max-w-md rounded-lg border border-border bg-popover p-4 text-popover-foreground space-y-3">
+              <h2 className="text-sm font-semibold">{t("costConfirmTitle")}</h2>
+              <p className="text-xs text-muted-foreground leading-relaxed tnum">
+                {t("costConfirmDesc", {
+                  mode:
+                    pendingRunConfirm.mode === "single_node"
+                      ? t("runNode")
+                      : pendingRunConfirm.mode === "downstream"
+                      ? t("runFromHere")
+                      : t("runAll"),
+                  nodeCount: pendingRunConfirm.nodeCount,
+                  cost: pendingRunConfirm.estimatedCost.toFixed(2),
+                  limit: perRunSpendingLimitUsd.toFixed(2),
+                })}
+              </p>
+              {isMockMode && (
+                <p className="rounded border border-border bg-accent/60 px-2.5 py-1.5 text-xs text-foreground">
+                  {t("costConfirmMockNote")}
+                </p>
+              )}
+              <div className="flex justify-end gap-2 pt-1">
+                <button
+                  type="button"
+                  onClick={() => setPendingRunConfirm(null)}
+                  className="h-8 rounded-md border border-border bg-card px-3 text-xs text-foreground hover:bg-accent"
+                >
+                  {c("cancel")}
+                </button>
+                <button
+                  type="button"
+                  onClick={executeConfirmedRun}
+                  className="h-8 rounded-md bg-primary px-3 text-xs font-medium text-primary-foreground"
+                >
+                  {t("costConfirmProceed")}
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Desktop Interactive Canvas (>= 768px) */}
+        <div
+          ref={canvasWrapperRef}
+          onDragOver={handleDragOverCanvas}
+          onDrop={handleDropOnCanvas}
+          className="hidden md:block relative flex-1 min-h-0 w-full"
+        >
+          {/* Never-Empty Canvas Template Picker when nodes.length === 0 */}
+          {nodes.length === 0 ? (
+            <div className="flex h-full w-full items-center justify-center p-6">
+              <div className="max-w-xl w-full rounded-xl border border-border bg-card p-6 space-y-4">
+                <div>
+                  <h2 className="text-base font-semibold text-foreground">
+                    {t("emptyTitle")}
+                  </h2>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    {t("emptySubtitle")}
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                  <div className="flex flex-col justify-between rounded-lg border border-border bg-muted/20 p-4 space-y-3">
+                    <div>
+                      <h3 className="text-xs font-semibold text-foreground">
+                        {t("tplSocNhoTitle")}
+                      </h3>
+                      <p className="mt-1 text-[11px] text-muted-foreground leading-relaxed">
+                        {t("tplSocNhoDesc")}
+                      </p>
+                    </div>
+                    <Button
+                      size="sm"
+                      onClick={() => loadCanvasTemplate("soc_nho_story")}
+                    >
+                      {t("tplSocNhoAction")}
+                    </Button>
+                  </div>
+
+                  <div className="flex flex-col justify-between rounded-lg border border-border bg-muted/20 p-4 space-y-3">
+                    <div>
+                      <h3 className="text-xs font-semibold text-foreground">
+                        {t("tplBlankTitle")}
+                      </h3>
+                      <p className="mt-1 text-[11px] text-muted-foreground leading-relaxed">
+                        {t("tplBlankDesc")}
+                      </p>
+                    </div>
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => loadCanvasTemplate("blank")}
+                    >
+                      {t("tplBlankAction")}
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <ReactFlow
+              nodes={nodes}
+              edges={edges}
+              onNodesChange={onNodesChange}
+              onEdgesChange={onEdgesChange}
+              onConnect={onConnect}
+              onConnectStart={handleConnectStart}
+              onConnectEnd={handleConnectEnd}
+              onNodeDragStart={() => pushUndoSnapshot()}
+              onNodeClick={(_, n) => setSelectedNodeId(n.id)}
+              snapToGrid={snapToGrid}
+              snapGrid={[24, 24]}
+              nodeTypes={nodeTypes}
+              fitView
+              fitViewOptions={{ padding: 0.22, minZoom: 0.35, maxZoom: 1.15 }}
+              proOptions={{ hideAttribution: true }}
+              className="bg-card"
+            >
+              <Controls
+                showInteractive={false}
+                className="!m-3 !border !border-border !bg-card !shadow-none !rounded-md"
+              />
+              <MiniMap
+                zoomable
+                pannable
+                className="!m-3 !border !border-border !bg-card !shadow-none !rounded-md"
+                nodeColor={() => "hsl(var(--accent))"}
+                maskColor="rgba(0, 0, 0, 0.06)"
+              />
+            </ReactFlow>
+          )}
+
+          {/* Port & Wire Data Type Legend (Bottom-Left of Canvas) */}
+          <aside
+            aria-label="Port data type legend"
+            className="pointer-events-none absolute bottom-3 left-14 z-10 flex items-center gap-3 rounded-md border border-border bg-card px-3 py-1.5 text-[11px] text-muted-foreground select-none"
+          >
+            {DATA_LEGEND.map((item) => (
+              <span key={item.type} className="flex items-center gap-1.5">
+                <span
+                  className={cn("h-2 w-2 rounded-full", item.color)}
+                  aria-hidden="true"
+                />
+                <span>{t(`legend.${item.type}`)}</span>
+              </span>
+            ))}
+          </aside>
+        </div>
+
+        {/* Mobile Read-Only Vertical Node List (< 768px) */}
+        <div className="md:hidden flex-1 overflow-y-auto px-4 py-4 space-y-3">
+          <div className="flex items-center justify-between border-b border-border pb-2.5">
+            <div>
+              <h2 className="text-xs font-semibold text-foreground">
+                {t("mobileListTitle")}
+              </h2>
+              <p className="text-[11px] text-muted-foreground tnum">
+                {t("estimatedCost", { cost: totalEstimatedCost.toFixed(2) })}
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={() => setMobileSheetOpen(true)}
+              className="h-7 rounded-md border border-border bg-card px-2.5 text-xs font-medium text-foreground"
+            >
+              {t("openSheetBtn")}
+            </button>
+          </div>
+
+          <ol className="space-y-2.5">
+            {nodes.map((node, index) => {
+              const def = defMap.get(node.data.nodeType);
+              return (
+                <li
+                  key={node.id}
+                  onClick={() => {
+                    setSelectedNodeId(node.id);
+                    setActiveRightTab("node");
+                    setMobileSheetOpen(true);
+                  }}
+                  className="rounded-lg border border-border bg-card p-3 space-y-1.5"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-semibold text-foreground tnum">
+                      {index + 1}. {def?.displayName || node.data.nodeType}
+                    </span>
+                    <span className="text-[11px] text-muted-foreground">
+                      {t(`status.${node.data.status || "idle"}` as any)}
+                    </span>
+                  </div>
+                  <p className="text-[11px] text-muted-foreground">
+                    {def?.description}
+                  </p>
+                </li>
+              );
+            })}
+          </ol>
+        </div>
+      </div>
+    </CanvasInteractionContext.Provider>
+  );
+}

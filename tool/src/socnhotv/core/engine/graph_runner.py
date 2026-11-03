@@ -6,6 +6,7 @@ import uuid
 from typing import Any, Callable, Dict, List, Optional, Set, Tuple
 
 from socnhotv.core.adapters.caption_adapter import CaptionAdapter
+from socnhotv.core.adapters.hyperframes_adapter import HyperFramesAdapter
 from socnhotv.core.adapters.voice_adapter import VoiceAdapter
 from socnhotv.core.contracts.types import (
     Artifact,
@@ -252,26 +253,77 @@ class GraphRunner:
             outputs["image"] = primary_artifact
 
         elif node_type == "script":
-            text_in = str(resolved_inputs.get("text", "Ý tưởng phân cảnh"))
+            text_in = str(resolved_inputs.get("text", "Sóc Nhỏ và Chiếc Răng Sâu"))
             scenes = [
                 {
                     "sceneNumber": 1,
-                    "title": "Mở đầu",
-                    "imagePrompt": f"Cảnh mở đầu: {text_in[:60]}",
-                    "videoPrompt": "Camera panning nhẹ nhàng",
-                    "dialogue": "Xin chào các bạn nhỏ!",
-                    "durationSec": 5.0,
+                    "title": "Cảnh 1: Kệ kẹo nhà cây",
+                    "imagePrompt": "Sóc Bi ở nhà cây, kệ đầy hũ kẹo, mắt sáng rực, 3D Pixar 100cm",
+                    "videoPrompt": "Camera dolly chậm vào Sóc Bi đang nhảy lên vui sướng",
+                    "dialogue": "Oa, nhiều kẹo quá! Hôm nay Bi sẽ ăn thật nhiều luôn!",
+                    "durationSec": 7.0,
                 },
                 {
                     "sceneNumber": 2,
-                    "title": "Cao trào & Bài học",
-                    "imagePrompt": f"Cảnh cao trào vui nhộn với Bi",
-                    "videoPrompt": "Nhân vật tươi cười hào hứng",
-                    "dialogue": "Cùng học thói quen tốt mỗi ngày nhé!",
-                    "durationSec": 6.0,
+                    "title": "Cảnh 2: Quên đánh răng",
+                    "imagePrompt": "Bi ăn kẹo liên tục trên sàn gỗ nhà cây, vỏ kẹo chất đống rồi ngủ quên",
+                    "videoPrompt": "Camera pan nhẹ qua đống vỏ kẹo, Bi ngáp ngủ",
+                    "dialogue": "Bi ăn kẹo cả ngày, tối đến lại quên đánh răng rồi đi ngủ.",
+                    "durationSec": 8.0,
+                },
+                {
+                    "sceneNumber": 3,
+                    "title": "Cảnh 3: Sáng dậy đau răng",
+                    "imagePrompt": "Bi ôm má nhăn mặt vì đau răng trong nắng sớm nhà cây",
+                    "videoPrompt": "Camera push-in cận mặt Bi ôm má mếu máo",
+                    "dialogue": "Ôi đau quá! Sáng nay răng của Bi đau lắm!",
+                    "durationSec": 7.0,
+                },
+                {
+                    "sceneNumber": 4,
+                    "title": "Cảnh 4: Khám Bác sĩ Koala",
+                    "imagePrompt": "Bác sĩ Koala (150cm) khám răng cho Sóc Bi (100cm) tại phòng khám rừng xanh",
+                    "videoPrompt": "Bác sĩ Koala cầm gương nha khoa soi nhẹ nhàng và gật đầu",
+                    "dialogue": "Bác sĩ Koala bảo Bi bị sâu răng vì ăn quá nhiều kẹo ngọt.",
+                    "durationSec": 8.0,
+                },
+                {
+                    "sceneNumber": 5,
+                    "title": "Cảnh 5: Học chải răng đúng cách",
+                    "imagePrompt": "Bác sĩ Koala cầm bàn chải lớn hướng dẫn Sóc Bi đánh răng xoay tròn",
+                    "videoPrompt": "Bi làm theo bác sĩ Koala, cả hai cùng mỉm cười",
+                    "dialogue": "Bác sĩ dạy Bi đánh răng sáng tối, ăn ít kẹo, uống nhiều nước.",
+                    "durationSec": 8.0,
+                },
+                {
+                    "sceneNumber": 6,
+                    "title": "Cảnh 6: Răng trắng sáng bóng",
+                    "imagePrompt": "Sóc Bi cười tươi răng trắng sáng trước cửa nhà cây, kệ đầy táo và cà rốt",
+                    "videoPrompt": "Camera pull-back chậm, Bi vẫy tay chào khán giả",
+                    "dialogue": "Cảm ơn bác sĩ! Từ nay Bi sẽ chăm sóc răng thật tốt!",
+                    "durationSec": 7.0,
                 },
             ]
             outputs["scenes"] = scenes
+            outputs["prompt"] = scenes[0]["imagePrompt"]
+            outputs["dialogue"] = scenes[0]["dialogue"]
+            import json as _json
+            provenance = ArtifactProvenance(
+                node_id=node.id,
+                run_id=run_id,
+                provider="mock",
+                model="script-planner-v1",
+                params={"targetSceneCount": len(scenes), "sourceText": text_in[:120]},
+                cost_usd=0.0,
+                created_at=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+            )
+            primary_artifact = self.store.store_bytes(
+                data=_json.dumps({"title": text_in, "scenes": scenes}, ensure_ascii=False, indent=2).encode("utf-8"),
+                ext="json",
+                kind=ArtifactKind.TEXT,
+                provenance=provenance,
+            )
+            outputs["artifact"] = primary_artifact
 
         elif node_type == "image_gen":
             prompt = str(resolved_inputs.get("prompt", "Sóc Nhỏ Bi đang khám phá khu rừng diệu kỳ"))
@@ -362,22 +414,84 @@ class GraphRunner:
             primary_artifact = art
 
         elif node_type in ("hyperframes_render", "export"):
-            # Mock render video composition
-            art = await self.provider.generate_video(
-                prompt="Final rendered video composition 9:16",
-                duration_sec=12.0,
-                aspect_ratio="9:16",
-                has_audio=True,
-                node_id=node.id,
-                run_id=run_id,
-            )
+            if not is_mock:
+                hf_adapter = HyperFramesAdapter(self.store)
+                scenes = resolved_inputs.get("scenes") or []
+                if not scenes:
+                    media_input = (
+                        resolved_inputs.get("video")
+                        or resolved_inputs.get("image")
+                        or resolved_inputs.get("first_frame")
+                    )
+                    media_path = ""
+                    if isinstance(media_input, Artifact):
+                        media_path = str(self.store.project_dir / media_input.uri)
+                    elif isinstance(media_input, str):
+                        media_path = media_input
+
+                    scenes = [{
+                        "sceneNumber": 1,
+                        "video": media_path if media_path.endswith((".mp4", ".mov", ".webm")) else None,
+                        "image": media_path if not media_path.endswith((".mp4", ".mov", ".webm")) else None,
+                        "durationSec": 6.0,
+                        "dialogue": "Sóc Nhỏ Bi TV",
+                    }]
+
+                voice_art = resolved_inputs.get("audio") or resolved_inputs.get("voice")
+                if not isinstance(voice_art, Artifact):
+                    voice_art = None
+
+                cap_art = resolved_inputs.get("captions")
+                if not isinstance(cap_art, Artifact):
+                    cap_art = None
+
+                art = await hf_adapter.render_from_artifacts(
+                    scenes=scenes,
+                    voice_artifact=voice_art,
+                    captions_artifact=cap_art,
+                    title_badge=node.params.get("titleBadge", "SÓC NHỎ TV • TẬP MỚI"),
+                    node_id=node.id,
+                    run_id=run_id,
+                )
+            else:
+                # Mock render video composition
+                art = await self.provider.generate_video(
+                    prompt="Final rendered video composition 9:16",
+                    duration_sec=12.0,
+                    aspect_ratio="9:16",
+                    has_audio=True,
+                    node_id=node.id,
+                    run_id=run_id,
+                )
             outputs["video"] = art
+            outputs["manifest"] = art
             primary_artifact = art
 
         elif node_type == "quality_check":
+            media_in = resolved_inputs.get("media")
+            criteria = str(
+                resolved_inputs.get(
+                    "criteria",
+                    node.params.get("criteria", "Chuẩn nhận diện DNA Sóc Nhỏ 100cm, áo vàng, quần đen"),
+                )
+            )
+            report_text = f"ĐẠT · 9.8/10 — Khớp tiêu chí: {criteria}"
             outputs["pass"] = True
             outputs["score"] = 9.8
-            outputs["feedback"] = "Nhân vật Sóc Nhỏ chuẩn nhận diện DNA và tỉ lệ 100cm."
+            outputs["feedback"] = report_text
+            outputs["pass_fail"] = report_text
+            if isinstance(media_in, Artifact):
+                outputs["media"] = media_in
+                primary_artifact = media_in
+            else:
+                arts = await self.provider.generate_images(
+                    prompt=f"Quality checked frame: {criteria}",
+                    node_id=node.id,
+                    run_id=run_id,
+                    n=1,
+                )
+                primary_artifact = arts[0] if arts else None
+                outputs["media"] = primary_artifact
 
         elif node_type == "vision_analyze":
             media_uri = str(resolved_inputs.get("video") or resolved_inputs.get("image") or "")

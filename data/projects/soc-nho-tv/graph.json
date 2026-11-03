@@ -1,13 +1,13 @@
 {
-  "id": "graph_sample_dag",
+  "id": "graph_voice_caption_pipeline",
   "projectId": "soc-nho-tv",
-  "name": "Quy trình mẫu Sóc Nhỏ DAG",
+  "name": "Default Graph",
   "nodes": [
     {
-      "id": "node_idea",
+      "id": "node_input_text",
       "type": "text",
       "params": {
-        "content": "Sóc Nhỏ Bi thức dậy chào buổi sáng vui tươi"
+        "content": "Chào mừng các bạn đến với kênh Sóc Nhỏ TV!"
       },
       "inputs": {},
       "position": {
@@ -17,26 +17,27 @@
       "ui": {},
       "state": "completed",
       "isStale": false,
-      "pinnedGenerationId": "gen_ea9497dc",
+      "pinnedGenerationId": "gen_f9e18e80",
       "generations": [
         {
-          "id": "gen_ea9497dc",
-          "nodeId": "node_idea",
+          "id": "gen_f9e18e80",
+          "nodeId": "node_input_text",
           "params": {
-            "content": "Sóc Nhỏ Bi thức dậy chào buổi sáng vui tươi"
+            "content": "Chào mừng các bạn đến với kênh Sóc Nhỏ TV!"
           },
-          "artifactId": "art_6d4b1a6f7047",
+          "artifactId": "art_732d024b5c51",
           "costUsd": 0.0,
-          "createdAt": "2026-11-03T15:27:54Z",
+          "createdAt": "2026-11-03T16:12:32Z",
           "isPinned": true
         }
       ]
     },
     {
-      "id": "node_script",
-      "type": "script",
+      "id": "node_tts",
+      "type": "voice_tts",
       "params": {
-        "targetSceneCount": 2
+        "voiceId": "soc-nho",
+        "tempo": 1.1
       },
       "inputs": {},
       "position": {
@@ -44,64 +45,65 @@
         "y": 0.0
       },
       "ui": {},
-      "state": "idle",
+      "state": "completed",
       "isStale": false,
-      "pinnedGenerationId": null,
-      "generations": []
+      "pinnedGenerationId": "gen_43dcb15e",
+      "generations": [
+        {
+          "id": "gen_43dcb15e",
+          "nodeId": "node_tts",
+          "params": {
+            "voiceId": "soc-nho",
+            "tempo": 1.1
+          },
+          "artifactId": "art_878288c60fc6",
+          "costUsd": 0.0,
+          "createdAt": "2026-11-03T16:12:49Z",
+          "isPinned": true
+        }
+      ]
     },
     {
-      "id": "node_image_gen",
-      "type": "image_gen",
-      "params": {
-        "prompt": "Sóc Nhỏ Bi trong căn phòng gỗ ấm cúng",
-        "aspectRatio": "9:16"
-      },
+      "id": "node_subtitles",
+      "type": "captions",
+      "params": {},
       "inputs": {},
       "position": {
         "x": 0.0,
         "y": 0.0
       },
       "ui": {},
-      "state": "idle",
+      "state": "completed",
       "isStale": false,
-      "pinnedGenerationId": null,
-      "generations": []
-    },
-    {
-      "id": "node_video_gen",
-      "type": "video_gen",
-      "params": {
-        "prompt": "Camera dolly nhẹ nhàng",
-        "durationSec": 5.0,
-        "aspectRatio": "9:16"
-      },
-      "inputs": {},
-      "position": {
-        "x": 0.0,
-        "y": 0.0
-      },
-      "ui": {},
-      "state": "idle",
-      "isStale": false,
-      "pinnedGenerationId": null,
-      "generations": []
+      "pinnedGenerationId": "gen_e077b9d0",
+      "generations": [
+        {
+          "id": "gen_e077b9d0",
+          "nodeId": "node_subtitles",
+          "params": {},
+          "artifactId": "art_6e3a6f757d98",
+          "costUsd": 0.0,
+          "createdAt": "2026-11-03T16:12:50Z",
+          "isPinned": true
+        }
+      ]
     }
   ],
   "edges": [
     {
-      "id": "edge_1",
-      "sourceNodeId": "node_idea",
+      "id": "e1",
+      "sourceNodeId": "node_input_text",
       "sourcePort": "text",
-      "targetNodeId": "node_script",
+      "targetNodeId": "node_tts",
       "targetPort": "text"
     },
     {
-      "id": "edge_2",
-      "sourceNodeId": "node_image_gen",
-      "sourcePort": "image",
-      "targetNodeId": "node_video_gen",
-      "targetPort": "image"
+      "id": "e2",
+      "sourceNodeId": "node_tts",
+      "sourcePort": "audio",
+      "targetNodeId": "node_subtitles",
+      "targetPort": "audio"
     }
   ],
-  "updatedAt": "2026-11-03T15:27:54Z"
+  "updatedAt": "2026-11-03T16:12:50Z"
 }

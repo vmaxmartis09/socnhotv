@@ -81,12 +81,14 @@ class NodeRegistry:
                 type_name="script",
                 display_name="Kịch bản phân cảnh",
                 category="Structure",
-                description="Nhận văn bản tóm tắt và phân chia thành danh sách N phân cảnh chi tiết",
+                description="Biến kịch bản thành danh sách cảnh có prompt ảnh, chuyển động và lời thoại",
                 input_ports=[
                     PortDefinition(name="text", port_type=PortType.TEXT, description="Ý tưởng hoặc cốt truyện")
                 ],
                 output_ports=[
-                    PortDefinition(name="scenes", port_type=PortType.SCENES, description="Danh sách phân cảnh cấu trúc")
+                    PortDefinition(name="scenes", port_type=PortType.SCENES, description="Danh sách phân cảnh cấu trúc"),
+                    PortDefinition(name="prompt", port_type=PortType.TEXT, description="Prompt tạo ảnh/video theo cảnh"),
+                    PortDefinition(name="dialogue", port_type=PortType.TEXT, description="Lời thoại theo cảnh"),
                 ],
                 default_params={"targetSceneCount": 6, "targetDurationSec": 45},
                 mockable=True,
@@ -105,7 +107,8 @@ class NodeRegistry:
                     PortDefinition(name="image", port_type=PortType.IMAGE, description="Ảnh nguồn để phân tích", required=False),
                 ],
                 output_ports=[
-                    PortDefinition(name="script", port_type=PortType.SCRIPT, description="Kịch bản cấu trúc trích xuất")
+                    PortDefinition(name="script", port_type=PortType.SCRIPT, description="Kịch bản cấu trúc trích xuất"),
+                    PortDefinition(name="scenes", port_type=PortType.SCENES, description="Danh sách phân cảnh trích xuất"),
                 ],
                 default_params={"goal": "extract_scenes_and_dialogue"},
                 mockable=True,
@@ -118,16 +121,20 @@ class NodeRegistry:
                 type_name="quality_check",
                 display_name="Kiểm tra chất lượng (Gate)",
                 category="Quality",
-                description="Chấm điểm ảnh/video qua model nhìn theo tiêu chí trước khi cho phép tạo bước tiếp",
+                description="Chấm điểm ảnh trước khi tốn tiền tạo video",
                 input_ports=[
                     PortDefinition(name="media", port_type=PortType.IMAGE, description="Ảnh hoặc video cần thẩm định"),
-                    PortDefinition(name="criteria", port_type=PortType.TEXT, description="Tiêu chí thẩm định (ví dụ: đúng đuôi xù, áo vàng)")
+                    PortDefinition(name="criteria", port_type=PortType.TEXT, description="Tiêu chí thẩm định (ví dụ: đúng đuôi xù, áo vàng)", required=False)
                 ],
                 output_ports=[
                     PortDefinition(name="media", port_type=PortType.IMAGE, description="Media đã qua kiểm duyệt"),
                     PortDefinition(name="pass_fail", port_type=PortType.TEXT, description="Kết quả đạt/không đạt + điểm")
                 ],
-                default_params={"thresholdScore": 0.85, "maxRetries": 2},
+                default_params={
+                    "thresholdScore": 0.85,
+                    "maxRetries": 2,
+                    "criteria": "Nhân vật Sóc Nhỏ 100cm, áo phông vàng, quần short đen, đuôi xù lớn, không chữ lạ",
+                },
                 mockable=True,
             )
         )
@@ -254,9 +261,13 @@ class NodeRegistry:
                 category="Composition",
                 description="Ghép các phân cảnh, chạy phụ đề karaoke, chèn BGM ducking chuẩn Safe Zone 9:16",
                 input_ports=[
-                    PortDefinition(name="scenes", port_type=PortType.SCENES, description="Cấu trúc các cảnh"),
+                    PortDefinition(name="scenes", port_type=PortType.SCENES, description="Cấu trúc các cảnh", required=False),
+                    PortDefinition(name="audio", port_type=PortType.AUDIO, description="Thoại chính voiceover", required=False),
+                    PortDefinition(name="voice", port_type=PortType.AUDIO, description="Thoại chính voiceover (alias)", required=False),
                     PortDefinition(name="captions", port_type=PortType.CAPTIONS, description="Phụ đề karaoke", required=False),
                     PortDefinition(name="bgm", port_type=PortType.AUDIO, description="Nhạc nền BGM", required=False),
+                    PortDefinition(name="video", port_type=PortType.VIDEO, description="Video clip đầu vào", required=False),
+                    PortDefinition(name="image", port_type=PortType.IMAGE, description="Ảnh tĩnh đầu vào", required=False),
                 ],
                 output_ports=[
                     PortDefinition(name="video", port_type=PortType.VIDEO, description="Video thành phẩm MP4")

@@ -160,7 +160,13 @@ class ProjectStore:
             f.write(json.dumps(event_data, ensure_ascii=False) + "\n")
 
     def record_cost_ledger(
-        self, run_id: str, artifact_id: str, cost_usd: float, model: str
+        self,
+        run_id: str,
+        artifact_id: Optional[str] = None,
+        cost_usd: float = 0.0,
+        model: str = "",
+        node_id: Optional[str] = None,
+        provider: Optional[str] = None,
     ) -> None:
         """Ghi sổ chi phí thực tế vào runs/<run_id>/ledger.json."""
         session_dir = self.runs_dir / run_id
@@ -177,7 +183,9 @@ class ProjectStore:
 
         ledger_data["entries"].append(
             {
-                "artifactId": artifact_id,
+                "artifactId": artifact_id or node_id or "unknown",
+                "nodeId": node_id,
+                "provider": provider or "local",
                 "costUsd": cost_usd,
                 "model": model,
                 "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),

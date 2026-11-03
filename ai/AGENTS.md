@@ -97,3 +97,14 @@ Hệ thống phân chia ranh giới triệt để thành 3 phần độc lập:
 ## 6. GIAO THỨC TỰ HỌC & ĐÚC KẾT KINH NGHIỆM
 - Sau mỗi đợt render hoặc chiến dịch, Agent ghi nhận chỉ số thực tế (retention, views, tương tác) vào `ai/memory/CONTINUITY.md` và `data/projects/<project-id>/analytics/`.
 - Tự động rút kinh nghiệm tối ưu hóa kịch bản và prompt cho các tập tiếp theo mà không lặp lại lỗi cũ.
+
+---
+
+## 7. QUY CHUẨN GIAO DIỆN & HỆ THỐNG ICON: MORPHICONS (MẶC ĐỊNH BẮT BUỘC)
+- **Thư viện Icon mặc định:** Toàn bộ icon trong Web Dashboard và giao diện dự án sử dụng **Morphicons** (`https://www.morphicons.com/`, npm: `morphicons/react` kết hợp icon data nodes từ `lucide`).
+- **Cấm tái sử dụng `lucide-react` trực tiếp:** Không import từ `lucide-react` để tránh phình dung lượng bundle và mất khả năng morphing.
+- **Chuẩn import trong dự án:**
+  - Import component icon sẵn có: `import { Sun, Moon, Film, Plus, ... } from "@/components/ui/icons";`
+  - Hoặc dùng component biến hình linh hoạt: `import { MorphIcon } from "@/components/ui/MorphIcon";`
+- **Tận dụng hiệu ứng biến hình (Morphing):** Khi icon thay đổi theo trạng thái (như chuyển Theme Sáng/Tối, nút Play/Pause, trạng thái Active/Inactive, v.v.), bắt buộc dùng `<MorphIcon icon={currentIconNode} spring="snappy" />` để tạo chuyển động biến hình mượt mà bằng vật lý lò xo (spring physics).
+

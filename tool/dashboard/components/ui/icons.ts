@@ -37,6 +37,9 @@ export {
   ZoomIn as ZoomInNode,
   ZoomOut as ZoomOutNode,
   ArrowRight as ArrowRightNode,
+  Image as ImageNode,
+  FileText as FileTextNode,
+  CheckCircle2 as CheckCircle2Node,
 } from "lucide";
 
 // Universal morphing icon components powered by morphicons.com
@@ -69,3 +72,35 @@ export const Maximize2 = createMorphIcon(lucide.Maximize2, "Maximize2");
 export const ZoomIn = createMorphIcon(lucide.ZoomIn, "ZoomIn");
 export const ZoomOut = createMorphIcon(lucide.ZoomOut, "ZoomOut");
 export const ArrowRight = createMorphIcon(lucide.ArrowRight, "ArrowRight");
+export const Image = createMorphIcon(lucide.Image, "Image");
+export const FileText = createMorphIcon(lucide.FileText, "FileText");
+export const CheckCircle2 = createMorphIcon(lucide.CheckCircle2, "CheckCircle2");
+
+// Thanh công cụ Studio & CRUD
+export const Trash2 = createMorphIcon(lucide.Trash2, "Trash2");
+export const Copy = createMorphIcon(lucide.Copy, "Copy");
+export const Pencil = createMorphIcon(lucide.Pencil, "Pencil");
+export const MousePointer2 = createMorphIcon(lucide.MousePointer2, "MousePointer2");
+export const Hand = createMorphIcon(lucide.Hand, "Hand");
+export const Scissors = createMorphIcon(lucide.Scissors, "Scissors");
+export const StickyNote = createMorphIcon(lucide.StickyNote, "StickyNote");
+export const MessageSquare = createMorphIcon(lucide.MessageSquare, "MessageSquare");
+export const Undo2 = createMorphIcon(lucide.Undo2, "Undo2");
+export const Redo2 = createMorphIcon(lucide.Redo2, "Redo2");
+export const InfinityIcon = createMorphIcon(lucide.Infinity, "Infinity");
+export const ClipboardPaste = createMorphIcon(lucide.ClipboardPaste, "ClipboardPaste");
+export const X = createMorphIcon(lucide.X, "X");
+export const UserPlus = createMorphIcon(lucide.UserPlus, "UserPlus");
+export const Link2 = createMorphIcon(lucide.Link2, "Link2");
+export const Pin = createMorphIcon(lucide.Pin, "Pin");
+export const Square = createMorphIcon(lucide.Square, "Square");
+export const ChevronDown = createMorphIcon(lucide.ChevronDown, "ChevronDown");
+export const ChevronRight = createMorphIcon(lucide.ChevronRight, "ChevronRight");
+export const PanelRightClose = createMorphIcon(lucide.PanelRightClose, "PanelRightClose");
+export const PanelRightOpen = createMorphIcon(lucide.PanelRightOpen, "PanelRightOpen");
+export const Upload = createMorphIcon(lucide.Upload, "Upload");
+export const Search = createMorphIcon(lucide.Search, "Search");
+export const Send = createMorphIcon(lucide.Send, "Send");
+export const Key = createMorphIcon(lucide.Key, "Key");
+export const ListOrdered = createMorphIcon(lucide.ListOrdered, "ListOrdered");
+export const AlertTriangle = createMorphIcon(lucide.AlertTriangle, "AlertTriangle");

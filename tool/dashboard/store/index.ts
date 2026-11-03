@@ -7,8 +7,23 @@ import {
 } from "./slices/workspaceSlice";
 import { createCanvasSlice, type CanvasSlice } from "./slices/canvasSlice";
 import { createJobsSlice, type JobsSlice } from "./slices/jobsSlice";
+import {
+  createRightPanelSlice,
+  type RightPanelSlice,
+} from "./slices/rightPanelSlice";
+import { createChatSlice, type ChatSlice } from "./slices/chatSlice";
+import {
+  createUserSettingsSlice,
+  type UserSettingsSlice,
+} from "./slices/userSettingsSlice";
 
-export type StudioStore = UISlice & WorkspaceSlice & CanvasSlice & JobsSlice;
+export type StudioStore = UISlice &
+  WorkspaceSlice &
+  CanvasSlice &
+  JobsSlice &
+  RightPanelSlice &
+  ChatSlice &
+  UserSettingsSlice;
 
 export const useStudioStore = create<StudioStore>()(
   persist(
@@ -17,14 +32,25 @@ export const useStudioStore = create<StudioStore>()(
       ...createWorkspaceSlice(...a),
       ...createCanvasSlice(...a),
       ...createJobsSlice(...a),
+      ...createRightPanelSlice(...a),
+      ...createChatSlice(...a),
+      ...createUserSettingsSlice(...a),
     }),
     {
-      name: "ai_video_studio_settings_v1",
+      name: "ai_video_studio_settings_v2",
       partialize: (state) => ({
         theme: state.theme,
         locale: state.locale,
         isMockMode: state.isMockMode,
         spendingLimitUsd: state.spendingLimitUsd,
+        perRunSpendingLimitUsd: state.perRunSpendingLimitUsd,
+        dailySpendingLimitUsd: state.dailySpendingLimitUsd,
+        userProfile: state.userProfile,
+        storageBackend: state.storageBackend,
+        apiKeyStatus: state.apiKeyStatus,
+        activeRightTab: state.activeRightTab,
+        rightPanelWidth: state.rightPanelWidth,
+        rightPanelCollapsed: state.rightPanelCollapsed,
       }),
     }
   )

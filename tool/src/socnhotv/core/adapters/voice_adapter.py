@@ -55,6 +55,27 @@ class VoiceAdapter:
 
         return None
 
+    async def _synthesize_omnivoice(self, text: str, voice_id: str, output_path: str) -> bool:
+        """Gọi scripts/voice/voice_studio.py speak (OmniVoice trong voice vault), chưa mastering."""
+        import asyncio
+        import sys
+
+        script = self.repo_root / "scripts" / "voice" / "voice_studio.py"
+        if not script.exists():
+            return False
+        proc = await asyncio.create_subprocess_exec(
+            sys.executable, str(script), "speak", "--voice", voice_id, "--script", text,
+            "--output", output_path, "--no-master", "--tempo", "1.0",
+            stdout=asyncio.subprocess.DEVNULL, stderr=asyncio.subprocess.DEVNULL,
+            cwd=str(self.repo_root),
+        )
+        try:
+            await asyncio.wait_for(proc.wait(), timeout=600)
+        except asyncio.TimeoutError:
+            proc.kill()
+            return False
+        return proc.returncode == 0 and os.path.exists(output_path) and os.path.getsize(output_path) > 0
+
     async def _synthesize_edge_tts(
         self,
         text: str,
@@ -101,12 +122,17 @@ class VoiceAdapter:
             raw_audio_path = os.path.join(tmp_dir, "raw_speech.mp3")
             mastered_path = os.path.join(tmp_dir, "mastered_speech.mp3")
 
-            # 1. Tổng hợp giọng
-            tts_success = await self._synthesize_edge_tts(
-                text=text,
-                output_path=raw_audio_path,
-                voice_name="vi-VN-HoaiMyNeural",
-            )
+            # 1. Tổng hợp giọng: OmniVoice (giọng nhân bản trong voice vault) là đường chính
+            engine_used = "omnivoice"
+            tts_success = await self._synthesize_omnivoice(text, voice_id, raw_audio_path)
+            if not tts_success:
+                # Dự phòng: Edge-TTS là giọng khác, KHÔNG phải giọng soc-nho; ghi nhãn thật trong provenance
+                engine_used = "edge_tts_fallback"
+                tts_success = await self._synthesize_edge_tts(
+                    text=text,
+                    output_path=raw_audio_path,
+                    voice_name="vi-VN-HoaiMyNeural",
+                )
 
             # Fallback nếu mạng lỗi: dùng sample mẫu của Sóc Nhỏ hoặc tạo WAV
             if not tts_success or not os.path.exists(raw_audio_path) or os.path.getsize(raw_audio_path) == 0:
@@ -146,8 +172,8 @@ class VoiceAdapter:
         provenance = ArtifactProvenance(
             node_id=node_id,
             run_id=run_id,
-            provider="omnivoice_edge",
-            model=profile_data.get("engine", "edge-tts-neural"),
+            provider="omnivoice" if engine_used == "omnivoice" else "edge_tts_fallback",
+            model=profile_data.get("engine", "omnivoice") if engine_used == "omnivoice" else "vi-VN-HoaiMyNeural",
             params={
                 "text": text,
                 "voiceId": voice_id,

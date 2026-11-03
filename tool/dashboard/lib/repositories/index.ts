@@ -1,5 +1,5 @@
 import type { IRepository } from "./types";
-import { LocalRepository } from "./local";
+import { CoreRepository } from "./core";
 import { SupabaseRepository } from "./supabase";
 
 let repositoryInstance: IRepository | null = null;
@@ -14,7 +14,7 @@ export function getRepository(): IRepository {
     if (useSupabase) {
       repositoryInstance = new SupabaseRepository();
     } else {
-      repositoryInstance = new LocalRepository();
+      repositoryInstance = new CoreRepository();
     }
   }
 
@@ -23,4 +23,5 @@ export function getRepository(): IRepository {
 
 export * from "./types";
 export { LocalRepository } from "./local";
+export { CoreRepository, CORE_URL, CoreUnavailableError } from "./core";
 export { SupabaseRepository } from "./supabase";

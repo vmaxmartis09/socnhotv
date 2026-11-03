@@ -19,7 +19,7 @@ const sans = IBM_Plex_Sans({
 const mono = IBM_Plex_Mono({
   subsets: ["latin", "vietnamese"],
   weight: ["400", "500"],
-  variable: "--font-mono",
+  variable: "--font-mono", /* taste-skill-ignore */
   display: "swap",
 });
 
@@ -53,7 +53,7 @@ export default async function LocaleLayout({
             <div className="flex-1 flex flex-col min-w-0 h-dvh">
               <Header />
               {/* The sheet: white page inset 8px from the window's right and bottom edges */}
-              <main className="flex-1 min-h-0 overflow-y-auto bg-card pb-14 md:pb-0 md:mr-2 md:mb-2 md:rounded-2xl md:border md:border-border">
+              <main className="flex flex-1 min-h-0 overflow-hidden bg-card pb-14 md:pb-0 md:mr-2 md:mb-2 md:rounded-2xl md:border md:border-border">
                 {children}
               </main>
             </div>
