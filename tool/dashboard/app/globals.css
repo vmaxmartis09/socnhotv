@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Soft Light Theme - Non-blinding soft white & subtle borders */
+  --background: 220 20% 97%;
+  --foreground: 222 47% 11%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 222 47% 11%;
+  --card-elevated: 220 25% 99%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 222 47% 11%;
+
+  /* Brand Accent: Indigo Violet */
+  --primary: 252 85% 62%;
+  --primary-foreground: 0 0% 100%;
+  --primary-hover: 252 85% 56%;
+  --primary-soft: hsla(252, 85%, 62%, 0.12);
+
+  --secondary: 220 14% 94%;
+  --secondary-foreground: 222 47% 16%;
+
+  --muted: 220 14% 94%;
+  --muted-foreground: 215 16% 47%;
+
+  --accent: 220 14% 92%;
+  --accent-foreground: 222 47% 16%;
+
+  --border: 220 13% 90%;
+  --input: 220 13% 90%;
+  --ring: 252 85% 62%;
+
+  /* Context Semantics */
+  --success: 158 64% 45%;
+  --warning: 38 92% 50%;
+  --danger: 0 72% 51%;
+  --info: 217 91% 60%;
+
+  /* Canvas Data Edges */
+  --edge-text: 215 16% 55%;
+  --edge-image: 158 64% 45%;
+  --edge-video: 252 85% 62%;
+  --edge-audio: 38 92% 50%;
+
+  /* Radii & Shadows */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 14px -2px rgba(15, 23, 42, 0.07);
+  --shadow-float: 0 12px 30px -4px rgba(15, 23, 42, 0.12);
+}
+
+.dark {
+  /* Soft Dark Theme - Deep Slate & Navy Charcoal */
+  --background: 224 25% 8%;
+  --foreground: 210 30% 98%;
+
+  --card: 222 24% 12%;
+  --card-foreground: 210 30% 98%;
+  --card-elevated: 223 20% 16%;
+
+  --popover: 222 24% 12%;
+  --popover-foreground: 210 30% 98%;
+
+  /* Brand Accent: Vibrant Violet */
+  --primary: 252 85% 64%;
+  --primary-foreground: 0 0% 100%;
+  --primary-hover: 252 85% 70%;
+  --primary-soft: hsla(252, 85%, 64%, 0.18);
+
+  --secondary: 222 20% 18%;
+  --secondary-foreground: 210 30% 98%;
+
+  --muted: 223 20% 16%;
+  --muted-foreground: 215 20% 65%;
+
+  --accent: 223 20% 20%;
+  --accent-foreground: 210 30% 98%;
+
+  --border: 220 18% 19%;
+  --input: 220 18% 19%;
+  --ring: 252 85% 64%;
+
+  /* Context Semantics */
+  --success: 158 64% 48%;
+  --warning: 38 92% 52%;
+  --danger: 0 72% 55%;
+  --info: 217 91% 65%;
+
+  /* Canvas Data Edges */
+  --edge-text: 215 20% 65%;
+  --edge-image: 158 64% 48%;
+  --edge-video: 252 85% 64%;
+  --edge-audio: 38 92% 52%;
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 16px -2px rgba(0, 0, 0, 0.45);
+  --shadow-float: 0 12px 32px -4px rgba(0, 0, 0, 0.6);
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-feature-settings: "rlig" 1, "calt" 1;
+}
+
+/* Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

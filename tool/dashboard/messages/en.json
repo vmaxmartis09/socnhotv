@@ -1,0 +1,81 @@
+{
+  "common": {
+    "appName": "AI Video Studio",
+    "tagline": "AI Animation & KOC Video Creation Studio",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "retry": "Retry",
+    "save": "Save changes",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "search": "Search...",
+    "actions": "Actions",
+    "emptyState": "No data available",
+    "emptyStateSub": "Get started by creating a new item or selecting one."
+  },
+  "nav": {
+    "dashboard": "Overview",
+    "studio": "Studio Canvas",
+    "projects": "Projects",
+    "characters": "Characters",
+    "library": "Media Library",
+    "jobs": "Jobs & Costs",
+    "publish": "Schedule & Channels",
+    "settings": "Settings"
+  },
+  "workspace": {
+    "title": "Workspace",
+    "activeProject": "Current Project",
+    "switchProject": "Switch Project",
+    "allProjects": "All Projects",
+    "newProject": "New Project",
+    "connectedChannels": "Connected Channels",
+    "channelCount": "{count} connected channels"
+  },
+  "project": {
+    "name": "Project Name",
+    "description": "Description & Goal",
+    "language": "Language",
+    "aspectRatio": "Aspect Ratio",
+    "defaultVoice": "Default Voice",
+    "defaultCharacter": "Lead Character",
+    "charactersCount": "{count} characters",
+    "episodesCount": "{count} episodes",
+    "createdAt": "Created at"
+  },
+  "canvas": {
+    "title": "Video Canvas Node",
+    "subtitle": "Drag, drop, connect AI models and build scene-by-scene videos",
+    "runNode": "Run node",
+    "runFromHere": "Run from here",
+    "runAll": "Run full graph",
+    "stop": "Stop",
+    "zoomIn": "Zoom In",
+    "zoomOut": "Zoom Out",
+    "fitView": "Fit View",
+    "minimap": "Mini Map",
+    "estimatedCost": "Estimated Cost",
+    "status": {
+      "idle": "Idle",
+      "running": "Processing...",
+      "completed": "Completed",
+      "error": "Error"
+    }
+  },
+  "theme": {
+    "light": "Light Mode",
+    "dark": "Dark Mode",
+    "system": "System Default"
+  },
+  "settings": {
+    "title": "System Settings",
+    "themeMode": "Theme Appearance",
+    "language": "Interface Language",
+    "storageBackend": "Storage Engine",
+    "localMode": "Local Repository (IndexedDB - Recommended, zero sign-in)",
+    "supabaseMode": "Cloud Repository (Supabase)"
+  }
+}

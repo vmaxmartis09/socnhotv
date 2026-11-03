@@ -33,3 +33,4 @@ Tài liệu này theo dõi toàn bộ các symbolic link (symlink) được tạ
 | `work/flow_package_demo` | `../data/projects/soc-nho-tv/raw/flow_package_demo` | Demo packages cũ | Tạm thời (gỡ ở Bước 8) |
 | `output` | `data/projects/soc-nho-tv/output` | Script xuất file cũ ra output/ | Tạm thời (gỡ ở Bước 8) |
 | `docs` | `ai/knowledge` | IDE / Dev tra cứu tài liệu cũ | Tạm thời (gỡ ở Bước 8) |
+| `studio` | `tool/dashboard` | Lối tắt nhanh vào ứng dụng AI Video Studio Next.js | **Giữ vĩnh viễn** |

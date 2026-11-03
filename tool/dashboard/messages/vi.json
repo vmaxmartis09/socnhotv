@@ -1,0 +1,81 @@
+{
+  "common": {
+    "appName": "AI Video Studio",
+    "tagline": "Studio Sáng Tạo Video Hoạt Hình & KOC AI",
+    "loading": "Đang tải...",
+    "error": "Đã xảy ra lỗi",
+    "retry": "Thử lại",
+    "save": "Lưu thay đổi",
+    "cancel": "Hủy",
+    "confirm": "Xác nhận",
+    "delete": "Xóa",
+    "edit": "Chỉnh sửa",
+    "create": "Tạo mới",
+    "search": "Tìm kiếm...",
+    "actions": "Thao tác",
+    "emptyState": "Chưa có dữ liệu",
+    "emptyStateSub": "Bắt đầu bằng cách tạo mới hoặc chọn một mục."
+  },
+  "nav": {
+    "dashboard": "Tổng quan",
+    "studio": "Studio Canvas",
+    "projects": "Dự án",
+    "characters": "Nhân vật",
+    "library": "Thư viện media",
+    "jobs": "Hàng đợi & Chi phí",
+    "publish": "Lịch đăng & Kênh",
+    "settings": "Cài đặt"
+  },
+  "workspace": {
+    "title": "Không gian làm việc",
+    "activeProject": "Dự án hiện tại",
+    "switchProject": "Đổi dự án",
+    "allProjects": "Tất cả dự án",
+    "newProject": "Tạo dự án mới",
+    "connectedChannels": "Kênh liên kết",
+    "channelCount": "{count} kênh kết nối"
+  },
+  "project": {
+    "name": "Tên dự án",
+    "description": "Mô tả mục tiêu",
+    "language": "Ngôn ngữ",
+    "aspectRatio": "Tỉ lệ khung hình",
+    "defaultVoice": "Giọng đọc mặc định",
+    "defaultCharacter": "Nhân vật chính",
+    "charactersCount": "{count} nhân vật",
+    "episodesCount": "{count} tập phim",
+    "createdAt": "Khởi tạo ngày"
+  },
+  "canvas": {
+    "title": "Video Canvas Node",
+    "subtitle": "Kéo thả, kết nối model AI và tạo video phân cảnh",
+    "runNode": "Chạy node này",
+    "runFromHere": "Chạy từ đây",
+    "runAll": "Chạy toàn đồ thị",
+    "stop": "Dừng",
+    "zoomIn": "Phóng to",
+    "zoomOut": "Thu nhỏ",
+    "fitView": "Căn giữa",
+    "minimap": "Bản đồ thu nhỏ",
+    "estimatedCost": "Chi phí ước tính",
+    "status": {
+      "idle": "Chờ chạy",
+      "running": "Đang xử lý...",
+      "completed": "Hoàn thành",
+      "error": "Lỗi"
+    }
+  },
+  "theme": {
+    "light": "Chế độ Sáng",
+    "dark": "Chế độ Tối",
+    "system": "Theo hệ thống"
+  },
+  "settings": {
+    "title": "Cài đặt hệ thống",
+    "themeMode": "Giao diện hiển thị",
+    "language": "Ngôn ngữ giao diện",
+    "storageBackend": "Bộ lưu trữ dữ liệu",
+    "localMode": "Local Repository (IndexedDB - Khuyên dùng, không cần tài khoản)",
+    "supabaseMode": "Cloud Repository (Supabase)"
+  }
+}
