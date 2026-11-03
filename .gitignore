@@ -1,30 +1,47 @@
+# Virtual Environments & Caches
 .venv/
+tool/.venv/
 __pycache__/
 *.py[cod]
 .env
-
-# Voice Vault: prompt cache và audio lớn không đưa vào git (dùng Git LFS nếu cần chia sẻ giọng)
-assets/voice_vault/*/*.pt
-assets/voice_vault/*/*.wav
-assets/voice_vault/*/*.npy
-
-# OmniVoice (clone riêng bằng git clone, xem docs/VOICE_CLONE.md)
-integrations/OmniVoice/
-
-output/
-
-# Node, macOS, build
-node_modules/
-dist/
-.DS_Store
 .env.local
 .env.*.local
 
-# Video/ảnh sinh ra, tệp nặng không đưa vào git
+# Voice Vault: prompt cache và audio lớn không đưa vào git
+data/shared/voice_vault/*/*.pt
+data/shared/voice_vault/*/*.wav
+data/shared/voice_vault/*/*.npy
+data/shared/voice_vault/*/*.mp3
+assets/voice_vault/*/*.pt
+assets/voice_vault/*/*.wav
+assets/voice_vault/*/*.npy
+assets/voice_vault/*/*.mp3
+
+# Project sensitive & transient data (Accounts, Raw dumps, Shots, Render outputs)
+data/projects/*/accounts/*
+!data/projects/*/accounts/.gitkeep
+data/projects/*/shots/*
+!data/projects/*/shots/.gitkeep
+data/projects/*/output/*
+!data/projects/*/output/.gitkeep
+output/
+
+# Third-party integrations
+integrations/OmniVoice/
+tool/integrations/OmniVoice/
+
+# Node, macOS, build artifacts
+node_modules/
+dist/
+.DS_Store
+.next/
+out/
+
+# Video / Audio heavy binaries
 *.mp4
 *.mov
 *.webm
-scratch/
 
-# Mẫu giọng gốc/clone: repo công khai nên không đưa âm thanh giọng vào git
-assets/voice_vault/*/*.mp3
+# Temporary scratchpad
+scratch/
+tool/scratch/

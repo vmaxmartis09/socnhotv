@@ -1,0 +1,55 @@
+{
+  "id": "soc-nho-tv",
+  "name": "Sóc Nhỏ TV",
+  "description": "Kênh hoạt hình 3D giáo dục kỹ năng và khám phá thế giới cho trẻ em",
+  "version": "1.0.0",
+  "language": "vi",
+  "target_platforms": [
+    "youtube",
+    "tiktok"
+  ],
+  "default_aspect_ratio": "9:16",
+  "supported_aspect_ratios": [
+    "9:16",
+    "16:9"
+  ],
+  "default_character": "soc_nho",
+  "default_voice_id": "soc-nho",
+  "characters": {
+    "soc_nho": {
+      "name": "Sóc Nhỏ (Bi)",
+      "role": "main",
+      "height_cm": 100,
+      "scale_ratio": 1.0,
+      "voice_id": "soc-nho",
+      "profile_path": "characters/soc_nho/profile.md",
+      "prompts_path": "characters/soc_nho/prompts.md",
+      "dna_dir": "characters/soc_nho",
+      "master_panels": "characters/soc_nho"
+    },
+    "koala": {
+      "name": "Bạn Koala",
+      "role": "supporting",
+      "height_cm": 150,
+      "scale_ratio": 1.5,
+      "profile_path": "characters/koala/koala_profile.json",
+      "dna_dir": "characters/koala"
+    }
+  },
+  "scale_lock_path": "characters/SCALE_LOCK.md",
+  "paths": {
+    "characters": "characters",
+    "content": "content",
+    "episodes": "content/episodes",
+    "library": "library",
+    "products": "products",
+    "accounts": "accounts",
+    "publishing": "publishing",
+    "analytics": "analytics",
+    "knowledge": "knowledge",
+    "raw": "raw",
+    "output": "output",
+    "shots": "shots",
+    "manifest": "data.manifest.json"
+  }
+}

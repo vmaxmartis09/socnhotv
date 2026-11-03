@@ -7,7 +7,7 @@ Tài liệu này theo dõi toàn bộ các symbolic link (symlink) được tạ
 
 ---
 
-## 1. Danh sách Symlink phần AI & Agent Configurations
+## 1. Danh sách Symlink phần AI & Agent Configurations (Tạo ở Bước 3)
 
 | Symlink (Nơi đặt) | Đích trỏ đến (Target) | Mục đích / Công cụ sử dụng | Trạng thái dự kiến sau Bước 8 |
 | :--- | :--- | :--- | :--- |
@@ -21,6 +21,15 @@ Tài liệu này theo dõi toàn bộ các symbolic link (symlink) được tạ
 
 ---
 
-## 2. Danh sách Symlink dữ liệu & công cụ (sẽ cập nhật ở Bước 4 & Bước 5)
+## 2. Danh sách Symlink dữ liệu & tài liệu (Tạo ở Bước 4)
 
-*(Sẽ bổ sung khi di chuyển data và tool ở Bước 4 & 5)*
+| Symlink (Nơi đặt) | Đích trỏ đến (Target) | Mục đích sử dụng | Trạng thái dự kiến sau Bước 8 |
+| :--- | :--- | :--- | :--- |
+| `assets/soc_nho` | `../data/projects/soc-nho-tv/characters/soc_nho` | Script cũ đọc DNA ảnh & profile Sóc Nhỏ | Tạm thời (gỡ ở Bước 8) |
+| `assets/koala` | `../data/projects/soc-nho-tv/characters/koala` | Script cũ đọc DNA ảnh & profile Koala | Tạm thời (gỡ ở Bước 8) |
+| `assets/character_scale/SCALE_LOCK.md` | `../../data/projects/soc-nho-tv/characters/SCALE_LOCK.md` | Quy chuẩn tỉ lệ nhân vật | Tạm thời (gỡ ở Bước 8) |
+| `assets/voice_vault` | `../data/shared/voice_vault` | Voice studio & clone script cũ | Tạm thời (gỡ ở Bước 8) |
+| `projects/soc-nho-sau-rang` | `../data/projects/soc-nho-tv/content/episodes/soc-nho-sau-rang` | HyperFrames video project cũ | Tạm thời (gỡ ở Bước 8) |
+| `work/flow_package_demo` | `../data/projects/soc-nho-tv/raw/flow_package_demo` | Demo packages cũ | Tạm thời (gỡ ở Bước 8) |
+| `output` | `data/projects/soc-nho-tv/output` | Script xuất file cũ ra output/ | Tạm thời (gỡ ở Bước 8) |
+| `docs` | `ai/knowledge` | IDE / Dev tra cứu tài liệu cũ | Tạm thời (gỡ ở Bước 8) |
