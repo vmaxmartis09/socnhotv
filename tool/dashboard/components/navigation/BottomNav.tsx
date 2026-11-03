@@ -4,7 +4,7 @@ import React from "react";
 import { Link, usePathname } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
-import { LayoutDashboard, Film, FolderGit2, Users2, Settings } from "lucide-react";
+import { LayoutDashboard, Film, FolderGit2, Users2, Settings } from "@/components/ui/icons";
 
 export function BottomNav() {
   const t = useTranslations("nav");

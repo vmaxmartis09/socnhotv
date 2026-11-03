@@ -7,7 +7,7 @@ import { useTheme } from "@/components/theme/ThemeProvider";
 import { usePathname, useRouter } from "@/i18n/routing";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
-import { Sun, Moon, Laptop, Globe, Database, ShieldCheck, DollarSign } from "lucide-react";
+import { Sun, Moon, Laptop, Globe, Database, ShieldCheck, DollarSign } from "@/components/ui/icons";
 
 export default function SettingsPage() {
   const t = useTranslations("settings");

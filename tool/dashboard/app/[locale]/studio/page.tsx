@@ -18,7 +18,7 @@ import {
   Plus,
   Film,
   ArrowRight,
-} from "lucide-react";
+} from "@/components/ui/icons";
 
 export default function StudioCanvasPage() {
   const t = useTranslations("canvas");
@@ -26,9 +26,10 @@ export default function StudioCanvasPage() {
     useStudioStore();
 
   return (
-    <div className="h-[calc(100vh-3.5rem)] flex flex-col relative overflow-hidden bg-background">
+    <div className="h-full flex flex-col relative overflow-hidden bg-card">
+      <h1 className="sr-only">{t("title")}</h1>
       {/* Top Floating Action Toolbar */}
-      <div className="p-3 border-b border-border bg-card/60 backdrop-blur-md flex flex-wrap items-center justify-between gap-3 shrink-0">
+      <div className="p-3 border-b border-border bg-card flex flex-wrap items-center justify-between gap-3 shrink-0">
         <div className="flex items-center gap-2">
           {/* Aspect Ratio Selector */}
           <div className="flex items-center rounded-md border border-border bg-card p-0.5 text-xs">

@@ -17,17 +17,17 @@
       "ui": {},
       "state": "completed",
       "isStale": false,
-      "pinnedGenerationId": "gen_05cbfa3f",
+      "pinnedGenerationId": "gen_ea9497dc",
       "generations": [
         {
-          "id": "gen_05cbfa3f",
+          "id": "gen_ea9497dc",
           "nodeId": "node_idea",
           "params": {
             "content": "Sóc Nhỏ Bi thức dậy chào buổi sáng vui tươi"
           },
           "artifactId": "art_6d4b1a6f7047",
           "costUsd": 0.0,
-          "createdAt": "2026-11-03T15:08:42Z",
+          "createdAt": "2026-11-03T15:27:54Z",
           "isPinned": true
         }
       ]
@@ -103,5 +103,5 @@
       "targetPort": "image"
     }
   ],
-  "updatedAt": "2026-11-03T15:08:42Z"
+  "updatedAt": "2026-11-03T15:27:54Z"
 }

@@ -6,7 +6,7 @@ import { getRepository, type Project } from "@/lib/repositories";
 import { useStudioStore } from "@/store";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
-import { FolderGit2, Plus, Users, Film, Check, Calendar } from "lucide-react";
+import { FolderGit2, Plus, Users, Film, Check, Calendar } from "@/components/ui/icons";
 
 export default function ProjectsPage() {
   const t = useTranslations();

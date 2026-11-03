@@ -6,7 +6,7 @@ import { getRepository, type Character } from "@/lib/repositories";
 import { useStudioStore } from "@/store";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
-import { Users2, Plus, Sparkles, Ruler, Volume2, Brain } from "lucide-react";
+import { Users2, Plus, Sparkles, Ruler, Volume2, Brain } from "@/components/ui/icons";
 
 export default function CharactersPage() {
   const t = useTranslations();

@@ -5,6 +5,8 @@ import time
 import uuid
 from typing import Any, Callable, Dict, List, Optional, Set, Tuple
 
+from socnhotv.core.adapters.caption_adapter import CaptionAdapter
+from socnhotv.core.adapters.voice_adapter import VoiceAdapter
 from socnhotv.core.contracts.types import (
     Artifact,
     ArtifactKind,
@@ -187,6 +189,7 @@ class GraphRunner:
         node: NodeInstance,
         resolved_inputs: Dict[str, Any],
         run_id: str,
+        is_mock: bool = True,
     ) -> Tuple[Dict[str, Any], Optional[Artifact], float]:
         """Thực thi logic sinh sản phẩm của một Node cụ thể."""
         outputs: Dict[str, Any] = {}
@@ -308,35 +311,53 @@ class GraphRunner:
             voice_id = str(resolved_inputs.get("voiceId", "soc-nho"))
             tempo = float(resolved_inputs.get("tempo", 1.10))
 
-            art = await self.provider.speak_voice(
-                text=text,
-                voice_id=voice_id,
-                tempo=tempo,
-                node_id=node.id,
-                run_id=run_id,
-            )
+            if not is_mock:
+                voice_adapter = VoiceAdapter(self.store)
+                art = await voice_adapter.synthesize(
+                    text=text,
+                    voice_id=voice_id,
+                    tempo=tempo,
+                    node_id=node.id,
+                    run_id=run_id,
+                )
+            else:
+                art = await self.provider.speak_voice(
+                    text=text,
+                    voice_id=voice_id,
+                    tempo=tempo,
+                    node_id=node.id,
+                    run_id=run_id,
+                )
             outputs["audio"] = art
             primary_artifact = art
 
         elif node_type == "captions":
             audio_art = resolved_inputs.get("audio")
-            sub_text = "00:00:00,000 --> 00:00:04,000\nChào các bạn, mình là Sóc Nhỏ Bi nè!\n"
-            prov = ArtifactProvenance(
-                node_id=node.id,
-                run_id=run_id,
-                provider="mock-whisper",
-                model="whisper-large-v3",
-                params={},
-                input_hashes=[audio_art.hash] if isinstance(audio_art, Artifact) else [],
-                cost_usd=0.0,
-                created_at=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-            )
-            art = self.store.store_bytes(
-                data=sub_text.encode("utf-8"),
-                ext="srt",
-                kind=ArtifactKind.CAPTIONS,
-                provenance=prov,
-            )
+            if not is_mock and audio_art:
+                caption_adapter = CaptionAdapter(self.store)
+                art = await caption_adapter.generate_captions(
+                    audio_source=audio_art,
+                    node_id=node.id,
+                    run_id=run_id,
+                )
+            else:
+                sub_text = "00:00:00,000 --> 00:00:04,000\nChào các bạn, mình là Sóc Nhỏ Bi nè!\n"
+                prov = ArtifactProvenance(
+                    node_id=node.id,
+                    run_id=run_id,
+                    provider="mock-whisper",
+                    model="whisper-large-v3",
+                    params={},
+                    input_hashes=[audio_art.hash] if isinstance(audio_art, Artifact) else [],
+                    cost_usd=0.0,
+                    created_at=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                )
+                art = self.store.store_bytes(
+                    data=sub_text.encode("utf-8"),
+                    ext="srt",
+                    kind=ArtifactKind.CAPTIONS,
+                    provenance=prov,
+                )
             outputs["captions"] = art
             primary_artifact = art
 
@@ -564,7 +585,7 @@ class GraphRunner:
                         )
 
                         outputs, primary_art, cost = await self._execute_node_handler(
-                            node, resolved_inputs, run_id
+                            node, resolved_inputs, run_id, is_mock=req.mock_mode
                         )
 
                         # Lưu trữ kết quả

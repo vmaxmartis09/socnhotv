@@ -8,7 +8,7 @@ import { StatusIsland } from "@/components/ui/StatusIsland";
 import { useTheme } from "@/components/theme/ThemeProvider";
 import { usePathname, useRouter } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
-import { Sun, Moon, Laptop } from "lucide-react";
+import { MorphIcon, SunNode, MoonNode, LaptopNode } from "@/components/ui/icons";
 import { Mark } from "@/components/brand/Mark";
 
 const PAGE_KEYS: Record<string, string> = {
@@ -41,10 +41,10 @@ export function Header() {
   const toggleTheme = () => setTheme(theme === "light" ? "dark" : theme === "dark" ? "system" : "light");
   const switchLocale = (newLocale: "vi" | "en") => router.replace(pathname, { locale: newLocale });
 
-  const ThemeIcon = theme === "system" ? Laptop : resolvedTheme === "dark" ? Moon : Sun;
+  const themeIconNode = theme === "system" ? LaptopNode : resolvedTheme === "dark" ? MoonNode : SunNode;
 
   return (
-    <header className="flex h-12 shrink-0 items-center justify-between gap-3 bg-background px-3 md:pl-1 md:pr-3">
+    <header className="flex h-12 shrink-0 items-center justify-between gap-3 bg-background px-4 md:pl-1 md:pr-3">
       {/* Breadcrumb: scope, then page. On the phone the mark leads. */}
       <div className="flex min-w-0 items-center gap-2 text-sm">
         <Mark className="h-5 w-5 md:hidden" />
@@ -80,7 +80,7 @@ export function Header() {
           aria-label="Toggle theme"
           className="flex h-8 w-8 items-center justify-center rounded-md border border-border bg-card text-muted-foreground transition-colors hover:text-foreground"
         >
-          <ThemeIcon className="h-4 w-4" strokeWidth={1.5} />
+          <MorphIcon icon={themeIconNode} className="h-4 w-4" strokeWidth={1.5} spring="snappy" />
         </button>
       </div>
     </header>

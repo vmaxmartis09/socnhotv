@@ -60,30 +60,30 @@
 
 .dark {
   --background: 36 14% 7%;
-  --foreground: 38 31% 93%;
+  --foreground: 40 8% 94%;
 
   --card: 40 12% 9%;
-  --card-foreground: 38 31% 93%;
+  --card-foreground: 40 8% 94%;
   --card-elevated: 38 13% 12%;
 
   --popover: 38 13% 12%;
-  --popover-foreground: 38 31% 93%;
+  --popover-foreground: 40 8% 94%;
 
-  --primary: 38 31% 93%;
+  --primary: 40 8% 94%;
   --primary-foreground: 40 8% 8%;
   --primary-hover: 0 0% 100%;
-  --primary-soft: hsla(38, 31%, 93%, 0.08);
+  --primary-soft: hsla(40, 8%, 94%, 0.08);
 
   --brand: 24 77% 60%;
 
   --secondary: 38 13% 12%;
-  --secondary-foreground: 38 31% 93%;
+  --secondary-foreground: 40 8% 94%;
 
   --muted: 38 13% 12%;
   --muted-foreground: 39 8% 61%;
 
   --accent: 40 12% 15%;
-  --accent-foreground: 38 31% 93%;
+  --accent-foreground: 40 8% 94%;
 
   --border: 40 11% 16%;
   --input: 40 10% 24%;

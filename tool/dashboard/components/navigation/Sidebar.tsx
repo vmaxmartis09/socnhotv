@@ -11,7 +11,7 @@ import {
   Users2,
   CalendarDays,
   Settings,
-} from "lucide-react";
+} from "@/components/ui/icons";
 import { useStudioStore } from "@/store";
 import { Mark } from "@/components/brand/Mark";
 

@@ -29,25 +29,25 @@ function ScaleLock({ characters }: { characters: Character[] }) {
   return (
     <figure aria-label={t("scaleLock")} className="min-w-0">
       <figcaption className="mb-3 text-sm font-medium">{t("scaleLock")}</figcaption>
-      <div className="flex items-end gap-6 border-b border-border">
-        {characters.map((c, i) => {
+      <div className="flex items-end gap-4 border-b border-border">
+        {characters.map((c) => {
           const h = Math.round((c.heightCm / tallest) * H);
           return (
-            <div key={c.id} className="flex flex-col items-center gap-1.5">
+            <div key={c.id} className="flex w-12 flex-col items-center gap-1.5">
               <span className="text-xs tnum text-muted-foreground">
                 {t("cm", { value: c.heightCm })}
               </span>
               <div
                 style={{ height: h }}
-                className={cn("w-9 rounded-t-[4px]", i === 0 ? "bg-brand" : "bg-brand/30")}
+                className={cn("w-9 rounded-t-[4px]", c.role === "main" ? "bg-brand" : "bg-brand/30")}
               />
             </div>
           );
         })}
       </div>
-      <div className="mt-1.5 flex gap-6">
+      <div className="mt-1.5 flex gap-4">
         {characters.map((c) => (
-          <span key={c.id} className="w-9 text-center text-xs text-muted-foreground">
+          <span key={c.id} className="w-12 text-center text-xs text-muted-foreground">
             {c.name.replace(/\s*\(.*\)/, "").replace("Bạn ", "")}
           </span>
         ))}
@@ -84,7 +84,9 @@ export default function DashboardOverviewPage() {
       const repo = getRepository();
       setProject(await repo.getProject(activeProjectId));
       setChannels(await repo.listChannels());
-      setCharacters(await repo.listCharacters(activeProjectId));
+      const list = await repo.listCharacters(activeProjectId);
+      // The lead character first: it carries the brand hue in the height lock
+      setCharacters([...list].sort((a, b) => Number(b.role === "main") - Number(a.role === "main")));
     }
     load();
   }, [activeProjectId]);
@@ -124,7 +126,7 @@ export default function DashboardOverviewPage() {
         <section className="lg:col-span-7">
           <h2 className="mb-3 text-base font-medium">{t("characters")}</h2>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-[1fr_auto]">
-            <ul className="divide-y divide-border border-y border-border">
+            <ul className="self-start divide-y divide-border border-y border-border">
               {characters.map((c) => {
                 const img = c.referenceImages[0];
                 return (
