@@ -59,19 +59,17 @@ def get_render(project_id: str, job_id: str) -> RenderJob:
 
 
 def list_templates() -> List[TemplateMeta]:
-    """Scan data/shared/templates/*/template.json. Returns empty list if none exist."""
-    templates_dir = shared_path("templates")
-    if not templates_dir.exists():
-        return []
-    result: List[TemplateMeta] = []
-    for t_dir in templates_dir.iterdir():
-        if t_dir.is_dir():
-            t_json = t_dir / "template.json"
-            if t_json.exists():
-                try:
-                    with open(t_json, "r", encoding="utf-8") as f:
-                        data = json.load(f)
-                    result.append(TemplateMeta(**data))
-                except Exception:
-                    continue
-    return result
+    """Scan data/shared/templates/*/template.json via template loader."""
+    from socnhotv.video.templates.loader import list_templates as _loader_list_templates
+    templates = _loader_list_templates()
+    res: List[TemplateMeta] = []
+    for t in templates:
+        res.append(TemplateMeta(
+            id=t.id,
+            name=t.name,
+            description=getattr(t, "description", "") or t.name,
+            platforms=t.platforms,
+            slots=[s.model_dump() for s in t.slots],
+            version=str(t.version),
+        ))
+    return res

@@ -3,6 +3,12 @@
 Cung cấp các endpoint:
 - GET /video/_ping
 - GET /video/platforms
+- GET /video/templates?category=&platform=
+- GET /video/templates/{tid}
+- POST /video/templates/{tid}/validate
+- POST /video/templates/{tid}/preview
+- GET /video/templates/{tid}/preview.mp4
+- GET /video/templates/{tid}/preview.jpg
 - POST /projects/{pid}/video/render
 - GET /projects/{pid}/video/render/{job_id}
 - GET /projects/{pid}/video/renders?status=
@@ -14,14 +20,19 @@ from __future__ import annotations
 import asyncio
 import json
 import logging
+from pathlib import Path
 from typing import Any, AsyncGenerator, Dict, List, Optional
 
 from fastapi import APIRouter, HTTPException, Query, Request
+from fastapi.responses import FileResponse
 from sse_starlette.sse import EventSourceResponse
 
 from socnhotv.video.contracts import RenderJob, RenderRequest
 from socnhotv.video.platforms import PlatformPreset, list_platforms
 from socnhotv.video.queue import get_render_queue
+from socnhotv.video.templates.loader import get_template, get_template_dir, list_templates
+from socnhotv.video.templates.preview import generate_template_preview
+from socnhotv.video.templates.schema import TemplateMeta, validate_template_data
 
 logger = logging.getLogger("socnhotv.routes.video")
 
@@ -37,6 +48,104 @@ async def ping_video():
 async def get_platforms():
     """Trả về danh sách tất cả các preset nền tảng video hỗ trợ."""
     return list_platforms()
+
+
+# --- TEMPLATES API ---
+
+
+@router.get("/video/templates", response_model=List[TemplateMeta])
+async def get_templates(
+    category: Optional[str] = Query(None, description="Lọc theo category: sales, review, reup, animation..."),
+    platform: Optional[str] = Query(None, description="Lọc theo nền tảng: tiktok, reels, youtube..."),
+):
+    """Danh sách các video templates trong hệ thống."""
+    return list_templates(category=category, platform=platform)
+
+
+@router.get("/video/templates/{tid}", response_model=TemplateMeta)
+async def get_template_detail(tid: str):
+    """Chi tiết metadata và các slots của template."""
+    try:
+        return get_template(tid)
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail=f"Template '{tid}' không tồn tại")
+
+
+@router.post("/video/templates/{tid}/validate")
+async def validate_template_input(tid: str, data: Dict[str, Any]):
+    """Kiểm tra dữ liệu slot người dùng cung cấp cho template."""
+    try:
+        template = get_template(tid)
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail=f"Template '{tid}' không tồn tại")
+
+    errors = validate_template_data(template, data)
+    return {
+        "valid": len(errors) == 0,
+        "errors": errors,
+    }
+
+
+@router.post("/video/templates/{tid}/preview")
+async def render_template_preview(tid: str):
+    """Render preview nhanh 540p cho template từ sample.data.json."""
+    try:
+        get_template(tid)
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail=f"Template '{tid}' không tồn tại")
+
+    try:
+        loop = asyncio.get_running_loop()
+        await loop.run_in_executor(None, lambda: generate_template_preview(tid))
+        return {
+            "status": "ok",
+            "preview_mp4": f"/video/templates/{tid}/preview.mp4",
+            "preview_jpg": f"/video/templates/{tid}/preview.jpg",
+        }
+    except Exception as e:
+        logger.error(f"Render preview template {tid} thất bại: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get("/video/templates/{tid}/preview.mp4")
+async def get_template_preview_mp4(tid: str):
+    """Tải hoặc xem preview video MP4 của template."""
+    try:
+        t_dir = get_template_dir(tid)
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail=f"Template '{tid}' không tồn tại")
+
+    video_file = t_dir / "preview.mp4"
+    if not video_file.exists():
+        # Tự sinh nếu chưa có
+        try:
+            generate_template_preview(tid)
+        except Exception as e:
+            raise HTTPException(status_code=404, detail=f"Chưa có preview.mp4: {e}")
+
+    return FileResponse(video_file, media_type="video/mp4")
+
+
+@router.get("/video/templates/{tid}/preview.jpg")
+async def get_template_preview_jpg(tid: str):
+    """Xem thumbnail JPEG preview của template."""
+    try:
+        t_dir = get_template_dir(tid)
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail=f"Template '{tid}' không tồn tại")
+
+    jpg_file = t_dir / "preview.jpg"
+    if not jpg_file.exists():
+        # Tự sinh nếu chưa có
+        try:
+            generate_template_preview(tid)
+        except Exception as e:
+            raise HTTPException(status_code=404, detail=f"Chưa có preview.jpg: {e}")
+
+    return FileResponse(jpg_file, media_type="image/jpeg")
+
+
+# --- RENDERS QUEUE API ---
 
 
 @router.post("/projects/{pid}/video/render", response_model=RenderJob)

@@ -1,0 +1,62 @@
+{
+  "id": "yt-animation-episode-v1",
+  "name": "Hoạt Hình Dài Tập YouTube 16:9 – Sóc Nhỏ & Koala",
+  "version": 1,
+  "category": "animation",
+  "platforms": ["youtube", "facebook", "tiktok"],
+  "default_platform": "youtube",
+  "duration": {
+    "mode": "auto_from_voice",
+    "min": 30,
+    "max": 600
+  },
+  "slots": [
+    {
+      "key": "episode_number",
+      "type": "text",
+      "label": "Tập số",
+      "default": "TẬP 01"
+    },
+    {
+      "key": "episode_title",
+      "type": "text",
+      "label": "Tên tập phim",
+      "required": true,
+      "default": "Chuyến Phiêu Lưu Trong Rừng Xanh Của Bi Và Koala"
+    },
+    {
+      "key": "character_scale_lock",
+      "type": "text",
+      "label": "Khóa tỉ lệ nhân vật",
+      "default": "Sóc Nhỏ 100cm · Bạn Koala 150cm"
+    },
+    {
+      "key": "end_screen_cta",
+      "type": "text",
+      "label": "Lời nhắn outro",
+      "default": "Đăng ký kênh Sóc Nhỏ TV để đón xem tập tiếp theo nhé!"
+    }
+  ],
+  "voice": {
+    "required": true,
+    "default_voice_id": "soc-nho"
+  },
+  "captions": {
+    "style": "anchor",
+    "position": "lower_third_safe"
+  },
+  "bgm": {
+    "mood": "orchestral_adventure",
+    "duck_db": -14.0
+  },
+  "scenes": [
+    { "role": "intro_title", "dur": "4s", "summary": "Logo Sóc Nhỏ TV và Title Card mở đầu tập" },
+    { "role": "adventure_scenes", "summary": "Diễn biến câu chuyện hoạt hình giữa Bi và Koala" },
+    { "role": "outro_end_screen", "dur": "5s", "summary": "End-screen đăng ký kênh và video gợi ý" }
+  ],
+  "responsive": {
+    "youtube": "contain",
+    "facebook": "cover",
+    "tiktok": "blur-pad"
+  }
+}

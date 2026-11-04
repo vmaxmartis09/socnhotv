@@ -1,0 +1,62 @@
+{
+  "id": "unboxing-v1",
+  "name": "Mở Hộp Đập Hộp – Punch-in Chi Tiết",
+  "version": 1,
+  "category": "review",
+  "platforms": ["tiktok", "reels", "shorts", "youtube"],
+  "default_platform": "tiktok",
+  "duration": {
+    "mode": "auto_from_voice",
+    "min": 15,
+    "max": 60
+  },
+  "slots": [
+    {
+      "key": "title",
+      "type": "text",
+      "label": "Tiêu đề đập hộp",
+      "default": "📦 CÙNG ĐẬP HỘP SIÊU PHẨM MỚI VỀ"
+    },
+    {
+      "key": "item_name",
+      "type": "text",
+      "label": "Tên sản phẩm mở hộp",
+      "required": true,
+      "default": "Bộ Đồ Chơi Lắp Ráp Sóc Nhỏ Bi"
+    },
+    {
+      "key": "first_impression",
+      "type": "text",
+      "label": "Ấn tượng đầu tiên",
+      "default": "Đóng gói siêu kỹ, hoàn thiện 10/10"
+    },
+    {
+      "key": "cta",
+      "type": "text",
+      "label": "Kêu gọi hành động",
+      "default": "Follow Bi để xem clip test chi tiết nhé!"
+    }
+  ],
+  "voice": {
+    "required": true,
+    "default_voice_id": "soc-nho"
+  },
+  "captions": {
+    "style": "anchor",
+    "position": "lower_third_safe"
+  },
+  "bgm": {
+    "mood": "playful",
+    "duck_db": -10.0
+  },
+  "scenes": [
+    { "role": "box_reveal", "dur": "3s", "summary": "Xuất hiện hộp và đếm ngược" },
+    { "role": "unpack", "summary": "Mở hộp và các phụ kiện bên trong" },
+    { "role": "punch_in_detail", "summary": "Zoom cận cảnh chi tiết hoàn thiện" },
+    { "role": "conclusion", "dur": "3s", "summary": "Đánh giá tổng thể và CTA" }
+  ],
+  "responsive": {
+    "youtube": "contain",
+    "facebook": "cover"
+  }
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width={{ width }}, height={{ height }}, initial-scale=1.0" />
+    <title>{{ data.story_title }}</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <style>
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body, html { width: {{ width }}px; height: {{ height }}px; overflow: hidden; background: #0f172a; font-family: -apple-system, sans-serif; }
+      #root { position: relative; width: {{ width }}px; height: {{ height }}px; overflow: hidden; }
+      {{ styles_css }}
+    </style>
+  </head>
+  <body>
+    <div id="root"
+         data-composition-id="main"
+         data-start="0"
+         data-duration="{{ total_duration }}"
+         data-width="{{ width }}"
+         data-height="{{ height }}">
+
+      <!-- Header -->
+      <div id="title-banner" class="story-title-banner clip" data-start="0" data-duration="{{ total_duration }}" data-track-index="2">
+        📖 {{ data.story_title }}
+      </div>
+
+      <!-- Book Page Reading -->
+      <div id="book-page" class="book-page-wrapper clip" data-start="0.5" data-duration="{{ total_duration - 0.5 }}" data-track-index="2">
+        {{ data.book_page_text }}
+      </div>
+
+      <!-- Moral Lesson -->
+      <div id="moral" class="moral-box clip" data-start="2.5" data-duration="{{ total_duration - 2.5 }}" data-track-index="2">
+        ✨ Bài học: {{ data.moral_lesson }}
+      </div>
+
+      <audio id="audio-voiceover" class="clip" src="{{ voiceover_src }}" data-start="0" data-duration="{{ total_duration }}" data-track-index="3"></audio>
+      {% if bgm_src %}
+      <audio id="audio-bgm" class="clip" src="{{ bgm_src }}" data-start="0" data-duration="{{ total_duration }}" data-track-index="4" data-volume="0.14"></audio>
+      {% endif %}
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#title-banner", { y: -40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "back.out(1.6)" }, 0.1);
+      tl.fromTo("#book-page", { scale: 0.9, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: "power2.out" }, 0.5);
+      tl.fromTo("#moral", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "back.out(1.5)" }, 2.5);
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

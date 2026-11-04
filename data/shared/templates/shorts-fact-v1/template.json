@@ -1,0 +1,63 @@
+{
+  "id": "shorts-fact-v1",
+  "name": "Kiến Thức Thú Vị – Kinetic Typography & Count-up",
+  "version": 1,
+  "category": "education",
+  "platforms": ["shorts", "tiktok", "reels"],
+  "default_platform": "shorts",
+  "duration": {
+    "mode": "auto_from_voice",
+    "min": 10,
+    "max": 60
+  },
+  "slots": [
+    {
+      "key": "fact_question",
+      "type": "text",
+      "label": "Câu hỏi tò mò (Hook)",
+      "required": true,
+      "default": "BẠN CÓ BIẾT?"
+    },
+    {
+      "key": "stat_number",
+      "type": "text",
+      "label": "Con số ấn tượng (Count-up)",
+      "default": "99%"
+    },
+    {
+      "key": "fact_statement",
+      "type": "text",
+      "label": "Nội dung sự thật bất ngờ",
+      "required": true,
+      "default": "Loài sóc có thể tìm lại hơn 10.000 hạt dẻ chúng đã chôn giấu!"
+    },
+    {
+      "key": "follow_cta",
+      "type": "text",
+      "label": "Kêu gọi theo dõi",
+      "default": "Thả tim và follow để biết thêm nhiều điều kỳ thú nhé!"
+    }
+  ],
+  "voice": {
+    "required": true,
+    "default_voice_id": "soc-nho"
+  },
+  "captions": {
+    "style": "anchor",
+    "position": "lower_third_safe"
+  },
+  "bgm": {
+    "mood": "mysterious_discovery",
+    "duck_db": -12.0
+  },
+  "scenes": [
+    { "role": "question", "dur": "2s", "summary": "Đặt câu hỏi tò mò Bạn có biết" },
+    { "role": "stat_reveal", "dur": "3s", "summary": "Hiện con số thống kê bùng nổ" },
+    { "role": "explanation", "summary": "Giải thích chi tiết sự thật" },
+    { "role": "cta", "dur": "2.5s", "summary": "Kêu gọi theo dõi kênh" }
+  ],
+  "responsive": {
+    "youtube": "contain",
+    "facebook": "cover"
+  }
+}

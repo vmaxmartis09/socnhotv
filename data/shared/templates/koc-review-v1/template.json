@@ -1,0 +1,67 @@
+{
+  "id": "koc-review-v1",
+  "name": "KOC Review Sản Phẩm – 5 Sao",
+  "version": 1,
+  "category": "review",
+  "platforms": ["tiktok", "reels", "shorts", "facebook"],
+  "default_platform": "tiktok",
+  "duration": {
+    "mode": "auto_from_voice",
+    "min": 15,
+    "max": 90
+  },
+  "slots": [
+    {
+      "key": "product",
+      "type": "product",
+      "label": "Sản phẩm review",
+      "required": true
+    },
+    {
+      "key": "reviewer_badge",
+      "type": "text",
+      "label": "Tên Reviewer / Badge",
+      "default": "SÓC NHỎ TEST & REVIEW"
+    },
+    {
+      "key": "pros_text",
+      "type": "text",
+      "label": "Ưu điểm nổi bật",
+      "default": "Chất liệu cao cấp, form đẹp chuẩn SOTA"
+    },
+    {
+      "key": "cons_text",
+      "type": "text",
+      "label": "Nhược điểm lưu ý",
+      "default": "Số lượng giới hạn, nhanh hết size"
+    },
+    {
+      "key": "rating_score",
+      "type": "text",
+      "label": "Điểm đánh giá",
+      "default": "⭐⭐⭐⭐⭐ 9.5/10"
+    }
+  ],
+  "voice": {
+    "required": true,
+    "default_voice_id": "soc-nho"
+  },
+  "captions": {
+    "style": "anchor",
+    "position": "lower_third_safe"
+  },
+  "bgm": {
+    "mood": "chill_lofi",
+    "duck_db": -10.0
+  },
+  "scenes": [
+    { "role": "intro", "dur": "3s", "summary": "Giới thiệu nhân vật và sản phẩm trên tay" },
+    { "role": "pros", "summary": "Nêu ưu điểm chi tiết" },
+    { "role": "cons", "summary": "Nêu nhược điểm chân thực" },
+    { "role": "rating", "dur": "4s", "summary": "Tổng kết chấm sao và lời khuyên" }
+  ],
+  "responsive": {
+    "youtube": "contain",
+    "facebook": "cover"
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "id": "story-cartoon-v1",
+  "name": "Truyện Kể Thiếu Nhi Dọc – Trang Sách Lật & Karaoke Sub",
+  "version": 1,
+  "category": "story",
+  "platforms": ["tiktok", "reels", "shorts", "youtube"],
+  "default_platform": "tiktok",
+  "duration": {
+    "mode": "auto_from_voice",
+    "min": 15,
+    "max": 180
+  },
+  "slots": [
+    {
+      "key": "story_title",
+      "type": "text",
+      "label": "Tên câu chuyện",
+      "required": true,
+      "default": "Câu Chuyện Hạt Dẻ Thần Kỳ Của Sóc Bi"
+    },
+    {
+      "key": "moral_lesson",
+      "type": "text",
+      "label": "Bài học rút ra",
+      "default": "Biết chia sẻ là mang lại niềm vui cho mọi người!"
+    },
+    {
+      "key": "book_page_text",
+      "type": "text",
+      "label": "Đoạn văn trang sách",
+      "default": "Ngày xửa ngày xưa, trong một khu rừng thông ngút ngàn xanh mát..."
+    }
+  ],
+  "voice": {
+    "required": true,
+    "default_voice_id": "soc-nho"
+  },
+  "captions": {
+    "style": "anchor",
+    "position": "lower_third_safe"
+  },
+  "bgm": {
+    "mood": "gentle_fairytale",
+    "duck_db": -12.0
+  },
+  "scenes": [
+    { "role": "book_cover", "dur": "3s", "summary": "Bìa sách mở ra câu chuyện cổ tích" },
+    { "role": "story_reading", "summary": "Kể chuyện kết hợp tranh vẽ minh hoạ và chữ karaoke" },
+    { "role": "lesson_outro", "dur": "4s", "summary": "Bài học đạo đức ý nghĩa cho bé" }
+  ],
+  "responsive": {
+    "youtube": "contain",
+    "facebook": "cover"
+  }
+}

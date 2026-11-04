@@ -1,0 +1,55 @@
+{
+  "id": "localized-reup-v1",
+  "name": "Bản Địa Hoá Video – Lồng Tiếng & Vietsub",
+  "version": 1,
+  "category": "reup",
+  "platforms": ["tiktok", "reels", "shorts", "facebook"],
+  "default_platform": "tiktok",
+  "duration": {
+    "mode": "auto_from_voice",
+    "min": 10,
+    "max": 120
+  },
+  "slots": [
+    {
+      "key": "title",
+      "type": "text",
+      "label": "Tiêu đề video",
+      "required": true,
+      "default": "KHOẢNH KHẮC BẤT NGỜ CỦA LOÀI VẬT"
+    },
+    {
+      "key": "source_author",
+      "type": "text",
+      "label": "Tác giả nguồn (Bản quyền)",
+      "default": "@nature_daily"
+    },
+    {
+      "key": "character_reaction",
+      "type": "text",
+      "label": "Lời bình luận của Sóc Nhỏ",
+      "default": "Trời ơi các bạn có tin vào mắt mình không!"
+    }
+  ],
+  "voice": {
+    "required": true,
+    "default_voice_id": "soc-nho"
+  },
+  "captions": {
+    "style": "anchor",
+    "position": "lower_third_safe"
+  },
+  "bgm": {
+    "mood": "inspirational",
+    "duck_db": -12.0
+  },
+  "scenes": [
+    { "role": "intro", "dur": "2s", "summary": "Logo thương hiệu và giới thiệu clip" },
+    { "role": "main_content", "summary": "Video nguồn kèm vietsub và lồng tiếng" },
+    { "role": "commentary", "dur": "3s", "summary": "Sóc Nhỏ nhận xét và chia sẻ góc nhìn" }
+  ],
+  "responsive": {
+    "youtube": "contain",
+    "facebook": "cover"
+  }
+}

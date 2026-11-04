@@ -1,0 +1,44 @@
+.unbox-header {
+  position: absolute;
+  top: {{ safe_zone.top }}px;
+  left: {{ safe_zone.left }}px;
+  right: {{ safe_zone.right }}px;
+  background: #f59e0b;
+  color: #000;
+  padding: 12px 24px;
+  border-radius: 9999px;
+  font-size: 28px;
+  font-weight: 900;
+  text-align: center;
+  z-index: 20;
+}
+
+.countdown-badge {
+  position: absolute;
+  top: {{ safe_zone.top + 70 }}px;
+  right: {{ safe_zone.right }}px;
+  background: #ef4444;
+  color: #fff;
+  padding: 8px 18px;
+  border-radius: 12px;
+  font-size: 22px;
+  font-weight: 900;
+  z-index: 25;
+}
+
+.detail-pill {
+  position: absolute;
+  bottom: {{ safe_zone.bottom + 60 }}px;
+  left: {{ safe_zone.left }}px;
+  right: {{ safe_zone.right }}px;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 14px 22px;
+  border-radius: 16px;
+  font-size: 26px;
+  color: #fde047;
+  font-weight: 800;
+  text-align: center;
+  z-index: 20;
+}

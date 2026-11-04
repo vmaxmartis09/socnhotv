@@ -216,17 +216,39 @@ class RenderQueue:
                 preset = get_platform(plat)
                 out_file = project_path(req.project_id, "output", req.output_name, f"{plat}.mp4", ensure=True)
 
-                # Build bundle
+                # Build bundle (qua compose_template nếu có template, fallback build_from_scenes)
                 with tempfile.TemporaryDirectory(prefix=f"bundle_{plat}_") as b_tmp:
                     bundle_dir = Path(b_tmp)
-                    self.engine.build_from_scenes(
-                        scenes=scenes,
-                        audio_voiceover_path=voice_audio or str(bundle_dir / "dummy.wav"),
-                        platform=preset,
-                        target_dir=bundle_dir,
-                        title_badge=req.data.get("titleBadge") or req.data.get("title") or "SÓC NHỎ TV",
-                        bgm_path=req.data.get("bgm_path"),
-                    )
+                    try:
+                        from socnhotv.video.templates.compose import compose_template
+                        from socnhotv.video.templates.loader import get_template
+                        # Thử lấy template
+                        get_template(req.template_id)
+                        html = compose_template(
+                            template_id=req.template_id,
+                            data=req.data,
+                            platform=preset,
+                            voice_audio_path=voice_audio,
+                            bgm_path=req.data.get("bgm_path"),
+                        )
+                        assets_map = {}
+                        if voice_audio and Path(voice_audio).exists():
+                            assets_map["voiceover.mp3"] = Path(voice_audio)
+                        self.engine.build(
+                            composition_html=html,
+                            assets=assets_map,
+                            platform=preset,
+                            target_dir=bundle_dir,
+                        )
+                    except Exception:
+                        self.engine.build_from_scenes(
+                            scenes=scenes,
+                            audio_voiceover_path=voice_audio or str(bundle_dir / "dummy.wav"),
+                            platform=preset,
+                            target_dir=bundle_dir,
+                            title_badge=req.data.get("titleBadge") or req.data.get("title") or "SÓC NHỎ TV",
+                            bgm_path=req.data.get("bgm_path"),
+                        )
 
                     # Render
                     loop = asyncio.get_running_loop()

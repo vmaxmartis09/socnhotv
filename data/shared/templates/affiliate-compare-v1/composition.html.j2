@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width={{ width }}, height={{ height }}, initial-scale=1.0" />
+    <title>{{ data.title }}</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <style>
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body, html { width: {{ width }}px; height: {{ height }}px; overflow: hidden; background: #030712; font-family: -apple-system, sans-serif; }
+      #root { position: relative; width: {{ width }}px; height: {{ height }}px; overflow: hidden; }
+      {{ styles_css }}
+    </style>
+  </head>
+  <body>
+    <div id="root"
+         data-composition-id="main"
+         data-start="0"
+         data-duration="{{ total_duration }}"
+         data-width="{{ width }}"
+         data-height="{{ height }}">
+
+      <!-- Header -->
+      <div id="hdr" class="compare-header clip" data-start="0" data-duration="{{ total_duration }}" data-track-index="2">
+        ⚖️ {{ data.title or "KÈO ĐẤU: NÊN MUA BÊN NÀO?" }}
+      </div>
+
+      <!-- Split VS -->
+      <div id="split-box" class="split-wrapper clip" data-start="0.5" data-duration="{{ total_duration - 0.5 }}" data-track-index="2">
+        <div class="split-col col-a">{{ data.item_a }}</div>
+        <div class="vs-badge">VS</div>
+        <div class="split-col col-b">{{ data.item_b }}</div>
+      </div>
+
+      <!-- Winner Verdict -->
+      <div id="verdict" class="verdict-box clip" data-start="2.5" data-duration="{{ total_duration - 2.5 }}" data-track-index="2">
+        🏆 {{ data.winner }}
+      </div>
+
+      <audio id="audio-voiceover" class="clip" src="{{ voiceover_src }}" data-start="0" data-duration="{{ total_duration }}" data-track-index="3"></audio>
+      {% if bgm_src %}
+      <audio id="audio-bgm" class="clip" src="{{ bgm_src }}" data-start="0" data-duration="{{ total_duration }}" data-track-index="4" data-volume="0.16"></audio>
+      {% endif %}
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#hdr", { y: -30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4 }, 0.1);
+      tl.fromTo("#split-box", { scale: 0.9, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.45, ease: "power2.out" }, 0.5);
+      tl.fromTo("#verdict", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "back.out(1.6)" }, 2.5);
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

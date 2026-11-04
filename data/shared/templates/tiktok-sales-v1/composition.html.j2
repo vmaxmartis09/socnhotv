@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width={{ width }}, height={{ height }}, initial-scale=1.0" />
+    <title>{{ data.hook_text }}</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <style>
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body, html { width: {{ width }}px; height: {{ height }}px; overflow: hidden; background: #0b0f19; font-family: -apple-system, sans-serif; }
+      #root { position: relative; width: {{ width }}px; height: {{ height }}px; overflow: hidden; }
+      {{ styles_css }}
+    </style>
+  </head>
+  <body>
+    <div id="root"
+         data-composition-id="main"
+         data-start="0"
+         data-duration="{{ total_duration }}"
+         data-width="{{ width }}"
+         data-height="{{ height }}">
+
+      <!-- Hook 3s -->
+      <div id="hook-badge" class="sales-badge-hook clip"
+           data-start="0"
+           data-duration="3.5"
+           data-track-index="2">
+        {{ data.hook_text }}
+      </div>
+
+      <!-- Price Box -->
+      <div id="price-box" class="price-container clip"
+           data-start="2.0"
+           data-duration="{{ total_duration - 2.0 }}"
+           data-track-index="2">
+        <span class="disc-price">{{ data.discount_price or "149.000đ" }}</span>
+        <span class="orig-price">{{ data.original_price or "299.000đ" }}</span>
+        <span class="badge-percent">{{ data.discount_badge or "-50%" }}</span>
+      </div>
+
+      <!-- CTA Giỏ hàng trong safe-zone -->
+      <div id="cta-cart" class="cta-cart-anchor clip"
+           data-start="3.0"
+           data-duration="{{ total_duration - 3.0 }}"
+           data-track-index="2">
+        🛒 {{ data.cta or "Bấm giỏ hàng ngay" }}
+      </div>
+
+      <!-- Background Audio -->
+      <audio id="audio-voiceover" class="clip" src="{{ voiceover_src }}" data-start="0" data-duration="{{ total_duration }}" data-track-index="3"></audio>
+      {% if bgm_src %}
+      <audio id="audio-bgm" class="clip" src="{{ bgm_src }}" data-start="0" data-duration="{{ total_duration }}" data-track-index="4" data-volume="0.15"></audio>
+      {% endif %}
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#hook-badge", { y: -50, opacity: 0, scale: 0.9 }, { y: 0, opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.7)" }, 0.1);
+      tl.fromTo("#price-box", { x: -40, opacity: 0 }, { x: 0, opacity: 1, duration: 0.4, ease: "power2.out" }, 2.0);
+      tl.fromTo("#cta-cart", { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.35, ease: "elastic.out(1, 0.5)" }, 3.0);
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

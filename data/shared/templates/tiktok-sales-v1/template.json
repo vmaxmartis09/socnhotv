@@ -1,0 +1,75 @@
+{
+  "id": "tiktok-sales-v1",
+  "name": "Bán hàng TikTok – Hook 3s",
+  "version": 1,
+  "category": "sales",
+  "platforms": ["tiktok", "reels", "shorts", "douyin", "facebook"],
+  "default_platform": "tiktok",
+  "duration": {
+    "mode": "auto_from_voice",
+    "min": 15,
+    "max": 60
+  },
+  "slots": [
+    {
+      "key": "hook_text",
+      "type": "text",
+      "label": "Tiêu đề Hook",
+      "max_chars": 60,
+      "required": true
+    },
+    {
+      "key": "product",
+      "type": "product",
+      "label": "Thông tin sản phẩm",
+      "required": true
+    },
+    {
+      "key": "original_price",
+      "type": "text",
+      "label": "Giá gốc",
+      "default": "299.000đ"
+    },
+    {
+      "key": "discount_price",
+      "type": "text",
+      "label": "Giá ưu đãi",
+      "default": "149.000đ"
+    },
+    {
+      "key": "discount_badge",
+      "type": "text",
+      "label": "Phần trăm giảm",
+      "default": "-50%"
+    },
+    {
+      "key": "cta",
+      "type": "text",
+      "label": "Kêu gọi hành động",
+      "default": "Bấm giỏ hàng ngay hôm nay!"
+    }
+  ],
+  "voice": {
+    "required": true,
+    "default_voice_id": "soc-nho"
+  },
+  "captions": {
+    "style": "anchor",
+    "position": "lower_third_safe"
+  },
+  "bgm": {
+    "mood": "upbeat",
+    "duck_db": -12.0
+  },
+  "scenes": [
+    { "role": "hook", "dur": "3s", "summary": "Hook gây sốc và lôi cuốn 3s đầu" },
+    { "role": "problem", "summary": "Nêu vấn đề khách hàng đang gặp" },
+    { "role": "demo", "summary": "Giới thiệu giải pháp từ sản phẩm" },
+    { "role": "proof", "summary": "Bằng chứng ưu đãi và phản hồi tốt" },
+    { "role": "cta", "dur": "3s", "summary": "Kêu gọi bấm giỏ hàng góc trái" }
+  ],
+  "responsive": {
+    "youtube": "blur-pad",
+    "facebook": "cover"
+  }
+}

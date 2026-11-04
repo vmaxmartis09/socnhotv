@@ -1,0 +1,68 @@
+{
+  "id": "affiliate-compare-v1",
+  "name": "So Sánh Sản Phẩm Affiliate – Kèo Cân Não",
+  "version": 1,
+  "category": "affiliate",
+  "platforms": ["tiktok", "reels", "shorts", "youtube"],
+  "default_platform": "tiktok",
+  "duration": {
+    "mode": "auto_from_voice",
+    "min": 15,
+    "max": 60
+  },
+  "slots": [
+    {
+      "key": "title",
+      "type": "text",
+      "label": "Tiêu đề so sánh",
+      "default": "KÈO ĐẤU: NÊN MUA BÊN NÀO?"
+    },
+    {
+      "key": "item_a",
+      "type": "text",
+      "label": "Tên sản phẩm A",
+      "required": true,
+      "default": "Phiên bản Standard"
+    },
+    {
+      "key": "item_b",
+      "type": "text",
+      "label": "Tên sản phẩm B",
+      "required": true,
+      "default": "Phiên bản Pro Max"
+    },
+    {
+      "key": "criteria",
+      "type": "text",
+      "label": "Tiêu chí so sánh chính",
+      "default": "Giá rẻ hơn 40% vs Tính năng vượt trội"
+    },
+    {
+      "key": "winner",
+      "type": "text",
+      "label": "Lựa chọn khuyên dùng",
+      "default": "CHỐT: Phiên bản Pro Max đáng tiền hơn!"
+    }
+  ],
+  "voice": {
+    "required": true,
+    "default_voice_id": "soc-nho"
+  },
+  "captions": {
+    "style": "anchor",
+    "position": "lower_third_safe"
+  },
+  "bgm": {
+    "mood": "energetic",
+    "duck_db": -12.0
+  },
+  "scenes": [
+    { "role": "versus", "dur": "3s", "summary": "Mở màn so sánh 2 bên" },
+    { "role": "breakdown", "summary": "Phân tích điểm mạnh điểm yếu" },
+    { "role": "verdict", "dur": "4s", "summary": "Chốt kèo sản phẩm chiến thắng" }
+  ],
+  "responsive": {
+    "youtube": "contain",
+    "facebook": "cover"
+  }
+}

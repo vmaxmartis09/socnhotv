@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width={{ width }}, height={{ height }}, initial-scale=1.0" />
+    <title>{{ data.fact_question }}</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <style>
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body, html { width: {{ width }}px; height: {{ height }}px; overflow: hidden; background: #09090b; font-family: -apple-system, sans-serif; }
+      #root { position: relative; width: {{ width }}px; height: {{ height }}px; overflow: hidden; }
+      {{ styles_css }}
+    </style>
+  </head>
+  <body>
+    <div id="root"
+         data-composition-id="main"
+         data-start="0"
+         data-duration="{{ total_duration }}"
+         data-width="{{ width }}"
+         data-height="{{ height }}">
+
+      <!-- Hook Top -->
+      <div id="fact-hook" class="fact-badge-top clip" data-start="0" data-duration="{{ total_duration }}" data-track-index="2">
+        💡 {{ data.fact_question or "BẠN CÓ BIẾT?" }}
+      </div>
+
+      <!-- Stat Big Number -->
+      <div id="stat-num" class="stat-number-box clip" data-start="0.6" data-duration="{{ total_duration - 0.6 }}" data-track-index="2">
+        {{ data.stat_number or "99%" }}
+      </div>
+
+      <!-- Statement Body -->
+      <div id="statement" class="statement-card clip" data-start="1.8" data-duration="{{ total_duration - 1.8 }}" data-track-index="2">
+        {{ data.fact_statement }}
+      </div>
+
+      <audio id="audio-voiceover" class="clip" src="{{ voiceover_src }}" data-start="0" data-duration="{{ total_duration }}" data-track-index="3"></audio>
+      {% if bgm_src %}
+      <audio id="audio-bgm" class="clip" src="{{ bgm_src }}" data-start="0" data-duration="{{ total_duration }}" data-track-index="4" data-volume="0.15"></audio>
+      {% endif %}
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#fact-hook", { y: -40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "back.out(1.8)" }, 0.1);
+      tl.fromTo("#stat-num", { scale: 0.2, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: "elastic.out(1, 0.4)" }, 0.6);
+      tl.fromTo("#statement", { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }, 1.8);
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
