@@ -1,5 +1,9 @@
 # Requests & Dependencies Log
 
+> [!NOTE]
+> **LƯU Ý QUAN TRỌNG (SESSION E — 2026-11-04):**
+> Các con số phân tích (12.4K views, 78.5% giữ chân, khung giờ vàng Thứ 2/Thứ 6, v.v.) bên dưới là **DỮ LIỆU MẪU (SEED DEMO)** sinh từ kịch bản kiểm thử, không phải số liệu đo lường thực tế từ người dùng thật. Không dùng các con số này để làm căn cứ quyết định sản phẩm.
+
 Danh sách yêu cầu phụ thuộc giữa các session:
 
 - **Session C (2026-11-04) -> 99_FINAL (Đề xuất cập nhật CONTINUITY.md):**

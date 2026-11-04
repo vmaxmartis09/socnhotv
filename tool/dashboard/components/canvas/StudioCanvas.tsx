@@ -1071,34 +1071,52 @@ function StudioCanvasInner() {
     [screenToFlowPosition, handlePlaceNewNode]
   );
 
+  // Danh sách node phụ ẩn khỏi bảng thêm node (giữ backend, chỉ ẩn UI)
+  const HIDDEN_NODE_TYPES = useMemo(
+    () =>
+      new Set([
+        "source_video",
+        "localize",
+        "blueprint_analyze",
+        "script_from_blueprint",
+        "channel_insight",
+      ]),
+    []
+  );
+
   // Filtered node definitions for Add Node popover
   const filteredAddDefs = useMemo(() => {
+    const visibleCatalog = nodeCatalog.filter(
+      (d) => !HIDDEN_NODE_TYPES.has(d.typeName)
+    );
     const q = addSearch.trim().toLowerCase();
-    if (!q) return nodeCatalog;
-    return nodeCatalog.filter(
+    if (!q) return visibleCatalog;
+    return visibleCatalog.filter(
       (d) =>
         d.displayName.toLowerCase().includes(q) ||
         d.typeName.toLowerCase().includes(q) ||
         d.category.toLowerCase().includes(q) ||
         d.description.toLowerCase().includes(q)
     );
-  }, [nodeCatalog, addSearch]);
+  }, [nodeCatalog, addSearch, HIDDEN_NODE_TYPES]);
 
   // Filtered node definitions for Quick-Add (+) port menu: ONLY compatible types!
   const compatibleQuickAddDefs = useMemo(() => {
     if (!quickAddReq) return [];
-    return nodeCatalog.filter((d) => {
-      if (quickAddReq.direction === "after") {
-        return d.inputPorts.some((p) =>
-          isPortCompatible(quickAddReq.portType, p.portType)
-        );
-      } else {
-        return d.outputPorts.some((p) =>
-          isPortCompatible(p.portType, quickAddReq.portType)
-        );
-      }
-    });
-  }, [nodeCatalog, quickAddReq]);
+    return nodeCatalog
+      .filter((d) => !HIDDEN_NODE_TYPES.has(d.typeName))
+      .filter((d) => {
+        if (quickAddReq.direction === "after") {
+          return d.inputPorts.some((p) =>
+            isPortCompatible(quickAddReq.portType, p.portType)
+          );
+        } else {
+          return d.outputPorts.some((p) =>
+            isPortCompatible(p.portType, quickAddReq.portType)
+          );
+        }
+      });
+  }, [nodeCatalog, quickAddReq, HIDDEN_NODE_TYPES]);
 
   const stepInfo = useMemo(() => analyzeGraph(nodes, edges), [nodes, edges]);
 

@@ -3,11 +3,11 @@
 import { useEffect } from "react";
 import { useRouter } from "@/i18n/routing";
 
-export default function PublishRedirectPage() {
+export default function RedirectToStudio() {
   const router = useRouter();
 
   useEffect(() => {
-    router.replace("/social");
+    router.replace("/studio");
   }, [router]);
 
   return null;
