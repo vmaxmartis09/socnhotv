@@ -129,11 +129,44 @@ def validate_graph(graph: Graph) -> GraphValidationResult:
         )
         topological_order = []
 
-    # 4. Kiểm tra Required Inputs
+    # 4. Kiểm tra Required Inputs và tính đầy đủ của dữ liệu nhập liệu trên card
     for node_id, node in node_map.items():
         node_def = NodeRegistry.get(node.type)
         if not node_def:
             continue
+
+        # Kiểm tra chi tiết cho các node nhập liệu cốt lõi
+        if node.type == "script":
+            mode = str(node.params.get("mode", "ai"))
+            if mode == "paste":
+                raw_s = str(node.params.get("rawScript", "")).strip()
+                if not raw_s:
+                    warnings.append(
+                        f"Node '{node_id}' (script) đang ở chế độ 'Dán kịch bản' nhưng chưa dán kịch bản (rawScript rỗng)."
+                    )
+            else:
+                is_connected = (node_id, "text") in connected_target_ports
+                has_text = bool(str(node.params.get("text") or node.params.get("content", "")).strip())
+                if not (is_connected or has_text):
+                    warnings.append(
+                        f"Node '{node_id}' (script) chưa nhận ý tưởng (cổng 'text' chưa nối và chưa nhập text)."
+                    )
+
+        elif node.type == "voice_tts":
+            is_connected = (node_id, "text") in connected_target_ports
+            has_text = bool(str(node.params.get("text", "")).strip())
+            if not (is_connected or has_text):
+                warnings.append(
+                    f"Node '{node_id}' (voice_tts) chưa nhận lời thoại cần đọc (cổng 'text' chưa nối và chưa nhập text)."
+                )
+
+        elif node.type in ("image", "character_image"):
+            uri = str(node.params.get("uri", "")).strip()
+            if not uri:
+                warnings.append(
+                    f"Node '{node_id}' ({node.type}) chưa có ảnh được chọn hoặc tải lên (uri rỗng)."
+                )
+
         for req_port in node_def.input_ports:
             if not req_port.required:
                 continue

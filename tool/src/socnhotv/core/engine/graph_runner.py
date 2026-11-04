@@ -512,100 +512,85 @@ class GraphRunner:
             cost_usd = 0.0
 
         elif node_type == "script":
-            text_in = str(resolved_inputs.get("text", "Sóc Nhỏ và Chiếc Răng Sâu"))
-            target_count = int(resolved_inputs.get("targetSceneCount", 6))
+            mode = str(resolved_inputs.get("mode") or node.params.get("mode", "ai"))
+            target_count = int(resolved_inputs.get("targetSceneCount", node.params.get("targetSceneCount", 6)))
+            target_dur = float(resolved_inputs.get("targetDurationSec", node.params.get("targetDurationSec", 45.0)))
             scenes: List[Dict[str, Any]] = []
             prov_name = "mock"
             model_used = "script-planner-v1"
             actual_script_cost = 0.0
+            text_in = ""
 
-            if not is_mock and self._is_real_provider() and hasattr(self.provider, "text_complete"):
-                schema = {
-                    "type": "OBJECT",
-                    "properties": {
-                        "scenes": {
-                            "type": "ARRAY",
-                            "items": {
-                                "type": "OBJECT",
-                                "properties": {
-                                    "sceneNumber": {"type": "INTEGER"},
-                                    "title": {"type": "STRING"},
-                                    "imagePrompt": {"type": "STRING"},
-                                    "videoPrompt": {"type": "STRING"},
-                                    "dialogue": {"type": "STRING"},
-                                    "durationSec": {"type": "NUMBER"},
+            if mode == "paste":
+                raw_script = str(resolved_inputs.get("rawScript") or node.params.get("rawScript") or "").strip()
+                if not raw_script:
+                    raise ValueError(f"Node '{node.id}' (script) đang ở chế độ dán kịch bản nhưng chưa nhập kịch bản (rawScript rỗng).")
+                from socnhotv.core.engine.script_parser import parse_script
+                scenes = parse_script(raw_script, target_scene_count=target_count, target_duration_sec=target_dur)
+                if not scenes:
+                    raise ValueError(f"Node '{node.id}' (script) không thể phân tích các cảnh từ kịch bản dán sẵn.")
+                prov_name = "local"
+                model_used = "script_parser"
+                actual_script_cost = 0.0
+                text_in = scenes[0].get("title", "Kịch bản dán")
+            else:
+                # Mode AI
+                text_in = str(resolved_inputs.get("text") or node.params.get("text") or node.params.get("content") or "").strip()
+                if not text_in:
+                    raise ValueError(f"Node '{node.id}' (script) thiếu nội dung ý tưởng (cổng 'text' chưa nối và chưa nhập text).")
+
+                if not is_mock and self._is_real_provider() and hasattr(self.provider, "text_complete"):
+                    schema = {
+                        "type": "OBJECT",
+                        "properties": {
+                            "scenes": {
+                                "type": "ARRAY",
+                                "items": {
+                                    "type": "OBJECT",
+                                    "properties": {
+                                        "sceneNumber": {"type": "INTEGER"},
+                                        "title": {"type": "STRING"},
+                                        "imagePrompt": {"type": "STRING"},
+                                        "videoPrompt": {"type": "STRING"},
+                                        "dialogue": {"type": "STRING"},
+                                        "durationSec": {"type": "NUMBER"},
+                                    },
+                                    "required": ["sceneNumber", "imagePrompt", "videoPrompt", "dialogue", "durationSec"],
                                 },
-                                "required": ["sceneNumber", "imagePrompt", "videoPrompt", "dialogue", "durationSec"],
-                            },
-                        }
-                    },
-                    "required": ["scenes"],
-                }
-                tc_res = await self.provider.text_complete(
-                    system=(
-                        "Bạn là biên kịch hoạt hình 3D Sóc Nhỏ TV. Hãy tách cốt truyện thành danh sách cảnh "
-                        "(tuân thủ tỉ lệ Sóc Nhỏ Bi 100cm, Koala 150cm)."
-                    ),
-                    prompt=f"Tách thành {target_count} cảnh JSON cho ý tưởng: {text_in}",
-                    schema=schema,
-                )
-                if isinstance(tc_res.get("scenes"), list) and tc_res["scenes"]:
-                    scenes = tc_res["scenes"]
-                    prov_name = str(tc_res.get("provider", "google"))
-                    model_used = str(tc_res.get("model", "gemini-2.5-flash"))
-                    actual_script_cost = float(tc_res.get("costUsd", 0.0))
+                            }
+                        },
+                        "required": ["scenes"],
+                    }
+                    tc_res = await self.provider.text_complete(
+                        system=(
+                            "Bạn là biên kịch hoạt hình 3D Sóc Nhỏ TV. Hãy tách cốt truyện thành danh sách cảnh "
+                            "(tuân thủ tỉ lệ Sóc Nhỏ Bi 100cm, Koala 150cm)."
+                        ),
+                        prompt=f"Tách thành {target_count} cảnh JSON cho ý tưởng: {text_in}",
+                        schema=schema,
+                    )
+                    if isinstance(tc_res.get("scenes"), list) and tc_res["scenes"]:
+                        scenes = tc_res["scenes"]
+                        prov_name = str(tc_res.get("provider", "google"))
+                        model_used = str(tc_res.get("model", "gemini-2.5-flash"))
+                        actual_script_cost = float(tc_res.get("costUsd", 0.0))
 
-            if not scenes:
-                scenes = [
-                    {
-                        "sceneNumber": 1,
-                        "title": "Cảnh 1: Kệ kẹo nhà cây",
-                        "imagePrompt": "Sóc Bi ở nhà cây, kệ đầy hũ kẹo, mắt sáng rực, 3D Pixar 100cm",
-                        "videoPrompt": "Camera dolly chậm vào Sóc Bi đang nhảy lên vui sướng",
-                        "dialogue": "Oa, nhiều kẹo quá! Hôm nay Bi sẽ ăn thật nhiều luôn!",
-                        "durationSec": 7.0,
-                    },
-                    {
-                        "sceneNumber": 2,
-                        "title": "Cảnh 2: Quên đánh răng",
-                        "imagePrompt": "Bi ăn kẹo liên tục trên sàn gỗ nhà cây, vỏ kẹo chất đống rồi ngủ quên",
-                        "videoPrompt": "Camera pan nhẹ qua đống vỏ kẹo, Bi ngáp ngủ",
-                        "dialogue": "Bi ăn kẹo cả ngày, tối đến lại quên đánh răng rồi đi ngủ.",
-                        "durationSec": 8.0,
-                    },
-                    {
-                        "sceneNumber": 3,
-                        "title": "Cảnh 3: Sáng dậy đau răng",
-                        "imagePrompt": "Bi ôm má nhăn mặt vì đau răng trong nắng sớm nhà cây",
-                        "videoPrompt": "Camera push-in cận mặt Bi ôm má mếu máo",
-                        "dialogue": "Ôi đau quá! Sáng nay răng của Bi đau lắm!",
-                        "durationSec": 7.0,
-                    },
-                    {
-                        "sceneNumber": 4,
-                        "title": "Cảnh 4: Khám Bác sĩ Koala",
-                        "imagePrompt": "Bác sĩ Koala (150cm) khám răng cho Sóc Bi (100cm) tại phòng khám rừng xanh",
-                        "videoPrompt": "Bác sĩ Koala cầm gương nha khoa soi nhẹ nhàng và gật đầu",
-                        "dialogue": "Bác sĩ Koala bảo Bi bị sâu răng vì ăn quá nhiều kẹo ngọt.",
-                        "durationSec": 8.0,
-                    },
-                    {
-                        "sceneNumber": 5,
-                        "title": "Cảnh 5: Học chải răng đúng cách",
-                        "imagePrompt": "Bác sĩ Koala cầm bàn chải lớn hướng dẫn Sóc Bi đánh răng xoay tròn",
-                        "videoPrompt": "Bi làm theo bác sĩ Koala, cả hai cùng mỉm cười",
-                        "dialogue": "Bác sĩ dạy Bi đánh răng sáng tối, ăn ít kẹo, uống nhiều nước.",
-                        "durationSec": 8.0,
-                    },
-                    {
-                        "sceneNumber": 6,
-                        "title": "Cảnh 6: Răng trắng sáng bóng",
-                        "imagePrompt": "Sóc Bi cười tươi răng trắng sáng trước cửa nhà cây, kệ đầy táo và cà rốt",
-                        "videoPrompt": "Camera pull-back chậm, Bi vẫy tay chào khán giả",
-                        "dialogue": "Cảm ơn bác sĩ! Từ nay Bi sẽ chăm sóc răng thật tốt!",
-                        "durationSec": 7.0,
-                    },
-                ]
+                if not scenes:
+                    from socnhotv.core.engine.script_parser import parse_script
+                    scenes = parse_script(text_in, target_scene_count=target_count, target_duration_sec=target_dur)
+                    if not scenes:
+                        dur_per_scene = round(target_dur / max(1, target_count), 1)
+                        scenes = [
+                            {
+                                "sceneNumber": i,
+                                "title": f"Cảnh {i}: {text_in[:30]}",
+                                "imagePrompt": f"Phân cảnh {i} hoạt hình 3D Pixar: {text_in}",
+                                "videoPrompt": f"Camera chuyển động theo phân cảnh {i}",
+                                "dialogue": text_in if i == 1 else f"Tiếp tục diễn biến cảnh {i} cho: {text_in}",
+                                "durationSec": dur_per_scene,
+                            }
+                            for i in range(1, target_count + 1)
+                        ]
 
             outputs["scenes"] = scenes
             outputs["prompt"] = scenes[0].get("imagePrompt", "")
@@ -739,7 +724,12 @@ class GraphRunner:
             cost_usd = art.provenance.cost_usd
 
         elif node_type == "voice_tts":
-            text = str(resolved_inputs.get("text", "Chào các bạn, mình là Sóc Nhỏ Bi nè!"))
+            text = str(resolved_inputs.get("text") or node.params.get("text") or "").strip()
+            if not text:
+                raise ValueError(
+                    f"Node '{node.id}' (voice_tts) thiếu nội dung văn bản cho giọng đọc "
+                    "(chưa nối dây cổng 'text' và chưa nhập text)."
+                )
             char_obj = resolved_inputs.get("character")
             default_vid = (
                 char_obj.get("defaultVoice", "soc-nho")
@@ -801,7 +791,7 @@ class GraphRunner:
             primary_artifact = art
             cost_usd = 0.0
 
-        elif node_type in ("hyperframes_render", "export"):
+        elif node_type == "hyperframes_render":
             if not is_mock:
                 hf_adapter = HyperFramesAdapter(self.store)
                 scenes = resolved_inputs.get("scenes") or []
@@ -833,11 +823,16 @@ class GraphRunner:
                 if not isinstance(cap_art, Artifact):
                     cap_art = None
 
+                title_badge = str(
+                    node.params.get("titleBadge")
+                    or node.params.get("templateId")
+                    or "SÓC NHỎ TV • TẬP MỚI"
+                )
                 art = await hf_adapter.render_from_artifacts(
                     scenes=scenes,
                     voice_artifact=voice_art,
                     captions_artifact=cap_art,
-                    title_badge=node.params.get("titleBadge", "SÓC NHỎ TV • TẬP MỚI"),
+                    title_badge=title_badge,
                     node_id=node.id,
                     run_id=run_id,
                 )
@@ -848,6 +843,67 @@ class GraphRunner:
                         vid_fn,
                         {
                             "prompt": "Final rendered video composition 9:16",
+                            "duration_sec": 12.0,
+                            "aspect_ratio": "9:16",
+                            "has_audio": True,
+                            "node_id": node.id,
+                            "run_id": run_id,
+                        },
+                    )
+                )
+            outputs["video"] = art
+            outputs["manifest"] = art
+            primary_artifact = art
+            cost_usd = 0.0
+
+        elif node_type == "export":
+            vid_in = resolved_inputs.get("video")
+            output_file_name = str(node.params.get("outputFileName", "final_video.mp4"))
+            platforms = list(node.params.get("platforms", ["tiktok", "youtube"]))
+
+            output_dir = self.store.output_dir
+            output_dir.mkdir(parents=True, exist_ok=True)
+            target_path = output_dir / output_file_name
+
+            if isinstance(vid_in, Artifact):
+                src_path = self.store.project_dir / vid_in.uri.lstrip("/")
+                if src_path.exists() and src_path.is_file():
+                    import shutil
+                    shutil.copy2(src_path, target_path)
+                prov = ArtifactProvenance(
+                    node_id=node.id,
+                    run_id=run_id,
+                    provider="local",
+                    model="export",
+                    params={"outputFileName": output_file_name, "platforms": platforms},
+                    cost_usd=0.0,
+                    created_at=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                )
+                art = self.store.store_bytes(
+                    data=target_path.read_bytes() if target_path.exists() else b"",
+                    ext="mp4",
+                    kind=ArtifactKind.VIDEO,
+                    provenance=prov,
+                )
+            elif not is_mock:
+                hf_adapter = HyperFramesAdapter(self.store)
+                scenes = resolved_inputs.get("scenes") or []
+                voice_art = resolved_inputs.get("audio") or resolved_inputs.get("voice")
+                cap_art = resolved_inputs.get("captions")
+                art = await hf_adapter.render_from_artifacts(
+                    scenes=scenes,
+                    voice_artifact=voice_art if isinstance(voice_art, Artifact) else None,
+                    captions_artifact=cap_art if isinstance(cap_art, Artifact) else None,
+                    node_id=node.id,
+                    run_id=run_id,
+                )
+            else:
+                vid_fn = self.provider.generate_video
+                art = await vid_fn(
+                    **_filter_kwargs(
+                        vid_fn,
+                        {
+                            "prompt": "Exported video composition 9:16",
                             "duration_sec": 12.0,
                             "aspect_ratio": "9:16",
                             "has_audio": True,

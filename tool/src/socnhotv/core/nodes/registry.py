@@ -83,14 +83,14 @@ class NodeRegistry:
                 category="Structure",
                 description="Biến kịch bản thành danh sách cảnh có prompt ảnh, chuyển động và lời thoại",
                 input_ports=[
-                    PortDefinition(name="text", port_type=PortType.TEXT, description="Ý tưởng hoặc cốt truyện")
+                    PortDefinition(name="text", port_type=PortType.TEXT, description="Ý tưởng hoặc cốt truyện", required=False)
                 ],
                 output_ports=[
                     PortDefinition(name="scenes", port_type=PortType.SCENES, description="Danh sách phân cảnh cấu trúc"),
                     PortDefinition(name="prompt", port_type=PortType.TEXT, description="Prompt tạo ảnh/video theo cảnh"),
                     PortDefinition(name="dialogue", port_type=PortType.TEXT, description="Lời thoại theo cảnh"),
                 ],
-                default_params={"targetSceneCount": 6, "targetDurationSec": 45},
+                default_params={"mode": "ai", "rawScript": "", "targetSceneCount": 6, "targetDurationSec": 45},
                 mockable=True,
             )
         )
@@ -147,17 +147,20 @@ class NodeRegistry:
                 category="Generation",
                 description="Tạo ảnh từ prompt mô tả kết hợp các ảnh tham chiếu nhận diện nhân vật",
                 input_ports=[
-                    PortDefinition(name="prompt", port_type=PortType.TEXT, description="Prompt mô tả cảnh"),
+                    PortDefinition(name="prompt", port_type=PortType.TEXT, description="Prompt mô tả cảnh", required=False),
                     PortDefinition(name="references", port_type=PortType.IMAGE_LIST, description="Ảnh tham chiếu DNA", required=False),
+                    PortDefinition(name="image", port_type=PortType.IMAGE, description="Ảnh mẫu tham chiếu", required=False),
                 ],
                 output_ports=[
                     PortDefinition(name="images", port_type=PortType.IMAGE_LIST, description="Danh sách ảnh sinh ra"),
                     PortDefinition(name="image", port_type=PortType.IMAGE, description="Ảnh đại diện / khung đầu tiên sinh ra"),
                 ],
                 default_params={
+                    "prompt": "",
                     "model": "mock-image",
                     "aspectRatio": "9:16",
                     "resolution": "1080p",
+                    "referenceImages": [],
                     "n": 1,
                     "seed": None,
                 },
@@ -219,13 +222,14 @@ class NodeRegistry:
                 category="Audio",
                 description="Đọc lời thoại kịch bản bằng giọng Sóc Nhỏ (soc-nho) chuẩn ngữ điệu cảm xúc",
                 input_ports=[
-                    PortDefinition(name="text", port_type=PortType.TEXT, description="Lời thoại cần đọc"),
+                    PortDefinition(name="text", port_type=PortType.TEXT, description="Lời thoại cần đọc", required=False),
                     PortDefinition(name="character", port_type=PortType.CHARACTER, description="Hồ sơ nhân vật chứa voiceId", required=False),
                 ],
                 output_ports=[
                     PortDefinition(name="audio", port_type=PortType.AUDIO, description="Tệp âm thanh MP3 đã master -14 LUFS")
                 ],
                 default_params={
+                    "text": "",
                     "voiceId": "soc-nho",
                     "tempo": 1.10,
                     "mastering": True,
@@ -275,6 +279,8 @@ class NodeRegistry:
                 default_params={
                     "aspectRatio": "9:16",
                     "template": "default_cartoon",
+                    "templateId": "default_cartoon",
+                    "platform": "tiktok",
                     "safeZonePaddingTop": 180,
                     "safeZonePaddingBottom": 320,
                     "duckingLevel": 0.25,
