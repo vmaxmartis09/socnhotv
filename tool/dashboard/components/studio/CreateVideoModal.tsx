@@ -15,12 +15,14 @@ import {
   Film,
   Check,
   ChevronRight,
+  ChevronDown,
   Layers,
   Wand2,
   Loader2,
   Video,
   Play,
   RotateCcw,
+  ShieldCheck,
 } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
 
@@ -84,6 +86,16 @@ export function CreateVideoModal({ isOpen, onClose }: CreateVideoModalProps) {
   const [estimatedCost, setEstimatedCost] = useState<number>(0.0);
   const [isCreating, setIsCreating] = useState(false);
   const [createProgressText, setCreateProgressText] = useState("");
+
+  // Craft skills toggles (Session K)
+  const [enableHookABC, setEnableHookABC] = useState(true);
+  const [hookVariants, setHookVariants] = useState<any[]>([]);
+  const [selectedHookVariantId, setSelectedHookVariantId] = useState<string>("A");
+  const [enable3LayerDepth, setEnable3LayerDepth] = useState(true);
+  const [enableAutoTransitions, setEnableAutoTransitions] = useState(true);
+  const [showAdvancedCraft, setShowAdvancedCraft] = useState(false);
+  const [lintReport, setLintReport] = useState<any | null>(null);
+  const [isCheckingLint, setIsCheckingLint] = useState(false);
 
   const videoRefs = useRef<Record<string, HTMLVideoElement | null>>({});
 
@@ -173,14 +185,39 @@ export function CreateVideoModal({ isOpen, onClose }: CreateVideoModalProps) {
     if (!currentTopic) return;
     setIsGeneratingScript(true);
     try {
-      const res = await fetch(`${CORE_URL}/projects/${activeProjectId}/ai/script`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt: currentTopic, mockMode: isMockMode }),
-      });
-      if (res.ok) {
-        const data = await res.json();
-        const md = data.markdown || "";
+      const [scriptRes, hookRes] = await Promise.all([
+        fetch(`${CORE_URL}/projects/${activeProjectId}/ai/script`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ prompt: currentTopic, mockMode: isMockMode }),
+        }),
+        enableHookABC
+          ? fetch(`${CORE_URL}/video/craft/hooks`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ topic: currentTopic, character: selectedCharacterId }),
+            }).catch(() => null)
+          : Promise.resolve(null),
+      ]);
+
+      if (scriptRes.ok) {
+        const data = await scriptRes.json();
+        let md = data.markdown || "";
+
+        // If Hook Lab variants returned, attach best hook
+        if (hookRes && hookRes.ok) {
+          const hookData = await hookRes.json();
+          setHookVariants(hookData.variants || []);
+          setSelectedHookVariantId(hookData.best_variant_id || "A");
+          if (hookData.selected_hook) {
+            const lines = md.split("\n");
+            if (lines.length > 0) {
+              lines[0] = hookData.selected_hook;
+              md = lines.join("\n");
+            }
+          }
+        }
+
         setScriptText(md);
 
         // Auto-fill template slots from generated content
@@ -198,6 +235,40 @@ export function CreateVideoModal({ isOpen, onClose }: CreateVideoModalProps) {
       console.error("Generate script failed:", err);
     } finally {
       setIsGeneratingScript(false);
+    }
+  };
+
+  const handleSelectHookVariant = (variant: any) => {
+    setSelectedHookVariantId(variant.variant_id);
+    if (!scriptText) {
+      setScriptText(variant.text);
+      return;
+    }
+    const lines = scriptText.split("\n");
+    lines[0] = variant.text;
+    setScriptText(lines.join("\n"));
+  };
+
+  const handleRunLintCheck = async () => {
+    setIsCheckingLint(true);
+    try {
+      const res = await fetch(`${CORE_URL}/video/craft/lint`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          script: scriptText || topic || "Video mới",
+          duration_sec: 30.0,
+          platform: platforms[0] || "tiktok",
+        }),
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setLintReport(data);
+      }
+    } catch (e) {
+      console.error("Lint check failed:", e);
+    } finally {
+      setIsCheckingLint(false);
     }
   };
 
@@ -611,6 +682,106 @@ export function CreateVideoModal({ isOpen, onClose }: CreateVideoModalProps) {
                     </div>
                   )}
 
+                  {/* Video Craft Optimization Toggles (Session K) */}
+                  <div className="rounded-xl border border-border bg-card/60 p-3.5 space-y-3">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <Sparkles className="h-4 w-4 text-primary" />
+                        <span className="text-xs font-semibold text-foreground">Kỹ thuật giữ chân Video Craft (Session K)</span>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => setShowAdvancedCraft(!showAdvancedCraft)}
+                        className="text-[11px] text-muted-foreground hover:text-foreground flex items-center gap-1"
+                      >
+                        <span>{showAdvancedCraft ? "Thu gọn" : "Nâng cao"}</span>
+                        <ChevronDown className={cn("h-3 w-3 transition-transform", showAdvancedCraft && "rotate-180")} />
+                      </button>
+                    </div>
+
+                    {/* Hook A/B/C Toggle & Selection */}
+                    <div className="flex items-center justify-between pt-1 border-t border-border/50">
+                      <div>
+                        <span className="text-xs font-medium text-foreground">Hook Lab (Biến thể A/B/C & Heuristic Score)</span>
+                        <p className="text-[10px] text-muted-foreground">Tự động chọn hook ≤3s điểm cao nhất, tránh chào hỏi</p>
+                      </div>
+                      <label className="relative inline-flex items-center cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={enableHookABC}
+                          onChange={(e) => setEnableHookABC(e.target.checked)}
+                          className="sr-only peer"
+                        />
+                        <div className="w-8 h-4 bg-border peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-background after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-background after:border-border after:border after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-primary"></div>
+                      </label>
+                    </div>
+
+                    {enableHookABC && hookVariants.length > 0 && (
+                      <div className="space-y-1.5 pt-1">
+                        <span className="text-[11px] font-semibold text-muted-foreground">Chọn 1 trong 3 biến thể Hook:</span>
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                          {hookVariants.map((v) => (
+                            <div
+                              key={v.variant_id}
+                              onClick={() => handleSelectHookVariant(v)}
+                              className={cn(
+                                "p-2 rounded-lg border text-left cursor-pointer transition-all",
+                                selectedHookVariantId === v.variant_id
+                                  ? "border-primary bg-primary/10 ring-1 ring-primary/40"
+                                  : "border-border hover:bg-accent/40"
+                              )}
+                            >
+                              <div className="flex items-center justify-between mb-1">
+                                <span className="text-[10px] font-bold text-primary">Phương án {v.variant_id}</span>
+                                <span className="text-[9px] bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 font-bold px-1.5 py-0.2 rounded">
+                                  {v.score?.total_score || 0}đ
+                                </span>
+                              </div>
+                              <p className="text-[11px] text-foreground line-clamp-2 italic">"{v.text}"</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Advanced Craft Toggles */}
+                    {showAdvancedCraft && (
+                      <div className="space-y-2.5 pt-2 border-t border-border/50">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <span className="text-xs font-medium text-foreground">Chiều sâu 3 lớp (3-Layer Depth)</span>
+                            <p className="text-[10px] text-muted-foreground">Tiền cảnh mờ + nhân vật DNA nét + hậu cảnh khí quyển</p>
+                          </div>
+                          <label className="relative inline-flex items-center cursor-pointer">
+                            <input
+                              type="checkbox"
+                              checked={enable3LayerDepth}
+                              onChange={(e) => setEnable3LayerDepth(e.target.checked)}
+                              className="sr-only peer"
+                            />
+                            <div className="w-8 h-4 bg-border peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-background after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-background after:border-border after:border after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-primary"></div>
+                          </label>
+                        </div>
+
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <span className="text-xs font-medium text-foreground">Chuyển cảnh tự động (Transition Foresight)</span>
+                            <p className="text-[10px] text-muted-foreground">Tiên liệu vector chuyển động 0.5s cuối cảnh trước</p>
+                          </div>
+                          <label className="relative inline-flex items-center cursor-pointer">
+                            <input
+                              type="checkbox"
+                              checked={enableAutoTransitions}
+                              onChange={(e) => setEnableAutoTransitions(e.target.checked)}
+                              className="sr-only peer"
+                            />
+                            <div className="w-8 h-4 bg-border peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-background after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-background after:border-border after:border after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-primary"></div>
+                          </label>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
                   {/* Template Slots Editing */}
                   <div className="space-y-3 pt-2 border-t border-border">
                     <h4 className="text-xs font-semibold text-foreground">
@@ -796,6 +967,48 @@ export function CreateVideoModal({ isOpen, onClose }: CreateVideoModalProps) {
                     </span>
                   </button>
                 </div>
+              </div>
+
+              {/* Creative QA / Lint Check (Session K) */}
+              <div className="rounded-xl border border-border bg-card/60 p-3.5 space-y-2.5">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <ShieldCheck className="h-4 w-4 text-primary" />
+                    <span className="text-xs font-semibold text-foreground">Kiểm tra trước khi xuất (Creative QA / Lint)</span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={handleRunLintCheck}
+                    disabled={isCheckingLint}
+                    className="flex items-center gap-1.5 rounded-lg border border-border bg-background px-2.5 py-1 text-xs font-medium text-foreground hover:bg-accent transition-colors"
+                  >
+                    {isCheckingLint ? <Loader2 className="h-3 w-3 animate-spin" /> : <ShieldCheck className="h-3 w-3 text-primary" />}
+                    <span>Kiểm tra ngay</span>
+                  </button>
+                </div>
+
+                {lintReport && (
+                  <div className={cn(
+                    "rounded-lg p-2.5 text-xs space-y-1.5 border",
+                    lintReport.passed
+                      ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-700 dark:text-emerald-300"
+                      : "bg-amber-500/10 border-amber-500/30 text-amber-800 dark:text-amber-200"
+                  )}>
+                    <div className="flex items-center justify-between font-semibold">
+                      <span>{lintReport.passed ? "✓ Đạt toàn bộ tiêu chuẩn Creative QA" : `⚠️ Có ${lintReport.error_count} lỗi / ${lintReport.warning_count} cảnh báo`}</span>
+                      <span className="text-[10px] uppercase font-mono">{lintReport.total_checks} tiêu chí</span>
+                    </div>
+                    {lintReport.issues && lintReport.issues.length > 0 && (
+                      <ul className="space-y-1 text-[11px] list-disc list-inside pt-1">
+                        {lintReport.issues.map((iss: any, idx: number) => (
+                          <li key={idx}>
+                            <strong>[{iss.level.toUpperCase()}]:</strong> {iss.message_vi}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                )}
               </div>
 
               {/* Automatic Specs Summary (No technical inputs!) */}

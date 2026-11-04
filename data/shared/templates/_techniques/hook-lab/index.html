@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1080, height=1920">
+  <title>Hook Lab Demo</title>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { width: 1080px; height: 1920px; background: #0F172A; font-family: sans-serif; overflow: hidden; position: relative; }
+    .bg { position: absolute; width: 100%; height: 100%; object-fit: cover; opacity: 0.35; filter: blur(3px); }
+    .char { position: absolute; bottom: 350px; left: 50%; transform: translateX(-50%); max-height: 900px; }
+    .hook-badge {
+      position: absolute; top: 220px; left: 60px; right: 60px;
+      background: rgba(30, 41, 59, 0.95); border: 2px solid #38BDF8; border-radius: 24px;
+      padding: 32px 40px; box-shadow: 0 20px 40px rgba(0,0,0,0.6); text-align: center;
+    }
+    .hook-label { font-size: 26px; color: #38BDF8; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
+    .hook-text { font-size: 42px; color: #FFFFFF; font-weight: 800; line-height: 1.35; }
+    .score-badge { display: inline-block; margin-top: 16px; background: #059669; color: #FFF; font-size: 22px; padding: 6px 18px; border-radius: 9999px; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <img src="assets/bg.jpg" class="bg" />
+  <img src="assets/char.png" class="char" id="char" />
+  <div class="hook-badge" id="hookBadge">
+    <div class="hook-label">HOOK LAB • VARIANT A (CONFESSION)</div>
+    <div class="hook-text">"Đố các bạn biết, bí mật đằng sau Vì sao cầu vồng có 7 màu? thật ra là gì?"</div>
+    <div class="score-badge">ĐIỂM RETENTION: 95/100</div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#hookBadge", { scale: 0.85, opacity: 0, y: -40 }, { scale: 1, opacity: 1, y: 0, duration: 0.45, ease: "back.out(1.7)" }, 0.1);
+    tl.fromTo("#char", { scale: 0.95 }, { scale: 1.05, duration: 5.0, ease: "sine.inOut" }, 0);
+    window.__timeline = tl;
+    window.__duration = 5.0;
+  </script>
+</body>
+</html>

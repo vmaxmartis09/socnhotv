@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1080, height=1920">
+  <title>Camera Presets Demo</title>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { width: 1080px; height: 1920px; background: #000; overflow: hidden; position: relative; }
+    .stage { width: 100%; height: 100%; position: absolute; top: 0; left: 0; }
+    .bg { width: 100%; height: 100%; object-fit: cover; }
+    .char { position: absolute; bottom: 250px; left: 50%; transform: translateX(-50%); max-height: 1000px; }
+    .badge {
+      position: absolute; top: 180px; left: 50%; transform: translateX(-50%);
+      background: rgba(15, 23, 42, 0.85); color: #F59E0B; padding: 18px 36px;
+      font-size: 32px; font-weight: 800; border-radius: 9999px; border: 2px solid #F59E0B;
+      z-index: 50; text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="badge">CAMERA PRESET: DRAMATIC PUSH-IN 50MM</div>
+  <div class="stage" id="cameraStage">
+    <img src="assets/bg.jpg" class="bg" />
+    <img src="assets/char.png" class="char" />
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // Camera Move: Dramatic Push-In (tiêu cự 50mm, tiến gần chủ thể tăng độ tập trung)
+gsap.fromTo("#cameraStage",
+  {
+    scale: 1.0,
+    x: 0.0,
+    y: 0.0,
+    rotation: 0.0
+  },
+  {
+    scale: 1.08,
+    x: 0.0,
+    y: -15.0,
+    rotation: 0.0,
+    duration: 5.0,
+    ease: "power1.out"
+  }
+);
+    window.__timeline = tl;
+    window.__duration = 5.0;
+  </script>
+</body>
+</html>

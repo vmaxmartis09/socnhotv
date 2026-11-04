@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "historyId": "984daf1c-0bbd-47d4-a1d1-11a78a8c0615",
+  "currentRevision": null,
+  "pendingChanges": false,
+  "files": {
+    "assets/voiceover.mp3": {
+      "hash": "08251f90a248db238501f8f6fe21439cfba453b08a47608655e2f8f9e64c762f",
+      "content": "/Users/vmaxmartis/.cache/hyperframes/history/984daf1c-0bbd-47d4-a1d1-11a78a8c0615/blobs/08/08251f90a248db238501f8f6fe21439cfba453b08a47608655e2f8f9e64c762f"
+    },
+    "hyperframes.json": {
+      "hash": "8a2bbeb08d7346b67c21d1359ae1aff4ed351dadb383ce84e7496c4108d667f8",
+      "content": "/Users/vmaxmartis/.cache/hyperframes/history/984daf1c-0bbd-47d4-a1d1-11a78a8c0615/blobs/8a/8a2bbeb08d7346b67c21d1359ae1aff4ed351dadb383ce84e7496c4108d667f8"
+    },
+    "index.html": {
+      "hash": "2b1d3a87cae6f79ae7ba26353cc7f435f5e59f817d350085418f685f7455c786",
+      "content": "/Users/vmaxmartis/.cache/hyperframes/history/984daf1c-0bbd-47d4-a1d1-11a78a8c0615/blobs/2b/2b1d3a87cae6f79ae7ba26353cc7f435f5e59f817d350085418f685f7455c786"
+    }
+  },
+  "revisions": {},
+  "checks": {
+    "latest": null,
+    "revisions": {},
+    "unversioned": []
+  },
+  "snapshots": {
+    "latest": null,
+    "revisions": {},
+    "unversioned": []
+  }
+}

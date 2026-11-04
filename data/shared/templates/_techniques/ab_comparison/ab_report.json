@@ -1,0 +1,30 @@
+{
+  "topic": "Vì sao cầu vồng có nhiều màu?",
+  "version_a_vanilla": {
+    "hook": "Xin chào các bạn, hôm nay mình xin chia sẻ vì sao cầu vồng có nhiều màu.",
+    "hook_score": 46.0,
+    "hook_penalties": [
+      "Trừ điểm: Mở đầu bằng lời chào xã giao làm giảm tỷ lệ giữ chân 3s",
+      "Trừ điểm: Hook quá dài (17 từ, ~4.47s > 3.5s)"
+    ],
+    "lint_passed": false,
+    "lint_errors": 1,
+    "lint_warnings": 2,
+    "mp4_file": "/Volumes/Data/socnhotv/data/shared/templates/_techniques/ab_comparison/version_a_vanilla/vanilla.mp4",
+    "contact_sheet": "/Volumes/Data/socnhotv/data/shared/templates/_techniques/ab_comparison/version_a_vanilla/contact_sheet_12frames.jpg"
+  },
+  "version_b_craft": {
+    "hook": "Đố các bạn biết, bí mật đằng sau Vì sao cầu vồng có nhiều màu? thật ra là gì?",
+    "hook_score": 78.0,
+    "hook_bonuses": [
+      "Cộng điểm: Chứa yếu tố bất ngờ/kích thích trí tò mò ('thật ra')",
+      "Cộng điểm: Có từ ngữ gợi hình/thị giác ('màu')",
+      "Cộng điểm: Có dấu câu biểu cảm (! hoặc ?)"
+    ],
+    "lint_passed": true,
+    "lint_errors": 0,
+    "lint_warnings": 1,
+    "mp4_file": "/Volumes/Data/socnhotv/data/shared/templates/_techniques/ab_comparison/version_b_craft/craft_optimized.mp4",
+    "contact_sheet": "/Volumes/Data/socnhotv/data/shared/templates/_techniques/ab_comparison/version_b_craft/contact_sheet_12frames.jpg"
+  }
+}

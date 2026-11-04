@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1080, height=1920">
+  <title>HyperFrames 3-Layer Spatial Depth</title>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      width: 1080px;
+      height: 1920px;
+      overflow: hidden;
+      background: #000;
+      position: relative;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    .stage {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      perspective: 1000px;
+      overflow: hidden;
+    }
+    .layer {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      will-change: transform;
+    }
+    /* Layer 3: Background */
+    .layer-bg {
+      object-fit: cover;
+      transform: scale(1.15) translate(0px, 0px);
+      filter: blur(2px) brightness(0.9);
+      z-index: 10;
+    }
+    /* Layer 2: Midground Character (DNA RGBA) */
+    .layer-mid {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 20;
+    }
+    .character-img {
+      max-width: 85%;
+      max-height: 85%;
+      object-fit: contain;
+      filter: drop-shadow(0 20px 30px rgba(0,0,0,0.6));
+    }
+    /* Layer 1: Foreground Bokeh / Occlusion */
+    .layer-fg-bokeh {
+      position: absolute;
+      width: 100%; height: 100%;
+      background: radial-gradient(circle at 15% 20%, rgba(255, 230, 150, 0.45) 0%, transparent 18%),
+                  radial-gradient(circle at 85% 75%, rgba(255, 255, 255, 0.35) 0%, transparent 22%),
+                  radial-gradient(circle at 25% 85%, rgba(255, 200, 100, 0.3) 0%, transparent 15%);
+      pointer-events: none;
+      z-index: 30;
+      filter: blur(8px);
+    }
+    .layer-fg {
+      object-fit: cover;
+      pointer-events: none;
+      z-index: 30;
+      filter: blur(6px);
+    }
+    .scene-title-badge {
+      position: absolute;
+      top: 140px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(15, 23, 42, 0.85);
+      color: #FFF;
+      padding: 16px 32px;
+      border-radius: 9999px;
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      z-index: 40;
+    }
+  </style>
+</head>
+<body>
+  <div class="stage" id="stage">
+    <img src="assets/bg.jpg" class="layer layer-bg" id="bgLayer" alt="background" />
+    <div class="layer layer-mid" id="midLayer">
+      <img src="assets/char.png" class="character-img" id="charImg" alt="character" />
+    </div>
+    <div class="layer layer-fg-bokeh"></div>
+    <div class="scene-title-badge">CHIỀU SÂU 3 LỚP (3-LAYER DEPTH)</div>
+  </div>
+
+  <script>
+    // Deterministic GSAP Timeline for HyperFrames Virtual Clock
+    const tl = gsap.timeline({ paused: true });
+    const dur = 5.0;
+
+    // Parallax motion: Background moves slowly, Midground reacts naturally, Foreground drifts fast
+    tl.fromTo("#bgLayer", 
+      { scale: 1.15, x: -30, y: -15 }, 
+      { scale: 1.18, x: 30, y: 15, duration: dur, ease: "power1.inOut" }, 0
+    );
+
+    tl.fromTo("#midLayer", 
+      { scale: 0.98, y: 10 }, 
+      { scale: 1.02, y: -10, duration: dur, ease: "sine.inOut" }, 0
+    );
+
+    tl.fromTo(".layer-fg-bokeh, .layer-fg", 
+      { x: -60, y: -30 }, 
+      { x: 80, y: 40, duration: dur, ease: "none" }, 0
+    );
+
+    window.__timeline = tl;
+    window.__duration = dur;
+  </script>
+</body>
+</html>

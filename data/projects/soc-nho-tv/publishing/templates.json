@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "technique_ref": "first-comment-link-routing",
+  "description": "Kho mẫu caption, first-comment và affiliate disclosure tuân thủ kỹ thuật first-comment-link-routing",
+  "templates": {
+    "clean_organic_affiliate": {
+      "name": "Điều hướng bình luận đầu tiên (Zero-Penalty)",
+      "caption_cta": "📌 Chi tiết sản phẩm & mã giảm giá độc quyền mình để ở bình luận ghim đầu tiên nha cả nhà! 👇",
+      "first_comment": "🎉 Dành riêng cho các bạn theo dõi kênh hôm nay:\n👉 Link sản phẩm chính hãng: {AFFILIATE_URL}\n🎁 Nhập mã [{VOUCHER_CODE}] để được giảm thêm 15% nhé!\n*(Sản phẩm tiếp thị liên kết chính hãng - Đã kiểm định chất lượng)*",
+      "disclosure": "*(Bài viết có chứa liên kết tiếp thị - Affiliate link)*"
+    },
+    "koc_review_sales": {
+      "name": "KOC Review & Voucher chớp nhoáng",
+      "caption_cta": "Đang có mã giảm 30K trong hôm nay, link và mã mình ghim ở bình luận đầu tiên nhé! 👇",
+      "first_comment": "Cả nhà ơi, mã giảm giá hôm nay đã được cập nhật:\n✨ Link mua: {AFFILIATE_URL}\n⚡ Voucher áp dụng: {VOUCHER_CODE}\nSố lượng có hạn, nhanh tay kẻo hết nhé!",
+      "disclosure": "#quangcao #tiepthilienket"
+    },
+    "kid_science_edu": {
+      "name": "Sóc Nhỏ Khám Phá & Học Liệu Tặng Kèm",
+      "caption_cta": "Ba mẹ muốn nhận trọn bộ tranh tô màu và học liệu khoa học cho bé thì xem ngay bình luận ghim nhé! 👇",
+      "first_comment": "Ba mẹ tải tài liệu và bộ tranh tô màu bài học hôm nay cho bé tại đây nha:\n📚 Link tải miễn phí: {AFFILIATE_URL}\nChúc các bé học thật vui cùng Sóc Bi và bạn Koala!",
+      "disclosure": ""
+    }
+  }
+}

@@ -383,3 +383,70 @@ async def get_video_episode_status(pid: str, eid: str):
 
     return build_status
 
+
+# --- CRAFT TOOLKIT API (SESSION K) ---
+
+class CraftHooksRequest(BaseModel):
+    topic: str
+    character: str = "soc-nho"
+
+
+class CraftLintRequest(BaseModel):
+    script: str
+    duration_sec: Optional[float] = None
+    platform: str = "tiktok"
+
+
+@router.post("/video/craft/hooks")
+async def generate_craft_hooks(req: CraftHooksRequest):
+    """Sinh 3 biến thể Hook A/B/C và chấm điểm theo heuristic rules (Session K)."""
+    from socnhotv.video.craft.hooks import generate_hook_variants
+    res = generate_hook_variants(topic=req.topic, character=req.character)
+    return {
+        "topic": res.topic,
+        "best_variant_id": res.best_variant_id,
+        "selected_hook": res.selected_hook,
+        "variants": [
+            {
+                "variant_id": v.variant_id,
+                "archetype": v.archetype,
+                "text": v.text,
+                "reasoning": v.reasoning,
+                "score": {
+                    "total_score": v.score.total_score,
+                    "word_count": v.score.word_count,
+                    "estimated_duration_sec": v.score.estimated_duration_sec,
+                    "has_greeting_penalty": v.score.has_greeting_penalty,
+                    "penalties": v.score.penalties,
+                    "bonuses": v.score.bonuses,
+                }
+            }
+            for v in res.variants
+        ]
+    }
+
+
+@router.post("/video/craft/lint")
+async def lint_craft_script(req: CraftLintRequest):
+    """Creative QA / Lint kịch bản video trước khi render (Session K)."""
+    from socnhotv.video.craft.lint import lint_script
+    report = lint_script(script_text=req.script, duration_sec=req.duration_sec, platform=req.platform)
+    return {
+        "passed": report.passed,
+        "total_checks": report.total_checks,
+        "error_count": report.error_count,
+        "warning_count": report.warning_count,
+        "info_count": report.info_count,
+        "issues": [
+            {
+                "level": i.level,
+                "rule_id": i.rule_id,
+                "message_vi": i.message_vi,
+                "technique_ref": i.technique_ref,
+                "suggestion_vi": i.suggestion_vi,
+            }
+            for i in report.issues
+        ]
+    }
+
+

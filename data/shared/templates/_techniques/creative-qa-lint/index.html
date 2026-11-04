@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1080, height=1920">
+  <title>Creative QA Lint Demo</title>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { width: 1080px; height: 1920px; background: #0B1329; color: #FFF; font-family: sans-serif; overflow: hidden; position: relative; }
+    .safe-zone-box {
+      position: absolute;
+      top: 180px; bottom: 320px; left: 40px; right: 40px;
+      border: 3px dashed #10B981; border-radius: 20px;
+      pointer-events: none;
+    }
+    .safe-label {
+      position: absolute; top: 12px; left: 20px; color: #10B981; font-weight: 800; font-size: 24px;
+    }
+    .card {
+      position: absolute; top: 320px; left: 80px; right: 80px;
+      background: rgba(30, 41, 59, 0.95); border: 2px solid #10B981;
+      padding: 36px; border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.7);
+    }
+    .title { font-size: 38px; font-weight: 800; color: #10B981; margin-bottom: 20px; }
+    .item { font-size: 26px; line-height: 1.6; margin-bottom: 12px; }
+    .check { color: #10B981; font-weight: bold; margin-right: 8px; }
+  </style>
+</head>
+<body>
+  <div class="safe-zone-box">
+    <div class="safe-label">TIKTOK SAFE ZONE (9:16) • KHÔNG BỊ CHE KHUẤT</div>
+  </div>
+  <div class="card" id="qaCard">
+    <div class="title">CREATIVE QA / LINT REPORT</div>
+    <div class="item"><span class="check">✓</span> Hook Duration: 2.8s ≤ 3.0s (PASS)</div>
+    <div class="item"><span class="check">✓</span> First Text Delay: 0.3s ≤ 0.5s (PASS)</div>
+    <div class="item"><span class="check">✓</span> Text-Background Contrast: 11.2:1 (WCAG AAA PASS)</div>
+    <div class="item"><span class="check">✓</span> Safe Zone Bounds: Top 180px, Bottom 320px (PASS)</div>
+    <div class="item"><span class="check">✓</span> Call-To-Action (CTA) Present: YES (PASS)</div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#qaCard", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.5, ease: "power2.out" }, 0.2);
+    window.__timeline = tl;
+    window.__duration = 5.0;
+  </script>
+</body>
+</html>

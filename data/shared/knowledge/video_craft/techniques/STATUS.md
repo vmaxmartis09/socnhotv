@@ -1,6 +1,6 @@
 # Trạng Thái Kho Kỹ Thuật Video Craft (Techniques Status)
 
-- **Cập nhật tự động**: 2026-11-04 23:02
+- **Cập nhật tự động**: 2026-11-04 23:18
 - **Tổng số kỹ thuật**: 26
 - **Đã tích hợp vào Studio (`in-studio`)**: **14** thẻ
 - **Đang thử nghiệm (`prototyped`)**: 0 thẻ
