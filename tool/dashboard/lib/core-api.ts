@@ -334,15 +334,24 @@ export async function checkCoreHealth(): Promise<{
   online: boolean;
   version: string;
   repoRoot?: string;
+  outdated?: boolean;
 }> {
   try {
     const res = await fetch(`${CORE_URL}/health`, { cache: "no-store" });
     if (!res.ok) return { online: false, version: "–" };
     const data = await res.json();
+    let outdated = false;
+    try {
+      const tmplRes = await fetch(`${CORE_URL}/video/templates`, { cache: "no-store" });
+      if (!tmplRes.ok) outdated = true;
+    } catch {
+      outdated = true;
+    }
     return {
       online: data.status === "healthy",
       version: data.version || "0.1.0",
       repoRoot: data.repo_root,
+      outdated,
     };
   } catch {
     return { online: false, version: "–" };

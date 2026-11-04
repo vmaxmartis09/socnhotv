@@ -1138,15 +1138,22 @@ function StudioCanvasInner() {
     <CanvasInteractionContext.Provider value={contextValue}>
       {linkMode && activeDragPort && <LinkGhost from={activeDragPort} onCancel={cancelLink} />}
       <div className="relative flex h-full min-w-0 flex-1 flex-col bg-card">
-        {/* Core Offline Status Banner (still allows mock graph building & testing) */}
-        {!coreHealth.online && (
+        {/* Core Offline or Outdated Status Banner (still allows mock graph building & testing) */}
+        {!coreHealth.online ? (
           <div
             role="status"
             className="flex items-center justify-between gap-2 border-b border-border bg-accent/60 px-3 py-1.5 text-xs text-foreground"
           >
             <span>{t("coreOfflineBanner")}</span>
           </div>
-        )}
+        ) : coreHealth.outdated ? (
+          <div
+            role="status"
+            className="flex items-center justify-between gap-2 border-b border-border bg-amber-500/10 text-amber-600 dark:text-amber-400 px-3 py-1.5 text-xs"
+          >
+            <span>{t("coreOutdatedBanner")}</span>
+          </div>
+        ) : null}
 
         {/* Validation / Connection Rejection Banner */}
         {bannerMsg && (

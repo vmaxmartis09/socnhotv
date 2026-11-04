@@ -128,6 +128,7 @@
     "mobileListTitle": "Episode pipeline (read-only on mobile)",
     "openSheetBtn": "Open control sheet",
     "coreOfflineBanner": "Core is offline (GET /health failed). Start with: PYTHONPATH=tool/src uvicorn socnhotv.core.api.app:app --port 8000. You can still build and test graphs in UI mock mode.",
+    "coreOutdatedBanner": "Core is running an outdated version (missing /video/templates). Restart uvicorn on port 8000.",
     "addStepBefore": "+ Step before",
     "addStepAfter": "+ Step after",
     "addNodePlaceholder": "Search node types by name or role...",

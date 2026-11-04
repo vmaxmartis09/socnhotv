@@ -128,6 +128,7 @@
     "mobileListTitle": "Quy trình phân cảnh (chỉ đọc trên điện thoại)",
     "openSheetBtn": "Mở bảng điều khiển",
     "coreOfflineBanner": "Core chưa chạy (GET /health lỗi). Bật bằng lệnh: PYTHONPATH=tool/src uvicorn socnhotv.core.api.app:app --port 8000. Bạn vẫn dựng và chạy thử đồ thị bằng bản mock trên giao diện.",
+    "coreOutdatedBanner": "Core đang chạy phiên bản cũ (thiếu /video/templates). Khởi động lại uvicorn trên cổng 8000.",
     "addStepBefore": "+ Bước trước",
     "addStepAfter": "+ Bước sau",
     "addNodePlaceholder": "Tìm loại node theo tên hoặc vai trò...",

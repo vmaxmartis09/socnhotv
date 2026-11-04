@@ -13,6 +13,7 @@ export interface CoreHealthState {
   version: string;
   repoRoot?: string;
   checkedAt?: string;
+  outdated?: boolean;
 }
 
 export interface UserSettingsSlice {
