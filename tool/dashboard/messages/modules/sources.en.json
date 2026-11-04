@@ -1,6 +1,25 @@
 {
   "sources": {
     "title": "Sources & Intelligence",
-    "description": "Ingest Douyin/TikTok/YouTube videos, analyze structure and content ideas"
+    "description": "Ingest Douyin/TikTok/YouTube videos, normalize metadata, and extract structural scenes",
+    "addSource": "Ingest New Source",
+    "pasteLinks": "Paste Video Links",
+    "pasteLinksHint": "One URL per line (supports Douyin, TikTok, YouTube Shorts, Bilibili)",
+    "uploadLocal": "Or upload local video file",
+    "rightsNotice": "Imported sources default to 'Reference Only' to study blueprints and structure without using raw footage in final renders.",
+    "rights": {
+      "reference_only": "Reference Only",
+      "owned": "Owned",
+      "licensed": "Licensed",
+      "permission": "Permission"
+    },
+    "filterAll": "All Platforms",
+    "filterRightsAll": "All Rights",
+    "search": "Search by title, author, hashtags...",
+    "views": "{count} views",
+    "scenes": "{count} scenes",
+    "empty": "No content sources found. Paste links or upload your first video to get started!",
+    "confirmTrash": "Are you sure you want to move this source to trash?",
+    "confirmRightsChange": "Copyright Warning: You are changing rights from 'Reference Only' to permissible use. Do you confirm having legal ownership or usage authorization for this content?"
   }
 }

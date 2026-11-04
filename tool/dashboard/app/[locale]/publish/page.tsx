@@ -2,17 +2,13 @@
 
 import { useEffect } from "react";
 import { useRouter } from "@/i18n/routing";
-import { useStudioStore } from "@/store";
 
 export default function PublishRedirectPage() {
   const router = useRouter();
-  const { setActiveRightTab, setRightPanelCollapsed } = useStudioStore();
 
   useEffect(() => {
-    setActiveRightTab("publish");
-    setRightPanelCollapsed(false);
-    router.replace("/");
-  }, [router, setActiveRightTab, setRightPanelCollapsed]);
+    router.replace("/social");
+  }, [router]);
 
   return null;
 }

@@ -1,6 +1,25 @@
 {
   "sources": {
     "title": "Nguồn & Trí tuệ",
-    "description": "Thu thập video Douyin/TikTok/YouTube, phân tích cấu trúc và ý tưởng nội dung"
+    "description": "Thu thập video Douyin/TikTok/YouTube, chuẩn hoá metadata và trích xuất cấu trúc",
+    "addSource": "Nạp nguồn mới",
+    "pasteLinks": "Dán liên kết video",
+    "pasteLinksHint": "Mỗi liên kết một dòng (hỗ trợ Douyin, TikTok, YouTube Shorts, Bilibili)",
+    "uploadLocal": "Hoặc tải video lên từ máy",
+    "rightsNotice": "Nguồn nạp vào mặc định ở chế độ Tham khảo (reference_only) để học cấu trúc, không đưa vào dựng thương mại.",
+    "rights": {
+      "reference_only": "Chỉ tham khảo",
+      "owned": "Sở hữu",
+      "licensed": "Đã mua bản quyền",
+      "permission": "Được cho phép"
+    },
+    "filterAll": "Tất cả nền tảng",
+    "filterRightsAll": "Mọi bản quyền",
+    "search": "Tìm theo tiêu đề, tác giả, hashtag...",
+    "views": "{count} lượt xem",
+    "scenes": "{count} cảnh",
+    "empty": "Chưa có nguồn nội dung nào. Hãy nạp liên kết hoặc tải lên video đầu tiên!",
+    "confirmTrash": "Bạn có chắc muốn chuyển nguồn này vào thùng rác không?",
+    "confirmRightsChange": "Cảnh báo bản quyền: Bạn đang chuyển nguồn từ 'Chỉ tham khảo' sang bản quyền được phép sử dụng. Bạn xác nhận có đầy đủ quyền sở hữu hoặc giấy phép sử dụng hợp pháp cho nội dung này?"
   }
 }

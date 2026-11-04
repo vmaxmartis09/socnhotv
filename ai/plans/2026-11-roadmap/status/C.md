@@ -1,6 +1,6 @@
 # Session C — Social & Publishing
 
-**Trạng thái:** Đang thực hiện (C1 xong, sang C2)
+**Trạng thái:** Đang thực hiện (C1 & C2 xong, sang C3)
 
 ## C1 — Social Domain, Storage, API & Legacy Migration (HOÀN THÀNH)
 - **Mô hình (`social/models.py`):**
@@ -24,10 +24,31 @@
   - `caption_variants`: tự động sinh caption phù hợp giới hạn từng nền tảng (TikTok 2200, YouTube 100/5000, Instagram 2200, Facebook), tự gắn hashtags, footer và disclosure affiliate.
 - **API (`core/api/routes/social.py`):**
   - Tích hợp 20+ endpoint: CRUD accounts, posts, submit, approve, reject, schedule, cancel, duplicate, kéo-thả đổi giờ `PUT /targets/{tid}/time`, `GET /calendar`, slots, notes, suggest-time, caption-variants, migrate, audit.
-- **Nghiệm thu kiểm thử:**
-  - `test_social_models.py` (3 passed)
-  - `test_social_store.py` (3 passed, bao gồm 24 concurrent threads ghi đồng thời)
-  - `test_social_migrate.py` (1 passed, kiểm tra di trú và tính bất biến idempotent)
-  - `test_social_service.py` (5 passed, lifecycle, rejection, schedule published rejection, conflict avoidance, variants)
-  - `test_social_api.py` (4 passed, TestClient gọi toàn bộ workflow API)
-  - Tổng cộng 16/16 test social passed.
+- **Nghiệm thu kiểm thử C1:** 16/16 test social passed.
+
+---
+
+## C2 — UI Social Manager (HOÀN THÀNH)
+- **Kiến trúc màn hình `/social` (`app/[locale]/social/page.tsx`):**
+  - Navigation tab đầy đủ: Lịch xuất bản (`calendar`), Hàng chờ duyệt (`approvals`), Tất cả bài viết (`posts`), Tài khoản & Kênh (`accounts`), Phân tích (`analytics`).
+  - Badge đếm số lượng bài chờ duyệt tự động đồng bộ.
+  - Tích hợp chuẩn Morphicons `@/components/ui/icons` và theme dark/light.
+- **Thành phần giao diện (`components/social/**`):**
+  - `PostChip.tsx`: Phân màu theo nền tảng (YouTube đỏ, TikTok cyan, Facebook xanh, IG hồng, Douyin vàng...), chấm trạng thái động, hỗ trợ kéo thả `@dnd-kit/core`.
+  - `CalendarView.tsx`: Chế độ Tháng (lưới 7 ngày, hiển thị ghi chú chiến dịch, kéo thả đổi ngày), Tuần (trục 24h, hiển thị khung giờ vàng trống `isGolden`, bấm để tạo bài), Danh sách (Agenda). Hỗ trợ nút Hoàn tác (Undo) và múi giờ `Asia/Ho_Chi_Minh`.
+  - `ApprovalsTab.tsx`: Hàng chờ duyệt thẻ lớn, player xem trước video, tab caption từng nền tảng, checklist kiểm tra tự động 5 tiêu chí (caption, disclosure quảng cáo, độ dài video, tài khoản kết nối, bản quyền nguồn). Hỗ trợ duyệt nhanh, duyệt hàng loạt, từ chối kèm lý do và chỉnh sửa trực tiếp.
+  - `PostsTab.tsx`: Bảng quản lý tập trung toàn bộ bài viết, bộ lọc trạng thái và nền tảng, tìm kiếm từ khóa, thao tác chọn nhiều (duyệt, nhân bản, huỷ, xoá).
+  - `AccountsTab.tsx`: Lưới AccountCard hiển thị avatar, handle, trạng thái kết nối, số bài lên lịch tuần này, khung giờ vàng. Thẻ "Thêm tài khoản mới" nét đứt chuẩn design manifesto. Dialog thêm tài khoản và modal chỉnh sửa khung giờ 7 ngày.
+  - `PostComposer.tsx`: Drawer trượt phải dùng chung. Quản lý media, chọn đa tài khoản, TargetEditor theo từng nền tảng, đếm ký tự chuẩn giới hạn, nút sinh caption AI cho tất cả nền tảng, nút gợi ý giờ vàng, mô phỏng hiển thị trên điện thoại.
+  - `AgendaList.tsx`: Hiển thị danh sách nhóm theo ngày, dùng chung cho cả Calendar và PublishTab.
+- **Gộp khu lịch cũ & điều hướng:**
+  - `PublishTab.tsx`: Thay thế toàn bộ code cũ gọi endpoint 404 bằng bản rút gọn dùng chung `useSocialStore`, `AgendaList`, `PostChip`, nút "+ Lên lịch" mở trực tiếp PostComposer và nút "Mở toàn màn hình" điều hướng sang `/social`.
+  - `publish/page.tsx`: Redirect tự động sang `/social`.
+  - `lib/api/social.ts` & `store/modules/social.ts`: Client API & Zustand store độc lập của Session C.
+- **Nghiệm thu:**
+  - TypeScript `npx tsc --noEmit | grep -E "social|PublishTab|publish/page"`: 0 lỗi.
+  - Chụp 4 ảnh minh chứng vào `data/projects/soc-nho-tv/shots/`:
+    - `C2_month.png`: Giao diện lịch tháng kéo-thả
+    - `C2_week.png`: Giao diện lịch tuần với khung giờ vàng
+    - `C2_approvals.png`: Giao diện hàng chờ duyệt với checklist tự động
+    - `C2_composer.png`: Drawer soạn bài đa nền tảng
