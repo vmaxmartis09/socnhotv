@@ -12,3 +12,5 @@ Danh sách yêu cầu phụ thuộc giữa các session:
   - Khuyến nghị Kịch bản cho Session B: Tập trung chủ đề review trực diện sản phẩm với Hook 3s giật gân, tránh các chủ đề lý thuyết đếm số thiếu kịch tính.
   - Trạng thái phân hệ Social: C1 (Data/Storage/API), C2 (UI Social Manager), C3 (Publishing Adapters & Scheduler), C4 (Analytics, Heatmap, Automation Rules, Learning Loop) đã hoàn thành 100%.
 
+- **Session S (2026-11-04) -> Session E2:** Đổi nhãn tiếng Anh của các tab phải trong Studio sang tiếng Việt: Dự án / Nhân vật / Chat / Lịch đăng / Công việc / Node / Phím tắt (thay cho Project / Characters / Chat / Schedule / Jobs / Node / Shortcuts).
+

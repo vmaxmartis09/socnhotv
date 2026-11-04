@@ -1,0 +1,198 @@
+{
+  "output/ep_e2e_draft_test_short_03/shorts.mp4_1793805586.0931718": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_main/youtube.mp4_1793805586.0645528": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/shorts.mp4_1793805586.0674639": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/shorts.mp4_1793805586.0764604": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_benchmark_main/youtube.mp4_1793800975.358437": {
+    "duration_s": 15.68,
+    "width": 1920,
+    "height": 1080,
+    "size_mb": 0.34,
+    "aspect_ratio": "16:9"
+  },
+  "content/episodes/soc-nho-sau-rang/soc_bi_kham_rang_16x9.mp4_1793549660.3989098": {
+    "duration_s": 45.0,
+    "width": 1920,
+    "height": 1080,
+    "size_mb": 67.38,
+    "aspect_ratio": "16:9"
+  },
+  "content/episodes/soc-nho-sau-rang/soc_bi_kham_rang_16x9_long_tieng.mp4_1793550561.8605046": {
+    "duration_s": 45.0,
+    "width": 1920,
+    "height": 1080,
+    "size_mb": 67.37,
+    "aspect_ratio": "16:9"
+  },
+  "content/episodes/soc-nho-sau-rang/soc_bi_kham_rang_16x9_khong_tieng.mp4_1793549671.838172": {
+    "duration_s": 45.0,
+    "width": 1920,
+    "height": 1080,
+    "size_mb": 66.31,
+    "aspect_ratio": "16:9"
+  },
+  "content/episodes/soc-nho-sau-rang/soc_bi_kham_rang_16x9_long_tieng_nhe.mp4_1793550981.2877908": {
+    "duration_s": 45.01,
+    "width": 1920,
+    "height": 1080,
+    "size_mb": 23.9,
+    "aspect_ratio": "16:9"
+  },
+  "content/episodes/soc-nho-sau-rang/scenes/canh_01.mp4_1793547711.4768155": {
+    "duration_s": 8.04,
+    "width": 720,
+    "height": 1280,
+    "size_mb": 4.72,
+    "aspect_ratio": "9:16"
+  },
+  "content/episodes/soc-nho-sau-rang/youtube_16x9/clips/canh_01.mp4_1793548619.0862658": {
+    "duration_s": 8.04,
+    "width": 1280,
+    "height": 720,
+    "size_mb": 3.95,
+    "aspect_ratio": "16:9"
+  },
+  "content/episodes/soc-nho-sau-rang/youtube_16x9/clips/canh_03.mp4_1793549444.4499643": {
+    "duration_s": 8.04,
+    "width": 1280,
+    "height": 720,
+    "size_mb": 2.46,
+    "aspect_ratio": "16:9"
+  },
+  "content/episodes/soc-nho-sau-rang/youtube_16x9/clips/canh_02.mp4_1793549481.7710545": {
+    "duration_s": 8.04,
+    "width": 1280,
+    "height": 720,
+    "size_mb": 3.29,
+    "aspect_ratio": "16:9"
+  },
+  "content/episodes/soc-nho-sau-rang/youtube_16x9/clips/canh_06.mp4_1793549218.250834": {
+    "duration_s": 8.04,
+    "width": 1280,
+    "height": 720,
+    "size_mb": 3.69,
+    "aspect_ratio": "16:9"
+  },
+  "content/episodes/soc-nho-sau-rang/youtube_16x9/clips/canh_05.mp4_1793548686.8920958": {
+    "duration_s": 8.04,
+    "width": 1280,
+    "height": 720,
+    "size_mb": 3.29,
+    "aspect_ratio": "16:9"
+  },
+  "content/episodes/soc-nho-sau-rang/youtube_16x9/clips/canh_04.mp4_1793549407.4088426": {
+    "duration_s": 8.04,
+    "width": 1280,
+    "height": 720,
+    "size_mb": 3.06,
+    "aspect_ratio": "16:9"
+  },
+  "content/episodes/soc-nho-sau-rang/hf-video/assets/canh_01.mp4_1793549602.5416512": {
+    "duration_s": 8.04,
+    "width": 1280,
+    "height": 720,
+    "size_mb": 3.95,
+    "aspect_ratio": "16:9"
+  },
+  "content/episodes/soc-nho-sau-rang/hf-video/assets/canh_03.mp4_1793549602.547623": {
+    "duration_s": 8.04,
+    "width": 1280,
+    "height": 720,
+    "size_mb": 2.46,
+    "aspect_ratio": "16:9"
+  },
+  "content/episodes/soc-nho-sau-rang/hf-video/assets/canh_02.mp4_1793549602.5449474": {
+    "duration_s": 8.04,
+    "width": 1280,
+    "height": 720,
+    "size_mb": 3.29,
+    "aspect_ratio": "16:9"
+  },
+  "content/episodes/soc-nho-sau-rang/hf-video/assets/canh_06.mp4_1793549602.5567107": {
+    "duration_s": 8.04,
+    "width": 1280,
+    "height": 720,
+    "size_mb": 3.69,
+    "aspect_ratio": "16:9"
+  },
+  "content/episodes/soc-nho-sau-rang/hf-video/assets/canh_05.mp4_1793549602.55321": {
+    "duration_s": 8.04,
+    "width": 1280,
+    "height": 720,
+    "size_mb": 3.29,
+    "aspect_ratio": "16:9"
+  },
+  "content/episodes/soc-nho-sau-rang/hf-video/assets/canh_04.mp4_1793549602.5507903": {
+    "duration_s": 8.04,
+    "width": 1280,
+    "height": 720,
+    "size_mb": 3.06,
+    "aspect_ratio": "16:9"
+  },
+  "output/api_test_paste.mp4_1793718283.3903692": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/e3_real_output.mp4_1793805275.7568784": {
+    "duration_s": 2.57,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.14,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/shorts.mp4_1793808018.062386": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_main/youtube.mp4_1793808018.0320094": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/shorts.mp4_1793808018.0358558": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/shorts.mp4_1793808018.0409684": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  }
+}

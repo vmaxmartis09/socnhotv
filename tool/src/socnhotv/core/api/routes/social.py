@@ -17,6 +17,8 @@ from socnhotv.social.automation import SocialAutomationEngine
 from socnhotv.social.contracts import create_draft_post, ingest_inbox
 from socnhotv.social.migrate import migrate_legacy_publishing
 from socnhotv.social.models import (
+    MAX_ACCOUNTS,
+    AccountLimitExceededError,
     AutomationRule,
     CalendarNote,
     DEFAULT_TZ,
@@ -30,9 +32,14 @@ from socnhotv.social.models import (
     ensure_tz,
     now_iso,
 )
+from socnhotv.social.captions import CaptionGenerateRequest, CaptionGenerator
+from socnhotv.social.planner import PlanCommitRequest, PlanPreviewRequest, SocialPlanner
+from socnhotv.social.platform_rules import validate
+from socnhotv.social.queue import QueueResponse, get_social_queue
 from socnhotv.social.scheduler import SocialScheduler
 from socnhotv.social.service import InvalidStateTransitionError, SocialService
 from socnhotv.social.store import SocialStore
+from socnhotv.social.video_library import VideoLibrary
 
 router = APIRouter(tags=["social"])
 
@@ -40,6 +47,92 @@ router = APIRouter(tags=["social"])
 @router.get("/social/_ping")
 async def ping_social():
     return {"status": "ok", "module": "social"}
+
+
+# ==========================================
+# Video Library, Bulk Plans, Captions & Queue
+# ==========================================
+
+@router.get("/projects/{project_id}/social/videos")
+async def get_publishable_videos(project_id: str):
+    lib = VideoLibrary(project_id)
+    return lib.list_videos()
+
+
+@router.get("/social/videos")
+async def get_publishable_videos_alias(project_id: str = Query("soc-nho-tv")):
+    lib = VideoLibrary(project_id)
+    return lib.list_videos()
+
+
+@router.post("/projects/{project_id}/social/plans/preview")
+async def preview_plan(project_id: str, payload: PlanPreviewRequest):
+    planner = SocialPlanner(project_id)
+    return planner.preview_plan(payload)
+
+
+@router.post("/social/plans/preview")
+async def preview_plan_alias(payload: PlanPreviewRequest, project_id: str = Query("soc-nho-tv")):
+    planner = SocialPlanner(project_id)
+    return planner.preview_plan(payload)
+
+
+@router.post("/projects/{project_id}/social/plans/commit")
+async def commit_plan(project_id: str, payload: PlanCommitRequest):
+    planner = SocialPlanner(project_id)
+    return planner.commit_plan(payload)
+
+
+@router.post("/social/plans/commit")
+async def commit_plan_alias(payload: PlanCommitRequest, project_id: str = Query("soc-nho-tv")):
+    planner = SocialPlanner(project_id)
+    return planner.commit_plan(payload)
+
+
+@router.post("/projects/{project_id}/social/captions/generate")
+async def generate_captions(project_id: str, payload: CaptionGenerateRequest):
+    gen = CaptionGenerator(project_id)
+    return gen.generate(payload)
+
+
+@router.post("/social/captions/generate")
+async def generate_captions_alias(payload: CaptionGenerateRequest, project_id: str = Query("soc-nho-tv")):
+    gen = CaptionGenerator(project_id)
+    return gen.generate(payload)
+
+
+@router.get("/projects/{project_id}/social/queue", response_model=QueueResponse)
+async def get_queue_route(
+    project_id: str,
+    bucket: Optional[str] = Query("upcoming"),
+    account: Optional[str] = Query(None),
+    platform: Optional[str] = Query(None),
+    from_date: Optional[str] = Query(None, alias="from"),
+):
+    return get_social_queue(
+        project_id=project_id,
+        bucket=bucket,
+        account_id=account,
+        platform=platform,
+        from_date=from_date,
+    )
+
+
+@router.get("/social/queue", response_model=QueueResponse)
+async def get_queue_alias(
+    project_id: str = Query("soc-nho-tv"),
+    bucket: Optional[str] = Query("upcoming"),
+    account: Optional[str] = Query(None),
+    platform: Optional[str] = Query(None),
+    from_date: Optional[str] = Query(None, alias="from"),
+):
+    return get_social_queue(
+        project_id=project_id,
+        bucket=bucket,
+        account_id=account,
+        platform=platform,
+        from_date=from_date,
+    )
 
 
 # ==========================================
@@ -55,7 +148,14 @@ async def list_accounts(project_id: str):
 @router.post("/projects/{project_id}/social/accounts", response_model=SocialAccount)
 async def create_account(project_id: str, payload: SocialAccount):
     store = SocialStore(project_id)
-    return store.save_account(payload)
+    accounts = store.list_accounts()
+    if not any(a.id == payload.id for a in accounts):
+        if len(accounts) >= MAX_ACCOUNTS:
+            raise HTTPException(
+                status_code=409,
+                detail=f"Tối đa {MAX_ACCOUNTS} tài khoản mỗi dự án (MAX_ACCOUNTS = {MAX_ACCOUNTS})",
+            )
+    return store.save_account(payload, enforce_limit=True)
 
 
 @router.get("/projects/{project_id}/social/accounts/{account_id}", response_model=SocialAccount)

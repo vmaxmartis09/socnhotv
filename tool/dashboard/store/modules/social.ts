@@ -11,6 +11,7 @@ import {
   Post,
   PostingWindow,
   PostStatus,
+  QueueResponse,
   SocialAccount,
   SocialNotification,
   socialApi,
@@ -28,6 +29,8 @@ export interface SocialState {
   accounts: SocialAccount[];
   posts: Post[];
   calendarData: CalendarResponse | null;
+  queueData: QueueResponse | null;
+  queueBucket: "upcoming" | "overdue" | "published" | "failed";
   loading: boolean;
   error: string | null;
 
@@ -55,6 +58,8 @@ export interface SocialState {
   editingPost: Post | null;
   composerInitialDate: string | null;
   composerInitialAccount: string | null;
+  isPublishCenterOpen: boolean;
+  publishCenterTab: "plan" | "calendar";
   isAutomationModalOpen: boolean;
   isNotifDrawerOpen: boolean;
   isManualMetricsModalOpen: boolean;
@@ -68,8 +73,11 @@ export interface SocialState {
   setCalendarView: (view: "month" | "week" | "agenda") => void;
   setSelectedDate: (date: string) => void;
   setFilters: (filters: Partial<SocialFilters>) => void;
+  setQueueBucket: (bucket: "upcoming" | "overdue" | "published" | "failed") => void;
   openComposer: (post?: Post | null, date?: string, accountId?: string) => void;
   closeComposer: () => void;
+  openPublishCenter: (tab?: "plan" | "calendar") => void;
+  closePublishCenter: () => void;
   setAutomationModalOpen: (open: boolean) => void;
   setNotifDrawerOpen: (open: boolean) => void;
   setManualMetricsModalOpen: (open: boolean) => void;
@@ -78,6 +86,7 @@ export interface SocialState {
   // Async API Actions
   loadAccounts: (projectId: string) => Promise<void>;
   loadPosts: (projectId: string) => Promise<void>;
+  loadQueue: (projectId: string, bucket?: "upcoming" | "overdue" | "published" | "failed") => Promise<void>;
   loadCalendar: (projectId: string, fromDate?: string, toDate?: string) => Promise<void>;
   loadAll: (projectId: string) => Promise<void>;
 
@@ -113,6 +122,8 @@ export const useSocialStore = create<SocialState>((set, get) => ({
   accounts: [],
   posts: [],
   calendarData: null,
+  queueData: null,
+  queueBucket: "upcoming",
   loading: false,
   error: null,
 
@@ -138,6 +149,8 @@ export const useSocialStore = create<SocialState>((set, get) => ({
   editingPost: null,
   composerInitialDate: null,
   composerInitialAccount: null,
+  isPublishCenterOpen: false,
+  publishCenterTab: "plan",
   isAutomationModalOpen: false,
   isNotifDrawerOpen: false,
   isManualMetricsModalOpen: false,
@@ -149,6 +162,7 @@ export const useSocialStore = create<SocialState>((set, get) => ({
   setSelectedDate: (date) => set({ selectedDate: date }),
   setFilters: (newFilters) =>
     set((state) => ({ filters: { ...state.filters, ...newFilters } })),
+  setQueueBucket: (bucket) => set({ queueBucket: bucket }),
 
   openComposer: (post = null, date, accountId) =>
     set({
@@ -165,6 +179,12 @@ export const useSocialStore = create<SocialState>((set, get) => ({
       composerInitialDate: null,
       composerInitialAccount: null,
     }),
+
+  openPublishCenter: (tab = "plan") =>
+    set({ isPublishCenterOpen: true, publishCenterTab: tab }),
+
+  closePublishCenter: () =>
+    set({ isPublishCenterOpen: false }),
 
   setAutomationModalOpen: (open) => set({ isAutomationModalOpen: open }),
   setNotifDrawerOpen: (open) => set({ isNotifDrawerOpen: open }),
@@ -189,6 +209,16 @@ export const useSocialStore = create<SocialState>((set, get) => ({
     }
   },
 
+  loadQueue: async (projectId: string, bucket?: "upcoming" | "overdue" | "published" | "failed") => {
+    try {
+      const b = bucket || get().queueBucket || "upcoming";
+      const queueData = await socialApi.getQueue(projectId, b);
+      set({ queueData, queueBucket: b });
+    } catch (e: any) {
+      set({ error: e.message });
+    }
+  },
+
   loadCalendar: async (projectId: string, fromDate, toDate) => {
     try {
       const { calendarView } = get();
@@ -206,14 +236,24 @@ export const useSocialStore = create<SocialState>((set, get) => ({
   loadAll: async (projectId: string) => {
     set({ loading: true, error: null });
     try {
-      const [accounts, posts, calendarData, notifs] = await Promise.all([
+      const currentBucket = get().queueBucket || "upcoming";
+      const [accounts, posts, calendarData, notifs, queueData] = await Promise.all([
         socialApi.listAccounts(projectId).catch(() => []),
         socialApi.listPosts(projectId).catch(() => []),
         socialApi.getCalendar(projectId, { view: get().calendarView }).catch(() => null),
         socialApi.listNotifications(projectId).catch(() => []),
+        socialApi.getQueue(projectId, currentBucket).catch(() => null),
       ]);
       const unreadCount = notifs.filter((n) => !n.read).length;
-      set({ accounts, posts, calendarData, notifications: notifs, unreadNotifCount: unreadCount, loading: false });
+      set({
+        accounts,
+        posts,
+        calendarData,
+        notifications: notifs,
+        unreadNotifCount: unreadCount,
+        queueData,
+        loading: false,
+      });
     } catch (e: any) {
       set({ error: e.message, loading: false });
     }

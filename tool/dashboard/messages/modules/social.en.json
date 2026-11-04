@@ -1,6 +1,40 @@
 {
   "social": {
     "title": "Social & Publishing",
-    "description": "Manage social accounts, multi-channel publishing calendar and track analytics"
+    "description": "Manage up to 10 multi-platform accounts, schedule and publish videos",
+    "statusBanner": "{accounts}/10 accounts · {pending} pending · {overdue} overdue · {nextTime}",
+    "noUpcoming": "No upcoming post",
+    "nextAt": "next at {time}",
+    "planButton": "+ Plan Publishing",
+    "viewCalendar": "View Calendar",
+    "accountsHeader": "Social Media Accounts",
+    "addAccount": "+ Add Account",
+    "accountsFull": "Maximum 10 accounts reached",
+    "tabs": {
+      "upcoming": "Upcoming",
+      "overdue": "Overdue",
+      "published": "Published",
+      "failed": "Failed"
+    },
+    "emptyUpcoming": "No upcoming scheduled posts.",
+    "emptyOverdue": "No overdue posts.",
+    "emptyPublished": "No published posts yet.",
+    "emptyFailed": "No failed posts.",
+    "wizard": {
+      "title": "Publishing Center & Social Manager",
+      "step1": "1. Select Videos",
+      "step2": "2. Accounts & Compatibility",
+      "step3": "3. Content & Preview",
+      "step4": "4. Auto-Schedule",
+      "step5": "5. Review & Confirm",
+      "generateCaptions": "Generate Captions AI",
+      "varyPerAccount": "Vary copy per account",
+      "previewPhone": "Phone Screen Preview",
+      "autoSchedule": "Auto-Schedule Smart",
+      "scheduleNow": "Publish Now",
+      "fixedSchedule": "Fixed Time",
+      "commitSchedule": "Confirm Schedule",
+      "approvalRequired": "Require Approval (Safe Lock)"
+    }
   }
 }

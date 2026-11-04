@@ -7,6 +7,12 @@ from zoneinfo import ZoneInfo
 from pydantic import BaseModel, Field
 
 DEFAULT_TZ = ZoneInfo("Asia/Ho_Chi_Minh")
+MAX_ACCOUNTS = 10
+
+
+class AccountLimitExceededError(ValueError):
+    """Raised when trying to add more accounts than MAX_ACCOUNTS."""
+    pass
 
 
 def now_iso() -> str:
@@ -63,10 +69,14 @@ class SocialAccount(BaseModel):
     channel_url: str = ""
     auth: AccountAuth = Field(default_factory=AccountAuth)
     status: AccountStatus = "manual"
+    groups: List[str] = Field(default_factory=list)
     default_hashtags: List[str] = Field(default_factory=list)
     default_caption_footer: str = ""
     posting_windows: List[PostingWindow] = Field(default_factory=list)
     daily_limit: int = 5
+    min_gap_minutes: int = 120
+    color: str = "#6366f1"
+    affiliate_default: dict = Field(default_factory=lambda: {"link": "", "disclosure": False})
     tags: List[str] = Field(default_factory=list)
 
 
@@ -98,9 +108,15 @@ class PostTarget(BaseModel):
     privacy: PrivacyType = "public"
     made_for_kids: bool = False
     cover_time_s: float = 0.0
+    cover_url: Optional[str] = None
     first_comment: str = ""
     product_link: str = ""
     disclosure_ad: bool = False
+    ai_generated_label: bool = False
+    comment_enabled: bool = True
+    duet_enabled: bool = True
+    stitch_enabled: bool = True
+    category: str = "22"
     status: PostStatus = "draft"
     external_id: Optional[str] = None
     external_url: Optional[str] = None

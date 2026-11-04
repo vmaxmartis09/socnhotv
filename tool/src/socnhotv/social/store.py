@@ -11,6 +11,8 @@ from pathlib import Path
 from typing import Any, Dict, Iterator, List, Optional
 
 from socnhotv.social.models import (
+    MAX_ACCOUNTS,
+    AccountLimitExceededError,
     AutomationRule,
     CalendarNote,
     Post,
@@ -113,7 +115,7 @@ class SocialStore:
                 return a
         return None
 
-    def save_account(self, account: SocialAccount) -> SocialAccount:
+    def save_account(self, account: SocialAccount, enforce_limit: bool = False) -> SocialAccount:
         with file_lock(self.lock_file):
             raw = atomic_read_json(self.accounts_file, default=[])
             accounts = [SocialAccount.model_validate(x) for x in raw]
@@ -124,6 +126,10 @@ class SocialStore:
                     updated = True
                     break
             if not updated:
+                if enforce_limit and len(accounts) >= MAX_ACCOUNTS:
+                    raise AccountLimitExceededError(
+                        f"Tối đa {MAX_ACCOUNTS} tài khoản mỗi dự án (MAX_ACCOUNTS = {MAX_ACCOUNTS})"
+                    )
                 accounts.append(account)
             atomic_write_json(self.accounts_file, [a.model_dump() for a in accounts])
             return account

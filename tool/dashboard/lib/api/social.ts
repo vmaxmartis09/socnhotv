@@ -28,11 +28,145 @@ export interface SocialAccount {
   channel_url?: string;
   auth: AccountAuth;
   status: "connected" | "expired" | "manual" | "disabled";
+  groups?: string[];
   default_hashtags: string[];
   default_caption_footer: string;
   posting_windows: PostingWindow[];
   daily_limit: number;
+  min_gap_minutes?: number;
+  color?: string;
+  affiliate_default?: { link: string; disclosure: boolean };
   tags?: string[];
+}
+
+export interface Issue {
+  level: "error" | "warn";
+  code: string;
+  message_vi: string;
+}
+
+export interface PublishableVideo {
+  id: string;
+  title: string;
+  thumb?: string;
+  duration_s: number;
+  width: number;
+  height: number;
+  size_mb: number;
+  aspect_ratio: string;
+  variants: Record<string, string>;
+  primary_path: string;
+  source: "job" | "episode" | "library" | "output";
+  posted_count: number;
+  last_posted_at?: string | null;
+  script_excerpt?: string;
+}
+
+export interface PlannedTarget {
+  video_id: string;
+  video_title: string;
+  account_id: string;
+  account_name: string;
+  platform: PlatformType;
+  scheduled_at: string;
+  issues: Issue[];
+  variant_used?: string | null;
+  media_path?: string | null;
+}
+
+export interface PlanPreviewRequest {
+  video_ids: string[];
+  account_ids: string[];
+  strategy: "now" | "fixed" | "auto";
+  start_at?: string;
+  end_at?: string;
+  per_day_limit?: number;
+  caption_mode?: string;
+}
+
+export interface TargetCommitSpec {
+  video_id: string;
+  account_id: string;
+  scheduled_at: string;
+  title?: string;
+  caption?: string;
+  hashtags?: string[];
+  privacy?: string;
+  made_for_kids?: boolean;
+  ai_generated_label?: boolean;
+  comment_enabled?: boolean;
+  duet_enabled?: boolean;
+  stitch_enabled?: boolean;
+  first_comment?: string;
+  product_link?: string;
+  disclosure_ad?: boolean;
+}
+
+export interface PlanCommitRequest {
+  targets: TargetCommitSpec[];
+  approval_required: boolean;
+}
+
+export interface PlatformCaptionResult {
+  platform: PlatformType;
+  account_id?: string;
+  account_name?: string;
+  hook: string;
+  caption: string;
+  hashtags: string[];
+  cta: string;
+  title?: string;
+  description?: string;
+  tags?: string[];
+  disclosure_ad: boolean;
+  disclosure_text: string;
+}
+
+export interface CaptionGenerateRequest {
+  video_id: string;
+  platforms: string[];
+  tone?: string;
+  goal?: string;
+  include_affiliate?: boolean;
+  affiliate_link?: string;
+  vary_per_account?: boolean;
+  account_ids?: string[];
+}
+
+export interface QueueItem {
+  post_id: string;
+  target_id: string;
+  title: string;
+  platform: PlatformType;
+  account_id: string;
+  account_name: string;
+  account_avatar: string;
+  scheduled_at?: string | null;
+  status: string;
+  caption: string;
+  thumb: string;
+  bucket: "upcoming" | "overdue" | "published" | "failed";
+  approval_required: boolean;
+  approval_status: "approved" | "pending" | "rejected";
+  is_manual: boolean;
+  has_package: boolean;
+  issues: Issue[];
+}
+
+export interface QueueSummary {
+  accounts_count: number;
+  max_accounts: number;
+  pending_approval_count: number;
+  overdue_count: number;
+  upcoming_count: number;
+  published_count: number;
+  failed_count: number;
+  next_post_time?: string | null;
+}
+
+export interface QueueResponse {
+  items: QueueItem[];
+  summary: QueueSummary;
 }
 
 export interface PostMedia {
@@ -239,6 +373,45 @@ async function fetchJson<T>(url: string, options?: RequestInit): Promise<T> {
 }
 
 export const socialApi = {
+  // Videos & Bulk Planning
+  getVideos: (projectId: string) =>
+    fetchJson<PublishableVideo[]>(`${SOCIAL_CORE_URL}/projects/${projectId}/social/videos`),
+
+  previewPlan: (projectId: string, payload: PlanPreviewRequest) =>
+    fetchJson<PlannedTarget[]>(`${SOCIAL_CORE_URL}/projects/${projectId}/social/plans/preview`, {
+      method: "POST",
+      body: JSON.stringify(payload),
+    }),
+
+  commitPlan: (projectId: string, targets: TargetCommitSpec[], approvalRequired: boolean = true) =>
+    fetchJson<{ created_posts_count: number; created_targets_count: number; posts: Post[] }>(
+      `${SOCIAL_CORE_URL}/projects/${projectId}/social/plans/commit`,
+      {
+        method: "POST",
+        body: JSON.stringify({ targets, approval_required: approvalRequired }),
+      }
+    ),
+
+  generateCaptions: (projectId: string, payload: CaptionGenerateRequest) =>
+    fetchJson<PlatformCaptionResult[]>(`${SOCIAL_CORE_URL}/projects/${projectId}/social/captions/generate`, {
+      method: "POST",
+      body: JSON.stringify(payload),
+    }),
+
+  getQueue: (
+    projectId: string,
+    bucket: "upcoming" | "overdue" | "published" | "failed" | "all" = "upcoming",
+    params?: { accountId?: string; platform?: string; fromDate?: string }
+  ) => {
+    const q = new URLSearchParams();
+    if (bucket && bucket !== "all") q.set("bucket", bucket);
+    if (params?.accountId) q.set("account", params.accountId);
+    if (params?.platform) q.set("platform", params.platform);
+    if (params?.fromDate) q.set("from", params.fromDate);
+    const qs = q.toString() ? `?${q.toString()}` : "";
+    return fetchJson<QueueResponse>(`${SOCIAL_CORE_URL}/projects/${projectId}/social/queue${qs}`);
+  },
+
   // Accounts
   listAccounts: (projectId: string) =>
     fetchJson<SocialAccount[]>(`${SOCIAL_CORE_URL}/projects/${projectId}/social/accounts`),

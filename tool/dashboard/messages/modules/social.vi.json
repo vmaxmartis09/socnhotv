@@ -1,6 +1,40 @@
 {
   "social": {
     "title": "Mạng xã hội & Lịch đăng",
-    "description": "Quản lý tài khoản mạng xã hội, lịch xuất bản đa kênh và theo dõi chỉ số"
+    "description": "Quản lý tối đa 10 tài khoản đa nền tảng, lên kế hoạch và xuất bản video",
+    "statusBanner": "{accounts}/10 tài khoản · {pending} chờ duyệt · {overdue} quá hạn · {nextTime}",
+    "noUpcoming": "Không có bài kế tiếp",
+    "nextAt": "bài kế tiếp {time}",
+    "planButton": "+ Lên kế hoạch đăng",
+    "viewCalendar": "Xem Lịch",
+    "accountsHeader": "Tài khoản mạng xã hội",
+    "addAccount": "+ Thêm tài khoản",
+    "accountsFull": "Đã đủ 10 tài khoản",
+    "tabs": {
+      "upcoming": "Sắp tới",
+      "overdue": "Quá hạn",
+      "published": "Đã đăng",
+      "failed": "Lỗi"
+    },
+    "emptyUpcoming": "Chưa có bài viết nào được lên lịch sắp tới.",
+    "emptyOverdue": "Không có bài viết nào bị quá hạn.",
+    "emptyPublished": "Chưa có bài viết nào được xuất bản.",
+    "emptyFailed": "Không có bài viết nào bị lỗi.",
+    "wizard": {
+      "title": "Trung tâm quản lý & Xuất bản Social",
+      "step1": "1. Chọn video",
+      "step2": "2. Chọn kênh & Tương thích",
+      "step3": "3. Nội dung & Xem trước",
+      "step4": "4. Lập lịch tự động",
+      "step5": "5. Duyệt & Xác nhận",
+      "generateCaptions": "Viết caption tự động",
+      "varyPerAccount": "Mỗi tài khoản một biến thể",
+      "previewPhone": "Xem trước trên điện thoại",
+      "autoSchedule": "Tự xếp lịch chuẩn",
+      "scheduleNow": "Đăng ngay",
+      "fixedSchedule": "Chọn giờ cố định",
+      "commitSchedule": "Xác nhận lên lịch",
+      "approvalRequired": "Duyệt trước khi đăng (An toàn)"
+    }
   }
 }
