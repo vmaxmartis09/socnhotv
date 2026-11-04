@@ -14,9 +14,7 @@ import {
   Plus,
   Check,
   ChevronDown,
-  Sparkles,
 } from "@/components/ui/icons";
-import { VoiceCloneModal } from "@/components/voice/VoiceCloneModal";
 
 /** Breadcrumb nổi trong Studio: Sảnh › dự án › tập. Chọn dự án thì canvas chuyển theo. */
 export function StudioBreadcrumb() {
@@ -27,7 +25,6 @@ export function StudioBreadcrumb() {
     projects,
     episodes,
     activeEpisodeId,
-    saveState,
     selectEpisode,
     createEpisode,
     switchProject,
@@ -35,13 +32,10 @@ export function StudioBreadcrumb() {
 
   const [menu, setMenu] = React.useState<"project" | "episode" | null>(null);
   const [newTitle, setNewTitle] = React.useState("");
-  const [voiceCloneOpen, setVoiceCloneOpen] = React.useState(false);
   const barRef = React.useRef<HTMLDivElement>(null);
 
   const project = projects.find((p) => p.id === activeProjectId);
   const episode = episodes.find((ep) => ep.id === activeEpisodeId);
-  const saveText =
-    saveState === "saving" ? c("saveSaving") : saveState === "unsaved" ? c("saveUnsaved") : c("saveSaved");
 
   React.useEffect(() => {
     if (!menu) return;
@@ -169,30 +163,6 @@ export function StudioBreadcrumb() {
           )}
         </AnimatePresence>
       </div>
-
-      <button
-        type="button"
-        title="Nhân bản giọng nói OmniVoice"
-        onClick={() => setVoiceCloneOpen(true)}
-        className="flex h-8 items-center gap-1.5 rounded-full border border-brand/40 bg-brand/10 px-2.5 text-xs font-medium text-brand hover:bg-brand/20 transition-all active:scale-95 shadow-2xs"
-      >
-        <Sparkles className="h-3.5 w-3.5 text-brand" />
-        <span className="hidden sm:inline">Clone Giọng</span>
-      </button>
-
-      <span
-        title={saveText}
-        className={cn(
-          "ml-1 h-2 w-2 shrink-0 rounded-full",
-          saveState === "unsaved" ? "bg-brand" : saveState === "saving" ? "animate-pulse bg-semantic-warning" : "bg-semantic-success"
-        )}
-      />
-
-      <VoiceCloneModal
-        isOpen={voiceCloneOpen}
-        onClose={() => setVoiceCloneOpen(false)}
-        projectId={activeProjectId}
-      />
     </motion.div>
   );
 }

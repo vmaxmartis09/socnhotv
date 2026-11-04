@@ -5,7 +5,6 @@ import {
   Mic,
   Play,
   Pause,
-  Sparkles,
   AudioLines,
   Plus,
 } from "@/components/ui/icons";
@@ -14,7 +13,6 @@ import {
   type VoiceVaultItem,
   type VoiceCloneResult,
 } from "@/lib/repositories/character-assets";
-import { VoiceCloneModal } from "./VoiceCloneModal";
 import { CORE_URL } from "@/lib/repositories/core";
 import { cn } from "@/lib/utils";
 
@@ -40,7 +38,6 @@ export function VoiceSelectorWithClone({
   className,
 }: VoiceSelectorWithCloneProps) {
   const [voices, setVoices] = useState<VoiceVaultItem[]>([]);
-  const [cloneModalOpen, setCloneModalOpen] = useState(false);
   const [isCustom, setIsCustom] = useState(false);
   const [customInput, setCustomInput] = useState(value);
 
@@ -186,30 +183,7 @@ export function VoiceSelectorWithClone({
             )}
           </button>
         )}
-
-        {/* Nút mở Clone Voice Tool trực tiếp */}
-        <button
-          type="button"
-          disabled={disabled}
-          onClick={() => setCloneModalOpen(true)}
-          title="Nhân bản giọng nói mới qua OmniVoice"
-          className="flex h-8 items-center gap-1.5 rounded-md border border-brand/40 bg-brand/10 px-2.5 text-xs font-medium text-brand hover:bg-brand/20 transition-all shrink-0 active:scale-95 shadow-2xs"
-        >
-          <Sparkles className="h-3.5 w-3.5 text-brand" />
-          <span>⚡ Clone giọng</span>
-        </button>
       </div>
-
-      {/* Modal Clone Voice */}
-      <VoiceCloneModal
-        isOpen={cloneModalOpen}
-        onClose={() => setCloneModalOpen(false)}
-        defaultVoiceId={defaultSuggestedVoiceId ? `${defaultSuggestedVoiceId}` : ""}
-        projectId={projectId}
-        characterId={characterId}
-        sourceSamples={sourceSamples}
-        onSuccess={handleCloneSuccess}
-      />
     </div>
   );
 }
