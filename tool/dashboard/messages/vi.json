@@ -544,5 +544,31 @@
     "storage": "Lưu trên máy này",
     "storageNote": "IndexedDB, không tải gì lên mạng",
     "project": "Dự án"
+  },
+  "createVideo": {
+    "title": "Tạo video tự động hoá",
+    "step1": "1. Chọn mẫu",
+    "step2": "2. Nội dung",
+    "step3": "3. Xuất bản",
+    "templateCategoryAll": "Tất cả",
+    "batchMode": "Tạo hàng loạt",
+    "batchTopicsPlaceholder": "Mỗi dòng 1 chủ đề, hoặc phân cách bằng ---",
+    "aiPromptPlaceholder": "Mô tả ý tưởng video ngắn để AI tự động lên kịch bản...",
+    "btnGenerateAi": "Tự viết kịch bản",
+    "productTitle": "Thông tin sản phẩm",
+    "productName": "Tên sản phẩm",
+    "productPrice": "Giá bán",
+    "productUsp": "Điểm nổi bật (USP)",
+    "qualityStandard": "Chuẩn (1080p · 30fps)",
+    "qualityHigh": "Chất lượng cao (SOTA)",
+    "platformsTitle": "Nền tảng xuất bản",
+    "specsNote": "Kích thước, safe-zone, -14 LUFS tự động tối ưu theo chuẩn nền tảng.",
+    "estimatedCost": "Ước tính chi phí",
+    "btnCreate": "Tạo video",
+    "btnCreateBatch": "Tạo {count} video hàng loạt",
+    "btnCancel": "Hủy",
+    "btnNext": "Tiếp tục",
+    "btnBack": "Quay lại",
+    "creating": "Đang khởi tạo video..."
   }
 }

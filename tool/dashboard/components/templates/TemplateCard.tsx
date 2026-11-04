@@ -37,10 +37,10 @@ export function TemplateCard({ template }: TemplateCardProps) {
       href={`/templates/${template.id}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="group relative flex flex-col rounded-2xl border border-slate-800 bg-slate-900/60 p-3 transition-all duration-200 hover:-translate-y-1 hover:border-sky-500/50 hover:bg-slate-900/90 hover:shadow-xl hover:shadow-sky-500/10"
+      className="group relative flex flex-col rounded-2xl border border-border bg-card p-3 transition-all duration-200 hover:-translate-y-1 hover:border-primary/50 hover:bg-accent/40 hover:shadow-xl hover:shadow-primary/5"
     >
       {/* Thumbnail / Video Container */}
-      <div className="relative aspect-[9/16] w-full overflow-hidden rounded-xl bg-slate-950">
+      <div className="relative aspect-[9/16] w-full overflow-hidden rounded-xl bg-muted">
         <img
           src={previewJpgUrl}
           alt={template.name}
@@ -67,13 +67,13 @@ export function TemplateCard({ template }: TemplateCardProps) {
 
         {/* Badges Overlay */}
         <div className="absolute top-2.5 left-2.5 flex flex-wrap gap-1.5 z-10">
-          <span className="rounded-full bg-slate-900/80 px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wider text-sky-400 backdrop-blur-md border border-sky-500/20">
+          <span className="rounded-full bg-background/80 px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wider text-primary backdrop-blur-md border border-primary/20">
             {template.category}
           </span>
         </div>
 
         <div className="absolute bottom-2.5 right-2.5 z-10">
-          <span className="rounded-full bg-black/70 px-2 py-0.5 text-[11px] font-medium text-slate-300 backdrop-blur-sm">
+          <span className="rounded-full bg-background/80 px-2 py-0.5 text-[11px] font-medium text-foreground backdrop-blur-sm border border-border">
             {template.duration.min}s - {template.duration.max}s
           </span>
         </div>
@@ -81,7 +81,7 @@ export function TemplateCard({ template }: TemplateCardProps) {
 
       {/* Meta Info */}
       <div className="mt-3 flex flex-col gap-1">
-        <h3 className="line-clamp-1 text-sm font-bold text-slate-100 group-hover:text-sky-400">
+        <h3 className="line-clamp-1 text-sm font-bold text-foreground group-hover:text-primary transition-colors">
           {template.name}
         </h3>
 
@@ -90,7 +90,7 @@ export function TemplateCard({ template }: TemplateCardProps) {
           {template.platforms.map((plat) => (
             <span
               key={plat}
-              className="rounded-md bg-slate-800/80 px-1.5 py-0.5 text-[10px] font-medium uppercase text-slate-400"
+              className="rounded-md bg-muted px-1.5 py-0.5 text-[10px] font-medium uppercase text-muted-foreground"
             >
               {plat}
             </span>

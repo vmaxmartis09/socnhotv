@@ -23,14 +23,14 @@ export function SlotField({ slot, value, onChange, error, projectId }: SlotField
     return (
       <div className="flex flex-col gap-1.5">
         <div className="flex items-center justify-between">
-          <label className="text-xs font-semibold text-slate-300">
+          <label className="text-xs font-semibold text-foreground">
             {slot.label || slot.key}
             {slot.required && <span className="ml-1 text-rose-500">*</span>}
           </label>
           {slot.max_chars && (
             <span
               className={`text-[11px] ${
-                charCount > slot.max_chars ? "font-bold text-rose-400" : "text-slate-500"
+                charCount > slot.max_chars ? "font-bold text-rose-500" : "text-muted-foreground"
               }`}
             >
               {charCount}/{slot.max_chars}
@@ -44,7 +44,7 @@ export function SlotField({ slot, value, onChange, error, projectId }: SlotField
             rows={3}
             onChange={(e) => onChange(e.target.value)}
             placeholder={slot.description || `Nhập ${slot.label || slot.key}...`}
-            className="w-full rounded-xl border border-slate-800 bg-slate-950 px-3.5 py-2.5 text-sm text-slate-200 outline-none transition-colors focus:border-sky-500"
+            className="w-full rounded-xl border border-border bg-background px-3.5 py-2.5 text-sm text-foreground outline-none transition-colors focus:border-primary"
           />
         ) : (
           <input
@@ -52,11 +52,11 @@ export function SlotField({ slot, value, onChange, error, projectId }: SlotField
             value={strVal}
             onChange={(e) => onChange(e.target.value)}
             placeholder={slot.description || `Nhập ${slot.label || slot.key}...`}
-            className="w-full rounded-xl border border-slate-800 bg-slate-950 px-3.5 py-2 text-sm text-slate-200 outline-none transition-colors focus:border-sky-500"
+            className="w-full rounded-xl border border-border bg-background px-3.5 py-2 text-sm text-foreground outline-none transition-colors focus:border-primary"
           />
         )}
 
-        {error && <p className="text-xs text-rose-400">{error}</p>}
+        {error && <p className="text-xs text-rose-500">{error}</p>}
       </div>
     );
   }
@@ -65,8 +65,8 @@ export function SlotField({ slot, value, onChange, error, projectId }: SlotField
   if (slot.type === "product") {
     const productObj = typeof currentVal === "object" && currentVal !== null ? currentVal : {};
     return (
-      <div className="flex flex-col gap-2 rounded-xl border border-slate-800 bg-slate-950/60 p-3.5">
-        <label className="text-xs font-semibold text-slate-300">
+      <div className="flex flex-col gap-2 rounded-xl border border-border bg-card p-3.5">
+        <label className="text-xs font-semibold text-foreground">
           🛍️ {slot.label || slot.key}
           {slot.required && <span className="ml-1 text-rose-500">*</span>}
         </label>
@@ -76,17 +76,17 @@ export function SlotField({ slot, value, onChange, error, projectId }: SlotField
             placeholder="Tên sản phẩm..."
             value={productObj.title || productObj.name || ""}
             onChange={(e) => onChange({ ...productObj, title: e.target.value })}
-            className="rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-xs text-slate-200 outline-none focus:border-sky-500"
+            className="rounded-lg border border-border bg-background px-3 py-2 text-xs text-foreground outline-none focus:border-primary"
           />
           <input
             type="text"
             placeholder="Giá sản phẩm (vd: 149.000đ)..."
             value={productObj.price || ""}
             onChange={(e) => onChange({ ...productObj, price: e.target.value })}
-            className="rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-xs text-slate-200 outline-none focus:border-sky-500"
+            className="rounded-lg border border-border bg-background px-3 py-2 text-xs text-foreground outline-none focus:border-primary"
           />
         </div>
-        {error && <p className="text-xs text-rose-400">{error}</p>}
+        {error && <p className="text-xs text-rose-500">{error}</p>}
       </div>
     );
   }
@@ -95,13 +95,13 @@ export function SlotField({ slot, value, onChange, error, projectId }: SlotField
   if (slot.type === "media[]" || slot.type === "list") {
     const listVal: string[] = Array.isArray(currentVal) ? currentVal : [];
     return (
-      <div className="flex flex-col gap-2 rounded-xl border border-slate-800 bg-slate-950/60 p-3.5">
+      <div className="flex flex-col gap-2 rounded-xl border border-border bg-card p-3.5">
         <div className="flex items-center justify-between">
-          <label className="text-xs font-semibold text-slate-300">
+          <label className="text-xs font-semibold text-foreground">
             🎞️ {slot.label || slot.key}
             {slot.required && <span className="ml-1 text-rose-500">*</span>}
           </label>
-          <span className="text-[11px] text-slate-500">
+          <span className="text-[11px] text-muted-foreground">
             {listVal.length} mục {slot.max ? `(tối đa ${slot.max})` : ""}
           </span>
         </div>
@@ -117,12 +117,12 @@ export function SlotField({ slot, value, onChange, error, projectId }: SlotField
                   updated[idx] = e.target.value;
                   onChange(updated);
                 }}
-                className="flex-1 rounded-lg border border-slate-800 bg-slate-900 px-3 py-1.5 text-xs text-slate-200 outline-none focus:border-sky-500"
+                className="flex-1 rounded-lg border border-border bg-background px-3 py-1.5 text-xs text-foreground outline-none focus:border-primary"
               />
               <button
                 type="button"
                 onClick={() => onChange(listVal.filter((_, i) => i !== idx))}
-                className="rounded px-2 py-1 text-xs text-slate-500 hover:bg-slate-800 hover:text-rose-400"
+                className="rounded px-2 py-1 text-xs text-muted-foreground hover:bg-accent hover:text-rose-500"
               >
                 ✕
               </button>
@@ -132,12 +132,12 @@ export function SlotField({ slot, value, onChange, error, projectId }: SlotField
           <button
             type="button"
             onClick={() => onChange([...listVal, ""])}
-            className="flex items-center justify-center gap-1.5 rounded-lg border border-dashed border-slate-700 py-2 text-xs text-slate-400 hover:border-sky-500 hover:text-sky-400"
+            className="flex items-center justify-center gap-1.5 rounded-lg border border-dashed border-border py-2 text-xs text-muted-foreground hover:border-primary hover:text-primary transition-colors"
           >
             + Thêm đường dẫn media
           </button>
         </div>
-        {error && <p className="text-xs text-rose-400">{error}</p>}
+        {error && <p className="text-xs text-rose-500">{error}</p>}
       </div>
     );
   }
@@ -145,7 +145,7 @@ export function SlotField({ slot, value, onChange, error, projectId }: SlotField
   // Fallback generic input
   return (
     <div className="flex flex-col gap-1.5">
-      <label className="text-xs font-semibold text-slate-300">
+      <label className="text-xs font-semibold text-foreground">
         {slot.label || slot.key}
         {slot.required && <span className="ml-1 text-rose-500">*</span>}
       </label>
@@ -153,9 +153,9 @@ export function SlotField({ slot, value, onChange, error, projectId }: SlotField
         type="text"
         value={String(currentVal)}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full rounded-xl border border-slate-800 bg-slate-950 px-3.5 py-2 text-sm text-slate-200 outline-none transition-colors focus:border-sky-500"
+        className="w-full rounded-xl border border-border bg-background px-3.5 py-2 text-sm text-foreground outline-none transition-colors focus:border-primary"
       />
-      {error && <p className="text-xs text-rose-400">{error}</p>}
+      {error && <p className="text-xs text-rose-500">{error}</p>}
     </div>
   );
 }

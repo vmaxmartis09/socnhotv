@@ -544,5 +544,31 @@
     "storage": "Stored on this device",
     "storageNote": "IndexedDB, nothing is uploaded",
     "project": "Project"
+  },
+  "createVideo": {
+    "title": "Automated Video Creation",
+    "step1": "1. Choose Template",
+    "step2": "2. Content",
+    "step3": "3. Export & Platforms",
+    "templateCategoryAll": "All",
+    "batchMode": "Batch Creation",
+    "batchTopicsPlaceholder": "One topic per line, or separated by ---",
+    "aiPromptPlaceholder": "Describe your video concept for AI script generation...",
+    "btnGenerateAi": "Auto Generate Script",
+    "productTitle": "Product Information",
+    "productName": "Product Name",
+    "productPrice": "Price",
+    "productUsp": "Unique Selling Proposition (USP)",
+    "qualityStandard": "Standard (1080p · 30fps)",
+    "qualityHigh": "High Quality (SOTA)",
+    "platformsTitle": "Publishing Platforms",
+    "specsNote": "Resolution, safe-zone, -14 LUFS automatically optimized per platform standards.",
+    "estimatedCost": "Estimated Cost",
+    "btnCreate": "Create Video",
+    "btnCreateBatch": "Create {count} Batch Videos",
+    "btnCancel": "Cancel",
+    "btnNext": "Next",
+    "btnBack": "Back",
+    "creating": "Initializing video..."
   }
 }
