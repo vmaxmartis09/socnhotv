@@ -1,0 +1,32 @@
+{
+  "duration_s": 131.9,
+  "scene_count": 4,
+  "cuts_per_10s": 0.30,
+  "median_shot_duration_s": 34.2,
+  "total_spoken_words": 420,
+  "speech_rate_words_per_sec": 3.18,
+  "silence_ratio": 0.04,
+  "loudness": {
+    "integrated_lufs": -14.70,
+    "true_peak_dbtp": -0.19,
+    "lra_lu": 5.10,
+    "threshold_lufs": -24.88,
+    "standard_compliance": "100% Compliant with TikTok/Facebook -14 LUFS standard (-14.70 LUFS)"
+  },
+  "video_specs": {
+    "width": 720,
+    "height": 1280,
+    "aspect_ratio": "9:16",
+    "fps": 30.0,
+    "safe_zone_vertical_compliant": true,
+    "video_type": "Screen Capture App Architecture Demo",
+    "technology": "Multi-Agent System (Leader + Sub-Agents) + Gemini 1.5 Flash API"
+  },
+  "color_palette_hex": [
+    "#0F172A",
+    "#1E293B",
+    "#6366F1",
+    "#10B981",
+    "#F1F5F9"
+  ]
+}

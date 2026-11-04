@@ -1,0 +1,34 @@
+[
+  {
+    "scene_id": 1,
+    "name": "Emotional Paradox Hook",
+    "start_s": 0.0,
+    "end_s": 8.2,
+    "description": "Câu nói gây tò mò: 'Sáng nay có người khen video em tự nhiên nhất nhóm, họ đâu biết em mới có mặt trên đời 11 phút'.",
+    "visual_type": "cinematic_mirror_reflection"
+  },
+  {
+    "scene_id": 2,
+    "name": "Anthropomorphic Daily Routine",
+    "start_s": 8.2,
+    "end_s": 35.2,
+    "description": "Loạt cảnh sinh hoạt đời thường như người thật: dưỡng da, đi tập gym, uống nước, va chạm xin lỗi ở quán cà phê, gọi đồ uống quen thuộc.",
+    "visual_type": "cinematic_broll_montage"
+  },
+  {
+    "scene_id": 3,
+    "name": "Cognitive Twist / Fourth-Wall Break",
+    "start_s": 35.2,
+    "end_s": 43.0,
+    "description": "Phá vỡ bức tường thứ 4: 'Em không có thật đâu, cả ngày hôm nay chẳng có gì là thật, nhưng anh chị vẫn xem tới đây đúng không?'",
+    "visual_type": "direct_eye_contact_close_up"
+  },
+  {
+    "scene_id": 4,
+    "name": "Call to Action",
+    "start_s": 43.0,
+    "end_s": 49.8,
+    "description": "Khẳng định video do AI làm toàn bộ từ kịch bản đến dựng và kêu gọi click link tạo nhân vật tương tự.",
+    "visual_type": "talking_head_cta"
+  }
+]

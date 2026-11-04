@@ -1,0 +1,42 @@
+[
+  {
+    "scene_id": 1,
+    "start_time": 0.0,
+    "end_time": 27.6,
+    "duration": 27.6,
+    "scene_type": "Pain Point Hook (Manual B-Roll Sourcing)",
+    "visual_description": "Quay cận cảnh người nói và thao tác kéo thả B-roll thủ công mệt mỏi trong Premiere/CapCut",
+    "audio_transcript": "Các bạn có lười edit video và muốn AI tự edit video cho các bạn không?... Ngồi mà lục mấy trăm cái B-roll nhét cái nào... đưa một cái A-roll vô nó tự nhét B-roll luôn.",
+    "pacing": "Relatable editor pain point"
+  },
+  {
+    "scene_id": 2,
+    "start_time": 27.6,
+    "end_time": 68.5,
+    "duration": 40.9,
+    "scene_type": "Multi-Agent System Architecture Walkthrough",
+    "visual_description": "Màn hình giao diện kiến trúc Multi-Agent: Leader Agent phân bổ công việc cho mạng lưới Sub-Agents, Sub-Agent B-roll Matcher, Sub-Agent Quality Inspector",
+    "audio_transcript": "Mỗi cái này là một con Sub-Agent nè các bạn... sẽ có một con Agent chính, con Leader giao việc cho mấy con Sub-Agent bên dưới... sau khi chạy xong có một Sub-Agent check lại video cuối cùng trước khi bàn giao.",
+    "pacing": "Technical system architecture"
+  },
+  {
+    "scene_id": 3,
+    "start_time": 68.5,
+    "end_time": 116.5,
+    "duration": 48.0,
+    "scene_type": "Model Tiering & API Cost Optimization",
+    "visual_description": "Bảng cấu hình model AI: Gemini 1.5 Flash vs Gemini Flash-Lite, nhật ký log ghi nhận chi phí token cực thấp",
+    "audio_transcript": "Cái API thì các bạn tự gắn key, tự trả tiền... Khung thì đã build sẵn hết rồi... đang để model là Gemini Flash... log lại tất cả giao dịch phát sinh trong hệ thống.",
+    "pacing": "Cost engineering & practicality"
+  },
+  {
+    "scene_id": 4,
+    "start_time": 116.5,
+    "end_time": 131.9,
+    "duration": 15.4,
+    "scene_type": "B-roll Segmenting & Hook Focus",
+    "visual_description": "Timeline phân rã A-roll thành các đoạn ngắn và chèn Agent Hook đặc biệt ở phần mở đầu",
+    "audio_transcript": "B-roll ban đầu quay rất dài nhưng nó tự cắt... chia mỗi đoạn là một hành động... có một Agent Hook riêng biệt.",
+    "pacing": "Practical editing tips"
+  }
+]

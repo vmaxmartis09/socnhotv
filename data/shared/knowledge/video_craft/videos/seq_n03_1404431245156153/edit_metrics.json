@@ -1,0 +1,17 @@
+{
+  "duration_s": 960.96,
+  "resolution": "1280x720",
+  "aspect_ratio": "16:9",
+  "fps": 29.97,
+  "audio": {
+    "integrated_lufs": -10.05,
+    "true_peak_db": 0.20,
+    "lra_lu": 3.80,
+    "threshold": -20.57
+  },
+  "pacing": {
+    "total_cuts": 48,
+    "avg_shot_duration_s": 20.0,
+    "speaking_rate_wpm": 135
+  }
+}

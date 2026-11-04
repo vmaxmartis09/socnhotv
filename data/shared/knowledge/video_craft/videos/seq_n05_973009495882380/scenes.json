@@ -1,0 +1,42 @@
+[
+  {
+    "scene_id": 1,
+    "name": "Hook: 2 Phút Mỗi Ngày Xây Kênh",
+    "start_s": 0.0,
+    "end_s": 35.0,
+    "description": "Giải quyết bài toán quỹ thời gian eo hẹp của CEO/chuyên gia: chỉ cần 2 phút quay thô trên điện thoại.",
+    "visual_type": "screencast_mobile_shortcut"
+  },
+  {
+    "scene_id": 2,
+    "name": "One-Click Ingestion & AI Editing",
+    "start_s": 35.0,
+    "end_s": 90.0,
+    "description": "Bấm phím tắt tải video lên, AI tự động cắt ghép, thêm phụ đề và chuẩn hóa định dạng.",
+    "visual_type": "app_workflow_demo"
+  },
+  {
+    "scene_id": 3,
+    "name": "7-Platform Auto Syndication",
+    "start_s": 90.0,
+    "end_s": 165.0,
+    "description": "Tự động đăng đồng loạt lên 7 nền tảng video ngắn (FB Reels, TikTok, YouTube Shorts, IG Reels, Threads...)",
+    "visual_type": "multi_platform_dashboard"
+  },
+  {
+    "scene_id": 4,
+    "name": "Unified CRM & Scope-Locked Chatbot",
+    "start_s": 165.0,
+    "end_s": 265.0,
+    "description": "Hộp thư hợp nhất đa kênh và AI Chatbot được khóa giới hạn phạm vi chuyên môn (scope-locked), từ chối trả lời ngoài thẩm quyền bảo vệ uy tín thương hiệu.",
+    "visual_type": "crm_inbox_and_bot_rules"
+  },
+  {
+    "scene_id": 5,
+    "name": "Customer Pain-Point Matrix",
+    "start_s": 265.0,
+    "end_s": 326.1,
+    "description": "Ma trận tổng hợp nỗi đau khách hàng để tự động đề xuất kịch bản và chủ đề quay tiếp theo.",
+    "visual_type": "knowledge_matrix_table"
+  }
+]

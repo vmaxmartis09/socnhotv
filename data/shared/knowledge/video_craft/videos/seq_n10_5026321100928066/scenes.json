@@ -1,0 +1,42 @@
+[
+  {
+    "scene_id": 1,
+    "name": "Dolly In (Cú máy đẩy di chuyển)",
+    "start_s": 0.0,
+    "end_s": 7.0,
+    "description": "Vị trí máy tiến lên phía trước: phóng đại cảm xúc, đi sâu vào nội tâm nhân vật, định hướng tầm nhìn.",
+    "visual_type": "camera_move_demo_dolly_in"
+  },
+  {
+    "scene_id": 2,
+    "name": "Zoom In (Cú máy zoom đẩy)",
+    "start_s": 7.0,
+    "end_s": 14.0,
+    "description": "Vị trí máy đứng yên, tiêu cự đột ngột kéo gần: tạo điểm nhấn bất ngờ, thắt chặt sự chú ý.",
+    "visual_type": "camera_move_demo_zoom_in"
+  },
+  {
+    "scene_id": 3,
+    "name": "Dolly Out (Cú máy lùi di chuyển)",
+    "start_s": 14.0,
+    "end_s": 21.0,
+    "description": "Vị trí máy lùi lại phía sau: giới thiệu bối cảnh xung quanh, hé lộ mối quan hệ hoặc tạo cảm giác cô độc.",
+    "visual_type": "camera_move_demo_dolly_out"
+  },
+  {
+    "scene_id": 4,
+    "name": "Zoom Out (Cú máy zoom lùi)",
+    "start_s": 21.0,
+    "end_s": 27.0,
+    "description": "Tiêu cự đột ngột kéo ra xa: mở rộng không gian, phơi bày toàn cảnh sự thật.",
+    "visual_type": "camera_move_demo_zoom_out"
+  },
+  {
+    "scene_id": 5,
+    "name": "Pan / Tilt (Cú máy lia)",
+    "start_s": 27.0,
+    "end_s": 31.27,
+    "description": "Trục máy xoay ngang hoặc dọc: kết nối hai thực thể trong cùng một không gian liên tục.",
+    "visual_type": "camera_move_demo_pan"
+  }
+]

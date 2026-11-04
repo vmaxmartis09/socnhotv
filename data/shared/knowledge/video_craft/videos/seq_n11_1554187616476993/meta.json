@@ -1,0 +1,15 @@
+{
+  "id": "1554187616476993",
+  "seq": "n11",
+  "title": "Nhân bản phong cách kênh YouTube và tự động hóa xuất bản",
+  "channel": "An Ong",
+  "platform": "facebook_reel",
+  "original_url": "https://www.facebook.com/reel/1554187616476993",
+  "duration_s": 62.8,
+  "resolution": "1280x720",
+  "fps": 30.0,
+  "category": "channel_style_cloning_and_automation",
+  "triage_decision": "accepted",
+  "primary_technique": "channel-style-cloning-template-pipeline",
+  "harvested_at": "2026-11-04T22:30:00+07:00"
+}

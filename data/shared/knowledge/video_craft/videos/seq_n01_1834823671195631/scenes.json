@@ -1,0 +1,42 @@
+[
+  {
+    "scene_id": 1,
+    "start_time": 0.0,
+    "end_time": 20.6,
+    "duration": 20.6,
+    "scene_type": "Infinite Canvas Hook",
+    "visual_description": "Quay màn hình bảng vẽ vô hạn (Infinite Canvas), phóng to thu nhỏ mượt mà từ cụm kịch bản bên trái sang cụm video bên phải",
+    "audio_transcript": "Làm một phim ngắn AI từ kịch bản đến thành phẩm, bạn nghĩ cần 10 công cụ? Lần này tôi chỉ dùng một bảng vẽ... mở ra là một bảng vẽ có thể phóng to vô hạn, bên trái viết kịch bản, giữa tạo phân cảnh, bên phải xuất video.",
+    "pacing": "Fast hook, tool consolidation pitch"
+  },
+  {
+    "scene_id": 2,
+    "start_time": 20.6,
+    "end_time": 36.6,
+    "duration": 16.0,
+    "scene_type": "Step 1: Script & Scene Breakdown",
+    "visual_description": "Thao tác gõ prompt kịch bản, AI tự động phân rã kịch bản thành từng cảnh quay chi tiết kèm mô tả góc máy",
+    "audio_transcript": "Bước đầu tiên là tạo kịch bản... dựa vào kịch bản của tôi để tạo bản hoàn chỉnh, xong xuôi nó sẽ tự chia kịch bản thành từng phân cảnh.",
+    "pacing": "Structured breakdown"
+  },
+  {
+    "scene_id": 3,
+    "start_time": 36.6,
+    "end_time": 66.6,
+    "duration": 30.0,
+    "scene_type": "Step 2: 3-Angle Character Consistency Lock",
+    "visual_description": "Trích xuất tự động nhân vật từ kịch bản, sinh 3 góc nhìn (Chính diện, 45 độ, Góc nghiêng) để khóa gương mặt xuyên suốt",
+    "audio_transcript": "Video AI dễ hỏng nhất là nhân vật bị bất nhất... tính năng này tự rút ra nhân vật, bối cảnh từ kịch bản, tạo luôn 3 góc nhìn... giữ sự nhất quán nhân vật.",
+    "pacing": "Problem-solving proof"
+  },
+  {
+    "scene_id": 4,
+    "start_time": 66.6,
+    "end_time": 105.8,
+    "duration": 39.2,
+    "scene_type": "Step 3: Transition Foresight & Batch Video Render",
+    "visual_description": "Tính năng dự báo chuyển cảnh (Transition Foresight) hiển thị khung hình trước 5s và sau 3s; bấm nút xuất toàn bộ video hoàn chỉnh",
+    "audio_transcript": "Có tính năng dự báo chuyển cảnh, hiện được hình ảnh trước đó 5s và sau đó 3s, giúp bạn chốt ngay điểm bắt đầu và kết thúc của cảnh quay... chuyển cảnh mượt hơn... trọn vẹn phim ngắn AI.",
+    "pacing": "Climax feature showcase & CTA"
+  }
+]

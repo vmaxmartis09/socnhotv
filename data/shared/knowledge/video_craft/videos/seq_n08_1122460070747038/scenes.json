@@ -1,0 +1,42 @@
+[
+  {
+    "scene_id": 1,
+    "name": "Hook & The 'Flat AI' Problem",
+    "start_s": 0.0,
+    "end_s": 25.0,
+    "description": "Chỉ ra khuyết điểm chí mạng của video AI: hình ảnh phẳng lì thiếu chiều sâu. Đưa ra giải pháp: Che khuất tiền cảnh (Foreground Occlusion).",
+    "visual_type": "comparison_split_screen"
+  },
+  {
+    "scene_id": 2,
+    "name": "Visual Metaphor: Flower & Face",
+    "start_s": 25.0,
+    "end_s": 50.0,
+    "description": "Ví dụ kinh điển: Đặt cánh hoa mờ sát ống kính (bokeh) che 1 phần gương mặt cô gái phía sau -> Khán giả cảm nhận ngay lập tức khoảng cách thực 3D.",
+    "visual_type": "cinematic_depth_demonstration"
+  },
+  {
+    "scene_id": 3,
+    "name": "3 Camera Placement Archetypes",
+    "start_s": 50.0,
+    "end_s": 90.0,
+    "description": "3 góc máy ứng dụng: 1) Cánh đồng: Máy thấp ngọn lúa quét qua lens. 2) Đám đông: Ống kính nấp sau vai và ô dù. 3) Kính lúp/Quan sát: Nhìn qua khe kệ sách.",
+    "visual_type": "cinematic_archetype_examples"
+  },
+  {
+    "scene_id": 4,
+    "name": "The 3-Layer Prompting Formula",
+    "start_s": 90.0,
+    "end_s": 135.0,
+    "description": "Công thức chia prompt thành 3 tầng: 1) Tiền cảnh (Foreground - out of focus), 2) Trung cảnh (Midground - subject action, sharp focus), 3) Hậu cảnh (Background - atmospheric blur).",
+    "visual_type": "diagram_and_prompt_breakdown"
+  },
+  {
+    "scene_id": 5,
+    "name": "Emotional Witness Effect & Conclusion",
+    "start_s": 135.0,
+    "end_s": 160.23,
+    "description": "Ý nghĩa điện ảnh: Biến khán giả từ người xem thụ động thành nhân chứng đứng trong hiện trường.",
+    "visual_type": "talking_head_summary"
+  }
+]

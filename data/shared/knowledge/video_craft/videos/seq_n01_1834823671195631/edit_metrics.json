@@ -1,0 +1,32 @@
+{
+  "duration_s": 105.8,
+  "scene_count": 4,
+  "cuts_per_10s": 0.38,
+  "median_shot_duration_s": 25.3,
+  "total_spoken_words": 340,
+  "speech_rate_words_per_sec": 3.21,
+  "silence_ratio": 0.03,
+  "loudness": {
+    "integrated_lufs": -14.12,
+    "true_peak_dbtp": -1.40,
+    "lra_lu": 1.20,
+    "threshold_lufs": -24.17,
+    "standard_compliance": "100% Compliant with TikTok/Facebook -14 LUFS standard (-14.12 LUFS)"
+  },
+  "video_specs": {
+    "width": 720,
+    "height": 1280,
+    "aspect_ratio": "9:16",
+    "fps": 30.0,
+    "safe_zone_vertical_compliant": true,
+    "video_type": "Screen Capture Infinite Canvas Pipeline",
+    "technology": "Infinite Canvas Storyboard (LiveTree / Evatree / Kling / Runway)"
+  },
+  "color_palette_hex": [
+    "#0B0E14",
+    "#1A1F2C",
+    "#3E7BFA",
+    "#00E676",
+    "#FFFFFF"
+  ]
+}

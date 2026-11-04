@@ -1,0 +1,50 @@
+[
+  {
+    "scene_id": 1,
+    "name": "Hook & Pain Point: Animation Bottleneck",
+    "start_s": 0.0,
+    "end_s": 65.0,
+    "description": "Duy Luân giới thiệu giải pháp dùng Claude tạo video minh họa, giải quyết bài toán outsource animation tốn 1-2 tuần.",
+    "visual_type": "talking_head_with_broll_preview"
+  },
+  {
+    "scene_id": 2,
+    "name": "Product Showcase: AI-Generated Explainer Videos",
+    "start_s": 65.0,
+    "end_s": 180.0,
+    "description": "Chiếu các thành phẩm animation giải thích khái niệm công nghệ được tạo hoàn toàn bằng code từ Claude.",
+    "visual_type": "screencast_animation_demo"
+  },
+  {
+    "scene_id": 3,
+    "name": "Prompting Strategy: From Concept to Visual Metaphors",
+    "start_s": 180.0,
+    "end_s": 375.0,
+    "description": "Hướng dẫn cách prompt Claude: yêu cầu phân tích khái niệm, sinh layout SVG/Canvas, và tạo chuyển động biểu đồ.",
+    "visual_type": "screencast_claude_chat"
+  },
+  {
+    "scene_id": 4,
+    "name": "Architecture Deep-Dive: Web Code vs Diffusion Models",
+    "start_s": 375.0,
+    "end_s": 585.0,
+    "description": "Giải thích tại sao render code web (HTML/CSS/JS) vượt trội hơn diffusion: deterministic, git versioning, kiểm soát clock trình duyệt headless, ffmpeg image2pipe và parallel chunking workers.",
+    "visual_type": "animated_diagram_and_talking_head"
+  },
+  {
+    "scene_id": 5,
+    "name": "Hands-on Implementation: Artifacts to MP4 Pipeline",
+    "start_s": 585.0,
+    "end_s": 780.0,
+    "description": "Thực hành tinh chỉnh giao diện trực tiếp trên Claude Artifacts (thay gradient bằng flat style) và chạy script node xuất video 4K.",
+    "visual_type": "screencast_code_and_terminal"
+  },
+  {
+    "scene_id": 6,
+    "name": "Synthesis & Production Recommendations",
+    "start_s": 780.0,
+    "end_s": 960.96,
+    "description": "Đúc kết kinh nghiệm cho creator: tự chủ sản xuất video minh họa kỹ thuật số không cần đội ngũ họa sĩ.",
+    "visual_type": "talking_head_summary"
+  }
+]

@@ -1,62 +1,70 @@
-# Báo Cáo Tổng Hợp Nghiên Cứu Video Craft (Lũy Kế Batch 1 & 2: Seq 001 - 020)
+# Báo Cáo Tổng Hợp Nghiên Cứu Video Craft (Lũy Kế: 31 Mục Đã Duyệt)
 
-- **Thời gian thực hiện**: 04/11/2026
-- **Phạm vi**: 20 mục đầu tiên từ tin nhắn Messenger "Stored" (mới nhất → cũ hơn).
-- **Trạng thái thực thi**: 100% hoàn tất 20/234 mục.
+- **Thời gian cập nhật**: 04/11/2026
+- **Phạm vi**: 31 mục video từ tin nhắn Messenger "Stored" (Gồm Batch 1, Batch 2 và Lô 11 video mới nhất vừa chia sẻ: N01 - N11).
+- **Trạng thái thực thi**: 100% hoàn tất phân tích và sàng lọc 31/31 mục.
 
 ---
 
-## 1. Thống Kê Tổng Quan Lũy Kế (20 Mục)
+## 1. Thống Kê Tổng Quan Lũy Kế (31 Mục)
 
-| Trạng thái | Số lượng | Tỷ lệ | Danh sách mục |
+| Phân Loại | Số Lượng | Tỷ Lệ | Danh Sách Mục |
 |---|---|---|---|
-| **Học chuyên sâu (LEARN)** | **9** | 45% | Seq 003, 005, 006, 007, 008, 011, 012, 014, 015, 020 |
-| **Học một phần & bóc tách phễu (LEARN-PARTIAL)** | **5** | 25% | Seq 001, 002, 009, 013, 016 |
-| **Ghi nhận Sản phẩm / Thị trường (NOTE-PRODUCT)** | **2** | 10% | Seq 004 (Đầm NuNu), Seq 019 (Khung tranh đèn LED Luviare) |
-| **Bỏ qua không phù hợp (SKIP-irrelevant)** | **3** | 15% | Seq 010 (An ninh mạng), Seq 017 (Game dev 2D), Seq 018 (Game sprite) |
-| **Chờ kiểm tra / Lỗi truy cập** | **0** | 0% | Tỷ lệ xử lý thành công 100% |
-| **Tổng cộng đã duyệt** | **20** | 100% | Đã ghi nhận đầy đủ vào `triage.csv`, `accepted.md`, `skipped.md`, `notes.md` |
+| **Học chuyên sâu (LEARN)** | **18** | 58.1% | Seq 003, 005, 006, 007, 008, 011, 012, 014, 015, 020, N01, N02, N03, N04, N05, N07, N08, N10, N11 |
+| **Học một phần & bóc tách phễu (LEARN-PARTIAL)** | **5** | 16.1% | Seq 001, 002, 009, 013, 016 |
+| **Ghi nhận Sản phẩm / Thị trường (NOTE-PRODUCT)** | **2** | 6.5% | Seq 004 (Đầm NuNu), Seq 019 (Khung tranh đèn LED Luviare) |
+| **Bỏ qua không phù hợp (SKIP-irrelevant)** | **3** | 9.7% | Seq 010 (An ninh mạng), Seq 017 (Game dev 2D), Seq 018 (Game sprite) |
+| **Bỏ qua lùa gà / Khóa học Zoom (SKIP-scam)** | **2** | 6.5% | Seq N06 (Zoom 2 ngày YouTube US 100tr), Seq N09 (Zoom 1 buổi video AI Agent) |
+| **Chờ kiểm tra / Lỗi truy cập** | **0** | 0.0% | Tỷ lệ xử lý thành công 100% |
+| **Tổng cộng đã duyệt** | **31** | 100% | Đã ghi nhận đầy đủ vào `triage.csv`, `accepted.md`, `skipped.md`, `notes.md` |
 
 ---
 
 ## 2. Top 5 Bài Học Đắt Giá Áp Dụng Ngay Cho Hệ Thống Sóc Nhỏ TV / HyperFrames
 
-### 1. Công Thức Phối Màu Tương Phản Địa Vị Cao (High-Status Color Contrast - Seq 020)
-- **Hiệu quả thực tế**: Đạt 4.5M views và 182K likes trên Reels.
-- **Công thức ngôn từ & thị giác**: So sánh 5 nhịp cặp màu: `[Màu A] with [Màu B] looks [Bình thường], but [Màu A] with [Màu C] looks [Luxurious / Classy / Expensive / Chic / Elegant]!`.
-- **Ứng dụng**: Template `fashion-color-contrast-v1.html` cho KOC Neau & LyLy.
+### 1. Kiến Trúc Render Video Tất Định Từ Web Code (Duy Luân Dễ Thương - Seq N03)
+- **Vấn đề cốt lõi**: Các mô hình video diffusion (Runway, Kling) luôn có tính bất định, méo chữ và khó sửa đổi từng frame.
+- **Giải pháp**: Tạo animation bằng web code (HTML5/CSS/GSAP), kiểm soát Virtual Clock của trình duyệt Headless Chrome, xuất frame qua đường ống `FFmpeg image2pipe` và chạy song song đa luồng (multi-worker chunking).
+- **Ứng dụng**: Xác nhận tính đúng đắn 100% của kiến trúc **HeyGen HyperFrames Engine** tại `tool/src/socnhotv/video/hyperframes_engine.py`.
 
-### 2. Quy Trình Thời Trang Xoay Người 360° Khóa Cố Định Giao Diện (Seq 015 & Seq 012)
-- **Xoay người 360 độ (Seq 015)**: Nhân vật xoay quanh trục studio, giấu biến đổi outfit khi xoay lưng về camera để triệt tiêu lỗi glitch AI; Cột checklist sản phẩm bên trái khóa cố định 100% bằng HTML/CSS, chỉ lật thẻ 3D nhẹ khi nhân vật đổi look.
-- **Đi bộ biến đổi trang phục (Seq 012)**: Mẫu bước đi liên tục (walk cycle), đổi đồ ngay nhịp chân tiếp đất kết hợp icon doodle sinh động.
+### 2. Kỹ Thuật Che Khuất Tiền Cảnh Xóa Bỏ Cảm Giác 'Phẳng AI' (Jolie Mê Xem Phim - Seq N08)
+- **Vấn đề**: Video AI thường bị người xem nhận ra ngay vì mọi chi tiết đều nét đều, thiếu chiều sâu quang học.
+- **Giải pháp**: Bắt buộc cấu trúc prompt 3 tầng:
+  1. *Tiền cảnh (Foreground - Out of focus bokeh)*: Lá cây, ngọn cỏ lướt sát ống kính, vai người.
+  2. *Trung cảnh (Midground - In-focus sharp)*: Nhân vật thực hiện hành động chính.
+  3. *Hậu cảnh (Background - Atmospheric haze)*: Mờ dần ở phía xa.
+- **Ứng dụng**: Tích hợp template 3-layer depth vào bộ sinh prompt của Sóc Nhỏ và AI KOC thời trang.
 
-### 3. Năm Trụ Cột Video Ngắn Bền Vững Của Duy Muối (Evergreen Shortform - Seq 014)
-- **"Quay được hơn quay đẹp"**: Tốc độ sản xuất và sự đều đặn quan trọng hơn thiết bị máy cơ đắt tiền.
-- **Mô hình doanh thu đi trước**: Mọi video ngắn phải phục vụ một phễu bán hàng hoặc IP rõ ràng.
-- **Tâm thế sửa sai theo dữ liệu retention**: Theo dõi sát sao giây thứ 3 của biểu đồ giữ chân để tinh chỉnh Hook.
+### 3. Quy Trình Tiền Kiểm Thử Hook Giữ Chân Người Xem Bằng AI (Hong Phuong - Seq N04)
+- **Vấn đề**: 80% người xem lướt qua trong 3 giây đầu; nhà sáng tạo chỉ biết video flop sau khi đã xuất bản.
+- **Giải pháp**: Sản xuất 3-5 biến thể hook cho cùng 1 video, nạp vào mô hình dự đoán đường cong chú ý theo từng giây (Second-by-Second Attention Curve), dùng LLM gọt giũa từ ngữ thừa trước khi render bản master.
+- **Ứng dụng**: Session A (Script) tự động sinh 3 hook A/B/C; Session B chọn hook có điểm dự đoán cao nhất.
 
-### 4. Chỉ Số Lựa Chọn Ngách "New Channel Win Rate" & Khung Kịch Bản Series 30 Ngày (Seq 011)
-- **Nguyên lý thuật toán**: "YouTube tìm video cho người xem, chứ không tìm người xem cho video".
-- **Chỉ số NCWR**: Đo tỷ lệ kênh mới (<12 tháng) chiến thắng trong ngách. Ngách có NCWR > 35% là cơ hội vàng thâm nhập.
-- **Series Hook**: Định dạng chuỗi "Hành trình 30 ngày..." giúp tăng tỷ lệ xem tiếp (binge-watching) và giữ chân khán giả trung thành.
+### 4. Kịch Bản Tự Sự Nhân Vật Ảo Đời Thường & Phá Bức Tường Thứ 4 (Seq N07)
+- **Công thức**: 
+  1. *Hook nghịch lý*: "Sáng nay họ khen em tự nhiên nhất nhóm, đâu biết em mới có mặt trên đời 11 phút".
+  2. *Vi hành động đời thường*: Dưỡng da, tập gym, uống nước, tương tác với quán cà phê quen.
+  3. *Cú lật nhận thức*: Nhìn thẳng ống kính: "Em không có thật đâu, nhưng anh chị vẫn xem tới đây đúng không?".
+- **Ứng dụng**: Kịch bản shorts viral cho Sóc Nhỏ (Bi) và KOC LyLy/Neau.
 
-### 5. Kỹ Thuật Đăng Bài Né Bóp Tương Tác Bằng First-Comment Link (Seq 013)
-- Gắn link ngoài vào caption bài viết Facebook làm giảm 60-80% lượng hiển thị tự nhiên.
-- Chiến lược chuẩn hóa: Đăng bài và video sạch; Sau 10 giây, hệ thống tự động đăng bình luận đầu tiên (First Comment) chứa link mua hàng/landing page và ghim lên đầu. Đã chuyển giao vào `requests_for_C.md`.
+### 5. Infinite Canvas Storyboard & Chống Giật Hình Bằng Transition Foresight (Seq N01)
+- **Giải pháp**: Neo nhân vật bằng 3 góc chuẩn (Chính diện 0°, Nghiêng 45°, Góc nghiêng 90°).
+- **Transition Foresight**: Lấy 0.5s cuối cảnh trước làm gốc tính toán vector chuyển động cho cảnh kế tiếp, loại bỏ triệt để hiện tượng nhảy khung (jump cut).
 
 ---
 
 ## 3. Các Mô Hình Phễu "Lùa Gà" Thường Gặp Cần Cảnh Giác
 
-1. **Phễu "Agent 1 câu lệnh bán triệu đơn" (Seq 001)**: Gán mác AI Agent cho các thao tác ghép ảnh đơn giản trên Google Flow để bán khóa học Netlify 899k.
-2. **Phễu "Zoom miễn phí buổi tối" (Seq 002)**: Chia sẻ bề nổi về InstantID/PuLID để chốt khóa coaching chục triệu đồng.
-3. **Phễu "50K/tháng có KOC vô tận" (Seq 003)**: Web app bọc ngoài IDM-VTON mã nguồn mở nhưng giật tít đánh lừa người dùng.
-4. **Phễu "Comment 333 nhận phần mềm video AI vô hạn" (Seq 009)**: Lấy bản ComfyUI Desktop portable tiếng Trung miễn phí, kêu gọi comment xin link để kéo leads vào nhóm kín.
-5. **Phễu "Tool tự động đăng 16.000 bài/ngày" (Seq 013)**: Quảng cáo phần mềm spam dàn Fanpage rác số lượng lớn, tiềm ẩn nguy cơ bị quét checkpoint hàng loạt nếu không có cơ chế quản lý danh tính chuẩn.
+1. **Phễu "Zoom 2 ngày kiếm 100tr/tháng YouTube Mỹ" (Seq N06)**: Dụ dỗ người xem vào phòng Zoom 2 ngày miễn phí với lời hứa x2 x3 thu nhập năm 2026, hoàn toàn không có kỹ thuật thực tế.
+2. **Phễu "Giao việc 1 lần cho Agent làm video từ A-Z" (Seq N09)**: Nói chung chung về AI Agent làm video để kéo học viên vào 1 buổi Zoom hướng dẫn trực tiếp.
+3. **Phễu "Agent 1 câu lệnh bán triệu đơn" (Seq 001)**: Gán mác AI Agent cho các thao tác ghép ảnh đơn giản để bán khóa học Netlify 899k.
+4. **Phễu "50K/tháng có KOC vô tận" (Seq 003)**: Web app bọc ngoài IDM-VTON mã nguồn mở nhưng giật tít đánh lừa người dùng.
+5. **Phễu "Comment 333 nhận phần mềm video AI vô hạn" (Seq 009)**: Lấy bản ComfyUI Desktop portable miễn phí để kéo leads vào nhóm kín.
 
 ---
 
-## 4. Danh Mục Thẻ Kỹ Thuật Đã Xây Dựng (Techniques Library)
+## 4. Danh Mục 26 Thẻ Kỹ Thuật Đã Xây Dựng (Techniques Library)
+
 1. `techniques/confession-hook.md`
 2. `techniques/in-situ-koc-placement.md`
 3. `techniques/rapid-montage-proof.md`
@@ -74,3 +82,12 @@
 15. `techniques/360-turntable-catalog.md`
 16. `techniques/3-layer-knowledge-retention.md`
 17. `techniques/high-status-color-contrast.md`
+18. `techniques/transition-foresight-continuity.md`
+19. `techniques/multi-agent-broll-orchestration.md`
+20. `techniques/deterministic-web-to-video-rendering.md`
+21. `techniques/pre-publish-hook-retention-prediction.md`
+22. `techniques/7-platform-automated-syndication-and-scope-locked-crm.md`
+23. `techniques/virtual-influencer-paradox-storytelling.md`
+24. `techniques/foreground-occlusion-spatial-depth-layering.md`
+25. `techniques/cinematography-camera-mechanics-cheatsheet.md`
+26. `techniques/channel-style-cloning-template-pipeline.md`

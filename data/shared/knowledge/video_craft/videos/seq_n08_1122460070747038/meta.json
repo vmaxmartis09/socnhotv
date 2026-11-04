@@ -1,0 +1,15 @@
+{
+  "id": "1122460070747038",
+  "seq": "n08",
+  "title": "Kỹ thuật che khuất tiền cảnh xóa bỏ cảm giác phẳng của video AI",
+  "channel": "Jolie Mê Xem Phim",
+  "platform": "facebook_reel",
+  "original_url": "https://www.facebook.com/reel/1122460070747038",
+  "duration_s": 160.23,
+  "resolution": "1280x720",
+  "fps": 30.0,
+  "category": "cinematography_and_prompt_depth",
+  "triage_decision": "accepted",
+  "primary_technique": "foreground-occlusion-spatial-depth-layering",
+  "harvested_at": "2026-11-04T22:30:00+07:00"
+}

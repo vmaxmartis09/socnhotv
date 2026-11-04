@@ -1,0 +1,42 @@
+[
+  {
+    "scene_id": 1,
+    "name": "Hook Problem: Retention Dropoff",
+    "start_s": 0.0,
+    "end_s": 16.5,
+    "description": "Nỗi đau của creator: dù nội dung hay đến đâu nhưng hook yếu sẽ làm người xem lướt qua trước phần hay nhất.",
+    "visual_type": "talking_head_with_kinetic_text"
+  },
+  {
+    "scene_id": 2,
+    "name": "Tool Intro: Virality Predictor",
+    "start_s": 16.5,
+    "end_s": 27.1,
+    "description": "Giới thiệu công cụ Virality Predictor kết nối Claude Code / API để tải các video hook thử nghiệm.",
+    "visual_type": "screencast_software_ui"
+  },
+  {
+    "scene_id": 3,
+    "name": "Metric Breakdown: 3 Neuromarketing Signals",
+    "start_s": 27.1,
+    "end_s": 44.0,
+    "description": "Phân tích 3 chỉ số: 1) Điểm Virality (0-100), 2) Biểu đồ chú ý từng giây, 3) Bản đồ mô phỏng hoạt động não bộ.",
+    "visual_type": "ui_graph_and_brain_heatmap"
+  },
+  {
+    "scene_id": 4,
+    "name": "Science Basis: Predictive Attention Models",
+    "start_s": 44.0,
+    "end_s": 60.6,
+    "description": "Giải thích cách mô hình AI học từ dữ liệu phản ứng thần kinh với hình ảnh/âm thanh để tìm điểm rò rỉ chú ý.",
+    "visual_type": "screencast_analysis_flow"
+  },
+  {
+    "scene_id": 5,
+    "name": "Call to Action",
+    "start_s": 60.6,
+    "end_s": 70.67,
+    "description": "Kêu gọi bình luận để nhận link và prompt Claude.",
+    "visual_type": "talking_head_cta"
+  }
+]
