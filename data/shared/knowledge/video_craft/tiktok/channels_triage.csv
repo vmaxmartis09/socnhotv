@@ -1,0 +1,8 @@
+handle,display_name,category,role,relevance,activity,quality_flags,decision,priority
+70.ai.studio,"70 AI STUDIO",ai_production_3d,"3D Animation & Cinematic AI Video",5,active,high_value,ACCEPTED,10
+magentx.ai,"MagentX AI",ai_visual_koc,"AI Media Mastery & Virtual Models",5,active,high_value,ACCEPTED,10
+ddoquynhtram.magentx,"Đỗ Quỳnh Trâm MagentX",ai_koc_prompt,"AI KOC Prompts & Workflows",5,active,high_value,ACCEPTED,10
+anongvn,"An Ong",ai_tools_automation,"YouTube AI Tools & Automation",5,active,high_value,ACCEPTED,10
+ngoc.agi,"Ngọc AGI",ai_youtube_kling,"Kling AI, Runway & AGI Video Workflows",5,active,high_value,ACCEPTED,10
+nhueit,"Nhuệ youtube",ai_youtube_tools,"AI Video Creation & Voice Tools",5,active,high_value,ACCEPTED,10
+bahuy.henry,"Trần Bá Huy (Hustle)",ai_sales_automation,"Claude AI Video Editing & Sales Automation",5,active,high_value,ACCEPTED,10

@@ -1,0 +1,16 @@
+{
+  "duration_s": 20,
+  "cuts_count": 1,
+  "cuts_per_10s": 0.5,
+  "median_shot_duration_s": 20.0,
+  "speech_rate_words_per_sec": 0.0,
+  "total_words": 0,
+  "loudness_i_lufs": "-4.88",
+  "loudness_tp_db": "2.36",
+  "loudness_lra_db": "0.40",
+  "safe_zone": {
+    "top_header_margin_px": 180,
+    "bottom_controls_margin_px": 320,
+    "compliant": true
+  }
+}

@@ -770,6 +770,185 @@
       "filename": "walking-outfit-transition.md",
       "file_path": "/Volumes/Data/socnhotv/data/shared/knowledge/video_craft/techniques/walking-outfit-transition.md",
       "is_expired": false
+    },
+    "commercial-spec-ai-animation": {
+      "id": "commercial-spec-ai-animation",
+      "title": "Commercial Spec AI Animation (Làm Phim Quảng Cáo 3D Chuẩn Điện Ảnh)",
+      "status": "knowledge",
+      "build": "partial",
+      "reproducible_with_our_stack": "yes",
+      "needs": [
+        "Blender pre-vis",
+        "Kling 1.5 Start/End Frame",
+        "HyperFrames"
+      ],
+      "implemented_in": [],
+      "evidence_videos": [
+        "7695663938083507464"
+      ],
+      "confidence": "very-high",
+      "last_verified": "2026-11-04",
+      "expires_at": "never",
+      "tags": [
+        "spec-commercial",
+        "3d-animation",
+        "kling-1.5",
+        "cinematic",
+        "start-end-frame"
+      ],
+      "filename": "commercial-spec-ai-animation.md",
+      "file_path": "/Volumes/Data/socnhotv/data/shared/knowledge/video_craft/techniques/commercial-spec-ai-animation.md",
+      "is_expired": false
+    },
+    "motion-brush-trajectory-steering": {
+      "id": "motion-brush-trajectory-steering",
+      "title": "Motion Brush Trajectory Steering (Điều Khiển Đa Quỹ Đạo Chuyển Động Camera & Hạt)",
+      "status": "knowledge",
+      "build": "partial",
+      "reproducible_with_our_stack": "yes",
+      "needs": [
+        "Kling 1.5 Motion Brush",
+        "Runway Gen-3",
+        "HyperFrames"
+      ],
+      "implemented_in": [],
+      "evidence_videos": [
+        "7693503813071703297"
+      ],
+      "confidence": "high",
+      "last_verified": "2026-11-04",
+      "expires_at": "never",
+      "tags": [
+        "motion-brush",
+        "trajectory-control",
+        "camera-movement",
+        "parallax"
+      ],
+      "filename": "motion-brush-trajectory-steering.md",
+      "file_path": "/Volumes/Data/socnhotv/data/shared/knowledge/video_craft/techniques/motion-brush-trajectory-steering.md",
+      "is_expired": false
+    },
+    "virtual-try-on-pipeline": {
+      "id": "virtual-try-on-pipeline",
+      "title": "Virtual Try-On & AI Fashion Model Pipeline (VTON)",
+      "status": "knowledge",
+      "build": "partial",
+      "reproducible_with_our_stack": "yes",
+      "needs": [
+        "ComfyUI CatVTON",
+        "Flux.1",
+        "Kling 1.5",
+        "HyperFrames"
+      ],
+      "implemented_in": [],
+      "evidence_videos": [
+        "7681660841434926354",
+        "7694697264454962440"
+      ],
+      "confidence": "high",
+      "last_verified": "2026-11-04",
+      "expires_at": "never",
+      "tags": [
+        "virtual-try-on",
+        "vton",
+        "fashion-koc",
+        "catvton",
+        "affiliate"
+      ],
+      "filename": "virtual-try-on-pipeline.md",
+      "file_path": "/Volumes/Data/socnhotv/data/shared/knowledge/video_craft/techniques/virtual-try-on-pipeline.md",
+      "is_expired": false
+    },
+    "tiered-channel-automation-engine": {
+      "id": "tiered-channel-automation-engine",
+      "title": "Tiered Channel Automation Engine (Mô Hình Tự Động Hoá Kênh 4 Tầng)",
+      "status": "knowledge",
+      "build": "partial",
+      "reproducible_with_our_stack": "yes",
+      "needs": [
+        "Python asyncio",
+        "OmniVoice",
+        "HyperFrames CLI",
+        "Metadata Ledger"
+      ],
+      "implemented_in": [],
+      "evidence_videos": [
+        "7702553918156328213"
+      ],
+      "confidence": "very-high",
+      "last_verified": "2026-11-04",
+      "expires_at": "never",
+      "tags": [
+        "channel-automation",
+        "multi-account",
+        "scaling",
+        "faceless",
+        "telemetry"
+      ],
+      "filename": "tiered-channel-automation-engine.md",
+      "file_path": "/Volumes/Data/socnhotv/data/shared/knowledge/video_craft/techniques/tiered-channel-automation-engine.md",
+      "is_expired": false
+    },
+    "llm-script-to-timeline-automation": {
+      "id": "llm-script-to-timeline-automation",
+      "title": "LLM Script-to-Timeline Automation (Biên Dịch Kịch Bản JSON Sang Dòng Thời Gian Video)",
+      "status": "in-studio",
+      "build": "yes",
+      "reproducible_with_our_stack": "yes",
+      "needs": [
+        "HeyGen HyperFrames",
+        "Faster-Whisper",
+        "GSAP"
+      ],
+      "implemented_in": [
+        "tool/src/socnhotv/video/hyperframes_engine.py"
+      ],
+      "evidence_videos": [
+        "7697472862633921812"
+      ],
+      "confidence": "absolute",
+      "last_verified": "2026-11-04",
+      "expires_at": "never",
+      "tags": [
+        "timeline-automation",
+        "programmatic-editing",
+        "script-to-video",
+        "hyperframes",
+        "json-schema"
+      ],
+      "filename": "llm-script-to-timeline-automation.md",
+      "file_path": "/Volumes/Data/socnhotv/data/shared/knowledge/video_craft/techniques/llm-script-to-timeline-automation.md",
+      "is_expired": false
+    },
+    "ai-video-realism-anti-artifact": {
+      "id": "ai-video-realism-anti-artifact",
+      "title": "AI Video Realism & Anti-Artifact Protocols (Triệt Tiêu Rác AI & Méo Dạng Thạch)",
+      "status": "knowledge",
+      "build": "partial",
+      "reproducible_with_our_stack": "yes",
+      "needs": [
+        "ControlNet Depth/Pose",
+        "Film Grain 35mm",
+        "FFmpeg/HyperFrames Filters"
+      ],
+      "implemented_in": [],
+      "evidence_videos": [
+        "7695663938083507464",
+        "7694697264454962440"
+      ],
+      "confidence": "high",
+      "last_verified": "2026-11-04",
+      "expires_at": "never",
+      "tags": [
+        "video-realism",
+        "anti-artifact",
+        "motion-fidelity",
+        "film-grain",
+        "color-grading"
+      ],
+      "filename": "ai-video-realism-anti-artifact.md",
+      "file_path": "/Volumes/Data/socnhotv/data/shared/knowledge/video_craft/techniques/ai-video-realism-anti-artifact.md",
+      "is_expired": false
     }
   }
 }

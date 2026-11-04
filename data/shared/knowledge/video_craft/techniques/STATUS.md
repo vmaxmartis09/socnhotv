@@ -1,10 +1,10 @@
 # Trạng Thái Kho Kỹ Thuật Video Craft (Techniques Status)
 
-- **Cập nhật tự động**: 2026-11-04 23:18
-- **Tổng số kỹ thuật**: 26
-- **Đã tích hợp vào Studio (`in-studio`)**: **14** thẻ
+- **Cập nhật tự động**: 2026-11-04 23:30
+- **Tổng số kỹ thuật**: 32
+- **Đã tích hợp vào Studio (`in-studio`)**: **15** thẻ
 - **Đang thử nghiệm (`prototyped`)**: 0 thẻ
-- **Kho kiến thức tham chiếu (`knowledge`)**: 12 thẻ
+- **Kho kiến thức tham chiếu (`knowledge`)**: 17 thẻ
 - **Hết hạn / Cần đánh giá lại (`needs-review`)**: 0 thẻ
 
 ---
@@ -23,6 +23,7 @@
 | `foreground-occlusion-spatial-depth-layering` | **Foreground Occlusion & 3-Layer Spatial Depth Partitioning** | ✅ yes | `tool/src/socnhotv/video/craft/depth.py`, `data/shared/knowledge/video_craft/playbooks/depth-and-composition.md` | seq_N08 |
 | `high-status-color-contrast` | **High-Status Color Contrast (Bảng Màu Tương Phản Chuẩn Sang Trọng)** | ✅ yes | `tool/src/socnhotv/video/craft/lint.py`, `data/shared/knowledge/video_craft/playbooks/depth-and-composition.md` | seq_016 |
 | `in-situ-koc-placement` | **In-Situ KOC Placement (Đặt Nhân Vật KOC Vào Bối Cảnh Đời Thực)** | ✅ yes | `tool/src/socnhotv/video/craft/depth.py`, `data/shared/knowledge/video_craft/playbooks/koc-review-and-sales.md` | seq_002 |
+| `llm-script-to-timeline-automation` | **LLM Script-to-Timeline Automation (Biên Dịch Kịch Bản JSON Sang Timeline)** | ✅ yes | `tool/src/socnhotv/video/hyperframes_engine.py` | `7697472862633921812` |
 | `pre-publish-hook-retention-prediction` | **Pre-Publish Hook Retention Prediction & Heuristic Scoring** | ✅ yes | `tool/src/socnhotv/video/craft/hooks.py`, `tool/src/socnhotv/video/craft/lint.py`, `data/shared/knowledge/video_craft/playbooks/hook-and-retention.md` | seq_N04 |
 | `rapid-montage-proof` | **Rapid Montage Proof (Cắt Ghép Bằng Chứng Dồn Dập)** | ✅ yes | `tool/src/socnhotv/video/craft/transitions.py`, `data/shared/knowledge/video_craft/playbooks/camera-and-transitions.md` | seq_003 |
 | `transition-foresight-continuity` | **Transition Foresight & Motion Continuity (Chuyển Cảnh Tiên Liệu Hướng Chuyển Động)** | ✅ yes | `tool/src/socnhotv/video/craft/transitions.py`, `data/shared/knowledge/video_craft/playbooks/camera-and-transitions.md` | seq_N01 |
@@ -35,11 +36,16 @@
 | ID | Tên Kỹ Thuật | Khả Năng Tái Lập | Công Cụ Cần | Đánh Giá Ưu Tiên |
 | :--- | :--- | :--- | :--- | :---: |
 | `360-turntable-catalog` | 360 Turntable Catalog (Bàn Xoay Sản Phẩm 360 Độ) | partial (Cần quay sẵn video bàn xoay sản phẩm hoặc 3D model render loop) | Blender / 3D Model / Video quay sản phẩm thực tế | MEDIUM |
+| `ai-video-realism-anti-artifact` | AI Video Realism & Anti-Artifact Protocols (Triệt Tiêu Rác AI) | yes (Phủ hạt quang học 35mm, khóa Start/End frame) | ControlNet Depth, Film Grain, HyperFrames | HIGH |
 | `channel-style-cloning-template-pipeline` | Channel Style Cloning & Template Pipeline | yes (Định hình style thông qua template HyperFrames JSON + CSS) | HyperFrames, Template Engine | HIGH |
+| `commercial-spec-ai-animation` | Commercial Spec AI Animation (Làm Phim Quảng Cáo 3D Chuẩn Điện Ảnh) | yes (Blender pre-vis + Kling 1.5 hai đầu + HyperFrames) | Blender, Kling 1.5, HyperFrames | HIGH |
 | `frictionless-remix-workflow` | Frictionless Remix Workflow (Quy Trình Tái Chế B-Roll & Hook Không Ma Sát) | yes | Asset Library, HyperFrames | HIGH |
+| `motion-brush-trajectory-steering` | Motion Brush Trajectory Steering (Điều Khiển Đa Quỹ Đạo Chuyển Động) | yes (Tô vùng chuyển động camera & vật thể độc lập) | Kling 1.5, Runway Gen-3 | HIGH |
 | `multi-agent-broll-orchestration` | Multi-Agent B-Roll Orchestration & Parallel Asset Generation | yes | Python asyncio, AI Providers | HIGH |
 | `split-canvas-lookbook` | Split Canvas Lookbook (Khung Hình Chia Đôi / Chia Ba Lookbook) | yes | HyperFrames Layout | HIGH |
 | `sticker-cutout-doodle` | Sticker Cutout & Motion Doodle (Viền Sticker Trắng Cắt Rời & Nét Vẽ Hoạt Hình) | yes | HyperFrames SVG, CSS drop-shadow | HIGH |
+| `tiered-channel-automation-engine` | Tiered Channel Automation Engine (Mô Hình Vận Hành Kênh 4 Tầng) | yes (Kiến trúc phân tầng decouled media pipeline) | Python asyncio, OmniVoice, HyperFrames | HIGH |
+| `virtual-try-on-pipeline` | Virtual Try-On & AI Fashion Model Pipeline (VTON) | yes (Ghép quần áo thật lên mẫu AI KOC) | ComfyUI CatVTON, Flux.1, Kling 1.5 | HIGH |
 | `walking-outfit-transition` | Walking Outfit Transition (Chuyển Đổi Trang Phục Theo Bước Chân) | yes | HyperFrames, GSAP beat sync | HIGH |
 
 ---

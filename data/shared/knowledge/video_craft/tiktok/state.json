@@ -1,0 +1,23 @@
+{
+  "session": "D2",
+  "mode": "MODE_T",
+  "started_at": "2026-11-04T22:50:00+07:00",
+  "last_checkpoint": "2026-11-04T23:22:00+07:00",
+  "channels_scanned": 7,
+  "channels_accepted": 7,
+  "channels_skipped_personal": 2,
+  "videos_queued": 282,
+  "videos_triaged": 282,
+  "videos_learn": 113,
+  "videos_skip": 169,
+  "deep_analyzed_ids": [
+    "7681660841434926354",
+    "7695663938083507464",
+    "7694697264454962440",
+    "7702553918156328213",
+    "7693503813071703297",
+    "7697472862633921812"
+  ],
+  "current_batch": 1,
+  "status": "ANALYSIS_COMPLETE"
+}
