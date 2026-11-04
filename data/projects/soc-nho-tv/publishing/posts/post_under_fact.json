@@ -1,0 +1,43 @@
+{
+  "id": "post_under_fact",
+  "project_id": "soc-nho-tv",
+  "title": "Thử Thách: Sóc Nhỏ Đếm Số Bằng Tiếng Anh",
+  "media": [],
+  "source_ref": null,
+  "render_job_id": "render_7c56496e192e",
+  "idea_id": "idea_script_c505e16679",
+  "status": "published",
+  "approval": {
+    "required": true,
+    "by": null,
+    "at": null,
+    "note": null
+  },
+  "targets": [
+    {
+      "id": "tgt_under_tt",
+      "account_id": "chan_tt_1",
+      "platform": "tiktok",
+      "scheduled_at": "2026-10-31T15:15:14.829440+07:00",
+      "caption": "Tập đếm số cùng Sóc Nhỏ #tienganh",
+      "hashtags": [],
+      "title": "",
+      "description": "",
+      "tags": [],
+      "privacy": "public",
+      "made_for_kids": false,
+      "cover_time_s": 0.0,
+      "first_comment": "",
+      "product_link": "",
+      "disclosure_ad": false,
+      "status": "published",
+      "external_id": null,
+      "external_url": null,
+      "attempts": 0,
+      "last_error": null,
+      "published_at": "2026-10-31T15:15:14.829440+07:00"
+    }
+  ],
+  "created_at": "2026-11-04T21:15:14.831055+07:00",
+  "updated_at": "2026-11-04T21:15:14.831059+07:00"
+}

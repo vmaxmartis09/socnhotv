@@ -1,0 +1,55 @@
+{
+  "id": "post_bf44e6f98016",
+  "project_id": "soc-nho-tv",
+  "title": "Auto Draft Video",
+  "media": [
+    {
+      "path": "output/test_autodraft_out/tiktok.mp4",
+      "platform_variant": null,
+      "kind": "video",
+      "duration_s": 0.0,
+      "thumb": ""
+    }
+  ],
+  "source_ref": null,
+  "render_job_id": "render_4fcb5c5e5565",
+  "idea_id": null,
+  "status": "draft",
+  "approval": {
+    "required": true,
+    "by": null,
+    "at": null,
+    "note": null
+  },
+  "targets": [
+    {
+      "id": "tgt_99c8cff8fa",
+      "account_id": "chan_tt_1",
+      "platform": "tiktok",
+      "scheduled_at": null,
+      "caption": "#socnhotv #funny",
+      "hashtags": [
+        "#socnhotv",
+        "#cartoon3d",
+        "#learnontiktok"
+      ],
+      "title": "Auto Draft Video",
+      "description": "",
+      "tags": [],
+      "privacy": "public",
+      "made_for_kids": false,
+      "cover_time_s": 0.0,
+      "first_comment": "",
+      "product_link": "",
+      "disclosure_ad": false,
+      "status": "draft",
+      "external_id": null,
+      "external_url": null,
+      "attempts": 0,
+      "last_error": null,
+      "published_at": null
+    }
+  ],
+  "created_at": "2026-11-04T20:32:59.756262+07:00",
+  "updated_at": "2026-11-04T20:32:59.756269+07:00"
+}

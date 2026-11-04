@@ -101,8 +101,90 @@ export interface CalendarNote {
   id: string;
   date: string;
   text: string;
-  color?: string;
+  color: string;
 }
+
+export interface KPISummary {
+  total_views: number;
+  total_watch_time_s: number;
+  avg_retention_pct: number;
+  engagement_rate: number;
+  total_likes: number;
+  total_comments: number;
+  total_shares: number;
+  total_saves: number;
+  follower_gain: number;
+  avg_ctr: number;
+  affiliate_revenue: number;
+  post_count: number;
+}
+
+export interface GoldenHourSlot {
+  weekday: number;
+  hour: number;
+  median_views: number;
+  sample_count: number;
+  score: number;
+}
+
+export interface HeatmapData {
+  matrix: GoldenHourSlot[][];
+  top_slots: GoldenHourSlot[];
+  recommended_windows: PostingWindow[];
+}
+
+export interface OutlierItem {
+  post_id: string;
+  target_id: string;
+  title: string;
+  platform: PlatformType;
+  views: number;
+  benchmark_views: number;
+  ratio: number;
+  kind: "top_outlier" | "underperforming";
+  hypothesis: string;
+}
+
+export interface CreativePerformance {
+  templates: {
+    template_id: string;
+    post_count: number;
+    total_views: number;
+    avg_views: number;
+    avg_er: number;
+  }[];
+  blueprints: {
+    blueprint_ref: string;
+    post_count: number;
+    total_views: number;
+    avg_views: number;
+    avg_er: number;
+  }[];
+}
+
+export interface AutomationRule {
+  id: string;
+  name: string;
+  enabled: boolean;
+  trigger: "render_done" | "idea_scripted" | "schedule_gap";
+  conditions: Record<string, any>;
+  actions: Record<string, any>;
+  last_run_at?: string | null;
+  run_count: number;
+  last_log?: string | null;
+}
+
+export interface SocialNotification {
+  id: string;
+  type: "publish_success" | "publish_failed" | "token_expired" | "manual_package_due" | "schedule_gap" | "system";
+  title: string;
+  message: string;
+  created_at: string;
+  read: boolean;
+  action_url?: string | null;
+  data?: Record<string, any>;
+}
+
 
 export interface CalendarItem {
   post_id: string;
@@ -115,6 +197,7 @@ export interface CalendarItem {
   status: PostStatus;
   caption: string;
   thumb?: string;
+  views?: number;
 }
 
 export interface EmptySlot {
@@ -351,4 +434,113 @@ export const socialApi = {
 
   getPackageZipUrl: (projectId: string, postId: string, platform: string) =>
     `${SOCIAL_CORE_URL}/projects/${projectId}/social/packages/${postId}/${platform}.zip`,
+
+  // Analytics & Insights
+  getAnalyticsOverview: (
+    projectId: string,
+    window: string = "30d",
+    platform?: string,
+    accountId?: string
+  ) => {
+    const params = new URLSearchParams({ window });
+    if (platform) params.append("platform", platform);
+    if (accountId) params.append("account_id", accountId);
+    return fetchJson<{
+      kpis: KPISummary;
+      views_by_day: Record<string, Record<string, number>>;
+      outliers: { top_outliers: OutlierItem[]; underperforming: OutlierItem[] };
+    }>(`${SOCIAL_CORE_URL}/projects/${projectId}/social/analytics/overview?${params}`);
+  },
+
+  getAnalyticsHeatmap: (projectId: string) =>
+    fetchJson<HeatmapData>(`${SOCIAL_CORE_URL}/projects/${projectId}/social/analytics/heatmap`),
+
+  applyGoldenWindows: (projectId: string, accountId?: string, windows?: PostingWindow[]) =>
+    fetchJson<{ status: string; updated_accounts: string[]; windows: PostingWindow[] }>(
+      `${SOCIAL_CORE_URL}/projects/${projectId}/social/analytics/apply-golden-windows`,
+      {
+        method: "POST",
+        body: JSON.stringify({ account_id: accountId, windows }),
+      }
+    ),
+
+  getCreativePerformance: (projectId: string) =>
+    fetchJson<CreativePerformance>(`${SOCIAL_CORE_URL}/projects/${projectId}/social/analytics/creatives`),
+
+  getAnalyticsLearnings: (projectId: string) =>
+    fetchJson<{ learnings_md: string; recommendations: any }>(
+      `${SOCIAL_CORE_URL}/projects/${projectId}/social/analytics/learnings`
+    ),
+
+  triggerAnalyticsCollect: (projectId: string) =>
+    fetchJson<{ status: string; count: number }>(
+      `${SOCIAL_CORE_URL}/projects/${projectId}/social/analytics/collect`,
+      { method: "POST" }
+    ),
+
+  saveManualMetrics: (projectId: string, payload: any) =>
+    fetchJson<{ status: string; snapshot: any }>(
+      `${SOCIAL_CORE_URL}/projects/${projectId}/social/analytics/manual-metrics`,
+      {
+        method: "POST",
+        body: JSON.stringify(payload),
+      }
+    ),
+
+  importCsvMetrics: (projectId: string, csvText: string, platform?: string) =>
+    fetchJson<{ status: string; total_records: number; matched_count: number; records: any[] }>(
+      `${SOCIAL_CORE_URL}/projects/${projectId}/social/analytics/import-csv`,
+      {
+        method: "POST",
+        body: JSON.stringify({ csv_text: csvText, platform: platform || "youtube" }),
+      }
+    ),
+
+  // Automation Rules
+  listAutomationRules: (projectId: string) =>
+    fetchJson<AutomationRule[]>(`${SOCIAL_CORE_URL}/projects/${projectId}/social/automation/rules`),
+
+  saveAutomationRule: (projectId: string, rule: Partial<AutomationRule>) =>
+    fetchJson<AutomationRule>(`${SOCIAL_CORE_URL}/projects/${projectId}/social/automation/rules`, {
+      method: "POST",
+      body: JSON.stringify(rule),
+    }),
+
+  toggleAutomationRule: (projectId: string, ruleId: string) =>
+    fetchJson<{ id: string; enabled: boolean }>(
+      `${SOCIAL_CORE_URL}/projects/${projectId}/social/automation/rules/${ruleId}/toggle`,
+      { method: "POST" }
+    ),
+
+  deleteAutomationRule: (projectId: string, ruleId: string) =>
+    fetchJson<{ status: string; id: string }>(
+      `${SOCIAL_CORE_URL}/projects/${projectId}/social/automation/rules/${ruleId}`,
+      { method: "DELETE" }
+    ),
+
+  runAutomation: (projectId: string, ruleId?: string) => {
+    const q = ruleId ? `?rule_id=${ruleId}` : "";
+    return fetchJson<{ reports: any[] }>(
+      `${SOCIAL_CORE_URL}/projects/${projectId}/social/automation/run${q}`,
+      { method: "POST" }
+    );
+  },
+
+  // Notifications
+  listNotifications: (projectId: string, unreadOnly: boolean = false) =>
+    fetchJson<SocialNotification[]>(
+      `${SOCIAL_CORE_URL}/projects/${projectId}/social/notifications?unread_only=${unreadOnly}`
+    ),
+
+  markNotificationRead: (projectId: string, notifId: string) =>
+    fetchJson<{ status: string; success: boolean }>(
+      `${SOCIAL_CORE_URL}/projects/${projectId}/social/notifications/${notifId}/read`,
+      { method: "POST" }
+    ),
+
+  clearNotifications: (projectId: string) =>
+    fetchJson<{ status: string }>(
+      `${SOCIAL_CORE_URL}/projects/${projectId}/social/notifications`,
+      { method: "DELETE" }
+    ),
 };

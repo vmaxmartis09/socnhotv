@@ -1,0 +1,22 @@
+[
+  {
+    "id": "notif_eb224ac2",
+    "type": "schedule_gap",
+    "title": "Nhắc nhở: Lịch đăng bài cuối tuần",
+    "message": "Thứ 7 tuần này chưa có bài đăng nào được lên lịch cho kênh YouTube.",
+    "created_at": "2026-11-04T21:15:14.831999+07:00",
+    "read": false,
+    "action_url": "/social?tab=calendar",
+    "data": {}
+  },
+  {
+    "id": "notif_209b3fe9",
+    "type": "publish_success",
+    "title": "Đăng bài thành công lên TikTok",
+    "message": "Video 'Bán Hàng TikTok: Sóc Nhỏ và Hạt Dẻ Thần Kỳ' đã được xuất bản và đạt 28.5K views!",
+    "created_at": "2026-11-04T21:15:14.831806+07:00",
+    "read": false,
+    "action_url": "/social?tab=analytics",
+    "data": {}
+  }
+]

@@ -14,7 +14,16 @@ from zoneinfo import ZoneInfo
 
 from socnhotv.social.adapters import get_adapter
 from socnhotv.social.adapters.manual import ManualAdapter
-from socnhotv.social.models import DEFAULT_TZ, Post, PostTarget, SocialAccount, ensure_tz, now_iso
+from socnhotv.social.models import (
+    DEFAULT_TZ,
+    Post,
+    PostMetricsSnapshot,
+    PostTarget,
+    SocialAccount,
+    SocialNotification,
+    ensure_tz,
+    now_iso,
+)
 from socnhotv.social.store import SocialStore
 from socnhotv.workspace.paths import project_path
 
@@ -122,6 +131,15 @@ class SocialScheduler:
                             to_status="published",
                             note=f"Published to {target.platform}: {pub_res.url}",
                         )
+                        self.store.add_notification(
+                            SocialNotification(
+                                type="publish_success",
+                                title=f"Đăng bài thành công lên {target.platform.capitalize()}",
+                                message=f"Bài '{post.title}' đã xuất bản thành công: {pub_res.url or ''}",
+                                action_url=pub_res.url or "/social?tab=posts",
+                                data={"post_id": post.id, "target_id": target.id, "platform": target.platform},
+                            )
+                        )
                         results.append({
                             "post_id": post.id,
                             "target_id": target.id,
@@ -148,6 +166,24 @@ class SocialScheduler:
                             if ("quota" in err_str or "unauthorized" in err_str or "401" in err_str) and account:
                                 account.status = "expired"
                                 self.store.save_account(account)
+                                self.store.add_notification(
+                                    SocialNotification(
+                                        type="token_expired",
+                                        title=f"Token tài khoản {account.display_name} đã hết hạn",
+                                        message=f"Lỗi xác thực hoặc vượt hạn ngạch: {pub_res.error}. Vui lòng kết nối lại tài khoản.",
+                                        action_url="/social?tab=accounts",
+                                        data={"account_id": account.id},
+                                    )
+                                )
+                            self.store.add_notification(
+                                SocialNotification(
+                                    type="publish_failed",
+                                    title=f"Đăng bài thất bại ({target.platform.capitalize()})",
+                                    message=f"Bài '{post.title}' không thể đăng: {pub_res.error}",
+                                    action_url="/social?tab=posts",
+                                    data={"post_id": post.id, "target_id": target.id, "error": pub_res.error},
+                                )
+                            )
                         else:
                             # Backoff retry (2, 10, 30 minutes)
                             backoff_minutes = [2, 10, 30][min(target.attempts - 1, 2)]
@@ -188,6 +224,27 @@ class SocialScheduler:
             except Exception as e:
                 pass
             await asyncio.sleep(self.poll_interval)
+
+    async def collect_metrics(self) -> int:
+        """Collects metrics snapshots for all published targets."""
+        from socnhotv.social.analytics.collectors import get_collector
+
+        posts = self.store.list_posts(status="published")
+        collected_count = 0
+        for p in posts:
+            for t in p.targets:
+                if t.status == "published":
+                    account = self.store.get_account(t.account_id)
+                    auth_mode = account.auth.mode if account else "manual"
+                    collector = get_collector(t.platform, mode=auth_mode)
+                    try:
+                        snap = await collector.collect(account, t, checkpoint="custom")
+                        snap.post_id = p.id
+                        self.store.append_metrics_snapshot(snap)
+                        collected_count += 1
+                    except Exception:
+                        continue
+        return collected_count
 
     def start(self) -> None:
         if not self._running:

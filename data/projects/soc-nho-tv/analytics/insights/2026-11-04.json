@@ -1,0 +1,1472 @@
+{
+  "date": "2026-11-04",
+  "generated_at": "2026-11-04T21:16:54.008125+07:00",
+  "kpis": {
+    "total_views": 66100,
+    "total_watch_time_s": 194200.0,
+    "avg_retention_pct": 62.7,
+    "engagement_rate": 9.85,
+    "total_likes": 5315,
+    "total_comments": 598,
+    "total_shares": 354,
+    "total_saves": 247,
+    "follower_gain": 992,
+    "avg_ctr": 3.02,
+    "affiliate_revenue": 250.0,
+    "post_count": 5
+  },
+  "views_by_day": {
+    "2026-10-22": {
+      "tiktok": 0,
+      "youtube": 0,
+      "facebook": 0,
+      "instagram": 0,
+      "total": 0
+    },
+    "2026-10-23": {
+      "tiktok": 0,
+      "youtube": 0,
+      "facebook": 0,
+      "instagram": 0,
+      "total": 0
+    },
+    "2026-10-24": {
+      "tiktok": 0,
+      "youtube": 0,
+      "facebook": 0,
+      "instagram": 0,
+      "total": 0
+    },
+    "2026-10-25": {
+      "tiktok": 0,
+      "youtube": 0,
+      "facebook": 0,
+      "instagram": 0,
+      "total": 0
+    },
+    "2026-10-26": {
+      "tiktok": 0,
+      "youtube": 0,
+      "facebook": 0,
+      "instagram": 0,
+      "total": 0
+    },
+    "2026-10-27": {
+      "tiktok": 0,
+      "youtube": 0,
+      "facebook": 0,
+      "instagram": 0,
+      "total": 0
+    },
+    "2026-10-28": {
+      "tiktok": 0,
+      "youtube": 0,
+      "facebook": 0,
+      "instagram": 0,
+      "total": 0
+    },
+    "2026-10-29": {
+      "tiktok": 0,
+      "youtube": 0,
+      "facebook": 0,
+      "instagram": 0,
+      "total": 0
+    },
+    "2026-10-30": {
+      "tiktok": 12400,
+      "youtube": 0,
+      "facebook": 0,
+      "instagram": 0,
+      "total": 12400
+    },
+    "2026-10-31": {
+      "tiktok": 1200,
+      "youtube": 0,
+      "facebook": 0,
+      "instagram": 0,
+      "total": 1200
+    },
+    "2026-11-01": {
+      "tiktok": 0,
+      "youtube": 0,
+      "facebook": 0,
+      "instagram": 0,
+      "total": 0
+    },
+    "2026-11-02": {
+      "tiktok": 28500,
+      "youtube": 14200,
+      "facebook": 0,
+      "instagram": 0,
+      "total": 42700
+    },
+    "2026-11-03": {
+      "tiktok": 0,
+      "youtube": 9800,
+      "facebook": 0,
+      "instagram": 0,
+      "total": 9800
+    },
+    "2026-11-04": {
+      "tiktok": 0,
+      "youtube": 0,
+      "facebook": 0,
+      "instagram": 0,
+      "total": 0
+    }
+  },
+  "golden_hours": {
+    "matrix": [
+      [
+        {
+          "weekday": 0,
+          "hour": 0,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 0,
+          "hour": 1,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 0,
+          "hour": 2,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 0,
+          "hour": 3,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 0,
+          "hour": 4,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 0,
+          "hour": 5,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 0,
+          "hour": 6,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 0,
+          "hour": 7,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 0,
+          "hour": 8,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 30.0
+        },
+        {
+          "weekday": 0,
+          "hour": 9,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 30.0
+        },
+        {
+          "weekday": 0,
+          "hour": 10,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 0,
+          "hour": 11,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 45.0
+        },
+        {
+          "weekday": 0,
+          "hour": 12,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 45.0
+        },
+        {
+          "weekday": 0,
+          "hour": 13,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 0,
+          "hour": 14,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 0,
+          "hour": 15,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 0,
+          "hour": 16,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 0,
+          "hour": 17,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 0,
+          "hour": 18,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 0,
+          "hour": 19,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 65.0
+        },
+        {
+          "weekday": 0,
+          "hour": 20,
+          "median_views": 21350.0,
+          "sample_count": 2,
+          "score": 14974.5
+        },
+        {
+          "weekday": 0,
+          "hour": 21,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 65.0
+        },
+        {
+          "weekday": 0,
+          "hour": 22,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 0,
+          "hour": 23,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        }
+      ],
+      [
+        {
+          "weekday": 1,
+          "hour": 0,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 1,
+          "hour": 1,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 1,
+          "hour": 2,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 1,
+          "hour": 3,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 1,
+          "hour": 4,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 1,
+          "hour": 5,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 1,
+          "hour": 6,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 1,
+          "hour": 7,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 1,
+          "hour": 8,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 30.0
+        },
+        {
+          "weekday": 1,
+          "hour": 9,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 30.0
+        },
+        {
+          "weekday": 1,
+          "hour": 10,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 1,
+          "hour": 11,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 45.0
+        },
+        {
+          "weekday": 1,
+          "hour": 12,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 45.0
+        },
+        {
+          "weekday": 1,
+          "hour": 13,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 1,
+          "hour": 14,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 1,
+          "hour": 15,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 1,
+          "hour": 16,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 1,
+          "hour": 17,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 1,
+          "hour": 18,
+          "median_views": 9800.0,
+          "sample_count": 1,
+          "score": 6868.0
+        },
+        {
+          "weekday": 1,
+          "hour": 19,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 65.0
+        },
+        {
+          "weekday": 1,
+          "hour": 20,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 65.0
+        },
+        {
+          "weekday": 1,
+          "hour": 21,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 65.0
+        },
+        {
+          "weekday": 1,
+          "hour": 22,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 1,
+          "hour": 23,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        }
+      ],
+      [
+        {
+          "weekday": 2,
+          "hour": 0,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 2,
+          "hour": 1,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 2,
+          "hour": 2,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 2,
+          "hour": 3,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 2,
+          "hour": 4,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 2,
+          "hour": 5,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 2,
+          "hour": 6,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 2,
+          "hour": 7,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 2,
+          "hour": 8,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 30.0
+        },
+        {
+          "weekday": 2,
+          "hour": 9,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 30.0
+        },
+        {
+          "weekday": 2,
+          "hour": 10,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 2,
+          "hour": 11,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 45.0
+        },
+        {
+          "weekday": 2,
+          "hour": 12,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 45.0
+        },
+        {
+          "weekday": 2,
+          "hour": 13,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 2,
+          "hour": 14,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 2,
+          "hour": 15,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 2,
+          "hour": 16,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 2,
+          "hour": 17,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 2,
+          "hour": 18,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 2,
+          "hour": 19,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 65.0
+        },
+        {
+          "weekday": 2,
+          "hour": 20,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 65.0
+        },
+        {
+          "weekday": 2,
+          "hour": 21,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 65.0
+        },
+        {
+          "weekday": 2,
+          "hour": 22,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 2,
+          "hour": 23,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        }
+      ],
+      [
+        {
+          "weekday": 3,
+          "hour": 0,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 3,
+          "hour": 1,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 3,
+          "hour": 2,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 3,
+          "hour": 3,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 3,
+          "hour": 4,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 3,
+          "hour": 5,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 3,
+          "hour": 6,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 3,
+          "hour": 7,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 3,
+          "hour": 8,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 30.0
+        },
+        {
+          "weekday": 3,
+          "hour": 9,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 30.0
+        },
+        {
+          "weekday": 3,
+          "hour": 10,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 3,
+          "hour": 11,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 45.0
+        },
+        {
+          "weekday": 3,
+          "hour": 12,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 45.0
+        },
+        {
+          "weekday": 3,
+          "hour": 13,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 3,
+          "hour": 14,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 3,
+          "hour": 15,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 3,
+          "hour": 16,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 3,
+          "hour": 17,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 3,
+          "hour": 18,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 3,
+          "hour": 19,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 65.0
+        },
+        {
+          "weekday": 3,
+          "hour": 20,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 65.0
+        },
+        {
+          "weekday": 3,
+          "hour": 21,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 65.0
+        },
+        {
+          "weekday": 3,
+          "hour": 22,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 3,
+          "hour": 23,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        }
+      ],
+      [
+        {
+          "weekday": 4,
+          "hour": 0,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 4,
+          "hour": 1,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 4,
+          "hour": 2,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 4,
+          "hour": 3,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 4,
+          "hour": 4,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 4,
+          "hour": 5,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 4,
+          "hour": 6,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 4,
+          "hour": 7,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 4,
+          "hour": 8,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 30.0
+        },
+        {
+          "weekday": 4,
+          "hour": 9,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 30.0
+        },
+        {
+          "weekday": 4,
+          "hour": 10,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 4,
+          "hour": 11,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 45.0
+        },
+        {
+          "weekday": 4,
+          "hour": 12,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 45.0
+        },
+        {
+          "weekday": 4,
+          "hour": 13,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 4,
+          "hour": 14,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 4,
+          "hour": 15,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 4,
+          "hour": 16,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 4,
+          "hour": 17,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 4,
+          "hour": 18,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 4,
+          "hour": 19,
+          "median_views": 12400.0,
+          "sample_count": 1,
+          "score": 8704.5
+        },
+        {
+          "weekday": 4,
+          "hour": 20,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 65.0
+        },
+        {
+          "weekday": 4,
+          "hour": 21,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 65.0
+        },
+        {
+          "weekday": 4,
+          "hour": 22,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        },
+        {
+          "weekday": 4,
+          "hour": 23,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 10.0
+        }
+      ],
+      [
+        {
+          "weekday": 5,
+          "hour": 0,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 25.0
+        },
+        {
+          "weekday": 5,
+          "hour": 1,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 25.0
+        },
+        {
+          "weekday": 5,
+          "hour": 2,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 25.0
+        },
+        {
+          "weekday": 5,
+          "hour": 3,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 25.0
+        },
+        {
+          "weekday": 5,
+          "hour": 4,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 25.0
+        },
+        {
+          "weekday": 5,
+          "hour": 5,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 25.0
+        },
+        {
+          "weekday": 5,
+          "hour": 6,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 25.0
+        },
+        {
+          "weekday": 5,
+          "hour": 7,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 25.0
+        },
+        {
+          "weekday": 5,
+          "hour": 8,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 45.0
+        },
+        {
+          "weekday": 5,
+          "hour": 9,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 45.0
+        },
+        {
+          "weekday": 5,
+          "hour": 10,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 25.0
+        },
+        {
+          "weekday": 5,
+          "hour": 11,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 60.0
+        },
+        {
+          "weekday": 5,
+          "hour": 12,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 60.0
+        },
+        {
+          "weekday": 5,
+          "hour": 13,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 25.0
+        },
+        {
+          "weekday": 5,
+          "hour": 14,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 25.0
+        },
+        {
+          "weekday": 5,
+          "hour": 15,
+          "median_views": 1200.0,
+          "sample_count": 1,
+          "score": 852.5
+        },
+        {
+          "weekday": 5,
+          "hour": 16,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 25.0
+        },
+        {
+          "weekday": 5,
+          "hour": 17,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 25.0
+        },
+        {
+          "weekday": 5,
+          "hour": 18,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 25.0
+        },
+        {
+          "weekday": 5,
+          "hour": 19,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 80.0
+        },
+        {
+          "weekday": 5,
+          "hour": 20,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 80.0
+        },
+        {
+          "weekday": 5,
+          "hour": 21,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 80.0
+        },
+        {
+          "weekday": 5,
+          "hour": 22,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 25.0
+        },
+        {
+          "weekday": 5,
+          "hour": 23,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 25.0
+        }
+      ],
+      [
+        {
+          "weekday": 6,
+          "hour": 0,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 25.0
+        },
+        {
+          "weekday": 6,
+          "hour": 1,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 25.0
+        },
+        {
+          "weekday": 6,
+          "hour": 2,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 25.0
+        },
+        {
+          "weekday": 6,
+          "hour": 3,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 25.0
+        },
+        {
+          "weekday": 6,
+          "hour": 4,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 25.0
+        },
+        {
+          "weekday": 6,
+          "hour": 5,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 25.0
+        },
+        {
+          "weekday": 6,
+          "hour": 6,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 25.0
+        },
+        {
+          "weekday": 6,
+          "hour": 7,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 25.0
+        },
+        {
+          "weekday": 6,
+          "hour": 8,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 45.0
+        },
+        {
+          "weekday": 6,
+          "hour": 9,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 45.0
+        },
+        {
+          "weekday": 6,
+          "hour": 10,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 25.0
+        },
+        {
+          "weekday": 6,
+          "hour": 11,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 60.0
+        },
+        {
+          "weekday": 6,
+          "hour": 12,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 60.0
+        },
+        {
+          "weekday": 6,
+          "hour": 13,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 25.0
+        },
+        {
+          "weekday": 6,
+          "hour": 14,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 25.0
+        },
+        {
+          "weekday": 6,
+          "hour": 15,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 25.0
+        },
+        {
+          "weekday": 6,
+          "hour": 16,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 25.0
+        },
+        {
+          "weekday": 6,
+          "hour": 17,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 25.0
+        },
+        {
+          "weekday": 6,
+          "hour": 18,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 25.0
+        },
+        {
+          "weekday": 6,
+          "hour": 19,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 80.0
+        },
+        {
+          "weekday": 6,
+          "hour": 20,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 80.0
+        },
+        {
+          "weekday": 6,
+          "hour": 21,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 80.0
+        },
+        {
+          "weekday": 6,
+          "hour": 22,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 25.0
+        },
+        {
+          "weekday": 6,
+          "hour": 23,
+          "median_views": 0.0,
+          "sample_count": 0,
+          "score": 25.0
+        }
+      ]
+    ],
+    "top_slots": [
+      {
+        "weekday": 0,
+        "hour": 20,
+        "median_views": 21350.0,
+        "sample_count": 2,
+        "score": 14974.5
+      },
+      {
+        "weekday": 4,
+        "hour": 19,
+        "median_views": 12400.0,
+        "sample_count": 1,
+        "score": 8704.5
+      },
+      {
+        "weekday": 1,
+        "hour": 18,
+        "median_views": 9800.0,
+        "sample_count": 1,
+        "score": 6868.0
+      },
+      {
+        "weekday": 5,
+        "hour": 15,
+        "median_views": 1200.0,
+        "sample_count": 1,
+        "score": 852.5
+      },
+      {
+        "weekday": 5,
+        "hour": 19,
+        "median_views": 0.0,
+        "sample_count": 0,
+        "score": 80.0
+      },
+      {
+        "weekday": 5,
+        "hour": 20,
+        "median_views": 0.0,
+        "sample_count": 0,
+        "score": 80.0
+      },
+      {
+        "weekday": 5,
+        "hour": 21,
+        "median_views": 0.0,
+        "sample_count": 0,
+        "score": 80.0
+      },
+      {
+        "weekday": 6,
+        "hour": 19,
+        "median_views": 0.0,
+        "sample_count": 0,
+        "score": 80.0
+      },
+      {
+        "weekday": 6,
+        "hour": 20,
+        "median_views": 0.0,
+        "sample_count": 0,
+        "score": 80.0
+      },
+      {
+        "weekday": 6,
+        "hour": 21,
+        "median_views": 0.0,
+        "sample_count": 0,
+        "score": 80.0
+      }
+    ],
+    "recommended_windows": [
+      {
+        "weekday": 0,
+        "start": "20:00",
+        "end": "22:00"
+      },
+      {
+        "weekday": 4,
+        "start": "19:00",
+        "end": "21:00"
+      },
+      {
+        "weekday": 1,
+        "start": "18:00",
+        "end": "20:00"
+      },
+      {
+        "weekday": 5,
+        "start": "15:00",
+        "end": "17:00"
+      },
+      {
+        "weekday": 6,
+        "start": "19:00",
+        "end": "21:00"
+      }
+    ]
+  },
+  "creatives": {
+    "templates": [
+      {
+        "template_id": "remake-v1",
+        "post_count": 3,
+        "total_views": 23400,
+        "avg_views": 7800.0,
+        "avg_er": 9.42
+      },
+      {
+        "template_id": "tiktok-sales-v1",
+        "post_count": 6,
+        "total_views": 42700,
+        "avg_views": 7116.7,
+        "avg_er": 10.09
+      },
+      {
+        "template_id": "yt-animation-episode-v1",
+        "post_count": 1,
+        "total_views": 0,
+        "avg_views": 0.0,
+        "avg_er": 0.0
+      },
+      {
+        "template_id": "unknown",
+        "post_count": 6,
+        "total_views": 0,
+        "avg_views": 0.0,
+        "avg_er": 0.0
+      }
+    ],
+    "blueprints": []
+  },
+  "outliers": {
+    "top_outliers": [
+      {
+        "post_id": "post_viral_sales",
+        "target_id": "tgt_viral_tt",
+        "title": "Bán Hàng TikTok: Sóc Nhỏ và Hạt Dẻ Thần Kỳ (Hook 3s)",
+        "platform": "tiktok",
+        "views": 28500,
+        "benchmark_views": 12400.0,
+        "ratio": 2.3,
+        "kind": "top_outlier",
+        "hypothesis": "Hook 3s cuốn hút, chủ đề đánh trúng insight khán giả và phát hành đúng khung giờ vàng tương tác cao."
+      }
+    ],
+    "underperforming": [
+      {
+        "post_id": "post_under_fact",
+        "target_id": "tgt_under_tt",
+        "title": "Thử Thách: Sóc Nhỏ Đếm Số Bằng Tiếng Anh",
+        "platform": "tiktok",
+        "views": 1200,
+        "benchmark_views": 12400.0,
+        "ratio": 0.1,
+        "kind": "underperforming",
+        "hypothesis": "Nội dung mở đầu thiếu nhịp giật gân, đăng lệch khung giờ hoặc hình ảnh cover chưa nổi bật."
+      }
+    ]
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "id": "post_ep1_tt",
+  "project_id": "soc-nho-tv",
+  "title": "Tập 1: Sóc Bi Đau Răng Vì Ăn Kẹo (Shorts 9:16)",
+  "media": [
+    {
+      "path": "content/episodes/soc-nho-sau-rang/scenes/canh_01.mp4",
+      "platform_variant": null,
+      "kind": "video",
+      "duration_s": 0.0,
+      "thumb": ""
+    }
+  ],
+  "source_ref": null,
+  "render_job_id": null,
+  "idea_id": null,
+  "status": "draft",
+  "approval": {
+    "required": true,
+    "by": null,
+    "at": null,
+    "note": null
+  },
+  "targets": [
+    {
+      "id": "tgt_post_ep1_tt",
+      "account_id": "chan_tt_1",
+      "platform": "tiktok",
+      "scheduled_at": "2026-11-05T20:00:00+07:00",
+      "caption": "",
+      "hashtags": [],
+      "title": "Tập 1: Sóc Bi Đau Răng Vì Ăn Kẹo (Shorts 9:16)",
+      "description": "",
+      "tags": [],
+      "privacy": "public",
+      "made_for_kids": false,
+      "cover_time_s": 0.0,
+      "first_comment": "",
+      "product_link": "",
+      "disclosure_ad": false,
+      "status": "draft",
+      "external_id": null,
+      "external_url": null,
+      "attempts": 0,
+      "last_error": null,
+      "published_at": null
+    }
+  ],
+  "created_at": "2026-11-04T20:30:52.930760+07:00",
+  "updated_at": "2026-11-04T20:30:52.930765+07:00"
+}

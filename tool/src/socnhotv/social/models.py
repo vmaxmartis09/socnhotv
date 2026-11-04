@@ -143,3 +143,82 @@ class CalendarNote(BaseModel):
     date: str = Field(..., description="YYYY-MM-DD")
     text: str
     color: str = "#f59e0b"
+
+
+class PostMetricsSnapshot(BaseModel):
+    timestamp: str = Field(default_factory=now_iso)
+    post_id: str
+    target_id: str
+    platform: PlatformType
+    checkpoint: Literal["1h", "6h", "24h", "72h", "7d", "28d", "manual", "custom"] = "custom"
+    views: int = 0
+    likes: int = 0
+    comments: int = 0
+    shares: int = 0
+    saves: int = 0
+    watch_time_s: float = 0.0
+    avg_retention_pct: float = 0.0
+    subscribers_gained: int = 0
+    ctr: float = 0.0
+    revenue: float = 0.0
+    raw: dict = Field(default_factory=dict)
+
+
+class KPISummary(BaseModel):
+    total_views: int = 0
+    total_watch_time_s: float = 0.0
+    avg_retention_pct: float = 0.0
+    engagement_rate: float = 0.0  # ER = (likes + comments + shares + saves) / max(views, 1) * 100
+    total_likes: int = 0
+    total_comments: int = 0
+    total_shares: int = 0
+    total_saves: int = 0
+    follower_gain: int = 0
+    avg_ctr: float = 0.0
+    affiliate_revenue: float = 0.0
+    post_count: int = 0
+
+
+class GoldenSlotRecommendation(BaseModel):
+    weekday: int = Field(..., ge=0, le=6, description="0=Monday, 6=Sunday")
+    hour: int = Field(..., ge=0, le=23)
+    median_views: float = 0.0
+    sample_count: int = 0
+    score: float = 0.0
+    is_recommended: bool = False
+
+
+class OutlierItem(BaseModel):
+    post_id: str
+    target_id: str
+    title: str
+    platform: PlatformType
+    views: int
+    benchmark_views: float
+    ratio: float
+    kind: Literal["top_outlier", "underperforming"]
+    hypothesis: str
+
+
+class AutomationRule(BaseModel):
+    id: str = Field(default_factory=lambda: f"rule_{uuid.uuid4().hex[:8]}")
+    name: str
+    enabled: bool = False
+    trigger: Literal["render_done", "idea_scripted", "schedule_gap"]
+    conditions: dict = Field(default_factory=dict)  # e.g. {"template_id_prefix": "tiktok-sales-"}
+    actions: dict = Field(default_factory=dict)  # e.g. {"create_draft": True, "platforms": ["tiktok", "reels"], "auto_approve": False}
+    last_run_at: Optional[str] = None
+    run_count: int = 0
+    last_log: Optional[str] = None
+
+
+class SocialNotification(BaseModel):
+    id: str = Field(default_factory=lambda: f"notif_{uuid.uuid4().hex[:8]}")
+    type: Literal["publish_success", "publish_failed", "token_expired", "manual_package_due", "schedule_gap", "system"]
+    title: str
+    message: str
+    created_at: str = Field(default_factory=now_iso)
+    read: bool = False
+    action_url: Optional[str] = None
+    data: dict = Field(default_factory=dict)
+

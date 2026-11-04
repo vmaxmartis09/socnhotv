@@ -11,15 +11,22 @@ from fastapi.responses import FileResponse
 
 from socnhotv.social.vault import get_social_vault as get_key_vault
 from socnhotv.social.adapters import export_package_zip, get_adapter
+from socnhotv.social.analytics.collectors.manual import ManualCollector
+from socnhotv.social.analytics.insights import AnalyticsEngine
+from socnhotv.social.automation import SocialAutomationEngine
 from socnhotv.social.contracts import create_draft_post, ingest_inbox
 from socnhotv.social.migrate import migrate_legacy_publishing
 from socnhotv.social.models import (
+    AutomationRule,
     CalendarNote,
     DEFAULT_TZ,
     Post,
+    PostingWindow,
+    PostMetricsSnapshot,
     PostTarget,
     RecurringSlot,
     SocialAccount,
+    SocialNotification,
     ensure_tz,
     now_iso,
 )
@@ -277,10 +284,13 @@ async def get_calendar(
     accounts = {a.id: a for a in store.list_accounts()}
 
     # Flatten targets
+    metrics_map = store.list_all_latest_metrics()
     items = []
     for p in posts:
         thumb = p.media[0].thumb if p.media and p.media[0].thumb else ""
         for t in p.targets:
+            snap = metrics_map.get(t.id)
+            views = snap.views if snap else 0
             items.append({
                 "post_id": p.id,
                 "target_id": t.id,
@@ -292,6 +302,7 @@ async def get_calendar(
                 "status": t.status,
                 "caption": t.caption,
                 "thumb": thumb,
+                "views": views,
             })
 
     notes = store.list_notes(from_date=from_date, to_date=to_date)
@@ -613,3 +624,245 @@ async def download_package_zip(project_id: str, post_id: str, platform: str):
             filename=f"{platform}_package_{post_id}.zip",
             media_type="application/zip",
         )
+
+
+# ==========================================
+# C4: Analytics, Heatmap, Learning & Automation
+# ==========================================
+
+@router.get("/projects/{project_id}/social/analytics/overview")
+async def get_analytics_overview(
+    project_id: str,
+    window: str = Query("30d"),
+    platform: Optional[str] = Query(None),
+    account_id: Optional[str] = Query(None),
+):
+    engine = AnalyticsEngine(project_id)
+    kpis = engine.calculate_kpis(time_window=window, platform=platform, account_id=account_id)
+    daily = engine.export_daily_insights()
+    return {
+        "kpis": kpis.model_dump(),
+        "views_by_day": daily.get("views_by_day", {}),
+        "outliers": daily.get("outliers", {}),
+    }
+
+
+@router.get("/projects/{project_id}/social/analytics/heatmap")
+async def get_analytics_heatmap(project_id: str):
+    engine = AnalyticsEngine(project_id)
+    return engine.calculate_golden_hours()
+
+
+@router.post("/projects/{project_id}/social/analytics/apply-golden-windows")
+async def apply_golden_windows(
+    project_id: str,
+    payload: Dict[str, Any] = Body(...),
+):
+    """Applies recommended golden posting windows to one or all accounts."""
+    account_id = payload.get("account_id")
+    windows_data = payload.get("windows")
+
+    store = SocialStore(project_id)
+    accounts = store.list_accounts()
+    if account_id:
+        accounts = [a for a in accounts if a.id == account_id]
+
+    if not windows_data:
+        engine = AnalyticsEngine(project_id)
+        golden = engine.calculate_golden_hours()
+        windows_data = golden.get("recommended_windows", [])
+
+    new_windows = [PostingWindow.model_validate(w) for w in windows_data]
+
+    updated_accounts = []
+    for acc in accounts:
+        acc.posting_windows = new_windows
+        store.save_account(acc)
+        updated_accounts.append(acc.id)
+
+    store.append_audit("user", "apply_golden_windows", post_id="all", note=f"Updated accounts: {updated_accounts}")
+    return {"status": "applied", "updated_accounts": updated_accounts, "windows": [w.model_dump() for w in new_windows]}
+
+
+@router.get("/projects/{project_id}/social/analytics/creatives")
+async def get_creative_performance(project_id: str):
+    engine = AnalyticsEngine(project_id)
+    return engine.join_creative_performance()
+
+
+@router.get("/projects/{project_id}/social/analytics/outliers")
+async def get_analytics_outliers(project_id: str):
+    engine = AnalyticsEngine(project_id)
+    return engine.detect_outliers()
+
+
+@router.get("/projects/{project_id}/social/analytics/learnings")
+async def get_analytics_learnings(project_id: str):
+    engine = AnalyticsEngine(project_id)
+    md = engine.generate_learnings_md()
+    recs = engine.generate_recommendations_json()
+    return {"learnings_md": md, "recommendations": recs}
+
+
+@router.post("/projects/{project_id}/social/analytics/collect")
+async def trigger_analytics_collect(project_id: str):
+    sched = SocialScheduler(project_id)
+    count = await sched.collect_metrics()
+    return {"status": "collected", "count": count}
+
+
+@router.post("/projects/{project_id}/social/analytics/manual-metrics")
+async def save_manual_metrics(
+    project_id: str,
+    payload: Dict[str, Any] = Body(...),
+):
+    target_id = payload.get("target_id")
+    if not target_id:
+        raise HTTPException(status_code=400, detail="target_id is required")
+
+    store = SocialStore(project_id)
+    snapshot = PostMetricsSnapshot(
+        post_id=payload.get("post_id", ""),
+        target_id=target_id,
+        platform=payload.get("platform", "youtube"),
+        checkpoint="manual",
+        views=int(payload.get("views", 0)),
+        likes=int(payload.get("likes", 0)),
+        comments=int(payload.get("comments", 0)),
+        shares=int(payload.get("shares", 0)),
+        saves=int(payload.get("saves", 0)),
+        watch_time_s=float(payload.get("watch_time_s", 0.0)),
+        avg_retention_pct=float(payload.get("avg_retention_pct", 0.0)),
+        subscribers_gained=int(payload.get("subscribers_gained", 0)),
+        ctr=float(payload.get("ctr", 0.0)),
+        revenue=float(payload.get("revenue", 0.0)),
+    )
+    store.append_metrics_snapshot(snapshot)
+    return {"status": "saved", "snapshot": snapshot.model_dump()}
+
+
+@router.post("/projects/{project_id}/social/analytics/import-csv")
+async def import_metrics_csv(
+    project_id: str,
+    payload: Dict[str, Any] = Body(...),
+):
+    csv_text = payload.get("csv_text", "")
+    default_platform = payload.get("platform", "youtube")
+    if not csv_text.strip():
+        raise HTTPException(status_code=400, detail="csv_text is required")
+
+    records = ManualCollector.parse_csv(csv_text, default_platform=default_platform)
+    store = SocialStore(project_id)
+    posts = store.list_posts()
+
+    matched_count = 0
+    for rec in records:
+        title = rec.get("title", "").strip().lower()
+        if not title:
+            continue
+        # Find matching post
+        matching_post = None
+        for p in posts:
+            if title in p.title.lower() or p.title.lower() in title:
+                matching_post = p
+                break
+
+        if matching_post:
+            target = next((t for t in matching_post.targets if t.platform == default_platform), None)
+            if not target and matching_post.targets:
+                target = matching_post.targets[0]
+            if target:
+                snap = PostMetricsSnapshot(
+                    post_id=matching_post.id,
+                    target_id=target.id,
+                    platform=target.platform,
+                    checkpoint="manual",
+                    views=rec.get("views", 0),
+                    likes=rec.get("likes", 0),
+                    comments=rec.get("comments", 0),
+                    shares=rec.get("shares", 0),
+                    saves=rec.get("saves", 0),
+                    watch_time_s=rec.get("watch_time_s", 0.0),
+                    avg_retention_pct=rec.get("avg_retention_pct", 0.0),
+                    subscribers_gained=rec.get("subscribers_gained", 0),
+                    ctr=rec.get("ctr", 0.0),
+                    revenue=rec.get("revenue", 0.0),
+                    raw=rec,
+                )
+                store.append_metrics_snapshot(snap)
+                matched_count += 1
+
+    return {"status": "imported", "total_records": len(records), "matched_count": matched_count, "records": records[:10]}
+
+
+# --- Automation Rules API ---
+@router.get("/projects/{project_id}/social/automation/rules", response_model=List[AutomationRule])
+async def list_automation_rules(project_id: str):
+    store = SocialStore(project_id)
+    return store.list_automation_rules()
+
+
+@router.post("/projects/{project_id}/social/automation/rules", response_model=AutomationRule)
+async def create_or_update_rule(project_id: str, rule: AutomationRule):
+    store = SocialStore(project_id)
+    return store.save_automation_rule(rule)
+
+
+@router.post("/projects/{project_id}/social/automation/rules/{rule_id}/toggle")
+async def toggle_rule(project_id: str, rule_id: str):
+    store = SocialStore(project_id)
+    rule = store.get_automation_rule(rule_id)
+    if not rule:
+        raise HTTPException(status_code=404, detail="Rule not found")
+    rule.enabled = not rule.enabled
+    store.save_automation_rule(rule)
+    return {"id": rule.id, "enabled": rule.enabled}
+
+
+@router.delete("/projects/{project_id}/social/automation/rules/{rule_id}")
+async def delete_rule(project_id: str, rule_id: str):
+    store = SocialStore(project_id)
+    success = store.delete_automation_rule(rule_id)
+    if not success:
+        raise HTTPException(status_code=404, detail="Rule not found")
+    return {"status": "deleted", "id": rule_id}
+
+
+@router.post("/projects/{project_id}/social/automation/run")
+async def run_automation_rules(
+    project_id: str,
+    rule_id: Optional[str] = Query(None),
+):
+    auto = SocialAutomationEngine(project_id)
+    if rule_id:
+        report = auto.test_run_rule(rule_id)
+        return {"reports": [report]}
+    else:
+        reports = auto.run_rules()
+        return {"reports": reports}
+
+
+# --- Notifications API ---
+@router.get("/projects/{project_id}/social/notifications", response_model=List[SocialNotification])
+async def list_notifications(
+    project_id: str,
+    unread_only: bool = Query(False),
+    limit: int = Query(50),
+):
+    store = SocialStore(project_id)
+    return store.list_notifications(unread_only=unread_only, limit=limit)
+
+
+@router.post("/projects/{project_id}/social/notifications/{notif_id}/read")
+async def mark_notification_read(project_id: str, notif_id: str):
+    store = SocialStore(project_id)
+    success = store.mark_notification_read(notif_id)
+    return {"status": "ok", "success": success}
+
+
+@router.delete("/projects/{project_id}/social/notifications")
+async def clear_all_notifications(project_id: str):
+    store = SocialStore(project_id)
+    store.clear_notifications()
+    return {"status": "cleared"}
+

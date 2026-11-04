@@ -11,12 +11,15 @@ from pathlib import Path
 from typing import Any, Dict, Iterator, List, Optional
 
 from socnhotv.social.models import (
+    AutomationRule,
     CalendarNote,
     Post,
     PostMedia,
+    PostMetricsSnapshot,
     PostTarget,
     RecurringSlot,
     SocialAccount,
+    SocialNotification,
     now_iso,
 )
 from socnhotv.workspace.paths import project_path
@@ -84,7 +87,18 @@ class SocialStore:
         self.slots_file = self.pub_dir / "slots.json"
         self.notes_file = self.pub_dir / "notes.json"
         self.audit_file = self.pub_dir / "audit.jsonl"
+        self.rules_file = self.pub_dir / "automation_rules.json"
+        self.notifications_file = self.pub_dir / "notifications.json"
         self.lock_file = self.pub_dir / ".store.lock"
+
+        # Analytics paths
+        self.analytics_dir = project_path(project_id, "analytics", ensure=True)
+        self.metrics_dir = self.analytics_dir / "metrics"
+        self.metrics_dir.mkdir(parents=True, exist_ok=True)
+        self.insights_dir = self.analytics_dir / "insights"
+        self.insights_dir.mkdir(parents=True, exist_ok=True)
+        self.learnings_file = self.analytics_dir / "learnings.md"
+        self.recommendations_file = self.analytics_dir / "recommendations.json"
 
     # --- Accounts ---
     def list_accounts(self) -> List[SocialAccount]:
@@ -319,3 +333,181 @@ class SocialStore:
                         except Exception:
                             continue
         return entries[-limit:]
+
+    # --- Analytics & Metrics ---
+    def append_metrics_snapshot(self, snapshot: PostMetricsSnapshot) -> None:
+        metric_file = self.metrics_dir / f"{snapshot.target_id}.jsonl"
+        with file_lock(self.lock_file):
+            with open(metric_file, "a", encoding="utf-8") as f:
+                f.write(json.dumps(snapshot.model_dump(), ensure_ascii=False) + "\n")
+
+    def get_metrics_snapshots(self, target_id: str) -> List[PostMetricsSnapshot]:
+        metric_file = self.metrics_dir / f"{target_id}.jsonl"
+        if not metric_file.exists():
+            return []
+        snapshots: List[PostMetricsSnapshot] = []
+        with file_lock(self.lock_file):
+            with open(metric_file, "r", encoding="utf-8") as f:
+                for line in f:
+                    line = line.strip()
+                    if line:
+                        try:
+                            snapshots.append(PostMetricsSnapshot.model_validate(json.loads(line)))
+                        except Exception:
+                            continue
+        return snapshots
+
+    def get_latest_metrics(self, target_id: str) -> Optional[PostMetricsSnapshot]:
+        snapshots = self.get_metrics_snapshots(target_id)
+        return snapshots[-1] if snapshots else None
+
+    def list_all_latest_metrics(self) -> Dict[str, PostMetricsSnapshot]:
+        """Returns map of target_id -> latest PostMetricsSnapshot."""
+        results: Dict[str, PostMetricsSnapshot] = {}
+        with file_lock(self.lock_file):
+            for m_file in self.metrics_dir.glob("*.jsonl"):
+                target_id = m_file.stem
+                try:
+                    with open(m_file, "r", encoding="utf-8") as f:
+                        lines = [l.strip() for l in f if l.strip()]
+                    if lines:
+                        last = json.loads(lines[-1])
+                        results[target_id] = PostMetricsSnapshot.model_validate(last)
+                except Exception:
+                    continue
+        return results
+
+    def save_insights(self, date_str: str, data: dict) -> None:
+        path = self.insights_dir / f"{date_str}.json"
+        with file_lock(self.lock_file):
+            atomic_write_json(path, data)
+
+    def get_insights(self, date_str: str) -> Optional[dict]:
+        path = self.insights_dir / f"{date_str}.json"
+        if not path.exists():
+            return None
+        with file_lock(self.lock_file):
+            return atomic_read_json(path)
+
+    def save_learnings_md(self, content: str) -> None:
+        with file_lock(self.lock_file):
+            self.learnings_file.write_text(content, encoding="utf-8")
+
+    def get_learnings_md(self) -> str:
+        if not self.learnings_file.exists():
+            return "# Bài học tuần này\n\nChưa có báo cáo phân tích mới."
+        try:
+            return self.learnings_file.read_text(encoding="utf-8")
+        except Exception:
+            return "# Bài học tuần này\n\nKhông thể đọc báo cáo phân tích."
+
+    def save_recommendations_json(self, data: dict) -> None:
+        with file_lock(self.lock_file):
+            atomic_write_json(self.recommendations_file, data)
+
+    def get_recommendations_json(self) -> dict:
+        if not self.recommendations_file.exists():
+            return {}
+        with file_lock(self.lock_file):
+            return atomic_read_json(self.recommendations_file, default={})
+
+    # --- Automation Rules ---
+    def list_automation_rules(self) -> List[AutomationRule]:
+        with file_lock(self.lock_file):
+            raw = atomic_read_json(self.rules_file, default=None)
+            if raw is None:
+                # Default rules
+                default_rules = [
+                    AutomationRule(
+                        id="rule_render_auto",
+                        name="Tự động tạo bài nháp khi Render video xong",
+                        enabled=False,
+                        trigger="render_done",
+                        conditions={"template_id_prefix": "tiktok-sales-"},
+                        actions={"create_draft": True, "platforms": ["tiktok", "reels"], "auto_approve": False},
+                    ),
+                    AutomationRule(
+                        id="rule_schedule_gap",
+                        name="Cảnh báo lấp lịch trống tuần tới",
+                        enabled=True,
+                        trigger="schedule_gap",
+                        conditions={"min_weekly_posts": 3},
+                        actions={"notify": True},
+                    ),
+                ]
+                atomic_write_json(self.rules_file, [r.model_dump() for r in default_rules])
+                return default_rules
+            return [AutomationRule.model_validate(x) for x in raw]
+
+    def save_automation_rules(self, rules: List[AutomationRule]) -> List[AutomationRule]:
+        with file_lock(self.lock_file):
+            atomic_write_json(self.rules_file, [r.model_dump() for r in rules])
+            return rules
+
+    def get_automation_rule(self, rule_id: str) -> Optional[AutomationRule]:
+        for r in self.list_automation_rules():
+            if r.id == rule_id:
+                return r
+        return None
+
+    def save_automation_rule(self, rule: AutomationRule) -> AutomationRule:
+        rules = self.list_automation_rules()
+        updated = False
+        for idx, r in enumerate(rules):
+            if r.id == rule.id:
+                rules[idx] = rule
+                updated = True
+                break
+        if not updated:
+            rules.append(rule)
+        self.save_automation_rules(rules)
+        return rule
+
+    def delete_automation_rule(self, rule_id: str) -> bool:
+        rules = self.list_automation_rules()
+        init_len = len(rules)
+        rules = [r for r in rules if r.id != rule_id]
+        if len(rules) < init_len:
+            self.save_automation_rules(rules)
+            return True
+        return False
+
+    # --- Notifications ---
+    def list_notifications(self, unread_only: bool = False, limit: int = 50) -> List[SocialNotification]:
+        with file_lock(self.lock_file):
+            raw = atomic_read_json(self.notifications_file, default=[])
+            notifs = [SocialNotification.model_validate(x) for x in raw]
+            if unread_only:
+                notifs = [n for n in notifs if not n.read]
+            notifs.sort(key=lambda n: n.created_at, reverse=True)
+            return notifs[:limit]
+
+    def add_notification(self, notif: SocialNotification) -> SocialNotification:
+        with file_lock(self.lock_file):
+            raw = atomic_read_json(self.notifications_file, default=[])
+            notifs = [SocialNotification.model_validate(x) for x in raw]
+            # Prepend newest
+            notifs.insert(0, notif)
+            # Keep max 100
+            notifs = notifs[:100]
+            atomic_write_json(self.notifications_file, [n.model_dump() for n in notifs])
+            return notif
+
+    def mark_notification_read(self, notif_id: str) -> bool:
+        with file_lock(self.lock_file):
+            raw = atomic_read_json(self.notifications_file, default=[])
+            notifs = [SocialNotification.model_validate(x) for x in raw]
+            changed = False
+            for n in notifs:
+                if n.id == notif_id or notif_id == "all":
+                    n.read = True
+                    changed = True
+            if changed:
+                atomic_write_json(self.notifications_file, [n.model_dump() for n in notifs])
+                return True
+            return False
+
+    def clear_notifications(self) -> None:
+        with file_lock(self.lock_file):
+            atomic_write_json(self.notifications_file, [])
+

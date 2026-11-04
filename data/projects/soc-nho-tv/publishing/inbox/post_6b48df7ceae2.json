@@ -1,0 +1,15 @@
+{
+  "post_id": "post_6b48df7ceae2",
+  "project_id": "soc-nho-tv",
+  "media_path": "output/test.mp4",
+  "title": "Video moi",
+  "caption": "Cung xem soc nho",
+  "platforms": [
+    "tiktok",
+    "youtube"
+  ],
+  "source_ref": null,
+  "render_job_id": null,
+  "status": "draft",
+  "created_at": "2026-11-04T13:31:08.232839+00:00"
+}

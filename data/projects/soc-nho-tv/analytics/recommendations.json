@@ -1,0 +1,73 @@
+{
+  "updated_at": "2026-11-04T21:16:54.024431+07:00",
+  "priority_templates_for_session_a": [
+    "remake-v1",
+    "tiktok-sales-v1",
+    "yt-animation-episode-v1"
+  ],
+  "priority_blueprints_for_session_b": [],
+  "best_posting_slots": [
+    {
+      "weekday": 0,
+      "hour": 20,
+      "median_views": 21350.0,
+      "sample_count": 2,
+      "score": 14974.5
+    },
+    {
+      "weekday": 4,
+      "hour": 19,
+      "median_views": 12400.0,
+      "sample_count": 1,
+      "score": 8704.5
+    },
+    {
+      "weekday": 1,
+      "hour": 18,
+      "median_views": 9800.0,
+      "sample_count": 1,
+      "score": 6868.0
+    },
+    {
+      "weekday": 5,
+      "hour": 15,
+      "median_views": 1200.0,
+      "sample_count": 1,
+      "score": 852.5
+    },
+    {
+      "weekday": 5,
+      "hour": 19,
+      "median_views": 0.0,
+      "sample_count": 0,
+      "score": 80.0
+    }
+  ],
+  "recommended_posting_windows": [
+    {
+      "weekday": 0,
+      "start": "20:00",
+      "end": "22:00"
+    },
+    {
+      "weekday": 4,
+      "start": "19:00",
+      "end": "21:00"
+    },
+    {
+      "weekday": 1,
+      "start": "18:00",
+      "end": "20:00"
+    },
+    {
+      "weekday": 5,
+      "start": "15:00",
+      "end": "17:00"
+    },
+    {
+      "weekday": 6,
+      "start": "19:00",
+      "end": "21:00"
+    }
+  ]
+}

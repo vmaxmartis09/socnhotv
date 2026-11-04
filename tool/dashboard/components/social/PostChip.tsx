@@ -78,6 +78,11 @@ export function PostChip({ item, onClick, compact = false }: PostChipProps) {
         {plat.label}
       </span>
       <span className="truncate font-medium flex-1">{item.title}</span>
+      {isPublished && typeof item.views === "number" && item.views > 0 && (
+        <span className="shrink-0 rounded bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 font-bold font-mono text-[9px] px-1 py-0.2">
+          {item.views >= 1000 ? `${(item.views / 1000).toFixed(1)}K` : item.views}
+        </span>
+      )}
     </div>
   );
 }

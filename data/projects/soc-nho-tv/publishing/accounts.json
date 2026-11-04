@@ -1,0 +1,122 @@
+[
+  {
+    "id": "chan_yt_1",
+    "platform": "youtube",
+    "handle": "Sóc Nhỏ TV Official",
+    "display_name": "Sóc Nhỏ TV Official",
+    "avatar": "",
+    "channel_url": "",
+    "auth": {
+      "mode": "manual",
+      "token_ref": null,
+      "scopes": [],
+      "expires_at": null
+    },
+    "status": "connected",
+    "default_hashtags": [
+      "#SocNhoTV",
+      "#HoatHinh3D",
+      "#ThieuNhi"
+    ],
+    "default_caption_footer": "",
+    "posting_windows": [
+      {
+        "weekday": 0,
+        "start": "19:00",
+        "end": "21:00"
+      },
+      {
+        "weekday": 1,
+        "start": "19:00",
+        "end": "21:00"
+      },
+      {
+        "weekday": 2,
+        "start": "19:00",
+        "end": "21:00"
+      },
+      {
+        "weekday": 3,
+        "start": "19:00",
+        "end": "21:00"
+      },
+      {
+        "weekday": 4,
+        "start": "19:00",
+        "end": "21:00"
+      },
+      {
+        "weekday": 5,
+        "start": "19:00",
+        "end": "21:00"
+      },
+      {
+        "weekday": 6,
+        "start": "19:00",
+        "end": "21:00"
+      }
+    ],
+    "daily_limit": 5,
+    "tags": []
+  },
+  {
+    "id": "chan_tt_1",
+    "platform": "tiktok",
+    "handle": "@socnhotv.official",
+    "display_name": "@socnhotv.official",
+    "avatar": "",
+    "channel_url": "",
+    "auth": {
+      "mode": "manual",
+      "token_ref": null,
+      "scopes": [],
+      "expires_at": null
+    },
+    "status": "connected",
+    "default_hashtags": [
+      "#socnhotv",
+      "#cartoon3d",
+      "#learnontiktok"
+    ],
+    "default_caption_footer": "",
+    "posting_windows": [
+      {
+        "weekday": 0,
+        "start": "20:00",
+        "end": "22:00"
+      },
+      {
+        "weekday": 1,
+        "start": "20:00",
+        "end": "22:00"
+      },
+      {
+        "weekday": 2,
+        "start": "20:00",
+        "end": "22:00"
+      },
+      {
+        "weekday": 3,
+        "start": "20:00",
+        "end": "22:00"
+      },
+      {
+        "weekday": 4,
+        "start": "20:00",
+        "end": "22:00"
+      },
+      {
+        "weekday": 5,
+        "start": "20:00",
+        "end": "22:00"
+      },
+      {
+        "weekday": 6,
+        "start": "20:00",
+        "end": "22:00"
+      }
+    ],
+    "daily_limit": 5,
+    "tags": []
+  }
+]

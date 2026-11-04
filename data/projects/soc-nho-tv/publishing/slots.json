@@ -1,0 +1,16 @@
+[
+  {
+    "id": "slot_chan_yt_1",
+    "account_id": "chan_yt_1",
+    "rrule": "FREQ=DAILY;BYHOUR=19;BYMINUTE=0",
+    "label": "Hàng ngày · 19:00",
+    "template_hint": null
+  },
+  {
+    "id": "slot_chan_tt_1",
+    "account_id": "chan_tt_1",
+    "rrule": "FREQ=DAILY;BYHOUR=20;BYMINUTE=0",
+    "label": "Hàng ngày · 20:00",
+    "template_hint": null
+  }
+]

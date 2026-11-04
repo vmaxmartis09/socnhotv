@@ -9,6 +9,8 @@ import { CalendarView } from "@/components/social/CalendarView";
 import { ApprovalsTab } from "@/components/social/ApprovalsTab";
 import { PostsTab } from "@/components/social/PostsTab";
 import { AccountsTab } from "@/components/social/AccountsTab";
+import { AnalyticsTab } from "@/components/social/AnalyticsTab";
+import { NotificationDrawer } from "@/components/social/NotificationDrawer";
 import { PostComposer } from "@/components/social/PostComposer";
 import { cn } from "@/lib/utils";
 import {
@@ -21,6 +23,7 @@ import {
   Users2,
   Activity,
 } from "@/components/ui/icons";
+import { Bell, Zap } from "@/components/social/icons";
 
 export default function SocialPage() {
   const t = useTranslations("social");
@@ -32,6 +35,9 @@ export default function SocialPage() {
     loadAll,
     openComposer,
     loading,
+    unreadNotifCount,
+    setNotifDrawerOpen,
+    setAutomationModalOpen,
   } = useSocialStore();
 
   useEffect(() => {
@@ -70,6 +76,28 @@ export default function SocialPage() {
             </div>
 
             <div className="flex items-center gap-2">
+              <button
+                onClick={() => setAutomationModalOpen(true)}
+                className="flex items-center gap-1.5 rounded-lg border border-border px-3 py-2 text-xs font-semibold text-foreground hover:bg-muted transition-colors"
+                title="Quy tắc tự động hoá"
+              >
+                <Zap className="h-4 w-4 text-amber-500" />
+                <span className="hidden sm:inline">Tự động hoá</span>
+              </button>
+
+              <button
+                onClick={() => setNotifDrawerOpen(true)}
+                className="relative flex items-center justify-center rounded-lg border border-border p-2 text-xs font-semibold text-foreground hover:bg-muted transition-colors"
+                title="Thông báo"
+              >
+                <Bell className="h-4 w-4" />
+                {unreadNotifCount > 0 && (
+                  <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-indigo-600 text-[9px] font-bold text-white">
+                    {unreadNotifCount}
+                  </span>
+                )}
+              </button>
+
               <button
                 onClick={() => openComposer()}
                 className="flex items-center gap-1.5 rounded-lg bg-primary px-3.5 py-2 text-xs font-semibold text-primary-foreground shadow-xs hover:bg-primary/90 transition-colors"
@@ -162,21 +190,16 @@ export default function SocialPage() {
             {activeTab === "approvals" && <ApprovalsTab projectId={activeProjectId} />}
             {activeTab === "posts" && <PostsTab projectId={activeProjectId} />}
             {activeTab === "accounts" && <AccountsTab projectId={activeProjectId} />}
-            {activeTab === "analytics" && (
-              <div className="rounded-xl border border-dashed border-border bg-card p-12 text-center text-xs text-muted-foreground">
-                <Activity className="h-10 w-10 mx-auto mb-2 opacity-50 text-primary" />
-                <h3 className="font-semibold text-sm text-foreground">Phân tích đa nền tảng & Giờ vàng</h3>
-                <p className="mt-1">
-                  Mô-đun phân tích chỉ số, heatmap giờ vàng và vòng lặp tự học sẽ được hoàn thiện ở Phase C4.
-                </p>
-              </div>
-            )}
+            {activeTab === "analytics" && <AnalyticsTab projectId={activeProjectId} />}
           </div>
         </div>
       </div>
 
       {/* Global Post Composer Drawer */}
       <PostComposer projectId={activeProjectId} />
+
+      {/* Global Notification Drawer */}
+      <NotificationDrawer projectId={activeProjectId} />
     </div>
   );
 }

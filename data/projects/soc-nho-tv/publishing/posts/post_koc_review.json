@@ -1,0 +1,43 @@
+{
+  "id": "post_koc_review",
+  "project_id": "soc-nho-tv",
+  "title": "KOC Review: Bàn Chải Điện Trẻ Em Hình Sóc",
+  "media": [],
+  "source_ref": null,
+  "render_job_id": "render_32692140f071",
+  "idea_id": "idea_script_975fe56043",
+  "status": "published",
+  "approval": {
+    "required": true,
+    "by": null,
+    "at": null,
+    "note": null
+  },
+  "targets": [
+    {
+      "id": "tgt_koc_tt",
+      "account_id": "chan_tt_1",
+      "platform": "tiktok",
+      "scheduled_at": "2026-10-30T19:15:14.829440+07:00",
+      "caption": "Đánh răng vui vẻ cùng Sóc Bi #koc #review",
+      "hashtags": [],
+      "title": "",
+      "description": "",
+      "tags": [],
+      "privacy": "public",
+      "made_for_kids": false,
+      "cover_time_s": 0.0,
+      "first_comment": "",
+      "product_link": "",
+      "disclosure_ad": false,
+      "status": "published",
+      "external_id": null,
+      "external_url": null,
+      "attempts": 0,
+      "last_error": null,
+      "published_at": "2026-10-30T19:15:14.829440+07:00"
+    }
+  ],
+  "created_at": "2026-11-04T21:15:14.830471+07:00",
+  "updated_at": "2026-11-04T21:15:14.830479+07:00"
+}
