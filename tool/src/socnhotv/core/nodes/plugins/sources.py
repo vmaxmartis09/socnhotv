@@ -5,7 +5,7 @@ from socnhotv.core.contracts.types import NodeDefinition, PortDefinition, PortTy
 
 
 def register(registry: Any) -> None:
-    """Register sources nodes into NodeRegistry."""
+    """Register sources & intelligence nodes into NodeRegistry."""
     # 1. Nguồn Video
     registry.register(
         NodeDefinition(
@@ -53,6 +53,44 @@ def register(registry: Any) -> None:
                 "voice_id": "soc-nho",
                 "auto_draft": True,
             },
+            mockable=True,
+        )
+    )
+
+    # 3. Phân tích Blueprint
+    registry.register(
+        NodeDefinition(
+            type_name="blueprint_analyze",
+            display_name="Phân tích Blueprint Video",
+            category="Intelligence",
+            description="Bóc tách cấu trúc video mẫu thành các nhịp Hook, Problem, Demo, Proof, Offer, CTA",
+            input_ports=[
+                PortDefinition(name="video", port_type=PortType.VIDEO, description="Video mẫu"),
+            ],
+            output_ports=[
+                PortDefinition(name="blueprint", port_type=PortType.TEXT, description="Dữ liệu VideoBlueprint JSON"),
+            ],
+            default_params={},
+            mockable=True,
+        )
+    )
+
+    # 4. Kịch bản từ Blueprint (Affiliate/KOC)
+    registry.register(
+        NodeDefinition(
+            type_name="script_from_blueprint",
+            display_name="Sinh kịch bản KOC/Affiliate",
+            category="Intelligence",
+            description="Áp dụng cấu trúc Blueprint cho sản phẩm và nhân vật, kiểm tra tuân thủ chính sách quảng cáo",
+            input_ports=[
+                PortDefinition(name="blueprint", port_type=PortType.TEXT, description="Dữ liệu Blueprint mẫu"),
+                PortDefinition(name="character", port_type=PortType.CHARACTER, description="Nhân vật KOC", required=False),
+            ],
+            output_ports=[
+                PortDefinition(name="script", port_type=PortType.SCRIPT, description="Kịch bản phân cảnh hoàn chỉnh"),
+                PortDefinition(name="render_request", port_type=PortType.TEXT, description="Cấu hình RenderRequest"),
+            ],
+            default_params={"generator_type": "koc_review", "voice_id": "soc-nho"},
             mockable=True,
         )
     )

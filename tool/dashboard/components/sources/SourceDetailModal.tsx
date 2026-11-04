@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import {
   X,
@@ -16,11 +17,14 @@ import {
   MessageSquare,
   Send,
   Wand2,
+  Brain,
+  Loader2,
 } from "@/components/ui/icons";
 import { confirm } from "@/lib/confirm";
 import { cn } from "@/lib/utils";
 import type { SceneCut, SourceItem, RightsType } from "@/lib/api/sources";
 import { detectScenes, getSourceFileUrl, updateRights } from "@/lib/api/sources";
+import { intelApi } from "@/lib/api/intel";
 import { LocalizeStudio } from "./LocalizeStudio";
 
 interface SourceDetailModalProps {
@@ -31,6 +35,7 @@ interface SourceDetailModalProps {
 }
 
 export function SourceDetailModal({ source, projectId, onClose, onUpdated }: SourceDetailModalProps) {
+  const router = useRouter();
   const t = useTranslations("sources");
   const [scenes, setScenes] = useState<SceneCut[]>([]);
   const [loadingScenes, setLoadingScenes] = useState(false);
@@ -38,8 +43,22 @@ export function SourceDetailModal({ source, projectId, onClose, onUpdated }: Sou
   const [rightsNote, setRightsNote] = useState(source.rights_note);
   const [savingRights, setSavingRights] = useState(false);
   const [localizeOpen, setLocalizeOpen] = useState(false);
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
 
   const videoUrl = source.files.video ? getSourceFileUrl(projectId, source.id, "video.mp4") : null;
+
+  const handleAnalyzeBlueprint = async () => {
+    setIsAnalyzing(true);
+    try {
+      const bp = await intelApi.analyzeVideo(projectId, source.id);
+      onClose();
+      router.push(`/intel?blueprintId=${bp.id}`);
+    } catch (err: any) {
+      alert(`Lỗi phân tích Blueprint: ${err.message}`);
+    } finally {
+      setIsAnalyzing(false);
+    }
+  };
 
   // Load scenes.json if available
   useEffect(() => {
@@ -116,6 +135,19 @@ export function SourceDetailModal({ source, projectId, onClose, onUpdated }: Sou
             </h2>
           </div>
           <div className="flex items-center gap-2">
+            <button
+              type="button"
+              disabled={isAnalyzing}
+              onClick={handleAnalyzeBlueprint}
+              className="flex items-center gap-1.5 rounded-xl border border-indigo-500/50 bg-indigo-500/10 px-3 py-1.5 text-xs font-bold text-indigo-400 hover:bg-indigo-500/20 disabled:opacity-50"
+            >
+              {isAnalyzing ? (
+                <Loader2 className="h-3.5 w-3.5 animate-spin" />
+              ) : (
+                <Brain className="h-3.5 w-3.5" />
+              )}
+              Phân tích cấu trúc
+            </button>
             <button
               type="button"
               onClick={() => setLocalizeOpen(true)}

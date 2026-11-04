@@ -1,25 +1,37 @@
 {
   "sources": {
-    "title": "Sources & Intelligence",
-    "description": "Ingest Douyin/TikTok/YouTube videos, normalize metadata, and extract structural scenes",
-    "addSource": "Ingest New Source",
-    "pasteLinks": "Paste Video Links",
-    "pasteLinksHint": "One URL per line (supports Douyin, TikTok, YouTube Shorts, Bilibili)",
-    "uploadLocal": "Or upload local video file",
-    "rightsNotice": "Imported sources default to 'Reference Only' to study blueprints and structure without using raw footage in final renders.",
+    "title": "Video Sources",
+    "description": "Ingest Douyin/TikTok/YouTube videos, normalize metadata, and extract structure",
+    "addSource": "Add Source",
+    "pasteLinks": "Paste video links",
+    "pasteLinksHint": "One link per line (supports Douyin, TikTok, YouTube Shorts, Bilibili)",
+    "uploadLocal": "Or upload local video",
+    "rightsNotice": "Imported sources default to reference_only to learn structure, excluded from commercial rendering.",
     "rights": {
       "reference_only": "Reference Only",
       "owned": "Owned",
       "licensed": "Licensed",
-      "permission": "Permission"
+      "permission": "Permission Granted"
     },
     "filterAll": "All Platforms",
     "filterRightsAll": "All Rights",
-    "search": "Search by title, author, hashtags...",
+    "search": "Search title, author, hashtag...",
     "views": "{count} views",
     "scenes": "{count} scenes",
-    "empty": "No content sources found. Paste links or upload your first video to get started!",
+    "empty": "No video sources yet. Ingest a link or upload your first video!",
     "confirmTrash": "Are you sure you want to move this source to trash?",
-    "confirmRightsChange": "Copyright Warning: You are changing rights from 'Reference Only' to permissible use. Do you confirm having legal ownership or usage authorization for this content?"
+    "confirmRightsChange": "Copyright Notice: You are changing rights from Reference Only to a usable tier. Do you confirm legal rights?"
+  },
+  "products": {
+    "title": "Products",
+    "description": "Product catalog for KOC reviews, TikTok sales videos, and affiliate campaigns",
+    "addProduct": "Add Product",
+    "importUrl": "Import from Link",
+    "empty": "No products yet. Add your first product or import from a URL!"
+  },
+  "intel": {
+    "title": "Blueprint & Intel",
+    "description": "Viral video pacing, beat analysis, and sales script generation",
+    "empty": "No Video Blueprints yet. Select a video source and click 'Analyze Blueprint Structure'!"
   }
 }

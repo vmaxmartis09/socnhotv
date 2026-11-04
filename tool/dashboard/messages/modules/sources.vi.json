@@ -1,6 +1,6 @@
 {
   "sources": {
-    "title": "Nguồn & Trí tuệ",
+    "title": "Nguồn video",
     "description": "Thu thập video Douyin/TikTok/YouTube, chuẩn hoá metadata và trích xuất cấu trúc",
     "addSource": "Nạp nguồn mới",
     "pasteLinks": "Dán liên kết video",
@@ -21,5 +21,17 @@
     "empty": "Chưa có nguồn nội dung nào. Hãy nạp liên kết hoặc tải lên video đầu tiên!",
     "confirmTrash": "Bạn có chắc muốn chuyển nguồn này vào thùng rác không?",
     "confirmRightsChange": "Cảnh báo bản quyền: Bạn đang chuyển nguồn từ 'Chỉ tham khảo' sang bản quyền được phép sử dụng. Bạn xác nhận có đầy đủ quyền sở hữu hoặc giấy phép sử dụng hợp pháp cho nội dung này?"
+  },
+  "products": {
+    "title": "Sản phẩm",
+    "description": "Kho sản phẩm phục vụ review KOC, video bán hàng TikTok và chiến dịch Affiliate",
+    "addProduct": "Thêm sản phẩm",
+    "importUrl": "Nhập từ link",
+    "empty": "Chưa có sản phẩm nào. Hãy thêm sản phẩm đầu tiên hoặc nhập tự động từ link!"
+  },
+  "intel": {
+    "title": "Blueprint & Trí tuệ",
+    "description": "Cấu trúc nhịp điệu video viral, phân tích beat và bộ sinh kịch bản bán hàng",
+    "empty": "Chưa có Video Blueprint nào. Hãy chọn một video nguồn và bấm 'Phân tích cấu trúc Blueprint'!"
   }
 }
