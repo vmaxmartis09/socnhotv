@@ -1,6 +1,36 @@
 {
   "video": {
-    "title": "Video & Mẫu",
-    "description": "Quản lý mẫu video HyperFrames và kết xuất đa nền tảng"
+    "title": "Mẫu Video",
+    "templates": "Thư viện Mẫu",
+    "renders": "Hàng đợi Render",
+    "description": "Quản lý mẫu video HyperFrames và render video chuẩn đa nền tảng",
+    "search": "Tìm kiếm mẫu video...",
+    "categoryAll": "Tất cả danh mục",
+    "platformAll": "Tất cả nền tảng",
+    "sales": "Bán hàng",
+    "review": "Review",
+    "reup": "Bản địa hoá",
+    "animation": "Hoạt hình",
+    "education": "Giáo dục",
+    "affiliate": "Affiliate",
+    "story": "Truyện kể",
+    "quickPreview": "Xem nhanh",
+    "safeZone": "Safe Zone",
+    "renderTitle": "Tùy biến & Render",
+    "renderButton": "Bắt đầu Render",
+    "rendering": "Đang render...",
+    "autoDraft": "Tự động tạo bài nháp sau khi render",
+    "noTemplates": "Không tìm thấy mẫu phù hợp",
+    "noJobs": "Chưa có tiến trình render nào",
+    "jobStatus": {
+      "queued": "Đang chờ",
+      "rendering": "Đang xử lý",
+      "done": "Hoàn tất",
+      "failed": "Thất bại"
+    },
+    "cancel": "Huỷ",
+    "retry": "Render lại",
+    "sendToPublish": "Gửi sang Lịch đăng",
+    "download": "Tải về"
   }
 }

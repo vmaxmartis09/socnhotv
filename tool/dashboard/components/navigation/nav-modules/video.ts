@@ -1,4 +1,4 @@
-import { Film } from "@/components/ui/icons";
+import { Clapperboard, Film } from "@/components/ui/icons";
 import type { ComponentType } from "react";
 
 export interface NavItem {
@@ -12,7 +12,13 @@ export const videoNavItems: NavItem[] = [
   {
     id: "templates",
     href: "/templates",
-    labelKey: "video.title",
+    labelKey: "video.templates",
     icon: Film,
+  },
+  {
+    id: "renders",
+    href: "/renders",
+    labelKey: "video.renders",
+    icon: Clapperboard,
   },
 ];

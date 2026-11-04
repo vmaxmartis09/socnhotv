@@ -1,6 +1,6 @@
 # Session A — Video & Templates
 
-**Trạng thái:** Đang tiến hành (A2 Hoàn tất -> Chuyển sang A3)
+**Trạng thái:** Đang tiến hành (A3 Hoàn tất -> Chuyển sang A4)
 
 ## Tiến độ chi tiết
 
@@ -50,3 +50,27 @@
 - **Kiểm thử:**
   - `tests/test_video_templates.py`: 4/4 passed
   - Toàn bộ 16 tests `tests/test_video_*.py` passed 100%.
+
+---
+
+### A3 — UI: Thư viện Template + Trình đổ dữ liệu + Hàng đợi Render
+- **Hoàn thành:** 2026-11-04
+- **Các thành phần đã triển khai:**
+  1. `tool/dashboard/lib/api/video.ts`: Typed API client cho toàn bộ endpoint platforms, templates, renders, validate, preview, cancel, sse.
+  2. `tool/dashboard/store/modules/video.ts`: Zustand store quản lý templates, activeTemplate, platforms, renderJobs, filters và trạng thái realtime.
+  3. `tool/dashboard/components/navigation/nav-modules/video.ts`: 2 mục menu điều hướng Thư viện Mẫu (`/templates`) và Hàng đợi Render (`/renders`) với icons Morphicons.
+  4. `tool/dashboard/messages/modules/video.{vi,en}.json`: Bộ nhãn i18n đầy đủ cho module Video & Templates.
+  5. `tool/dashboard/components/templates/TemplateCard.tsx`: Thẻ mẫu hiển thị preview ảnh, hover phát preview.mp4 muted, badge thể loại, thời lượng và nền tảng.
+  6. `tool/dashboard/components/templates/SlotField.tsx`: Bộ điều khiển tự động theo kiểu dữ liệu slot (text đếm ký tự, product, media[], number).
+  7. `tool/dashboard/components/renders/RenderJobCard.tsx`: Thẻ job thống nhất hiển thị trạng thái, tabs video player đa nền tảng, tải mp4, huỷ job và gửi sang lịch đăng.
+  8. `tool/dashboard/app/[locale]/templates/page.tsx`: Thư viện templates với bộ lọc Category chip, nền tảng, tìm kiếm, lưới thẻ kèm nút tạo mới nét đứt.
+  9. `tool/dashboard/app/[locale]/templates/[id]/page.tsx`: Trình đổ dữ liệu slot, chọn giọng OmniVoice `VoiceSelectorWithClone`, kịch bản, xem trước với lớp overlay Safe Zone động theo từng nền tảng, nút xem nhanh 540p, chọn nhiều nền tảng và kích hoạt render.
+  10. `tool/dashboard/app/[locale]/renders/page.tsx`: Hàng đợi quản lý tiến trình render trực quan theo thời gian thực.
+- **Kiểm thử:**
+  - `npx tsc --noEmit | grep -E "templates|renders|lib/api/video|store/modules/video"`: 0 lỗi.
+  - Render thật `tiktok-sales-v1` đa nền tảng (TikTok + YouTube) thành công qua hàng đợi.
+  - Chụp ảnh màn hình lưu trữ:
+    - `data/projects/soc-nho-tv/shots/A3_templates_gallery.png`
+    - `data/projects/soc-nho-tv/shots/A3_template_detail.png`
+    - `data/projects/soc-nho-tv/shots/A3_renders_queue.png`
+    - `data/projects/soc-nho-tv/shots/A3_mobile_375px.png` (scrollWidth = 375px, không tràn ngang).

@@ -330,6 +330,12 @@ class HyperFramesEngine:
                 if not dest.exists():
                     shutil.copy2(src, dest)
 
+        # Đảm bảo có voiceover.mp3 trong assets nếu index.html nhắc đến
+        voice_dest = assets_dir / "voiceover.mp3"
+        if "assets/voiceover.mp3" in composition_html and not voice_dest.exists():
+            from socnhotv.core.providers.mock_provider import create_minimal_wav_bytes
+            voice_dest.write_bytes(create_minimal_wav_bytes(duration_sec=duration or 5.0))
+
         # Ghi index.html
         (target_dir / "index.html").write_text(composition_html, encoding="utf-8")
 

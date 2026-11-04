@@ -1,6 +1,36 @@
 {
   "video": {
-    "title": "Video & Templates",
-    "description": "Manage HyperFrames video templates and multi-platform rendering"
+    "title": "Video Templates",
+    "templates": "Template Gallery",
+    "renders": "Render Queue",
+    "description": "HyperFrames video templates and multi-platform rendering",
+    "search": "Search templates...",
+    "categoryAll": "All Categories",
+    "platformAll": "All Platforms",
+    "sales": "Sales",
+    "review": "Review",
+    "reup": "Localization",
+    "animation": "Animation",
+    "education": "Education",
+    "affiliate": "Affiliate",
+    "story": "Story",
+    "quickPreview": "Quick Preview",
+    "safeZone": "Safe Zone",
+    "renderTitle": "Customize & Render",
+    "renderButton": "Start Render",
+    "rendering": "Rendering...",
+    "autoDraft": "Auto-create draft post after render",
+    "noTemplates": "No matching templates found",
+    "noJobs": "No render jobs found",
+    "jobStatus": {
+      "queued": "Queued",
+      "rendering": "Rendering",
+      "done": "Done",
+      "failed": "Failed"
+    },
+    "cancel": "Cancel",
+    "retry": "Re-render",
+    "sendToPublish": "Send to Social Calendar",
+    "download": "Download"
   }
 }
