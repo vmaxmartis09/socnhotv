@@ -46,7 +46,9 @@ import {
   saveGraphToCore,
   runGraphOnCore,
   cancelRunOnCore,
+  fetchActiveRun,
 } from "@/lib/core-api";
+import { RunStatusBar, type RunStateInfo } from "@/components/canvas/RunStatusBar";
 import { CORE_URL } from "@/lib/repositories/core";
 import { uploadNodeFile } from "@/lib/api/nodes";
 import type {
@@ -248,6 +250,46 @@ function StudioCanvasInner() {
     estimatedCost: number;
     nodeCount: number;
   } | null>(null);
+  const [activeRunState, setActiveRunState] = useState<RunStateInfo | null>(null);
+
+  // Khôi phục active run khi tải lại trang (Mục 2B-B)
+  useEffect(() => {
+    let isMounted = true;
+    const checkActiveRun = async () => {
+      try {
+        const active = await fetchActiveRun(activeProjectId);
+        if (!isMounted) return;
+        if (active && active.status === "running") {
+          setIsRunningGraph(true);
+          setActiveRunState(active);
+          if (active.nodes) {
+            for (const n of active.nodes) {
+              updateNodeExecutionState(n.id, {
+                status: n.state,
+                progressPct: n.progressPct,
+                errorMessage: n.error,
+              });
+            }
+          }
+        }
+      } catch {
+        // ignore
+      }
+    };
+    checkActiveRun();
+    return () => {
+      isMounted = false;
+    };
+  }, [activeProjectId, setIsRunningGraph, updateNodeExecutionState]);
+
+  // Bộ đếm thời gian cho phiên chạy đang hoạt động
+  useEffect(() => {
+    if (!isRunningGraph) return;
+    const interval = setInterval(() => {
+      setActiveRunState((prev) => (prev ? { ...prev, elapsedSec: (prev.elapsedSec || 0) + 1 } : prev));
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [isRunningGraph]);
 
   const canvasWrapperRef = useRef<HTMLDivElement>(null);
   const clipboardRef = useRef<{
@@ -949,6 +991,22 @@ function StudioCanvasInner() {
         ? nodes.filter((n) => n.id === targetNodeId)
         : nodes;
 
+    const initialRunNodes = targetNodes.map((n) => ({
+      id: n.id,
+      type: n.data.nodeType,
+      state: "pending",
+      progressPct: 0,
+    }));
+
+    setActiveRunState({
+      status: "running",
+      stage: "Bắt đầu khởi chạy...",
+      progress: 0.05,
+      progressPct: 5,
+      elapsedSec: 0,
+      nodes: initialRunNodes,
+    });
+
     // Subscribe to Core SSE if online
     let es: EventSource | null = null;
     try {
@@ -956,12 +1014,31 @@ function StudioCanvasInner() {
       es.onmessage = (ev) => {
         try {
           const payload = JSON.parse(ev.data);
-          if (payload.nodeId && payload.status) {
-            updateNodeExecutionState(payload.nodeId, {
-              status: payload.status,
-              progressPct: payload.progressPct,
-              lastLog: payload.message,
+          const nodeId = payload.nodeId;
+          const status = payload.status || payload.state;
+          const progressPct = payload.progressPct ?? (payload.progress ? Math.round(payload.progress * 100) : undefined);
+          const message = payload.message;
+
+          if (nodeId && status) {
+            updateNodeExecutionState(nodeId, {
+              status,
+              progressPct,
+              lastLog: message,
               errorMessage: undefined,
+            });
+
+            setActiveRunState((prev) => {
+              if (!prev) return prev;
+              const updatedNodes = (prev.nodes || []).map((n) =>
+                n.id === nodeId ? { ...n, state: status, progressPct: progressPct ?? n.progressPct } : n
+              );
+              return {
+                ...prev,
+                nodes: updatedNodes,
+                currentNodeId: nodeId,
+                stage: message || prev.stage,
+                progressPct: progressPct !== undefined ? Math.max(prev.progressPct || 0, progressPct) : prev.progressPct,
+              };
             });
           }
         } catch {
@@ -973,56 +1050,82 @@ function StudioCanvasInner() {
     }
 
     try {
-      // Mark running
+      // Đánh dấu queued cho các node sẽ chạy (không fake running/25%!)
       for (const n of targetNodes) {
         updateNodeExecutionState(n.id, {
-          status: "running",
-          progressPct: 25,
+          status: "queued",
+          progressPct: 0,
           errorMessage: undefined,
         });
       }
 
       const g = toCoreGraph(activeProjectId, nodes, edges);
-      await runGraphOnCore(activeProjectId, {
+      const summary = await runGraphOnCore(activeProjectId, {
         graph: g,
         mode,
         targetNodeId,
         spendingLimitUsd: perRunSpendingLimitUsd,
         mockMode: isMockMode,
-      }).catch(() => null);
+      }).catch((err) => {
+        setBannerMsg({ tone: "error", text: `Lỗi chạy đồ thị: ${err?.message || err}` });
+        return null;
+      });
 
-      // Update each executed node with generation record and preview
+      // Cập nhật kết quả thực tế cho từng node
       for (const n of targetNodes) {
-        const preview = buildNodeOutputPreview(n.data.nodeType);
-        const genId = uid("gen");
-        const newGen: NodeGenerationRecord = {
-          id: genId,
-          createdAt: new Date().toISOString(),
-          previewUrl: preview.previewUrl,
-          previewType: preview.previewType,
-          summaryText: preview.summaryText,
-          costUsd: estimateNodeCostUsd(
-            n.data.nodeType,
-            n.data.params || {},
-            isMockMode
-          ),
-          model: n.data.params?.model,
-        };
-        const existingGens = n.data.generations || [];
-        updateNodeExecutionState(n.id, {
-          status: "succeeded",
-          isStale: false,
-          progressPct: 100,
-          ...preview,
-          generations: [newGen, ...existingGens],
-          pinnedGenerationId: genId,
-          errorMessage: undefined,
-        });
+        const isExecuted = summary?.executedNodes?.includes(n.id);
+        const isFailed = summary?.failedNodes?.includes(n.id);
+        const nodeError = summary?.errors?.[n.id];
+
+        if (isFailed) {
+          updateNodeExecutionState(n.id, {
+            status: "failed",
+            errorMessage: nodeError || "Lỗi xử lý",
+          });
+        } else if (isExecuted || summary?.isSuccess) {
+          const preview = buildNodeOutputPreview(n.data.nodeType);
+          const genId = uid("gen");
+          const newGen: NodeGenerationRecord = {
+            id: genId,
+            createdAt: new Date().toISOString(),
+            previewUrl: preview.previewUrl,
+            previewType: preview.previewType,
+            summaryText: preview.summaryText,
+            costUsd: estimateNodeCostUsd(
+              n.data.nodeType,
+              n.data.params || {},
+              isMockMode
+            ),
+            model: n.data.params?.model,
+          };
+          const existingGens = n.data.generations || [];
+          updateNodeExecutionState(n.id, {
+            status: "succeeded",
+            isStale: false,
+            progressPct: 100,
+            ...preview,
+            generations: [newGen, ...existingGens],
+            pinnedGenerationId: genId,
+            errorMessage: undefined,
+          });
+        }
       }
 
+      const isAllOk = summary ? summary.isSuccess : false;
+      setActiveRunState((prev) =>
+        prev
+          ? {
+              ...prev,
+              status: isAllOk ? "completed" : "failed",
+              progressPct: isAllOk ? 100 : prev.progressPct,
+              stage: isAllOk ? "Hoàn tất xuất sắc!" : "Gặp lỗi trong quá trình thực thi",
+            }
+          : null
+      );
+
       updateJob(jobId, {
-        status: "completed",
-        progress: 100,
+        status: isAllOk ? "completed" : "failed",
+        progress: isAllOk ? 100 : 50,
         actualCostUsd: isMockMode ? 0 : estimatedCost,
         completedAt: new Date().toISOString(),
       });
@@ -1046,8 +1149,11 @@ function StudioCanvasInner() {
   const handleStopRun = useCallback(async () => {
     await cancelRunOnCore(activeProjectId);
     setIsRunningGraph(false);
+    setActiveRunState((prev) =>
+      prev ? { ...prev, status: "cancelled", stage: "Đã huỷ theo yêu cầu người dùng" } : null
+    );
     for (const n of nodes) {
-      if (n.data.status === "running") {
+      if (n.data.status === "running" || n.data.status === "queued") {
         updateNodeExecutionState(n.id, { status: "idle", progressPct: 0 });
       }
     }
@@ -1508,6 +1614,12 @@ function StudioCanvasInner() {
           onDrop={handleDropOnCanvas}
           className="hidden md:block relative flex-1 min-h-0 w-full"
         >
+          <RunStatusBar
+            isRunning={isRunningGraph}
+            activeRun={activeRunState}
+            onCancel={handleStopRun}
+            onOpenJobsTab={() => setActiveRightTab("jobs")}
+          />
           {/* Never-Empty Canvas Template Picker when nodes.length === 0 */}
           {nodes.length === 0 ? (
             <div className="flex h-full w-full items-center justify-center p-6">

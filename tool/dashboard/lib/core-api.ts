@@ -569,6 +569,36 @@ export async function cancelRunOnCore(projectId: string): Promise<void> {
   }
 }
 
+export async function fetchActiveRun(projectId: string): Promise<any | null> {
+  try {
+    const res = await fetch(`${CORE_URL}/projects/${projectId}/runs/active`, { cache: "no-store" });
+    if (res.status === 204 || !res.ok) return null;
+    return await res.json();
+  } catch {
+    return null;
+  }
+}
+
+export async function fetchProjectRuns(projectId: string, limit: number = 20): Promise<any[]> {
+  try {
+    const res = await fetch(`${CORE_URL}/projects/${projectId}/runs?limit=${limit}`, { cache: "no-store" });
+    if (!res.ok) return [];
+    return await res.json();
+  } catch {
+    return [];
+  }
+}
+
+export async function fetchProjectOutputs(projectId: string): Promise<any[]> {
+  try {
+    const res = await fetch(`${CORE_URL}/projects/${projectId}/outputs`, { cache: "no-store" });
+    if (!res.ok) return [];
+    return await res.json();
+  } catch {
+    return [];
+  }
+}
+
 export async function sendChatToCore(
   projectId: string,
   prompt: string,

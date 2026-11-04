@@ -32,6 +32,7 @@ import {
   Volume2,
   Film,
   Eye,
+  Play,
 } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
 
@@ -1020,14 +1021,35 @@ export function NodeExportInput({
       </div>
 
       {previewUrl && (
-        <a
-          href={previewUrl}
-          download={outputFileName}
-          className="nodrag flex items-center justify-center gap-1.5 w-full rounded-md bg-brand py-1.5 text-xs font-semibold text-brand-foreground hover:bg-brand/90 transition-colors shadow-xs"
-        >
-          <Download className="h-3.5 w-3.5" />
-          Tải MP4 hoàn tất
-        </a>
+        <div className="space-y-1.5 pt-1 border-t border-border/80">
+          <div className="rounded bg-emerald-500/10 border border-emerald-500/30 p-2 text-[11px] text-emerald-400 font-mono">
+            <span className="font-semibold block text-emerald-300">✓ Đã lưu thành phẩm:</span>
+            <span className="break-all">
+              {previewUrl.includes("output/")
+                ? previewUrl.slice(previewUrl.indexOf("output/"))
+                : `output/${outputFileName}`}
+            </span>
+          </div>
+          <div className="flex gap-1.5">
+            <a
+              href={previewUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="nodrag flex-1 flex items-center justify-center gap-1 rounded bg-accent py-1 text-[11px] font-medium text-foreground hover:bg-accent/80 transition-colors"
+            >
+              <Play className="h-3 w-3 text-primary" />
+              Xem video
+            </a>
+            <a
+              href={previewUrl}
+              download={outputFileName}
+              className="nodrag flex-1 flex items-center justify-center gap-1 rounded bg-brand py-1 text-[11px] font-semibold text-brand-foreground hover:bg-brand/90 transition-colors shadow-xs"
+            >
+              <Download className="h-3 w-3" />
+              Tải MP4
+            </a>
+          </div>
+        </div>
       )}
     </div>
   );
