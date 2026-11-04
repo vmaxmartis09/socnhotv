@@ -787,6 +787,14 @@ async def studio_chat_command(project_id: str, payload: Dict[str, Any] = Body(..
     return result
 
 
+@app.post("/projects/{project_id}/ai/script")
+async def ai_script_alias(project_id: str, payload: Dict[str, Any] = Body(...)):
+    """Viết nháp kịch bản từ ý tưởng (alias từ /data/projects/{project_id}/ai/script)."""
+    from socnhotv.core.api.data_routes import ai_generate_script
+    return await ai_generate_script(project_id, payload)
+
+
+
 @app.get("/settings/api-keys")
 async def get_api_keys_status():
     """Trả về trạng thái khóa API theo từng nhà cung cấp (KHÔNG BAO GIỜ trả về khóa)."""

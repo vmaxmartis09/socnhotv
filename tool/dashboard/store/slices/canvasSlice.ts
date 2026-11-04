@@ -411,7 +411,14 @@ export interface CanvasSlice {
   setIsMockMode: (mock: boolean) => void;
   setEpisodes: (episodes: Episode[]) => void;
   selectEpisode: (episodeId: string) => void;
-  createEpisode: (title: string, opts?: { blank?: boolean }) => Episode;
+  createEpisode: (
+    title: string,
+    opts?: {
+      blank?: boolean;
+      customGraph?: { nodes: Node<StudioNodeData>[]; edges: Edge[] };
+      autoSelect?: boolean;
+    }
+  ) => Episode;
   setNodeCatalog: (defs: NodeDefinition[], fromCore: boolean) => void;
   setNodesAndEdges: (
     nodes: Node<StudioNodeData>[],
@@ -606,32 +613,44 @@ export const createCanvasSlice: StateCreator<
   createEpisode: (title, opts) => {
     const state = get();
     const nextNum = state.episodes.length + 1;
+    const tpl = opts?.customGraph
+      ? opts.customGraph
+      : opts?.blank
+      ? { nodes: [] as Node<StudioNodeData>[], edges: [] as Edge[] }
+      : genericizeTemplate(
+          buildSocNhoStoryTemplate(state.nodeCatalog),
+          (state as any).activeProjectId || "soc-nho-tv"
+        );
     const newEp: Episode = {
       id: `ep_0${nextNum}_${Date.now().toString(36)}`,
       projectId: (state as any).activeProjectId || "soc-nho-tv",
       episodeNumber: nextNum,
       title: title.trim() || `Tập ${nextNum}: Câu chuyện mới`,
       status: "draft",
-      nodeCount: opts?.blank ? 0 : 9,
+      nodeCount: tpl.nodes.length,
       updatedAt: new Date().toISOString(),
     };
-    const tpl = opts?.blank
-      ? { nodes: [] as Node<StudioNodeData>[], edges: [] as Edge[] }
-      : genericizeTemplate(buildSocNhoStoryTemplate(state.nodeCatalog), (state as any).activeProjectId || "soc-nho-tv");
+    const shouldSelect = opts?.autoSelect !== false;
     set({
       episodes: [...state.episodes, newEp],
-      activeEpisodeId: newEp.id,
+      ...(shouldSelect
+        ? {
+            activeEpisodeId: newEp.id,
+            nodes: tpl.nodes,
+            edges: tpl.edges,
+            selectedNodeId: tpl.nodes[0]?.id || null,
+            undoStack: [],
+            redoStack: [],
+            saveState: "unsaved",
+          }
+        : {}),
       graphsByEpisode: {
         ...state.graphsByEpisode,
-        [state.activeEpisodeId]: { nodes: state.nodes, edges: state.edges },
+        ...(shouldSelect
+          ? { [state.activeEpisodeId]: { nodes: state.nodes, edges: state.edges } }
+          : {}),
         [newEp.id]: tpl,
       },
-      nodes: tpl.nodes,
-      edges: tpl.edges,
-      selectedNodeId: tpl.nodes[0]?.id || null,
-      undoStack: [],
-      redoStack: [],
-      saveState: "unsaved",
     });
     return newEp;
   },

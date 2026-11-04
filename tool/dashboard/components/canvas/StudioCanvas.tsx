@@ -67,9 +67,11 @@ import {
   Search,
   X,
   Layers,
+  Sparkles,
   DollarSign,
 } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
+import { CreateVideoModal } from "@/components/studio/CreateVideoModal";
 
 const nodeTypes = {
   studioCard: StudioNode,
@@ -237,6 +239,7 @@ function StudioCanvasInner() {
     tone: "error" | "info" | "success";
     text: string;
   } | null>(null);
+  const [createVideoModalOpen, setCreateVideoModalOpen] = useState(false);
   const [pendingRunConfirm, setPendingRunConfirm] = useState<{
     mode: RunMode;
     targetNodeId?: string;
@@ -1376,6 +1379,26 @@ function StudioCanvasInner() {
                   </p>
                 </div>
 
+                {/* Primary Automated Creation Banner */}
+                <div className="rounded-xl border border-primary/40 bg-primary/5 p-4 flex items-center justify-between">
+                  <div className="space-y-1">
+                    <h3 className="text-xs font-semibold text-foreground flex items-center gap-1.5">
+                      <Sparkles className="h-4 w-4 text-primary" />
+                      Tạo video tự động từ 8 mẫu dựng sẵn
+                    </h3>
+                    <p className="text-[12px] text-muted-foreground">
+                      Tự sinh kịch bản, nối sẵn đồ thị node chuẩn, tự áp thông số nền tảng không cần chỉnh tay.
+                    </p>
+                  </div>
+                  <Button
+                    size="sm"
+                    onClick={() => setCreateVideoModalOpen(true)}
+                    className="shrink-0 ml-3"
+                  >
+                    Tạo video ngay
+                  </Button>
+                </div>
+
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                   <div className="flex flex-col justify-between rounded-lg border border-border bg-muted/20 p-4 space-y-3">
                     <div>
@@ -1512,6 +1535,7 @@ function StudioCanvasInner() {
                   canRedo={redoStack.length > 0}
                   snap={snapToGrid}
                   onToggleSnap={() => setSnapToGrid((v) => !v)}
+                  onCreateVideo={() => setCreateVideoModalOpen(true)}
                 />
               </Panel>
               <Controls
@@ -1594,6 +1618,12 @@ function StudioCanvasInner() {
             })}
           </ol>
         </div>
+
+        {/* Create Video 3-Step Modal */}
+        <CreateVideoModal
+          isOpen={createVideoModalOpen}
+          onClose={() => setCreateVideoModalOpen(false)}
+        />
       </div>
     </CanvasInteractionContext.Provider>
   );

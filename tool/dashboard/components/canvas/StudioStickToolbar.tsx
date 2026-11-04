@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import {
   Plus,
+  Sparkles,
   MousePointer2,
   Hand,
   Copy,
@@ -16,6 +17,7 @@ import {
   InfinityIcon,
   ArrowRight,
 } from "@/components/ui/icons";
+import { useCreateStore } from "@/store/modules/create";
 import { cn } from "@/lib/utils";
 import { TOOL_KEYS } from "@/lib/shortcuts";
 
@@ -40,6 +42,7 @@ interface Props {
   canRedo: boolean;
   snap: boolean;
   onToggleSnap: () => void;
+  onCreateVideo?: () => void;
 }
 
 function Btn({
@@ -101,6 +104,17 @@ export function StudioStickToolbar(p: Props) {
         aria-label="Studio"
         className="flex flex-col items-center gap-0.5 rounded-full border border-border bg-card px-1 py-1.5"
       >
+        <motion.button
+          type="button"
+          title="Tạo video tự động (3 bước)"
+          aria-label="Tạo video"
+          onClick={p.onCreateVideo || (() => useCreateStore.getState().openCreate())}
+          whileTap={{ scale: 0.94 }}
+          className="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-primary-foreground shadow hover:bg-primary/90 transition-colors"
+        >
+          <Sparkles className={i} />
+        </motion.button>
+        <Sep />
         <Btn label={t("tools.add")} keys={TOOL_KEYS.add} active={p.addOpen} onClick={p.onToggleAdd}>
           <Plus className={i} />
         </Btn>

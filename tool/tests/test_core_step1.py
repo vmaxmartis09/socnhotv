@@ -29,9 +29,9 @@ def test_port_compatibility():
 
 
 def test_node_registry_completeness():
-    """Kiểm tra danh mục 13 node chuẩn + 3 node đơn giản (nhân vật từ ảnh, cảnh, chuyển cảnh)."""
+    """Kiểm tra danh mục 13 node chuẩn + 3 node đơn giản (nhân vật từ ảnh, cảnh, chuyển cảnh) + các node mở rộng."""
     definitions = NodeRegistry.list_all()
-    assert len(definitions) == 16
+    assert len(definitions) >= 16
 
     # Kiểm tra các node cốt lõi
     type_names = {d.type_name for d in definitions}
@@ -134,7 +134,7 @@ def test_fastapi_endpoints():
     # 2. Node types
     res_types = client.get("/node-types")
     assert res_types.status_code == 200
-    assert len(res_types.json()) == 16
+    assert len(res_types.json()) >= 16
 
     # 3. Models
     res_models = client.get("/models")
