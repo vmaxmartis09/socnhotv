@@ -7,10 +7,12 @@ from __future__ import annotations
 import os
 import shutil
 import tempfile
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Literal, Optional
+from pydantic import BaseModel
 from fastapi import APIRouter, File, Form, HTTPException, Query, UploadFile
 from fastapi.responses import FileResponse
 
+from socnhotv.video.contracts import Platform
 from socnhotv.sources.jobs import enqueue_ingest, get_job_status
 from socnhotv.sources.local import ingest_local_file
 from socnhotv.sources.models import IngestRequest, RightsType, SourceItem, UpdateRightsRequest
@@ -165,3 +167,112 @@ async def detect_scenes_api(project_id: str, source_id: str):
         raise HTTPException(status_code=404, detail=str(fnf))
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Lỗi tách cảnh: {e}")
+
+
+class LocalizeRequest(BaseModel):
+    mode: Literal["R", "L"] = "R"
+    style: Literal["faithful", "hook_boost", "character"] = "faithful"
+    voice_id: str = "soc-nho"
+    platforms: List[Platform] = ["tiktok", "reels", "shorts"]
+    template_id: Optional[str] = None
+    auto_draft: bool = True
+
+
+@router.post("/projects/{project_id}/sources/{source_id}/localize")
+async def localize_source_api(
+    project_id: str,
+    source_id: str,
+    req: LocalizeRequest,
+):
+    from socnhotv.sources.localize_pipeline import run_localize_pipeline
+    try:
+        summary = await run_localize_pipeline(
+            project_id=project_id,
+            source_id=source_id,
+            mode=req.mode,
+            style=req.style,
+            voice_id=req.voice_id,
+            platforms=req.platforms,
+            template_id=req.template_id,
+            auto_draft=req.auto_draft,
+        )
+        return summary
+    except ValueError as ve:
+        raise HTTPException(status_code=400, detail=str(ve))
+    except FileNotFoundError as fnf:
+        raise HTTPException(status_code=404, detail=str(fnf))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Lỗi bản địa hoá: {e}")
+
+
+@router.get("/projects/{project_id}/sources/{source_id}/localize/{job_id}")
+async def get_localize_job_api(project_id: str, source_id: str, job_id: str):
+    from socnhotv.workspace import project_path
+    from socnhotv.video.contracts import get_render
+    try:
+        render_job = get_render(project_id, job_id)
+        return render_job.model_dump()
+    except Exception as e:
+        raise HTTPException(status_code=404, detail=str(e))
+
+
+@router.get("/projects/{project_id}/sources/{source_id}/transcript")
+async def get_transcript_api(
+    project_id: str,
+    source_id: str,
+    lang: Literal["orig", "vi"] = "vi",
+):
+    from socnhotv.workspace import project_path
+    fpath = project_path(project_id, "raw", source_id, f"transcript.{lang}.json")
+    if not fpath.exists():
+        raise HTTPException(status_code=404, detail=f"Chưa có transcript {lang}")
+    import json
+    with open(fpath, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+@router.put("/projects/{project_id}/sources/{source_id}/transcript")
+async def update_transcript_api(
+    project_id: str,
+    source_id: str,
+    segments: List[Dict[str, Any]],
+    lang: Literal["orig", "vi"] = "vi",
+):
+    from socnhotv.workspace import project_path
+    import json
+    fpath = project_path(project_id, "raw", source_id, f"transcript.{lang}.json")
+    with open(fpath, "w", encoding="utf-8") as f:
+        json.dump(segments, f, ensure_ascii=False, indent=2)
+    return {"status": "ok", "saved_segments": len(segments)}
+
+
+@router.get("/projects/{project_id}/sources/{source_id}/script")
+async def get_script_api(
+    project_id: str,
+    source_id: str,
+    style: str = "faithful",
+):
+    from socnhotv.workspace import project_path
+    import json
+    fpath = project_path(project_id, "content", "scripts", f"{source_id}.{style}.json")
+    if not fpath.exists():
+        fpath = project_path(project_id, "raw", source_id, f"script.{style}.json")
+    if not fpath.exists():
+        raise HTTPException(status_code=404, detail="Chưa có kịch bản cho style này.")
+    with open(fpath, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+@router.put("/projects/{project_id}/sources/{source_id}/script")
+async def update_script_api(
+    project_id: str,
+    source_id: str,
+    lines: List[Dict[str, Any]],
+    style: str = "faithful",
+):
+    from socnhotv.workspace import project_path
+    import json
+    fpath = project_path(project_id, "content", "scripts", f"{source_id}.{style}.json", ensure=True)
+    with open(fpath, "w", encoding="utf-8") as f:
+        json.dump(lines, f, ensure_ascii=False, indent=2)
+    return {"status": "ok", "saved_lines": len(lines)}

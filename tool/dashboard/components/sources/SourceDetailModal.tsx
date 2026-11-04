@@ -15,11 +15,13 @@ import {
   Sparkles,
   MessageSquare,
   Send,
+  Wand2,
 } from "@/components/ui/icons";
 import { confirm } from "@/lib/confirm";
 import { cn } from "@/lib/utils";
 import type { SceneCut, SourceItem, RightsType } from "@/lib/api/sources";
 import { detectScenes, getSourceFileUrl, updateRights } from "@/lib/api/sources";
+import { LocalizeStudio } from "./LocalizeStudio";
 
 interface SourceDetailModalProps {
   source: SourceItem;
@@ -35,6 +37,7 @@ export function SourceDetailModal({ source, projectId, onClose, onUpdated }: Sou
   const [currentRights, setCurrentRights] = useState<RightsType>(source.rights);
   const [rightsNote, setRightsNote] = useState(source.rights_note);
   const [savingRights, setSavingRights] = useState(false);
+  const [localizeOpen, setLocalizeOpen] = useState(false);
 
   const videoUrl = source.files.video ? getSourceFileUrl(projectId, source.id, "video.mp4") : null;
 
@@ -112,13 +115,23 @@ export function SourceDetailModal({ source, projectId, onClose, onUpdated }: Sou
               {source.title || "Chi tiết nguồn nội dung"}
             </h2>
           </div>
-          <button
-            type="button"
-            onClick={onClose}
-            className="rounded-lg p-1.5 text-muted-foreground hover:bg-accent hover:text-foreground"
-          >
-            <X className="h-5 w-5" />
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setLocalizeOpen(true)}
+              className="flex items-center gap-1.5 rounded-xl bg-primary px-3 py-1.5 text-xs font-bold text-primary-foreground hover:bg-primary/90"
+            >
+              <Wand2 className="h-3.5 w-3.5" />
+              Bản địa hoá
+            </button>
+            <button
+              type="button"
+              onClick={onClose}
+              className="rounded-lg p-1.5 text-muted-foreground hover:bg-accent hover:text-foreground"
+            >
+              <X className="h-5 w-5" />
+            </button>
+          </div>
         </div>
 
         {/* Content Body */}
@@ -266,6 +279,14 @@ export function SourceDetailModal({ source, projectId, onClose, onUpdated }: Sou
             </div>
           </div>
         </div>
+
+        {localizeOpen && (
+          <LocalizeStudio
+            source={source}
+            projectId={projectId}
+            onClose={() => setLocalizeOpen(false)}
+          />
+        )}
       </div>
     </div>
   );

@@ -144,3 +144,75 @@ export async function detectScenes(projectId: string, sourceId: string): Promise
   if (!res.ok) throw new Error("Lỗi phân tách cảnh");
   return res.json();
 }
+
+export async function localizeSource(
+  projectId: string,
+  sourceId: string,
+  payload: {
+    mode: "R" | "L";
+    style: "faithful" | "hook_boost" | "character";
+    voice_id: string;
+    platforms: string[];
+    template_id?: string;
+    auto_draft?: boolean;
+  }
+): Promise<any> {
+  const res = await fetch(`${CORE_URL}/projects/${projectId}/sources/${sourceId}/localize`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({ detail: res.statusText }));
+    throw new Error(err.detail || "Lỗi bản địa hoá");
+  }
+  return res.json();
+}
+
+export async function getTranscript(
+  projectId: string,
+  sourceId: string,
+  lang: "orig" | "vi" = "vi"
+): Promise<any[]> {
+  const res = await fetch(`${CORE_URL}/projects/${projectId}/sources/${sourceId}/transcript?lang=${lang}`);
+  if (!res.ok) throw new Error("Chưa có transcript");
+  return res.json();
+}
+
+export async function updateTranscript(
+  projectId: string,
+  sourceId: string,
+  segments: any[],
+  lang: "orig" | "vi" = "vi"
+): Promise<void> {
+  const res = await fetch(`${CORE_URL}/projects/${projectId}/sources/${sourceId}/transcript?lang=${lang}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(segments),
+  });
+  if (!res.ok) throw new Error("Lỗi cập nhật transcript");
+}
+
+export async function getScript(
+  projectId: string,
+  sourceId: string,
+  style: string = "faithful"
+): Promise<any[]> {
+  const res = await fetch(`${CORE_URL}/projects/${projectId}/sources/${sourceId}/script?style=${style}`);
+  if (!res.ok) throw new Error("Chưa có kịch bản");
+  return res.json();
+}
+
+export async function updateScript(
+  projectId: string,
+  sourceId: string,
+  lines: any[],
+  style: string = "faithful"
+): Promise<void> {
+  const res = await fetch(`${CORE_URL}/projects/${projectId}/sources/${sourceId}/script?style=${style}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(lines),
+  });
+  if (!res.ok) throw new Error("Lỗi cập nhật kịch bản");
+}
