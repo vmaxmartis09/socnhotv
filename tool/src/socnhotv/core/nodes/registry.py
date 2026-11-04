@@ -356,6 +356,9 @@ class NodeRegistry:
             )
         )
 
+        from socnhotv.core.nodes.plugins import load_all
+        load_all(cls)
+
 
 # Khởi tạo ngay khi module được nạp
 NodeRegistry.initialize_defaults()

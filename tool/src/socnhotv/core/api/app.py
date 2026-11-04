@@ -63,6 +63,8 @@ app = FastAPI(
 
 app.include_router(data_router)
 app.include_router(voice_router)
+from socnhotv.core.api.routes import include_all
+include_all(app)
 
 # Cho phép Next.js và các client gọi từ localhost:3000 / localhost:3100
 app.add_middleware(
