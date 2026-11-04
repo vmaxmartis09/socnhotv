@@ -1,0 +1,60 @@
+{
+  "nodes": {
+    "text": {
+      "placeholder": "Enter text content...",
+      "expand": "Expand",
+      "paste": "Paste",
+      "words": "words",
+      "chars": "chars",
+      "receivedFrom": "Received from {source}"
+    },
+    "image": {
+      "dragDrop": "Drag & drop image here, or",
+      "browse": "Browse",
+      "pasteHint": "or press Ctrl+V / Command+V",
+      "chooseFromLibrary": "Select from Library",
+      "enterUrl": "Or paste image URL...",
+      "change": "Change",
+      "remove": "Remove",
+      "invalidType": "Only PNG, JPG, JPEG, WEBP allowed",
+      "tooLarge": "File size exceeds limit (max 10MB)",
+      "uploading": "Uploading image..."
+    },
+    "script": {
+      "modeAi": "AI writes from idea",
+      "modePaste": "Paste existing script",
+      "ideaPlaceholder": "Describe script idea...",
+      "pastePlaceholder": "Paste script here...\n\nFormat:\nScene 1:\nBi: Hello friends!\n(Bi waves with a bright smile)\n\nScene 2:\nBi: Today let's brush our teeth together!\n(Bi holds a fruit-shaped toothbrush)",
+      "formatHint": "Separate scenes by blank line, '---', or 'Scene N:'. Dialogue: 'Name: dialogue', other lines are scene descriptions.",
+      "scenesCount": "{count} scenes",
+      "previewScenes": "Preview scenes ({count})",
+      "dialogue": "Dialogue",
+      "visual": "Visual"
+    },
+    "voice": {
+      "textPlaceholder": "Enter voiceover text (if unwired)...",
+      "selectVoice": "Select voice"
+    },
+    "imageGen": {
+      "promptPlaceholder": "Enter image generation prompt...",
+      "referenceImages": "Reference images",
+      "modelNotSupportRef": "This model does not support reference images"
+    },
+    "character": {
+      "select": "Select character"
+    },
+    "captions": {
+      "style": "Subtitle style",
+      "language": "Language"
+    },
+    "export": {
+      "fileName": "Export file name",
+      "platforms": "Target platforms",
+      "download": "Download MP4"
+    },
+    "common": {
+      "wireOrInput": "Wire or enter manually",
+      "fromPort": "Received from {nodeName}"
+    }
+  }
+}

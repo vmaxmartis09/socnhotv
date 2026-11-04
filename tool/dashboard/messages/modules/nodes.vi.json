@@ -1,0 +1,60 @@
+{
+  "nodes": {
+    "text": {
+      "placeholder": "Nhập nội dung văn bản...",
+      "expand": "Mở rộng",
+      "paste": "Dán",
+      "words": "từ",
+      "chars": "ký tự",
+      "receivedFrom": "Nhận từ {source}"
+    },
+    "image": {
+      "dragDrop": "Kéo thả ảnh vào đây, hoặc",
+      "browse": "Chọn ảnh",
+      "pasteHint": "hoặc nhấn Ctrl+V / Command+V",
+      "chooseFromLibrary": "Chọn từ Thư viện",
+      "enterUrl": "Hoặc dán URL ảnh...",
+      "change": "Đổi ảnh",
+      "remove": "Xóa",
+      "invalidType": "Chỉ chấp nhận ảnh PNG, JPG, JPEG, WEBP",
+      "tooLarge": "Dung lượng ảnh vượt quá giới hạn (tối đa 10MB)",
+      "uploading": "Đang tải ảnh lên..."
+    },
+    "script": {
+      "modeAi": "AI viết từ ý tưởng",
+      "modePaste": "Dán kịch bản có sẵn",
+      "ideaPlaceholder": "Mô tả ý tưởng kịch bản...",
+      "pastePlaceholder": "Dán kịch bản tại đây...\n\nĐịnh dạng:\nCảnh 1:\nSóc Nhỏ: Chào các bạn nhỏ!\n(Sóc Nhỏ vẫy tay tươi cười)\n\nCảnh 2:\nSóc Nhỏ: Hôm nay chúng mình cùng đánh răng nhé!\n(Bi cầm bàn chải hình hoa quả)",
+      "formatHint": "Mỗi cảnh ngăn bằng dòng trống, '---' hoặc 'Cảnh N:'. Thoại dạng 'Tên: Lời thoại', dòng còn lại là mô tả.",
+      "scenesCount": "{count} cảnh",
+      "previewScenes": "Xem trước phân cảnh ({count})",
+      "dialogue": "Thoại",
+      "visual": "Hình ảnh"
+    },
+    "voice": {
+      "textPlaceholder": "Nhập lời thoại cần đọc (nếu chưa nối dây)...",
+      "selectVoice": "Chọn giọng đọc"
+    },
+    "imageGen": {
+      "promptPlaceholder": "Nhập mô tả hình ảnh tạo mới...",
+      "referenceImages": "Ảnh mẫu tham chiếu",
+      "modelNotSupportRef": "Model này không hỗ trợ ảnh mẫu tham chiếu"
+    },
+    "character": {
+      "select": "Chọn nhân vật"
+    },
+    "captions": {
+      "style": "Kiểu phụ đề",
+      "language": "Ngôn ngữ"
+    },
+    "export": {
+      "fileName": "Tên file xuất",
+      "platforms": "Nền tảng xuất",
+      "download": "Tải MP4"
+    },
+    "common": {
+      "wireOrInput": "Nối dây hoặc nhập tay",
+      "fromPort": "Nhận từ {nodeName}"
+    }
+  }
+}

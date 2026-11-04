@@ -1,6 +1,8 @@
 import { getRequestConfig } from "next-intl/server";
 import { routing } from "./routing";
 
+const MODULES = ["video", "sources", "social", "nodes", "studio"] as const;
+
 export default getRequestConfig(async ({ requestLocale }) => {
   let locale = await requestLocale;
 
@@ -9,27 +11,22 @@ export default getRequestConfig(async ({ requestLocale }) => {
   }
 
   const baseMessages = (await import(`../messages/${locale}.json`)).default;
-  let videoMessages = {};
-  let sourcesMessages = {};
-  let socialMessages = {};
+  const mergedModules: Record<string, any> = {};
 
-  try {
-    videoMessages = (await import(`../messages/modules/video.${locale}.json`)).default;
-  } catch {}
-  try {
-    sourcesMessages = (await import(`../messages/modules/sources.${locale}.json`)).default;
-  } catch {}
-  try {
-    socialMessages = (await import(`../messages/modules/social.${locale}.json`)).default;
-  } catch {}
+  for (const mod of MODULES) {
+    try {
+      const modMessages = (await import(`../messages/modules/${mod}.${locale}.json`)).default;
+      Object.assign(mergedModules, modMessages);
+    } catch {
+      // module messages optional / not yet created
+    }
+  }
 
   return {
     locale,
     messages: {
       ...baseMessages,
-      ...videoMessages,
-      ...sourcesMessages,
-      ...socialMessages,
+      ...mergedModules,
     },
   };
 });
