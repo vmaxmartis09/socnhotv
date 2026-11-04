@@ -1,0 +1,14 @@
+# Danh sách các video đã nghiên cứu sâu (Accepted Research Videos)
+
+Danh sách các video đạt chuẩn sàng lọc và được phân tích toàn diện theo quy trình G1 → G6.
+
+| Seq | Tiêu đề | Kênh / Tác giả | Thời lượng | Kỹ thuật cốt lõi rút ra | Link Báo cáo Chi tiết |
+|---|---|---|---|---|---|
+| 001 | Làm video bán hàng Nội Thất chỉ bằng 1 câu lệnh cho Agent | Hương Muốn Nghỉ Hưu | 45.8s | Confession Hook, In-situ Virtual KOC Placement, Objection Proofing | [REPORT.md](file:///Volumes/Data/socnhotv/data/shared/knowledge/video_craft/videos/seq_001_1342818958924942/REPORT.md) |
+| 002 | THAM GIA LỚP ZOOM MIỄN PHÍ TẠI ĐÂY (Character Consistency) | AI Scale Up | 64.9s | Rapid Montage Proof (0.8s cuts), Multi-Context Switching, Commercial Open Loop | [REPORT.md](file:///Volumes/Data/socnhotv/data/shared/knowledge/video_craft/videos/seq_002_1805816287415896/REPORT.md) |
+| 003 | 50K/tháng tạo KOC ảo review thời trang cực dễ | AI Thực Chiến | 60.7s | Frictionless 3-Step Remix, Viral Template Library, Shock Price Anchoring | [REPORT.md](file:///Volumes/Data/socnhotv/data/shared/knowledge/video_craft/videos/seq_003_2272929803457749/REPORT.md) |
+| 005 | Fashion Lookbook AI Hàn Quốc chia đôi (Mẫu + Sticker Cutout) | Xuân Linh | 58.5s | Split-Canvas Lookbook Layout (45:55), Sticker Cutout & Doodle SVG, 3-Outfit Carousel | [REPORT.md](file:///Volumes/Data/socnhotv/data/shared/knowledge/video_craft/videos/seq_005_1780575939827550/REPORT.md) |
+| 006 | Cơm AI lo: Motion control của Google Flow | Toby | 32.8s | Camera Motion Choreography (Pan, Push-in, Orbit, Pedestal, Tracking) | [REPORT.md](file:///Volumes/Data/socnhotv/data/shared/knowledge/video_craft/videos/seq_006_3061194297574911/REPORT.md) |
+| 007 | LÀM VIDEO AI BÁN QUẦN ÁO HÀNG LOẠT VỚI INFINITE CANVAS | Jolie Mê Xem Phim / Thân Ca | 233.0s | Dual-Node Video Stitching (2x15s Kling 1.5), Last-Frame Continuity, Visual Quality Inspection | [REPORT.md](file:///Volumes/Data/socnhotv/data/shared/knowledge/video_craft/videos/seq_007_1083694434486679/REPORT.md) |
+| 008 | Arcads video element replacement: Infinite amount of ads | By.Shlabu | 29.7s | Video-to-Video Multi-Element Replacement, Motion Mimic, Cross-Border Lip-Sync | [REPORT.md](file:///Volumes/Data/socnhotv/data/shared/knowledge/video_craft/videos/seq_008_1403971144535658/REPORT.md) |
+| 009 | Công cụ AI tạo video không giới hạn - ComfyUI Portable | Jolie Mê Xem Phim | 471.2s | Local Pipeline & Workflow Management UX, Resource Telemetry Monitoring | [REPORT.md](file:///Volumes/Data/socnhotv/data/shared/knowledge/video_craft/videos/seq_009_2140905429860884/REPORT.md) |

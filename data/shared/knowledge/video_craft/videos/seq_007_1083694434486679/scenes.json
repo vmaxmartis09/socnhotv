@@ -1,0 +1,82 @@
+[
+  {
+    "scene_index": 1,
+    "start_time": 0.0,
+    "end_time": 32.96,
+    "duration": 32.96,
+    "role": "hook_comparison",
+    "description": "So sánh chi phí thuê mẫu thật (vài triệu/buổi) so với dùng AI (<1/10 chi phí). Trình chiếu mẫu AI dạo phố tự nhiên.",
+    "on_screen_text": "Tạo video bán quần áo hàng loạt không cần mẫu thật",
+    "keyframe": "frames/scene_001.jpg"
+  },
+  {
+    "scene_index": 2,
+    "start_time": 32.96,
+    "end_time": 54.52,
+    "duration": 21.56,
+    "role": "canvas_setup_model",
+    "description": "Mở Canvas vô hạn (Infinite Canvas): Kéo thả ảnh khuôn mặt và ảnh toàn thân của người mẫu vào canvas.",
+    "on_screen_text": "Bước 1: Nạp ảnh mẫu vào Canvas vô hạn",
+    "keyframe": "frames/scene_004.jpg"
+  },
+  {
+    "scene_index": 3,
+    "start_time": 54.52,
+    "end_time": 82.72,
+    "duration": 28.2,
+    "role": "canvas_setup_garment",
+    "description": "Kéo thả ảnh sản phẩm quần áo (váy, áo khoác) vào cạnh ảnh mẫu. Nối dây liên kết giữa node mẫu và node trang phục.",
+    "on_screen_text": "Bước 2: Nối dây liên kết trang phục và người mẫu",
+    "keyframe": "frames/scene_008.jpg"
+  },
+  {
+    "scene_index": 4,
+    "start_time": 82.72,
+    "end_time": 114.72,
+    "duration": 32.0,
+    "role": "tryon_generation_check",
+    "description": "Chạy sinh ảnh thử đồ (Virtual Try-on) ở độ phân giải 2K, tỷ lệ 9:16. Kiểm tra độ chuẩn xác của hoa văn và nếp gấp vải.",
+    "on_screen_text": "Bước 3: Kiểm tra độ chân thực hoa văn và phom dáng 2K",
+    "keyframe": "frames/scene_012.jpg"
+  },
+  {
+    "scene_index": 5,
+    "start_time": 114.72,
+    "end_time": 154.72,
+    "duration": 40.0,
+    "role": "video_node_1_setup",
+    "description": "Thiết lập Node Video 1 (15 giây đầu): Mô hình Kling 1.5, camera góc 1 đến 12 (toàn cảnh dạo phố).",
+    "on_screen_text": "Bước 4: Node Video 1 (0-15s) Kling 1.5 Catwalk",
+    "keyframe": "frames/scene_018.jpg"
+  },
+  {
+    "scene_index": 6,
+    "start_time": 154.72,
+    "end_time": 174.72,
+    "duration": 20.0,
+    "role": "video_node_2_setup",
+    "description": "Thiết lập Node Video 2 (15 giây sau): Góc máy cận cảnh xoay người 16 đến 24.",
+    "on_screen_text": "Bước 5: Node Video 2 (15-30s) Cận cảnh chi tiết",
+    "keyframe": "frames/scene_023.jpg"
+  },
+  {
+    "scene_index": 7,
+    "start_time": 174.72,
+    "end_time": 218.72,
+    "duration": 44.0,
+    "role": "merge_and_render",
+    "description": "Tải 2 đoạn video 15s về, ghép lại thành clip 30s hoàn chỉnh. Giải thích logic tùy biến prompt chuyển động.",
+    "on_screen_text": "Bước 6: Ghép thành video 30s hoàn chỉnh",
+    "keyframe": "frames/scene_028.jpg"
+  },
+  {
+    "scene_index": 8,
+    "start_time": 218.72,
+    "end_time": 233.01,
+    "duration": 14.29,
+    "role": "outro_scale",
+    "description": "Mở rộng sang ngành mỹ phẩm, thời trang nam và phụ kiện. Kết bài từ Thân Ca.",
+    "on_screen_text": "Ứng dụng hàng loạt: Thời trang nam, nữ, trẻ em, mỹ phẩm",
+    "keyframe": "frames/scene_032.jpg"
+  }
+]

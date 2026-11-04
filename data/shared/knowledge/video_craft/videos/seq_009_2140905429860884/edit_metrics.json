@@ -1,0 +1,32 @@
+{
+  "duration_s": 471.15,
+  "scene_count": 4,
+  "cuts_per_10s": 0.08,
+  "median_shot_duration_s": 63.45,
+  "total_spoken_words": 920,
+  "speech_rate_words_per_sec": 1.95,
+  "silence_ratio": 0.18,
+  "loudness": {
+    "integrated_lufs": -17.16,
+    "true_peak_dbtp": -0.97,
+    "lra_lu": 3.50,
+    "threshold_lufs": -27.40,
+    "standard_compliance": "Needs +3.16dB gain adjustment to meet TikTok/FB -14 LUFS standard"
+  },
+  "video_specs": {
+    "width": 1280,
+    "height": 720,
+    "aspect_ratio": "16:9",
+    "fps": 30.0,
+    "safe_zone_vertical_compliant": false,
+    "video_type": "Long-form Screen Recording Tutorial",
+    "technology": "ComfyUI Desktop Portable (Packaged Python + PyTorch CUDA + Preloaded Workflows)"
+  },
+  "color_palette_hex": [
+    "#18181B",
+    "#27272A",
+    "#3F3F46",
+    "#3B82F6",
+    "#10B981"
+  ]
+}

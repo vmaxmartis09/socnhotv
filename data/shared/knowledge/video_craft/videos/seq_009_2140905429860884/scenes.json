@@ -1,0 +1,42 @@
+[
+  {
+    "scene_id": 1,
+    "start_time": 0.0,
+    "end_time": 34.6,
+    "duration": 34.6,
+    "scene_type": "Hook & Value Proposition",
+    "visual_description": "Quay màn hình giao diện ComfyUI chạy video mượt mà, dòng tiêu đề AI video không giới hạn, GPU RTX 2000+ với hơn 500 workflow",
+    "audio_transcript": "Đây là công cụ AI giúp tạo video không giới hạn số lần, chính là công cụ AI máng huồn mở mạnh nhất hiện nay - ComfyUI bản mở rộng... Chỉ cần card RTX 2000 sẽ hợp sáng hơn 500 mẫu flow đỉnh cao. Bạn nào hứng thú thì điểm danh nhé.",
+    "pacing": "Moderate educational intro"
+  },
+  {
+    "scene_id": 2,
+    "start_time": 34.6,
+    "end_time": 107.0,
+    "duration": 72.4,
+    "scene_type": "UI Architecture Walkthrough - Workflow Manager",
+    "visual_description": "Phóng to góc trên bên trái màn hình: thư mục lưu trữ workflow, hướng dẫn tạo category, lưu template và gọi lại template chỉ bằng 1 cú nhấp chuột",
+    "audio_transcript": "Giờ mình cùng làm quen với giao diện này trước, đầu tiên nhìn vào góc trên bên trái... đóng vai trò là nơi lưu trữ Workflow của chúng ta... muốn gọi lại chỉ cần nhấp vào đây là tải ra ngay.",
+    "pacing": "Slow step-by-step UI demo"
+  },
+  {
+    "scene_id": 3,
+    "start_time": 107.0,
+    "end_time": 161.5,
+    "duration": 54.5,
+    "scene_type": "Settings & Language Translation Configuration",
+    "visual_description": "Thao tác menu Cài đặt (Settings), bật dịch ngôn ngữ qua web extension/plugin, giải thích các tham số mặc định không cần chỉnh",
+    "audio_transcript": "Các bạn có thể bật dịch trong Web, nếu nó hiển thị tiếng Anh... phần cài đặt này các bạn mới không cần lưu ý nhiều đâu, sau này học nâng cao rồi ta mới cần.",
+    "pacing": "Instructional explanation"
+  },
+  {
+    "scene_id": 4,
+    "start_time": 161.5,
+    "end_time": 471.15,
+    "duration": 309.65,
+    "scene_type": "Hardware Resource Monitor & Node Execution",
+    "visual_description": "Thanh trạng thái hệ thống: hiển thị % CPU, RAM, VRAM GPU theo thời gian thực; demo chạy pipeline render video từ prompt đến output",
+    "audio_transcript": "Bấm vào xem thấy CPU đang chiếm bao nhiêu phần trăm, mức cao nhất, rồi RAM, card màn hình... tất cả dung lượng sử dụng đều hiện ở đây... tiếp theo chạy render.",
+    "pacing": "Deep dive tutorial"
+  }
+]

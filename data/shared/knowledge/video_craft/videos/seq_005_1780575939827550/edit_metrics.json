@@ -1,0 +1,38 @@
+{
+  "duration_s": 58.47,
+  "scene_count": 3,
+  "cuts_per_10s": 2.05,
+  "median_shot_duration_s": 19.56,
+  "total_spoken_words": 196,
+  "speech_rate_words_per_sec": 3.35,
+  "silence_ratio": 0.02,
+  "loudness": {
+    "integrated_lufs": -14.28,
+    "true_peak_dbtp": -0.61,
+    "lra_lu": 5.00,
+    "threshold_lufs": -24.32,
+    "standard_compliance": "TikTok -14 LUFS strictly compliant"
+  },
+  "video_specs": {
+    "width": 1280,
+    "height": 720,
+    "aspect_ratio": "16:9",
+    "fps": 30.0,
+    "safe_zone_vertical_compliant": false,
+    "flaws": [
+      "Video đăng bản demo ngang 16:9 nhưng layout bên trong thực chất là mock-up dọc 9:16 phong cách Pinterest Hàn Quốc"
+    ],
+    "strengths": [
+      "Layout Lookbook chia đôi: tỷ lệ vàng 45% (Model) : 55% (Sticker Board)",
+      "Bảng màu pastel Hàn Quốc: kem, be, xám, hồng phấn cực kỳ hút tệp nữ Gen Z",
+      "Cấu trúc nhịp 3-outfit: mỗi set đúng 19s (đủ thời lượng xem và kịp kêu gọi CTA)"
+    ]
+  },
+  "color_palette_hex": [
+    "#F5EFEB",
+    "#D9C3B0",
+    "#8C7A6B",
+    "#596173",
+    "#E8B4B8"
+  ]
+}

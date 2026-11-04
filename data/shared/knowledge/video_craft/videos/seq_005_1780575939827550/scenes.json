@@ -1,0 +1,32 @@
+[
+  {
+    "scene_index": 1,
+    "start_time": 0.0,
+    "end_time": 18.96,
+    "duration": 18.96,
+    "role": "outfit_set_1_denim",
+    "description": "Lookbook chia đôi: Bên trái là KOC AI diện váy denim + áo khoác lửng trắng tạo dáng. Bên phải là sticker cutout áo, váy, túi, giày viền nét vẽ doodle nền kem pastel.",
+    "on_screen_text": "Style Nữ Tính: Váy denim + Áo khoác lửng",
+    "keyframe": "frames/scene_001.jpg"
+  },
+  {
+    "scene_index": 2,
+    "start_time": 18.96,
+    "end_time": 38.52,
+    "duration": 19.56,
+    "role": "outfit_set_2_white_dress",
+    "description": "Chuyển outfit: Bên trái là KOC AI diện đầm trắng lệch vai xếp tầng tiểu thư. Bên phải sticker bóc tách đầm trắng, túi xách kẹp nách và sandal đế xuồng.",
+    "on_screen_text": "Style Tiểu Thư: Đầm trắng lệch vai + Sandal be",
+    "keyframe": "frames/scene_005.jpg"
+  },
+  {
+    "scene_index": 3,
+    "start_time": 38.52,
+    "end_time": 58.47,
+    "duration": 19.95,
+    "role": "outfit_set_3_floral",
+    "description": "Chuyển outfit: Bên trái KOC diện váy hoa nhí viền ren dạo phố mùa hè. Bên phải sticker mũ cói, đầm hoa và giày búp bê ren dịu dàng.",
+    "on_screen_text": "Style Nàng Thơ: Váy hoa nhí + Mũ cói + Giày ren",
+    "keyframe": "frames/scene_009.jpg"
+  }
+]

@@ -1,0 +1,35 @@
+{
+  "duration_s": 32.83,
+  "scene_count": 5,
+  "cuts_per_10s": 1.52,
+  "median_shot_duration_s": 5.80,
+  "total_spoken_words": 0,
+  "speech_rate_words_per_sec": 0.0,
+  "silence_ratio": 0.0,
+  "audio_style": "Instrumental electronic beat / House tempo (124 BPM)",
+  "loudness": {
+    "integrated_lufs": -13.87,
+    "true_peak_dbtp": -1.11,
+    "lra_lu": 6.50,
+    "threshold_lufs": -24.01,
+    "standard_compliance": "TikTok -14 LUFS strictly compliant"
+  },
+  "video_specs": {
+    "width": 1280,
+    "height": 720,
+    "aspect_ratio": "16:9",
+    "fps": 30.0,
+    "safe_zone_vertical_compliant": false,
+    "motion_characteristics": [
+      "Quỹ đạo camera cinematic mượt mà, không bị giật cục hay méo dị dạng phối cảnh",
+      "Kỹ thuật kiểm soát góc quay (Camera Motion Control) thay thế việc mô tả văn bản phức tạp"
+    ]
+  },
+  "color_palette_hex": [
+    "#111827",
+    "#3B82F6",
+    "#9CA3AF",
+    "#F3F4F6",
+    "#000000"
+  ]
+}

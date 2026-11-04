@@ -1,0 +1,31 @@
+{
+  "duration_s": 29.67,
+  "scene_count": 4,
+  "cuts_per_10s": 1.35,
+  "median_shot_duration_s": 7.34,
+  "total_spoken_words": 86,
+  "speech_rate_words_per_sec": 2.90,
+  "silence_ratio": 0.02,
+  "loudness": {
+    "integrated_lufs": -18.05,
+    "true_peak_dbtp": -1.36,
+    "lra_lu": 5.70,
+    "threshold_lufs": -28.63,
+    "standard_compliance": "Needs +4.0dB boost to reach TikTok standard -14 LUFS"
+  },
+  "video_specs": {
+    "width": 720,
+    "height": 1280,
+    "aspect_ratio": "9:16",
+    "fps": 30.0,
+    "safe_zone_vertical_compliant": true,
+    "technology": "Video-to-Video Inpainting + Lip-Sync Translation (Arcads / Motion Mimic)"
+  },
+  "color_palette_hex": [
+    "#1E1E24",
+    "#44BBA4",
+    "#E7ECEF",
+    "#F5D061",
+    "#E27396"
+  ]
+}

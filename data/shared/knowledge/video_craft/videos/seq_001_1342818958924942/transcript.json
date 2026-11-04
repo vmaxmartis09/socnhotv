@@ -1,0 +1,50 @@
+[
+  {
+    "start": 0.0,
+    "end": 6.04,
+    "text": "Ngồi trên chiếc sofa này thoải mái quá các bạn ạ.",
+    "role": "hook"
+  },
+  {
+    "start": 6.04,
+    "end": 9.76,
+    "text": "Mà các bạn biết không? Cả căn phòng này lúc đầu chỉ là một tấm ảnh thế đấy.",
+    "role": "pattern_interrupt"
+  },
+  {
+    "start": 9.76,
+    "end": 14.92,
+    "text": "Gửi đúng tấm ảnh ấy, Agent tự nghĩ kịch bản rồi đưa em vào giới thiệu hộ.",
+    "role": "solution"
+  },
+  {
+    "start": 14.92,
+    "end": 21.36,
+    "text": "Mua sofa sợ nhất là nệm cứng, nên Agent cho em ấn thử thế này: êm và đàn hồi ngay.",
+    "role": "product_demo"
+  },
+  {
+    "start": 21.36,
+    "end": 26.6,
+    "text": "Còn chiếc ghế bành này thì sáng ra ngồi nhâm nhi tách trà, ngắm nắng lên thế này hết ý.",
+    "role": "benefit"
+  },
+  {
+    "start": 26.6,
+    "end": 31.96,
+    "text": "Cảnh nãy em không quay đâu nhé, chẳng thợ quay, chẳng thuê mẫu, chẳng mất buổi dựng nào.",
+    "role": "cost_proof"
+  },
+  {
+    "start": 31.96,
+    "end": 37.84,
+    "text": "Bán sofa, bàn đá hay cả bộ phòng khách, chỉ cần vài tấm ảnh là Agent nghĩ ra cách giới thiệu hợp.",
+    "role": "scalability"
+  },
+  {
+    "start": 37.84,
+    "end": 45.79,
+    "text": "Muốn có cô người mẫu ảo bán hàng như em, các bác tìm hiểu khóa làm video bằng Agent nhé.",
+    "role": "cta"
+  }
+]

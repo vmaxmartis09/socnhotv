@@ -1,0 +1,56 @@
+[
+  {
+    "start": 0.0,
+    "end": 8.84,
+    "text": "Thích style nữ tính thì thử set này nha. Váy denim phối áo khoác lửng trắng cực xinh, thêm túi xách và giày búp bê là có ngay outfit dạo phố chuẩn đét.",
+    "role": "set_1_intro"
+  },
+  {
+    "start": 8.84,
+    "end": 14.96,
+    "text": "Set này xinh lắm nha. Đầm denim phối áo khoác lửng trắng, chuẩn nàng tiểu thư thanh lịch có gu.",
+    "role": "set_1_feature"
+  },
+  {
+    "start": 14.96,
+    "end": 18.96,
+    "text": "Ai thích phong cách này thì nhấn giỏ hàng chốt đơn ngay nha!",
+    "role": "set_1_cta"
+  },
+  {
+    "start": 18.96,
+    "end": 28.68,
+    "text": "Ai mê style tiểu thư thử set này nha. Đầm trắng lệch vai xếp tầng cực xinh, thêm túi và sandal đế xuồng màu be. Là có ngay outfit sang chảnh chuẩn nàng thơ.",
+    "role": "set_2_intro"
+  },
+  {
+    "start": 28.68,
+    "end": 35.2,
+    "text": "Set này sang lắm nha. Nàng tiểu thư với váy trắng lệch vai phối túi, sandal be cực kỳ có gu.",
+    "role": "set_2_feature"
+  },
+  {
+    "start": 35.2,
+    "end": 38.52,
+    "text": "Ai thích phong cách này thì nhấn giỏ hàng chốt đơn ngay nha!",
+    "role": "set_2_cta"
+  },
+  {
+    "start": 38.52,
+    "end": 48.4,
+    "text": "Ai mê phong cách nàng thơ thì thử set này nha. Váy hoa nhí viền ren cực ngọt, thêm mũ cói cùng giày búp bê ren. Là có ngay outfit dịu dàng đón hè luôn.",
+    "role": "set_3_intro"
+  },
+  {
+    "start": 48.4,
+    "end": 54.96,
+    "text": "Set này chuẩn nàng thơ, đầm hoa nhí phối mũ cói, giày búp bê ren dịu dàng mà cực có gu.",
+    "role": "set_3_feature"
+  },
+  {
+    "start": 54.96,
+    "end": 58.47,
+    "text": "Ai thích phong cách này thì nhấn giỏ hàng chốt đơn ngay nha!",
+    "role": "set_3_cta"
+  }
+]

@@ -1,0 +1,36 @@
+{
+  "duration_s": 45.79,
+  "scene_count": 9,
+  "cuts_per_10s": 1.96,
+  "median_shot_duration_s": 5.67,
+  "min_shot_duration_s": 2.46,
+  "max_shot_duration_s": 6.20,
+  "total_spoken_words": 122,
+  "speech_rate_words_per_sec": 2.78,
+  "silence_ratio": 0.08,
+  "loudness": {
+    "integrated_lufs": -14.19,
+    "true_peak_dbtp": -1.53,
+    "lra_lu": 2.80,
+    "threshold_lufs": -24.24,
+    "standard_compliance": "TikTok -14 LUFS compliant"
+  },
+  "video_specs": {
+    "width": 1280,
+    "height": 720,
+    "aspect_ratio": "16:9",
+    "fps": 24.0,
+    "safe_zone_vertical_compliant": false,
+    "flaws": [
+      "Khung hình ngang 16:9 khi phát trên Reels dọc bị co nhỏ và đen 2 đầu (letterbox)",
+      "Nhịp cắt 1.96 cut/10s hơi chậm so với chuẩn TikTok ngắn (chuẩn 3-4 cut/10s ở 10s đầu)"
+    ]
+  },
+  "color_palette_hex": [
+    "#4A4A48",
+    "#D8CFC4",
+    "#8B7E74",
+    "#F3EFEA",
+    "#2C2A29"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "duration_s": 60.67,
+  "scene_count": 6,
+  "cuts_per_10s": 2.47,
+  "median_shot_duration_s": 9.72,
+  "total_spoken_words": 182,
+  "speech_rate_words_per_sec": 3.00,
+  "silence_ratio": 0.03,
+  "loudness": {
+    "integrated_lufs": -14.34,
+    "true_peak_dbtp": 0.58,
+    "lra_lu": 3.70,
+    "threshold_lufs": -24.34,
+    "standard_compliance": "TikTok -14 LUFS compliant (Peak slightly clips at +0.58 dBTP)"
+  },
+  "video_specs": {
+    "width": 720,
+    "height": 720,
+    "aspect_ratio": "1:1",
+    "fps": 30.0,
+    "safe_zone_vertical_compliant": false,
+    "notes": [
+      "Khung hình vuông 1:1, phù hợp bài post feed Facebook nhưng chưa tối ưu cho TikTok/Reels 9:16",
+      "Quy trình Remix 3 bước (Chọn mẫu → Upload đồ → Xuất video) là mô hình chuẩn cho template engine của A"
+    ]
+  },
+  "color_palette_hex": [
+    "#FF5722",
+    "#1E293B",
+    "#FFFFFF",
+    "#F1F5F9",
+    "#0EA5E9"
+  ]
+}

@@ -1,0 +1,52 @@
+[
+  {
+    "scene_index": 1,
+    "start_time": 0.0,
+    "end_time": 4.5,
+    "duration": 4.5,
+    "role": "camera_pan_left",
+    "description": "Camera pan mượt từ trái sang phải: Người mẫu KOC sải bước trong bộ đồ street style, góc quay nghiêng 30 độ",
+    "on_screen_text": "Motion Control: Horizontal Pan",
+    "keyframe": "frames/scene_001.jpg"
+  },
+  {
+    "scene_index": 2,
+    "start_time": 4.5,
+    "end_time": 9.2,
+    "duration": 4.7,
+    "role": "camera_push_in",
+    "description": "Camera đẩy thẳng vào mặt (Push-in): Giữ nguyên tư thế bước đi, phóng to chi tiết kính râm và áo khoác",
+    "on_screen_text": "Motion Control: Push-In Zoom",
+    "keyframe": "frames/scene_002.jpg"
+  },
+  {
+    "scene_index": 3,
+    "start_time": 9.2,
+    "end_time": 15.0,
+    "duration": 5.8,
+    "role": "camera_orbit_360",
+    "description": "Camera xoay vòng cung quanh người mẫu (Orbit/Arc move) trong khi bối cảnh nền trôi theo luật phối cảnh",
+    "on_screen_text": "Motion Control: Arc Orbit 45°",
+    "keyframe": "frames/scene_004.jpg"
+  },
+  {
+    "scene_index": 4,
+    "start_time": 15.0,
+    "end_time": 22.5,
+    "duration": 7.5,
+    "role": "pedestal_up",
+    "description": "Camera di chuyển thẳng đứng từ chân lên đầu (Pedestal Up): Quét qua giày sneaker, quần jean, áo hoodie",
+    "on_screen_text": "Motion Control: Pedestal Up (Scan Outfit)",
+    "keyframe": "frames/scene_006.jpg"
+  },
+  {
+    "scene_index": 5,
+    "start_time": 22.5,
+    "end_time": 32.83,
+    "duration": 10.33,
+    "role": "tracking_shot",
+    "description": "Camera đi lùi bám theo người mẫu bước tới (Backward Tracking Shot), nhịp bước chân khớp với beat nhạc",
+    "on_screen_text": "Motion Control: Tracking Backward",
+    "keyframe": "frames/scene_008.jpg"
+  }
+]

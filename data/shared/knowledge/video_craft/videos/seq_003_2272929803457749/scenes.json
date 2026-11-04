@@ -1,0 +1,62 @@
+[
+  {
+    "scene_index": 1,
+    "start_time": 0.0,
+    "end_time": 8.18,
+    "duration": 8.18,
+    "role": "hook",
+    "description": "Nữ KOC AI mặc áo thun ôm body xoay nhẹ người trước gương, nụ cười rạng rỡ",
+    "on_screen_text": "Chỉ 50K/tháng tạo dàn KOC review thời trang",
+    "keyframe": "frames/scene_001.jpg"
+  },
+  {
+    "scene_index": 2,
+    "start_time": 8.18,
+    "end_time": 12.14,
+    "duration": 3.96,
+    "role": "social_proof",
+    "description": "Ảnh chụp màn hình kênh TikTok mới lập 7 ngày đạt triệu views",
+    "on_screen_text": "Xây kênh 1 tuần đạt triệu view",
+    "keyframe": "frames/scene_004.jpg"
+  },
+  {
+    "scene_index": 3,
+    "start_time": 12.14,
+    "end_time": 25.4,
+    "duration": 13.26,
+    "role": "tool_intro",
+    "description": "Giao diện website Co-Maker với danh sách các mẫu video thời trang thịnh hành",
+    "on_screen_text": "Co-Maker: Tạo video AI ngay trên web",
+    "keyframe": "frames/scene_009.jpg"
+  },
+  {
+    "scene_index": 4,
+    "start_time": 25.4,
+    "end_time": 35.96,
+    "duration": 10.56,
+    "role": "remix_demo",
+    "description": "Thao tác chuột: Bấm nút 'Remix', tải ảnh trang phục lên, sửa 1 dòng prompt và bấm xuất video",
+    "on_screen_text": "Tìm mẫu → Bấm Remix → Tải đồ lên → 15 phút xong",
+    "keyframe": "frames/scene_016.jpg"
+  },
+  {
+    "scene_index": 5,
+    "start_time": 35.96,
+    "end_time": 44.84,
+    "duration": 8.88,
+    "role": "trend_library",
+    "description": "Cuộn nhanh kho thư viện hàng ngàn mẫu video KOC bắt trend TikTok",
+    "on_screen_text": "Hàng ngàn mẫu bắt trend cập nhật từng giờ",
+    "keyframe": "frames/scene_021.jpg"
+  },
+  {
+    "scene_index": 6,
+    "start_time": 44.84,
+    "end_time": 60.67,
+    "duration": 15.83,
+    "role": "cta_guarantee",
+    "description": "Cam kết hỗ trợ chuyên gia + hoàn tiền, hiển thị link đăng ký",
+    "on_screen_text": "Cam kết hoàn tiền · Nhận hỗ trợ 1:1",
+    "keyframe": "frames/scene_028.jpg"
+  }
+]

@@ -1,0 +1,11 @@
+seq,url,decision,relevance,age_months,evergreen,scam_flags,reason
+1,https://www.facebook.com/share/v/1M9eBwkWdL/,LEARN-PARTIAL,4,0,false,course_funnel,"Phễu bán khoá học netlify nhưng kỹ thuật Virtual KOC avatar nội thất có giá trị thực tế"
+2,https://www.facebook.com/share/r/1FHS4q8Kdq/,LEARN-PARTIAL,4,0,false,free_zoom_funnel,"Phễu Zoom miễn phí lùa gà nhưng kỹ thuật Character Consistency giữ gương mặt là cốt lõi"
+3,https://www.facebook.com/share/v/1Vm4Ei6GFF/,LEARN,5,0,false,clickbait_price,"Giật tít 50K/tháng nhưng chỉ đích danh công cụ Co-Maker tạo AI KOC thời trang thực tế"
+4,https://shop.tiktok.com/vn/pdp/1737676311842293523?_t=ZS-9AhU2hyZqIW,NOTE-PRODUCT,4,0,false,none,"Link sản phẩm TikTok Shop áo thun NEAU NuNu, trích xuất dữ liệu sản phẩm cho Session B"
+5,https://www.facebook.com/share/v/18N6dMvQCz/,LEARN,5,0,true,none,"Quy trình Fashion Lookbook AI chia đôi 9:16 (Mẫu + Sticker Cutout) cực kỳ giá trị cho HyperFrames"
+6,https://www.facebook.com/share/v/19mmDY1tzR/,LEARN,4,0,false,none,"Kỹ thuật Motion Control của Google Flow điều khiển cử động thời trang không cần prompt lẻ"
+7,https://www.facebook.com/share/v/1HDkUceE27/,LEARN,5,0,false,clickbait_affiliate,"Hướng dẫn chi tiết quy trình Infinite Canvas tạo video bán quần áo hàng loạt không cần mẫu"
+8,https://www.facebook.com/share/r/19f81rzRTd/,LEARN,5,1,true,comment_lead_magnet,"Phễu comment nhận link nhưng workflow Arcads Video-to-Video element replacement là kỹ thuật SOTA"
+9,https://www.facebook.com/share/v/19rAD6bSJy/,LEARN-PARTIAL,4,0,false,comment_333_funnel,"Phễu comment 333 nhận tool nhưng video 471s chứa danh mục công cụ làm phim AI miễn phí"
+10,https://www.facebook.com/share/r/1DxMj9zmXy/,SKIP-irrelevant,0,0,false,none,"Video tiếng Ả Rập về an ninh mạng (cybersecurity), không liên quan đến làm video hay AI KOC"

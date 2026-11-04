@@ -1,0 +1,92 @@
+[
+  {
+    "scene_index": 1,
+    "start_time": 0.0,
+    "end_time": 6.04,
+    "duration": 6.04,
+    "role": "hook",
+    "description": "Mẫu ảo ngồi trên ghế sofa xám trong phòng khách, đầu gật gù nhẹ, môi nhép theo giọng đọc",
+    "on_screen_text": "Ngồi trên chiếc sofa này thoải mái quá các bạn ạ",
+    "keyframe": "frames/scene_001.jpg"
+  },
+  {
+    "scene_index": 2,
+    "start_time": 6.04,
+    "end_time": 8.92,
+    "duration": 2.88,
+    "role": "pattern_interrupt",
+    "description": "Cắt sang ảnh chụp tĩnh góc rộng của phòng khách và bộ sofa (chưa có người)",
+    "on_screen_text": "Cả căn phòng này lúc đầu chỉ là một tấm ảnh",
+    "keyframe": "frames/scene_002.jpg"
+  },
+  {
+    "scene_index": 3,
+    "start_time": 8.92,
+    "end_time": 15.12,
+    "duration": 6.20,
+    "role": "problem_solution",
+    "description": "Ảnh phòng khách được ghép mẫu ảo đứng bên cạnh sofa chỉ tay giới thiệu",
+    "on_screen_text": "Agent tự nghĩ kịch bản rồi đưa em vào giới thiệu hộ",
+    "keyframe": "frames/scene_003.jpg"
+  },
+  {
+    "scene_index": 4,
+    "start_time": 15.12,
+    "end_time": 21.08,
+    "duration": 5.96,
+    "role": "demo_proof",
+    "description": "Cận cảnh bàn tay ấn thử vào đệm sofa để chứng minh độ lún và đàn hồi",
+    "on_screen_text": "Ấn thử thế này: Êm và đàn hồi ngay",
+    "keyframe": "frames/scene_004.jpg"
+  },
+  {
+    "scene_index": 5,
+    "start_time": 21.08,
+    "end_time": 26.75,
+    "duration": 5.67,
+    "role": "product_feature",
+    "description": "Chuyển sang chiếc ghế bành thư giãn đơn đặt cạnh cửa sổ có ánh nắng chiếu rọi",
+    "on_screen_text": "Ghế bành nhâm nhi tách trà ngắm nắng",
+    "keyframe": "frames/scene_005.jpg"
+  },
+  {
+    "scene_index": 6,
+    "start_time": 26.75,
+    "end_time": 32.04,
+    "duration": 5.29,
+    "role": "value_proposition",
+    "description": "Mẫu ảo nói trực diện: không thợ quay, không thuê mẫu, không mất buổi dựng",
+    "on_screen_text": "Không thợ quay · Không thuê mẫu · Không buổi dựng",
+    "keyframe": "frames/scene_006.jpg"
+  },
+  {
+    "scene_index": 7,
+    "start_time": 32.04,
+    "end_time": 37.96,
+    "duration": 5.92,
+    "role": "upsell_usecases",
+    "description": "Trình chiếu nhanh các sản phẩm khác: bàn đá, bàn trà, sofa văng",
+    "on_screen_text": "Bán sofa, bàn đá, cả bộ phòng khách chỉ cần vài tấm ảnh",
+    "keyframe": "frames/scene_007.jpg"
+  },
+  {
+    "scene_index": 8,
+    "start_time": 37.96,
+    "end_time": 43.33,
+    "duration": 5.37,
+    "role": "cta",
+    "description": "Mẫu ảo kêu gọi tham gia khoá học làm video bằng Agent",
+    "on_screen_text": "Tìm hiểu khóa làm video bằng Agent nhé!",
+    "keyframe": "frames/scene_008.jpg"
+  },
+  {
+    "scene_index": 9,
+    "start_time": 43.33,
+    "end_time": 45.79,
+    "duration": 2.46,
+    "role": "outro",
+    "description": "Logo và link đăng ký `videoagentcis.netlify.app`",
+    "on_screen_text": "videoagentcis.netlify.app",
+    "keyframe": "frames/scene_009.jpg"
+  }
+]

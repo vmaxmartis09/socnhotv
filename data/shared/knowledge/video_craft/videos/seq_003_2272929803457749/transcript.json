@@ -1,0 +1,56 @@
+[
+  {
+    "start": 0.0,
+    "end": 8.18,
+    "text": "Chỉ 50.000 một tháng, tôi có thể tạo ra một dàn KOC ảo để xây kênh TikTok review thời trang với độ chân thực khiến nhiều người nhìn qua khó có thể phân biệt như thế này.",
+    "role": "hook"
+  },
+  {
+    "start": 8.18,
+    "end": 12.14,
+    "text": "Kênh tôi mới xây được một tuần mà đã có video lên xu hướng cả triệu view.",
+    "role": "social_proof"
+  },
+  {
+    "start": 12.14,
+    "end": 16.96,
+    "text": "Bí quyết tạo ra mẫu ảo review thời trang dễ lắm. Mách anh em nền tảng AI Co-Maker này đây.",
+    "role": "reveal_tool"
+  },
+  {
+    "start": 16.96,
+    "end": 25.4,
+    "text": "Co-Maker - nền tảng AI tạo video ngay trên web, chỉ 50.000 một tháng bao trọn từ A đến Z cho đến khi bạn xuất được video chất lượng mới thôi.",
+    "role": "feature_pricing"
+  },
+  {
+    "start": 25.4,
+    "end": 35.96,
+    "text": "Không cần ngồi mò prompt, cũng chẳng phải học AI từ đầu. Chỉ cần vào Co-Maker lướt tìm kho mẫu, chọn mẫu, bấm remix rồi sửa vài dòng lệnh đơn giản cho chuẩn ý mình, 15 phút là có một video hoàn chỉnh rồi.",
+    "role": "remix_workflow"
+  },
+  {
+    "start": 35.96,
+    "end": 39.3,
+    "text": "Với hàng ngàn mẫu video đa dạng liên tục được cập nhật từng giờ.",
+    "role": "library_scale"
+  },
+  {
+    "start": 39.3,
+    "end": 44.84,
+    "text": "Từ giờ anh em chả phải lo bí ý tưởng, cứ cái gì hot nhất trên mạng xã hội vào Co-Maker là có hết.",
+    "role": "viral_trends"
+  },
+  {
+    "start": 44.84,
+    "end": 50.84,
+    "text": "Co-Maker cam kết có chuyên gia hỗ trợ tận răng, đến khi bạn tự tay xuất được video nét căng mới thôi.",
+    "role": "support_guarantee"
+  },
+  {
+    "start": 50.84,
+    "end": 60.67,
+    "text": "Cam kết hoàn tiền nếu không hiệu quả. Tạo video nhanh, dễ, chất lượng như này thì tội gì anh em mình không thử. Mọi người tham khảo link bên dưới nhé.",
+    "role": "cta_guarantee"
+  }
+]

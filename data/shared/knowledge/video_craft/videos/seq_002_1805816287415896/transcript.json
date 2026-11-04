@@ -1,0 +1,56 @@
+[
+  {
+    "start": 0.0,
+    "end": 6.8,
+    "text": "Tôi vừa tạo ra một dàn KOL bằng AI, với độ chân thực đủ khiến nhiều người nhìn qua khó phân biệt.",
+    "role": "hook"
+  },
+  {
+    "start": 6.8,
+    "end": 14.76,
+    "text": "Điểm đặc biệt không chỉ là hình ảnh đẹp, mà còn là khả năng giữ gương mặt đồng nhất trong rất nhiều bối cảnh khác nhau. Và câu hỏi là liệu những KOL AI này có thể thật sự đi làm và tạo ra doanh thu hay không?",
+    "role": "open_loop"
+  },
+  {
+    "start": 14.76,
+    "end": 23.44,
+    "text": "Xem nhé, lúc này cô ấy có thể xuất hiện trong một bộ ảnh quảng bá cho dòng xe mới. Ngay sau đó, vẫn là gương mặt đó, nhưng chuyển sang concept studio với phong cách hoàn toàn khác.",
+    "role": "demo_automotive_studio"
+  },
+  {
+    "start": 23.44,
+    "end": 27.4,
+    "text": "Tiếp theo, cô ấy có thể trở thành hình ảnh đại diện trong một dự án bất động sản cao cấp.",
+    "role": "demo_real_estate"
+  },
+  {
+    "start": 27.4,
+    "end": 31.04,
+    "text": "Và chỉ một lúc sau, cô ấy lại tiếp tục xuất hiện trong chiến dịch giới thiệu cho một sản phẩm tiêu dùng mới.",
+    "role": "demo_fmcg"
+  },
+  {
+    "start": 31.04,
+    "end": 36.36,
+    "text": "Một gương mặt, nhiều bối cảnh, nhiều ngành hàng, và vô số cơ hội thương mại.",
+    "role": "value_summary"
+  },
+  {
+    "start": 36.36,
+    "end": 40.76,
+    "text": "Không chỉ tạo ra một nhân vật ảo, mà có thể tạo ra cả một hệ thống hình ảnh nhất quán để triển khai cho nhiều lĩnh vực khác nhau.",
+    "role": "system_framing"
+  },
+  {
+    "start": 40.76,
+    "end": 50.88,
+    "text": "Nếu bạn đang quan tâm tới việc tự tạo và sở hữu những KOL AI như vậy, đồng thời muốn biết cách biến chúng thành công cụ tạo ra doanh thu, hãy comment AI bên dưới. Tôi sẽ gửi thông tin chi tiết cho bạn hoàn toàn miễn phí.",
+    "role": "lead_magnet_cta"
+  },
+  {
+    "start": 50.88,
+    "end": 64.8,
+    "text": "Tất cả đều có trong AI Superpower, khóa học giúp bạn xây dựng hàng loạt tự động hóa 100%. Tôi đang chia sẻ hoàn toàn miễn phí kiến thức mà bạn có thể phải tốn hàng chục triệu đồng để đi học bên ngoài mà có khi chẳng thu lại được gì. Click ngay vào link đăng ký bên dưới để nhận trọn quy trình và công cụ thực chiến mà tôi đang dùng mỗi ngày.",
+    "role": "course_pitch"
+  }
+]

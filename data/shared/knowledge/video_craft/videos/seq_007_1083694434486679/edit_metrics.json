@@ -1,0 +1,36 @@
+{
+  "duration_s": 233.01,
+  "scene_count": 8,
+  "cuts_per_10s": 1.42,
+  "median_shot_duration_s": 25.10,
+  "total_spoken_words": 612,
+  "speech_rate_words_per_sec": 2.63,
+  "silence_ratio": 0.05,
+  "loudness": {
+    "integrated_lufs": -14.07,
+    "true_peak_dbtp": -0.98,
+    "lra_lu": 3.60,
+    "threshold_lufs": -24.23,
+    "standard_compliance": "TikTok -14 LUFS strictly compliant"
+  },
+  "video_specs": {
+    "width": 1280,
+    "height": 698,
+    "aspect_ratio": "16:9",
+    "fps": 30.0,
+    "safe_zone_vertical_compliant": false,
+    "workflow_type": "Node-graph Canvas Architecture (Infinite Canvas)",
+    "models_used": [
+      "Kling 1.5 (cho video generation 15s/node)",
+      "FLUX Try-on (cho virtual garment fitting)",
+      "Canvas Node Graph (nối dây tự động)"
+    ]
+  },
+  "color_palette_hex": [
+    "#0F172A",
+    "#38BDF8",
+    "#10B981",
+    "#F8FAFC",
+    "#64748B"
+  ]
+}

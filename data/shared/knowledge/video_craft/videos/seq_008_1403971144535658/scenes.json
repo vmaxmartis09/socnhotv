@@ -1,0 +1,42 @@
+[
+  {
+    "scene_index": 1,
+    "start_time": 0.0,
+    "end_time": 9.48,
+    "duration": 9.48,
+    "role": "hook_curiosity",
+    "description": "Tác giả nói chuyện tự nhiên vào camera: 'Let me show you something crazy... building this workflow to create super realistic characters'.",
+    "on_screen_text": "One video into infinite amount of ads",
+    "keyframe": "frames/scene_001.jpg"
+  },
+  {
+    "scene_index": 2,
+    "start_time": 9.48,
+    "end_time": 17.76,
+    "duration": 8.28,
+    "role": "feature_element_swap_product",
+    "description": "Trong khi nhân vật vẫn đang nói và giữ nguyên cử động tay, sản phẩm trên tay lập tức biến đổi từ chai serum sang hũ kem dưỡng và lon nước uống.",
+    "on_screen_text": "Switch products anytime",
+    "keyframe": "frames/scene_004.jpg"
+  },
+  {
+    "scene_index": 3,
+    "start_time": 17.76,
+    "end_time": 24.16,
+    "duration": 6.4,
+    "role": "feature_element_swap_env_character",
+    "description": "Bối cảnh đằng sau đổi từ phòng ngủ sang bãi biển, trang phục đổi từ áo phông sang vest, và gương mặt đổi thành cô gái châu Á rồi chàng trai tóc vàng.",
+    "on_screen_text": "Different environment · outfits · even a different me",
+    "keyframe": "frames/scene_007.jpg"
+  },
+  {
+    "scene_index": 4,
+    "start_time": 24.16,
+    "end_time": 29.67,
+    "duration": 5.51,
+    "role": "language_swap_cta",
+    "description": "Nhân vật chuyển sang nói tiếng Nhật trôi chảy với khẩu hình miệng khớp 100%, kêu gọi 'Comment AI để nhận link tutorial'.",
+    "on_screen_text": "Language switch (Lip-sync) · Comment 'AI'",
+    "keyframe": "frames/scene_009.jpg"
+  }
+]

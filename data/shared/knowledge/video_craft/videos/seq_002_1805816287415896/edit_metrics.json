@@ -1,0 +1,39 @@
+{
+  "duration_s": 64.87,
+  "scene_count": 8,
+  "cuts_per_10s": 3.85,
+  "median_shot_duration_s": 2.20,
+  "total_spoken_words": 194,
+  "speech_rate_words_per_sec": 2.99,
+  "silence_ratio": 0.04,
+  "loudness": {
+    "integrated_lufs": -14.10,
+    "true_peak_dbtp": -1.27,
+    "lra_lu": 2.30,
+    "threshold_lufs": -24.12,
+    "standard_compliance": "TikTok -14 LUFS strictly compliant"
+  },
+  "video_specs": {
+    "width": 720,
+    "height": 1280,
+    "aspect_ratio": "9:16",
+    "fps": 30.0,
+    "safe_zone_vertical_compliant": true,
+    "strengths": [
+      "Khung hình dọc 9:16 chiếm trọn màn hình",
+      "Montage đoạn 31s-40s nhịp cắt nhanh (0.8s/ảnh) giữ mắt người xem liên tục",
+      "Âm thanh nén compressor chắc chắn, giọng nam trầm ấm áp"
+    ],
+    "weaknesses": [
+      "Phần CTA kéo dài quá nhiều (24s cuối chiếm gần 40% thời lượng video)",
+      "Quá rõ mùi phễu bán hàng (Comment AI, lớp Zoom miễn phí)"
+    ]
+  },
+  "color_palette_hex": [
+    "#1A1D20",
+    "#D4AF37",
+    "#F5F5F7",
+    "#2F3542",
+    "#E44D26"
+  ]
+}

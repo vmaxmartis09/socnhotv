@@ -1,0 +1,82 @@
+[
+  {
+    "scene_index": 1,
+    "start_time": 0.0,
+    "end_time": 6.8,
+    "duration": 6.8,
+    "role": "hook",
+    "description": "Cận cảnh gương mặt nữ KOL AI siêu thực đang mỉm cười nhẹ, tóc bay tự nhiên",
+    "on_screen_text": "Dàn KOL AI chân thực khó phân biệt",
+    "keyframe": "frames/scene_001.jpg"
+  },
+  {
+    "scene_index": 2,
+    "start_time": 6.8,
+    "end_time": 14.76,
+    "duration": 7.96,
+    "role": "open_loop",
+    "description": "Hiển thị lưới 4 ảnh cùng 1 khuôn mặt trong 4 trang phục và góc máy khác nhau",
+    "on_screen_text": "Giữ 1 gương mặt qua 1000 bối cảnh",
+    "keyframe": "frames/scene_005.jpg"
+  },
+  {
+    "scene_index": 3,
+    "start_time": 14.76,
+    "end_time": 23.44,
+    "duration": 8.68,
+    "role": "context_1_automotive",
+    "description": "KOL AI đứng bên cạnh siêu xe thể thao trong showroom sang trọng, sau đó chuyển sang concept studio thời trang cao cấp",
+    "on_screen_text": "Quảng bá xe mới → Concept Studio thời trang",
+    "keyframe": "frames/scene_012.jpg"
+  },
+  {
+    "scene_index": 4,
+    "start_time": 23.44,
+    "end_time": 27.4,
+    "duration": 3.96,
+    "role": "context_2_real_estate",
+    "description": "KOL AI diện vest thanh lịch đứng trước ban công penthouse nhìn ra thành phố",
+    "on_screen_text": "Đại diện dự án Bất Động Sản",
+    "keyframe": "frames/scene_018.jpg"
+  },
+  {
+    "scene_index": 5,
+    "start_time": 27.4,
+    "end_time": 31.04,
+    "duration": 3.64,
+    "role": "context_3_fmcg",
+    "description": "KOL AI cầm sản phẩm mỹ phẩm / đồ uống trong bối cảnh quán cafe sáng sủa",
+    "on_screen_text": "Chiến dịch sản phẩm tiêu dùng",
+    "keyframe": "frames/scene_023.jpg"
+  },
+  {
+    "scene_index": 6,
+    "start_time": 31.04,
+    "end_time": 40.76,
+    "duration": 9.72,
+    "role": "system_framing",
+    "description": "Montage chuyển cảnh cực nhanh (0.8s/ảnh) thể hiện hàng chục concept khác nhau của cùng nhân vật",
+    "on_screen_text": "Một gương mặt · Nhiều bối cảnh · Doanh thu thương mại",
+    "keyframe": "frames/scene_030.jpg"
+  },
+  {
+    "scene_index": 7,
+    "start_time": 40.76,
+    "end_time": 50.88,
+    "duration": 10.12,
+    "role": "cta_lead_magnet",
+    "description": "Hiệu ứng chữ to nổi bật: 'BÌNH LUẬN AI ĐỂ NHẬN HƯỚNG DẪN MIỄN PHÍ'",
+    "on_screen_text": "Comment AI để nhận tài liệu miễn phí",
+    "keyframe": "frames/scene_037.jpg"
+  },
+  {
+    "scene_index": 8,
+    "start_time": 50.88,
+    "end_time": 64.87,
+    "duration": 13.99,
+    "role": "course_pitch",
+    "description": "Màn hình chụp giao diện khóa học AI Superpower và nút đăng ký lớp Zoom",
+    "on_screen_text": "Lớp Zoom thực chiến 100% tự động hóa",
+    "keyframe": "frames/scene_042.jpg"
+  }
+]
