@@ -97,6 +97,86 @@ export interface GeneratedScriptResponse {
   render_request: any;
 }
 
+// B4: Channel Intelligence & Ideas
+export interface ChannelMeta {
+  id: string;
+  url: string;
+  name: string;
+  uploader_id?: string;
+  avatar?: string;
+  video_count: number;
+  top_ingested_sources?: string[];
+  updated_at?: string;
+}
+
+export interface ChannelPillar {
+  name: string;
+  video_count: number;
+  video_pct: number;
+  total_views: number;
+  view_pct: number;
+  avg_views: number;
+}
+
+export interface ChannelAnalysisResponse {
+  blueprint: any;
+  channel_meta: ChannelMeta;
+  stats: {
+    total_videos: number;
+    median_views: number;
+    avg_views: number;
+    avg_duration_s: number;
+    shorts_ratio: number;
+    longs_ratio: number;
+    upload_cadence: string;
+    avg_title_length: number;
+    emoji_ratio: number;
+    number_ratio: number;
+  };
+  pillars: ChannelPillar[];
+  schedule_heatmap: number[][]; // 7 days x 24 hours
+  top_outliers: Array<{
+    id: string;
+    title: string;
+    view_count: number;
+    outlier_score: number;
+    thumbnail: string;
+    url: string;
+  }>;
+  title_patterns: string[];
+}
+
+export interface ChannelStrategy {
+  project_id: string;
+  reference_channels: string[];
+  differentiation: string;
+  our_pillars: Array<{
+    id: string;
+    name: string;
+    description: string;
+    target_ratio: number;
+  }>;
+  title_rules: string[];
+  thumbnail_rules: string[];
+  publishing_schedule: Record<string, string>;
+  format_mix: Record<string, number>;
+  kpi_30d: Record<string, any>;
+  guardrails: string[];
+}
+
+export type IdeaStatus = "new" | "scripted" | "rendered" | "scheduled" | "dropped";
+
+export interface ContentIdea {
+  id: string;
+  project_id: string;
+  title: string;
+  platform_targets: string[];
+  template_id?: string;
+  blueprint_ref?: string;
+  priority: number;
+  status: IdeaStatus;
+}
+
 async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
   const url = `${CORE_URL}${path}`;
   const res = await fetch(url, {
@@ -186,6 +266,84 @@ export const intelApi = {
     return request<GeneratedScriptResponse>(`/projects/${pid}/intel/generate-script`, {
       method: "POST",
       body: JSON.stringify(req),
+    });
+  },
+
+  // B4: Channel Intelligence
+  ingestChannel: async (
+    pid: string,
+    url: string,
+    maxVideos: number = 50
+  ): Promise<ChannelAnalysisResponse> => {
+    return request<ChannelAnalysisResponse>(`/projects/${pid}/intel/channels`, {
+      method: "POST",
+      body: JSON.stringify({ url, max_videos: maxVideos }),
+    });
+  },
+
+  listChannels: async (pid: string): Promise<ChannelMeta[]> => {
+    return request<ChannelMeta[]>(`/projects/${pid}/intel/channels`);
+  },
+
+  getChannelAnalysis: async (
+    pid: string,
+    channelId: string
+  ): Promise<ChannelAnalysisResponse> => {
+    return request<ChannelAnalysisResponse>(`/projects/${pid}/intel/channels/${channelId}`);
+  },
+
+  // Strategy
+  generateStrategy: async (
+    pid: string,
+    channelIds: string[]
+  ): Promise<ChannelStrategy> => {
+    return request<ChannelStrategy>(`/projects/${pid}/intel/strategy`, {
+      method: "POST",
+      body: JSON.stringify({ channel_ids: channelIds }),
+    });
+  },
+
+  getStrategy: async (pid: string): Promise<ChannelStrategy> => {
+    return request<ChannelStrategy>(`/projects/${pid}/intel/strategy`);
+  },
+
+  // Content Ideas & Kanban
+  generateIdeas: async (pid: string, count: number = 30): Promise<ContentIdea[]> => {
+    return request<ContentIdea[]>(`/projects/${pid}/intel/ideas/generate?count=${count}`, {
+      method: "POST",
+    });
+  },
+
+  listIdeas: async (pid: string, status?: string): Promise<ContentIdea[]> => {
+    const qs = status ? `?status=${encodeURIComponent(status)}` : "";
+    return request<ContentIdea[]>(`/projects/${pid}/intel/ideas${qs}`);
+  },
+
+  updateIdea: async (
+    pid: string,
+    ideaId: string,
+    data: { status?: string; priority?: number }
+  ): Promise<ContentIdea> => {
+    return request<ContentIdea>(`/projects/${pid}/intel/ideas/${ideaId}`, {
+      method: "PATCH",
+      body: JSON.stringify(data),
+    });
+  },
+
+  promoteIdea: async (
+    pid: string,
+    ideaId: string,
+    data?: { product_id?: string; character_name?: string; voice_id?: string }
+  ): Promise<any> => {
+    return request<any>(`/projects/${pid}/intel/ideas/${ideaId}/promote`, {
+      method: "POST",
+      body: JSON.stringify(data || {}),
+    });
+  },
+
+  scheduleIdea: async (pid: string, ideaId: string): Promise<any> => {
+    return request<any>(`/projects/${pid}/intel/ideas/${ideaId}/schedule`, {
+      method: "POST",
     });
   },
 };

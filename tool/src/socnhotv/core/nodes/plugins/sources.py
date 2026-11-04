@@ -92,5 +92,21 @@ def register(registry: Any) -> None:
             ],
             default_params={"generator_type": "koc_review", "voice_id": "soc-nho"},
             mockable=True,
+        ),
+        NodeDefinition(
+            type_name="channel_insight",
+            display_name="Phân tích Kênh Đối thủ",
+            category="Intelligence",
+            description="Bóc tách thống kê, chủ đề pillars, mẫu tiêu đề và công thức viral từ kênh YouTube/TikTok",
+            input_ports=[
+                PortDefinition(name="channel_url", port_type=PortType.TEXT, description="URL kênh đối thủ"),
+            ],
+            output_ports=[
+                PortDefinition(name="blueprint", port_type=PortType.TEXT, description="Dữ liệu ChannelBlueprint"),
+                PortDefinition(name="pillars", port_type=PortType.TEXT, description="Danh sách pillars nội dung"),
+                PortDefinition(name="summary", port_type=PortType.TEXT, description="Tóm tắt phân tích kênh"),
+            ],
+            default_params={"max_videos": 50},
+            mockable=True,
         )
     )

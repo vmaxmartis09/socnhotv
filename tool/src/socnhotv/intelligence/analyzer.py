@@ -105,8 +105,8 @@ def analyze_video(project_id: str, source_id: str) -> VideoBlueprint:
 
     if scenes_data:
         for idx, sc in enumerate(scenes_data):
-            st = float(sc.get("start_s", 0.0))
-            en = float(sc.get("end_s", st + 3.0))
+            st = float(sc.get("start_s", sc.get("start_sec", 0.0)))
+            en = float(sc.get("end_s", sc.get("end_sec", st + 3.0)))
             # Find matching transcript text
             matched_text = ""
             for t_item in transcript_data:
