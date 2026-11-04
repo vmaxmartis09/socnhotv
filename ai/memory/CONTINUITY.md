@@ -22,3 +22,9 @@
    - Lệnh cập nhật/kiểm tra: `python tool/scripts/video_craft_index.py [--check]`.
    - Thăng hạng thẻ mới: `python tool/scripts/video_craft_promote.py --id <id>`.
 
+
+5. **Session V — First Real Video 45s (2026-11-04):**
+   - Video đầu tiên hoàn thành xuất sắc từ Studio UI node runner: `data/projects/soc-nho-tv/output/cau-vong/final_45s.mp4`.
+   - Độ dài: 44.5s (chuẩn 45s ±3s), 9:16 (1080x1920), -14.2 LUFS, Sóc Nhỏ master DNA, pass_all verify gate.
+   - Hoàn thành đầy đủ Mục 2B: RunStatusBar (6-stage stepper), single store Canvas ↔ Jobs sync qua `run_manager.py`, `output/<slug>/` 9 artifacts package, liên thông hiển thị tại Thư viện và Trung tâm Xuất bản (`/social/videos`).
+   - Cổng nghiệm thu: 4/4 pytest passed, 6 ảnh chụp UI `shots/V_run_*.png`, 12 khung hình contact sheet.
