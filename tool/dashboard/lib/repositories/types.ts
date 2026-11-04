@@ -65,6 +65,7 @@ export interface Character {
   sampleAudioUrl?: string;
   voiceFiles?: { name: string; url: string; sizeKb: number }[];
   promptLock: string;
+  primaryImage?: string;
   referenceImages: string[];
   referenceLibrary?: CharacterImageAsset[];
   generatedClips?: CharacterClipAsset[];

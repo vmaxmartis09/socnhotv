@@ -17,7 +17,8 @@ from gobi.services.voice.audio_preprocessor import AudioPreprocessor
 from gobi.services.voice.omnivoice_engine import OmniVoiceEngine
 
 PROJECT_ROOT = Path(__file__).resolve().parents[4]
-DEFAULT_PROFILES_DIR = PROJECT_ROOT / "assets" / "voice_vault"
+_shared_vault = PROJECT_ROOT / "data" / "shared" / "voice_vault"
+DEFAULT_PROFILES_DIR = _shared_vault if _shared_vault.exists() else (PROJECT_ROOT / "assets" / "voice_vault")
 OUTPUT_DIR = PROJECT_ROOT / "output"
 
 # Câu mặc định cho file preview của mọi giọng. Sửa theo thương hiệu dự án.

@@ -125,14 +125,13 @@ table, .tnum, [data-tnum] {
   outline-offset: 2px;
 }
 
-/* Reduced Motion Override */
+/* Reduced Motion Override (Accessible, preserves layout stability) */
 @media (prefers-reduced-motion: reduce) {
   *,
   ::before,
   ::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
 }
@@ -144,6 +143,17 @@ table, .tnum, [data-tnum] {
 }
 .node-running {
   animation: node-running-pulse 1.4s ease-in-out infinite;
+}
+
+/* Thanh tiến trình chạy liên tục không gây layout reflow (GPU Composited) */
+@keyframes node-indeterminate-bar {
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+.animate-node-indeterminate {
+  animation: node-indeterminate-bar 1.6s ease-in-out infinite;
+  will-change: transform;
 }
 
 /* Thanh cuộn: ẩn khi không cần, mảnh và chỉ hiện khi rê chuột vào vùng cuộn */

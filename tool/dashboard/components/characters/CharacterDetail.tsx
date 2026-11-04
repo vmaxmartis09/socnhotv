@@ -26,6 +26,7 @@ interface Props {
   onUploadImages: (files: File[]) => void;
   onUploadVoice: (file: File) => void;
   onUseSample: (relativeUrl: string) => void;
+  onCloneVoice?: (fileOrName: File | string) => void;
   /** Thêm một mục vào bộ nhớ nhân vật (tính cách là chuỗi, các mục còn lại là danh sách). */
   onAddMemory: (field: "personality" | "catchphrases" | "habits" | "pastEventsSummary", value: string) => void;
 }
@@ -457,11 +458,25 @@ export function CharacterDetail(p: Props) {
                     <li key={f.name} className="rounded-md border border-border p-2.5">
                       <div className="mb-1.5 flex items-center justify-between gap-2 text-[13px]">
                         <span className="truncate font-medium text-foreground">{f.name} <span className="font-normal text-muted-foreground tnum">· {f.sizeKb} KB</span></span>
-                        {active ? (
-                          <span className="shrink-0 text-xs text-brand">{t("usingSample")}</span>
-                        ) : (
-                          <Button size="sm" variant="outline" onClick={() => p.onUseSample(rel)}>{t("useSample")}</Button>
-                        )}
+                        <div className="flex items-center gap-1.5 shrink-0">
+                          {active ? (
+                            <span className="shrink-0 text-xs text-brand">{t("usingSample")}</span>
+                          ) : (
+                            <Button size="sm" variant="outline" onClick={() => p.onUseSample(rel)}>{t("useSample")}</Button>
+                          )}
+                          {p.onCloneVoice && (
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              disabled={p.busy}
+                              title="Tạo profile giọng OmniVoice từ tệp này"
+                              className="text-brand border-brand/40 hover:bg-brand/10 text-xs"
+                              onClick={() => p.onCloneVoice?.(f.name)}
+                            >
+                              ⚡ Clone giọng
+                            </Button>
+                          )}
+                        </div>
                       </div>
                       <audio controls preload="none" src={f.url} className="h-8 w-full" />
                     </li>

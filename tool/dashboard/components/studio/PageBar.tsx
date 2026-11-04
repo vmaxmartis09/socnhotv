@@ -20,7 +20,7 @@ export function PageBar({ page }: { page: "home" | "jobs" }) {
     <motion.div
       initial={enterOnce("pagebar", { opacity: 0, y: -8 })}
       animate={{ opacity: 1, y: 0 }}
-      className="pointer-events-auto absolute left-3 top-3 z-30 flex items-center gap-1 rounded-full border border-border bg-card/90 p-1 pr-1.5 backdrop-blur select-none"
+      className="pointer-events-auto absolute left-3 top-3 z-30 flex items-center gap-1 rounded-full border border-border bg-card/90 p-1 pr-1.5 backdrop-blur transform-gpu select-none"
     >
       <Link
         href="/"

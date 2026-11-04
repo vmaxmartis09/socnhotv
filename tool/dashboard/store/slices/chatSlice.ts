@@ -37,7 +37,7 @@ export interface PendingChatConfirmation {
   prompt: string;
 }
 
-export type ChatModel = "auto" | "gemini-2.5-pro" | "gemini-2.5-flash" | "rules";
+export type ChatModel = "auto" | "gemini-3.8-flash" | "gemini-2.5-pro" | "gemini-2.5-flash" | "rules";
 export type ChatFlowMode = "current" | "new" | "blank";
 export type ChatCharMode = "update" | "create";
 

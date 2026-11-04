@@ -75,7 +75,11 @@ export function ConfirmHost() {
             animate={{ opacity: 1, scale: 1, y: 0, borderRadius: 18 }}
             exit={{ opacity: 0, scale: pos ? 0.85 : 0.98 }}
             transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
-            style={pos ? { position: "fixed", left: pos.left, top: pos.top, width: W, transformOrigin: `${pos.originX}px ${pos.originY}px` } : undefined}
+            style={{
+              ...(pos ? { position: "fixed", left: pos.left, top: pos.top, width: W, transformOrigin: `${pos.originX}px ${pos.originY}px` } : {}),
+              willChange: "transform, opacity",
+              transform: "translateZ(0)",
+            }}
             className={cn("border border-border bg-card p-4", pos ? "shadow-[0_12px_40px_rgba(0,0,0,0.16)]" : "w-full max-w-sm p-5")}
           >
             <div className="flex items-start gap-3">

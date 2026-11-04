@@ -44,14 +44,26 @@ export function RightPanel() {
 
   useEffect(() => {
     if (!isResizing) return;
+    let rafId: number | null = null;
     const onMove = (e: MouseEvent) => {
-      const delta = startXRef.current - e.clientX;
-      setRightPanelWidth(startWidthRef.current + delta);
+      if (rafId !== null) return;
+      rafId = window.requestAnimationFrame(() => {
+        const delta = startXRef.current - e.clientX;
+        setRightPanelWidth(startWidthRef.current + delta);
+        rafId = null;
+      });
     };
-    const onUp = () => setIsResizing(false);
+    const onUp = () => {
+      if (rafId !== null) {
+        window.cancelAnimationFrame(rafId);
+        rafId = null;
+      }
+      setIsResizing(false);
+    };
     window.addEventListener("mousemove", onMove);
     window.addEventListener("mouseup", onUp);
     return () => {
+      if (rafId !== null) window.cancelAnimationFrame(rafId);
       window.removeEventListener("mousemove", onMove);
       window.removeEventListener("mouseup", onUp);
     };

@@ -92,7 +92,7 @@ export function TooltipHost() {
       : "translate(-50%, 0)";
 
   return (
-    <div className="pointer-events-none fixed z-[200]" style={tip ? { left: tip.x, top: tip.y, transform } : { display: "none" }}>
+    <div className="pointer-events-none fixed z-[200]" style={tip ? { left: tip.x, top: tip.y, transform, willChange: "transform" } : { display: "none" }}>
       <AnimatePresence>
         {tip && (
           <motion.div

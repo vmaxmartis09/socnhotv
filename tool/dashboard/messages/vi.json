@@ -464,7 +464,11 @@
     "appearances": "Xuất hiện trong tập",
     "noAppearances": "Chưa xuất hiện trong tập nào.",
     "uploading": "Đang tải lên...",
-    "filterAll": "Tất cả"
+    "filterAll": "Tất cả",
+    "dnaImagesTitle": "Ảnh DNA nhân vật (Master DNA)",
+    "dnaImagesHint": "Tải lên các ảnh mẫu chuẩn (chính diện, góc nghiêng, biểu cảm, toàn thân) để AI giữ nhận diện nhất quán qua các tập phim.",
+    "dropImagesHere": "Kéo thả ảnh DNA vào đây hoặc bấm để chọn tệp (PNG, JPG, WebP)",
+    "savingWithImages": "Đang lưu hồ sơ và tải ảnh DNA..."
   },
   "projects": {
     "title": "Không gian làm việc & Dự án",

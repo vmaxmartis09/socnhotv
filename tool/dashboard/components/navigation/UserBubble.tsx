@@ -11,6 +11,10 @@ import { CORE_URL } from "@/lib/repositories/core";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import {
+  MorphIcon,
+  SunNode,
+  MoonNode,
+  LaptopNode,
   X,
   Upload,
   Key,
@@ -257,7 +261,7 @@ export function UserBubble({
   );
 
   const keysConfigured = PROVIDERS.filter((p) => apiKeyStatus[p.id]?.configured).length;
-  const ThemeIcon = theme === "dark" ? Moon : theme === "light" ? Sun : Laptop;
+  const currentThemeNode = theme === "dark" ? MoonNode : theme === "light" ? SunNode : LaptopNode;
   const inputCls = "h-7 w-full rounded-md border border-border bg-card px-2 text-xs tnum text-foreground";
 
   const rows: { id: string; icon: React.ReactNode; label: string; summary: string; detail: React.ReactNode }[] = [
@@ -298,7 +302,7 @@ export function UserBubble({
     },
     {
       id: "theme",
-      icon: <ThemeIcon className="h-4 w-4" />,
+      icon: <MorphIcon icon={currentThemeNode} spring="snappy" className="h-4 w-4" />,
       label: t("themeLabel"),
       summary: theme === "light" ? t("themeLight") : theme === "dark" ? t("themeDark") : t("themeSystem"),
       detail: seg(

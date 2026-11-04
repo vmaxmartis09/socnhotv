@@ -300,11 +300,17 @@ export const StudioNode = memo(function StudioNode({
     >
       {stateKey === "running" && (
         <div className="pointer-events-none absolute inset-x-2 bottom-0 h-0.5 overflow-hidden rounded-full bg-muted">
-          <motion.div
-            className="h-full bg-brand"
-            animate={{ width: typeof data.progressPct === "number" ? `${Math.max(4, data.progressPct)}%` : ["10%", "90%", "10%"] }}
-            transition={typeof data.progressPct === "number" ? { duration: 0.3 } : { repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
-          />
+          {typeof data.progressPct === "number" ? (
+            <motion.div
+              className="h-full bg-brand"
+              initial={false}
+              animate={{ width: `${Math.max(4, Math.min(100, data.progressPct))}%` }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              style={{ willChange: "width" }}
+            />
+          ) : (
+            <div className="h-full w-2/5 rounded-full bg-brand animate-node-indeterminate" />
+          )}
         </div>
       )}
       {def.inputPorts.map((p, i) => portHandle(p, i, "in"))}

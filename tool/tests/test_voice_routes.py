@@ -20,3 +20,14 @@ def test_clone_requires_consent_valid_name_and_type():
     assert client.post("/voices/clone?name=be-test&filename=a.exe&consent=true", content=body).status_code == 400
     assert client.post("/voices/clone?name=soc-nho&filename=a.mp3&consent=true", content=body).status_code == 409
     assert client.post("/voices/clone?name=be-test&filename=a.mp3&consent=true", content=b"").status_code == 400
+
+
+def test_project_voice_clone_validation():
+    # 1. Thiếu consent
+    r = client.post("/projects/soc-nho-tv/voice/clone", json={"voiceId": "test-v"})
+    assert r.status_code == 400 and "đồng ý" in r.json()["detail"]
+
+    # 2. Thiếu tệp âm thanh nguồn
+    r = client.post("/projects/soc-nho-tv/voice/clone", json={"voiceId": "test-v", "consentConfirmed": True})
+    assert r.status_code == 400 and "âm thanh nguồn" in r.json()["detail"]
+

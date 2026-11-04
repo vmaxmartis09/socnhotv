@@ -17,6 +17,7 @@ import {
   uploadCharacterImage,
   deleteCharacterImage,
   uploadVoiceSample,
+  cloneCharacterVoice,
   generateCharacterDraft,
 } from "@/lib/repositories/character-assets";
 import { queueCharacterForStudio } from "@/lib/studio-bridge";
@@ -255,10 +256,38 @@ export function CharactersManager({ compact = false, projectId }: { compact?: bo
     }
   }
 
-  const handleSave = async (c: Character, isNew: boolean) => {
+  const handleSave = async (
+    c: Character,
+    isNew: boolean,
+    pendingFiles?: File[],
+    removedImageNames?: string[]
+  ) => {
     const repo = getRepository();
     await (isNew ? repo.createCharacter(c) : repo.saveCharacter(c));
     if (isNew) setSelectedId(c.id);
+
+    // Tải các ảnh DNA mới lên động cơ Core nếu có
+    if (pendingFiles && pendingFiles.length > 0) {
+      for (const f of pendingFiles) {
+        try {
+          await uploadCharacterImage(activeProjectId, c.id, f);
+        } catch (err) {
+          console.warn("Upload DNA image to Core skipped/failed:", err);
+        }
+      }
+    }
+
+    // Xóa các ảnh DNA đã chọn gỡ khỏi Core nếu có
+    if (removedImageNames && removedImageNames.length > 0) {
+      for (const name of removedImageNames) {
+        try {
+          await deleteCharacterImage(activeProjectId, c.id, name);
+        } catch (err) {
+          console.warn("Delete DNA image from Core skipped/failed:", err);
+        }
+      }
+    }
+
     await load();
   };
 
@@ -411,6 +440,28 @@ export function CharactersManager({ compact = false, projectId }: { compact?: bo
                   }, true)
                 }
                 onUploadVoice={(f) => run(() => uploadVoiceSample(selected.voiceId, f), true)}
+                onCloneVoice={async (fileOrName) => {
+                  const ok = await confirm({
+                    tone: "info",
+                    title: "Xác nhận nhân bản giọng (OmniVoice)",
+                    message: "Bạn xác nhận đây là giọng của chính bạn hoặc người đã đồng ý rõ ràng để tạo hồ sơ âm thanh cho nhân vật?",
+                    confirmLabel: "Nhân bản giọng",
+                  });
+                  if (!ok) return;
+                  await run(async () => {
+                    const res = await cloneCharacterVoice(activeProjectId, {
+                      voiceId: selected.voiceId || selected.id,
+                      characterId: selected.id,
+                      sourceFile: typeof fileOrName === "string" ? fileOrName : undefined,
+                      file: typeof fileOrName === "object" ? fileOrName : undefined,
+                      consentConfirmed: true,
+                    });
+                    await patch(selected, {
+                      voiceId: res.voiceId,
+                      sampleAudioUrl: res.sampleUrl || `/voices/${res.voiceId}/sample`,
+                    });
+                  }, true);
+                }}
                 onUseSample={(rel) => run(() => patch(selected, { sampleAudioUrl: rel }))}
                 onAddMemory={(field, value) =>
                   run(() =>

@@ -9,13 +9,14 @@ import {
   estimateNodeCostUsd,
 } from "@/lib/core-api";
 import { PORT_TYPE_COLORS } from "@/store/slices/canvasSlice";
-import { Send, Undo2, Copy, Trash2, Layers, Users, Bot, FolderGit2, Check } from "@/components/ui/icons";
+import { Send, Undo2, Copy, Trash2, Layers, Users, Bot, FolderGit2, Check, Sparkles, Workflow } from "@/components/ui/icons";
 import { getRepository } from "@/lib/repositories";
 import { generateCharacterDraft } from "@/lib/repositories/character-assets";
 import type { ChatModel } from "@/store/slices/chatSlice";
 import { runLocalAgent } from "@/lib/studio-agent";
 import { AiLoading } from "@/components/ui/AiLoading";
 import { useRouter } from "@/i18n/routing";
+import { SophisticatedChatInput } from "../chat/SophisticatedChatInput";
 
 export function ChatTab() {
   const t = useTranslations("chatTab");
@@ -41,6 +42,7 @@ export function ChatTab() {
     setActiveCharacterSection,
     addScheduledPost,
     isMockMode,
+    setIsMockMode,
     updateNodeExecutionState,
     projects,
     characters,
@@ -60,9 +62,7 @@ export function ChatTab() {
   const [input, setInput] = useState("");
   const [sending, setSending] = useState(false);
   const [projectNew, setProjectNew] = useState(false);
-  const [menu, setMenu] = useState<null | "slash" | "mention">(null);
   const [copiedId, setCopiedId] = useState<string | null>(null);
-  const taRef = useRef<HTMLTextAreaElement>(null);
   const endRef = useRef<HTMLDivElement>(null);
   const messages = chatByProject[activeProjectId] || [];
   const activeChar = characters.find((ch) => ch.id === chatContext.characterId) || null;
@@ -76,20 +76,11 @@ export function ChatTab() {
     { cmd: "/clear", hint: locale === "vi" ? "Xóa hội thoại" : "Clear chat" },
   ];
 
-  // Tự cuộn xuống cuối & co giãn ô nhập
+  // Tự cuộn xuống cuối
   useEffect(() => { endRef.current?.scrollIntoView({ behavior: "smooth" }); }, [messages.length, sending]);
-  useEffect(() => {
-    const el = taRef.current;
-    if (!el) return;
-    el.style.height = "auto";
-    el.style.height = Math.min(el.scrollHeight, 140) + "px";
-  }, [input]);
 
   const onInputChange = (v: string) => {
     setInput(v);
-    if (/^\/\S*$/.test(v)) setMenu("slash");
-    else if (/(^|\s)@\S*$/.test(v)) setMenu("mention");
-    else setMenu(null);
   };
 
   const say = (text: string) =>
@@ -505,15 +496,13 @@ export function ChatTab() {
 
   const sel = "h-7 min-w-0 flex-1 truncate rounded-md border border-border bg-card px-1.5 text-[12px] text-foreground";
   const lbl = "mb-0.5 flex items-center gap-1 text-[11px] font-medium text-muted-foreground";
-  const mentionQ = /(?:^|\s)@(\S*)$/.exec(input)?.[1]?.toLowerCase() ?? "";
-  const mentionList = characters.filter((ch) => ch.name.toLowerCase().includes(mentionQ));
 
   return (
     <div className="flex h-full flex-col text-xs">
       {/* Trọng tâm chat: Dự án / Nhân vật / Flow */}
-      <div className="space-y-2 border-b border-border p-2.5">
+      <div className="space-y-2 border-b border-border/70 p-2.5">
         <div className="flex items-center gap-1.5">
-          <div role="tablist" className="flex flex-1 rounded-lg bg-muted p-0.5">
+          <div role="tablist" className="flex flex-1 rounded-full bg-muted/60 p-0.5 border border-border/40">
             {([
               ["character", vi ? "Nhân vật" : "Character", Users],
               ["flow", "Flow", Layers],
@@ -525,28 +514,22 @@ export function ChatTab() {
                 role="tab"
                 aria-selected={chatContext.focus === k}
                 onClick={() => setChatContext({ focus: k })}
-                className={`flex h-7 flex-1 items-center justify-center gap-1 rounded-md text-[12px] font-medium transition-colors ${
-                  chatContext.focus === k ? "bg-card text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
+                className={`flex h-7 flex-1 items-center justify-center gap-1.5 rounded-full text-[12px] font-medium transition-all ${
+                  chatContext.focus === k ? "bg-card text-foreground shadow-xs font-semibold" : "text-muted-foreground hover:text-foreground"
                 }`}
               >
-                <Icon className="h-3 w-3" />{label}
+                <Icon className="h-3.5 w-3.5" />{label}
               </button>
             ))}
           </div>
-          <select aria-label="Model" className={sel + " !flex-none w-[92px]"} value={chatContext.model} onChange={(e) => setChatContext({ model: e.target.value as ChatModel })}>
-            <option value="auto">Auto</option>
-            <option value="gemini-2.5-pro">Gemini Pro</option>
-            <option value="gemini-2.5-flash">Gemini Flash</option>
-            <option value="rules">{vi ? "Quy tắc" : "Rules"}</option>
-          </select>
         </div>
 
-        <p className="flex items-center gap-1 text-[11px] text-muted-foreground">
-          <FolderGit2 className="h-3 w-3" />
-          <select aria-label="Project" className="max-w-[140px] truncate bg-transparent font-medium text-foreground outline-none" value={activeProjectId} onChange={(e) => switchProject(e.target.value)}>
+        <p className="flex items-center gap-1.5 text-[11px] text-muted-foreground px-1">
+          <FolderGit2 className="h-3.5 w-3.5 text-brand shrink-0" />
+          <select aria-label="Project" className="max-w-[150px] truncate bg-transparent font-medium text-foreground outline-none cursor-pointer" value={activeProjectId} onChange={(e) => switchProject(e.target.value)}>
             {projects.map((p) => <option key={p.id} value={p.id}>{p.name}</option>)}
           </select>
-          {vi ? "· mọi thao tác nằm trong dự án này" : "· all actions stay in this project"}
+          <span>{vi ? "· phạm vi dự án" : "· active project scope"}</span>
         </p>
 
         {chatContext.focus === "character" && (
@@ -602,11 +585,14 @@ export function ChatTab() {
       </div>
 
       {/* Hội thoại */}
-      <div className="scroll-quiet flex-1 space-y-2.5 overflow-y-auto p-3.5">
+      <div className="scroll-quiet flex-1 space-y-3 overflow-y-auto p-3.5">
         {messages.length === 0 && (
-          <div className="rounded-lg border border-dashed border-border p-3 text-muted-foreground">
-            <p className="font-medium text-foreground">{t("assistantTitle")}</p>
-            <p className="mt-0.5 leading-snug">{t("assistantSub")}</p>
+          <div className="rounded-2xl border border-dashed border-border/80 bg-muted/20 p-4 text-muted-foreground">
+            <div className="flex items-center gap-2 text-foreground font-semibold">
+              <Bot className="h-4 w-4 text-brand" />
+              <span>{t("assistantTitle")}</span>
+            </div>
+            <p className="mt-1 leading-relaxed text-xs">{t("assistantSub")}</p>
           </div>
         )}
         {messages.map((m) => (
@@ -614,37 +600,37 @@ export function ChatTab() {
             key={m.id}
             className={
               m.role === "user"
-                ? "group ml-6 rounded-lg border border-border bg-accent/60 p-2.5 text-foreground"
-                : "group mr-2 space-y-2 rounded-lg border border-border bg-card p-2.5 text-foreground"
+                ? "group ml-6 rounded-2xl rounded-br-sm border border-border/60 bg-accent/40 p-3 text-foreground shadow-xs"
+                : "group mr-2 space-y-2 rounded-2xl rounded-bl-sm border border-border/60 bg-card/85 p-3 text-foreground shadow-xs"
             }
           >
-            <p className="whitespace-pre-wrap leading-relaxed">{m.text}</p>
+            <p className="whitespace-pre-wrap leading-relaxed text-xs sm:text-[13px]">{m.text}</p>
             <button
               type="button"
               aria-label="Copy"
               onClick={() => { navigator.clipboard?.writeText(m.text); setCopiedId(m.id); setTimeout(() => setCopiedId(null), 1200); }}
               className="hidden h-5 items-center gap-1 text-[11px] text-muted-foreground hover:text-foreground group-hover:inline-flex"
             >
-              {copiedId === m.id ? <Check className="h-3 w-3" /> : <Copy className="h-3 w-3" />}
+              {copiedId === m.id ? <Check className="h-3 w-3 text-brand" /> : <Copy className="h-3 w-3" />}
               {copiedId === m.id ? (vi ? "Đã chép" : "Copied") : (vi ? "Chép" : "Copy")}
             </button>
 
             {m.actionCard && (
-              <div className="space-y-1.5 rounded-md border border-border bg-muted/40 p-2">
+              <div className="space-y-1.5 rounded-xl border border-border/80 bg-muted/40 p-2.5">
                 <p className="text-[13px] font-medium text-foreground">
                   {vi ? m.actionCard.summaryVi : m.actionCard.summaryEn}
                 </p>
                 <div className="flex items-center gap-1.5">
                   {m.actionCard.undone ? (
-                    <span className="rounded bg-accent px-1.5 py-0.5 text-xs text-muted-foreground">{t("undoneBadge")}</span>
+                    <span className="rounded-full bg-accent px-2 py-0.5 text-xs text-muted-foreground">{t("undoneBadge")}</span>
                   ) : (
                     m.actionCard.snapshotBefore && (
                       <button
                         type="button"
                         onClick={() => handleUndoChatAction(m.id, m.actionCard?.snapshotBefore)}
-                        className="inline-flex h-6 items-center gap-1 rounded border border-border bg-card px-2 text-xs font-medium text-foreground hover:bg-accent"
+                        className="inline-flex h-6 items-center gap-1 rounded-full border border-border bg-card px-2.5 text-xs font-medium text-foreground hover:bg-accent transition-colors"
                       >
-                        <Undo2 className="h-2.5 w-2.5" />
+                        <Undo2 className="h-3 w-3" />
                         <span>{t("undoActionBtn")}</span>
                       </button>
                     )
@@ -653,7 +639,7 @@ export function ChatTab() {
                     <button
                       type="button"
                       onClick={() => { setSelectedNodeId(m.actionCard!.targetNodeId!); flashNode(m.actionCard!.targetNodeId!); }}
-                      className="inline-flex h-6 items-center rounded border border-border bg-card px-2 text-xs font-medium text-foreground hover:bg-accent"
+                      className="inline-flex h-6 items-center rounded-full border border-border bg-card px-2.5 text-xs font-medium text-foreground hover:bg-accent transition-colors"
                     >
                       {t("viewOnCanvasBtn")}
                     </button>
@@ -664,84 +650,49 @@ export function ChatTab() {
           </div>
         ))}
         {sending && (
-          <div className="mr-2 rounded-lg border border-border bg-card p-2.5">
+          <div className="mr-2 rounded-2xl rounded-bl-sm border border-border/60 bg-card/85 p-3 shadow-xs">
             <AiLoading lines={2} />
           </div>
         )}
         <div ref={endRef} />
       </div>
 
-      {/* Gợi ý động + ô nhập */}
-      <div className="border-t border-border p-2.5">
-        <div className="scroll-quiet mb-2 flex gap-1.5 overflow-x-auto pb-0.5">
+      {/* Gợi ý động + Khung chat Antigravity tinh tế */}
+      <div className="border-t border-border/60 p-3 bg-card/30 backdrop-blur-sm">
+        <div className="scroll-quiet mb-2.5 flex gap-1.5 overflow-x-auto pb-0.5">
           {quickPrompts.map((qp) => (
             <button
               key={qp}
               type="button"
               disabled={sending}
               onClick={() => handleSendCommand(qp)}
-              className="shrink-0 rounded-full border border-border bg-card px-2.5 py-1 text-[12px] text-foreground hover:bg-accent disabled:opacity-50"
+              className="shrink-0 rounded-full border border-border/60 bg-card/80 px-3 py-1 text-[11px] font-medium text-muted-foreground hover:border-foreground/30 hover:text-foreground transition-all shadow-xs disabled:opacity-50"
             >
               {qp}
             </button>
           ))}
         </div>
 
-        <form
-          onSubmit={(e) => { e.preventDefault(); setMenu(null); handleSendCommand(); }}
-          className="relative"
-        >
-          {menu && (
-            <ul className="absolute bottom-full left-0 right-0 mb-1 max-h-40 overflow-y-auto rounded-md border border-border bg-popover p-1 shadow-md">
-              {menu === "slash" &&
-                SLASH.filter((x) => x.cmd.startsWith(input.trim())).map((x) => (
-                  <li key={x.cmd}>
-                    <button type="button" onClick={() => { setInput(x.cmd + " "); setMenu(null); taRef.current?.focus(); }} className="flex w-full items-center gap-2 rounded px-2 py-1 text-left hover:bg-accent">
-                      <code className="font-semibold">{x.cmd}</code><span className="text-muted-foreground">{x.hint}</span>
-                    </button>
-                  </li>
-                ))}
-              {menu === "mention" &&
-                (mentionList.length ? mentionList : []).map((ch) => (
-                  <li key={ch.id}>
-                    <button type="button" onClick={() => { setInput(input.replace(/@\S*$/, `@${ch.name} `)); setChatContext({ characterId: ch.id, characterMode: "update" }); setMenu(null); taRef.current?.focus(); }} className="flex w-full items-center gap-2 rounded px-2 py-1 text-left hover:bg-accent">
-                      <Users className="h-3 w-3" /><span>{ch.name}</span><span className="text-muted-foreground">{ch.heightCm} cm</span>
-                    </button>
-                  </li>
-                ))}
-            </ul>
-          )}
-          <div className="flex items-end gap-1.5 rounded-lg border border-border bg-card p-1.5 focus-within:ring-1 focus-within:ring-ring">
-            <textarea
-              ref={taRef}
-              rows={1}
-              value={input}
-              onChange={(e) => onInputChange(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" && !e.shiftKey && !e.nativeEvent.isComposing) { e.preventDefault(); setMenu(null); handleSendCommand(); }
-                if (e.key === "Escape") setMenu(null);
-              }}
-              placeholder={vi ? "Nhắn…  / lệnh · @ nhân vật · Shift+Enter xuống dòng" : "Message…  / commands · @ character · Shift+Enter newline"}
-              className="max-h-[140px] min-h-[28px] flex-1 resize-none bg-transparent px-1.5 py-1 text-xs text-foreground outline-none"
-            />
-            <button
-              type="button"
-              aria-label="Clear"
-              onClick={() => clearProjectChat(activeProjectId)}
-              className="flex h-7 w-7 items-center justify-center rounded-md text-muted-foreground hover:bg-accent"
-            >
-              <Trash2 className="h-3.5 w-3.5" />
-            </button>
-            <button
-              type="submit"
-              disabled={sending || !input.trim()}
-              className="flex h-7 items-center gap-1 rounded-md bg-primary px-2.5 text-xs font-medium text-primary-foreground disabled:opacity-50"
-            >
-              <Send className="h-3.5 w-3.5" />
-              <span>{t("sendBtn")}</span>
-            </button>
-          </div>
-        </form>
+        <SophisticatedChatInput
+          input={input}
+          onInputChange={onInputChange}
+          onSubmit={() => handleSendCommand()}
+          disabled={sending}
+          model={chatContext.model}
+          onModelChange={(m) => setChatContext({ model: m })}
+          isMockMode={isMockMode}
+          onToggleMockMode={() => setIsMockMode(!isMockMode)}
+          characters={characters}
+          onMentionSelect={(charId, charName) => {
+            setInput((prev) => prev.replace(/@\S*$/, `@${charName} `));
+            setChatContext({ characterId: charId, characterMode: "update" });
+          }}
+          onSlashSelect={(cmd) => {
+            setInput(`${cmd} `);
+          }}
+          onClearChat={() => clearProjectChat(activeProjectId)}
+          slashCommands={SLASH}
+        />
       </div>
 
       {/* Confirmation Modal for Paid Run or External Publishing */}

@@ -464,7 +464,11 @@
     "appearances": "Episode appearances",
     "noAppearances": "Not in any episode yet.",
     "uploading": "Uploading...",
-    "filterAll": "All"
+    "filterAll": "All",
+    "dnaImagesTitle": "Character DNA Images (Master DNA)",
+    "dnaImagesHint": "Upload reference images (front, profile, expression, full-body) to maintain visual consistency across episodes.",
+    "dropImagesHere": "Drag & drop DNA images here or click to browse (PNG, JPG, WebP)",
+    "savingWithImages": "Saving profile and uploading DNA images..."
   },
   "projects": {
     "title": "Workspace & Projects",

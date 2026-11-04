@@ -256,6 +256,11 @@ function StudioCanvasInner() {
     );
   }, [nodes, isMockMode]);
 
+  const normalizedEdges = useMemo(
+    () => edges.map((e) => (e.type === "smoothstep" || e.type === "step" ? { ...e, type: "default" } : e)),
+    [edges]
+  );
+
   // Nạp đồ thị đã lưu của dự án từ Core mỗi khi vào/đổi dự án
   const loadProjectGraph = useStudioStore((st) => st.loadProjectGraph);
   const graphLoaded = useStudioStore((st) => Boolean(st.loadedGraphs[activeProjectId]));
@@ -1314,7 +1319,7 @@ function StudioCanvasInner() {
           ) : (
             <ReactFlow
               nodes={nodes}
-              edges={edges.map((e) => (e.type === "smoothstep" || e.type === "step" ? { ...e, type: "default" } : e))}
+              edges={normalizedEdges}
               defaultEdgeOptions={{ type: "default" }}
               connectionLineType={ConnectionLineType.Bezier}
               onNodesChange={onNodesChange}

@@ -85,7 +85,7 @@ export function StudioBreadcrumb() {
       ref={barRef}
       initial={enterOnce("breadcrumb", { opacity: 0, y: -8 })}
       animate={{ opacity: 1, y: 0 }}
-      className="pointer-events-auto absolute left-3 top-3 z-30 flex max-w-[calc(100%-1.5rem)] items-center gap-0.5 rounded-full border border-border bg-card/90 p-1 pr-2.5 backdrop-blur select-none"
+      className="pointer-events-auto absolute left-3 top-3 z-30 flex max-w-[calc(100%-1.5rem)] items-center gap-0.5 rounded-full border border-border bg-card/90 p-1 pr-2.5 backdrop-blur transform-gpu select-none"
     >
       {/* Về Sảnh (danh sách dự án + tiến trình) */}
       <Link href="/" title="Sảnh" aria-label="Sảnh" className="flex h-8 w-8 items-center justify-center rounded-full bg-foreground text-background transition-transform active:scale-90">

@@ -7,6 +7,7 @@ import type { CharacterProfileSection } from "@/store/slices/rightPanelSlice";
 import { getRepository } from "@/lib/repositories";
 import type { Character, CharacterImageAsset } from "@/lib/repositories/types";
 import { CORE_URL } from "@/lib/repositories/core";
+import { cloneCharacterVoice } from "@/lib/repositories/character-assets";
 import {
   Plus,
   Search,
@@ -18,6 +19,7 @@ import {
   X,
   Check,
   Maximize2,
+  Loader2,
 } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
 
@@ -100,6 +102,10 @@ export function ProjectTab() {
   const [cloneModalOpen, setCloneModalOpen] = useState(false);
   const [cloneConsentChecked, setCloneConsentChecked] = useState(false);
   const [cloneNewVoiceId, setCloneNewVoiceId] = useState("soc-nho-custom");
+  const [cloneFile, setCloneFile] = useState<File | null>(null);
+  const [cloneDialect, setCloneDialect] = useState<"south" | "north" | "central">("south");
+  const [cloneBusy, setCloneBusy] = useState(false);
+  const [cloneError, setCloneError] = useState("");
 
   const photoInputRef = useRef<HTMLInputElement>(null);
   const sampleAudioRef = useRef<HTMLAudioElement>(null);
@@ -343,24 +349,29 @@ export function ProjectTab() {
     if (!selectedChar || !cloneConsentChecked || !cloneNewVoiceId.trim())
       return;
     const newVid = cloneNewVoiceId.trim();
+    setCloneBusy(true);
+    setCloneError("");
     try {
-      await fetch(`${CORE_URL}/projects/${activeProjectId}/voice/clone`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          voiceId: newVid,
-          consentConfirmed: true,
-        }),
+      const res = await cloneCharacterVoice(activeProjectId, {
+        voiceId: newVid,
+        characterId: selectedChar.id,
+        file: cloneFile || undefined,
+        dialect: cloneDialect,
+        consentConfirmed: true,
       });
-    } catch {
-      // fallback
+      await handleSaveCharacter({
+        ...selectedChar,
+        voiceId: newVid,
+        sampleAudioUrl: res?.sampleUrl || `/voices/${newVid}/sample`,
+      });
+      setCloneModalOpen(false);
+      setCloneConsentChecked(false);
+      setCloneFile(null);
+    } catch (err: any) {
+      setCloneError(err.message || "Không thể nhân bản giọng nói. Hãy kiểm tra tệp âm thanh nguồn.");
+    } finally {
+      setCloneBusy(false);
     }
-    await handleSaveCharacter({
-      ...selectedChar,
-      voiceId: newVid,
-    });
-    setCloneModalOpen(false);
-    setCloneConsentChecked(false);
   };
 
   // If a character is selected, render its FULL 5-section profile!
@@ -945,20 +956,60 @@ export function ProjectTab() {
                   <p className="rounded border border-semantic-warning/40 bg-accent/60 p-2.5 text-xs text-foreground leading-relaxed">
                     {t("voice.cloneModalWarning")}
                   </p>
+                  {cloneError && (
+                    <p className="rounded border border-semantic-danger/40 bg-semantic-danger/10 p-2 text-xs text-semantic-danger">
+                      {cloneError}
+                    </p>
+                  )}
                   <label className="block space-y-1">
                     <span className="text-xs text-muted-foreground">
                       {t("voice.cloneVoiceIdInput")}
                     </span>
                     <input
                       type="text"
+                      disabled={cloneBusy}
                       value={cloneNewVoiceId}
                       onChange={(e) => setCloneNewVoiceId(e.target.value)}
                       className="h-8 w-full rounded border border-border bg-background px-2 font-mono text-xs text-foreground"
                     />
                   </label>
+
+                  <div className="grid grid-cols-2 gap-2">
+                    <label className="block space-y-1">
+                      <span className="text-xs text-muted-foreground">Phương ngữ</span>
+                      <select
+                        disabled={cloneBusy}
+                        value={cloneDialect}
+                        onChange={(e) => setCloneDialect(e.target.value as any)}
+                        className="h-8 w-full rounded border border-border bg-background px-2 text-xs text-foreground"
+                      >
+                        <option value="south">Miền Nam</option>
+                        <option value="north">Miền Bắc</option>
+                        <option value="central">Miền Trung</option>
+                      </select>
+                    </label>
+
+                    <label className="block space-y-1">
+                      <span className="text-xs text-muted-foreground">Tệp âm thanh mẫu</span>
+                      <input
+                        type="file"
+                        accept="audio/*,video/mp4"
+                        disabled={cloneBusy}
+                        onChange={(e) => setCloneFile(e.target.files?.[0] || null)}
+                        className="block w-full text-[11px] text-muted-foreground file:mr-2 file:h-7 file:rounded file:border file:border-border file:bg-accent file:px-2 file:text-xs file:font-medium file:text-foreground"
+                      />
+                    </label>
+                  </div>
+                  {cloneFile && (
+                    <p className="text-[11px] text-brand">
+                      Đã chọn: {cloneFile.name} ({(cloneFile.size / 1024).toFixed(0)} KB)
+                    </p>
+                  )}
+
                   <label className="flex items-start gap-2 pt-1 cursor-pointer">
                     <input
                       type="checkbox"
+                      disabled={cloneBusy}
                       checked={cloneConsentChecked}
                       onChange={(e) =>
                         setCloneConsentChecked(e.target.checked)
@@ -972,9 +1023,12 @@ export function ProjectTab() {
                   <div className="flex justify-end gap-2 pt-2">
                     <button
                       type="button"
+                      disabled={cloneBusy}
                       onClick={() => {
                         setCloneModalOpen(false);
                         setCloneConsentChecked(false);
+                        setCloneError("");
+                        setCloneFile(null);
                       }}
                       className="h-8 rounded border border-border px-3 text-xs text-foreground"
                     >
@@ -982,11 +1036,18 @@ export function ProjectTab() {
                     </button>
                     <button
                       type="button"
-                      disabled={!cloneConsentChecked}
+                      disabled={!cloneConsentChecked || cloneBusy}
                       onClick={handleConfirmVoiceClone}
-                      className="h-8 rounded bg-primary px-3 text-xs font-medium text-primary-foreground disabled:opacity-40"
+                      className="flex h-8 items-center gap-1.5 rounded bg-primary px-3 text-xs font-medium text-primary-foreground disabled:opacity-40"
                     >
-                      {t("voice.cloneConfirmBtn")}
+                      {cloneBusy ? (
+                        <>
+                          <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                          <span>Đang nhân bản giọng...</span>
+                        </>
+                      ) : (
+                        <span>{t("voice.cloneConfirmBtn")}</span>
+                      )}
                     </button>
                   </div>
                 </div>

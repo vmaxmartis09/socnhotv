@@ -56,10 +56,20 @@ export function FloatingPanels() {
   useEffect(() => {
     const el = hostRef.current;
     if (!el) return;
-    const ro = new ResizeObserver(() => setSize({ w: el.clientWidth, h: el.clientHeight }));
+    let rafId: number | null = null;
+    const ro = new ResizeObserver(() => {
+      if (rafId !== null) return;
+      rafId = window.requestAnimationFrame(() => {
+        if (el) setSize({ w: el.clientWidth, h: el.clientHeight });
+        rafId = null;
+      });
+    });
     ro.observe(el);
     setSize({ w: el.clientWidth, h: el.clientHeight });
-    return () => ro.disconnect();
+    return () => {
+      if (rafId !== null) window.cancelAnimationFrame(rafId);
+      ro.disconnect();
+    };
   }, []);
 
   const running = useStudioStore((st) => st.jobs.filter((j) => j.status === "running" || j.status === "queued").length);
@@ -176,7 +186,12 @@ export function FloatingPanels() {
         initial={false}
         animate={{ top, height, width: totalW }}
         transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
-        style={{ right: EDGE }}
+        style={{
+          right: EDGE,
+          willChange: "width, height, top",
+          transform: "translateZ(0)",
+          contain: "paint",
+        }}
         className={cn(
           "pointer-events-auto absolute flex overflow-clip rounded-[22px] border border-border bg-card",
           open && "shadow-[0_10px_40px_rgba(0,0,0,0.10)]"
@@ -228,7 +243,7 @@ export function FloatingPanels() {
           role="toolbar"
           aria-orientation="vertical"
           aria-label="Panels"
-          style={{ padding: PAD }}
+          style={{ padding: PAD, willChange: "width" }}
           className={cn("flex shrink-0 flex-col self-center", open && "h-full self-start border-l border-border")}
         >
           <div className="flex flex-col" style={{ gap: GAP }}>

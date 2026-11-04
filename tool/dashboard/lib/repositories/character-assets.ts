@@ -2,10 +2,19 @@ import { CORE_URL } from "./core";
 
 /** Upload/xóa ảnh DNA và mẫu giọng qua Core (chỉ có khi Core đang chạy). */
 
-function toBase64(file: File): Promise<string> {
+export function toBase64(file: File): Promise<string> {
   return new Promise((resolve, reject) => {
     const r = new FileReader();
     r.onload = () => resolve(String(r.result).split(",")[1] ?? "");
+    r.onerror = () => reject(r.error);
+    r.readAsDataURL(file);
+  });
+}
+
+export function toDataUrl(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const r = new FileReader();
+    r.onload = () => resolve(String(r.result));
     r.onerror = () => reject(r.error);
     r.readAsDataURL(file);
   });
@@ -43,6 +52,43 @@ export async function uploadVoiceSample(voiceId: string, file: File) {
     method: "POST",
     body: JSON.stringify({ name: file.name, data: await toBase64(file) }),
   });
+}
+
+export async function cloneCharacterVoice(
+  projectId: string,
+  params: {
+    voiceId: string;
+    characterId?: string;
+    file?: File;
+    sourceFile?: string;
+    dialect?: "north" | "south" | "central";
+    consentConfirmed: boolean;
+  }
+) {
+  let audioData: string | undefined = undefined;
+  let filename: string | undefined = undefined;
+  if (params.file) {
+    audioData = await toBase64(params.file);
+    filename = params.file.name;
+  }
+  const res = await fetch(`${CORE_URL}/projects/${projectId}/voice/clone`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      voiceId: params.voiceId,
+      characterId: params.characterId,
+      audioData,
+      filename,
+      sourceFile: params.sourceFile,
+      dialect: params.dialect || "south",
+      consentConfirmed: params.consentConfirmed,
+    }),
+  });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({ detail: res.statusText }));
+    throw new Error(err.detail || "Không thể nhân bản giọng nói");
+  }
+  return res.json();
 }
 
 export interface CharacterDraft {

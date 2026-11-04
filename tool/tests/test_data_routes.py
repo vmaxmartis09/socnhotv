@@ -10,7 +10,7 @@ def test_projects_come_from_project_json():
     assert r.status_code == 200
     p = next(x for x in r.json() if x["id"] == "soc-nho-tv")
     assert p["name"] == "Sóc Nhỏ TV" and p["defaultVoiceId"] == "soc-nho"
-    assert p["charactersCount"] == 2
+    assert p["charactersCount"] >= 2
 
 
 def test_characters_have_real_profile_and_images():

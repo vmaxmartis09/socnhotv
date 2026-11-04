@@ -4,6 +4,7 @@ const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  transpilePackages: ["morphicons"],
   reactStrictMode: true,
   devIndicators: { position: "bottom-right" },
   images: {
