@@ -1,6 +1,6 @@
 # Session C — Social & Publishing
 
-**Trạng thái:** Đang thực hiện (C1 & C2 xong, sang C3)
+**Trạng thái:** Đang thực hiện (C1, C2 & C3 xong, sang C4)
 
 ## C1 — Social Domain, Storage, API & Legacy Migration (HOÀN THÀNH)
 - **Mô hình (`social/models.py`):**
@@ -34,21 +34,47 @@
   - Badge đếm số lượng bài chờ duyệt tự động đồng bộ.
   - Tích hợp chuẩn Morphicons `@/components/ui/icons` và theme dark/light.
 - **Thành phần giao diện (`components/social/**`):**
-  - `PostChip.tsx`: Phân màu theo nền tảng (YouTube đỏ, TikTok cyan, Facebook xanh, IG hồng, Douyin vàng...), chấm trạng thái động, hỗ trợ kéo thả `@dnd-kit/core`.
+  - `PostChip.tsx`: Phân màu theo nền tảng, chấm trạng thái động, hỗ trợ kéo thả `@dnd-kit/core`.
   - `CalendarView.tsx`: Chế độ Tháng (lưới 7 ngày, hiển thị ghi chú chiến dịch, kéo thả đổi ngày), Tuần (trục 24h, hiển thị khung giờ vàng trống `isGolden`, bấm để tạo bài), Danh sách (Agenda). Hỗ trợ nút Hoàn tác (Undo) và múi giờ `Asia/Ho_Chi_Minh`.
-  - `ApprovalsTab.tsx`: Hàng chờ duyệt thẻ lớn, player xem trước video, tab caption từng nền tảng, checklist kiểm tra tự động 5 tiêu chí (caption, disclosure quảng cáo, độ dài video, tài khoản kết nối, bản quyền nguồn). Hỗ trợ duyệt nhanh, duyệt hàng loạt, từ chối kèm lý do và chỉnh sửa trực tiếp.
-  - `PostsTab.tsx`: Bảng quản lý tập trung toàn bộ bài viết, bộ lọc trạng thái và nền tảng, tìm kiếm từ khóa, thao tác chọn nhiều (duyệt, nhân bản, huỷ, xoá).
-  - `AccountsTab.tsx`: Lưới AccountCard hiển thị avatar, handle, trạng thái kết nối, số bài lên lịch tuần này, khung giờ vàng. Thẻ "Thêm tài khoản mới" nét đứt chuẩn design manifesto. Dialog thêm tài khoản và modal chỉnh sửa khung giờ 7 ngày.
-  - `PostComposer.tsx`: Drawer trượt phải dùng chung. Quản lý media, chọn đa tài khoản, TargetEditor theo từng nền tảng, đếm ký tự chuẩn giới hạn, nút sinh caption AI cho tất cả nền tảng, nút gợi ý giờ vàng, mô phỏng hiển thị trên điện thoại.
+  - `ApprovalsTab.tsx`: Hàng chờ duyệt thẻ lớn, player xem trước video, tab caption từng nền tảng, checklist kiểm tra tự động 5 tiêu chí. Hỗ trợ duyệt nhanh, duyệt hàng loạt, từ chối kèm lý do và chỉnh sửa trực tiếp.
+  - `PostsTab.tsx`: Bảng quản lý tập trung toàn bộ bài viết, bộ lọc trạng thái và nền tảng, tìm kiếm từ khóa, thao tác chọn nhiều.
+  - `AccountsTab.tsx`: Lưới AccountCard, thẻ "Thêm tài khoản mới" nét đứt chuẩn design manifesto, modal chỉnh sửa khung giờ 7 ngày.
+  - `PostComposer.tsx`: Drawer trượt phải dùng chung, quản lý media, chọn đa tài khoản, TargetEditor, sinh caption AI, gợi ý giờ vàng, mô phỏng hiển thị trên điện thoại.
   - `AgendaList.tsx`: Hiển thị danh sách nhóm theo ngày, dùng chung cho cả Calendar và PublishTab.
 - **Gộp khu lịch cũ & điều hướng:**
-  - `PublishTab.tsx`: Thay thế toàn bộ code cũ gọi endpoint 404 bằng bản rút gọn dùng chung `useSocialStore`, `AgendaList`, `PostChip`, nút "+ Lên lịch" mở trực tiếp PostComposer và nút "Mở toàn màn hình" điều hướng sang `/social`.
+  - `PublishTab.tsx`: Thay thế toàn bộ code cũ gọi endpoint 404 bằng bản rút gọn dùng chung `useSocialStore`, `AgendaList`, `PostChip`, nút "+ Lên lịch" mở trực tiếp PostComposer.
   - `publish/page.tsx`: Redirect tự động sang `/social`.
   - `lib/api/social.ts` & `store/modules/social.ts`: Client API & Zustand store độc lập của Session C.
-- **Nghiệm thu:**
+- **Nghiệm thu C2:**
   - TypeScript `npx tsc --noEmit | grep -E "social|PublishTab|publish/page"`: 0 lỗi.
-  - Chụp 4 ảnh minh chứng vào `data/projects/soc-nho-tv/shots/`:
-    - `C2_month.png`: Giao diện lịch tháng kéo-thả
-    - `C2_week.png`: Giao diện lịch tuần với khung giờ vàng
-    - `C2_approvals.png`: Giao diện hàng chờ duyệt với checklist tự động
-    - `C2_composer.png`: Drawer soạn bài đa nền tảng
+  - 4 ảnh chụp màn hình trong `data/projects/soc-nho-tv/shots/`: `C2_month.png`, `C2_week.png`, `C2_approvals.png`, `C2_composer.png`.
+
+---
+
+## C3 — Publish Adapters, Manual Packages & Scheduler Worker (HOÀN THÀNH)
+- **Kiến trúc Adapter (`social/adapters/`):**
+  - `base.py`: Interface `PublishAdapter`, `Capabilities`, `Issue`, `PublishResult`.
+  - `youtube.py`: YouTube Data API v3 Resumable upload 2-phase protocol, set thumbnail, native `publishAt` (private), categoryId 22, shorts auto-detection. Quota awareness chặn sớm khi vượt giới hạn 10.000 units/ngày (video.insert = 1.600 units).
+  - `tiktok.py`: Content Posting API: query creator info, FILE_UPLOAD chunked, Direct Post (`video.publish`) hoặc Upload to inbox (`video.upload`).
+  - `meta.py`: Facebook Page Video (resumable) và Instagram Reels (Container -> Status poll -> Media publish).
+  - `manual.py`: Xuất gói xuất bản thủ công (`publishing/packages/<post_id>/<platform>/`) gồm `video.mp4`, `cover.jpg`, `caption.txt`, `hashtags.txt`, `checklist.md`, `meta.json`. Hỗ trợ đóng gói `.zip` tải về trực tiếp.
+  - `browser_assisted.py`: Tích hợp Ego Lite mở sẵn trang upload và điền sẵn caption, dừng chờ người dùng kiểm tra và tự bấm nút Publish.
+- **Scheduler Worker (`social/scheduler.py`):**
+  - APScheduler / AsyncIO loop chu kỳ 30 giây.
+  - Cơ chế khoá mục tiêu (`publishing`), đảm bảo tính bất biến idempotent (không đăng trùng nếu crash giữa chừng).
+  - Cổng bảo vệ phê duyệt: Không bao giờ đăng bài khi `approval.required` mà chưa có trạng thái `approved`.
+  - Cơ chế retry lũy tiến thông minh: lỗi tạm thời lùi lịch 2, 10, 30 phút; lỗi vĩnh viễn (quota, auth 401/403) đánh dấu `failed` và chuyển trạng thái account sang `expired`.
+  - Ghi heartbeat định kỳ vào `publishing/scheduler.heartbeat`.
+- **API Mở rộng (`core/api/routes/social.py`):**
+  - `GET /accounts/{id}/connect`, `GET /social/oauth/callback/{platform}`, `POST /accounts/{id}/refresh`
+  - `POST /posts/{id}/targets/{tid}/validate`, `POST /posts/{id}/publish-now`, `POST …/mark-published`
+  - `GET /scheduler/status`, `GET /packages/{post}/{platform}.zip`
+- **UI bổ sung:**
+  - `AccountCard`: Nút kết nối OAuth mở cửa sổ xác thực và làm mới token.
+  - `PostsTab`: Widget giám sát Scheduler Heartbeat thời gian thực, nút tải gói đăng tay `.zip`, nút "Tôi đã đăng" nhập URL và nút "Xuất bản ngay" cho bài đã duyệt.
+- **Nghiệm thu kiểm thử C3:**
+  - `test_social_adapters.py` (4 passed: mock HTTP YouTube resumable, quota 403, TikTok direct post, Meta Reels container)
+  - `test_social_scheduler.py` (1 passed: đúng giờ mới đăng, chưa duyệt không đăng, idempotency, heartbeat)
+  - `test_social_manual.py` (1 passed: tạo gói thủ công đầy đủ 6 tệp, nén file `.zip` hợp lệ)
+  - Đã xuất thử gói đăng tay thật cho bài `post_ep1_tt` của project `soc-nho-tv`.
+  - Tổng số test social passed: 22/22.

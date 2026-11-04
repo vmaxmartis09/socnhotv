@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { format, parseISO } from "date-fns";
 import { cn } from "@/lib/utils";
 import { useSocialStore } from "@/store/modules/social";
@@ -14,6 +14,10 @@ import {
   X,
   Check,
   RotateCcw,
+  Download,
+  Send,
+  Activity,
+  CheckCircle2,
 } from "@/components/ui/icons";
 
 interface PostsTabProps {
@@ -37,6 +41,33 @@ export function PostsTab({ projectId }: PostsTabProps) {
   const [platformFilter, setPlatformFilter] = useState<PlatformType | "all">("all");
   const [statusFilter, setStatusFilter] = useState<PostStatus | "all">("all");
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
+  const [schedulerStatus, setSchedulerStatus] = useState<any>(null);
+
+  useEffect(() => {
+    socialApi.getSchedulerStatus(projectId).then(setSchedulerStatus).catch(() => {});
+  }, [projectId]);
+
+  const handlePublishNow = async (postId: string) => {
+    if (!window.confirm("Xuất bản ngay bài viết này lên các kênh đã duyệt?")) return;
+    try {
+      await socialApi.publishNow(projectId, postId);
+      await loadPosts(projectId);
+      alert("Đã gửi lệnh xuất bản thành công!");
+    } catch (e: any) {
+      alert(`Lỗi xuất bản: ${e.message}`);
+    }
+  };
+
+  const handleMarkPublished = async (postId: string, targetId: string) => {
+    const url = prompt("Nhập URL bài viết thực tế sau khi đã đăng:");
+    if (!url) return;
+    try {
+      await socialApi.markPublished(projectId, postId, targetId, url.trim());
+      await loadPosts(projectId);
+    } catch (e: any) {
+      alert(`Lỗi: ${e.message}`);
+    }
+  };
 
   const filteredPosts = useMemo(() => {
     return posts.filter((p) => {
@@ -120,6 +151,26 @@ export function PostsTab({ projectId }: PostsTabProps) {
 
   return (
     <div className="space-y-4">
+      {/* Scheduler Status Mini Widget */}
+      {schedulerStatus && (
+        <div className="flex items-center justify-between rounded-xl border border-border bg-card/60 px-4 py-2 text-xs">
+          <div className="flex items-center gap-2">
+            <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="font-semibold text-foreground">Scheduler Heartbeat:</span>
+            <span className="font-mono text-[11px] text-muted-foreground">
+              {schedulerStatus.heartbeat ? format(parseISO(schedulerStatus.heartbeat), "HH:mm:ss dd/MM") : "Đang chạy"}
+            </span>
+            <span className="text-muted-foreground">·</span>
+            <span className="text-muted-foreground">
+              {schedulerStatus.scheduled_count} bài trong hàng đợi
+            </span>
+          </div>
+          <span className="text-[10px] uppercase tracking-wider text-muted-foreground font-mono">
+            Poll: 30s
+          </span>
+        </div>
+      )}
+
       {/* Search & Filter Bar */}
       <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-border bg-card p-3 shadow-2xs">
         <div className="flex flex-1 items-center gap-2 max-w-md">
@@ -307,6 +358,35 @@ export function PostsTab({ projectId }: PostsTabProps) {
                     </td>
                     <td className="p-3 text-right" onClick={(e) => e.stopPropagation()}>
                       <div className="flex items-center justify-end gap-1">
+                        {post.status === "approved" && (
+                          <button
+                            onClick={() => handlePublishNow(post.id)}
+                            title="Xuất bản ngay lập tức"
+                            className="flex items-center gap-1 rounded bg-primary/10 border border-primary/20 px-2 py-0.5 text-[11px] font-semibold text-primary hover:bg-primary/20"
+                          >
+                            <Send className="h-3 w-3" />
+                            <span>Đăng ngay</span>
+                          </button>
+                        )}
+                        {post.targets[0] && (
+                          <a
+                            href={socialApi.getPackageZipUrl(projectId, post.id, post.targets[0].platform)}
+                            download
+                            title="Tải gói đăng tay (.zip)"
+                            className="rounded p-1 hover:bg-muted text-muted-foreground hover:text-foreground"
+                          >
+                            <Download className="h-3.5 w-3.5" />
+                          </a>
+                        )}
+                        {post.targets[0] && post.status !== "published" && (
+                          <button
+                            onClick={() => handleMarkPublished(post.id, post.targets[0].id)}
+                            title="Tôi đã đăng (nhập URL)"
+                            className="rounded p-1 hover:bg-muted text-muted-foreground hover:text-emerald-500"
+                          >
+                            <CheckCircle2 className="h-3.5 w-3.5" />
+                          </button>
+                        )}
                         <button
                           onClick={() => openComposer(post)}
                           title="Chỉnh sửa bài"

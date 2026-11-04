@@ -311,9 +311,44 @@ export const socialApi = {
       }
     ),
 
-  scheduleIdea: (projectId: string, ideaId: string, accountId: string, at?: string) =>
-    fetchJson<Post>(`${SOCIAL_CORE_URL}/projects/${projectId}/social/ideas/${ideaId}/schedule`, {
-      method: "POST",
-      body: JSON.stringify({ account_id: accountId, at }),
-    }),
+  // Scheduler & Publishing
+  getSchedulerStatus: (projectId: string) =>
+    fetchJson<{ heartbeat: string | null; scheduled_count: number; recent_activity: any[] }>(
+      `${SOCIAL_CORE_URL}/projects/${projectId}/social/scheduler/status`
+    ),
+
+  validateTarget: (projectId: string, postId: string, targetId: string) =>
+    fetchJson<{ target_id: string; issues: { level: string; code: string; message: string }[] }>(
+      `${SOCIAL_CORE_URL}/projects/${projectId}/social/posts/${postId}/targets/${targetId}/validate`,
+      { method: "POST" }
+    ),
+
+  publishNow: (projectId: string, postId: string) =>
+    fetchJson<{ post_id: string; status: string; targets: any[] }>(
+      `${SOCIAL_CORE_URL}/projects/${projectId}/social/posts/${postId}/publish-now`,
+      { method: "POST" }
+    ),
+
+  markPublished: (projectId: string, postId: string, targetId: string, url: string) =>
+    fetchJson<{ post_id: string; target_id: string; status: string; url: string }>(
+      `${SOCIAL_CORE_URL}/projects/${projectId}/social/posts/${postId}/targets/${targetId}/mark-published`,
+      {
+        method: "POST",
+        body: JSON.stringify({ url }),
+      }
+    ),
+
+  getConnectUrl: (projectId: string, accountId: string) =>
+    fetchJson<{ account_id: string; platform: string; connect_url: string }>(
+      `${SOCIAL_CORE_URL}/projects/${projectId}/social/accounts/${accountId}/connect`
+    ),
+
+  refreshAccount: (projectId: string, accountId: string) =>
+    fetchJson<{ status: string; details: any }>(
+      `${SOCIAL_CORE_URL}/projects/${projectId}/social/accounts/${accountId}/refresh`,
+      { method: "POST" }
+    ),
+
+  getPackageZipUrl: (projectId: string, postId: string, platform: string) =>
+    `${SOCIAL_CORE_URL}/projects/${projectId}/social/packages/${postId}/${platform}.zip`,
 };

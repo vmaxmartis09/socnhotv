@@ -96,6 +96,27 @@ export function AccountsTab({ projectId }: AccountsTabProps) {
     }
   };
 
+  const handleConnectOAuth = async (acc: SocialAccount) => {
+    try {
+      const res = await socialApi.getConnectUrl(projectId, acc.id);
+      if (res.connect_url) {
+        window.open(res.connect_url, "_blank", "width=600,height=700");
+      }
+    } catch (err: any) {
+      alert(`Không thể lấy URL kết nối OAuth: ${err.message}`);
+    }
+  };
+
+  const handleRefreshAccount = async (accId: string) => {
+    try {
+      await socialApi.refreshAccount(projectId, accId);
+      await loadAccounts(projectId);
+      alert("Đã làm mới token thành công!");
+    } catch (err: any) {
+      alert(`Lỗi làm mới token: ${err.message}`);
+    }
+  };
+
   const handleSaveWindows = async (windows: PostingWindow[]) => {
     if (!editingWindowsAccount) return;
     try {
@@ -231,8 +252,12 @@ export function AccountsTab({ projectId }: AccountsTabProps) {
               {/* Actions Footer */}
               <div className="flex items-center justify-between pt-3 mt-2 border-t border-border">
                 <button
-                  onClick={() => alert("Kết nối OAuth chính chủ sẽ được mở và xử lý ở giai đoạn C3.")}
-                  className="rounded-lg border border-border bg-background px-2.5 py-1 text-xs font-medium hover:bg-muted text-foreground flex items-center gap-1"
+                  onClick={() =>
+                    acc.status === "connected"
+                      ? handleRefreshAccount(acc.id)
+                      : handleConnectOAuth(acc)
+                  }
+                  className="rounded-lg border border-border bg-background px-2.5 py-1 text-xs font-medium hover:bg-muted text-foreground flex items-center gap-1 shadow-2xs"
                 >
                   <Link2 className="h-3 w-3" />
                   <span>{acc.status === "connected" ? "Làm mới Token" : "Kết nối OAuth"}</span>

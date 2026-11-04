@@ -6,8 +6,11 @@ from __future__ import annotations
 
 from datetime import datetime, timedelta
 from typing import Any, Dict, List, Optional
-from fastapi import APIRouter, Body, HTTPException, Query, status
+from fastapi import APIRouter, Body, HTTPException, Query, Request, status
+from fastapi.responses import FileResponse
 
+from socnhotv.social.vault import get_social_vault as get_key_vault
+from socnhotv.social.adapters import export_package_zip, get_adapter
 from socnhotv.social.contracts import create_draft_post, ingest_inbox
 from socnhotv.social.migrate import migrate_legacy_publishing
 from socnhotv.social.models import (
@@ -20,6 +23,7 @@ from socnhotv.social.models import (
     ensure_tz,
     now_iso,
 )
+from socnhotv.social.scheduler import SocialScheduler
 from socnhotv.social.service import InvalidStateTransitionError, SocialService
 from socnhotv.social.store import SocialStore
 
@@ -401,3 +405,211 @@ async def migrate_data(project_id: str, force: bool = Query(False)):
 async def get_audit(project_id: str, post_id: Optional[str] = Query(None), limit: int = Query(100)):
     store = SocialStore(project_id)
     return store.get_audit_log(post_id=post_id, limit=limit)
+
+
+# ==========================================
+# C3: Official OAuth, Publishing & Packages
+# ==========================================
+
+@router.get("/projects/{project_id}/social/accounts/{account_id}/connect")
+async def get_oauth_connect_url(
+    project_id: str,
+    account_id: str,
+    redirect_uri: str = Query("http://localhost:3000/api/auth/callback"),
+):
+    store = SocialStore(project_id)
+    account = store.get_account(account_id)
+    if not account:
+        raise HTTPException(status_code=404, detail="Account not found")
+
+    adapter = get_adapter(account.platform, mode="oauth")
+    url = adapter.connect_url(account, redirect_uri=redirect_uri)
+    return {"account_id": account_id, "platform": account.platform, "connect_url": url}
+
+
+@router.get("/social/oauth/callback/{platform}")
+async def oauth_callback(
+    platform: str,
+    code: str = Query(...),
+    state: Optional[str] = Query(None),
+    redirect_uri: str = Query("http://localhost:3000/api/auth/callback"),
+):
+    adapter = get_adapter(platform, mode="oauth")
+    dummy_acc = SocialAccount(id=state or "unknown", platform=platform, handle="", display_name="")
+    tokens = adapter.exchange_code(dummy_acc, code=code, redirect_uri=redirect_uri)
+    vault = get_key_vault()
+    if state:
+        vault.set_key(f"oauth_{platform}_{state}_access", tokens.get("access_token", ""))
+        if "refresh_token" in tokens:
+            vault.set_key(f"oauth_{platform}_{state}_refresh", tokens.get("refresh_token", ""))
+    return {"status": "connected", "platform": platform, "account_id": state}
+
+
+@router.post("/projects/{project_id}/social/accounts/{account_id}/refresh")
+async def refresh_account_token(project_id: str, account_id: str):
+    store = SocialStore(project_id)
+    account = store.get_account(account_id)
+    if not account:
+        raise HTTPException(status_code=404, detail="Account not found")
+    adapter = get_adapter(account.platform, mode=account.auth.mode)
+    res = adapter.refresh(account)
+    return {"status": "refreshed", "details": res}
+
+
+@router.post("/projects/{project_id}/social/posts/{post_id}/targets/{target_id}/validate")
+async def validate_target(project_id: str, post_id: str, target_id: str):
+    store = SocialStore(project_id)
+    post = store.get_post(post_id)
+    if not post:
+        raise HTTPException(status_code=404, detail="Post not found")
+    target = next((t for t in post.targets if t.id == target_id), None)
+    if not target:
+        raise HTTPException(status_code=404, detail="Target not found")
+
+    account = store.get_account(target.account_id)
+    mode = account.auth.mode if account else "manual"
+    adapter = get_adapter(target.platform, mode=mode)
+    media = post.media[0] if post.media else None
+    issues = adapter.validate(target, media)
+    return {"target_id": target_id, "issues": [i.model_dump() for i in issues]}
+
+
+@router.post("/projects/{project_id}/social/posts/{post_id}/publish-now")
+async def publish_now(project_id: str, post_id: str):
+    store = SocialStore(project_id)
+    post = store.get_post(post_id)
+    if not post:
+        raise HTTPException(status_code=404, detail="Post not found")
+
+    if post.approval.required and post.status not in ("approved", "scheduled"):
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail="Bài viết cần được phê duyệt trước khi xuất bản (approval required)",
+        )
+
+    results = []
+    for target in post.targets:
+        if target.status == "published":
+            continue
+
+        account = store.get_account(target.account_id)
+        auth_mode = account.auth.mode if account else "manual"
+        if not account:
+            account = SocialAccount(
+                id=target.account_id,
+                platform=target.platform,
+                handle=target.account_id,
+                display_name=target.account_id,
+            )
+
+        adapter = get_adapter(target.platform, mode=auth_mode)
+        media = post.media[0] if post.media else None
+
+        if hasattr(adapter, "publish"):
+            if target.platform not in ("youtube", "tiktok", "facebook", "instagram") or auth_mode == "manual":
+                pub_res = adapter.publish(
+                    account=account,
+                    target=target,
+                    media=media,
+                    project_id=project_id,
+                    post_id=post.id,
+                )
+            else:
+                pub_res = adapter.publish(account=account, target=target, media=media)
+
+            if pub_res.status == "published":
+                target.status = "published"
+                target.external_id = pub_res.external_id
+                target.external_url = pub_res.url
+                target.published_at = now_iso()
+                store.append_audit("api", "publish_now_success", post.id, target_id=target.id, to_status="published")
+            else:
+                target.status = "failed"
+                target.last_error = pub_res.error
+                store.append_audit("api", "publish_now_failed", post.id, target_id=target.id, note=str(pub_res.error))
+
+            results.append({"target_id": target.id, "platform": target.platform, "status": target.status, "url": pub_res.url, "error": pub_res.error})
+
+    if all(t.status == "published" for t in post.targets):
+        post.status = "published"
+    store.save_post(post)
+    return {"post_id": post.id, "status": post.status, "targets": results}
+
+
+@router.post("/projects/{project_id}/social/posts/{post_id}/targets/{target_id}/mark-published")
+async def mark_target_published(
+    project_id: str,
+    post_id: str,
+    target_id: str,
+    payload: Dict[str, Any] = Body(...),
+):
+    """Mark a manual target as published with user-supplied URL."""
+    store = SocialStore(project_id)
+    post = store.get_post(post_id)
+    if not post:
+        raise HTTPException(status_code=404, detail="Post not found")
+    target = next((t for t in post.targets if t.id == target_id), None)
+    if not target:
+        raise HTTPException(status_code=404, detail="Target not found")
+
+    url = payload.get("url") or payload.get("external_url", "")
+    target.status = "published"
+    target.external_url = url
+    target.published_at = now_iso()
+
+    if all(t.status == "published" for t in post.targets):
+        post.status = "published"
+
+    store.save_post(post)
+    store.append_audit(
+        "user",
+        "manual_mark_published",
+        post.id,
+        target_id=target.id,
+        to_status="published",
+        note=f"Manual URL: {url}",
+    )
+    return {"post_id": post.id, "target_id": target.id, "status": "published", "url": url}
+
+
+@router.get("/projects/{project_id}/social/scheduler/status")
+async def get_scheduler_status(project_id: str):
+    sched = SocialScheduler(project_id)
+    heartbeat = sched.get_heartbeat()
+    store = SocialStore(project_id)
+    upcoming_posts = store.list_posts(status="scheduled")
+    recent_audit = store.get_audit_log(limit=10)
+    return {
+        "heartbeat": heartbeat,
+        "scheduled_count": len(upcoming_posts),
+        "recent_activity": recent_audit,
+    }
+
+
+@router.get("/projects/{project_id}/social/packages/{post_id}/{platform}.zip")
+async def download_package_zip(project_id: str, post_id: str, platform: str):
+    try:
+        zip_path = export_package_zip(project_id, post_id, platform)
+        return FileResponse(
+            zip_path,
+            filename=f"{platform}_package_{post_id}.zip",
+            media_type="application/zip",
+        )
+    except FileNotFoundError:
+        # Generate package first if not exists
+        store = SocialStore(project_id)
+        post = store.get_post(post_id)
+        if not post:
+            raise HTTPException(status_code=404, detail="Post not found")
+        target = next((t for t in post.targets if t.platform == platform), None)
+        if not target:
+            target = PostTarget(account_id=f"acc_{platform}", platform=platform, caption=post.title)
+        acc = store.get_account(target.account_id) or SocialAccount(id=target.account_id, platform=platform, handle=platform, display_name=platform)
+        adapter = get_adapter(platform, mode="manual")
+        adapter.publish(account=acc, target=target, media=post.media[0] if post.media else None, project_id=project_id, post_id=post.id)
+        zip_path = export_package_zip(project_id, post_id, platform)
+        return FileResponse(
+            zip_path,
+            filename=f"{platform}_package_{post_id}.zip",
+            media_type="application/zip",
+        )
