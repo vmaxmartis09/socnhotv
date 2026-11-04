@@ -29,6 +29,8 @@ export interface CanvasInteractionContextValue {
   startLink: (port: ActiveDragPort) => void;
   finishLink: (nodeId: string, portName: string, handleType: "source" | "target") => void;
   cancelLink: () => void;
+  /** Thứ tự chạy và trục chính của từng node (tự tính từ đồ thị) */
+  stepInfo: Record<string, { step: number; layer: number; main: boolean }>;
 }
 
 export const CanvasInteractionContext =
@@ -43,6 +45,7 @@ export const CanvasInteractionContext =
     startLink: () => {},
     finishLink: () => {},
     cancelLink: () => {},
+    stepInfo: {},
   });
 
 export function useCanvasInteraction() {

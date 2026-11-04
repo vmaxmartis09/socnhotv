@@ -32,7 +32,7 @@ export const SHORTCUT_GROUPS: ShortcutGroup[] = [
       { keys: ["]"], label: "Thêm bước sau node đang chọn" },
       { keys: ["Ctrl", "D"], label: "Nhân bản node" },
       { keys: ["Delete"], label: "Xóa node / đường nối" },
-      { keys: ["G"], label: "Sắp xếp nhóm" },
+      { keys: ["G"], label: "Sắp xếp tự động" },
       { keys: ["Ctrl", "Z"], label: "Hoàn tác" },
       { keys: ["Ctrl", "Shift", "Z"], label: "Làm lại" },
       { keys: ["S"], label: "Bật/tắt bắt dính lưới" },

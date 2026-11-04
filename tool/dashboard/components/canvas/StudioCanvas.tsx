@@ -25,6 +25,7 @@ import {
   type Node,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
+import { autoLayout, analyzeGraph } from "@/lib/graph-layout";
 import { useStudioStore } from "@/store";
 import {
   PORT_TYPE_COLORS,
@@ -189,7 +190,7 @@ function LinkGhost({ from, onCancel }: { from: ActiveDragPort; onCancel: () => v
 function StudioCanvasInner() {
   const t = useTranslations("canvas");
   const c = useTranslations("common");
-  const { screenToFlowPosition } = useReactFlow();
+  const { screenToFlowPosition, fitView } = useReactFlow();
 
   const {
     activeProjectId,
@@ -692,18 +693,11 @@ function StudioCanvasInner() {
   }, [nodes, edges, setNodesAndEdges]);
 
   const handleAlignGroup = useCallback(() => {
-    const sel = nodes.filter((n) => n.selected);
-    const targetList = sel.length > 1 ? sel : nodes;
-    const baseY = targetList[0]?.position.y ?? 100;
-    const sorted = [...targetList].sort((a, b) => a.position.x - b.position.x);
-    const posMap = new Map(
-      sorted.map((n, idx) => [n.id, { x: 40 + idx * 336, y: baseY }])
-    );
-    const nextNodes = nodes.map((n) =>
-      posMap.has(n.id) ? { ...n, position: posMap.get(n.id)! } : n
-    );
+    // Sắp xếp tự động: cột trái → phải theo thứ tự chạy, trục chính ở giữa
+    const nextNodes = autoLayout(nodes, edges);
     setNodesAndEdges(nextNodes, edges, true);
-  }, [nodes, edges, setNodesAndEdges]);
+    setTimeout(() => fitView({ padding: 0.12, duration: 300 }), 60);
+  }, [nodes, edges, setNodesAndEdges, fitView]);
 
   // Keyboard shortcuts: Delete, Ctrl+Z, Ctrl+Shift+Z, Ctrl+D, Ctrl+C, Ctrl+V
   useEffect(() => {
@@ -1106,6 +1100,8 @@ function StudioCanvasInner() {
     });
   }, [nodeCatalog, quickAddReq]);
 
+  const stepInfo = useMemo(() => analyzeGraph(nodes, edges), [nodes, edges]);
+
   const contextValue = useMemo(
     () => ({
       activeDragPort,
@@ -1121,8 +1117,10 @@ function StudioCanvasInner() {
       startLink,
       finishLink,
       cancelLink,
+      stepInfo,
     }),
     [
+      stepInfo,
       linkMode,
       startLink,
       finishLink,

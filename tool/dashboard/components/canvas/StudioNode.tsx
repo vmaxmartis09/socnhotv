@@ -71,6 +71,7 @@ export const StudioNode = memo(function StudioNode({
     linkMode,
     startLink,
     finishLink,
+    stepInfo,
   } = useCanvasInteraction();
 
 
@@ -468,6 +469,17 @@ export const StudioNode = memo(function StudioNode({
 
       {/* Đầu card */}
       <div className="flex items-center gap-2 px-3" style={{ height: HEADER }}>
+        {stepInfo[id] && (
+          <span
+            title={stepInfo[id].main ? `Bước ${stepInfo[id].step} · trục chính` : `Bước ${stepInfo[id].step} · hỗ trợ`}
+            className={cn(
+              "flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[11px] font-semibold tnum",
+              stepInfo[id].main ? "bg-foreground text-background" : "border border-border text-muted-foreground"
+            )}
+          >
+            {stepInfo[id].step}
+          </span>
+        )}
         <span
           title={categoryLabel}
           className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-accent text-foreground"
@@ -492,9 +504,6 @@ export const StudioNode = memo(function StudioNode({
         </IconBtn>
         <IconBtn label={t("runNode")} onClick={() => onRequestRun("single_node", id)}>
           <Play className="h-3 w-3" />
-        </IconBtn>
-        <IconBtn label={collapsed ? "Mở rộng" : "Thu gọn"} onClick={() => setCollapsed((v) => !v)}>
-          {collapsed ? <ChevronDown className="h-3.5 w-3.5" /> : <ChevronUp className="h-3.5 w-3.5" />}
         </IconBtn>
       </div>
 

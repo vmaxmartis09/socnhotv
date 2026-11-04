@@ -11,8 +11,8 @@
       },
       "inputs": {},
       "position": {
-        "x": 20.0,
-        "y": 20.0
+        "x": 40.0,
+        "y": 40.0
       },
       "ui": {},
       "state": "idle",
@@ -29,8 +29,8 @@
       },
       "inputs": {},
       "position": {
-        "x": 380.0,
-        "y": 20.0
+        "x": 450.0,
+        "y": 329.0
       },
       "ui": {},
       "state": "idle",
@@ -46,8 +46,8 @@
       },
       "inputs": {},
       "position": {
-        "x": -48.0,
-        "y": 456.0
+        "x": 48.0,
+        "y": 408.0
       },
       "ui": {},
       "state": "idle",
@@ -67,8 +67,8 @@
       },
       "inputs": {},
       "position": {
-        "x": 740.0,
-        "y": 20.0
+        "x": 860.0,
+        "y": 121.0
       },
       "ui": {},
       "state": "idle",
@@ -86,8 +86,8 @@
       },
       "inputs": {},
       "position": {
-        "x": 380.0,
-        "y": 640.0
+        "x": 1270.0,
+        "y": 375.5
       },
       "ui": {},
       "state": "idle",
@@ -106,8 +106,8 @@
       },
       "inputs": {},
       "position": {
-        "x": 740.0,
-        "y": 640.0
+        "x": 1680.0,
+        "y": 292.5
       },
       "ui": {},
       "state": "idle",
@@ -125,8 +125,8 @@
       },
       "inputs": {},
       "position": {
-        "x": 380.0,
-        "y": 1260.0
+        "x": 860.0,
+        "y": 622.0
       },
       "ui": {},
       "state": "idle",
@@ -146,8 +146,8 @@
       },
       "inputs": {},
       "position": {
-        "x": 740.0,
-        "y": 1260.0
+        "x": 2090.0,
+        "y": 294.5
       },
       "ui": {},
       "state": "idle",
@@ -167,8 +167,8 @@
       },
       "inputs": {},
       "position": {
-        "x": 1100.0,
-        "y": 1260.0
+        "x": 2500.0,
+        "y": 388.5
       },
       "ui": {},
       "state": "idle",
@@ -228,6 +228,13 @@
       "targetPort": "text"
     },
     {
+      "id": "e_char_voice",
+      "sourceNodeId": "node_character",
+      "sourcePort": "character",
+      "targetNodeId": "node_voice",
+      "targetPort": "character"
+    },
+    {
       "id": "e_script_render_scenes",
       "sourceNodeId": "node_script",
       "sourcePort": "scenes",
@@ -254,14 +261,7 @@
       "sourcePort": "video",
       "targetNodeId": "node_export",
       "targetPort": "video"
-    },
-    {
-      "id": "edge_mw1dv9zl_buz",
-      "sourceNodeId": "node_character",
-      "sourcePort": "character",
-      "targetNodeId": "node_voice",
-      "targetPort": "character"
     }
   ],
-  "updatedAt": "2026-11-04T00:41:33Z"
+  "updatedAt": "2026-11-04T01:06:39Z"
 }
