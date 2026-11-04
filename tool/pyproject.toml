@@ -18,6 +18,15 @@ dependencies = [
     "pyyaml",
     "pytest",
     "httpx",
+    "yt-dlp",
+    "scenedetect[opencv]",
+    "imagehash",
+    "apscheduler>=3.10",
+    "google-api-python-client",
+    "google-auth-oauthlib",
+    "jinja2",
+    "python-dateutil",
+    "rapidfuzz",
 ]
 
 [build-system]

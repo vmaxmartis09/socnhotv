@@ -1,0 +1,3 @@
+DEPS_DONE: 2026-11-04T20:33:00+07:00
+Python: yt-dlp, scenedetect, imagehash, apscheduler, google-api-python-client, google-auth-oauthlib, jinja2, python-dateutil, rapidfuzz
+Dashboard: @dnd-kit/core, @dnd-kit/sortable, date-fns, hyperframes (0.9.12)
