@@ -688,7 +688,13 @@ async def upload_library_file(project_id: str, payload: Dict[str, Any] = Body(..
             "provenance": {"provider": "upload", "model": name, "createdAt": dt.datetime.now(dt.timezone.utc).isoformat()},
         },
     )
-    return {"id": f"art_{digest[:12]}", "kind": kind, "url": _file_url(project_id, d, target)}
+    return {
+        "id": f"art_{digest[:12]}",
+        "kind": kind,
+        "url": _file_url(project_id, d, target),
+        "uri": f"assets/{target.name}",
+        "name": target.name,
+    }
 
 
 @router.get("/projects/{project_id}/channels")

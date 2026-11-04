@@ -42,6 +42,10 @@ class ProjectStore:
 
         self._ensure_dirs()
 
+    @property
+    def output_dir(self) -> Path:
+        return self.outputs_dir
+
     def _ensure_dirs(self) -> None:
         self.project_dir.mkdir(parents=True, exist_ok=True)
         self.assets_dir.mkdir(parents=True, exist_ok=True)

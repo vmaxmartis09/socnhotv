@@ -132,3 +132,6 @@ export const AudioLines = createMorphIcon(lucide.AudioLines, "AudioLines");
 export const Music = createMorphIcon(lucide.Music, "Music");
 export const Headphones = createMorphIcon(lucide.Headphones, "Headphones");
 export const VolumeX = createMorphIcon(lucide.VolumeX, "VolumeX");
+export const Eye = createMorphIcon(lucide.Eye, "Eye");
+export const FolderOpen = createMorphIcon(lucide.FolderOpen, "FolderOpen");
+export const FileUp = createMorphIcon(lucide.FileUp, "FileUp");

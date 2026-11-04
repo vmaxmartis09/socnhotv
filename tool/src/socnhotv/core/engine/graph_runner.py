@@ -861,7 +861,11 @@ class GraphRunner:
             output_file_name = str(node.params.get("outputFileName", "final_video.mp4"))
             platforms = list(node.params.get("platforms", ["tiktok", "youtube"]))
 
-            output_dir = self.store.output_dir
+            output_dir = (
+                getattr(self.store, "output_dir", None)
+                or getattr(self.store, "outputs_dir", None)
+                or (self.store.project_dir / "output")
+            )
             output_dir.mkdir(parents=True, exist_ok=True)
             target_path = output_dir / output_file_name
 

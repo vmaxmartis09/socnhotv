@@ -99,3 +99,107 @@ Sóc Nhỏ: Bi nhớ rồi ạ!
     assert "node_script" in summary.executed_nodes
     assert "node_voice" in summary.executed_nodes
     assert summary.total_cost_usd == 0.0
+
+
+def test_api_run_graph_mock_script_paste_mode():
+    """Test API FastAPI chạy đồ thị mock có script.mode='paste'."""
+    from fastapi.testclient import TestClient
+    from socnhotv.core.api.app import app
+
+    client = TestClient(app)
+
+    raw_script = """
+Cảnh 1: Khởi động ngày mới
+Sóc Nhỏ: Chào buổi sáng cả nhà!
+(Bi nhảy chân sáo)
+
+Cảnh 2: Khám phá rừng xanh
+Bi: Hôm nay trời thật trong xanh!
+"""
+
+    graph_payload = {
+        "id": "graph_api_paste_test",
+        "projectId": "soc-nho-tv",
+        "nodes": [
+            {
+                "id": "node_text_in",
+                "type": "text",
+                "params": {"content": "Chuyến phiêu lưu của Bi"},
+                "inputs": {},
+            },
+            {
+                "id": "node_script_paste",
+                "type": "script",
+                "params": {
+                    "mode": "paste",
+                    "rawScript": raw_script,
+                    "targetSceneCount": 2,
+                    "targetDurationSec": 10,
+                },
+                "inputs": {},
+            },
+            {
+                "id": "node_voice_out",
+                "type": "voice_tts",
+                "params": {"voiceId": "soc-nho"},
+                "inputs": {},
+            },
+            {
+                "id": "node_render_out",
+                "type": "hyperframes_render",
+                "params": {"templateId": "default_cartoon", "platform": "tiktok"},
+                "inputs": {},
+            },
+            {
+                "id": "node_export_out",
+                "type": "export",
+                "params": {"outputFileName": "api_test_paste.mp4", "platforms": ["tiktok"]},
+                "inputs": {},
+            },
+        ],
+        "edges": [
+            {
+                "id": "e_s_v",
+                "sourceNodeId": "node_script_paste",
+                "sourcePort": "dialogue",
+                "targetNodeId": "node_voice_out",
+                "targetPort": "text",
+            },
+            {
+                "id": "e_s_r",
+                "sourceNodeId": "node_script_paste",
+                "sourcePort": "scenes",
+                "targetNodeId": "node_render_out",
+                "targetPort": "scenes",
+            },
+            {
+                "id": "e_v_r",
+                "sourceNodeId": "node_voice_out",
+                "sourcePort": "audio",
+                "targetNodeId": "node_render_out",
+                "targetPort": "audio",
+            },
+            {
+                "id": "e_r_exp",
+                "sourceNodeId": "node_render_out",
+                "sourcePort": "video",
+                "targetNodeId": "node_export_out",
+                "targetPort": "video",
+            },
+        ],
+        "updatedAt": "2026-11-04T00:00:00Z",
+    }
+
+    # 1. Chạy đồ thị ở chế độ mock qua API (truyền graph trực tiếp)
+    res_run = client.post(
+        "/projects/soc-nho-tv/run",
+        json={"mode": "force_all", "mockMode": True, "graph": graph_payload},
+    )
+    assert res_run.status_code == 200
+    data = res_run.json()
+    assert data["isSuccess"] is True
+    assert "node_script_paste" in data["executedNodes"]
+    assert "node_voice_out" in data["executedNodes"]
+    assert "node_render_out" in data["executedNodes"]
+    assert "node_export_out" in data["executedNodes"]
+    assert data["totalCostUsd"] == 0.0

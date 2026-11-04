@@ -48,6 +48,7 @@ import {
   cancelRunOnCore,
 } from "@/lib/core-api";
 import { CORE_URL } from "@/lib/repositories/core";
+import { uploadNodeFile } from "@/lib/api/nodes";
 import type {
   Graph,
   NodeDefinition,
@@ -209,6 +210,7 @@ function StudioCanvasInner() {
     redoStack,
     loadCanvasTemplate,
     updateNodeExecutionState,
+    updateNodeParams,
     isMockMode,
     setIsMockMode,
     isRunningGraph,
@@ -1051,28 +1053,168 @@ function StudioCanvasInner() {
     }
   }, [activeProjectId, nodes, setIsRunningGraph, updateNodeExecutionState]);
 
-  // Drag & Drop Character or Node from Right Panel / Add Menu onto Canvas
+  // Drag & Drop Character, Node, hoặc Files trực tiếp từ máy tính lên Canvas
   const handleDragOverCanvas = useCallback((e: React.DragEvent) => {
     e.preventDefault();
     e.dataTransfer.dropEffect = "copy";
   }, []);
 
   const handleDropOnCanvas = useCallback(
-    (e: React.DragEvent) => {
+    async (e: React.DragEvent) => {
       e.preventDefault();
       const pos = screenToFlowPosition({ x: e.clientX, y: e.clientY });
+
+      // 1. Kiểm tra nếu kéo thả File từ máy tính
+      const files = e.dataTransfer.files ? Array.from(e.dataTransfer.files) : [];
+      if (files.length > 0) {
+        // Kiểm tra xem thả trúng node nào đang có trên canvas không
+        const targetEl = (e.target as HTMLElement).closest("[data-id]");
+        const targetNodeId = targetEl?.getAttribute("data-id");
+        const existingNode = targetNodeId ? nodes.find((n) => n.id === targetNodeId) : null;
+
+        if (existingNode) {
+          const f = files[0];
+          if (["image", "character_image", "scene"].includes(existingNode.data.nodeType) && f.type.startsWith("image/")) {
+            try {
+              const res = await uploadNodeFile(activeProjectId, f);
+              updateNodeParams(existingNode.id, { uri: res.uri, name: res.name || f.name });
+            } catch {
+              // ignore
+            }
+            return;
+          }
+          if (existingNode.data.nodeType === "script" && (f.name.endsWith(".txt") || f.name.endsWith(".md"))) {
+            const text = await f.text();
+            updateNodeParams(existingNode.id, { mode: "paste", rawScript: text });
+            return;
+          }
+        }
+
+        // Thả tự do lên canvas
+        const imageFiles = files.filter((f) => f.type.startsWith("image/"));
+        const textFiles = files.filter((f) => f.name.endsWith(".txt") || f.name.endsWith(".md") || f.type.startsWith("text/"));
+        const videoFiles = files.filter((f) => f.type.startsWith("video/"));
+
+        // Thả nhiều ảnh -> tạo nhiều node image xếp lưới gọn (3 cột)
+        if (imageFiles.length > 0) {
+          imageFiles.forEach(async (file, idx) => {
+            const col = idx % 3;
+            const row = Math.floor(idx / 3);
+            const nodePos = {
+              x: pos.x + col * 320,
+              y: pos.y + row * 340,
+            };
+            try {
+              const res = await uploadNodeFile(activeProjectId, file);
+              handlePlaceNewNode("image", nodePos, {
+                uri: res.uri,
+                name: res.name || file.name,
+              });
+            } catch {
+              handlePlaceNewNode("image", nodePos, { name: file.name });
+            }
+          });
+        }
+
+        // Thả file văn bản / kịch bản
+        if (textFiles.length > 0) {
+          textFiles.forEach(async (file, idx) => {
+            const text = await file.text();
+            const nodePos = { x: pos.x + idx * 320, y: pos.y };
+            const isScriptLike = /^(?:[#*>\s]*)(?:Cảnh|Scene|Phân cảnh|\bBi:|\bKoala:|\bSóc Nhỏ:)|[-=_*~]{3,}/im.test(text);
+            if (isScriptLike) {
+              handlePlaceNewNode("script", nodePos, {
+                mode: "paste",
+                rawScript: text,
+              });
+            } else {
+              handlePlaceNewNode("text", nodePos, {
+                content: text,
+              });
+            }
+          });
+        }
+
+        if (videoFiles.length > 0) {
+          videoFiles.forEach((file, idx) => {
+            const nodePos = { x: pos.x + idx * 320, y: pos.y };
+            handlePlaceNewNode("video_gen", nodePos, { prompt: file.name });
+          });
+        }
+        return;
+      }
+
+      // 2. Kéo thả nhân vật từ panel
       const charId = e.dataTransfer.getData("application/x-studio-character");
       if (charId) {
         handlePlaceNewNode("character", pos, { characterId: charId });
         return;
       }
+
+      // 3. Kéo thả loại node từ menu
       const nodeType = e.dataTransfer.getData("application/x-studio-nodetype");
       if (nodeType) {
         handlePlaceNewNode(nodeType, pos);
       }
     },
-    [screenToFlowPosition, handlePlaceNewNode]
+    [screenToFlowPosition, handlePlaceNewNode, nodes, activeProjectId, updateNodeParams]
   );
+
+  // Lắng nghe dán Clipboard (Ctrl+V) khi focus canvas
+  useEffect(() => {
+    const handleCanvasPaste = async (e: ClipboardEvent) => {
+      const activeEl = document.activeElement as HTMLElement;
+      if (
+        activeEl &&
+        (activeEl.tagName === "INPUT" ||
+          activeEl.tagName === "TEXTAREA" ||
+          activeEl.isContentEditable)
+      ) {
+        return;
+      }
+
+      if (!canvasWrapperRef.current) return;
+      const rect = canvasWrapperRef.current.getBoundingClientRect();
+      const centerScreen = {
+        x: rect.left + rect.width / 2,
+        y: rect.top + rect.height / 2,
+      };
+      const pos = screenToFlowPosition(centerScreen);
+
+      // Dán ảnh từ clipboard
+      if (e.clipboardData && e.clipboardData.files && e.clipboardData.files.length > 0) {
+        const f = e.clipboardData.files[0];
+        if (f.type.startsWith("image/")) {
+          e.preventDefault();
+          try {
+            const res = await uploadNodeFile(activeProjectId, f);
+            handlePlaceNewNode("image", pos, {
+              uri: res.uri,
+              name: res.name || "clipboard_image.png",
+            });
+          } catch {
+            handlePlaceNewNode("image", pos, { name: "clipboard_image.png" });
+          }
+          return;
+        }
+      }
+
+      // Dán văn bản từ clipboard
+      const text = e.clipboardData?.getData("text/plain");
+      if (text && text.trim()) {
+        e.preventDefault();
+        const isScriptLike = /^(?:[#*>\s]*)(?:Cảnh|Scene|Phân cảnh|\bBi:|\bKoala:|\bSóc Nhỏ:)|[-=_*~]{3,}/im.test(text);
+        if (isScriptLike) {
+          handlePlaceNewNode("script", pos, { mode: "paste", rawScript: text });
+        } else {
+          handlePlaceNewNode("text", pos, { content: text });
+        }
+      }
+    };
+
+    window.addEventListener("paste", handleCanvasPaste);
+    return () => window.removeEventListener("paste", handleCanvasPaste);
+  }, [activeProjectId, screenToFlowPosition, handlePlaceNewNode]);
 
   // Danh sách node phụ ẩn khỏi bảng thêm node (giữ backend, chỉ ẩn UI)
   const HIDDEN_NODE_TYPES = useMemo(

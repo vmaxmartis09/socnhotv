@@ -794,6 +794,13 @@ async def ai_script_alias(project_id: str, payload: Dict[str, Any] = Body(...)):
     return await ai_generate_script(project_id, payload)
 
 
+@app.post("/projects/{project_id}/library/upload")
+async def upload_library_alias(project_id: str, payload: Dict[str, Any] = Body(...)):
+    """Tải ảnh/video lên kho thư viện (alias từ /data/projects/{project_id}/library/upload)."""
+    from socnhotv.core.api.data_routes import upload_library_file
+    return await upload_library_file(project_id, payload)
+
+
 
 @app.get("/settings/api-keys")
 async def get_api_keys_status():

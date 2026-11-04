@@ -4,9 +4,18 @@ import React from "react";
 import { useTranslations } from "next-intl";
 import { useStudioStore } from "@/store";
 import { FALLBACK_NODE_TYPES, estimateNodeCostUsd } from "@/lib/core-api";
-import { VoiceSelectorWithClone } from "@/components/voice/VoiceSelectorWithClone";
 import { Pin, Check } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
+import {
+  NodeTextInput,
+  NodeImageInput,
+  NodeScriptInput,
+  NodeVoiceInput,
+  NodeImageGenInput,
+  NodeExportInput,
+  NodeCharacterSelect,
+  NodeCaptionsInput,
+} from "@/components/canvas/NodeInputs";
 
 export function NodeTab() {
   const t = useTranslations("nodeTab");
@@ -44,6 +53,9 @@ export function NodeTab() {
   const params = node.data.params || {};
   const estCost = estimateNodeCostUsd(def.typeName, params, isMockMode);
 
+  const isConnected = (portName: string) =>
+    edges.some((e) => e.target === node.id && e.targetHandle === portName);
+
   return (
     <div className="p-3.5 space-y-4 text-xs">
       {/* Header summary */}
@@ -77,157 +89,120 @@ export function NodeTab() {
         </div>
       </div>
 
-      {/* Parameters form */}
-      <section className="space-y-2.5 border-b border-border pb-3.5">
+      {/* DÙNG CHUNG CÁC COMPONENT NHẬP LIỆU CỐT LÕI (Unified with canvas card) */}
+      <section className="space-y-3 border-b border-border pb-3.5">
         <h4 className="font-semibold text-foreground">{t("paramsTitle")}</h4>
 
-        {/* Character selector for character node */}
-        {def.typeName === "character" && (
-          <label className="block space-y-1">
-            <span className="text-muted-foreground">
-              {t("characterSelectLabel")}
-            </span>
-            <select
-              value={params.characterId || "soc_nho"}
-              onChange={(e) =>
-                updateNodeParams(node.id, { characterId: e.target.value })
-              }
-              className="h-8 w-full rounded-md border border-border bg-card px-2 text-xs text-foreground"
-            >
-              {characters.map((ch) => (
-                <option key={ch.id} value={ch.id}>
-                  {ch.name} ({ch.heightCm} cm · {ch.voiceId})
-                </option>
-              ))}
-            </select>
-          </label>
+        {def.typeName === "text" && (
+          <NodeTextInput
+            nodeId={node.id}
+            content={params.content || ""}
+            connected={isConnected("text")}
+            isDetailed
+          />
         )}
 
-        {/* Text / Prompt input */}
-        {(def.typeName === "text" ||
-          def.typeName === "image_gen" ||
-          def.typeName === "image_edit" ||
-          def.typeName === "video_gen") && (
-          <label className="block space-y-1">
-            <span className="text-muted-foreground">{t("promptLabel")}</span>
-            <textarea
-              rows={3}
-              value={params.content ?? params.prompt ?? ""}
-              onChange={(e) =>
-                updateNodeParams(
-                  node.id,
-                  def.typeName === "text"
-                    ? { content: e.target.value }
-                    : { prompt: e.target.value }
-                )
-              }
-              className="w-full rounded-md border border-border bg-card p-2 text-xs text-foreground leading-relaxed"
-            />
-          </label>
+        {(def.typeName === "image" ||
+          def.typeName === "character_image" ||
+          def.typeName === "scene") && (
+          <NodeImageInput
+            nodeId={node.id}
+            uri={params.uri}
+            name={params.name}
+            nodeType={def.typeName}
+            previewUrl={node.data.previewUrl}
+          />
         )}
 
-        {/* Model selector */}
-        {"model" in (def.defaultParams || {}) && (
-          <label className="block space-y-1">
-            <span className="text-muted-foreground">{t("modelLabel")}</span>
-            <select
-              value={params.model || def.defaultParams.model}
-              onChange={(e) =>
-                updateNodeParams(node.id, { model: e.target.value })
-              }
-              className="h-8 w-full rounded-md border border-border bg-card px-2 font-mono text-xs text-foreground"
-            >
-              {def.typeName === "video_gen" ? (
-                <>
-                  <option value="google-veo-2">google-veo-2</option>
-                  <option value="fal-ltx-video">fal-ltx-video</option>
-                </>
-              ) : (
-                <>
-                  <option value="gemini-2.5-flash-image">
-                    gemini-2.5-flash-image
-                  </option>
-                  <option value="imagen-3.0-generate">
-                    imagen-3.0-generate
-                  </option>
-                </>
-              )}
-            </select>
-          </label>
+        {def.typeName === "script" && (
+          <NodeScriptInput
+            nodeId={node.id}
+            mode={params.mode}
+            rawScript={params.rawScript}
+            ideaText={params.text || params.content}
+            targetSceneCount={params.targetSceneCount}
+            targetDurationSec={params.targetDurationSec}
+            connectedText={isConnected("text")}
+          />
         )}
 
-        {/* Aspect ratio */}
-        {"aspectRatio" in (def.defaultParams || {}) && (
-          <label className="block space-y-1">
-            <span className="text-muted-foreground">{t("aspectLabel")}</span>
-            <select
-              value={params.aspectRatio || "9:16"}
-              onChange={(e) =>
-                updateNodeParams(node.id, { aspectRatio: e.target.value })
-              }
-              className="h-8 w-full rounded-md border border-border bg-card px-2 text-xs tnum text-foreground"
-            >
-              <option value="9:16">9:16 (TikTok / Shorts)</option>
-              <option value="16:9">16:9 (YouTube ngang)</option>
-              <option value="1:1">1:1 (Vuông)</option>
-              <option value="4:5">4:5 (Dọc vừa)</option>
-            </select>
-          </label>
-        )}
-
-        {/* Duration */}
-        {("durationSec" in (def.defaultParams || {}) ||
-          "targetDurationSec" in (def.defaultParams || {})) && (
-          <label className="block space-y-1">
-            <span className="text-muted-foreground">{t("durationLabel")}</span>
-            <input
-              type="number"
-              min={2}
-              max={120}
-              value={params.durationSec ?? params.targetDurationSec ?? 8}
-              onChange={(e) => {
-                const v = Number(e.target.value) || 8;
-                updateNodeParams(
-                  node.id,
-                  "durationSec" in (def.defaultParams || {})
-                    ? { durationSec: v }
-                    : { targetDurationSec: v }
-                );
-              }}
-              className="h-8 w-full rounded-md border border-border bg-card px-2 text-xs tnum text-foreground"
-            />
-          </label>
-        )}
-
-        {/* Voice ID & Tempo */}
         {def.typeName === "voice_tts" && (
-          <div className="space-y-2">
-            <div className="space-y-1">
-              <span className="text-xs text-muted-foreground">{t("voiceIdLabel")}</span>
-              <VoiceSelectorWithClone
-                value={params.voiceId || "soc-nho"}
-                onChange={(vid) => updateNodeParams(node.id, { voiceId: vid })}
-                projectId={activeProjectId}
-              />
-            </div>
-            <label className="block space-y-1">
-              <span className="text-muted-foreground">{t("tempoLabel")}</span>
-              <input
-                type="number"
-                step="0.05"
-                min="0.7"
-                max="1.5"
-                value={params.tempo || 1.1}
-                onChange={(e) =>
-                  updateNodeParams(node.id, {
-                    tempo: Number(e.target.value) || 1.0,
-                  })
-                }
-                className="h-8 w-full rounded-md border border-border bg-card px-2 text-xs tnum text-foreground"
-              />
-            </label>
-          </div>
+          <NodeVoiceInput
+            nodeId={node.id}
+            text={params.text}
+            voiceId={params.voiceId}
+            tempo={params.tempo}
+            connectedText={isConnected("text")}
+          />
         )}
+
+        {(def.typeName === "image_gen" || def.typeName === "image_edit") && (
+          <NodeImageGenInput
+            nodeId={node.id}
+            prompt={params.prompt}
+            referenceImages={params.referenceImages}
+            aspectRatio={params.aspectRatio}
+            model={params.model}
+            connectedPrompt={isConnected("prompt")}
+          />
+        )}
+
+        {def.typeName === "character" && (
+          <NodeCharacterSelect
+            nodeId={node.id}
+            characterId={params.characterId || "soc_nho"}
+          />
+        )}
+
+        {def.typeName === "captions" && (
+          <NodeCaptionsInput
+            nodeId={node.id}
+            style={params.style}
+            language={params.language}
+          />
+        )}
+
+        {def.typeName === "export" && (
+          <NodeExportInput
+            nodeId={node.id}
+            outputFileName={params.outputFileName}
+            platforms={params.platforms}
+            previewUrl={node.data.previewUrl}
+          />
+        )}
+
+        {/* CÁC THÔNG SỐ NÂNG CAO CHO CÁC NODE KHÁC */}
+        {/* Model selector */}
+        {"model" in (def.defaultParams || {}) &&
+          def.typeName !== "image_gen" &&
+          def.typeName !== "image_edit" && (
+            <label className="block space-y-1">
+              <span className="text-muted-foreground">{t("modelLabel")}</span>
+              <select
+                value={params.model || def.defaultParams.model}
+                onChange={(e) =>
+                  updateNodeParams(node.id, { model: e.target.value })
+                }
+                className="h-8 w-full rounded-md border border-border bg-card px-2 font-mono text-xs text-foreground"
+              >
+                {def.typeName === "video_gen" ? (
+                  <>
+                    <option value="google-veo-2">google-veo-2</option>
+                    <option value="fal-ltx-video">fal-ltx-video</option>
+                  </>
+                ) : (
+                  <>
+                    <option value="gemini-2.5-flash-image">
+                      gemini-2.5-flash-image
+                    </option>
+                    <option value="imagen-3.0-generate">
+                      imagen-3.0-generate
+                    </option>
+                  </>
+                )}
+              </select>
+            </label>
+          )}
 
         {/* Quality check threshold & criteria */}
         {def.typeName === "quality_check" && (
@@ -277,9 +252,7 @@ export function NodeTab() {
             </span>
             <ul className="space-y-1">
               {def.inputPorts.map((p) => {
-                const wired = edges.some(
-                  (e) => e.target === node.id && e.targetHandle === p.name
-                );
+                const wired = isConnected(p.name);
                 return (
                   <li key={p.name} className="flex items-center justify-between">
                     <span className="font-mono">{p.name}</span>
