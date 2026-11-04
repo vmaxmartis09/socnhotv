@@ -196,6 +196,8 @@ export const StudioNode = memo(function StudioNode({
     FOOTER + (def.outputPorts.length - 1 - i) * ROW + ROW / 2;
 
   const [collapsed, setCollapsed] = useState(false);
+  const maxPorts = Math.max(def.inputPorts.length, def.outputPorts.length, 1);
+  const collapsedH = Math.max(76, 18 * maxPorts + 18);
 
   // Kiểm tra đủ input: cổng bắt buộc phải được nối hoặc đã có giá trị
   const requiredPorts = def.inputPorts.filter((pt) => pt.required);
@@ -230,6 +232,8 @@ export const StudioNode = memo(function StudioNode({
       ? def.inputPorts.some((pt) => isPortCompatible(activeDragPort.portType, pt.portType))
       : def.outputPorts.some((pt) => isPortCompatible(pt.portType, activeDragPort.portType)));
 
+  const ports_len = (isIn: boolean) => (isIn ? def.inputPorts.length : def.outputPorts.length);
+
   const portHandle = (
     port: (typeof def.inputPorts)[number],
     index: number,
@@ -246,7 +250,10 @@ export const StudioNode = memo(function StudioNode({
         : isPortCompatible(port.portType, drag!.portType));
     const connected = connectedPorts.has(`${id}:${side}:${port.name}`);
     const missing = isIn && port.required && !connected;
-    const pos = isIn
+    const n = ports_len(isIn);
+    const pos = collapsed
+      ? { top: ((index + 1) * collapsedH) / (n + 1), transform: isIn ? "translate(-50%, -50%)" : "translate(50%, -50%)" }
+      : isIn
       ? { top: inTop(index), transform: "translate(-50%, -50%)" }
       : { top: "auto", bottom: outBottom(index), transform: "translate(50%, 50%)" };
     return (
@@ -444,7 +451,7 @@ export const StudioNode = memo(function StudioNode({
           ? "border-foreground"
           : !linkTargetable && "border-border hover:border-foreground/40"
       )}
-      style={{ boxShadow: "none" }}
+      style={{ boxShadow: "none", height: collapsed ? collapsedH : undefined }}
     >
       {stateKey === "running" && (
         <div className="pointer-events-none absolute inset-x-2 bottom-0 h-0.5 overflow-hidden rounded-full bg-muted">
@@ -491,8 +498,20 @@ export const StudioNode = memo(function StudioNode({
         </IconBtn>
       </div>
 
+      {collapsed && (
+        <div className="flex items-center gap-2 border-t border-border/70 px-3 text-xs text-muted-foreground" style={{ height: collapsedH - HEADER - 1 }}>
+          {hasIn && (
+            <span className={cn("flex items-center gap-1", requiredPorts.length > 0 && (inputsOk ? "text-semantic-success" : "text-semantic-danger"))}>
+              {requiredPorts.length > 0 && (inputsOk ? <CheckCircle2 className="h-3 w-3" /> : <AlertTriangle className="h-3 w-3" />)}
+              {requiredPorts.length > 0 ? (inputsOk ? "Đủ đầu vào" : `Thiếu ${missingPorts.length}/${requiredPorts.length}`) : `${def.inputPorts.length} vào`}
+            </span>
+          )}
+          <span className="ml-auto truncate">{hasOut ? `${def.outputPorts.length} ra` : ""}{outputsDone ? " · xong" : ""}</span>
+        </div>
+      )}
+
       {/* 1. NHẬN — chỉ hiện khi node có đầu vào */}
-      {hasIn && (
+      {!collapsed && hasIn && (
         <div className="border-t border-border/70">
           <div className="flex items-center justify-between px-3" style={{ height: LABEL }}>
             <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Nhận</span>
@@ -524,6 +543,7 @@ export const StudioNode = memo(function StudioNode({
       )}
 
       {/* 2. LÀM */}
+      {!collapsed && (
       <div className="border-t border-border/70">
         <div className="flex items-center justify-between px-3" style={{ height: LABEL }}>
           <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Làm</span>
@@ -569,8 +589,10 @@ export const StudioNode = memo(function StudioNode({
         </AnimatePresence>
       </div>
 
+      )}
+
       {/* 3. TRẢ — chỉ hiện khi node có đầu ra */}
-      {hasOut && (
+      {!collapsed && hasOut && (
         <div className="border-t border-border/70">
           <div className="flex items-center justify-between px-3" style={{ height: LABEL }}>
             <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Trả</span>
@@ -592,7 +614,7 @@ export const StudioNode = memo(function StudioNode({
         </div>
       )}
 
-      {(data.summaryText || hasError) && (
+      {!collapsed && (data.summaryText || hasError) && (
         <div className="space-y-1 px-2.5 pb-1">
           {data.summaryText && (
             <p className="line-clamp-2 rounded border border-border/70 bg-muted/20 px-2 py-1 text-xs text-foreground">{data.summaryText}</p>
@@ -605,6 +627,7 @@ export const StudioNode = memo(function StudioNode({
         </div>
       )}
 
+      {!collapsed && (
       <div className="flex items-center justify-between px-3 text-xs text-muted-foreground tnum" style={{ height: FOOTER }}>
         <span className="truncate">
           {data.generations.length > 0 ? t("pinnedGen", { index: Math.max(1, pinnedIdx), total: data.generations.length }) : ""}
@@ -616,6 +639,7 @@ export const StudioNode = memo(function StudioNode({
           </IconBtn>
         </span>
       </div>
+      )}
     </motion.div>
   );
 });
