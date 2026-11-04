@@ -1,0 +1,32 @@
+{
+  "duration_s": 518.69,
+  "scene_count": 6,
+  "cuts_per_10s": 0.12,
+  "median_shot_duration_s": 78.5,
+  "total_spoken_words": 1420,
+  "speech_rate_words_per_sec": 2.74,
+  "silence_ratio": 0.08,
+  "loudness": {
+    "integrated_lufs": -17.17,
+    "true_peak_dbtp": -3.64,
+    "lra_lu": 1.50,
+    "threshold_lufs": -27.17,
+    "standard_compliance": "Needs +3.17dB gain to meet TikTok standard -14 LUFS"
+  },
+  "video_specs": {
+    "width": 720,
+    "height": 1280,
+    "aspect_ratio": "9:16",
+    "fps": 30.0,
+    "safe_zone_vertical_compliant": true,
+    "video_type": "Long-form Studio Talking Head (Masterclass)",
+    "technology": "Podcast Shure SM7B Mic + Sony FX3 Studio + Subtitle Burn-in"
+  },
+  "color_palette_hex": [
+    "#111827",
+    "#1F2937",
+    "#374151",
+    "#F59E0B",
+    "#F3F4F6"
+  ]
+}

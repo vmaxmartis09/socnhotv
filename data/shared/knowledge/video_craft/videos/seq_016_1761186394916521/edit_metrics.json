@@ -1,0 +1,32 @@
+{
+  "duration_s": 73.0,
+  "scene_count": 4,
+  "cuts_per_10s": 0.55,
+  "median_shot_duration_s": 19.35,
+  "total_spoken_words": 235,
+  "speech_rate_words_per_sec": 3.22,
+  "silence_ratio": 0.03,
+  "loudness": {
+    "integrated_lufs": -17.31,
+    "true_peak_dbtp": -3.65,
+    "lra_lu": 1.70,
+    "threshold_lufs": -27.44,
+    "standard_compliance": "Needs +3.31dB gain adjustment to meet standard -14 LUFS"
+  },
+  "video_specs": {
+    "width": 948,
+    "height": 576,
+    "aspect_ratio": "16:9",
+    "fps": 30.0,
+    "safe_zone_vertical_compliant": false,
+    "video_type": "Screen Recording Open-Source Tool Review",
+    "technology": "Web App UI + Fast Voiceover + GitHub Metric Proof"
+  },
+  "color_palette_hex": [
+    "#0D1117",
+    "#161B22",
+    "#30363D",
+    "#238636",
+    "#58A6FF"
+  ]
+}

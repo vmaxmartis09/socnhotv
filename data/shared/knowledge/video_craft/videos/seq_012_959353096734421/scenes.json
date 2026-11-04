@@ -1,0 +1,42 @@
+[
+  {
+    "scene_id": 1,
+    "start_time": 0.0,
+    "end_time": 6.5,
+    "duration": 6.5,
+    "scene_type": "Walking Outfit 1 + Kinetic Icon Callouts",
+    "visual_description": "Người mẫu nữ châu Á sành điệu tự tin bước đi trên phố hiện đại, trang phục áo khoác dài thanh lịch, pop-up icon túi xách và chữ phong cách Paris Chic",
+    "audio_transcript": "[Upbeat Fashion Music - Lo-Fi Electronic Beat]",
+    "pacing": "Rhythmic, walking tempo"
+  },
+  {
+    "scene_id": 2,
+    "start_time": 6.5,
+    "end_time": 13.0,
+    "duration": 6.5,
+    "scene_type": "In-stride Seamless Morph to Outfit 2",
+    "visual_description": "Ngay trong nhịp bước chân tiếp theo (in-stride), trang phục biến đổi sang bộ váy công sở trẻ trung với hiệu ứng ánh sáng nhẹ, thẻ tag giá và chi tiết phụ kiện bay ra",
+    "audio_transcript": "[Music beat drop & transition swish]",
+    "pacing": "Seamless transition matching footstep"
+  },
+  {
+    "scene_id": 3,
+    "start_time": 13.0,
+    "end_time": 19.5,
+    "duration": 6.5,
+    "scene_type": "Walking Outfit 3 + Weekend Casual Style",
+    "visual_description": "Người mẫu tiếp tục bước tới camera, trang phục đổi sang set đồ dạo phố năng động (quần jeans, áo croptop), icon ngôi sao và sticker lấp lánh",
+    "audio_transcript": "[Fashion house music crescendo]",
+    "pacing": "Dynamic flow"
+  },
+  {
+    "scene_id": 4,
+    "start_time": 19.5,
+    "end_time": 26.12,
+    "duration": 6.62,
+    "scene_type": "Final Lookbook Brand Lockup",
+    "visual_description": "Người mẫu xoay nhẹ người mỉm cười, 3 ô thumbnail của 3 outfit xếp hàng ngang phía dưới màn hình kèm tên bộ sưu tập",
+    "audio_transcript": "[Outro music fade]",
+    "pacing": "Satisfying closure"
+  }
+]

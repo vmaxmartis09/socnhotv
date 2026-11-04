@@ -1,0 +1,42 @@
+[
+  {
+    "scene_id": 1,
+    "start_time": 0.0,
+    "end_time": 4.5,
+    "duration": 4.5,
+    "scene_type": "Studio Pose & Locked UI Checklist",
+    "visual_description": "Người mẫu đứng trên bục xoay studio tạo dáng tự tin (Look 1). Cột bên trái hiển thị checklist 4 ô sản phẩm (áo, quần, mũ, túi) khóa cố định vị trí",
+    "audio_transcript": "[Lounge House Studio Beat]",
+    "pacing": "Stable aesthetic studio shot"
+  },
+  {
+    "scene_id": 2,
+    "start_time": 4.5,
+    "end_time": 9.5,
+    "duration": 5.0,
+    "scene_type": "360 Turntable Spin + In-Rotation Morph to Look 2",
+    "visual_description": "Bục xoay bắt đầu xoay 360 độ quanh trục thẳng đứng. Trong lúc lưng quay về camera, trang phục và phụ kiện biến đổi mượt sang Look 2. Ô sản phẩm bên trái tự xoay nhẹ quanh trục để lật sang item mới",
+    "audio_transcript": "[Filter sweep & beat accent]",
+    "pacing": "Continuous circular rotation"
+  },
+  {
+    "scene_id": 3,
+    "start_time": 9.5,
+    "end_time": 14.5,
+    "duration": 5.0,
+    "scene_type": "Second 360 Spin + Morph to Look 3",
+    "visual_description": "Look 2 dừng lại tạo dáng 2s, sau đó tiếp tục xoay 360 độ sang Look 3 (váy dạ tiệc sang trọng). Camera khóa tĩnh tuyệt đối",
+    "audio_transcript": "[Bass drop with smooth rhythm]",
+    "pacing": "Consistent rhythmic tempo"
+  },
+  {
+    "scene_id": 4,
+    "start_time": 14.5,
+    "end_time": 20.46,
+    "duration": 5.96,
+    "scene_type": "Final Pose & Brand Title Sync",
+    "visual_description": "Look 3 hoàn tất vòng xoay, hướng mắt về ống kính. Tiêu đề bộ sưu tập và logo thương hiệu ở góc trên chuyển đổi đồng bộ",
+    "audio_transcript": "[Outro fade]",
+    "pacing": "Pristine catalog closure"
+  }
+]

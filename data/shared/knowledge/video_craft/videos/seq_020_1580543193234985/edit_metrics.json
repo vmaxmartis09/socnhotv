@@ -1,0 +1,32 @@
+{
+  "duration_s": 27.9,
+  "scene_count": 5,
+  "cuts_per_10s": 1.79,
+  "median_shot_duration_s": 5.2,
+  "total_spoken_words": 65,
+  "speech_rate_words_per_sec": 2.33,
+  "silence_ratio": 0.04,
+  "loudness": {
+    "integrated_lufs": -19.40,
+    "true_peak_dbtp": 0.13,
+    "lra_lu": 5.30,
+    "threshold_lufs": -29.51,
+    "standard_compliance": "Needs +5.4dB gain boost and limiter to reach -14 LUFS / -1.5 dBTP standard"
+  },
+  "video_specs": {
+    "width": 720,
+    "height": 1280,
+    "aspect_ratio": "9:16",
+    "fps": 30.0,
+    "safe_zone_vertical_compliant": true,
+    "video_type": "Editorial Split-Comparison Fast Fashion Reel",
+    "technology": "CapCut / After Effects (Easily replicable 100% deterministically in HyperFrames GSAP)"
+  },
+  "color_palette_hex": [
+    "#2D5A27",
+    "#FDFBF7",
+    "#A83232",
+    "#D4B996",
+    "#1A1A1A"
+  ]
+}

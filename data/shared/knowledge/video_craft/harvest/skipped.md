@@ -6,6 +6,12 @@ Tổng hợp các mục được lược bỏ trong quá trình sàng lọc theo
 - **Seq 010** | `https://www.facebook.com/share/r/1DxMj9zmXy/`
   - Nguồn: `سيكلينك-بالعربي`
   - Lý do: Video tiếng Ả Rập giới thiệu về kiến thức an ninh mạng (#cybersecurity, #أمن_سيبراني). Điểm liên quan: 0/5. Không liên quan đến sáng tạo video, KOC AI, affiliate hay thương mại điện tử.
+- **Seq 017** | `https://vt.tiktok.com/ZSboQhCok/`
+  - Nguồn: `Neo Ngô` (TikTok)
+  - Lý do: Video hướng dẫn lập trình game 2D (vibecoding) bằng Blackbox AI. Điểm liên quan: 0/5. Hoàn toàn không liên quan đến sản xuất video ngắn, animation, KOC AI hay thương mại điện tử.
+- **Seq 018** | `https://vt.tiktok.com/ZSboQaMum/`
+  - Nguồn: `Tí Tech Mỗi Ngày` (TikTok)
+  - Lý do: Video giới thiệu công cụ tạo sprite game pixel art AgentSpriteForge. Điểm liên quan: 0/5. Thuộc lĩnh vực thiết kế game asset 2D, không thuộc phạm vi video craft và thương mại mạng xã hội.
 
 ## 2. Lùa gà không có kỹ thuật kiểm chứng (SKIP-scam)
 *(Chưa có mục nào bị loại hoàn toàn ở nhóm này; các mục có phễu khoá học nhưng chứa kỹ thuật thật được phân loại thành LEARN-PARTIAL)*

@@ -1,0 +1,52 @@
+[
+  {
+    "scene_id": 1,
+    "start_time": 0.0,
+    "end_time": 6.6,
+    "duration": 6.6,
+    "scene_type": "Pair 1: Green (Black vs Cream)",
+    "visual_description": "Khung hình dọc 9:16: Nửa trái mẫu mặc Green + Black (bold), Nửa phải chuyển sang Green + Cream (luxurious). Khối swatch màu chuyển động nhịp nhàng",
+    "audio_transcript": "Remember, green with black looks bold, but green with cream looks luxurious.",
+    "pacing": "Punchy comparison hook"
+  },
+  {
+    "scene_id": 2,
+    "start_time": 6.6,
+    "end_time": 11.8,
+    "duration": 5.2,
+    "scene_type": "Pair 2: Red (White vs Beige)",
+    "visual_description": "So sánh sắc nét: Red + White (okay) vs Red + Beige (classy). Subtitle kinetic phong cách Vogue/Editorial",
+    "audio_transcript": "Red with white looks okay, but red with beige looks classy.",
+    "pacing": "Quick status upgrade contrast"
+  },
+  {
+    "scene_id": 3,
+    "start_time": 11.8,
+    "end_time": 18.6,
+    "duration": 6.8,
+    "scene_type": "Pair 3: Black (White vs Brown)",
+    "visual_description": "Black + White (clean) vs Black + Brown (expensive). Mẫu tạo dáng thanh lịch trên phố mùa thu",
+    "audio_transcript": "Black with white looks clean, but black with brown looks expensive.",
+    "pacing": "High-ticket aesthetic proof"
+  },
+  {
+    "scene_id": 4,
+    "start_time": 18.6,
+    "end_time": 23.0,
+    "duration": 4.4,
+    "scene_type": "Pair 4: Pink (White vs Gray)",
+    "visual_description": "Pink + White (cute) vs Pink + Gray (chic). Đổi sắc thái từ trẻ con sang trưởng thành quyến rũ",
+    "audio_transcript": "Pink with white looks cute, but pink with gray looks chic.",
+    "pacing": "Vibe transformation"
+  },
+  {
+    "scene_id": 5,
+    "start_time": 23.0,
+    "end_time": 27.9,
+    "duration": 4.9,
+    "scene_type": "Pair 5 & CTA: Blue (White vs Beige)",
+    "visual_description": "Blue + White (fresh) vs Blue + Beige (elegant). Kết thúc bằng bảng tổng kết 5 cặp màu và lời kêu gọi lưu lại",
+    "audio_transcript": "Blue with white looks fresh, but blue with beige looks elegant.",
+    "pacing": "Satisfying synthesis & save-worthy climax"
+  }
+]

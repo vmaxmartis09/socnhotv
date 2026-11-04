@@ -1,0 +1,62 @@
+[
+  {
+    "scene_id": 1,
+    "start_time": 0.0,
+    "end_time": 50.1,
+    "duration": 50.1,
+    "scene_type": "Hook & Authority Setting",
+    "visual_description": "Quay cận cảnh Duy Muối ngồi trước micro studio chuyên nghiệp, không gian tối giản, text kinetic nhấn mạnh '5 lời khuyên sau 7 năm'",
+    "audio_transcript": "Chúng ta chỉ còn 2 tháng nữa là hết năm... Nếu các bạn đang muốn tự làm nội dung và xây dựng sự nghiệp thông qua video ngắn thì nên tìm nơi yên tĩnh để nghe kỹ video này... Đúc kết sau 7 năm.",
+    "pacing": "Deliberate, high gravitas talking head"
+  },
+  {
+    "scene_id": 2,
+    "start_time": 50.1,
+    "end_time": 122.2,
+    "duration": 72.1,
+    "scene_type": "Pillar 1: Business Model First",
+    "visual_description": "Màn hình phân nhánh các hình thức kiếm tiền: Affiliate, Bán hàng tự thân, Booking, Dịch vụ chuyên môn",
+    "audio_transcript": "Điều thứ nhất: Trước khi làm video ngắn các bạn phải hiểu rõ mình kiếm tiền bằng hình thức nào. Đừng xây kênh triệu view rồi không biết chuyển đổi ra sao.",
+    "pacing": "Strategic breakdown"
+  },
+  {
+    "scene_id": 3,
+    "start_time": 122.2,
+    "end_time": 221.6,
+    "duration": 99.4,
+    "scene_type": "Pillar 2: Narrow Audience Positioning",
+    "visual_description": "Minh họa tệp khán giả ngách, nhấn mạnh việc nói chuyện trực diện với một nhóm người cụ thể thay vì nói chung chung",
+    "audio_transcript": "Lời khuyên thứ 2: Đừng cố làm hài lòng tất cả mọi người. Tìm đúng ngách và phục vụ sâu sắc cho tệp khán giả đó.",
+    "pacing": "Audience clarity doctrine"
+  },
+  {
+    "scene_id": 4,
+    "start_time": 221.6,
+    "end_time": 306.6,
+    "duration": 85.0,
+    "scene_type": "Pillar 3: Execution over Perfection ('Quay được hơn quay đẹp')",
+    "visual_description": "So sánh video quay bằng điện thoại đơn giản đạt triệu view vs video quay máy cơ cầu kỳ bị flop vì nội dung sáo rỗng",
+    "audio_transcript": "Lời khuyên thứ 3: Quay được hơn quay đẹp. Tính đều đặn và hoàn thành quan trọng hơn sự hoàn hảo hão huyền. Hook và nội dung đánh trúng tâm lý quyết định 90% thành công.",
+    "pacing": "Inspirational & practical truth"
+  },
+  {
+    "scene_id": 5,
+    "start_time": 306.6,
+    "end_time": 373.6,
+    "duration": 67.0,
+    "scene_type": "Pillar 4: Rapid Iteration & Data Feedback Loop",
+    "visual_description": "Màn hình phân tích đồ thị giữ chân người xem (Retention Rate Curve), chỉ ra điểm rơi ở giây thứ 3",
+    "audio_transcript": "Thứ tư: Tâm thế sửa sai liên tục. Mỗi video là một bài test. Đọc số liệu giữ chân, xem người ta rớt ở đâu để sửa 3 giây đầu, không bao giờ tự ái.",
+    "pacing": "Analytical optimization loop"
+  },
+  {
+    "scene_id": 6,
+    "start_time": 373.6,
+    "end_time": 518.69,
+    "duration": 145.09,
+    "scene_type": "Pillar 5 & Synthesis: Long-term Digital Asset Building",
+    "visual_description": "Đúc kết triết lý tài sản số, kêu gọi sự kiên trì bền bỉ và giữ vững kỷ luật sáng tạo",
+    "audio_transcript": "Lời khuyên thứ 5: Mục đích cuối cùng là xây dựng tài sản số chuyển đổi bền vững. 1.000 khách hàng trung thành giá trị hơn triệu view ảo.",
+    "pacing": "Powerful closing manifesto"
+  }
+]

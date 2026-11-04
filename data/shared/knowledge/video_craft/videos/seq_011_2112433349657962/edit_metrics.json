@@ -1,0 +1,32 @@
+{
+  "duration_s": 137.46,
+  "scene_count": 4,
+  "cuts_per_10s": 0.29,
+  "median_shot_duration_s": 28.45,
+  "total_spoken_words": 370,
+  "speech_rate_words_per_sec": 2.69,
+  "silence_ratio": 0.04,
+  "loudness": {
+    "integrated_lufs": -17.17,
+    "true_peak_dbtp": -6.12,
+    "lra_lu": 2.50,
+    "threshold_lufs": -27.55,
+    "standard_compliance": "Needs +3.17dB gain to meet TikTok/FB -14 LUFS standard"
+  },
+  "video_specs": {
+    "width": 720,
+    "height": 1280,
+    "aspect_ratio": "9:16",
+    "fps": 30.0,
+    "safe_zone_vertical_compliant": true,
+    "video_type": "Talking Head + Screen Inset Case Study",
+    "technology": "Data-Driven YouTube Analytics & Automation"
+  },
+  "color_palette_hex": [
+    "#0F172A",
+    "#1E293B",
+    "#38BDF8",
+    "#F43F5E",
+    "#F8FAFC"
+  ]
+}

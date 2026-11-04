@@ -1,0 +1,32 @@
+{
+  "duration_s": 110.13,
+  "scene_count": 4,
+  "cuts_per_10s": 0.36,
+  "median_shot_duration_s": 28.65,
+  "total_spoken_words": 315,
+  "speech_rate_words_per_sec": 2.86,
+  "silence_ratio": 0.05,
+  "loudness": {
+    "integrated_lufs": -14.37,
+    "true_peak_dbtp": -0.73,
+    "lra_lu": 5.20,
+    "threshold_lufs": -24.79,
+    "standard_compliance": "Compliant with TikTok/Facebook -14 LUFS standard (-14.37 LUFS)"
+  },
+  "video_specs": {
+    "width": 720,
+    "height": 1280,
+    "aspect_ratio": "9:16",
+    "fps": 30.0,
+    "safe_zone_vertical_compliant": true,
+    "video_type": "Screen Capture Multi-App Workflow",
+    "technology": "ViraAI (Video Inpainting) + Loha Page (Facebook Matrix Auto-Publisher)"
+  },
+  "color_palette_hex": [
+    "#0B0F19",
+    "#1E293B",
+    "#22C55E",
+    "#3B82F6",
+    "#FFFFFF"
+  ]
+}

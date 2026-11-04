@@ -1,0 +1,42 @@
+[
+  {
+    "scene_id": 1,
+    "start_time": 0.0,
+    "end_time": 21.9,
+    "duration": 21.9,
+    "scene_type": "High-Volume Automation Hook",
+    "visual_description": "Quay màn hình máy tính với hàng chục tab trình duyệt tự động hóa, bảng điều khiển hiển thị thống kê 16.000 bài đăng trong ngày",
+    "audio_transcript": "Đây là hệ thống tự động tự làm video tự đăng bài, mình đang setup cho khá nhiều team... Cái này mình đang test đã hơn 16.000 bài trong ngày hôm nay rồi.",
+    "pacing": "Fast proof of scale"
+  },
+  {
+    "scene_id": 2,
+    "start_time": 21.9,
+    "end_time": 66.5,
+    "duration": 44.6,
+    "scene_type": "Video Generation Engine (ViraAI Demo)",
+    "visual_description": "Giao diện ViraAI: Nạp ảnh sản phẩm tham chiếu, phân tích video mẫu góc, hệ thống tự động nhân bản ra video mới 15s chất lượng cao",
+    "audio_transcript": "Nó sẽ phân tích video gốc cho anh em để clone ra video mới... nạp ảnh sản phẩm tham chiếu và tự động tạo video thôi... build video rất nhanh.",
+    "pacing": "Software demonstration"
+  },
+  {
+    "scene_id": 3,
+    "start_time": 66.5,
+    "end_time": 101.9,
+    "duration": 35.4,
+    "scene_type": "Distribution & Link Placement Engine (Loha Page)",
+    "visual_description": "Chuyển sang giao diện Loha Page: Hệ thống nhận file MP4, tự động lên lịch đăng lên dàn Page vệ tinh, tự động post Story và tự động comment link affiliate/bio",
+    "audio_transcript": "Sau khi làm video xong thì nó sẽ đẩy sang Loha Page và tự động đăng bài luôn... tự động comment, tự động rải link, tự động set avatar và link bio cho anh em.",
+    "pacing": "Pipeline integration demo"
+  },
+  {
+    "scene_id": 4,
+    "start_time": 101.9,
+    "end_time": 110.13,
+    "duration": 8.23,
+    "scene_type": "CTA Lead Funnel",
+    "visual_description": "Hiện thông tin liên hệ Telegram / Zalo nhận tư vấn setup hệ thống traffic tự động",
+    "audio_transcript": "Anh em nào quan tâm đến hệ thống xây traffic tự động như thế này thì có thể nhắn cho mình... làm affiliate hoặc POD đều ok.",
+    "pacing": "Direct CTA"
+  }
+]

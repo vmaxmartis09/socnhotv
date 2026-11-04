@@ -1,0 +1,42 @@
+[
+  {
+    "scene_id": 1,
+    "start_time": 0.0,
+    "end_time": 22.3,
+    "duration": 22.3,
+    "scene_type": "Series Hook & Algorithmic Principle",
+    "visual_description": "Quay cận cảnh người nói trực diện, text kinetic 'Hành trình 30 ngày bật kiếm tiền', bảng điều khiển YouTube Analytics 1000 sub / 4000h xem",
+    "audio_transcript": "Hành trình 30 ngày bật kiếm tiền với YouTube... Ngày 1... Vậy câu hỏi không phải là làm thế nào để đăng đều video lên, mà câu hỏi chuẩn là làm thế nào để 1 video được đề xuất.",
+    "pacing": "Fast hook, strong cognitive reframing"
+  },
+  {
+    "scene_id": 2,
+    "start_time": 22.3,
+    "end_time": 56.9,
+    "duration": 34.6,
+    "scene_type": "Mechanism Explanation (The Fishing Metaphor)",
+    "visual_description": "Màn hình minh họa trực quan: Thuật toán YouTube tìm video cho người xem, ẩn dụ nghề đánh cá biển và 4 bước lọc dữ liệu",
+    "audio_transcript": "YouTube sẽ tìm video cho người xem, chứ không tìm người xem cho video... Để dễ hình dung thì chúng ta gọi nghề YouTube là nghề đánh cá đi... Bước 1 sẽ là chọn vùng biển, tức là chọn chủ đề.",
+    "pacing": "Educational metaphor, high engagement"
+  },
+  {
+    "scene_id": 3,
+    "start_time": 56.9,
+    "end_time": 116.9,
+    "duration": 60.0,
+    "scene_type": "Data Proof & Niche Opportunity Metric",
+    "visual_description": "Màn hình bảng tính Excel / Notion phân tích 760 kênh: so sánh ngách Kinh dị (chỉ 3% kênh mới thắng) với ngách Tâm lý (47% kênh mới thắng)",
+    "audio_transcript": "Ở chủ đề kinh dị... nhìn vào tưởng là mỏ vàng, nhưng những kênh đang thắng ở đấy toàn là kênh lâu năm rồi, chỉ có 3% là kênh mới thôi... Trong khi chủ đề tâm lý, 47% kênh đang thắng là kênh mới.",
+    "pacing": "Data-heavy case study proof"
+  },
+  {
+    "scene_id": 4,
+    "start_time": 116.9,
+    "end_time": 137.46,
+    "duration": 20.56,
+    "scene_type": "Day 1 Close & Open Loop for Day 2",
+    "visual_description": "Quay lại người nói, hiện đồ họa đếm ngược 29 ngày còn lại, kêu gọi theo dõi hành trình",
+    "audio_transcript": "Ngày mai là bước thứ 2: Chọn đàn cá... Ở ngày 1 đã xong rồi, chưa có 1 video nào nhưng mình biết là mình đang đứng ở đâu. Còn 29 ngày nữa, theo dõi hành trình của mình nhé.",
+    "pacing": "Call to action with irresistible open loop"
+  }
+]

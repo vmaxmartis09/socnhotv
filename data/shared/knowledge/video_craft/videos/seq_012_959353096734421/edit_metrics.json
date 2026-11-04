@@ -1,0 +1,32 @@
+{
+  "duration_s": 26.12,
+  "scene_count": 4,
+  "cuts_per_10s": 1.53,
+  "median_shot_duration_s": 6.5,
+  "total_spoken_words": 0,
+  "speech_rate_words_per_sec": 0.0,
+  "silence_ratio": 0.0,
+  "loudness": {
+    "integrated_lufs": -17.75,
+    "true_peak_dbtp": -0.93,
+    "lra_lu": 5.30,
+    "threshold_lufs": -27.79,
+    "standard_compliance": "Needs +3.75dB gain to match TikTok/Reels standard -14 LUFS"
+  },
+  "video_specs": {
+    "width": 1200,
+    "height": 720,
+    "aspect_ratio": "16:9",
+    "fps": 30.0,
+    "safe_zone_vertical_compliant": false,
+    "video_type": "AI Fashion Lookbook Continuous Motion",
+    "technology": "Flow App + OmniFlash (AnimateDiff / Kling Inpainting + GSAP Overlays)"
+  },
+  "color_palette_hex": [
+    "#FDF8F5",
+    "#D4A373",
+    "#CCD5AE",
+    "#E9EDC9",
+    "#2B2D42"
+  ]
+}

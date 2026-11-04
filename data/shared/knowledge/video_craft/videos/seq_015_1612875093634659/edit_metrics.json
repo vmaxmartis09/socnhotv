@@ -1,0 +1,32 @@
+{
+  "duration_s": 20.46,
+  "scene_count": 4,
+  "cuts_per_10s": 1.95,
+  "median_shot_duration_s": 5.0,
+  "total_spoken_words": 0,
+  "speech_rate_words_per_sec": 0.0,
+  "silence_ratio": 0.0,
+  "loudness": {
+    "integrated_lufs": -14.04,
+    "true_peak_dbtp": -2.52,
+    "lra_lu": 1.20,
+    "threshold_lufs": -24.04,
+    "standard_compliance": "100% Compliant with TikTok/Reels standard -14 LUFS (-14.04 LUFS)"
+  },
+  "video_specs": {
+    "width": 1280,
+    "height": 720,
+    "aspect_ratio": "16:9",
+    "fps": 30.0,
+    "safe_zone_vertical_compliant": false,
+    "video_type": "Studio 360 Turntable Fashion Catalog",
+    "technology": "Flow App + AI Flow Pro Workflow 15 (ControlNet Densepose Rotation + Locked HTML Overlay)"
+  },
+  "color_palette_hex": [
+    "#F4EAE1",
+    "#D8C4B6",
+    "#4F709C",
+    "#213555",
+    "#1A1A1A"
+  ]
+}

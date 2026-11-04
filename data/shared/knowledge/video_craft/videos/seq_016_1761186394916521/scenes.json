@@ -1,0 +1,42 @@
+[
+  {
+    "scene_id": 1,
+    "start_time": 0.0,
+    "end_time": 17.1,
+    "duration": 17.1,
+    "scene_type": "Open Source Authority Hook",
+    "visual_description": "Giao diện GitHub repo đạt 34k stars của Đại học Hồng Kông, demo chuyển đổi task mà không cần đổi tool",
+    "audio_transcript": "Những ai đang học sẽ phải bừng tỉnh ngay, cuối cùng đã có một hệ thống mã nguồn mở thực sự tích lũy dữ liệu cá nhân... đạt 34.000 sao trên GitHub.",
+    "pacing": "Fast hook with GitHub star proof"
+  },
+  {
+    "scene_id": 2,
+    "start_time": 17.1,
+    "end_time": 44.1,
+    "duration": 27.0,
+    "scene_type": "Pain Point Exposition (Context Switching Fragmentation)",
+    "visual_description": "Minh họa nỗi đau kiến thức phân mảnh, ghi chép rời rạc lâu ngày không xem lại bị thất lạc dữ liệu",
+    "audio_transcript": "Kiến thức phân mảnh, thói quen không thể tích lũy... ghi chú rời rạc lâu ngày không giở ra xem... học trước quên sau.",
+    "pacing": "Pain amplification"
+  },
+  {
+    "scene_id": 3,
+    "start_time": 44.1,
+    "end_time": 65.7,
+    "duration": 21.6,
+    "scene_type": "3-Layer Architecture Solution",
+    "visual_description": "Sơ đồ 3 tầng lưu trữ: Tầng 1 Task Goal, Tầng 2 Dynamic Context, Tầng 3 Origin Traceability (truy xuất nguồn gốc)",
+    "audio_transcript": "Chuyển đổi ngữ cảnh mà hoàn toàn không bị mất dữ liệu... Hệ thống 3 lớp cho phép chỉnh sửa tiến độ và nắm bắt kiến thức, mỗi điểm kiến thức đều có thể truy xuất nguồn gốc.",
+    "pacing": "Technical architecture walkthrough"
+  },
+  {
+    "scene_id": 4,
+    "start_time": 65.7,
+    "end_time": 73.0,
+    "duration": 7.3,
+    "scene_type": "Open Source CTA",
+    "visual_description": "Màn hình hướng dẫn lấy link repo GitHub trong phần bình luận",
+    "audio_transcript": "Dù là tự dùng hay phát triển thứ cấp đều cực kỳ hiệu quả... Xem link repo mình review tại bình luận.",
+    "pacing": "Quick CTA"
+  }
+]
