@@ -54,28 +54,76 @@ export async function uploadVoiceSample(voiceId: string, file: File) {
   });
 }
 
-export async function cloneCharacterVoice(
-  projectId: string,
-  params: {
-    voiceId: string;
-    characterId?: string;
-    file?: File;
-    sourceFile?: string;
-    dialect?: "north" | "south" | "central";
-    consentConfirmed: boolean;
+export interface VoiceVaultItem {
+  id: string;
+  name: string;
+  dialect: string;
+  engine: string;
+  durationSec?: number;
+  transcript?: string;
+  createdAt?: string;
+  hasSample?: boolean;
+  sampleUrl?: string | null;
+  usedBy?: Array<{ projectId: string; characterId: string; name: string }>;
+}
+
+export async function fetchVoiceVault(): Promise<VoiceVaultItem[]> {
+  try {
+    const res = await fetch(`${CORE_URL}/voices`);
+    if (!res.ok) return [];
+    return await res.json();
+  } catch {
+    return [];
   }
-) {
+}
+
+export interface VoiceCloneParams {
+  voiceId: string;
+  projectId?: string;
+  characterId?: string;
+  file?: File;
+  sourceFile?: string;
+  dialect?: "north" | "south" | "central";
+  consentConfirmed: boolean;
+}
+
+export interface VoiceCloneResult {
+  status: string;
+  voiceId: string;
+  name: string;
+  dialect: string;
+  durationSec?: number;
+  transcript?: string;
+  sampleUrl: string;
+  vaultPath: string;
+  mastering: string;
+}
+
+export async function cloneCharacterVoice(
+  projectIdOrParams: string | VoiceCloneParams,
+  paramsMaybe?: VoiceCloneParams
+): Promise<VoiceCloneResult> {
+  const isFirstParamString = typeof projectIdOrParams === "string";
+  const projectId = isFirstParamString ? projectIdOrParams : projectIdOrParams.projectId;
+  const params = isFirstParamString ? (paramsMaybe as VoiceCloneParams) : projectIdOrParams;
+
   let audioData: string | undefined = undefined;
   let filename: string | undefined = undefined;
   if (params.file) {
     audioData = await toBase64(params.file);
     filename = params.file.name;
   }
-  const res = await fetch(`${CORE_URL}/projects/${projectId}/voice/clone`, {
+
+  const endpoint = projectId
+    ? `${CORE_URL}/projects/${projectId}/voice/clone`
+    : `${CORE_URL}/voices/clone`;
+
+  const res = await fetch(endpoint, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       voiceId: params.voiceId,
+      projectId: projectId || params.projectId,
       characterId: params.characterId,
       audioData,
       filename,

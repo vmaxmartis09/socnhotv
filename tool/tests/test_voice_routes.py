@@ -31,3 +31,13 @@ def test_project_voice_clone_validation():
     r = client.post("/projects/soc-nho-tv/voice/clone", json={"voiceId": "test-v", "consentConfirmed": True})
     assert r.status_code == 400 and "âm thanh nguồn" in r.json()["detail"]
 
+
+def test_global_voice_clone_validation():
+    # Kiểm tra endpoint toàn cục /voices/clone có thể gọi bất cứ đâu không cần projectId
+    r = client.post("/voices/clone", json={"voiceId": "test-global"})
+    assert r.status_code == 400 and "đồng ý" in r.json()["detail"]
+
+    r = client.post("/voices/clone", json={"voiceId": "test-global", "consentConfirmed": True})
+    assert r.status_code == 400 and "âm thanh nguồn" in r.json()["detail"]
+
+

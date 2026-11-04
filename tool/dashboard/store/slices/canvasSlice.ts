@@ -96,7 +96,7 @@ export function buildSocNhoStoryTemplate(
     {
       id: "node_script",
       type: "studioCard",
-      position: { x: 350, y: 20 },
+      position: { x: 380, y: 20 },
       data: {
         nodeType: "script",
         status: "idle",
@@ -112,7 +112,7 @@ export function buildSocNhoStoryTemplate(
     {
       id: "node_character",
       type: "studioCard",
-      position: { x: 20, y: 370 },
+      position: { x: 20, y: 640 },
       data: {
         nodeType: "character",
         status: "idle",
@@ -127,7 +127,7 @@ export function buildSocNhoStoryTemplate(
     {
       id: "node_image_gen",
       type: "studioCard",
-      position: { x: 680, y: 20 },
+      position: { x: 740, y: 20 },
       data: {
         nodeType: "image_gen",
         status: "idle",
@@ -144,7 +144,7 @@ export function buildSocNhoStoryTemplate(
     {
       id: "node_quality",
       type: "studioCard",
-      position: { x: 350, y: 370 },
+      position: { x: 380, y: 640 },
       data: {
         nodeType: "quality_check",
         status: "idle",
@@ -159,7 +159,7 @@ export function buildSocNhoStoryTemplate(
     {
       id: "node_video_gen",
       type: "studioCard",
-      position: { x: 680, y: 370 },
+      position: { x: 740, y: 640 },
       data: {
         nodeType: "video_gen",
         status: "idle",
@@ -176,7 +176,7 @@ export function buildSocNhoStoryTemplate(
     {
       id: "node_voice",
       type: "studioCard",
-      position: { x: 350, y: 720 },
+      position: { x: 380, y: 1260 },
       data: {
         nodeType: "voice_tts",
         status: "idle",
@@ -192,7 +192,7 @@ export function buildSocNhoStoryTemplate(
     {
       id: "node_render",
       type: "studioCard",
-      position: { x: 680, y: 600 },
+      position: { x: 740, y: 1260 },
       data: {
         nodeType: "hyperframes_render",
         status: "idle",
@@ -208,7 +208,7 @@ export function buildSocNhoStoryTemplate(
     {
       id: "node_export",
       type: "studioCard",
-      position: { x: 1010, y: 600 },
+      position: { x: 1100, y: 1260 },
       data: {
         nodeType: "export",
         status: "idle",

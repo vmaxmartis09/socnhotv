@@ -4,6 +4,7 @@ import React from "react";
 import { useTranslations } from "next-intl";
 import { useStudioStore } from "@/store";
 import { FALLBACK_NODE_TYPES, estimateNodeCostUsd } from "@/lib/core-api";
+import { VoiceSelectorWithClone } from "@/components/voice/VoiceSelectorWithClone";
 import { Pin, Check } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
 
@@ -19,6 +20,7 @@ export function NodeTab() {
     isMockMode,
     updateNodeParams,
     pinNodeGeneration,
+    activeProjectId,
   } = useStudioStore();
 
   const node =
@@ -199,18 +201,15 @@ export function NodeTab() {
 
         {/* Voice ID & Tempo */}
         {def.typeName === "voice_tts" && (
-          <div className="grid grid-cols-2 gap-2">
-            <label className="block space-y-1">
-              <span className="text-muted-foreground">{t("voiceIdLabel")}</span>
-              <input
-                type="text"
+          <div className="space-y-2">
+            <div className="space-y-1">
+              <span className="text-xs text-muted-foreground">{t("voiceIdLabel")}</span>
+              <VoiceSelectorWithClone
                 value={params.voiceId || "soc-nho"}
-                onChange={(e) =>
-                  updateNodeParams(node.id, { voiceId: e.target.value })
-                }
-                className="h-8 w-full rounded-md border border-border bg-card px-2 font-mono text-xs text-foreground"
+                onChange={(vid) => updateNodeParams(node.id, { voiceId: vid })}
+                projectId={activeProjectId}
               />
-            </label>
+            </div>
             <label className="block space-y-1">
               <span className="text-muted-foreground">{t("tempoLabel")}</span>
               <input

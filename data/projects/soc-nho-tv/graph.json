@@ -17,17 +17,17 @@
       "ui": {},
       "state": "completed",
       "isStale": false,
-      "pinnedGenerationId": "gen_9199f66e",
+      "pinnedGenerationId": "gen_6d482b84",
       "generations": [
         {
-          "id": "gen_9199f66e",
+          "id": "gen_6d482b84",
           "nodeId": "node_input_text",
           "params": {
             "content": "Chào mừng các bạn đến với kênh Sóc Nhỏ TV!"
           },
           "artifactId": "art_732d024b5c51",
           "costUsd": 0.0,
-          "createdAt": "2026-11-04T00:16:21Z",
+          "createdAt": "2026-11-04T00:39:28Z",
           "isPinned": true
         }
       ]
@@ -47,18 +47,18 @@
       "ui": {},
       "state": "completed",
       "isStale": false,
-      "pinnedGenerationId": "gen_63d768fb",
+      "pinnedGenerationId": "gen_f80fb5e1",
       "generations": [
         {
-          "id": "gen_63d768fb",
+          "id": "gen_f80fb5e1",
           "nodeId": "node_tts",
           "params": {
             "voiceId": "soc-nho",
             "tempo": 1.1
           },
-          "artifactId": "art_959fd55e817d",
+          "artifactId": "art_02278d00a365",
           "costUsd": 0.0,
-          "createdAt": "2026-11-04T00:16:35Z",
+          "createdAt": "2026-11-04T00:39:45Z",
           "isPinned": true
         }
       ]
@@ -75,15 +75,15 @@
       "ui": {},
       "state": "completed",
       "isStale": false,
-      "pinnedGenerationId": "gen_f9df919c",
+      "pinnedGenerationId": "gen_cb8a20dd",
       "generations": [
         {
-          "id": "gen_f9df919c",
+          "id": "gen_cb8a20dd",
           "nodeId": "node_subtitles",
           "params": {},
-          "artifactId": "art_899ea8eb5777",
+          "artifactId": "art_d08614ac536e",
           "costUsd": 0.0,
-          "createdAt": "2026-11-04T00:16:35Z",
+          "createdAt": "2026-11-04T00:39:45Z",
           "isPinned": true
         }
       ]
@@ -105,5 +105,5 @@
       "targetPort": "audio"
     }
   ],
-  "updatedAt": "2026-11-04T00:17:15Z"
+  "updatedAt": "2026-11-04T00:41:08Z"
 }

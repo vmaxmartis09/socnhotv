@@ -4,6 +4,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import type { Character } from "@/lib/repositories";
 import { toDataUrl } from "@/lib/repositories/character-assets";
+import { VoiceSelectorWithClone } from "@/components/voice/VoiceSelectorWithClone";
 import { Button } from "@/components/ui/Button";
 import { X, Check, Upload, Images, Trash2, Sparkles, Plus, Loader2 } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
@@ -270,9 +271,18 @@ export function CharacterDialog({ initial, prefill, projectId, onSave, onClose, 
             <option value="supporting">{t("roleSupporting")}</option>
           </select>
         </Field>
-        <Field label={t("fVoice")}>
-          <input className={inputCls} value={voiceId} onChange={(e) => setVoiceId(e.target.value)} />
-        </Field>
+        <div className="space-y-1">
+          <span className="block text-[13px] font-medium text-muted-foreground">
+            {t("fVoice")}
+          </span>
+          <VoiceSelectorWithClone
+            value={voiceId}
+            onChange={(newVid) => setVoiceId(newVid)}
+            projectId={projectId}
+            characterId={initial?.id ?? id}
+            characterName={name}
+          />
+        </div>
         <Field label={t("fHeight")}>
           <input className={inputCls} type="number" min={1} value={heightCm} onChange={(e) => setHeightCm(e.target.value)} />
         </Field>

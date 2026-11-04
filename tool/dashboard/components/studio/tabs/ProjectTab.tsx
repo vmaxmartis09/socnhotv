@@ -8,6 +8,7 @@ import { getRepository } from "@/lib/repositories";
 import type { Character, CharacterImageAsset } from "@/lib/repositories/types";
 import { CORE_URL } from "@/lib/repositories/core";
 import { cloneCharacterVoice } from "@/lib/repositories/character-assets";
+import { VoiceCloneModal } from "@/components/voice/VoiceCloneModal";
 import {
   Plus,
   Search,
@@ -941,118 +942,23 @@ export function ProjectTab() {
               {t("voice.cloneVoiceBtn")}
             </button>
 
-            {/* Voice Clone Mandatory Consent Confirmation Modal */}
-            {cloneModalOpen && (
-              <div
-                role="dialog"
-                aria-modal="true"
-                aria-label={t("voice.cloneModalTitle")}
-                className="fixed inset-0 z-50 flex items-center justify-center bg-foreground/30 p-4"
-              >
-                <div className="w-full max-w-md rounded-lg border border-border bg-popover p-4 text-popover-foreground space-y-3">
-                  <h4 className="text-sm font-semibold">
-                    {t("voice.cloneModalTitle")}
-                  </h4>
-                  <p className="rounded border border-semantic-warning/40 bg-accent/60 p-2.5 text-xs text-foreground leading-relaxed">
-                    {t("voice.cloneModalWarning")}
-                  </p>
-                  {cloneError && (
-                    <p className="rounded border border-semantic-danger/40 bg-semantic-danger/10 p-2 text-xs text-semantic-danger">
-                      {cloneError}
-                    </p>
-                  )}
-                  <label className="block space-y-1">
-                    <span className="text-xs text-muted-foreground">
-                      {t("voice.cloneVoiceIdInput")}
-                    </span>
-                    <input
-                      type="text"
-                      disabled={cloneBusy}
-                      value={cloneNewVoiceId}
-                      onChange={(e) => setCloneNewVoiceId(e.target.value)}
-                      className="h-8 w-full rounded border border-border bg-background px-2 font-mono text-xs text-foreground"
-                    />
-                  </label>
-
-                  <div className="grid grid-cols-2 gap-2">
-                    <label className="block space-y-1">
-                      <span className="text-xs text-muted-foreground">Phương ngữ</span>
-                      <select
-                        disabled={cloneBusy}
-                        value={cloneDialect}
-                        onChange={(e) => setCloneDialect(e.target.value as any)}
-                        className="h-8 w-full rounded border border-border bg-background px-2 text-xs text-foreground"
-                      >
-                        <option value="south">Miền Nam</option>
-                        <option value="north">Miền Bắc</option>
-                        <option value="central">Miền Trung</option>
-                      </select>
-                    </label>
-
-                    <label className="block space-y-1">
-                      <span className="text-xs text-muted-foreground">Tệp âm thanh mẫu</span>
-                      <input
-                        type="file"
-                        accept="audio/*,video/mp4"
-                        disabled={cloneBusy}
-                        onChange={(e) => setCloneFile(e.target.files?.[0] || null)}
-                        className="block w-full text-[11px] text-muted-foreground file:mr-2 file:h-7 file:rounded file:border file:border-border file:bg-accent file:px-2 file:text-xs file:font-medium file:text-foreground"
-                      />
-                    </label>
-                  </div>
-                  {cloneFile && (
-                    <p className="text-[11px] text-brand">
-                      Đã chọn: {cloneFile.name} ({(cloneFile.size / 1024).toFixed(0)} KB)
-                    </p>
-                  )}
-
-                  <label className="flex items-start gap-2 pt-1 cursor-pointer">
-                    <input
-                      type="checkbox"
-                      disabled={cloneBusy}
-                      checked={cloneConsentChecked}
-                      onChange={(e) =>
-                        setCloneConsentChecked(e.target.checked)
-                      }
-                      className="mt-0.5 rounded border-border"
-                    />
-                    <span className="text-xs text-foreground leading-snug">
-                      {t("voice.cloneConsentCheckbox")}
-                    </span>
-                  </label>
-                  <div className="flex justify-end gap-2 pt-2">
-                    <button
-                      type="button"
-                      disabled={cloneBusy}
-                      onClick={() => {
-                        setCloneModalOpen(false);
-                        setCloneConsentChecked(false);
-                        setCloneError("");
-                        setCloneFile(null);
-                      }}
-                      className="h-8 rounded border border-border px-3 text-xs text-foreground"
-                    >
-                      {c("cancel")}
-                    </button>
-                    <button
-                      type="button"
-                      disabled={!cloneConsentChecked || cloneBusy}
-                      onClick={handleConfirmVoiceClone}
-                      className="flex h-8 items-center gap-1.5 rounded bg-primary px-3 text-xs font-medium text-primary-foreground disabled:opacity-40"
-                    >
-                      {cloneBusy ? (
-                        <>
-                          <Loader2 className="h-3.5 w-3.5 animate-spin" />
-                          <span>Đang nhân bản giọng...</span>
-                        </>
-                      ) : (
-                        <span>{t("voice.cloneConfirmBtn")}</span>
-                      )}
-                    </button>
-                  </div>
-                </div>
-              </div>
-            )}
+            {/* Voice Clone Modal */}
+            <VoiceCloneModal
+              isOpen={cloneModalOpen}
+              onClose={() => setCloneModalOpen(false)}
+              defaultVoiceId={selectedChar.voiceId || selectedChar.id}
+              projectId={activeProjectId}
+              characterId={selectedChar.id}
+              sourceSamples={(selectedChar.voiceFiles ?? []).map((f) => ({ name: f.name, url: f.url }))}
+              onSuccess={async (res) => {
+                await handleSaveCharacter({
+                  ...selectedChar,
+                  voiceId: res.voiceId,
+                  sampleAudioUrl: res.sampleUrl || `/voices/${res.voiceId}/sample`,
+                });
+                setCloneModalOpen(false);
+              }}
+            />
           </div>
         )}
 

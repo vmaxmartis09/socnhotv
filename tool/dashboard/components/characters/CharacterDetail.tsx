@@ -10,6 +10,7 @@ import { ChevronRight, Upload, Pencil, Copy, Trash2, Film, Plus, X, Ruler, Mic, 
 import { motion } from "framer-motion";
 import { usePreview } from "@/lib/preview";
 import { TiltedCard } from "./fx/TiltedCard";
+import { VoiceCloneModal } from "@/components/voice/VoiceCloneModal";
 import { cn } from "@/lib/utils";
 
 type Tab = "overview" | "images" | "voice" | "clips";
@@ -69,6 +70,7 @@ export function CharacterDetail(p: Props) {
   const c = p.character;
   const [tab, setTab] = useState<Tab>("overview");
   const [heroIdx, setHeroIdx] = useState(0);
+  const [cloneModalOpen, setCloneModalOpen] = useState(false);
   const openImage = (index: number) =>
     usePreview.getState().open({
       kind: "image",
@@ -427,10 +429,21 @@ export function CharacterDetail(p: Props) {
 
         {tab === "voice" && (
           <>
-            <dl className="grid grid-cols-2 gap-2 sm:grid-cols-3">
-              <Stat label={t("infoVoice")} value={c.voiceId || "—"} />
-              <Stat label={t("infoTempo")} value={`${c.defaultTempo ?? 1}x`} />
-            </dl>
+            <div className="flex items-center justify-between">
+              <dl className="grid grid-cols-2 gap-2">
+                <Stat label={t("infoVoice")} value={c.voiceId || "—"} />
+                <Stat label={t("infoTempo")} value={`${c.defaultTempo ?? 1}x`} />
+              </dl>
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={() => setCloneModalOpen(true)}
+                className="gap-1.5 text-xs text-brand border-brand/40 hover:bg-brand/10 shrink-0"
+              >
+                <Sparkles className="h-3.5 w-3.5 text-brand" />
+                <span>⚡ Clone giọng mới</span>
+              </Button>
+            </div>
             <Block title={t("voiceSample")}>
               {c.sampleAudioUrl ? (
                 <audio controls preload="none" src={c.sampleAudioUrl} className="w-full" />
@@ -528,6 +541,18 @@ export function CharacterDetail(p: Props) {
         )}
       </div>
 
+      <VoiceCloneModal
+        isOpen={cloneModalOpen}
+        onClose={() => setCloneModalOpen(false)}
+        defaultVoiceId={c.voiceId || c.id}
+        projectId={c.projectId}
+        characterId={c.id}
+        sourceSamples={(c.voiceFiles ?? []).map((f) => ({ name: f.name, url: f.url }))}
+        onSuccess={(res) => {
+          setCloneModalOpen(false);
+          p.onCloneVoice?.(res.voiceId);
+        }}
+      />
     </article>
   );
 }

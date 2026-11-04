@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import { getRepository, type Character } from "@/lib/repositories";
 import { useStudioStore } from "@/store";
 import { Button } from "@/components/ui/Button";
-import { Plus, Pencil, Wand2, X, ChevronRight } from "@/components/ui/icons";
+import { Plus, Pencil, Wand2, X, ChevronRight, Sparkles } from "@/components/ui/icons";
 import { AnimatePresence, motion } from "framer-motion";
 import { AiLoading } from "@/components/ui/AiLoading";
 import { EmptyActions } from "@/components/ui/EmptyActions";
@@ -13,6 +13,7 @@ import { useHubScope } from "@/lib/hub";
 import { CharacterPoster } from "./CharacterPoster";
 import { CharacterDialog } from "@/components/characters/CharacterDialog";
 import { CharacterDetail } from "@/components/characters/CharacterDetail";
+import { VoiceCloneModal } from "@/components/voice/VoiceCloneModal";
 import {
   uploadCharacterImage,
   deleteCharacterImage,
@@ -86,6 +87,7 @@ function CharacterStrip({
   onToggleAdd,
   onManual,
   onAi,
+  onVoiceClone,
 }: {
   characters: Character[];
   selectedId: string | null;
@@ -96,6 +98,7 @@ function CharacterStrip({
   onToggleAdd: () => void;
   onManual: () => void;
   onAi: () => void;
+  onVoiceClone?: () => void;
 }) {
   const ref = React.useRef<HTMLUListElement>(null);
   const [edge, setEdge] = useState({ left: false, right: false });
@@ -142,11 +145,14 @@ function CharacterStrip({
         <li className="shrink-0">
           {addOpen ? (
             <div className="flex h-[168px] w-[124px] flex-col items-stretch justify-center gap-1.5 rounded-2xl border-2 border-dashed border-border p-2">
-              <button type="button" title="Tạo thủ công" aria-label="Tạo thủ công" onClick={onManual} className="flex flex-1 flex-col items-center justify-center gap-1 rounded-xl text-xs text-foreground hover:bg-accent active:scale-95">
-                <Pencil className="h-4 w-4" />Thủ công
+              <button type="button" title="Tạo thủ công" aria-label="Tạo thủ công" onClick={onManual} className="flex flex-1 flex-col items-center justify-center gap-0.5 rounded-xl text-[11px] text-foreground hover:bg-accent active:scale-95">
+                <Pencil className="h-3.5 w-3.5" />Thủ công
               </button>
-              <button type="button" title="Tạo bằng AI (mô tả bằng lời)" aria-label="Tạo bằng AI" onClick={onAi} className="flex flex-1 flex-col items-center justify-center gap-1 rounded-xl bg-primary text-xs text-primary-foreground active:scale-95">
-                <Wand2 className="h-4 w-4" />Bằng AI
+              <button type="button" title="Tạo bằng AI (mô tả bằng lời)" aria-label="Tạo bằng AI" onClick={onAi} className="flex flex-1 flex-col items-center justify-center gap-0.5 rounded-xl bg-primary text-[11px] text-primary-foreground active:scale-95">
+                <Wand2 className="h-3.5 w-3.5" />Bằng AI
+              </button>
+              <button type="button" title="Clone giọng để tạo nhân vật" aria-label="Clone giọng để tạo nhân vật" onClick={onVoiceClone} className="flex flex-1 flex-col items-center justify-center gap-0.5 rounded-xl border border-brand/40 bg-brand/10 text-[11px] font-medium text-brand hover:bg-brand/20 active:scale-95">
+                <Sparkles className="h-3.5 w-3.5 text-brand" />Clone Giọng
               </button>
             </div>
           ) : (
@@ -199,6 +205,7 @@ export function CharactersManager({ compact = false, projectId }: { compact?: bo
   const [aiOpen, setAiOpen] = useState(false);
   const [aiPrompt, setAiPrompt] = useState("");
   const [aiBusy, setAiBusy] = useState(false);
+  const [voiceCloneOpen, setVoiceCloneOpen] = useState(false);
   const isMockMode = useStudioStore((s) => s.isMockMode);
 
   // Tạo bằng AI: dựng bản nháp từ mô tả rồi mở form để người dùng duyệt trước khi lưu
@@ -389,6 +396,7 @@ export function CharactersManager({ compact = false, projectId }: { compact?: bo
           items={[
             { key: "manual", icons: [Pencil], title: "Tạo thủ công", hint: "Điền hồ sơ: tên, chiều cao, giọng, khóa nhận diện", onClick: () => openForm() },
             { key: "ai", icons: [Wand2], title: "Tạo bằng AI", hint: "Mô tả bằng lời, AI dựng hồ sơ để bạn duyệt", onClick: () => setAiOpen(true) },
+            { key: "voice", icons: [Sparkles], title: "Từ Clone Giọng", hint: "Tải mẫu âm thanh/video, OmniVoice clone giọng rồi tạo nhân vật", onClick: () => setVoiceCloneOpen(true) },
           ]}
         />
       )}
@@ -408,6 +416,7 @@ export function CharactersManager({ compact = false, projectId }: { compact?: bo
               onToggleAdd={() => setCreateMenu(true)}
               onManual={() => { setCreateMenu(false); openForm(); }}
               onAi={() => { setCreateMenu(false); setAiOpen(true); }}
+              onVoiceClone={() => { setCreateMenu(false); setVoiceCloneOpen(true); }}
               roleLabel={(c) => `${c.role === "main" ? t("roleMain") : t("roleSupporting")} · ${t("cm", { value: c.heightCm })}`}
             />
             {!compact && <ScaleLockGraph characters={characters} />}
@@ -481,6 +490,19 @@ export function CharactersManager({ compact = false, projectId }: { compact?: bo
         </div>
       )}
 
+      {/* Modal Clone Voice hỗ trợ tạo nhân vật mới trực tiếp từ giọng nói */}
+      <VoiceCloneModal
+        isOpen={voiceCloneOpen}
+        onClose={() => setVoiceCloneOpen(false)}
+        projectId={activeProjectId}
+        onSuccess={(res) => {
+          setVoiceCloneOpen(false);
+          openForm(undefined, {
+            name: res.name || res.voiceId,
+            voiceId: res.voiceId,
+          });
+        }}
+      />
     </div>
   );
 }

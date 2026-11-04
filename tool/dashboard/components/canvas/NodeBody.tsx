@@ -3,7 +3,6 @@
 import React from "react";
 import type { StudioNodeData } from "@/store/slices/canvasSlice";
 import type { Character } from "@/lib/repositories";
-import { CharacterCard } from "./CharacterCard";
 import { Film, Download, ScrollText, ShieldCheck, Volume2, Video, Images } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
 
@@ -40,16 +39,36 @@ function Wave({ seed, active }: { seed: string; active: boolean }) {
 }
 
 function ImagePreview({ url, alt }: { url?: string; alt: string }) {
-  if (!url) return <Empty icon={<Images className="h-5 w-5" />} />;
+  if (!url) return <Empty icon={<Images className="h-6 w-6" />} text="Ảnh sẽ hiện ở đây" tall />;
   // eslint-disable-next-line @next/next/no-img-element
-  return <img src={url} alt={alt} loading="lazy" className="max-h-44 w-full rounded-md border border-border object-cover object-top" />;
+  return <img src={url} alt={alt} loading="lazy" className="max-h-72 w-full rounded-lg border border-border object-cover object-top" />;
 }
 
-function Empty({ icon, text }: { icon: React.ReactNode; text?: string }) {
+function Empty({ icon, text, tall }: { icon: React.ReactNode; text?: string; tall?: boolean }) {
   return (
-    <div className="flex h-20 flex-col items-center justify-center gap-1 rounded-md border border-dashed border-border text-muted-foreground">
+    <div className={cn("flex flex-col items-center justify-center gap-1 rounded-md border border-dashed border-border text-muted-foreground", tall ? "h-40" : "h-20")}>
       {icon}
       {text && <span className="text-[11px]">{text}</span>}
+    </div>
+  );
+}
+
+/** Thẻ nhân vật gọn: 1 ảnh lớn + tên + chip thông số. Chi tiết xem ở panel bên phải. */
+function CharacterHero({ c }: { c: Character }) {
+  return (
+    <div className="space-y-1.5">
+      {c.referenceImages[0] ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={c.referenceImages[0]} alt={c.name} className="h-56 w-full rounded-lg border border-border bg-muted/20 object-cover object-top" />
+      ) : (
+        <Empty icon={<ShieldCheck className="h-6 w-6" />} text={c.name} tall />
+      )}
+      <div className="flex flex-wrap items-center gap-1.5">
+        <span className="mr-1 text-sm font-semibold text-foreground">{c.name}</span>
+        <Chip title="Chiều cao">{c.heightCm} cm</Chip>
+        <Chip title="Giọng">{c.voiceId || "—"}</Chip>
+      </div>
+      {c.sampleAudioUrl && <audio controls preload="none" src={c.sampleAudioUrl} className="nodrag nowheel h-7 w-full" />}
     </div>
   );
 }
@@ -76,7 +95,7 @@ export function NodeBody({ nodeType, nodeId, data, character, connectedInputs }:
       return <ImagePreview url={url ?? p.url} alt="image" />;
 
     case "character":
-      return character ? <CharacterCard character={character} /> : <Empty icon={<ShieldCheck className="h-5 w-5" />} text={String(p.characterId || "—")} />;
+      return character ? <CharacterHero c={character} /> : <Empty icon={<ShieldCheck className="h-5 w-5" />} text={String(p.characterId || "—")} />;
 
     case "script": {
       const count = p.targetSceneCount ?? lines.length;
@@ -141,7 +160,7 @@ export function NodeBody({ nodeType, nodeId, data, character, connectedInputs }:
           {url && data.previewType === "video" ? (
             <video src={url} controls preload="metadata" className="nodrag max-h-48 w-full rounded-md border border-border bg-black object-contain" />
           ) : (
-            <Empty icon={<Video className="h-5 w-5" />} />
+            <Empty icon={<Video className="h-6 w-6" />} text="Video sẽ hiện ở đây" tall />
           )}
           <div className="flex flex-wrap gap-1.5">
             {p.model && <Chip>{String(p.model)}</Chip>}
