@@ -29,16 +29,17 @@ def test_port_compatibility():
 
 
 def test_node_registry_completeness():
-    """Kiểm tra danh mục 13 node chuẩn."""
+    """Kiểm tra danh mục 13 node chuẩn + 3 node đơn giản (nhân vật từ ảnh, cảnh, chuyển cảnh)."""
     definitions = NodeRegistry.list_all()
-    assert len(definitions) == 13
+    assert len(definitions) == 16
 
     # Kiểm tra các node cốt lõi
     type_names = {d.type_name for d in definitions}
     expected = {
         "text", "image", "character", "script", "vision_analyze",
         "quality_check", "image_gen", "image_edit", "video_gen",
-        "voice_tts", "captions", "hyperframes_render", "export"
+        "voice_tts", "captions", "hyperframes_render", "export",
+        "character_image", "scene", "transition",
     }
     assert expected.issubset(type_names)
 
@@ -133,7 +134,7 @@ def test_fastapi_endpoints():
     # 2. Node types
     res_types = client.get("/node-types")
     assert res_types.status_code == 200
-    assert len(res_types.json()) == 13
+    assert len(res_types.json()) == 16
 
     # 3. Models
     res_models = client.get("/models")

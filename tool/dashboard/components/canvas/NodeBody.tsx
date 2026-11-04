@@ -92,7 +92,18 @@ export function NodeBody({ nodeType, nodeId, data, character, connectedInputs }:
       );
     }
     case "image":
-      return <ImagePreview url={url ?? p.url} alt="image" />;
+    case "character_image":
+    case "scene":
+      return <ImagePreview url={url ?? p.uri ?? p.url} alt={nodeType} />;
+
+    case "transition":
+      return (
+        <div className="flex items-center justify-center gap-2 rounded-md border border-dashed border-border py-3 text-xs text-muted-foreground">
+          <span className="h-6 w-8 rounded bg-muted" />
+          <span className="font-mono text-foreground">{String(p.style || "fade")}</span>
+          <span className="h-6 w-8 rounded bg-muted" />
+        </div>
+      );
 
     case "character":
       return character ? <CharacterHero c={character} /> : <Empty icon={<ShieldCheck className="h-5 w-5" />} text={String(p.characterId || "—")} />;
@@ -147,10 +158,6 @@ export function NodeBody({ nodeType, nodeId, data, character, connectedInputs }:
       return (
         <div className="space-y-1.5">
           <ImagePreview url={url} alt={nodeType} />
-          <div className="flex flex-wrap gap-1.5">
-            {p.model && <Chip>{String(p.model)}</Chip>}
-            {p.aspectRatio && <Chip>{String(p.aspectRatio)}</Chip>}
-          </div>
         </div>
       );
 
@@ -162,11 +169,6 @@ export function NodeBody({ nodeType, nodeId, data, character, connectedInputs }:
           ) : (
             <Empty icon={<Video className="h-6 w-6" />} text="Video sẽ hiện ở đây" tall />
           )}
-          <div className="flex flex-wrap gap-1.5">
-            {p.model && <Chip>{String(p.model)}</Chip>}
-            {p.aspectRatio && <Chip>{String(p.aspectRatio)}</Chip>}
-            {p.durationSec ? <Chip>{p.durationSec}s</Chip> : null}
-          </div>
         </div>
       );
 
@@ -178,10 +180,6 @@ export function NodeBody({ nodeType, nodeId, data, character, connectedInputs }:
             <Wave seed={nodeId} active={done} />
           </div>
           {url && data.previewType === "audio" && <audio src={url} controls preload="metadata" className="nodrag h-7 w-full" />}
-          <div className="flex flex-wrap gap-1.5">
-            {p.voiceId && <Chip>{String(p.voiceId)}</Chip>}
-            {p.tempo ? <Chip>{p.tempo}x</Chip> : null}
-          </div>
         </div>
       );
 
@@ -215,10 +213,6 @@ export function NodeBody({ nodeType, nodeId, data, character, connectedInputs }:
             })}
           </div>
           {url && data.previewType === "video" && <video src={url} controls preload="metadata" className="nodrag max-h-48 w-full rounded-md bg-black object-contain" />}
-          <div className="flex flex-wrap gap-1.5">
-            {p.aspectRatio && <Chip>{String(p.aspectRatio)}</Chip>}
-            {p.template && <Chip>{String(p.template)}</Chip>}
-          </div>
         </div>
       );
     }

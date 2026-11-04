@@ -249,6 +249,49 @@ export const FALLBACK_NODE_TYPES: NodeDefinition[] = [
     },
     mockable: true,
   },
+  {
+    typeName: "character_image",
+    displayName: "Nhân vật từ ảnh",
+    category: "Identity",
+    description: "Dùng một ảnh bất kỳ làm nhân vật tham chiếu, không cần tạo hồ sơ đầy đủ",
+    inputPorts: [],
+    outputPorts: [
+      { name: "image", portType: "image", description: "Ảnh nhân vật", required: true },
+      { name: "reference_images", portType: "image[]", description: "Ảnh tham chiếu nhân vật", required: true },
+    ],
+    defaultParams: { uri: "", name: "" },
+    mockable: true,
+  },
+  {
+    typeName: "scene",
+    displayName: "Cảnh",
+    category: "Structure",
+    description: "Ghép một ảnh và lời thoại thành một cảnh để dựng phim",
+    inputPorts: [
+      { name: "image", portType: "image", description: "Ảnh của cảnh", required: true },
+      { name: "text", portType: "text", description: "Lời thoại hoặc mô tả cảnh", required: false },
+    ],
+    outputPorts: [
+      { name: "scenes", portType: "scenes", description: "Cảnh đã ghép", required: true },
+      { name: "image", portType: "image", description: "Ảnh của cảnh", required: true },
+    ],
+    defaultParams: { title: "Cảnh mới", durationSec: 6 },
+    mockable: true,
+  },
+  {
+    typeName: "transition",
+    displayName: "Chuyển cảnh",
+    category: "Structure",
+    description: "Đặt kiểu chuyển cảnh (mờ dần, trượt, cắt) giữa các cảnh",
+    inputPorts: [
+      { name: "scenes", portType: "scenes", description: "Các cảnh cần chuyển tiếp", required: true },
+    ],
+    outputPorts: [
+      { name: "scenes", portType: "scenes", description: "Các cảnh kèm chuyển cảnh", required: true },
+    ],
+    defaultParams: { style: "fade", durationSec: 0.5 },
+    mockable: true,
+  }
 ];
 
 export function estimateNodeCostUsd(

@@ -24,6 +24,11 @@ export interface CanvasInteractionContextValue {
   onOpenQuickAdd: (req: QuickAddRequest) => void;
   onRequestRun: (mode: RunMode, targetNodeId?: string) => void;
   onOpenNodeInspector: (nodeId: string) => void;
+  /** Đang ở chế độ "kéo dây bằng nút +": chọn xong cổng đích bằng một cú bấm */
+  linkMode: boolean;
+  startLink: (port: ActiveDragPort) => void;
+  finishLink: (nodeId: string, portName: string, handleType: "source" | "target") => void;
+  cancelLink: () => void;
 }
 
 export const CanvasInteractionContext =
@@ -34,6 +39,10 @@ export const CanvasInteractionContext =
     onOpenQuickAdd: () => {},
     onRequestRun: () => {},
     onOpenNodeInspector: () => {},
+    linkMode: false,
+    startLink: () => {},
+    finishLink: () => {},
+    cancelLink: () => {},
   });
 
 export function useCanvasInteraction() {

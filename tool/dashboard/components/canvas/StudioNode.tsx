@@ -17,6 +17,7 @@ import {
 } from "@/lib/core-api";
 import { useCanvasInteraction } from "@/components/canvas/CanvasContext";
 import { NodeBody } from "./NodeBody";
+import { useHubScope } from "@/lib/hub";
 import { CharacterCard } from "@/components/canvas/CharacterCard";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -24,6 +25,8 @@ import {
   Plus,
   ChevronsDown,
   Sliders,
+  ChevronDown,
+  ChevronUp,
   Loader2,
   Circle,
   CircleDot,
@@ -65,6 +68,9 @@ export const StudioNode = memo(function StudioNode({
     onOpenQuickAdd,
     onRequestRun,
     onOpenNodeInspector,
+    linkMode,
+    startLink,
+    finishLink,
   } = useCanvasInteraction();
 
 
@@ -183,9 +189,22 @@ export const StudioNode = memo(function StudioNode({
   const LABEL = 22;
   const ROW = 22;
   const FOOTER = 30;
-  const inTop = (i: number) => HEADER + LABEL + i * ROW + ROW / 2;
+  const hasIn = def.inputPorts.length > 0;
+  const hasOut = def.outputPorts.length > 0;
+  const inTop = (i: number) => HEADER + 1 + LABEL + i * ROW + ROW / 2;
   const outBottom = (i: number) =>
-    FOOTER + 6 + (def.outputPorts.length - 1 - i) * ROW + ROW / 2;
+    FOOTER + (def.outputPorts.length - 1 - i) * ROW + ROW / 2;
+
+  const [collapsed, setCollapsed] = useState(false);
+
+  // Kiểm tra đủ input: cổng bắt buộc phải được nối hoặc đã có giá trị
+  const requiredPorts = def.inputPorts.filter((pt) => pt.required);
+  const missingPorts = requiredPorts.filter(
+    (pt) =>
+      !connectedPorts.has(`${id}:in:${pt.name}`) &&
+      (p[pt.name] === undefined || p[pt.name] === "")
+  );
+  const inputsOk = missingPorts.length === 0;
 
   const [guide, setGuide] = useState<"in" | "out" | null>(null);
   const rootRef = useRef<HTMLDivElement>(null);
@@ -202,6 +221,14 @@ export const StudioNode = memo(function StudioNode({
   }, [selected]);
 
   const typeLabel = (pt: string) => t(`portTypes.${pt}` as any);
+
+  const linkTargetable =
+    linkMode &&
+    activeDragPort &&
+    activeDragPort.nodeId !== id &&
+    (activeDragPort.handleType === "source"
+      ? def.inputPorts.some((pt) => isPortCompatible(activeDragPort.portType, pt.portType))
+      : def.outputPorts.some((pt) => isPortCompatible(pt.portType, activeDragPort.portType)));
 
   const portHandle = (
     port: (typeof def.inputPorts)[number],
@@ -228,6 +255,11 @@ export const StudioNode = memo(function StudioNode({
         id={port.name}
         type={isIn ? "target" : "source"}
         position={isIn ? Position.Left : Position.Right}
+        onClick={(e) => {
+          if (!linkMode) return;
+          e.stopPropagation();
+          if (compatible) finishLink(id, port.name, isIn ? "target" : "source");
+        }}
         title={`${port.name} · ${typeLabel(port.portType)}${port.required ? " *" : ""}`}
         aria-label={`${port.name} (${typeLabel(port.portType)})`}
         style={{
@@ -242,8 +274,9 @@ export const StudioNode = memo(function StudioNode({
             : missing
             ? "2px solid hsl(var(--danger))"
             : "2px solid hsl(var(--card))",
-          boxShadow: missing ? "0 0 0 2px hsl(var(--danger) / 0.25)" : undefined,
           opacity: other && !compatible ? 0.3 : 1,
+          boxShadow: compatible ? `0 0 0 4px ${portColor}55` : missing ? "0 0 0 2px hsl(var(--danger) / 0.25)" : undefined,
+          cursor: linkMode && compatible ? "pointer" : undefined,
           transition: "all 150ms",
         }}
       />
@@ -285,29 +318,36 @@ export const StudioNode = memo(function StudioNode({
     </div>
   );
 
-  /** Nút + nhỏ ở mép card: hiện khi rê chuột / chọn card; bấm mở hướng dẫn input hoặc output. */
+  /** Nút + luôn ở giữa mép card: bấm để kéo dây (1 cổng) hoặc chọn cổng (nhiều cổng). Các node nối được sẽ sáng lên. */
   const plusBtn = (side: "in" | "out") => {
     const isIn = side === "in";
     const ports = isIn ? def.inputPorts : def.outputPorts;
     if (ports.length === 0) return null;
     const active = guide === side;
-    const style: React.CSSProperties = isIn
-      ? { top: HEADER + LABEL + ((ports.length * ROW) / 2 - 10), left: -34 }
-      : { bottom: FOOTER + 6 + ((ports.length * ROW) / 2 - 10), right: -34 };
+    const begin = (port: (typeof ports)[number]) => {
+      setGuide(null);
+      startLink({
+        nodeId: id,
+        portName: port.name,
+        portType: port.portType,
+        handleType: isIn ? "target" : "source",
+      });
+    };
     return (
       <>
         <button
           type="button"
-          title={isIn ? "Xem cần nhận gì" : "Xem trả ra gì & nối tiếp"}
-          aria-label={isIn ? "Hướng dẫn đầu vào" : "Hướng dẫn đầu ra"}
+          title={isIn ? "Nối đầu vào từ node khác" : "Nối đầu ra tới node khác"}
+          aria-label={isIn ? "Nối đầu vào" : "Nối đầu ra"}
           aria-expanded={active}
           onClick={(e) => {
             e.stopPropagation();
-            setGuide(active ? null : side);
+            if (ports.length === 1) begin(ports[0]);
+            else setGuide(active ? null : side);
           }}
-          style={style}
+          style={{ top: "50%", [isIn ? "left" : "right"]: -34, transform: "translateY(-50%)" }}
           className={cn(
-            "nodrag absolute z-20 flex h-5 w-5 items-center justify-center rounded-full border border-border bg-card text-muted-foreground shadow-sm transition-all hover:scale-110 hover:text-foreground",
+            "nodrag absolute z-20 flex h-5 w-5 items-center justify-center rounded-full border border-border bg-card text-muted-foreground shadow-sm transition-all hover:scale-110 hover:border-foreground hover:text-foreground",
             active || selected
               ? "opacity-100"
               : "pointer-events-none opacity-0 group-hover/node:pointer-events-auto group-hover/node:opacity-100"
@@ -322,35 +362,43 @@ export const StudioNode = memo(function StudioNode({
               animate={{ opacity: 1, x: 0, scale: 1 }}
               exit={{ opacity: 0, scale: 0.97 }}
               transition={{ duration: 0.15, ease: "easeOut" }}
-              style={isIn ? { top: HEADER, right: "calc(100% + 40px)" } : { bottom: FOOTER, left: "calc(100% + 40px)" }}
-              className="nodrag nowheel absolute z-30 w-60 space-y-2 rounded-lg border border-border bg-card p-2.5 text-xs shadow-lg"
+              style={{ top: "50%", translateY: "-50%", [isIn ? "right" : "left"]: "calc(100% + 40px)" }}
+              className="nodrag nowheel absolute z-30 w-56 space-y-1 rounded-xl border border-border bg-card p-1.5 text-xs shadow-lg"
             >
-              <p className="font-semibold text-foreground">
-                {isIn ? "Node này cần nhận" : "Node này trả ra"}
+              <p className="px-1.5 pb-0.5 pt-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                {isIn ? "Chọn đầu vào để nối" : "Chọn đầu ra để nối"}
               </p>
               {ports.map((port) => {
                 const connected = connectedPorts.has(`${id}:${side}:${port.name}`);
                 return (
-                  <div key={port.name} className="space-y-1 rounded-md border border-border/70 p-1.5">
-                    <div className="flex items-center gap-1.5">
-                      <span className="h-2 w-2 shrink-0 rounded-full" style={{ backgroundColor: PORT_TYPE_COLORS[port.portType] || "#737373" }} />
-                      <span className="font-medium text-foreground">{port.name}</span>
-                      <span className="text-muted-foreground">· {typeLabel(port.portType)}</span>
-                      <span className={cn("ml-auto text-[10px]", connected ? "text-semantic-success" : isIn && port.required ? "text-semantic-danger" : "text-muted-foreground")}>
-                        {connected ? "đã nối" : isIn ? (port.required ? "bắt buộc" : "tuỳ chọn") : "chưa nối"}
-                      </span>
-                    </div>
+                  <div key={port.name} className="flex items-center gap-1">
                     <button
                       type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        begin(port);
+                      }}
+                      className="flex min-w-0 flex-1 items-center gap-1.5 rounded-lg px-1.5 py-1.5 text-left transition-colors hover:bg-accent"
+                    >
+                      <span className="h-2 w-2 shrink-0 rounded-full" style={{ backgroundColor: PORT_TYPE_COLORS[port.portType] || "#737373" }} />
+                      <span className="truncate font-medium text-foreground">{port.name}</span>
+                      <span className="truncate text-muted-foreground">{typeLabel(port.portType)}</span>
+                      <span className={cn("ml-auto shrink-0 text-[10px]", connected ? "text-semantic-success" : isIn && port.required ? "text-semantic-danger" : "text-muted-foreground")}>
+                        {connected ? "đã nối" : isIn && port.required ? "cần" : ""}
+                      </span>
+                    </button>
+                    <button
+                      type="button"
+                      title="Thêm node mới và tự nối"
+                      aria-label="Thêm node mới"
                       onClick={(e) => {
                         e.stopPropagation();
                         setGuide(null);
                         onOpenQuickAdd({ anchorNodeId: id, direction: isIn ? "before" : "after", portName: port.name, portType: port.portType });
                       }}
-                      className="flex w-full items-center gap-1 rounded border border-dashed border-border px-1.5 py-1 text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+                      className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
                     >
                       <Plus className="h-3 w-3" />
-                      {isIn ? `Thêm node cấp ${typeLabel(port.portType)}` : `Thêm node nhận ${typeLabel(port.portType)}`}
                     </button>
                   </div>
                 );
@@ -363,6 +411,7 @@ export const StudioNode = memo(function StudioNode({
   };
 
   const outputsDone = data.status === "succeeded" || data.status === "completed";
+  const isCharacter = def.typeName === "character";
 
   return (
     <motion.div
@@ -381,17 +430,19 @@ export const StudioNode = memo(function StudioNode({
         }
       }}
       className={cn(
-        "group/node relative w-[300px] rounded-[12px] border bg-card text-foreground select-none transition-colors",
+        "group/node relative w-[300px] rounded-[14px] border bg-card text-foreground select-none transition-[border-color,box-shadow,opacity]",
         stateKey === "stale" && "opacity-80",
         stateKey === "running" && "node-running",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+        linkTargetable && "border-brand ring-4 ring-brand/20",
+        linkMode && !linkTargetable && activeDragPort?.nodeId !== id && "opacity-50",
         isFlashing
           ? "border-brand bg-brand/5"
           : hasError
           ? "border-semantic-danger"
           : selected
           ? "border-foreground"
-          : "border-border hover:border-foreground/40"
+          : !linkTargetable && "border-border hover:border-foreground/40"
       )}
       style={{ boxShadow: "none" }}
     >
@@ -410,12 +461,12 @@ export const StudioNode = memo(function StudioNode({
           )}
         </div>
       )}
-      {def.inputPorts.map((p, i) => portHandle(p, i, "in"))}
-      {def.outputPorts.map((p, i) => portHandle(p, i, "out"))}
+      {def.inputPorts.map((pt, i) => portHandle(pt, i, "in"))}
+      {def.outputPorts.map((pt, i) => portHandle(pt, i, "out"))}
       {plusBtn("in")}
       {plusBtn("out")}
 
-      {/* Đầu card: loại, tên, trạng thái, chạy */}
+      {/* Đầu card */}
       <div className="flex items-center gap-2 px-3" style={{ height: HEADER }}>
         <span
           title={categoryLabel}
@@ -429,101 +480,141 @@ export const StudioNode = memo(function StudioNode({
         <span title={`${stateLabel}${stateKey === "running" && typeof data.progressPct === "number" ? ` ${Math.round(data.progressPct)}%` : ""}`} className={cn("flex h-6 w-6 items-center justify-center", statusColor)}>
           <StatusIcon className={cn("h-3.5 w-3.5", stateKey === "running" && "animate-spin")} />
         </span>
+        <IconBtn label={t("editInNodeTab")} onClick={() => { setSelectedNodeId(id); onOpenNodeInspector(id); }}>
+          <Sliders className="h-3.5 w-3.5" />
+        </IconBtn>
         <IconBtn label={t("runNode")} onClick={() => onRequestRun("single_node", id)}>
           <Play className="h-3 w-3" />
         </IconBtn>
+        <IconBtn label={collapsed ? "Mở rộng" : "Thu gọn"} onClick={() => setCollapsed((v) => !v)}>
+          {collapsed ? <ChevronDown className="h-3.5 w-3.5" /> : <ChevronUp className="h-3.5 w-3.5" />}
+        </IconBtn>
       </div>
 
-      {/* 1. NHẬN */}
-      <div className="border-t border-border/70">
-        {zoneLabel("Nhận", `${def.inputPorts.length} đầu vào`)}
-        {def.inputPorts.length === 0 && (
-          <p className="px-3 pb-1.5 text-xs text-muted-foreground" style={{ height: ROW }}>
-            Không cần đầu vào — nhập trực tiếp
-          </p>
-        )}
-        {def.inputPorts.map((port) => {
-          const connected = connectedPorts.has(`${id}:in:${port.name}`);
-          const filled = connected || (p[port.name] !== undefined && p[port.name] !== "");
-          return (
-            <div key={port.name} className="flex items-center gap-1.5 px-3 text-xs" style={{ height: ROW }}>
-              <span className={cn("truncate", filled ? "text-foreground" : port.required ? "text-semantic-danger" : "text-muted-foreground")}>
-                {port.name}
+      {/* 1. NHẬN — chỉ hiện khi node có đầu vào */}
+      {hasIn && (
+        <div className="border-t border-border/70">
+          <div className="flex items-center justify-between px-3" style={{ height: LABEL }}>
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Nhận</span>
+            {requiredPorts.length > 0 ? (
+              <span className={cn("flex items-center gap-1 text-[10px] font-medium", inputsOk ? "text-semantic-success" : "text-semantic-danger")}>
+                {inputsOk ? <CheckCircle2 className="h-3 w-3" /> : <AlertTriangle className="h-3 w-3" />}
+                {inputsOk ? "Đủ đầu vào" : `Thiếu ${missingPorts.length}/${requiredPorts.length}`}
               </span>
-              <span className="text-muted-foreground/70">· {typeLabel(port.portType)}</span>
-              <span className="ml-auto">
-                {filled ? <CheckCircle2 className="h-3 w-3 text-semantic-success" /> : port.required ? <span className="text-[10px] text-semantic-danger">thiếu</span> : null}
-              </span>
-            </div>
-          );
-        })}
-      </div>
+            ) : (
+              <span className="text-[10px] text-muted-foreground/70">Tuỳ chọn</span>
+            )}
+          </div>
+          {def.inputPorts.map((port) => {
+            const connected = connectedPorts.has(`${id}:in:${port.name}`);
+            const filled = connected || (p[port.name] !== undefined && p[port.name] !== "");
+            return (
+              <div key={port.name} className="flex items-center gap-1.5 px-3 text-xs" style={{ height: ROW }}>
+                <span className={cn("truncate", filled ? "text-foreground" : port.required ? "text-semantic-danger" : "text-muted-foreground")}>
+                  {port.name}
+                </span>
+                <span className="text-muted-foreground/70">· {typeLabel(port.portType)}</span>
+                <span className="ml-auto text-[10px]">
+                  {filled ? <CheckCircle2 className="h-3 w-3 text-semantic-success" /> : port.required ? <span className="text-semantic-danger">thiếu</span> : <span className="text-muted-foreground/60">tuỳ chọn</span>}
+                </span>
+              </div>
+            );
+          })}
+        </div>
+      )}
 
       {/* 2. LÀM */}
-      <div className="space-y-2 border-t border-border/70 pb-2.5">
-        {zoneLabel("Làm", categoryLabel)}
-        <div className="space-y-2 px-2.5">
-          <p className="line-clamp-2 px-0.5 text-xs text-muted-foreground" title={def.description}>
-            {def.description}
-          </p>
-          <NodeBody
-            nodeType={def.typeName}
-            nodeId={id}
-            data={data}
-            character={boundChar}
-            connectedInputs={def.inputPorts.filter((pt) => connectedPorts.has(`${id}:in:${pt.name}`)).map((pt) => pt.name)}
-          />
-          <button
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              setSelectedNodeId(id);
-              onOpenNodeInspector(id);
-            }}
-            title={t("editInNodeTab")}
-            className="nodrag flex w-full items-center justify-between gap-2 rounded-md border border-border px-2 py-1 text-left transition-colors hover:bg-accent/50"
-          >
-            <span className="min-w-0 flex-1 truncate font-mono text-xs tnum text-foreground">
-              {compactParams.join(" · ") || "Tuỳ chỉnh"}
-            </span>
-            <Sliders className="h-3.5 w-3.5 shrink-0 text-muted-foreground" />
-          </button>
+      <div className="border-t border-border/70">
+        <div className="flex items-center justify-between px-3" style={{ height: LABEL }}>
+          <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Làm</span>
+          <span className="text-[10px] text-muted-foreground/70">{categoryLabel}</span>
         </div>
+        <AnimatePresence initial={false}>
+          {!collapsed && (
+            <motion.div
+              key="body"
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className="overflow-hidden"
+            >
+              <div className="space-y-2 px-3 pb-3">
+                <p className="line-clamp-2 text-xs text-muted-foreground" title={def.description}>
+                  {def.description}
+                </p>
+                <NodeBody
+                  nodeType={def.typeName}
+                  nodeId={id}
+                  data={data}
+                  character={boundChar}
+                  connectedInputs={def.inputPorts.filter((pt) => connectedPorts.has(`${id}:in:${pt.name}`)).map((pt) => pt.name)}
+                />
+                {isCharacter && boundChar && (
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      useHubScope.getState().openTab("characters", null, boundChar.id);
+                    }}
+                    className="nodrag flex w-full items-center justify-center gap-1 rounded-lg border border-border py-1.5 text-xs text-foreground transition-colors hover:bg-accent"
+                  >
+                    <Users className="h-3.5 w-3.5" />
+                    Mở hồ sơ nhân vật
+                  </button>
+                )}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
-      {/* 3. TRẢ */}
-      <div className="border-t border-border/70">
-        {zoneLabel("Trả", outputsDone ? "đã có kết quả" : "chưa chạy")}
-        {def.outputPorts.map((port) => {
-          const connected = connectedPorts.has(`${id}:out:${port.name}`);
-          return (
-            <div key={port.name} className="flex items-center justify-end gap-1.5 px-3 text-xs" style={{ height: ROW }}>
-              <span className="text-muted-foreground/70">{typeLabel(port.portType)} ·</span>
-              <span className={cn("truncate", connected ? "text-foreground" : "text-muted-foreground")}>{port.name}</span>
-            </div>
-          );
-        })}
-        {data.summaryText && (
-          <p className="mx-2.5 mb-1 line-clamp-2 rounded border border-border/70 bg-muted/20 px-2 py-1 text-xs text-foreground">{data.summaryText}</p>
-        )}
-        {hasError && (
-          <p className="mx-2.5 mb-1 rounded border border-semantic-danger/40 px-2 py-1 text-xs text-semantic-danger">
-            {data.errorMessage || issues[0]}
-          </p>
-        )}
-        <div className="flex items-center justify-between px-3 text-xs text-muted-foreground tnum" style={{ height: FOOTER }}>
-          <span className="truncate">
-            {data.generations.length > 0
-              ? t("pinnedGen", { index: Math.max(1, pinnedIdx), total: data.generations.length })
-              : data.nextStepHint || t("noGenYet")}
-          </span>
-          <span className="flex shrink-0 items-center gap-1">
-            <span title={t("estimatedCost", { cost: estCost.toFixed(2) })}>${estCost.toFixed(2)}</span>
-            <IconBtn label={t("runFromHere")} onClick={() => onRequestRun("downstream", id)}>
-              <ChevronsDown className="h-3.5 w-3.5" />
-            </IconBtn>
-          </span>
+      {/* 3. TRẢ — chỉ hiện khi node có đầu ra */}
+      {hasOut && (
+        <div className="border-t border-border/70">
+          <div className="flex items-center justify-between px-3" style={{ height: LABEL }}>
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Trả</span>
+            {outputsDone && (
+              <span className="flex items-center gap-1 text-[10px] font-medium text-semantic-success">
+                <CheckCircle2 className="h-3 w-3" /> Đã có kết quả
+              </span>
+            )}
+          </div>
+          {def.outputPorts.map((port) => {
+            const connected = connectedPorts.has(`${id}:out:${port.name}`);
+            return (
+              <div key={port.name} className="flex items-center justify-end gap-1.5 px-3 text-xs" style={{ height: ROW }}>
+                <span className="text-muted-foreground/70">{typeLabel(port.portType)} ·</span>
+                <span className={cn("truncate", connected ? "text-foreground" : "text-muted-foreground")}>{port.name}</span>
+              </div>
+            );
+          })}
         </div>
+      )}
+
+      {(data.summaryText || hasError) && (
+        <div className="space-y-1 px-2.5 pb-1">
+          {data.summaryText && (
+            <p className="line-clamp-2 rounded border border-border/70 bg-muted/20 px-2 py-1 text-xs text-foreground">{data.summaryText}</p>
+          )}
+          {hasError && (
+            <p className="rounded border border-semantic-danger/40 px-2 py-1 text-xs text-semantic-danger">
+              {data.errorMessage || issues[0]}
+            </p>
+          )}
+        </div>
+      )}
+
+      <div className="flex items-center justify-between px-3 text-xs text-muted-foreground tnum" style={{ height: FOOTER }}>
+        <span className="truncate">
+          {data.generations.length > 0 ? t("pinnedGen", { index: Math.max(1, pinnedIdx), total: data.generations.length }) : ""}
+        </span>
+        <span className="flex shrink-0 items-center gap-1">
+          <span title={t("estimatedCost", { cost: estCost.toFixed(2) })}>${estCost.toFixed(2)}</span>
+          <IconBtn label={t("runFromHere")} onClick={() => onRequestRun("downstream", id)}>
+            <ChevronsDown className="h-3.5 w-3.5" />
+          </IconBtn>
+        </span>
       </div>
     </motion.div>
   );

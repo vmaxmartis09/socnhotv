@@ -452,7 +452,7 @@ class GraphRunner:
             primary_artifact = ref_arts[0] if ref_arts else None
             cost_usd = 0.0
 
-        elif node_type == "image":
+        elif node_type in ("image", "character_image"):
             uri = str(resolved_inputs.get("uri", ""))
             local_cand = (self.store.project_dir / uri.lstrip("/")) if uri else None
             if local_cand and local_cand.exists() and local_cand.is_file():
@@ -480,6 +480,36 @@ class GraphRunner:
                 )
                 primary_artifact = arts[0]
             outputs["image"] = primary_artifact
+            if node_type == "character_image":
+                outputs["reference_images"] = [primary_artifact]
+
+        elif node_type == "scene":
+            img = resolved_inputs.get("image")
+            img_uri = img.uri if isinstance(img, Artifact) else (str(img) if img else "")
+            dialogue = str(resolved_inputs.get("text") or "")
+            title = str(node.params.get("title", "Cảnh mới"))
+            outputs["scenes"] = [{
+                "sceneNumber": 1,
+                "title": title,
+                "image": img_uri,
+                "imagePrompt": dialogue,
+                "dialogue": dialogue,
+                "durationSec": float(node.params.get("durationSec", 6)),
+            }]
+            if isinstance(img, Artifact):
+                outputs["image"] = img
+                primary_artifact = img
+            cost_usd = 0.0
+
+        elif node_type == "transition":
+            src = resolved_inputs.get("scenes") or []
+            style = str(node.params.get("style", "fade"))
+            dur = float(node.params.get("durationSec", 0.5))
+            outputs["scenes"] = [
+                {**sc, "transition": {"style": style, "durationSec": dur}} if isinstance(sc, dict) else sc
+                for sc in src
+            ]
+            cost_usd = 0.0
 
         elif node_type == "script":
             text_in = str(resolved_inputs.get("text", "Sóc Nhỏ và Chiếc Răng Sâu"))

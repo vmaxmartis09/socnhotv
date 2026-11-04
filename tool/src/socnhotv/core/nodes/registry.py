@@ -301,6 +301,61 @@ class NodeRegistry:
             )
         )
 
+        # 14. Nhân vật từ ảnh (đơn giản: tải 1 ảnh làm nhân vật)
+        cls.register(
+            NodeDefinition(
+                type_name="character_image",
+                display_name="Nhân vật từ ảnh",
+                category="Identity",
+                description="Dùng một ảnh bất kỳ làm nhân vật tham chiếu, không cần tạo hồ sơ đầy đủ",
+                input_ports=[],
+                output_ports=[
+                    PortDefinition(name="image", port_type=PortType.IMAGE, description="Ảnh nhân vật"),
+                    PortDefinition(name="reference_images", port_type=PortType.IMAGE_LIST, description="Ảnh tham chiếu nhân vật"),
+                ],
+                default_params={"uri": "", "name": ""},
+                mockable=True,
+            )
+        )
+
+        # 15. Cảnh (ghép ảnh + lời thoại thành một cảnh)
+        cls.register(
+            NodeDefinition(
+                type_name="scene",
+                display_name="Cảnh",
+                category="Structure",
+                description="Ghép một ảnh và lời thoại thành một cảnh để dựng phim",
+                input_ports=[
+                    PortDefinition(name="image", port_type=PortType.IMAGE, description="Ảnh của cảnh"),
+                    PortDefinition(name="text", port_type=PortType.TEXT, description="Lời thoại hoặc mô tả cảnh", required=False),
+                ],
+                output_ports=[
+                    PortDefinition(name="scenes", port_type=PortType.SCENES, description="Cảnh đã ghép"),
+                    PortDefinition(name="image", port_type=PortType.IMAGE, description="Ảnh của cảnh"),
+                ],
+                default_params={"title": "Cảnh mới", "durationSec": 6},
+                mockable=True,
+            )
+        )
+
+        # 16. Chuyển cảnh
+        cls.register(
+            NodeDefinition(
+                type_name="transition",
+                display_name="Chuyển cảnh",
+                category="Structure",
+                description="Đặt kiểu chuyển cảnh (mờ dần, trượt, cắt) giữa các cảnh",
+                input_ports=[
+                    PortDefinition(name="scenes", port_type=PortType.SCENES, description="Các cảnh cần chuyển tiếp"),
+                ],
+                output_ports=[
+                    PortDefinition(name="scenes", port_type=PortType.SCENES, description="Các cảnh kèm chuyển cảnh"),
+                ],
+                default_params={"style": "fade", "durationSec": 0.5},
+                mockable=True,
+            )
+        )
+
 
 # Khởi tạo ngay khi module được nạp
 NodeRegistry.initialize_defaults()

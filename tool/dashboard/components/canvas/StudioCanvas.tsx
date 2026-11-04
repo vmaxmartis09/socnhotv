@@ -147,6 +147,45 @@ export function StudioCanvas() {
   );
 }
 
+/** Sợi dây tạm đi theo con trỏ khi bấm nút + trên card; Esc để huỷ. */
+function LinkGhost({ from, onCancel }: { from: ActiveDragPort; onCancel: () => void }) {
+  const [mouse, setMouse] = useState<{ x: number; y: number } | null>(null);
+  const [origin, setOrigin] = useState<{ x: number; y: number } | null>(null);
+  useEffect(() => {
+    const el = document.querySelector(
+      `.react-flow__node[data-id="${from.nodeId}"] .react-flow__handle[data-handleid="${from.portName}"]`
+    ) as HTMLElement | null;
+    if (el) {
+      const r = el.getBoundingClientRect();
+      setOrigin({ x: r.left + r.width / 2, y: r.top + r.height / 2 });
+    }
+    const move = (e: MouseEvent) => setMouse({ x: e.clientX, y: e.clientY });
+    const key = (e: KeyboardEvent) => e.key === "Escape" && onCancel();
+    window.addEventListener("mousemove", move);
+    window.addEventListener("keydown", key);
+    return () => {
+      window.removeEventListener("mousemove", move);
+      window.removeEventListener("keydown", key);
+    };
+  }, [from, onCancel]);
+  if (!origin || !mouse) return null;
+  const dir = from.handleType === "source" ? 1 : -1;
+  const dx = Math.max(60, Math.abs(mouse.x - origin.x) / 2) * dir;
+  const color = PORT_TYPE_COLORS[from.portType] || "#737373";
+  return (
+    <svg className="pointer-events-none fixed inset-0 z-[60] h-full w-full" aria-hidden="true">
+      <path
+        d={`M ${origin.x} ${origin.y} C ${origin.x + dx} ${origin.y}, ${mouse.x - dx} ${mouse.y}, ${mouse.x} ${mouse.y}`}
+        fill="none"
+        stroke={color}
+        strokeWidth={2}
+        strokeDasharray="6 5"
+      />
+      <circle cx={mouse.x} cy={mouse.y} r={4} fill={color} />
+    </svg>
+  );
+}
+
 function StudioCanvasInner() {
   const t = useTranslations("canvas");
   const c = useTranslations("common");
@@ -192,6 +231,7 @@ function StudioCanvasInner() {
   const [activeDragPort, setActiveDragPort] = useState<ActiveDragPort | null>(
     null
   );
+  const [linkMode, setLinkMode] = useState(false);
   const [bannerMsg, setBannerMsg] = useState<{
     tone: "error" | "info" | "success";
     text: string;
@@ -338,6 +378,17 @@ function StudioCanvasInner() {
 
   const handleConnectEnd = useCallback(() => {
     setActiveDragPort(null);
+    setLinkMode(false);
+  }, []);
+
+  const startLink = useCallback((port: ActiveDragPort) => {
+    setActiveDragPort(port);
+    setLinkMode(true);
+  }, []);
+
+  const cancelLink = useCallback(() => {
+    setActiveDragPort(null);
+    setLinkMode(false);
   }, []);
 
   const onConnect = useCallback(
@@ -402,6 +453,21 @@ function StudioCanvasInner() {
       setBannerMsg(null);
     },
     [nodes, edges, defMap, setNodesAndEdges, showBanner, t]
+  );
+
+  const finishLink = useCallback(
+    (nodeId: string, portName: string, handleType: "source" | "target") => {
+      const from = activeDragPort;
+      if (!from || from.nodeId === nodeId || from.handleType === handleType) return;
+      const conn: Connection =
+        from.handleType === "source"
+          ? { source: from.nodeId, sourceHandle: from.portName, target: nodeId, targetHandle: portName }
+          : { source: nodeId, sourceHandle: portName, target: from.nodeId, targetHandle: from.portName };
+      onConnect(conn);
+      setActiveDragPort(null);
+      setLinkMode(false);
+    },
+    [activeDragPort, onConnect]
   );
 
   // Add node at center or specific coordinates
@@ -1051,8 +1117,16 @@ function StudioCanvasInner() {
         setSelectedNodeId(nodeId);
         setActiveRightTab("node");
       },
+      linkMode,
+      startLink,
+      finishLink,
+      cancelLink,
     }),
     [
+      linkMode,
+      startLink,
+      finishLink,
+      cancelLink,
       activeDragPort,
       connectedPorts,
       nodeIssues,
@@ -1064,6 +1138,7 @@ function StudioCanvasInner() {
 
   return (
     <CanvasInteractionContext.Provider value={contextValue}>
+      {linkMode && activeDragPort && <LinkGhost from={activeDragPort} onCancel={cancelLink} />}
       <div className="relative flex h-full min-w-0 flex-1 flex-col bg-card">
         {/* Core Offline Status Banner (still allows mock graph building & testing) */}
         {!coreHealth.online && (
@@ -1329,6 +1404,7 @@ function StudioCanvasInner() {
               onConnectEnd={handleConnectEnd}
               onNodeDragStart={() => pushUndoSnapshot()}
               onNodeClick={(_, n) => setSelectedNodeId(n.id)}
+              onPaneClick={() => linkMode && cancelLink()}
               snapToGrid={snapToGrid}
               panOnDrag={canvasMode === "pan" ? true : [1, 2]}
               selectionOnDrag={canvasMode === "select"}
