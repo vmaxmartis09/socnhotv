@@ -1,3 +1,27 @@
+---
+id: channel-style-cloning-template-pipeline
+title: Channel Style Cloning & Template Pipeline
+status: knowledge
+build: partial
+reproducible_with_our_stack: yes (Định hình style thông qua template HyperFrames JSON
+  + CSS)
+needs:
+- HyperFrames
+- Template Engine
+implemented_in:
+- tool/src/socnhotv/video/templates/
+evidence_videos:
+- seq_015
+confidence: high
+last_verified: '2026-11-04'
+expires_at: '2027-11-04'
+tags:
+- template-pipeline
+- style-cloning
+- youtube-shorts
+- branding
+---
+
 # Technique: Channel Style Decomposition & Template Cloning Pipeline
 
 ## Tóm Tắt Kỹ Thuật

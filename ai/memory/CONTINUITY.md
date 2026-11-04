@@ -14,3 +14,11 @@
 3. **Quy chuẩn Voice & Âm thanh:**
    - OmniVoice cho Sóc Nhỏ Bi (`voice-id: soc-nho`).
    - Chuỗi mastering audio chuẩn TikTok: -14 LUFS, presence EQ, de-esser, compressor.
+
+4. **Tri thức Video Craft thường trực (Session K):**
+   - Kho thẻ: `data/shared/knowledge/video_craft/techniques/` (26 thẻ, `registry.json`, `STATUS.md`).
+   - Playbooks & Skill: 7 playbooks tại `playbooks/`, skill chính `ai/skills/video-craft/`.
+   - Module Studio: `tool/src/socnhotv/video/craft/` (`hooks`, `depth`, `transitions`, `camera`, `lint`).
+   - Lệnh cập nhật/kiểm tra: `python tool/scripts/video_craft_index.py [--check]`.
+   - Thăng hạng thẻ mới: `python tool/scripts/video_craft_promote.py --id <id>`.
+

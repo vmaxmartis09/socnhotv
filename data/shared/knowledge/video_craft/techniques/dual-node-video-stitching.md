@@ -1,3 +1,25 @@
+---
+id: dual-node-video-stitching
+title: Dual-Node Video Stitching (Nối Đoạn Video 2 Đầu Bằng AI)
+status: knowledge
+build: 'no'
+reproducible_with_our_stack: partial (Cần mô hình video generation ngoài có API image-to-video/extend
+  như Kling/Runway)
+needs:
+- Kling AI / Runway Gen-3
+implemented_in: []
+evidence_videos:
+- seq_008
+confidence: medium
+last_verified: '2026-11-04'
+expires_at: '2027-11-04'
+tags:
+- video-stitching
+- outpainting
+- generative-fill
+- ai-video
+---
+
 # Dual-Node Video Stitching (Kỹ Thuật Nối Video Đa Phân Đoạn Bằng Khung Hình Khóa)
 
 Tags: ai-workflow | video-generation | continuity | kling | hyperframes | editing

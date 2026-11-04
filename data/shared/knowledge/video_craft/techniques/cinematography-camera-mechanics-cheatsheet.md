@@ -1,3 +1,28 @@
+---
+id: cinematography-camera-mechanics-cheatsheet
+title: Cinematography & Camera Mechanics Cheatsheet
+status: in-studio
+build: 'yes'
+reproducible_with_our_stack: 'yes'
+needs:
+- HyperFrames GSAP
+- Keyframes Adapter
+implemented_in:
+- tool/src/socnhotv/video/craft/camera.py
+- data/shared/knowledge/video_craft/playbooks/camera-and-transitions.md
+evidence_videos:
+- seq_014
+confidence: high
+last_verified: '2026-11-04'
+expires_at: never
+tags:
+- camera-angles
+- focal-length
+- lens
+- cinematography
+- hyperframes
+---
+
 # Technique: Cinematography Camera Mechanics & Emotional Grammar Cheatsheet
 
 ## Tóm Tắt Kỹ Thuật

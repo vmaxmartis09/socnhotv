@@ -1,3 +1,26 @@
+---
+id: local-comfyui-pipeline
+title: Local ComfyUI Pipeline For Generative B-Roll
+status: knowledge
+build: 'no'
+reproducible_with_our_stack: partial (Đòi hỏi GPU cục bộ chuyên dụng và cài ComfyUI
+  riêng; hiện dự án ưu tiên Tier 0 local DNA + cloud fallback)
+needs:
+- ComfyUI
+- Local GPU
+implemented_in: []
+evidence_videos:
+- seq_009
+confidence: medium
+last_verified: '2026-11-04'
+expires_at: '2027-11-04'
+tags:
+- comfyui
+- local-gpu
+- b-roll
+- open-source-ai
+---
+
 # Kỹ Thuật: Local Pipeline & Workflow Management UX (Học từ ComfyUI Portable)
 
 - **Mã kỹ thuật**: `local-comfyui-pipeline`

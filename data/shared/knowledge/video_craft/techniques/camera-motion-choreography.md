@@ -1,3 +1,28 @@
+---
+id: camera-motion-choreography
+title: Camera Motion Choreography (Vũ Đạo Chuyển Động Camera 5 Cú Máy Kinh Điển)
+status: in-studio
+build: 'yes'
+reproducible_with_our_stack: 'yes'
+needs:
+- HyperFrames
+- GSAP
+implemented_in:
+- tool/src/socnhotv/video/craft/camera.py
+- data/shared/knowledge/video_craft/playbooks/camera-and-transitions.md
+evidence_videos:
+- seq_006
+confidence: high
+last_verified: '2026-11-04'
+expires_at: never
+tags:
+- camera
+- motion-design
+- cinematography
+- hyperframes
+- lookbook
+---
+
 # Camera Motion Choreography (Vũ Đạo Chuyển Động Camera 5 Cú Máy Kinh Điển)
 
 Tags: camera | motion-design | cinematography | hyperframes | fashion | lookbook

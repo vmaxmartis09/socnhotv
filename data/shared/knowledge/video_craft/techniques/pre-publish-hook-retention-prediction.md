@@ -1,3 +1,28 @@
+---
+id: pre-publish-hook-retention-prediction
+title: Pre-Publish Hook Retention Prediction & Heuristic Scoring
+status: in-studio
+build: 'yes'
+reproducible_with_our_stack: 'yes'
+needs:
+- Python Heuristics
+- Lint Engine
+implemented_in:
+- tool/src/socnhotv/video/craft/hooks.py
+- tool/src/socnhotv/video/craft/lint.py
+- data/shared/knowledge/video_craft/playbooks/hook-and-retention.md
+evidence_videos:
+- seq_N04
+confidence: high
+last_verified: '2026-11-04'
+expires_at: never
+tags:
+- hook-prediction
+- retention-curve
+- pre-flight-check
+- heuristic-scoring
+---
+
 # Technique: Pre-Publish Hook Retention Prediction & Neuromarketing Scoring
 
 ## Tóm Tắt Kỹ Thuật

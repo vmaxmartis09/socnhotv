@@ -1,3 +1,28 @@
+---
+id: deterministic-web-to-video-rendering
+title: Deterministic Web-to-Video Rendering Architecture
+status: in-studio
+build: 'yes'
+reproducible_with_our_stack: 'yes'
+needs:
+- HyperFrames Engine
+- Chrome Headless
+- FFmpeg
+implemented_in:
+- tool/src/socnhotv/video/hyperframes_engine.py
+evidence_videos:
+- seq_N03
+confidence: high
+last_verified: '2026-11-04'
+expires_at: never
+tags:
+- hyperframes
+- deterministic-render
+- ffmpeg
+- virtual-clock
+- gsap
+---
+
 # Technique: Deterministic Web-to-Video Rendering Pipeline
 
 ## Tóm Tắt Kỹ Thuật

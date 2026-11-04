@@ -1,3 +1,27 @@
+---
+id: frictionless-remix-workflow
+title: Frictionless Remix Workflow (Quy Trình Tái Chế B-Roll & Hook Không Ma Sát)
+status: knowledge
+build: partial
+reproducible_with_our_stack: 'yes'
+needs:
+- Asset Library
+- HyperFrames
+implemented_in:
+- tool/src/socnhotv/workspace/
+evidence_videos:
+- seq_005
+confidence: high
+last_verified: '2026-11-04'
+expires_at: never
+tags:
+- remix
+- b-roll
+- batch-production
+- workflow
+- asset-reuse
+---
+
 # Frictionless 3-Step Remix (Quy Trình Remix Video 3 Bước Không Rào Cản)
 
 Tags: ux | template | workflow | hyperframes | automation | ecommerce

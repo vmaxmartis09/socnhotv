@@ -1,3 +1,28 @@
+---
+id: evergreen-shortform-foundations
+title: Evergreen Shortform Foundations (Cấu Trúc Video Ngắn Thường Xanh)
+status: in-studio
+build: 'yes'
+reproducible_with_our_stack: 'yes'
+needs:
+- HyperFrames
+- Lint
+implemented_in:
+- tool/src/socnhotv/video/craft/lint.py
+- data/shared/knowledge/video_craft/playbooks/hook-and-retention.md
+evidence_videos:
+- seq_011
+confidence: high
+last_verified: '2026-11-04'
+expires_at: never
+tags:
+- retention
+- loop-video
+- shortform
+- storytelling
+- safe-zone
+---
+
 # Kỹ Thuật: Evergreen Shortform Foundations (5 Trụ Cột Video Ngắn Bền Vững)
 
 - **Mã kỹ thuật**: `evergreen-shortform-foundations`

@@ -1,0 +1,775 @@
+{
+  "version": "1.0.0",
+  "generated_at": "2026-11-04T23:02:46.435762",
+  "total_cards": 26,
+  "in_studio_count": 14,
+  "prototyped_count": 0,
+  "knowledge_count": 12,
+  "expired_count": 0,
+  "techniques": {
+    "3-layer-knowledge-retention": {
+      "id": "3-layer-knowledge-retention",
+      "title": "3-Layer Knowledge Retention & Origin Traceability",
+      "status": "in-studio",
+      "build": "yes",
+      "reproducible_with_our_stack": "yes",
+      "needs": [
+        "HyperFrames",
+        "OmniVoice"
+      ],
+      "implemented_in": [
+        "tool/src/socnhotv/video/craft/lint.py",
+        "data/shared/knowledge/video_craft/playbooks/depth-and-composition.md"
+      ],
+      "evidence_videos": [
+        "seq_016"
+      ],
+      "confidence": "high",
+      "last_verified": "2026-11-04",
+      "expires_at": "never",
+      "tags": [
+        "knowledge-base",
+        "documentation",
+        "architecture",
+        "traceability",
+        "zero-root-pollution"
+      ],
+      "filename": "3-layer-knowledge-retention.md",
+      "file_path": "/Volumes/Data/socnhotv/data/shared/knowledge/video_craft/techniques/3-layer-knowledge-retention.md",
+      "is_expired": false
+    },
+    "360-turntable-catalog": {
+      "id": "360-turntable-catalog",
+      "title": "360 Turntable Catalog (Bàn Xoay Sản Phẩm 360 Độ)",
+      "status": "knowledge",
+      "build": "partial",
+      "reproducible_with_our_stack": "partial (Cần quay sẵn video bàn xoay sản phẩm hoặc 3D model render loop)",
+      "needs": [
+        "Blender / 3D Model / Video quay sản phẩm thực tế"
+      ],
+      "implemented_in": [],
+      "evidence_videos": [
+        "seq_007"
+      ],
+      "confidence": "medium",
+      "last_verified": "2026-11-04",
+      "expires_at": "2027-11-04",
+      "tags": [
+        "product-catalog",
+        "360-turntable",
+        "e-commerce",
+        "3d-rendering"
+      ],
+      "filename": "360-turntable-catalog.md",
+      "file_path": "/Volumes/Data/socnhotv/data/shared/knowledge/video_craft/techniques/360-turntable-catalog.md",
+      "is_expired": false
+    },
+    "7-platform-automated-syndication-and-scope-locked-crm": {
+      "id": "7-platform-automated-syndication-and-scope-locked-crm",
+      "title": "7-Platform Automated Syndication & Scope-Locked CRM",
+      "status": "knowledge",
+      "build": "no",
+      "reproducible_with_our_stack": "partial (Social scheduler hỗ trợ queue đa kênh; CRM webhook ngoài phạm vi video engine)",
+      "needs": [
+        "Social API",
+        "CRM Webhook"
+      ],
+      "implemented_in": [
+        "tool/src/socnhotv/social/"
+      ],
+      "evidence_videos": [
+        "seq_020"
+      ],
+      "confidence": "medium",
+      "last_verified": "2026-11-04",
+      "expires_at": "2027-11-04",
+      "tags": [
+        "social-syndication",
+        "multi-platform",
+        "crm",
+        "automation"
+      ],
+      "filename": "7-platform-automated-syndication-and-scope-locked-crm.md",
+      "file_path": "/Volumes/Data/socnhotv/data/shared/knowledge/video_craft/techniques/7-platform-automated-syndication-and-scope-locked-crm.md",
+      "is_expired": false
+    },
+    "camera-motion-choreography": {
+      "id": "camera-motion-choreography",
+      "title": "Camera Motion Choreography (Vũ Đạo Chuyển Động Camera 5 Cú Máy Kinh Điển)",
+      "status": "in-studio",
+      "build": "yes",
+      "reproducible_with_our_stack": "yes",
+      "needs": [
+        "HyperFrames",
+        "GSAP"
+      ],
+      "implemented_in": [
+        "tool/src/socnhotv/video/craft/camera.py",
+        "data/shared/knowledge/video_craft/playbooks/camera-and-transitions.md"
+      ],
+      "evidence_videos": [
+        "seq_006"
+      ],
+      "confidence": "high",
+      "last_verified": "2026-11-04",
+      "expires_at": "never",
+      "tags": [
+        "camera",
+        "motion-design",
+        "cinematography",
+        "hyperframes",
+        "lookbook"
+      ],
+      "filename": "camera-motion-choreography.md",
+      "file_path": "/Volumes/Data/socnhotv/data/shared/knowledge/video_craft/techniques/camera-motion-choreography.md",
+      "is_expired": false
+    },
+    "channel-style-cloning-template-pipeline": {
+      "id": "channel-style-cloning-template-pipeline",
+      "title": "Channel Style Cloning & Template Pipeline",
+      "status": "knowledge",
+      "build": "partial",
+      "reproducible_with_our_stack": "yes (Định hình style thông qua template HyperFrames JSON + CSS)",
+      "needs": [
+        "HyperFrames",
+        "Template Engine"
+      ],
+      "implemented_in": [
+        "tool/src/socnhotv/video/templates/"
+      ],
+      "evidence_videos": [
+        "seq_015"
+      ],
+      "confidence": "high",
+      "last_verified": "2026-11-04",
+      "expires_at": "2027-11-04",
+      "tags": [
+        "template-pipeline",
+        "style-cloning",
+        "youtube-shorts",
+        "branding"
+      ],
+      "filename": "channel-style-cloning-template-pipeline.md",
+      "file_path": "/Volumes/Data/socnhotv/data/shared/knowledge/video_craft/techniques/channel-style-cloning-template-pipeline.md",
+      "is_expired": false
+    },
+    "cinematography-camera-mechanics-cheatsheet": {
+      "id": "cinematography-camera-mechanics-cheatsheet",
+      "title": "Cinematography & Camera Mechanics Cheatsheet",
+      "status": "in-studio",
+      "build": "yes",
+      "reproducible_with_our_stack": "yes",
+      "needs": [
+        "HyperFrames GSAP",
+        "Keyframes Adapter"
+      ],
+      "implemented_in": [
+        "tool/src/socnhotv/video/craft/camera.py",
+        "data/shared/knowledge/video_craft/playbooks/camera-and-transitions.md"
+      ],
+      "evidence_videos": [
+        "seq_014"
+      ],
+      "confidence": "high",
+      "last_verified": "2026-11-04",
+      "expires_at": "never",
+      "tags": [
+        "camera-angles",
+        "focal-length",
+        "lens",
+        "cinematography",
+        "hyperframes"
+      ],
+      "filename": "cinematography-camera-mechanics-cheatsheet.md",
+      "file_path": "/Volumes/Data/socnhotv/data/shared/knowledge/video_craft/techniques/cinematography-camera-mechanics-cheatsheet.md",
+      "is_expired": false
+    },
+    "confession-hook": {
+      "id": "confession-hook",
+      "title": "Confession Hook / Secret Reveal (Hook Thú Nhận Bí Mật Hậu Trường)",
+      "status": "in-studio",
+      "build": "yes",
+      "reproducible_with_our_stack": "yes",
+      "needs": [
+        "HyperFrames",
+        "OmniVoice"
+      ],
+      "implemented_in": [
+        "tool/src/socnhotv/video/craft/hooks.py",
+        "data/shared/knowledge/video_craft/playbooks/hook-and-retention.md"
+      ],
+      "evidence_videos": [
+        "seq_001"
+      ],
+      "confidence": "high",
+      "last_verified": "2026-11-04",
+      "expires_at": "never",
+      "tags": [
+        "hook",
+        "retention",
+        "psychological",
+        "tiktok-sales",
+        "koc-review"
+      ],
+      "filename": "confession-hook.md",
+      "file_path": "/Volumes/Data/socnhotv/data/shared/knowledge/video_craft/techniques/confession-hook.md",
+      "is_expired": false
+    },
+    "deterministic-web-to-video-rendering": {
+      "id": "deterministic-web-to-video-rendering",
+      "title": "Deterministic Web-to-Video Rendering Architecture",
+      "status": "in-studio",
+      "build": "yes",
+      "reproducible_with_our_stack": "yes",
+      "needs": [
+        "HyperFrames Engine",
+        "Chrome Headless",
+        "FFmpeg"
+      ],
+      "implemented_in": [
+        "tool/src/socnhotv/video/hyperframes_engine.py"
+      ],
+      "evidence_videos": [
+        "seq_N03"
+      ],
+      "confidence": "high",
+      "last_verified": "2026-11-04",
+      "expires_at": "never",
+      "tags": [
+        "hyperframes",
+        "deterministic-render",
+        "ffmpeg",
+        "virtual-clock",
+        "gsap"
+      ],
+      "filename": "deterministic-web-to-video-rendering.md",
+      "file_path": "/Volumes/Data/socnhotv/data/shared/knowledge/video_craft/techniques/deterministic-web-to-video-rendering.md",
+      "is_expired": false
+    },
+    "dual-node-video-stitching": {
+      "id": "dual-node-video-stitching",
+      "title": "Dual-Node Video Stitching (Nối Đoạn Video 2 Đầu Bằng AI)",
+      "status": "knowledge",
+      "build": "no",
+      "reproducible_with_our_stack": "partial (Cần mô hình video generation ngoài có API image-to-video/extend như Kling/Runway)",
+      "needs": [
+        "Kling AI / Runway Gen-3"
+      ],
+      "implemented_in": [],
+      "evidence_videos": [
+        "seq_008"
+      ],
+      "confidence": "medium",
+      "last_verified": "2026-11-04",
+      "expires_at": "2027-11-04",
+      "tags": [
+        "video-stitching",
+        "outpainting",
+        "generative-fill",
+        "ai-video"
+      ],
+      "filename": "dual-node-video-stitching.md",
+      "file_path": "/Volumes/Data/socnhotv/data/shared/knowledge/video_craft/techniques/dual-node-video-stitching.md",
+      "is_expired": false
+    },
+    "evergreen-shortform-foundations": {
+      "id": "evergreen-shortform-foundations",
+      "title": "Evergreen Shortform Foundations (Cấu Trúc Video Ngắn Thường Xanh)",
+      "status": "in-studio",
+      "build": "yes",
+      "reproducible_with_our_stack": "yes",
+      "needs": [
+        "HyperFrames",
+        "Lint"
+      ],
+      "implemented_in": [
+        "tool/src/socnhotv/video/craft/lint.py",
+        "data/shared/knowledge/video_craft/playbooks/hook-and-retention.md"
+      ],
+      "evidence_videos": [
+        "seq_011"
+      ],
+      "confidence": "high",
+      "last_verified": "2026-11-04",
+      "expires_at": "never",
+      "tags": [
+        "retention",
+        "loop-video",
+        "shortform",
+        "storytelling",
+        "safe-zone"
+      ],
+      "filename": "evergreen-shortform-foundations.md",
+      "file_path": "/Volumes/Data/socnhotv/data/shared/knowledge/video_craft/techniques/evergreen-shortform-foundations.md",
+      "is_expired": false
+    },
+    "first-comment-link-routing": {
+      "id": "first-comment-link-routing",
+      "title": "First-Comment Link Routing & Zero-Penalty Affiliate Funnel",
+      "status": "in-studio",
+      "build": "yes",
+      "reproducible_with_our_stack": "yes",
+      "needs": [
+        "Social Publishing Engine",
+        "Caption Templates"
+      ],
+      "implemented_in": [
+        "tool/src/socnhotv/social/publishing_templates.py",
+        "data/shared/knowledge/video_craft/playbooks/affiliate-links-and-first-comment.md"
+      ],
+      "evidence_videos": [
+        "seq_013"
+      ],
+      "confidence": "high",
+      "last_verified": "2026-11-04",
+      "expires_at": "never",
+      "tags": [
+        "affiliate",
+        "first-comment",
+        "social-reach",
+        "cta",
+        "link-in-bio"
+      ],
+      "filename": "first-comment-link-routing.md",
+      "file_path": "/Volumes/Data/socnhotv/data/shared/knowledge/video_craft/techniques/first-comment-link-routing.md",
+      "is_expired": false
+    },
+    "foreground-occlusion-spatial-depth-layering": {
+      "id": "foreground-occlusion-spatial-depth-layering",
+      "title": "Foreground Occlusion & 3-Layer Spatial Depth Partitioning",
+      "status": "in-studio",
+      "build": "yes",
+      "reproducible_with_our_stack": "yes",
+      "needs": [
+        "HyperFrames",
+        "GSAP Parallax",
+        "Prompt Enrichment"
+      ],
+      "implemented_in": [
+        "tool/src/socnhotv/video/craft/depth.py",
+        "data/shared/knowledge/video_craft/playbooks/depth-and-composition.md"
+      ],
+      "evidence_videos": [
+        "seq_N08"
+      ],
+      "confidence": "high",
+      "last_verified": "2026-11-04",
+      "expires_at": "never",
+      "tags": [
+        "cinematic-depth",
+        "3-layer",
+        "foreground-occlusion",
+        "bokeh",
+        "parallax"
+      ],
+      "filename": "foreground-occlusion-spatial-depth-layering.md",
+      "file_path": "/Volumes/Data/socnhotv/data/shared/knowledge/video_craft/techniques/foreground-occlusion-spatial-depth-layering.md",
+      "is_expired": false
+    },
+    "frictionless-remix-workflow": {
+      "id": "frictionless-remix-workflow",
+      "title": "Frictionless Remix Workflow (Quy Trình Tái Chế B-Roll & Hook Không Ma Sát)",
+      "status": "knowledge",
+      "build": "partial",
+      "reproducible_with_our_stack": "yes",
+      "needs": [
+        "Asset Library",
+        "HyperFrames"
+      ],
+      "implemented_in": [
+        "tool/src/socnhotv/workspace/"
+      ],
+      "evidence_videos": [
+        "seq_005"
+      ],
+      "confidence": "high",
+      "last_verified": "2026-11-04",
+      "expires_at": "never",
+      "tags": [
+        "remix",
+        "b-roll",
+        "batch-production",
+        "workflow",
+        "asset-reuse"
+      ],
+      "filename": "frictionless-remix-workflow.md",
+      "file_path": "/Volumes/Data/socnhotv/data/shared/knowledge/video_craft/techniques/frictionless-remix-workflow.md",
+      "is_expired": false
+    },
+    "high-status-color-contrast": {
+      "id": "high-status-color-contrast",
+      "title": "High-Status Color Contrast (Bảng Màu Tương Phản Chuẩn Sang Trọng)",
+      "status": "in-studio",
+      "build": "yes",
+      "reproducible_with_our_stack": "yes",
+      "needs": [
+        "HyperFrames CSS",
+        "Lint"
+      ],
+      "implemented_in": [
+        "tool/src/socnhotv/video/craft/lint.py",
+        "data/shared/knowledge/video_craft/playbooks/depth-and-composition.md"
+      ],
+      "evidence_videos": [
+        "seq_016"
+      ],
+      "confidence": "high",
+      "last_verified": "2026-11-04",
+      "expires_at": "never",
+      "tags": [
+        "color-palette",
+        "contrast",
+        "luxury-branding",
+        "wcag",
+        "aesthetic"
+      ],
+      "filename": "high-status-color-contrast.md",
+      "file_path": "/Volumes/Data/socnhotv/data/shared/knowledge/video_craft/techniques/high-status-color-contrast.md",
+      "is_expired": false
+    },
+    "in-situ-koc-placement": {
+      "id": "in-situ-koc-placement",
+      "title": "In-Situ KOC Placement (Đặt Nhân Vật KOC Vào Bối Cảnh Đời Thực)",
+      "status": "in-studio",
+      "build": "yes",
+      "reproducible_with_our_stack": "yes",
+      "needs": [
+        "Master DNA RGBA",
+        "HyperFrames 3-layer"
+      ],
+      "implemented_in": [
+        "tool/src/socnhotv/video/craft/depth.py",
+        "data/shared/knowledge/video_craft/playbooks/koc-review-and-sales.md"
+      ],
+      "evidence_videos": [
+        "seq_002"
+      ],
+      "confidence": "high",
+      "last_verified": "2026-11-04",
+      "expires_at": "never",
+      "tags": [
+        "koc-placement",
+        "master-dna",
+        "natural-lighting",
+        "compositing"
+      ],
+      "filename": "in-situ-koc-placement.md",
+      "file_path": "/Volumes/Data/socnhotv/data/shared/knowledge/video_craft/techniques/in-situ-koc-placement.md",
+      "is_expired": false
+    },
+    "local-comfyui-pipeline": {
+      "id": "local-comfyui-pipeline",
+      "title": "Local ComfyUI Pipeline For Generative B-Roll",
+      "status": "knowledge",
+      "build": "no",
+      "reproducible_with_our_stack": "partial (Đòi hỏi GPU cục bộ chuyên dụng và cài ComfyUI riêng; hiện dự án ưu tiên Tier 0 local DNA + cloud fallback)",
+      "needs": [
+        "ComfyUI",
+        "Local GPU"
+      ],
+      "implemented_in": [],
+      "evidence_videos": [
+        "seq_009"
+      ],
+      "confidence": "medium",
+      "last_verified": "2026-11-04",
+      "expires_at": "2027-11-04",
+      "tags": [
+        "comfyui",
+        "local-gpu",
+        "b-roll",
+        "open-source-ai"
+      ],
+      "filename": "local-comfyui-pipeline.md",
+      "file_path": "/Volumes/Data/socnhotv/data/shared/knowledge/video_craft/techniques/local-comfyui-pipeline.md",
+      "is_expired": false
+    },
+    "multi-agent-broll-orchestration": {
+      "id": "multi-agent-broll-orchestration",
+      "title": "Multi-Agent B-Roll Orchestration & Parallel Asset Generation",
+      "status": "knowledge",
+      "build": "partial",
+      "reproducible_with_our_stack": "yes",
+      "needs": [
+        "Python asyncio",
+        "AI Providers"
+      ],
+      "implemented_in": [
+        "tool/src/socnhotv/intelligence/"
+      ],
+      "evidence_videos": [
+        "seq_N05"
+      ],
+      "confidence": "high",
+      "last_verified": "2026-11-04",
+      "expires_at": "2027-11-04",
+      "tags": [
+        "multi-agent",
+        "orchestration",
+        "parallel-gen",
+        "b-roll"
+      ],
+      "filename": "multi-agent-broll-orchestration.md",
+      "file_path": "/Volumes/Data/socnhotv/data/shared/knowledge/video_craft/techniques/multi-agent-broll-orchestration.md",
+      "is_expired": false
+    },
+    "niche-opportunity-index": {
+      "id": "niche-opportunity-index",
+      "title": "Niche Opportunity Index & Market Gap Discovery",
+      "status": "knowledge",
+      "build": "no",
+      "reproducible_with_our_stack": "partial (Mô hình tính điểm thị trường bằng tay/kịch bản; ngoài core video engine)",
+      "needs": [
+        "Market Search Data"
+      ],
+      "implemented_in": [],
+      "evidence_videos": [
+        "seq_010"
+      ],
+      "confidence": "medium",
+      "last_verified": "2026-11-04",
+      "expires_at": "2027-11-04",
+      "tags": [
+        "market-research",
+        "niche-index",
+        "strategy",
+        "ecommerce"
+      ],
+      "filename": "niche-opportunity-index.md",
+      "file_path": "/Volumes/Data/socnhotv/data/shared/knowledge/video_craft/techniques/niche-opportunity-index.md",
+      "is_expired": false
+    },
+    "pre-publish-hook-retention-prediction": {
+      "id": "pre-publish-hook-retention-prediction",
+      "title": "Pre-Publish Hook Retention Prediction & Heuristic Scoring",
+      "status": "in-studio",
+      "build": "yes",
+      "reproducible_with_our_stack": "yes",
+      "needs": [
+        "Python Heuristics",
+        "Lint Engine"
+      ],
+      "implemented_in": [
+        "tool/src/socnhotv/video/craft/hooks.py",
+        "tool/src/socnhotv/video/craft/lint.py",
+        "data/shared/knowledge/video_craft/playbooks/hook-and-retention.md"
+      ],
+      "evidence_videos": [
+        "seq_N04"
+      ],
+      "confidence": "high",
+      "last_verified": "2026-11-04",
+      "expires_at": "never",
+      "tags": [
+        "hook-prediction",
+        "retention-curve",
+        "pre-flight-check",
+        "heuristic-scoring"
+      ],
+      "filename": "pre-publish-hook-retention-prediction.md",
+      "file_path": "/Volumes/Data/socnhotv/data/shared/knowledge/video_craft/techniques/pre-publish-hook-retention-prediction.md",
+      "is_expired": false
+    },
+    "rapid-montage-proof": {
+      "id": "rapid-montage-proof",
+      "title": "Rapid Montage Proof (Cắt Ghép Bằng Chứng Dồn Dập)",
+      "status": "in-studio",
+      "build": "yes",
+      "reproducible_with_our_stack": "yes",
+      "needs": [
+        "HyperFrames",
+        "GSAP rapid timeline"
+      ],
+      "implemented_in": [
+        "tool/src/socnhotv/video/craft/transitions.py",
+        "data/shared/knowledge/video_craft/playbooks/camera-and-transitions.md"
+      ],
+      "evidence_videos": [
+        "seq_003"
+      ],
+      "confidence": "high",
+      "last_verified": "2026-11-04",
+      "expires_at": "never",
+      "tags": [
+        "montage",
+        "proof-cut",
+        "fast-paced",
+        "retention",
+        "social-proof"
+      ],
+      "filename": "rapid-montage-proof.md",
+      "file_path": "/Volumes/Data/socnhotv/data/shared/knowledge/video_craft/techniques/rapid-montage-proof.md",
+      "is_expired": false
+    },
+    "split-canvas-lookbook": {
+      "id": "split-canvas-lookbook",
+      "title": "Split Canvas Lookbook (Khung Hình Chia Đôi / Chia Ba Lookbook)",
+      "status": "knowledge",
+      "build": "partial",
+      "reproducible_with_our_stack": "yes",
+      "needs": [
+        "HyperFrames Layout"
+      ],
+      "implemented_in": [
+        "ai/skills/motion-mimic/"
+      ],
+      "evidence_videos": [
+        "seq_004"
+      ],
+      "confidence": "high",
+      "last_verified": "2026-11-04",
+      "expires_at": "never",
+      "tags": [
+        "split-screen",
+        "lookbook",
+        "multi-tier",
+        "visual-comparison"
+      ],
+      "filename": "split-canvas-lookbook.md",
+      "file_path": "/Volumes/Data/socnhotv/data/shared/knowledge/video_craft/techniques/split-canvas-lookbook.md",
+      "is_expired": false
+    },
+    "sticker-cutout-doodle": {
+      "id": "sticker-cutout-doodle",
+      "title": "Sticker Cutout & Motion Doodle (Viền Sticker Trắng Cắt Rời & Nét Vẽ Hoạt Hình)",
+      "status": "knowledge",
+      "build": "partial",
+      "reproducible_with_our_stack": "yes",
+      "needs": [
+        "HyperFrames SVG",
+        "CSS drop-shadow"
+      ],
+      "implemented_in": [],
+      "evidence_videos": [
+        "seq_006"
+      ],
+      "confidence": "high",
+      "last_verified": "2026-11-04",
+      "expires_at": "never",
+      "tags": [
+        "sticker-cutout",
+        "doodle",
+        "motion-graphics",
+        "2d-overlay"
+      ],
+      "filename": "sticker-cutout-doodle.md",
+      "file_path": "/Volumes/Data/socnhotv/data/shared/knowledge/video_craft/techniques/sticker-cutout-doodle.md",
+      "is_expired": false
+    },
+    "transition-foresight-continuity": {
+      "id": "transition-foresight-continuity",
+      "title": "Transition Foresight & Motion Continuity (Chuyển Cảnh Tiên Liệu Hướng Chuyển Động)",
+      "status": "in-studio",
+      "build": "yes",
+      "reproducible_with_our_stack": "yes",
+      "needs": [
+        "HyperFrames",
+        "Python transition resolver"
+      ],
+      "implemented_in": [
+        "tool/src/socnhotv/video/craft/transitions.py",
+        "data/shared/knowledge/video_craft/playbooks/camera-and-transitions.md"
+      ],
+      "evidence_videos": [
+        "seq_N01"
+      ],
+      "confidence": "high",
+      "last_verified": "2026-11-04",
+      "expires_at": "never",
+      "tags": [
+        "transition-foresight",
+        "motion-continuity",
+        "whip-pan",
+        "match-cut",
+        "smooth-pacing"
+      ],
+      "filename": "transition-foresight-continuity.md",
+      "file_path": "/Volumes/Data/socnhotv/data/shared/knowledge/video_craft/techniques/transition-foresight-continuity.md",
+      "is_expired": false
+    },
+    "video-element-replacement": {
+      "id": "video-element-replacement",
+      "title": "Video Element Replacement & AI Inpainting (Thay Thế Vật Thể Trong Video)",
+      "status": "knowledge",
+      "build": "no",
+      "reproducible_with_our_stack": "partial (Cần video inpainting model chuyên biệt)",
+      "needs": [
+        "Runway Gen-3 / Ebsynth"
+      ],
+      "implemented_in": [],
+      "evidence_videos": [
+        "seq_008"
+      ],
+      "confidence": "medium",
+      "last_verified": "2026-11-04",
+      "expires_at": "2027-11-04",
+      "tags": [
+        "inpainting",
+        "element-replacement",
+        "vfx",
+        "generative-video"
+      ],
+      "filename": "video-element-replacement.md",
+      "file_path": "/Volumes/Data/socnhotv/data/shared/knowledge/video_craft/techniques/video-element-replacement.md",
+      "is_expired": false
+    },
+    "virtual-influencer-paradox-storytelling": {
+      "id": "virtual-influencer-paradox-storytelling",
+      "title": "Virtual Influencer Paradox Storytelling & 4th Wall Break",
+      "status": "in-studio",
+      "build": "yes",
+      "reproducible_with_our_stack": "yes",
+      "needs": [
+        "Script Generator",
+        "OmniVoice"
+      ],
+      "implemented_in": [
+        "tool/src/socnhotv/video/craft/hooks.py",
+        "data/shared/knowledge/video_craft/playbooks/hook-and-retention.md"
+      ],
+      "evidence_videos": [
+        "seq_N07"
+      ],
+      "confidence": "high",
+      "last_verified": "2026-11-04",
+      "expires_at": "never",
+      "tags": [
+        "virtual-influencer",
+        "4th-wall-break",
+        "storytelling",
+        "paradox-hook",
+        "emotional-connection"
+      ],
+      "filename": "virtual-influencer-paradox-storytelling.md",
+      "file_path": "/Volumes/Data/socnhotv/data/shared/knowledge/video_craft/techniques/virtual-influencer-paradox-storytelling.md",
+      "is_expired": false
+    },
+    "walking-outfit-transition": {
+      "id": "walking-outfit-transition",
+      "title": "Walking Outfit Transition (Chuyển Đổi Trang Phục Theo Bước Chân)",
+      "status": "knowledge",
+      "build": "partial",
+      "reproducible_with_our_stack": "yes",
+      "needs": [
+        "HyperFrames",
+        "GSAP beat sync"
+      ],
+      "implemented_in": [],
+      "evidence_videos": [
+        "seq_012"
+      ],
+      "confidence": "high",
+      "last_verified": "2026-11-04",
+      "expires_at": "never",
+      "tags": [
+        "outfit-transition",
+        "footstep-sync",
+        "fashion-cut",
+        "beat-sync"
+      ],
+      "filename": "walking-outfit-transition.md",
+      "file_path": "/Volumes/Data/socnhotv/data/shared/knowledge/video_craft/techniques/walking-outfit-transition.md",
+      "is_expired": false
+    }
+  }
+}

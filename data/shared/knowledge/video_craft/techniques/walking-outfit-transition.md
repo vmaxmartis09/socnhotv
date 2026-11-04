@@ -1,3 +1,25 @@
+---
+id: walking-outfit-transition
+title: Walking Outfit Transition (Chuyển Đổi Trang Phục Theo Bước Chân)
+status: knowledge
+build: partial
+reproducible_with_our_stack: 'yes'
+needs:
+- HyperFrames
+- GSAP beat sync
+implemented_in: []
+evidence_videos:
+- seq_012
+confidence: high
+last_verified: '2026-11-04'
+expires_at: never
+tags:
+- outfit-transition
+- footstep-sync
+- fashion-cut
+- beat-sync
+---
+
 # Kỹ Thuật: Walking Outfit Continuous Transition (Biến Đổi Trang Phục Bước Đi Liền Mạch)
 
 - **Mã kỹ thuật**: `walking-outfit-transition`

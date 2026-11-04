@@ -1,3 +1,24 @@
+---
+id: video-element-replacement
+title: Video Element Replacement & AI Inpainting (Thay Thế Vật Thể Trong Video)
+status: knowledge
+build: 'no'
+reproducible_with_our_stack: partial (Cần video inpainting model chuyên biệt)
+needs:
+- Runway Gen-3 / Ebsynth
+implemented_in: []
+evidence_videos:
+- seq_008
+confidence: medium
+last_verified: '2026-11-04'
+expires_at: '2027-11-04'
+tags:
+- inpainting
+- element-replacement
+- vfx
+- generative-video
+---
+
 # Video-to-Video Multi-Element Replacement (Kỹ Thuật Bóc Tách & Thay Thế Đa Yếu Tố Video)
 
 Tags: motion-mimic | video-to-video | inpainting | localization | lipsync | arcads | gobi

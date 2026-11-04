@@ -1,3 +1,25 @@
+---
+id: sticker-cutout-doodle
+title: Sticker Cutout & Motion Doodle (Viền Sticker Trắng Cắt Rời & Nét Vẽ Hoạt Hình)
+status: knowledge
+build: partial
+reproducible_with_our_stack: 'yes'
+needs:
+- HyperFrames SVG
+- CSS drop-shadow
+implemented_in: []
+evidence_videos:
+- seq_006
+confidence: high
+last_verified: '2026-11-04'
+expires_at: never
+tags:
+- sticker-cutout
+- doodle
+- motion-graphics
+- 2d-overlay
+---
+
 # Sticker Cutout & Hand-drawn Doodle (Hiệu Ứng Bóc Tách Sticker & Nét Vẽ Tay)
 
 Tags: graphic-design | animation | sticker | aesthetics | hyperframes | kinetic

@@ -1,3 +1,28 @@
+---
+id: 3-layer-knowledge-retention
+title: 3-Layer Knowledge Retention & Origin Traceability
+status: in-studio
+build: 'yes'
+reproducible_with_our_stack: 'yes'
+needs:
+- HyperFrames
+- OmniVoice
+implemented_in:
+- tool/src/socnhotv/video/craft/lint.py
+- data/shared/knowledge/video_craft/playbooks/depth-and-composition.md
+evidence_videos:
+- seq_016
+confidence: high
+last_verified: '2026-11-04'
+expires_at: never
+tags:
+- knowledge-base
+- documentation
+- architecture
+- traceability
+- zero-root-pollution
+---
+
 # Kỹ Thuật: 3-Layer Knowledge Retention & Origin Traceability
 
 - **Mã kỹ thuật**: `3-layer-knowledge-retention`

@@ -1,3 +1,27 @@
+---
+id: in-situ-koc-placement
+title: In-Situ KOC Placement (Đặt Nhân Vật KOC Vào Bối Cảnh Đời Thực)
+status: in-studio
+build: 'yes'
+reproducible_with_our_stack: 'yes'
+needs:
+- Master DNA RGBA
+- HyperFrames 3-layer
+implemented_in:
+- tool/src/socnhotv/video/craft/depth.py
+- data/shared/knowledge/video_craft/playbooks/koc-review-and-sales.md
+evidence_videos:
+- seq_002
+confidence: high
+last_verified: '2026-11-04'
+expires_at: never
+tags:
+- koc-placement
+- master-dna
+- natural-lighting
+- compositing
+---
+
 # In-situ KOC Placement (Ghép Nhân Vật KOC Vào Bối Cảnh Sản Phẩm Thật)
 
 Tags: ai-workflow | virtual-koc | product-placement | ecommerce | hyperframes

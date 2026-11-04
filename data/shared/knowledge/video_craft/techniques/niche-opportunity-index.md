@@ -1,3 +1,25 @@
+---
+id: niche-opportunity-index
+title: Niche Opportunity Index & Market Gap Discovery
+status: knowledge
+build: 'no'
+reproducible_with_our_stack: partial (Mô hình tính điểm thị trường bằng tay/kịch bản;
+  ngoài core video engine)
+needs:
+- Market Search Data
+implemented_in: []
+evidence_videos:
+- seq_010
+confidence: medium
+last_verified: '2026-11-04'
+expires_at: '2027-11-04'
+tags:
+- market-research
+- niche-index
+- strategy
+- ecommerce
+---
+
 # Kỹ Thuật: Niche Opportunity Index & Series Framing
 
 - **Mã kỹ thuật**: `niche-opportunity-index`

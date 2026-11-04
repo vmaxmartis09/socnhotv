@@ -1,3 +1,26 @@
+---
+id: multi-agent-broll-orchestration
+title: Multi-Agent B-Roll Orchestration & Parallel Asset Generation
+status: knowledge
+build: partial
+reproducible_with_our_stack: 'yes'
+needs:
+- Python asyncio
+- AI Providers
+implemented_in:
+- tool/src/socnhotv/intelligence/
+evidence_videos:
+- seq_N05
+confidence: high
+last_verified: '2026-11-04'
+expires_at: '2027-11-04'
+tags:
+- multi-agent
+- orchestration
+- parallel-gen
+- b-roll
+---
+
 # Kỹ Thuật: Multi-Agent B-Roll Orchestration & QA Inspection
 
 - **Mã kỹ thuật**: `multi-agent-broll-orchestration`

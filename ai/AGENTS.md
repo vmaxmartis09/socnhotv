@@ -108,3 +108,19 @@ Hệ thống phân chia ranh giới triệt để thành 3 phần độc lập:
   - Hoặc dùng component biến hình linh hoạt: `import { MorphIcon } from "@/components/ui/MorphIcon";`
 - **Tận dụng hiệu ứng biến hình (Morphing):** Khi icon thay đổi theo trạng thái (như chuyển Theme Sáng/Tối, nút Play/Pause, trạng thái Active/Inactive, v.v.), bắt buộc dùng `<MorphIcon icon={currentIconNode} spring="snappy" />` để tạo chuyển động biến hình mượt mà bằng vật lý lò xo (spring physics).
 
+---
+
+## 8. QUY CHUẨN TRI THỨC VIDEO THỰC CHIẾN (VIDEO CRAFT KNOWLEDGE)
+- **Tra cứu bắt buộc:** Trước khi viết kịch bản, sinh prompt hình ảnh/b-roll, dựng composition HyperFrames hoặc xuất bản video, Agent **BẮT BUỘC** đọc skill `ai/skills/video-craft` và tra cứu `data/shared/knowledge/video_craft/techniques/STATUS.md` (hoặc `registry.json`).
+- **Ghi nhận kỹ thuật mới:** Mọi kỹ thuật mới học được phải ghi thành thẻ markdown trong `techniques/` có đầy đủ YAML front-matter chuẩn (`status`, `reproducible_with_our_stack`, `needs`, `confidence`, `last_verified`, `expires_at`).
+- **Tận dụng các module craft sẵn có:** Ưu tiên sử dụng các module trong `tool/src/socnhotv/video/craft/` (`hooks`, `depth`, `transitions`, `camera`, `lint`) thay vì viết lại logic thủ công.
+
+
+---
+
+## 8. QUY CHUẨN TRI THỨC VIDEO THỰC CHIẾN (VIDEO CRAFT KNOWLEDGE)
+- **Tra cứu bắt buộc:** Trước khi viết kịch bản, sinh prompt hình ảnh/b-roll, dựng composition HyperFrames hoặc xuất bản video, Agent **BẮT BUỘC** đọc skill `ai/skills/video-craft` và tra cứu `data/shared/knowledge/video_craft/techniques/STATUS.md` (hoặc `registry.json`).
+- **Ghi nhận kỹ thuật mới:** Mọi kỹ thuật mới học được phải ghi thành thẻ markdown trong `techniques/` có đầy đủ YAML front-matter chuẩn (`status`, `reproducible_with_our_stack`, `needs`, `confidence`, `last_verified`, `expires_at`).
+- **Tận dụng các module craft sẵn có:** Ưu tiên sử dụng các module trong `tool/src/socnhotv/video/craft/` (`hooks`, `depth`, `transitions`, `camera`, `lint`) thay vì viết lại logic thủ công.
+
+

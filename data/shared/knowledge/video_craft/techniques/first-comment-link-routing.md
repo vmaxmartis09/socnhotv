@@ -1,3 +1,28 @@
+---
+id: first-comment-link-routing
+title: First-Comment Link Routing & Zero-Penalty Affiliate Funnel
+status: in-studio
+build: 'yes'
+reproducible_with_our_stack: 'yes'
+needs:
+- Social Publishing Engine
+- Caption Templates
+implemented_in:
+- tool/src/socnhotv/social/publishing_templates.py
+- data/shared/knowledge/video_craft/playbooks/affiliate-links-and-first-comment.md
+evidence_videos:
+- seq_013
+confidence: high
+last_verified: '2026-11-04'
+expires_at: never
+tags:
+- affiliate
+- first-comment
+- social-reach
+- cta
+- link-in-bio
+---
+
 # Kỹ Thuật: First-Comment Link Routing & Outbound Penalty Bypass
 
 - **Mã kỹ thuật**: `first-comment-link-routing`

@@ -1,3 +1,28 @@
+---
+id: confession-hook
+title: Confession Hook / Secret Reveal (Hook Thú Nhận Bí Mật Hậu Trường)
+status: in-studio
+build: 'yes'
+reproducible_with_our_stack: 'yes'
+needs:
+- HyperFrames
+- OmniVoice
+implemented_in:
+- tool/src/socnhotv/video/craft/hooks.py
+- data/shared/knowledge/video_craft/playbooks/hook-and-retention.md
+evidence_videos:
+- seq_001
+confidence: high
+last_verified: '2026-11-04'
+expires_at: never
+tags:
+- hook
+- retention
+- psychological
+- tiktok-sales
+- koc-review
+---
+
 # Confession Hook / Secret Reveal (Hook Thú Nhận Bí Mật Hậu Trường)
 
 Tags: hook | retention | psychological | tiktok-sales | koc-review

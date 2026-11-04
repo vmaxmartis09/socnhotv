@@ -1,3 +1,28 @@
+---
+id: rapid-montage-proof
+title: Rapid Montage Proof (Cắt Ghép Bằng Chứng Dồn Dập)
+status: in-studio
+build: 'yes'
+reproducible_with_our_stack: 'yes'
+needs:
+- HyperFrames
+- GSAP rapid timeline
+implemented_in:
+- tool/src/socnhotv/video/craft/transitions.py
+- data/shared/knowledge/video_craft/playbooks/camera-and-transitions.md
+evidence_videos:
+- seq_003
+confidence: high
+last_verified: '2026-11-04'
+expires_at: never
+tags:
+- montage
+- proof-cut
+- fast-paced
+- retention
+- social-proof
+---
+
 # Rapid Montage Proof (Chứng Minh Năng Lực Bằng Nhịp Cắt Dồn Dập)
 
 Tags: retention | editing | pacing | social-proof | hyperframes | b-roll

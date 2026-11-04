@@ -1,3 +1,27 @@
+---
+id: 7-platform-automated-syndication-and-scope-locked-crm
+title: 7-Platform Automated Syndication & Scope-Locked CRM
+status: knowledge
+build: 'no'
+reproducible_with_our_stack: partial (Social scheduler hỗ trợ queue đa kênh; CRM webhook
+  ngoài phạm vi video engine)
+needs:
+- Social API
+- CRM Webhook
+implemented_in:
+- tool/src/socnhotv/social/
+evidence_videos:
+- seq_020
+confidence: medium
+last_verified: '2026-11-04'
+expires_at: '2027-11-04'
+tags:
+- social-syndication
+- multi-platform
+- crm
+- automation
+---
+
 # Technique: 7-Platform Automated Syndication & Scope-Locked AI CRM
 
 ## Tóm Tắt Kỹ Thuật

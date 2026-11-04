@@ -1,3 +1,25 @@
+---
+id: split-canvas-lookbook
+title: Split Canvas Lookbook (Khung Hình Chia Đôi / Chia Ba Lookbook)
+status: knowledge
+build: partial
+reproducible_with_our_stack: 'yes'
+needs:
+- HyperFrames Layout
+implemented_in:
+- ai/skills/motion-mimic/
+evidence_videos:
+- seq_004
+confidence: high
+last_verified: '2026-11-04'
+expires_at: never
+tags:
+- split-screen
+- lookbook
+- multi-tier
+- visual-comparison
+---
+
 # Split-Canvas Lookbook Layout (Bố Cục Lookbook Chia Đôi 45:55)
 
 Tags: layout | lookbook | fashion | ecommerce | hyperframes | split-screen

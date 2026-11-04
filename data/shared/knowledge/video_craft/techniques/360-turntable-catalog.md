@@ -1,3 +1,25 @@
+---
+id: 360-turntable-catalog
+title: 360 Turntable Catalog (Bàn Xoay Sản Phẩm 360 Độ)
+status: knowledge
+build: partial
+reproducible_with_our_stack: partial (Cần quay sẵn video bàn xoay sản phẩm hoặc 3D
+  model render loop)
+needs:
+- Blender / 3D Model / Video quay sản phẩm thực tế
+implemented_in: []
+evidence_videos:
+- seq_007
+confidence: medium
+last_verified: '2026-11-04'
+expires_at: '2027-11-04'
+tags:
+- product-catalog
+- 360-turntable
+- e-commerce
+- 3d-rendering
+---
+
 # Kỹ Thuật: 360 Turntable Fashion Catalog & Rigid UI Overlay
 
 - **Mã kỹ thuật**: `360-turntable-catalog`

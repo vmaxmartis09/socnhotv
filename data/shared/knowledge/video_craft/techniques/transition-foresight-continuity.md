@@ -1,3 +1,29 @@
+---
+id: transition-foresight-continuity
+title: Transition Foresight & Motion Continuity (Chuyển Cảnh Tiên Liệu Hướng Chuyển
+  Động)
+status: in-studio
+build: 'yes'
+reproducible_with_our_stack: 'yes'
+needs:
+- HyperFrames
+- Python transition resolver
+implemented_in:
+- tool/src/socnhotv/video/craft/transitions.py
+- data/shared/knowledge/video_craft/playbooks/camera-and-transitions.md
+evidence_videos:
+- seq_N01
+confidence: high
+last_verified: '2026-11-04'
+expires_at: never
+tags:
+- transition-foresight
+- motion-continuity
+- whip-pan
+- match-cut
+- smooth-pacing
+---
+
 # Kỹ Thuật: Transition Foresight & 3-Angle Character Anchoring
 
 - **Mã kỹ thuật**: `transition-foresight-continuity`

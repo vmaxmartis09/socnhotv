@@ -1,3 +1,28 @@
+---
+id: virtual-influencer-paradox-storytelling
+title: Virtual Influencer Paradox Storytelling & 4th Wall Break
+status: in-studio
+build: 'yes'
+reproducible_with_our_stack: 'yes'
+needs:
+- Script Generator
+- OmniVoice
+implemented_in:
+- tool/src/socnhotv/video/craft/hooks.py
+- data/shared/knowledge/video_craft/playbooks/hook-and-retention.md
+evidence_videos:
+- seq_N07
+confidence: high
+last_verified: '2026-11-04'
+expires_at: never
+tags:
+- virtual-influencer
+- 4th-wall-break
+- storytelling
+- paradox-hook
+- emotional-connection
+---
+
 # Technique: Virtual Influencer Paradox Storytelling & Fourth-Wall Break
 
 ## Tóm Tắt Kỹ Thuật
