@@ -25,14 +25,21 @@ from typing import Any, AsyncGenerator, Dict, List, Optional
 
 from fastapi import APIRouter, HTTPException, Query, Request
 from fastapi.responses import FileResponse
+from pydantic import BaseModel, Field
 from sse_starlette.sse import EventSourceResponse
 
 from socnhotv.video.contracts import RenderJob, RenderRequest
+from socnhotv.video.episode.assets import estimate_episode_cost, generate_scene_assets
+from socnhotv.video.episode.assemble import assemble_episode
+from socnhotv.video.episode.planner import EpisodePlan, ScenePlan, plan_episode
+from socnhotv.video.episode.shorts import extract_and_assemble_shorts
+from socnhotv.video.episode.voice import synthesize_episode_voice
 from socnhotv.video.platforms import PlatformPreset, list_platforms
 from socnhotv.video.queue import get_render_queue
 from socnhotv.video.templates.loader import get_template, get_template_dir, list_templates
 from socnhotv.video.templates.preview import generate_template_preview
 from socnhotv.video.templates.schema import TemplateMeta, validate_template_data
+from socnhotv.workspace.paths import project_path
 
 logger = logging.getLogger("socnhotv.routes.video")
 
@@ -225,3 +232,154 @@ async def stream_render_events(request: Request, pid: str, job_id: str):
             await asyncio.sleep(0.5)
 
     return EventSourceResponse(event_generator())
+
+
+# --- EPISODE PIPELINE API ---
+
+
+class EpisodePlanRequest(BaseModel):
+    script: str
+    title: Optional[str] = "Hoạt hình Sóc Nhỏ Bi & Bạn Koala"
+
+
+class EpisodeBuildRequest(BaseModel):
+    use_mock: bool = False
+
+
+@router.post("/projects/{pid}/video/episodes/{eid}/plan", response_model=EpisodePlan)
+async def plan_video_episode(pid: str, eid: str, req: EpisodePlanRequest):
+    """Lập kế hoạch phân cảnh (ScenePlan) và ước tính chi phí cho tập phim."""
+    plan = plan_episode(req.script, episode_id=eid, title=req.title or "Hoạt hình Sóc Nhỏ Bi & Bạn Koala")
+    cost_info = estimate_episode_cost(plan.scenes)
+    plan.estimated_cost_usd = cost_info["total_estimated_usd"]
+
+    plan_file = project_path(pid, "output", eid, "plan.json")
+    plan_file.parent.mkdir(parents=True, exist_ok=True)
+    plan_file.write_text(plan.model_dump_json(indent=2), encoding="utf-8")
+    return plan
+
+
+@router.post("/projects/{pid}/video/episodes/{eid}/build")
+async def build_video_episode(pid: str, eid: str, req: Optional[EpisodeBuildRequest] = None):
+    """Thực thi pipeline sản xuất tập phim YouTube 16:9 và 3 video Shorts 9:16."""
+    use_mock = req.use_mock if req is not None else False
+
+    plan_file = project_path(pid, "output", eid, "plan.json")
+    if not plan_file.exists():
+        default_script = (
+            "Cảnh 1: Phòng khám Bác sĩ Koala\n"
+            "Bi: Bác sĩ Koala ơi, răng của em bị sâu đau quá!\n"
+            "Koala: Để bác xem nào, em ăn nhiều kẹo ngọt mà quên đánh răng đúng không?\n"
+            "Cảnh 2: Hướng dẫn chăm sóc răng miệng\n"
+            "Koala: Mỗi ngày em phải đánh răng 2 lần, sáng và tối nhé!\n"
+            "Bi: Dạ, em nhớ rồi ạ, em sẽ chăm chỉ đánh răng!\n"
+            "Cảnh 3: Kết thúc vui vẻ\n"
+            "Bi: Răng em hết đau rồi, cảm ơn Bác sĩ Koala!\n"
+            "Koala: Chúc Bi luôn vui khỏe và có nụ cười thật tươi!"
+        )
+        plan = plan_episode(default_script, episode_id=eid, title="Sóc Nhỏ và Chiếc Răng Sâu")
+        cost_info = estimate_episode_cost(plan.scenes)
+        plan.estimated_cost_usd = cost_info["total_estimated_usd"]
+        plan_file.parent.mkdir(parents=True, exist_ok=True)
+        plan_file.write_text(plan.model_dump_json(indent=2), encoding="utf-8")
+    else:
+        with open(plan_file, "r", encoding="utf-8") as f:
+            plan = EpisodePlan.model_validate_json(f.read())
+
+    # 1. Sinh assets keyframe
+    scene_assets = generate_scene_assets(pid, eid, plan.scenes, use_mock=use_mock)
+
+    # 2. Tổng hợp voiceover đa nhân vật & mastering
+    voice_path, _ = await synthesize_episode_voice(pid, eid, plan.scenes, use_mock=use_mock)
+
+    # 3. Dựng RenderRequest cho tập YouTube 16:9
+    main_req = assemble_episode(pid, eid, plan.title, plan.scenes, scene_assets, voice_path)
+
+    # 4. Trích xuất 3 Shorts 9:16
+    shorts_reqs = extract_and_assemble_shorts(pid, eid, plan.scenes, scene_assets, voice_path)
+
+    # 5. Gửi vào hàng đợi RenderQueue
+    queue = get_render_queue()
+    main_job = queue.submit(main_req)
+    shorts_jobs = [queue.submit(sr) for sr in shorts_reqs]
+
+    build_status = {
+        "episode_id": eid,
+        "title": plan.title,
+        "main_job_id": main_job.job_id,
+        "shorts_job_ids": [j.job_id for j in shorts_jobs],
+        "status": "queued",
+        "scenes_count": len(plan.scenes),
+        "estimated_cost_usd": plan.estimated_cost_usd,
+    }
+    status_file = project_path(pid, "output", eid, "build_status.json")
+    status_file.parent.mkdir(parents=True, exist_ok=True)
+    status_file.write_text(json.dumps(build_status, indent=2, ensure_ascii=False), encoding="utf-8")
+
+    return build_status
+
+
+@router.get("/projects/{pid}/video/episodes/{eid}/status")
+async def get_video_episode_status(pid: str, eid: str):
+    """Tra cứu trạng thái sản xuất tập phim và các video shorts phái sinh."""
+    status_file = project_path(pid, "output", eid, "build_status.json")
+    plan_file = project_path(pid, "output", eid, "plan.json")
+
+    if not status_file.exists():
+        if plan_file.exists():
+            with open(plan_file, "r", encoding="utf-8") as f:
+                plan_data = json.load(f)
+            return {
+                "episode_id": eid,
+                "status": "planned",
+                "plan": plan_data,
+            }
+        raise HTTPException(status_code=404, detail=f"Tập phim {eid} chưa được lập kế hoạch hoặc sản xuất")
+
+    with open(status_file, "r", encoding="utf-8") as f:
+        build_status = json.load(f)
+
+    queue = get_render_queue()
+    main_job = None
+    try:
+        main_job = queue.get(pid, build_status["main_job_id"])
+    except FileNotFoundError:
+        pass
+
+    shorts_jobs = []
+    for s_id in build_status.get("shorts_job_ids", []):
+        try:
+            shorts_jobs.append(queue.get(pid, s_id))
+        except FileNotFoundError:
+            pass
+
+    all_jobs = ([main_job] if main_job else []) + shorts_jobs
+    all_statuses = [j.status for j in all_jobs if j]
+    if not all_statuses:
+        aggregate_status = build_status.get("status", "unknown")
+    elif all(s == "done" for s in all_statuses):
+        aggregate_status = "done"
+    elif any(s == "failed" for s in all_statuses):
+        aggregate_status = "failed"
+    elif any(s == "rendering" for s in all_statuses):
+        aggregate_status = "rendering"
+    else:
+        aggregate_status = "queued"
+
+    build_status["status"] = aggregate_status
+    build_status["main_job"] = main_job.model_dump() if main_job else None
+    build_status["shorts_jobs"] = [j.model_dump() for j in shorts_jobs]
+
+    ep_dir = project_path(pid, "output", eid)
+    chapters_file = ep_dir / "chapters.txt"
+    meta_file = ep_dir / "youtube_meta.json"
+    if chapters_file.exists():
+        build_status["chapters"] = chapters_file.read_text(encoding="utf-8")
+    if meta_file.exists():
+        try:
+            build_status["youtube_meta"] = json.loads(meta_file.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+
+    return build_status
+

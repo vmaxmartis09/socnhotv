@@ -95,6 +95,51 @@ export interface RenderJob {
   created_at: string;
 }
 
+export interface DialogueLine {
+  speaker: string;
+  line: string;
+}
+
+export interface ScenePlan {
+  scene_id: string;
+  scene_number: number;
+  characters: string[];
+  location: string;
+  action: string;
+  dialogue: DialogueLine[];
+  camera: string;
+  duration_est: number;
+  prompt: string;
+  scale_lock_prompt: string;
+}
+
+export interface EpisodePlan {
+  episode_id: string;
+  title: string;
+  scenes: ScenePlan[];
+  estimated_cost_usd: number;
+  total_duration_est: number;
+}
+
+export interface EpisodeBuildStatus {
+  episode_id: string;
+  title: string;
+  main_job_id: string;
+  shorts_job_ids: string[];
+  status: "planned" | "queued" | "rendering" | "done" | "failed";
+  scenes_count?: number;
+  estimated_cost_usd?: number;
+  main_job?: RenderJob | null;
+  shorts_jobs?: RenderJob[];
+  chapters?: string;
+  youtube_meta?: {
+    title: string;
+    description: string;
+    tags: string[];
+    category_id: string;
+  };
+}
+
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const res = await fetch(`${CORE_URL}${path}`, {
     ...init,
@@ -164,5 +209,23 @@ export const videoApi = {
 
   getRenderEventsUrl: (pid: string, jobId: string): string => {
     return `${CORE_URL}/projects/${pid}/video/render/${jobId}/events`;
+  },
+
+  planEpisode: async (pid: string, eid: string, script: string, title?: string): Promise<EpisodePlan> => {
+    return request<EpisodePlan>(`/projects/${pid}/video/episodes/${eid}/plan`, {
+      method: "POST",
+      body: JSON.stringify({ script, title }),
+    });
+  },
+
+  buildEpisode: async (pid: string, eid: string, useMock: boolean = false): Promise<EpisodeBuildStatus> => {
+    return request<EpisodeBuildStatus>(`/projects/${pid}/video/episodes/${eid}/build`, {
+      method: "POST",
+      body: JSON.stringify({ use_mock: useMock }),
+    });
+  },
+
+  fetchEpisodeStatus: async (pid: string, eid: string): Promise<EpisodeBuildStatus> => {
+    return request<EpisodeBuildStatus>(`/projects/${pid}/video/episodes/${eid}/status`);
   },
 };
