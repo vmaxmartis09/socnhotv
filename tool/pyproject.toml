@@ -27,6 +27,7 @@ dependencies = [
     "jinja2",
     "python-dateutil",
     "rapidfuzz",
+    "python-multipart>=0.0.32",
 ]
 
 [build-system]
