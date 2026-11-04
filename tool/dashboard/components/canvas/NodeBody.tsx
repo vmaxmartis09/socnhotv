@@ -13,6 +13,8 @@ interface Props {
   character?: Character;
   /** Cổng vào đã nối (tên cổng) — dùng cho thân "Dựng" để vẽ các track */
   connectedInputs: string[];
+  /** Thu gọn vừa phải: vẫn giữ ảnh/nội dung chính, bỏ phần chi tiết phụ */
+  compact?: boolean;
 }
 
 const Chip = ({ children, title }: { children: React.ReactNode; title?: string }) => (
@@ -38,10 +40,10 @@ function Wave({ seed, active }: { seed: string; active: boolean }) {
   );
 }
 
-function ImagePreview({ url, alt }: { url?: string; alt: string }) {
+function ImagePreview({ url, alt, compact }: { url?: string; alt: string; compact?: boolean }) {
   if (!url) return <Empty icon={<Images className="h-6 w-6" />} text="Ảnh sẽ hiện ở đây" tall />;
   // eslint-disable-next-line @next/next/no-img-element
-  return <img src={url} alt={alt} loading="lazy" className="max-h-72 w-full rounded-lg border border-border object-cover object-top" />;
+  return <img src={url} alt={alt} loading="lazy" className={cn("w-full rounded-lg border border-border object-cover object-top", compact ? "max-h-32" : "max-h-72")} />;
 }
 
 function Empty({ icon, text, tall }: { icon: React.ReactNode; text?: string; tall?: boolean }) {
@@ -54,12 +56,13 @@ function Empty({ icon, text, tall }: { icon: React.ReactNode; text?: string; tal
 }
 
 /** Thẻ nhân vật gọn: 1 ảnh lớn + tên + chip thông số. Chi tiết xem ở panel bên phải. */
-function CharacterHero({ c }: { c: Character }) {
+function CharacterHero({ c, compact }: { c: Character; compact?: boolean }) {
+  const gallery = c.referenceImages.slice(1, 5);
   return (
     <div className="space-y-1.5">
       {c.referenceImages[0] ? (
         // eslint-disable-next-line @next/next/no-img-element
-        <img src={c.referenceImages[0]} alt={c.name} className="h-56 w-full rounded-lg border border-border bg-muted/20 object-cover object-top" />
+        <img src={c.referenceImages[0]} alt={c.name} className={cn("w-full rounded-lg border border-border bg-muted/20 object-cover object-top", compact ? "h-32" : "h-56")} />
       ) : (
         <Empty icon={<ShieldCheck className="h-6 w-6" />} text={c.name} tall />
       )}
@@ -68,13 +71,37 @@ function CharacterHero({ c }: { c: Character }) {
         <Chip title="Chiều cao">{c.heightCm} cm</Chip>
         <Chip title="Giọng">{c.voiceId || "—"}</Chip>
       </div>
-      {c.sampleAudioUrl && <audio controls preload="none" src={c.sampleAudioUrl} className="nodrag nowheel h-7 w-full" />}
+      {!compact && (
+        <>
+          <p className="text-xs text-muted-foreground">
+            {c.role === "main" ? "Nhân vật chính" : "Nhân vật phụ"} · tỉ lệ {c.scaleRatio}x · giọng {c.defaultTempo ?? 1}x
+          </p>
+          {gallery.length > 0 && (
+            <div className="flex gap-1 overflow-hidden">
+              {gallery.map((u) => (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img key={u} src={u} alt="" loading="lazy" className="h-10 w-10 rounded border border-border object-cover object-top" />
+              ))}
+              {c.referenceImages.length > 5 && (
+                <span className="flex h-10 w-10 items-center justify-center rounded border border-border text-xs text-muted-foreground tnum">+{c.referenceImages.length - 5}</span>
+              )}
+            </div>
+          )}
+          {c.memory.personality && (
+            <p className="line-clamp-2 text-xs text-muted-foreground"><span className="font-medium text-foreground">Tính cách: </span>{c.memory.personality}</p>
+          )}
+          {c.memory.catchphrases.length > 0 && (
+            <p className="line-clamp-1 text-xs italic text-muted-foreground">“{c.memory.catchphrases[0]}”</p>
+          )}
+          {c.sampleAudioUrl && <audio controls preload="none" src={c.sampleAudioUrl} className="nodrag nowheel h-7 w-full" />}
+        </>
+      )}
     </div>
   );
 }
 
 /** Thân card riêng cho từng loại node: nhìn là hiểu node đó làm gì và đã ra gì. */
-export function NodeBody({ nodeType, nodeId, data, character, connectedInputs }: Props) {
+export function NodeBody({ nodeType, nodeId, data, character, connectedInputs, compact }: Props) {
   const p = data.params || {};
   const url = data.previewUrl;
   const done = data.status === "succeeded";
@@ -94,7 +121,7 @@ export function NodeBody({ nodeType, nodeId, data, character, connectedInputs }:
     case "image":
     case "character_image":
     case "scene":
-      return <ImagePreview url={url ?? p.uri ?? p.url} alt={nodeType} />;
+      return <ImagePreview url={url ?? p.uri ?? p.url} alt={nodeType} compact={compact} />;
 
     case "transition":
       return (
@@ -106,7 +133,7 @@ export function NodeBody({ nodeType, nodeId, data, character, connectedInputs }:
       );
 
     case "character":
-      return character ? <CharacterHero c={character} /> : <Empty icon={<ShieldCheck className="h-5 w-5" />} text={String(p.characterId || "—")} />;
+      return character ? <CharacterHero c={character} compact={compact} /> : <Empty icon={<ShieldCheck className="h-5 w-5" />} text={String(p.characterId || "—")} />;
 
     case "script": {
       const count = p.targetSceneCount ?? lines.length;
@@ -157,7 +184,7 @@ export function NodeBody({ nodeType, nodeId, data, character, connectedInputs }:
     case "image_edit":
       return (
         <div className="space-y-1.5">
-          <ImagePreview url={url} alt={nodeType} />
+          <ImagePreview url={url} alt={nodeType} compact={compact} />
         </div>
       );
 
@@ -234,7 +261,7 @@ export function NodeBody({ nodeType, nodeId, data, character, connectedInputs }:
       );
 
     default:
-      if (url && data.previewType === "image") return <ImagePreview url={url} alt={nodeType} />;
+      if (url && data.previewType === "image") return <ImagePreview url={url} alt={nodeType} compact={compact} />;
       if (url && data.previewType === "video") return <video src={url} controls preload="metadata" className="nodrag max-h-48 w-full rounded-md bg-black" />;
       if (url && data.previewType === "audio") return <audio src={url} controls preload="metadata" className="nodrag h-7 w-full" />;
       return null;

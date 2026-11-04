@@ -196,8 +196,6 @@ export const StudioNode = memo(function StudioNode({
     FOOTER + (def.outputPorts.length - 1 - i) * ROW + ROW / 2;
 
   const [collapsed, setCollapsed] = useState(false);
-  const maxPorts = Math.max(def.inputPorts.length, def.outputPorts.length, 1);
-  const collapsedH = Math.max(76, 18 * maxPorts + 18);
 
   // Kiểm tra đủ input: cổng bắt buộc phải được nối hoặc đã có giá trị
   const requiredPorts = def.inputPorts.filter((pt) => pt.required);
@@ -232,8 +230,6 @@ export const StudioNode = memo(function StudioNode({
       ? def.inputPorts.some((pt) => isPortCompatible(activeDragPort.portType, pt.portType))
       : def.outputPorts.some((pt) => isPortCompatible(pt.portType, activeDragPort.portType)));
 
-  const ports_len = (isIn: boolean) => (isIn ? def.inputPorts.length : def.outputPorts.length);
-
   const portHandle = (
     port: (typeof def.inputPorts)[number],
     index: number,
@@ -250,10 +246,7 @@ export const StudioNode = memo(function StudioNode({
         : isPortCompatible(port.portType, drag!.portType));
     const connected = connectedPorts.has(`${id}:${side}:${port.name}`);
     const missing = isIn && port.required && !connected;
-    const n = ports_len(isIn);
-    const pos = collapsed
-      ? { top: ((index + 1) * collapsedH) / (n + 1), transform: isIn ? "translate(-50%, -50%)" : "translate(50%, -50%)" }
-      : isIn
+    const pos = isIn
       ? { top: inTop(index), transform: "translate(-50%, -50%)" }
       : { top: "auto", bottom: outBottom(index), transform: "translate(50%, 50%)" };
     return (
@@ -451,7 +444,7 @@ export const StudioNode = memo(function StudioNode({
           ? "border-foreground"
           : !linkTargetable && "border-border hover:border-foreground/40"
       )}
-      style={{ boxShadow: "none", height: collapsed ? collapsedH : undefined }}
+      style={{ boxShadow: "none" }}
     >
       {stateKey === "running" && (
         <div className="pointer-events-none absolute inset-x-2 bottom-0 h-0.5 overflow-hidden rounded-full bg-muted">
@@ -481,7 +474,14 @@ export const StudioNode = memo(function StudioNode({
         >
           <CategoryIcon className="h-3.5 w-3.5" />
         </span>
-        <span className="min-w-0 flex-1 truncate text-[15px] font-semibold" title={def.displayName}>
+        <span
+          className="min-w-0 flex-1 cursor-pointer truncate text-[15px] font-semibold"
+          title={`${def.displayName} · nhấn đúp để ${collapsed ? "mở rộng" : "thu gọn"}`}
+          onDoubleClick={(e) => {
+            e.stopPropagation();
+            setCollapsed((v) => !v);
+          }}
+        >
           {def.displayName}
         </span>
         <span title={`${stateLabel}${stateKey === "running" && typeof data.progressPct === "number" ? ` ${Math.round(data.progressPct)}%` : ""}`} className={cn("flex h-6 w-6 items-center justify-center", statusColor)}>
@@ -498,20 +498,8 @@ export const StudioNode = memo(function StudioNode({
         </IconBtn>
       </div>
 
-      {collapsed && (
-        <div className="flex items-center gap-2 border-t border-border/70 px-3 text-xs text-muted-foreground" style={{ height: collapsedH - HEADER - 1 }}>
-          {hasIn && (
-            <span className={cn("flex items-center gap-1", requiredPorts.length > 0 && (inputsOk ? "text-semantic-success" : "text-semantic-danger"))}>
-              {requiredPorts.length > 0 && (inputsOk ? <CheckCircle2 className="h-3 w-3" /> : <AlertTriangle className="h-3 w-3" />)}
-              {requiredPorts.length > 0 ? (inputsOk ? "Đủ đầu vào" : `Thiếu ${missingPorts.length}/${requiredPorts.length}`) : `${def.inputPorts.length} vào`}
-            </span>
-          )}
-          <span className="ml-auto truncate">{hasOut ? `${def.outputPorts.length} ra` : ""}{outputsDone ? " · xong" : ""}</span>
-        </div>
-      )}
-
       {/* 1. NHẬN — chỉ hiện khi node có đầu vào */}
-      {!collapsed && hasIn && (
+      {hasIn && (
         <div className="border-t border-border/70">
           <div className="flex items-center justify-between px-3" style={{ height: LABEL }}>
             <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Nhận</span>
@@ -542,57 +530,44 @@ export const StudioNode = memo(function StudioNode({
         </div>
       )}
 
-      {/* 2. LÀM */}
-      {!collapsed && (
+      {/* 2. LÀM (node nguồn không có đầu vào thì gọi là "Cung cấp") */}
       <div className="border-t border-border/70">
         <div className="flex items-center justify-between px-3" style={{ height: LABEL }}>
-          <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Làm</span>
+          <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">{hasIn ? "Làm" : "Cung cấp"}</span>
           <span className="text-[10px] text-muted-foreground/70">{categoryLabel}</span>
         </div>
-        <AnimatePresence initial={false}>
+        <div className="space-y-2 px-3 pb-3">
           {!collapsed && (
-            <motion.div
-              key="body"
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.2, ease: "easeOut" }}
-              className="overflow-hidden"
-            >
-              <div className="space-y-2 px-3 pb-3">
-                <p className="line-clamp-2 text-xs text-muted-foreground" title={def.description}>
-                  {def.description}
-                </p>
-                <NodeBody
-                  nodeType={def.typeName}
-                  nodeId={id}
-                  data={data}
-                  character={boundChar}
-                  connectedInputs={def.inputPorts.filter((pt) => connectedPorts.has(`${id}:in:${pt.name}`)).map((pt) => pt.name)}
-                />
-                {isCharacter && boundChar && (
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      useHubScope.getState().openTab("characters", null, boundChar.id);
-                    }}
-                    className="nodrag flex w-full items-center justify-center gap-1 rounded-lg border border-border py-1.5 text-xs text-foreground transition-colors hover:bg-accent"
-                  >
-                    <Users className="h-3.5 w-3.5" />
-                    Mở hồ sơ nhân vật
-                  </button>
-                )}
-              </div>
-            </motion.div>
+            <p className="line-clamp-2 text-xs text-muted-foreground" title={def.description}>
+              {def.description}
+            </p>
           )}
-        </AnimatePresence>
+          <NodeBody
+            nodeType={def.typeName}
+            nodeId={id}
+            data={data}
+            character={boundChar}
+            compact={collapsed}
+            connectedInputs={def.inputPorts.filter((pt) => connectedPorts.has(`${id}:in:${pt.name}`)).map((pt) => pt.name)}
+          />
+          {isCharacter && boundChar && !collapsed && (
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                useHubScope.getState().openTab("characters", null, boundChar.id);
+              }}
+              className="nodrag flex w-full items-center justify-center gap-1 rounded-lg border border-border py-1.5 text-xs text-foreground transition-colors hover:bg-accent"
+            >
+              <Users className="h-3.5 w-3.5" />
+              Mở hồ sơ nhân vật
+            </button>
+          )}
+        </div>
       </div>
 
-      )}
-
       {/* 3. TRẢ — chỉ hiện khi node có đầu ra */}
-      {!collapsed && hasOut && (
+      {hasOut && (
         <div className="border-t border-border/70">
           <div className="flex items-center justify-between px-3" style={{ height: LABEL }}>
             <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Trả</span>
@@ -614,7 +589,7 @@ export const StudioNode = memo(function StudioNode({
         </div>
       )}
 
-      {!collapsed && (data.summaryText || hasError) && (
+      {(data.summaryText || hasError) && (
         <div className="space-y-1 px-2.5 pb-1">
           {data.summaryText && (
             <p className="line-clamp-2 rounded border border-border/70 bg-muted/20 px-2 py-1 text-xs text-foreground">{data.summaryText}</p>
@@ -627,7 +602,6 @@ export const StudioNode = memo(function StudioNode({
         </div>
       )}
 
-      {!collapsed && (
       <div className="flex items-center justify-between px-3 text-xs text-muted-foreground tnum" style={{ height: FOOTER }}>
         <span className="truncate">
           {data.generations.length > 0 ? t("pinnedGen", { index: Math.max(1, pinnedIdx), total: data.generations.length }) : ""}
@@ -639,7 +613,6 @@ export const StudioNode = memo(function StudioNode({
           </IconBtn>
         </span>
       </div>
-      )}
     </motion.div>
   );
 });
