@@ -35,6 +35,7 @@ from socnhotv.core.engine.graph_runner import (
     GraphExecutionError,
     GraphRunner,
 )
+from socnhotv.core.engine.run_manager import RunManager
 from socnhotv.core.engine.validator import validate_graph
 from socnhotv.core.models_registry.registry import ModelRegistry, ModelSpec
 from socnhotv.core.nodes.registry import NodeRegistry
@@ -116,8 +117,33 @@ def _parse_run_request(project_id: str, graph: Graph, payload: Dict[str, Any]) -
 def broadcast_event(project_id: str, event: SSEEvent) -> None:
     if event.message:
         event.message = redact_secrets(event.message)
+    try:
+        rm = RunManager.get_instance()
+        if event.node_id and event.state:
+            state_str = event.state.value if hasattr(event.state, "value") else str(event.state)
+            rm.update_node_progress(
+                project_id=project_id,
+                run_id=event.run_id,
+                node_id=event.node_id,
+                state=state_str,
+                progress=event.progress or 0.0,
+                message=event.message,
+                cost_usd=event.cost_usd or 0.0,
+            )
+    except Exception:
+        pass
+
+    ev_dict = event.model_dump(by_alias=True)
+    if "state" in ev_dict and ev_dict["state"]:
+        state_val = ev_dict["state"]
+        if hasattr(state_val, "value"):
+            state_val = state_val.value
+        ev_dict["status"] = state_val
+    if "progress" in ev_dict and ev_dict["progress"] is not None:
+        ev_dict["progressPct"] = round(float(ev_dict["progress"]) * 100, 1)
+
+    payload = json.dumps(ev_dict)
     queues = project_event_queues.get(project_id, [])
-    payload = event.model_dump_json(by_alias=True)
     for q in queues:
         q.put_nowait(payload)
 
@@ -396,6 +422,8 @@ async def cancel_project_run(project_id: str):
         ev.set()
         signalled += 1
 
+    RunManager.get_instance().cancel_run(project_id)
+
     cancel_evt = SSEEvent(
         event_type=SSEEventType.RUN_FAILED,
         run_id=f"run_cancel_{int(time.time())}",
@@ -405,6 +433,36 @@ async def cancel_project_run(project_id: str):
     )
     broadcast_event(project_id, cancel_evt)
     return {"status": "cancelled", "projectId": project_id, "signalledRuns": signalled}
+
+
+@app.get("/projects/{project_id}/runs")
+async def list_project_runs(project_id: str, limit: int = 20):
+    """Danh sách các phiên chạy của dự án."""
+    return RunManager.get_instance().list_runs(project_id, limit=limit)
+
+
+@app.get("/projects/{project_id}/runs/active")
+async def get_active_project_run(project_id: str):
+    """Phiên chạy đang chạy của dự án (nếu có) để frontend khôi phục trạng thái."""
+    active = RunManager.get_instance().get_active_run(project_id)
+    if not active:
+        return JSONResponse(status_code=204, content=None)
+    return active
+
+
+@app.get("/projects/{project_id}/runs/{run_id}")
+async def get_project_run(project_id: str, run_id: str):
+    """Chi tiết 1 phiên chạy theo ID."""
+    state = RunManager.get_instance().get_run_state_from_disk(project_id, run_id)
+    if not state:
+        raise HTTPException(status_code=404, detail=f"Không tìm thấy phiên chạy {run_id}")
+    return state
+
+
+@app.get("/projects/{project_id}/outputs")
+async def list_project_outputs(project_id: str):
+    """Danh sách các thành phẩm video trong thư mục data/projects/{project_id}/output/."""
+    return RunManager.get_instance().list_outputs(project_id)
 
 
 def _default_studio_characters(project_id: str) -> List[Dict[str, Any]]:

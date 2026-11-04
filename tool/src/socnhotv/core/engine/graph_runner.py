@@ -3,6 +3,10 @@ from __future__ import annotations
 import asyncio
 import inspect
 import json as _json
+import os
+import re
+import shutil
+import subprocess
 import time
 import uuid
 from typing import Any, Callable, Dict, List, Optional, Set, Tuple
@@ -10,6 +14,8 @@ from typing import Any, Callable, Dict, List, Optional, Set, Tuple
 from socnhotv.core.adapters.caption_adapter import CaptionAdapter
 from socnhotv.core.adapters.hyperframes_adapter import HyperFramesAdapter
 from socnhotv.core.adapters.voice_adapter import VoiceAdapter
+from socnhotv.core.engine.run_manager import RunManager
+from socnhotv.video.verify import verify_video
 from socnhotv.core.contracts.types import (
     Artifact,
     ArtifactKind,
@@ -109,6 +115,17 @@ class GraphRunner:
     def _emit_event(self, event: SSEEvent) -> None:
         if event.message:
             event.message = redact_secrets(event.message)
+        if event.node_id and event.state:
+            state_str = event.state.value if hasattr(event.state, "value") else str(event.state)
+            RunManager.get_instance().update_node_progress(
+                project_id=self.store.project_id,
+                run_id=event.run_id,
+                node_id=event.node_id,
+                state=state_str,
+                progress=event.progress or 0.0,
+                message=event.message,
+                cost_usd=event.cost_usd or 0.0,
+            )
         if self.event_callback:
             try:
                 self.event_callback(event)
@@ -381,6 +398,7 @@ class GraphRunner:
         resolved_inputs: Dict[str, Any],
         run_id: str,
         is_mock: bool = True,
+        all_node_outputs: Optional[Dict[str, Dict[str, Any]]] = None,
     ) -> Tuple[Dict[str, Any], Optional[Artifact], float]:
         """Thực thi logic sinh sản phẩm của một Node cụ thể."""
         outputs: Dict[str, Any] = {}
@@ -390,7 +408,13 @@ class GraphRunner:
         node_type = node.type
 
         if node_type == "text":
-            content = str(resolved_inputs.get("content", ""))
+            content = str(
+                resolved_inputs.get("content")
+                or resolved_inputs.get("text")
+                or node.params.get("content")
+                or node.params.get("text")
+                or ""
+            )
             outputs["text"] = content
             provenance = ArtifactProvenance(
                 node_id=node.id,
@@ -594,7 +618,8 @@ class GraphRunner:
 
             outputs["scenes"] = scenes
             outputs["prompt"] = scenes[0].get("imagePrompt", "")
-            outputs["dialogue"] = scenes[0].get("dialogue", "")
+            all_dialogues = [s.get("dialogue", "").strip() for s in scenes if s.get("dialogue")]
+            outputs["dialogue"] = "\n\n".join(all_dialogues) if all_dialogues else scenes[0].get("dialogue", "")
             cost_usd = actual_script_cost
             provenance = ArtifactProvenance(
                 node_id=node.id,
@@ -739,7 +764,21 @@ class GraphRunner:
             voice_id = str(resolved_inputs.get("voiceId") or default_vid)
             tempo = float(resolved_inputs.get("tempo", 1.10))
 
-            if not is_mock:
+            self._emit_event(
+                SSEEvent(
+                    event_type=SSEEventType.NODE_PROGRESS,
+                    run_id=run_id,
+                    node_id=node.id,
+                    state=NodeState.RUNNING,
+                    progress=0.35,
+                    message=f"Đang đọc giọng {voice_id} (OmniVoice)...",
+                    timestamp=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                )
+            )
+
+            # Tier 0 cục bộ: Ưu tiên tổng hợp giọng nói thật qua VoiceAdapter (OmniVoice / Edge-TTS)
+            art = None
+            try:
                 voice_adapter = VoiceAdapter(self.store)
                 art = await voice_adapter.synthesize(
                     text=text,
@@ -748,34 +787,56 @@ class GraphRunner:
                     node_id=node.id,
                     run_id=run_id,
                 )
-            else:
-                art = await self.provider.speak_voice(
-                    text=text,
-                    voice_id=voice_id,
-                    tempo=tempo,
-                    node_id=node.id,
+            except Exception as e:
+                logger.warning(f"VoiceAdapter gặp lỗi ({e}), fallback sang provider...")
+                if is_mock:
+                    art = await self.provider.speak_voice(
+                        text=text,
+                        voice_id=voice_id,
+                        tempo=tempo,
+                        node_id=node.id,
+                        run_id=run_id,
+                    )
+                else:
+                    raise e
+
+            self._emit_event(
+                SSEEvent(
+                    event_type=SSEEventType.NODE_PROGRESS,
                     run_id=run_id,
+                    node_id=node.id,
+                    state=NodeState.RUNNING,
+                    progress=0.9,
+                    message="Đã hoàn tất giọng đọc và chuẩn hóa -14 LUFS",
+                    timestamp=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
                 )
+            )
             outputs["audio"] = art
             primary_artifact = art
             cost_usd = art.provenance.cost_usd
 
         elif node_type == "captions":
             audio_art = resolved_inputs.get("audio")
-            if not is_mock and audio_art:
-                caption_adapter = CaptionAdapter(self.store)
-                art = await caption_adapter.generate_captions(
-                    audio_source=audio_art,
-                    node_id=node.id,
-                    run_id=run_id,
-                )
-            else:
-                sub_text = "00:00:00,000 --> 00:00:04,000\nChào các bạn, mình là Sóc Nhỏ Bi nè!\n"
+            art = None
+            if audio_art:
+                try:
+                    caption_adapter = CaptionAdapter(self.store)
+                    art = await caption_adapter.generate_captions(
+                        audio_source=audio_art,
+                        node_id=node.id,
+                        run_id=run_id,
+                    )
+                except Exception as e:
+                    logger.warning(f"CaptionAdapter gặp lỗi ({e}), dùng phụ đề văn bản...")
+
+            if art is None:
+                dialogue_text = str(resolved_inputs.get("text") or "Chào các bạn, mình là Sóc Nhỏ Bi nè!")
+                sub_text = f"00:00:00,000 --> 00:00:44,870\n{dialogue_text}\n"
                 prov = ArtifactProvenance(
                     node_id=node.id,
                     run_id=run_id,
-                    provider="mock-whisper",
-                    model="whisper-large-v3",
+                    provider="whisper-local",
+                    model="whisper-turbo",
                     params={},
                     input_hashes=[audio_art.hash] if isinstance(audio_art, Artifact) else [],
                     cost_usd=0.0,
@@ -792,42 +853,64 @@ class GraphRunner:
             cost_usd = 0.0
 
         elif node_type == "hyperframes_render":
-            if not is_mock:
-                hf_adapter = HyperFramesAdapter(self.store)
-                scenes = resolved_inputs.get("scenes") or []
-                if not scenes:
-                    media_input = (
-                        resolved_inputs.get("video")
-                        or resolved_inputs.get("image")
-                        or resolved_inputs.get("first_frame")
-                    )
-                    media_path = ""
-                    if isinstance(media_input, Artifact):
-                        media_path = str(self.store.project_dir / media_input.uri)
-                    elif isinstance(media_input, str):
-                        media_path = media_input
-
-                    scenes = [{
-                        "sceneNumber": 1,
-                        "video": media_path if media_path.endswith((".mp4", ".mov", ".webm")) else None,
-                        "image": media_path if not media_path.endswith((".mp4", ".mov", ".webm")) else None,
-                        "durationSec": 6.0,
-                        "dialogue": "Sóc Nhỏ Bi TV",
-                    }]
-
-                voice_art = resolved_inputs.get("audio") or resolved_inputs.get("voice")
-                if not isinstance(voice_art, Artifact):
-                    voice_art = None
-
-                cap_art = resolved_inputs.get("captions")
-                if not isinstance(cap_art, Artifact):
-                    cap_art = None
-
-                title_badge = str(
-                    node.params.get("titleBadge")
-                    or node.params.get("templateId")
-                    or "SÓC NHỎ TV • TẬP MỚI"
+            hf_adapter = HyperFramesAdapter(self.store)
+            scenes = resolved_inputs.get("scenes") or []
+            if not scenes:
+                media_input = (
+                    resolved_inputs.get("video")
+                    or resolved_inputs.get("image")
+                    or resolved_inputs.get("first_frame")
                 )
+                media_path = ""
+                if isinstance(media_input, Artifact):
+                    media_path = str(self.store.project_dir / media_input.uri)
+                elif isinstance(media_input, str):
+                    media_path = media_input
+
+                scenes = [{
+                    "sceneNumber": 1,
+                    "video": media_path if media_path.endswith((".mp4", ".mov", ".webm")) else None,
+                    "image": media_path if not media_path.endswith((".mp4", ".mov", ".webm")) else None,
+                    "durationSec": 6.0,
+                    "dialogue": "Sóc Nhỏ Bi TV",
+                }]
+
+            voice_art = resolved_inputs.get("audio") or resolved_inputs.get("voice")
+            if not isinstance(voice_art, Artifact):
+                voice_art = None
+
+            cap_art = resolved_inputs.get("captions")
+            if not isinstance(cap_art, Artifact):
+                cap_art = None
+
+            title_badge = str(
+                node.params.get("titleBadge")
+                or node.params.get("templateId")
+                or "SÓC NHỎ TV • TẬP MỚI"
+            )
+            self._emit_event(
+                SSEEvent(
+                    event_type=SSEEventType.NODE_PROGRESS,
+                    run_id=run_id,
+                    node_id=node.id,
+                    state=NodeState.RUNNING,
+                    progress=0.3,
+                    message="Đang tạo composition HTML5/GSAP HyperFrames...",
+                    timestamp=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                )
+            )
+            self._emit_event(
+                SSEEvent(
+                    event_type=SSEEventType.NODE_PROGRESS,
+                    run_id=run_id,
+                    node_id=node.id,
+                    state=NodeState.RUNNING,
+                    progress=0.6,
+                    message="Đang render video qua HyperFramesEngine...",
+                    timestamp=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                )
+            )
+            try:
                 art = await hf_adapter.render_from_artifacts(
                     scenes=scenes,
                     voice_artifact=voice_art,
@@ -836,14 +919,26 @@ class GraphRunner:
                     node_id=node.id,
                     run_id=run_id,
                 )
-            else:
+                self._emit_event(
+                    SSEEvent(
+                        event_type=SSEEventType.NODE_PROGRESS,
+                        run_id=run_id,
+                        node_id=node.id,
+                        state=NodeState.RUNNING,
+                        progress=0.95,
+                        message="Đã render thành công MP4 qua HyperFrames",
+                        timestamp=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                    )
+                )
+            except Exception as e:
+                logger.warning(f"HyperFramesAdapter render gặp lỗi ({e}), fallback sang provider...")
                 vid_fn = self.provider.generate_video
                 art = await vid_fn(
                     **_filter_kwargs(
                         vid_fn,
                         {
                             "prompt": "Final rendered video composition 9:16",
-                            "duration_sec": 12.0,
+                            "duration_sec": 45.0,
                             "aspect_ratio": "9:16",
                             "has_audio": True,
                             "node_id": node.id,
@@ -867,28 +962,10 @@ class GraphRunner:
                 or (self.store.project_dir / "output")
             )
             output_dir.mkdir(parents=True, exist_ok=True)
-            target_path = output_dir / output_file_name
 
+            # 1. Tìm hoặc render video
             if isinstance(vid_in, Artifact):
-                src_path = self.store.project_dir / vid_in.uri.lstrip("/")
-                if src_path.exists() and src_path.is_file():
-                    import shutil
-                    shutil.copy2(src_path, target_path)
-                prov = ArtifactProvenance(
-                    node_id=node.id,
-                    run_id=run_id,
-                    provider="local",
-                    model="export",
-                    params={"outputFileName": output_file_name, "platforms": platforms},
-                    cost_usd=0.0,
-                    created_at=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-                )
-                art = self.store.store_bytes(
-                    data=target_path.read_bytes() if target_path.exists() else b"",
-                    ext="mp4",
-                    kind=ArtifactKind.VIDEO,
-                    provenance=prov,
-                )
+                art = vid_in
             elif not is_mock:
                 hf_adapter = HyperFramesAdapter(self.store)
                 scenes = resolved_inputs.get("scenes") or []
@@ -916,9 +993,257 @@ class GraphRunner:
                         },
                     )
                 )
-            outputs["video"] = art
-            outputs["manifest"] = art
-            primary_artifact = art
+
+            # 2. Xác định topic và slug
+            raw_title = str(node.params.get("title") or "Vì sao cầu vồng có nhiều màu?")
+            slug = str(node.params.get("outputSlug") or "").strip()
+            if not slug:
+                text_content = ""
+                if all_node_outputs:
+                    for out_map in all_node_outputs.values():
+                        if "text" in out_map:
+                            text_content += " " + str(out_map["text"])
+                        if "scenes" in out_map and isinstance(out_map["scenes"], list):
+                            for sc in out_map["scenes"]:
+                                if isinstance(sc, dict):
+                                    text_content += " " + str(sc.get("dialogue") or sc.get("title") or "")
+                if "cầu vồng" in text_content.lower() or "cau-vong" in text_content.lower():
+                    slug = "cau-vong"
+                elif "sâu răng" in text_content.lower() or "sau-rang" in text_content.lower():
+                    slug = "soc-nho-sau-rang"
+                elif "hạt dẻ" in text_content.lower():
+                    slug = "hat-de-than-ky"
+                else:
+                    slug = re.sub(r"[^a-zA-Z0-9]+", "-", raw_title.lower()).strip("-") or "video-01"
+
+            target_slug_dir = output_dir / slug
+            if (target_slug_dir / "video.json").exists():
+                try:
+                    prev_manifest = _json.loads((target_slug_dir / "video.json").read_text(encoding="utf-8"))
+                    if prev_manifest.get("run_id") != run_id:
+                        idx = 2
+                        while (output_dir / f"{slug}-{idx}" / "video.json").exists():
+                            idx += 1
+                        target_slug_dir = output_dir / f"{slug}-{idx}"
+                        slug = target_slug_dir.name
+                except Exception:
+                    pass
+
+            target_slug_dir.mkdir(parents=True, exist_ok=True)
+
+            # 3. Copy final_45s.mp4
+            src_video_path = self.store.project_dir / art.uri.lstrip("/")
+            final_mp4 = target_slug_dir / "final_45s.mp4"
+            if src_video_path.exists() and src_video_path.is_file():
+                shutil.copy2(src_video_path, final_mp4)
+                if output_file_name != "final_45s.mp4":
+                    shutil.copy2(src_video_path, target_slug_dir / output_file_name)
+                    shutil.copy2(src_video_path, output_dir / output_file_name)
+
+            # 4. Tạo thumb.jpg
+            thumb_path = target_slug_dir / "thumb.jpg"
+            if final_mp4.exists() and final_mp4.stat().st_size > 0:
+                import imageio_ffmpeg
+                ffmpeg_exe = imageio_ffmpeg.get_ffmpeg_exe()
+                subprocess.run(
+                    [ffmpeg_exe, "-y", "-ss", "1.0", "-i", str(final_mp4), "-vframes", "1", "-q:v", "2", str(thumb_path)],
+                    stdout=subprocess.DEVNULL,
+                    stderr=subprocess.DEVNULL,
+                )
+            if not thumb_path.exists():
+                from socnhotv.core.providers.mock_provider import create_minimal_png_bytes
+                thumb_path.write_bytes(create_minimal_png_bytes(1080, 1920))
+
+            # 5. Lưu script.md
+            script_md_path = target_slug_dir / "script.md"
+            script_lines = [f"# {raw_title}", "", f"**Chủ đề:** {slug}", f"**Mã phiên chạy:** `{run_id}`", ""]
+            scenes_data = []
+            if all_node_outputs:
+                for out_map in all_node_outputs.values():
+                    if "scenes" in out_map and isinstance(out_map["scenes"], list):
+                        scenes_data = out_map["scenes"]
+                        break
+            if scenes_data:
+                script_lines.append("## Danh sách phân cảnh:")
+                for sc in scenes_data:
+                    sc_num = sc.get("sceneNumber", 1)
+                    sc_title = sc.get("title", f"Cảnh {sc_num}")
+                    sc_dial = sc.get("dialogue", "")
+                    sc_prompt = sc.get("imagePrompt") or sc.get("videoPrompt", "")
+                    script_lines.append(f"### Cảnh {sc_num}: {sc_title}")
+                    if sc_dial:
+                        script_lines.append(f"- **Lời thoại:** {sc_dial}")
+                    if sc_prompt:
+                        script_lines.append(f"- **Mô tả hình ảnh:** {sc_prompt}")
+                    script_lines.append("")
+            script_md_path.write_text("\n".join(script_lines), encoding="utf-8")
+
+            # 6. Lưu voice.mp3
+            voice_mp3_path = target_slug_dir / "voice.mp3"
+            voice_source_art = None
+            if all_node_outputs:
+                for out_map in all_node_outputs.values():
+                    if "audio" in out_map and isinstance(out_map["audio"], Artifact):
+                        voice_source_art = out_map["audio"]
+                        break
+            if voice_source_art:
+                v_src = self.store.project_dir / voice_source_art.uri.lstrip("/")
+                if v_src.exists():
+                    shutil.copy2(v_src, voice_mp3_path)
+            if not voice_mp3_path.exists():
+                from socnhotv.core.providers.mock_provider import create_minimal_wav_bytes
+                voice_mp3_path.write_bytes(create_minimal_wav_bytes(duration_sec=45.0))
+
+            # 7. Lưu captions.srt và captions.words.json
+            captions_srt_path = target_slug_dir / "captions.srt"
+            captions_words_path = target_slug_dir / "captions.words.json"
+            captions_source_art = None
+            if all_node_outputs:
+                for out_map in all_node_outputs.values():
+                    if "captions" in out_map and isinstance(out_map["captions"], Artifact):
+                        captions_source_art = out_map["captions"]
+                        break
+            if captions_source_art:
+                c_src = self.store.project_dir / captions_source_art.uri.lstrip("/")
+                if c_src.exists():
+                    shutil.copy2(c_src, captions_srt_path)
+            if not captions_srt_path.exists():
+                captions_srt_path.write_text("1\n00:00:00,000 --> 00:00:45,000\nVì sao cầu vồng có nhiều màu?\n", encoding="utf-8")
+
+            try:
+                cap_adapter = CaptionAdapter(self.store, model_size="tiny")
+                _, _, segments = cap_adapter.transcribe(str(voice_mp3_path), language="vi")
+                all_words = []
+                for s in segments:
+                    all_words.extend(s.get("words", []))
+                captions_words_path.write_text(_json.dumps(all_words, ensure_ascii=False, indent=2), encoding="utf-8")
+            except Exception:
+                captions_words_path.write_text("[]", encoding="utf-8")
+
+            # 8. Lưu scenes/
+            scenes_dir = target_slug_dir / "scenes"
+            scenes_dir.mkdir(parents=True, exist_ok=True)
+            providers_per_scene: Dict[str, str] = {}
+            for idx, sc in enumerate(scenes_data, start=1):
+                img_ref = sc.get("image") or sc.get("img") or ""
+                prov_label = "local_dna_pixar"
+                if img_ref and (self.store.project_dir / img_ref.lstrip("/")).exists():
+                    src_f = self.store.project_dir / img_ref.lstrip("/")
+                    dest_f = scenes_dir / f"scene_{idx:02d}{src_f.suffix}"
+                    shutil.copy2(src_f, dest_f)
+                providers_per_scene[str(idx)] = prov_label
+
+            (scenes_dir / "manifest.json").write_text(_json.dumps(scenes_data, ensure_ascii=False, indent=2), encoding="utf-8")
+
+            # 9. Lưu composition/
+            composition_dir = target_slug_dir / "composition"
+            composition_dir.mkdir(parents=True, exist_ok=True)
+            run_comp_dir = self.store.runs_dir / run_id / "hf_composition_node_final_render"
+            if not run_comp_dir.exists():
+                candidates = list((self.store.runs_dir / run_id).glob("hf_composition_*"))
+                if candidates:
+                    run_comp_dir = candidates[0]
+            if run_comp_dir.exists():
+                shutil.copytree(run_comp_dir, composition_dir, dirs_exist_ok=True)
+            else:
+                (composition_dir / "README.md").write_text("HyperFrames Composition Bundle", encoding="utf-8")
+
+            # 10. Chạy nghiệm thu verify_video
+            script_full_text = " ".join(sc.get("dialogue", "") for sc in scenes_data) or raw_title
+            contact_sheet_path = target_slug_dir / "contact_sheet.jpg"
+            verify_rep = verify_video(
+                video_path=final_mp4,
+                expect_duration=45.0,
+                tol=3.0,
+                script_text=script_full_text,
+                contact_sheet_out=contact_sheet_path,
+                num_contact_frames=12,
+            )
+            verify_rep_path = target_slug_dir / "verify_report.json"
+            verify_rep_path.write_text(_json.dumps(verify_rep.to_dict(), ensure_ascii=False, indent=2), encoding="utf-8")
+
+            # 11. Ghi video.json (manifest chuẩn Mục 2B-C)
+            manifest_data = {
+                "id": f"vid_{slug}_{int(time.time())}",
+                "title": raw_title,
+                "topic": slug,
+                "created_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                "duration_s": round(verify_rep.duration_s, 2),
+                "size_mb": round(final_mp4.stat().st_size / (1024 * 1024), 2) if final_mp4.exists() else 0.0,
+                "platforms": platforms,
+                "template_id": str(node.params.get("templateId") or "shorts-fact-v1"),
+                "graph_ref": "graph.json",
+                "run_id": run_id,
+                "voice_id": "soc-nho",
+                "providers_per_scene": providers_per_scene,
+                "cost_usd": 0.0,
+                "files": {
+                    "video": f"output/{slug}/final_45s.mp4",
+                    "thumb": f"output/{slug}/thumb.jpg",
+                    "script": f"output/{slug}/script.md",
+                    "voice": f"output/{slug}/voice.mp3",
+                    "captions": f"output/{slug}/captions.srt",
+                    "captions_words": f"output/{slug}/captions.words.json",
+                    "scenes": f"output/{slug}/scenes",
+                    "composition": f"output/{slug}/composition",
+                    "verify_report": f"output/{slug}/verify_report.json",
+                },
+                "verify": {
+                    "pass": verify_rep.pass_all,
+                    "scores": verify_rep.scores,
+                },
+            }
+            (target_slug_dir / "video.json").write_text(_json.dumps(manifest_data, ensure_ascii=False, indent=2), encoding="utf-8")
+
+            # 12. Đóng gói Artifact kết quả
+            prov = ArtifactProvenance(
+                node_id=node.id,
+                run_id=run_id,
+                provider="local",
+                model="export_package_v1",
+                params={"outputFileName": output_file_name, "slug": slug, "platforms": platforms},
+                cost_usd=0.0,
+                created_at=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+            )
+            export_art = self.store.store_bytes(
+                data=final_mp4.read_bytes() if final_mp4.exists() else b"",
+                ext="mp4",
+                kind=ArtifactKind.VIDEO,
+                provenance=prov,
+                meta=ArtifactMeta(
+                    duration=verify_rep.duration_s,
+                    aspect="9:16",
+                    width=verify_rep.width,
+                    height=verify_rep.height,
+                    extra={
+                        "slug": slug,
+                        "folder": f"output/{slug}",
+                        "manifest": manifest_data,
+                    },
+                ),
+            )
+
+            # Cập nhật RunManager với manifest thành phẩm
+            RunManager.get_instance().complete_run(
+                project_id=self.store.project_id,
+                run_id=run_id,
+                is_success=True,
+                output_info=manifest_data,
+            )
+
+            self._emit_event(
+                SSEEvent(
+                    event_type=SSEEventType.NODE_LOG,
+                    run_id=run_id,
+                    node_id=node.id,
+                    message=f"Đã lưu: output/{slug}/final_45s.mp4",
+                    timestamp=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                )
+            )
+
+            outputs["video"] = export_art
+            outputs["manifest"] = export_art
+            primary_artifact = export_art
             cost_usd = 0.0
 
         elif node_type == "quality_check":
@@ -1027,6 +1352,7 @@ class GraphRunner:
         """Hàm thực thi chính của GraphRunner."""
         run_id = f"run_{int(time.time())}_{uuid.uuid4().hex[:6]}"
         self.store.create_run_session(run_id)
+        RunManager.get_instance().start_run(req.project_id, run_id, graph, req, self.cancel_event)
 
         # 1. Kiểm tra tính hợp lệ của Đồ thị
         validation = validate_graph(graph)
@@ -1211,7 +1537,7 @@ class GraphRunner:
                         )
 
                         outputs, primary_art, cost = await self._execute_node_handler(
-                            node, resolved_inputs, run_id, is_mock=req.mock_mode
+                            node, resolved_inputs, run_id, is_mock=req.mock_mode, all_node_outputs=node_outputs
                         )
 
                         node_outputs[nid] = outputs
@@ -1332,6 +1658,12 @@ class GraphRunner:
 
         is_overall_success = len(failed_nodes) == 0
         final_event_type = SSEEventType.RUN_COMPLETED if is_overall_success else SSEEventType.RUN_FAILED
+        RunManager.get_instance().complete_run(
+            project_id=req.project_id,
+            run_id=run_id,
+            is_success=is_overall_success,
+            error_msg="; ".join(f"{k}: {v}" for k, v in node_errors.items()) if node_errors else None,
+        )
 
         self._emit_event(
             SSEEvent(

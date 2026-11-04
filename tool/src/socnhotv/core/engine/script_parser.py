@@ -68,6 +68,11 @@ def parse_script(
             
             # Làm sạch header_line
             header_clean = re.sub(r"^[#*>\s]+", "", header_line).strip()
+            if not content:
+                m_inline = re.match(r"^(?:(?:Cảnh|Phân cảnh|Hồi|Scene|Part|Segment)\s+(\d+|[IVXLCDM]+)[\s:.-]+)(.*)$", header_clean, re.IGNORECASE)
+                if m_inline and m_inline.group(2).strip():
+                    header_clean = f"Cảnh {m_inline.group(1)}"
+                    content = m_inline.group(2).strip()
             chunks.append((header_clean, content))
 
     elif re.search(r"^[ \t]*[-=_*~]{3,}[ \t]*$", text, re.MULTILINE):
@@ -161,6 +166,10 @@ def parse_script(
         # Xây dựng các trường cho cảnh
         title = header_title if header_title else f"Cảnh {idx}"
         
+        # Nếu chưa có lời thoại định dạng Tên: Thoại, các dòng văn bản tự do chính là lời thoại nhân vật
+        if not dialogues and visual_parts:
+            dialogues = list(visual_parts)
+
         # Thoại gộp
         full_dialogue = "\n".join(dialogues) if dialogues else ""
         

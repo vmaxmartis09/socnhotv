@@ -219,11 +219,74 @@ class VideoLibrary:
                     "script_excerpt": "",
                 })
 
-        # 3. Scan Library / Output root mp4s
+        # 3. Scan Output Studio Packages (output/<slug>/video.json)
+        output_dir = project_path(self.project_id, "output", ensure=False)
+        if output_dir.exists():
+            for v_json in output_dir.glob("*/video.json"):
+                try:
+                    data = atomic_read_json(v_json, default={})
+                    slug = v_json.parent.name
+                    files_dict = data.get("files", {})
+                    rel_video = files_dict.get("video") or f"output/{slug}/final_45s.mp4"
+                    abs_video = project_path(self.project_id, rel_video, ensure=False)
+                    if not abs_video.exists():
+                        continue
+
+                    if rel_video in seen_paths:
+                        continue
+                    seen_paths.add(rel_video)
+
+                    rel_thumb = files_dict.get("thumb") or f"output/{slug}/thumb.jpg"
+                    abs_thumb = project_path(self.project_id, rel_thumb, ensure=False)
+                    thumb_str = rel_thumb if abs_thumb.exists() else ""
+
+                    script_excerpt = ""
+                    rel_script = files_dict.get("script") or f"output/{slug}/script.md"
+                    abs_script = project_path(self.project_id, rel_script, ensure=False)
+                    if abs_script.exists():
+                        try:
+                            script_excerpt = abs_script.read_text(encoding="utf-8")[:200]
+                        except Exception:
+                            pass
+
+                    meta_key = f"{rel_video}_{abs_video.stat().st_mtime}"
+                    if meta_key in cache:
+                        meta = cache[meta_key]
+                    else:
+                        meta = _probe_video_file(abs_video)
+                        cache[meta_key] = meta
+
+                    p_stat = posted_stats.get(rel_video) or posted_stats.get(data.get("id")) or {"count": 0, "last": None}
+                    title = data.get("title") or slug.replace("_", " ").replace("-", " ").title()
+
+                    variants = {"main": rel_video}
+                    for plat in data.get("platforms", ["tiktok", "youtube"]):
+                        variants[plat] = rel_video
+
+                    videos.append({
+                        "id": data.get("id") or f"studio_{slug}",
+                        "title": title,
+                        "thumb": thumb_str,
+                        "duration_s": data.get("duration_s") or meta.get("duration_s", 0.0),
+                        "width": meta.get("width", 1080),
+                        "height": meta.get("height", 1920),
+                        "size_mb": data.get("size_mb") or meta.get("size_mb", 0.0),
+                        "aspect_ratio": "9:16",
+                        "variants": variants,
+                        "primary_path": rel_video,
+                        "source": "studio",
+                        "posted_count": p_stat["count"],
+                        "last_posted_at": p_stat["last"],
+                        "script_excerpt": script_excerpt,
+                    })
+                except Exception:
+                    continue
+
+        # 4. Scan Library / Output remaining mp4s
         for folder_name in ["output", "library"]:
             f_dir = project_path(self.project_id, folder_name, ensure=False)
             if f_dir.exists():
-                for mp4 in f_dir.glob("*.mp4"):
+                for mp4 in f_dir.rglob("*.mp4"):
                     rel_path = str(mp4.relative_to(project_path(self.project_id, ensure=False)))
                     if rel_path in seen_paths:
                         continue
