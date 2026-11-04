@@ -4,106 +4,264 @@
   "name": "Graph soc-nho-tv",
   "nodes": [
     {
-      "id": "node_input_text",
+      "id": "node_text",
       "type": "text",
       "params": {
-        "content": "Chào mừng các bạn đến với kênh Sóc Nhỏ TV!"
+        "content": "Tập 1: Sóc Nhỏ (Bi, 100cm) mê ăn kẹo dẻo hạt dẻ trước khi đi ngủ, bị đau răng sâu và được Bác sĩ Koala (150cm) khám răng, hướng dẫn đánh răng đúng cách."
       },
       "inputs": {},
       "position": {
-        "x": 0.0,
-        "y": 0.0
+        "x": 20.0,
+        "y": 20.0
       },
       "ui": {},
-      "state": "completed",
+      "state": "idle",
       "isStale": false,
-      "pinnedGenerationId": "gen_6d482b84",
-      "generations": [
-        {
-          "id": "gen_6d482b84",
-          "nodeId": "node_input_text",
-          "params": {
-            "content": "Chào mừng các bạn đến với kênh Sóc Nhỏ TV!"
-          },
-          "artifactId": "art_732d024b5c51",
-          "costUsd": 0.0,
-          "createdAt": "2026-11-04T00:39:28Z",
-          "isPinned": true
-        }
-      ]
+      "pinnedGenerationId": null,
+      "generations": []
     },
     {
-      "id": "node_tts",
+      "id": "node_script",
+      "type": "script",
+      "params": {
+        "targetSceneCount": 6,
+        "targetDurationSec": 45
+      },
+      "inputs": {},
+      "position": {
+        "x": 380.0,
+        "y": 20.0
+      },
+      "ui": {},
+      "state": "idle",
+      "isStale": false,
+      "pinnedGenerationId": null,
+      "generations": []
+    },
+    {
+      "id": "node_character",
+      "type": "character",
+      "params": {
+        "characterId": "soc_nho"
+      },
+      "inputs": {},
+      "position": {
+        "x": -48.0,
+        "y": 456.0
+      },
+      "ui": {},
+      "state": "idle",
+      "isStale": false,
+      "pinnedGenerationId": null,
+      "generations": []
+    },
+    {
+      "id": "node_image_gen",
+      "type": "image_gen",
+      "params": {
+        "model": "gemini-2.5-flash-image",
+        "aspectRatio": "9:16",
+        "resolution": "1080p",
+        "n": 1,
+        "seed": null
+      },
+      "inputs": {},
+      "position": {
+        "x": 740.0,
+        "y": 20.0
+      },
+      "ui": {},
+      "state": "idle",
+      "isStale": false,
+      "pinnedGenerationId": null,
+      "generations": []
+    },
+    {
+      "id": "node_quality",
+      "type": "quality_check",
+      "params": {
+        "thresholdScore": 0.85,
+        "maxRetries": 2,
+        "criteria": "Nhân vật Sóc Nhỏ 100cm, áo phông vàng, quần short đen, đuôi xù lớn, không chữ lạ"
+      },
+      "inputs": {},
+      "position": {
+        "x": 380.0,
+        "y": 640.0
+      },
+      "ui": {},
+      "state": "idle",
+      "isStale": false,
+      "pinnedGenerationId": null,
+      "generations": []
+    },
+    {
+      "id": "node_video_gen",
+      "type": "video_gen",
+      "params": {
+        "model": "google-veo-2",
+        "durationSec": 8,
+        "aspectRatio": "9:16",
+        "hasAudio": false
+      },
+      "inputs": {},
+      "position": {
+        "x": 740.0,
+        "y": 640.0
+      },
+      "ui": {},
+      "state": "idle",
+      "isStale": false,
+      "pinnedGenerationId": null,
+      "generations": []
+    },
+    {
+      "id": "node_voice",
       "type": "voice_tts",
       "params": {
         "voiceId": "soc-nho",
-        "tempo": 1.1
+        "tempo": 1.1,
+        "mastering": true
       },
       "inputs": {},
       "position": {
-        "x": 0.0,
-        "y": 0.0
+        "x": 380.0,
+        "y": 1260.0
       },
       "ui": {},
-      "state": "completed",
+      "state": "idle",
       "isStale": false,
-      "pinnedGenerationId": "gen_f80fb5e1",
-      "generations": [
-        {
-          "id": "gen_f80fb5e1",
-          "nodeId": "node_tts",
-          "params": {
-            "voiceId": "soc-nho",
-            "tempo": 1.1
-          },
-          "artifactId": "art_02278d00a365",
-          "costUsd": 0.0,
-          "createdAt": "2026-11-04T00:39:45Z",
-          "isPinned": true
-        }
-      ]
+      "pinnedGenerationId": null,
+      "generations": []
     },
     {
-      "id": "node_subtitles",
-      "type": "captions",
-      "params": {},
+      "id": "node_render",
+      "type": "hyperframes_render",
+      "params": {
+        "aspectRatio": "9:16",
+        "template": "default_cartoon",
+        "safeZonePaddingTop": 180,
+        "safeZonePaddingBottom": 320,
+        "duckingLevel": 0.25
+      },
       "inputs": {},
       "position": {
-        "x": 0.0,
-        "y": 0.0
+        "x": 740.0,
+        "y": 1260.0
       },
       "ui": {},
-      "state": "completed",
+      "state": "idle",
       "isStale": false,
-      "pinnedGenerationId": "gen_cb8a20dd",
-      "generations": [
-        {
-          "id": "gen_cb8a20dd",
-          "nodeId": "node_subtitles",
-          "params": {},
-          "artifactId": "art_d08614ac536e",
-          "costUsd": 0.0,
-          "createdAt": "2026-11-04T00:39:45Z",
-          "isPinned": true
-        }
-      ]
+      "pinnedGenerationId": null,
+      "generations": []
+    },
+    {
+      "id": "node_export",
+      "type": "export",
+      "params": {
+        "platforms": [
+          "tiktok",
+          "youtube"
+        ],
+        "outputFileName": "soc_nho_tap_01.mp4"
+      },
+      "inputs": {},
+      "position": {
+        "x": 1100.0,
+        "y": 1260.0
+      },
+      "ui": {},
+      "state": "idle",
+      "isStale": false,
+      "pinnedGenerationId": null,
+      "generations": []
     }
   ],
   "edges": [
     {
-      "id": "e1",
-      "sourceNodeId": "node_input_text",
+      "id": "e_text_script",
+      "sourceNodeId": "node_text",
       "sourcePort": "text",
-      "targetNodeId": "node_tts",
+      "targetNodeId": "node_script",
       "targetPort": "text"
     },
     {
-      "id": "e2",
-      "sourceNodeId": "node_tts",
+      "id": "e_script_img_prompt",
+      "sourceNodeId": "node_script",
+      "sourcePort": "prompt",
+      "targetNodeId": "node_image_gen",
+      "targetPort": "prompt"
+    },
+    {
+      "id": "e_char_img_refs",
+      "sourceNodeId": "node_character",
+      "sourcePort": "reference_images",
+      "targetNodeId": "node_image_gen",
+      "targetPort": "references"
+    },
+    {
+      "id": "e_img_quality",
+      "sourceNodeId": "node_image_gen",
+      "sourcePort": "image",
+      "targetNodeId": "node_quality",
+      "targetPort": "media"
+    },
+    {
+      "id": "e_quality_vid",
+      "sourceNodeId": "node_quality",
+      "sourcePort": "media",
+      "targetNodeId": "node_video_gen",
+      "targetPort": "first_frame"
+    },
+    {
+      "id": "e_script_vid_prompt",
+      "sourceNodeId": "node_script",
+      "sourcePort": "prompt",
+      "targetNodeId": "node_video_gen",
+      "targetPort": "prompt"
+    },
+    {
+      "id": "e_script_voice",
+      "sourceNodeId": "node_script",
+      "sourcePort": "dialogue",
+      "targetNodeId": "node_voice",
+      "targetPort": "text"
+    },
+    {
+      "id": "e_script_render_scenes",
+      "sourceNodeId": "node_script",
+      "sourcePort": "scenes",
+      "targetNodeId": "node_render",
+      "targetPort": "scenes"
+    },
+    {
+      "id": "e_vid_render",
+      "sourceNodeId": "node_video_gen",
+      "sourcePort": "video",
+      "targetNodeId": "node_render",
+      "targetPort": "video"
+    },
+    {
+      "id": "e_voice_render",
+      "sourceNodeId": "node_voice",
       "sourcePort": "audio",
-      "targetNodeId": "node_subtitles",
+      "targetNodeId": "node_render",
       "targetPort": "audio"
+    },
+    {
+      "id": "e_render_export",
+      "sourceNodeId": "node_render",
+      "sourcePort": "video",
+      "targetNodeId": "node_export",
+      "targetPort": "video"
+    },
+    {
+      "id": "edge_mw1dv9zl_buz",
+      "sourceNodeId": "node_character",
+      "sourcePort": "character",
+      "targetNodeId": "node_voice",
+      "targetPort": "character"
     }
   ],
-  "updatedAt": "2026-11-04T00:41:08Z"
+  "updatedAt": "2026-11-04T00:41:33Z"
 }
