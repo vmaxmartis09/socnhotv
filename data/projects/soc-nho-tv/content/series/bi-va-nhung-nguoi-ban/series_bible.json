@@ -1,0 +1,2319 @@
+{
+  "series_id": "bi-va-nhung-nguoi-ban",
+  "title": "BI VÀ NHỮNG NGƯỜI BẠN",
+  "logline": "Tại Làng Rừng Xanh mang đậm hồn quê Việt Nam, cậu bé Sóc Bi 3–4 tuổi tò mò, lém lỉnh cùng bốn người bạn thân — anh Dê Bông chín chắn, em Dê Mun hồn nhiên, Cún Lu năng động và Mèo Mimi khéo léo — trải qua 50 cuộc phiêu lưu nhỏ mỗi ngày, biến những câu hỏi 'Ủa, tại sao vậy ta?' thành bài học cảm xúc, kỹ năng tự lập, an toàn và lòng nhân ái mà mọi em bé 3–7 tuổi đều có thể làm theo ngay tại nhà.",
+  "target_age": "3-7",
+  "episode_count": 50,
+  "runtime_s": 600,
+  "aspect": "16:9",
+  "resolution": "1920x1080",
+  "shot_duration_s": 8,
+  "shots_per_episode_range": [
+    70,
+    78
+  ],
+  "scenes_per_episode_range": [
+    12,
+    16
+  ],
+  "scale_sentence_mandatory": "Height order from tallest: Bong 115cm > Lu 105cm > Bi 100cm > Mimi 95cm > Mun 85cm; Bi's head reaches Bong's chin, Mun's head reaches Bi's nose.",
+  "koala_scale_sentence_mandatory": "Bi is two-thirds the height of the koala doctor, his head reaches the doctor's chest",
+  "world": {
+    "name_vi": "Làng Rừng Xanh",
+    "description": "Làng Rừng Xanh là một ngôi làng rừng yên bình mang đậm hồn quê Việt Nam (ruộng lúa bậc thang và đồng bằng, lũy tre xanh rì rào, mái ngói đỏ rêu phong, chợ quê rực rỡ nón lá và đèn lồng, cây đa cổ thụ đầu làng, ao sen thơm ngát, bờ suối Pha Lê trong vắt bắc cầu tre), nơi các con vật nhân hóa đáng yêu chung sống như một khu phố thân thiện, ấm áp tình làng nghĩa xóm.",
+    "rules": [
+      "Chuẩn tỉ lệ khóa cứng: Sóc Bi = 100 cm = 1.0. Thứ tự chiều cao nhóm bạn nhỏ từ cao đến thấp: Dê Bông (115 cm, 1.15) > Cún Lu (105 cm, 1.05) > Sóc Bi (100 cm, 1.0) > Mèo Mimi (95 cm, 0.95) > Dê Mun (85 cm, 0.85). Đỉnh đầu Bi chạm cằm Bông; đỉnh đầu Mun chạm mũi Bi.",
+      "Mọi prompt sinh ảnh/video có từ 2 nhân vật trở lên BẮT BUỘC chèn câu khóa tỉ lệ: 'Height order from tallest: Bong 115cm > Lu 105cm > Bi 100cm > Mimi 95cm > Mun 85cm; Bi's head reaches Bong's chin, Mun's head reaches Bi's nose.' Nếu có Bác sĩ Koala (150 cm): 'Bi is two-thirds the height of the koala doctor, his head reaches the doctor's chest'.",
+      "Quy tắc thời lượng lên hình: Sóc Bi có mặt trong >= 70% số shot, giữ 30-35% tổng số câu thoại (khi Bi là focus_character thì ~40%), luôn là người đặt câu hỏi trung tâm và tổng kết bài học. Nhân vật trọng tâm (focus_character) giữ 22-25% câu thoại và có hành trình cảm xúc riêng. 3 bạn còn lại mỗi người >= 10% câu thoại và có ít nhất 1 khoảnh khắc đáng nhớ.",
+      "Vai trò người lớn: Người lớn (Mẹ Sóc, Ông Dê Râu Bạc, Cô giáo Hươu Sao, Bác sĩ Koala, Bác Voi) chỉ HƯỚNG DẪN, GỢI Ý hoặc đảm bảo an toàn; chính các bạn nhỏ phải tự trải nghiệm, tự suy nghĩ và tự giải quyết vấn đề.",
+      "An toàn tuyệt đối cho trẻ 3-7 tuổi: Không bạo lực, không phản diện đáng sợ, không dọa nạt; KHÔNG BAO GIỜ hiển thị hành vi nguy hiểm có thể bắt chước mà thành công (leo trèo cao không bảo hộ, chơi gần nước một mình, nghịch lửa, bếp nóng, ổ điện). Mọi cảnh gần suối, bếp, đường giao thông luôn có người lớn giám sát trong khung hình.",
+      "Nguyên tắc sư phạm 3 lớp: (1) Hiện tượng/tình huống gây tò mò -> (2) Giải thích/trải nghiệm trực quan -> (3) Đúc kết thành hành động cụ thể với Câu Thần Chú <= 8 từ có vần nhịp lặp lại >= 3 lần và 2-5 bước kỹ năng đánh số rõ ràng.",
+      "Ngôn ngữ và lời thoại: Mỗi câu thoại <= 15 từ (tối đa tuyệt đối <= 18 từ trong 1 shot 8s), câu thường 5-10 từ, tự nhiên như trẻ em Việt Nam nói chuyện; không giảng đạo dài dòng (Show, don't preach).",
+      "Chuẩn YouTube Made for Kids: Không kêu gọi bình luận, không chèn link ngoài, không quảng cáo thương hiệu hay cổ xúy đồ ngọt/thời gian màn hình."
+    ],
+    "visual_style": {
+      "style_token": "3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen",
+      "palette_hex": [
+        "#F4A261 (Warm Amber / Lông Sóc Bi & Nắng Sớm)",
+        "#FFD166 (Golden Yellow / Áo Bi & Hoa Mướp)",
+        "#2A9D8F (Bamboo Jade / Tre Xanh & Áo Cún Lu)",
+        "#E76F51 (Terracotta Red / Mái Ngói Đỏ & Áo Dê Mun)",
+        "#A8DADC (Sky Denim / Quần Yếm Dê Bông & Suối Pha Lê)",
+        "#CDB4DB (Soft Lavender / Váy Yếm Mèo Mimi & Hoa Bằng Lăng)",
+        "#8AB17D (Rice Field Green / Đồng Lúa & Lá Đa)",
+        "#F7EDE2 (Warm Cream / Tường Vôi Quê & Lông Dê Bông)",
+        "#52B788 (Mint Clinic / Phòng Khám Bác Sĩ Koala)"
+      ],
+      "lighting": "Cinematic volumetric god rays filtering through bamboo groves and ancient banyan canopies, soft warm global illumination, natural bounce light off terracotta tiles and sun-warmed earth, subsurface scattering on translucent green leaves and character ears, shallow optical depth of field (f/2.0 to f/2.8) with 3-layer spatial separation: soft foreground bokeh occlusion, razor-sharp midground subject focus with gentle rim light, and creamy atmospheric background falloff.",
+      "materials": "Photoreal-stylized tactile materials: weathered oak bark and split-bamboo grain, velvety damp green moss, veined banana and lotus leaves with glistening morning dewdrops, hand-woven cotton, denim, and linen fabric weave, hand-fired red clay roof tiles, rich moist garden soil, smooth river pebbles, and groomed 3D plush animal fur with individual hair strand specular highlights.",
+      "negative_prompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content"
+    }
+  },
+  "characters": [
+    {
+      "id": "bi",
+      "name": "Sóc Bi",
+      "species": "Sóc đỏ (red squirrel) nhân hóa",
+      "age_feel": "3-4 tuổi",
+      "gender": "Nam",
+      "height_cm": 100,
+      "scale_ratio_to_bi": 1.0,
+      "dna_reference_image": "data/projects/soc-nho-tv/characters/soc_nho/soc_nho_01.png",
+      "personality": [
+        "tò mò",
+        "lém lỉnh",
+        "nhanh nhẹn",
+        "hay hỏi 'Tại sao?'",
+        "đôi khi hấp tấp",
+        "rất tốt bụng",
+        "biết nhận lỗi"
+      ],
+      "catchphrase": "Ủa, tại sao vậy ta? / Bi hiểu rồi!",
+      "voice_id": "soc-nho",
+      "voice_status": "ready",
+      "voice_direction": "Cao độ: cao vừa, sáng trong kiểu bé trai 3-4 tuổi. Tốc độ: linh hoạt (nhanh khi hào hứng đặt câu hỏi, chậm rõ từng chữ khi đọc Câu Thần Chú và '3 điều Bi nhớ'). Chất giọng: lém lỉnh, ấm áp, nhấn giọng ở từ 'Ủa', 'Tại sao' và 'Bi hiểu rồi!'.",
+      "growth_arc": "Từ Mùa 1 đến Mùa 10, Bi từ một cậu bé sóc hay hấp tấp làm đổ vỡ và dễ nổi nóng khi không vừa ý dần học được cách hít thở bình tĩnh, biết quan sát và hỏi ý kiến bạn bè trước khi hành động, trở thành người thủ lĩnh nhí biết kết nối cả nhóm trong Lễ hội Rừng Xanh ở Tập 50.",
+      "do": [
+        "Luôn giữ thân hình THON GỌN, bụng phẳng, tay chân ngắn thon khỏe khoắn ở mọi góc máy",
+        "Luôn đính kèm ảnh gốc data/projects/soc-nho-tv/characters/soc_nho/soc_nho_01.png khi sinh ảnh",
+        "Vẫy chiếc đuôi xù lớn cong lên sau lưng mỗi khi nảy ra ý tưởng hoặc vui mừng",
+        "Nhìn thẳng vào camera với đôi mắt tròn đen lấp lánh ở các khoảnh khắc tương tác với khán giả nhí"
+      ],
+      "dont": [
+        "Không bao giờ vẽ Bi béo tròn, bụng phệ hoặc lùn tịt như thú nhồi bông biến dạng",
+        "Không để Bi giảng đạo như người lớn; Bi học bài học thông qua việc tự thử sai và khám phá",
+        "Không đổi trang phục mặc định (áo thun vàng cổ tròn, quần short đen, giày thể thao tối màu đế trắng) trừ khi kịch bản yêu cầu rõ"
+      ],
+      "prompt_lock": "a slim, agile 3-4 year old boy squirrel named Bi, about 100cm tall, NOT fat, flat belly, short slender limbs, head about 1/4 of body height, reddish orange-brown fur with lighter belly and cheeks, big round glossy black eyes with highlights, light pink cheeks, two front teeth, small pointed ears with tufts, very large bushy tail curving up behind his back and darker red-brown toward the tip, fitted yellow crew-neck t-shirt, black shorts, dark sneakers with white soles",
+      "expression_set": [
+        {
+          "emotion": "vui",
+          "label_en": "joyful",
+          "description_en": "wide open cheerful smile showing two cute front teeth, crescent-shaped sparkling black eyes, rosy pink cheeks lifted high, ears perked straight up, large bushy tail wagging high behind his back, bouncing lightly on his toes with both hands raised happily"
+        },
+        {
+          "emotion": "buồn",
+          "label_en": "sad",
+          "description_en": "drooping pointed ears, big glossy black eyes glistening with tiny tear droplets at the corners, quivering lower lip, shoulders slumped forward, large bushy tail hanging low and curled around his ankles, hands clasped loosely in front of his yellow t-shirt"
+        },
+        {
+          "emotion": "giận",
+          "label_en": "angry",
+          "description_en": "furrowed eyebrows tilted inward, puffed-up pink cheeks, tight pouting mouth, ears angled back, bushy tail bristled and stiffened upright, both small fists resting on his hips in a cute preschooler huff without looking scary"
+        },
+        {
+          "emotion": "sợ",
+          "label_en": "scared",
+          "description_en": "wide round eyes with shrunk pupils, ears flattened sideways, mouth in a small trembling 'O' shape, hugging his own large fluffy tail against his chest like a comfort blanket, knees slightly bent and stepping half a step back"
+        },
+        {
+          "emotion": "ngạc nhiên",
+          "label_en": "surprised",
+          "description_en": "eyebrows raised high, big round black eyes opened wide with bright star-like specular highlights, mouth open in an amazed 'O' showing two front teeth, ears standing tall, both hands touching his light pink cheeks as his bushy tail perks straight up like an exclamation mark"
+        },
+        {
+          "emotion": "xấu hổ",
+          "label_en": "embarrassed",
+          "description_en": "cheeks glowing deeper warm pink, bashful half-smile, eyes glancing sideways and down, one hand rubbing the back of his neck while the other holds the tip of his bushy tail, one sneaker toe shyly tracing a circle on the ground"
+        },
+        {
+          "emotion": "tự hào",
+          "label_en": "proud",
+          "description_en": "chest puffed slightly while keeping a flat belly, confident bright grin showing two front teeth, chin tilted slightly up, one hand giving a crisp thumbs-up and the other on his hip, bushy tail arching gracefully high behind his back"
+        },
+        {
+          "emotion": "tò mò",
+          "label_en": "curious",
+          "description_en": "head tilted 15 degrees to the right, one eyebrow raised higher than the other, big glossy black eyes leaning forward in intense fascination, right index finger touching his chin thoughtfully, bushy tail swaying slowly in a question-mark curve"
+        }
+      ],
+      "turnaround_prompts": {
+        "front": "3D Pixar-style character turnaround sheet, front view standing straight in neutral A-pose on a plain light gray studio background, soft even studio lighting: a slim, agile 3-4 year old boy squirrel named Bi, about 100cm tall, NOT fat, flat belly, short slender limbs, head about 1/4 of body height, reddish orange-brown fur with lighter belly and cheeks, big round glossy black eyes with highlights, light pink cheeks, two front teeth, small pointed ears with tufts, very large bushy tail curving up behind his back and darker red-brown toward the tip, fitted yellow crew-neck t-shirt, black shorts, dark sneakers with white soles.",
+        "three_quarter_left": "3D Pixar-style character turnaround sheet, three-quarter left view standing straight on a plain light gray studio background, soft even studio lighting: a slim, agile 3-4 year old boy squirrel named Bi, about 100cm tall, NOT fat, flat belly, short slender limbs, head about 1/4 of body height, reddish orange-brown fur with lighter belly and cheeks, big round glossy black eyes with highlights, light pink cheeks, two front teeth, small pointed ears with tufts, very large bushy tail curving up behind his back and darker red-brown toward the tip, fitted yellow crew-neck t-shirt, black shorts, dark sneakers with white soles.",
+        "three_quarter_right": "3D Pixar-style character turnaround sheet, three-quarter right view standing straight on a plain light gray studio background, soft even studio lighting: a slim, agile 3-4 year old boy squirrel named Bi, about 100cm tall, NOT fat, flat belly, short slender limbs, head about 1/4 of body height, reddish orange-brown fur with lighter belly and cheeks, big round glossy black eyes with highlights, light pink cheeks, two front teeth, small pointed ears with tufts, very large bushy tail curving up behind his back and darker red-brown toward the tip, fitted yellow crew-neck t-shirt, black shorts, dark sneakers with white soles.",
+        "side": "3D Pixar-style character turnaround sheet, strict 90-degree side profile view standing straight on a plain light gray studio background, clearly showing flat belly and large S-curved bushy tail behind back: a slim, agile 3-4 year old boy squirrel named Bi, about 100cm tall, NOT fat, flat belly, short slender limbs, head about 1/4 of body height, reddish orange-brown fur with lighter belly and cheeks, big round glossy black eyes with highlights, light pink cheeks, two front teeth, small pointed ears with tufts, very large bushy tail curving up behind his back and darker red-brown toward the tip, fitted yellow crew-neck t-shirt, black shorts, dark sneakers with white soles.",
+        "back": "3D Pixar-style character turnaround sheet, direct back view standing straight on a plain light gray studio background, showing the voluminous bushy tail curving up from above the black shorts with darker red-brown tip: a slim, agile 3-4 year old boy squirrel named Bi, about 100cm tall, NOT fat, flat belly, short slender limbs, head about 1/4 of body height, reddish orange-brown fur with lighter belly and cheeks, big round glossy black eyes with highlights, light pink cheeks, two front teeth, small pointed ears with tufts, very large bushy tail curving up behind his back and darker red-brown toward the tip, fitted yellow crew-neck t-shirt, black shorts, dark sneakers with white soles."
+      },
+      "outfit_variants": {
+        "pajamas": "wearing a soft pastel-yellow two-piece cotton pajama set printed with tiny brown acorns, bare squirrel paws, comfortable tail opening at the back",
+        "raincoat": "wearing a bright sunny-yellow hooded translucent raincoat with an acorn emblem on the chest over his black shorts, and matching yellow ankle rain boots",
+        "tet_ao_dai": "wearing a traditional Vietnamese boys' golden-yellow and crimson brocade Ao Dai with coin patterns over dark trousers and a matching khan dong headwear",
+        "winter": "wearing a cozy knitted amber-orange sweater over his yellow t-shirt, a cream wool scarf, dark warm trousers, and his dark sneakers with white soles",
+        "swim_with_life_vest": "wearing black-and-yellow swim trunks and a properly buckled bright orange child safety life vest with reflective chest straps"
+      }
+    },
+    {
+      "id": "bong",
+      "name": "Dê Bông",
+      "species": "Dê trắng (white goat) nhân hóa",
+      "age_feel": "6 tuổi",
+      "gender": "Nam",
+      "height_cm": 115,
+      "scale_ratio_to_bi": 1.15,
+      "dna_reference_image": "data/projects/soc-nho-tv/characters/de_bong/de_bong_01.png",
+      "personality": [
+        "chín chắn",
+        "cẩn thận",
+        "thích đọc sách",
+        "thích ghi chép",
+        "đôi khi ra vẻ người lớn",
+        "đôi lúc chưa kiên nhẫn với em Mun"
+      ],
+      "catchphrase": "Để anh Bông xem nào…",
+      "voice_id": "de-bong",
+      "voice_status": "TODO_CLONE",
+      "voice_direction": "Cao độ: giọng bé trai 6 tuổi trầm ấm hơn Bi một chút, phát âm tròn vành rõ chữ. Tốc độ: điềm đạm, khoan thai, hay ngân nhẹ ở chữ 'nào…' khi suy nghĩ. Chất giọng: chững chạc kiểu anh cả, ấm áp, đôi khi hơi nghiêm nghị trẻ con khi nhắc nhở các em.",
+      "growth_arc": "Từ một người anh cả hay cầu toàn, thích làm theo sách vở và đôi khi mất kiên nhẫn hoặc ghen tị ngầm khi bố mẹ/ông nội chiều em Mun, Bông học được cách lắng nghe cảm xúc của em, chấp nhận việc thất bại khi thử cái mới, và trở thành người anh biết dẫn dắt bằng sự dịu dàng.",
+      "do": [
+        "Luôn giữ chiều cao 115 cm (cao nhất nhóm bạn nhỏ, đỉnh đầu Bi chạm tới cằm Bông)",
+        "Hay rút cuốn sổ tay nhỏ màu xanh lá ở túi ngực quần yếm ra xem hoặc ghi chép",
+        "Dáng đứng thẳng, cử chỉ điềm tĩnh, hay xoa đầu hoặc nắm tay em trai Dê Mun"
+      ],
+      "dont": [
+        "Không biến Bông thành nhân vật mọt sách kiêu căng hay lạnh lùng với bạn",
+        "Không quên hai chiếc sừng ngắn cong màu kem và chùm râu cằm nhỏ mềm màu trắng",
+        "Không để Bông thấp bằng hoặc thấp hơn Cún Lu và Sóc Bi"
+      ],
+      "prompt_lock": "a gentle, thoughtful 6-year-old boy white goat named Bong, about 115cm tall (1.15x the height of Bi the squirrel, Bi's head reaches Bong's chin), slim upright build, fluffy clean snow-white curly fur, a small soft chin tuft, two short curved cream-colored horns, long floppy ears with pink inner side, big round warm brown eyes, small pink nose, wearing sky-blue denim overalls over a white-and-navy striped t-shirt, a tiny green notebook in the front pocket, brown sandals over small dark hooves",
+      "expression_set": [
+        {
+          "emotion": "vui",
+          "label_en": "joyful",
+          "description_en": "warm gentle smile, bright crinkling warm brown eyes, long floppy ears bouncing lightly, standing tall and clapping both hands together cheerfully"
+        },
+        {
+          "emotion": "buồn",
+          "label_en": "sad",
+          "description_en": "long floppy ears hanging heavy and low, warm brown eyes looking down with furrowed brows, shoulders drooping slightly, holding his tiny green notebook against his chest"
+        },
+        {
+          "emotion": "giận",
+          "label_en": "angry",
+          "description_en": "brows knitted together in a serious big-brother frown, cheeks slightly puffed, arms crossed neatly over his sky-blue denim overalls, tapping one brown-sandaled hoof lightly"
+        },
+        {
+          "emotion": "sợ",
+          "label_en": "scared",
+          "description_en": "warm brown eyes widened in alarm, floppy ears pulled back against his head, both hands raised defensively near his chest while instinctively stepping in front of younger kids to protect them"
+        },
+        {
+          "emotion": "ngạc nhiên",
+          "label_en": "surprised",
+          "description_en": "eyes wide open, eyebrows lifted high toward his short cream horns, mouth forming a neat 'O', long ears perked outward as he nearly drops his tiny green notebook"
+        },
+        {
+          "emotion": "xấu hổ",
+          "label_en": "embarrassed",
+          "description_en": "soft pink blush across his white furry cheeks, sheepish smile, one hand adjusting the strap of his sky-blue denim overalls while looking away shyly"
+        },
+        {
+          "emotion": "tự hào",
+          "label_en": "proud",
+          "description_en": "upright posture at full 115cm height, warm confident smile, holding up his open green notebook with one hand and pointing to a neat drawing with the other"
+        },
+        {
+          "emotion": "tò mò",
+          "label_en": "curious",
+          "description_en": "leaning slightly forward, one hand stroking his small soft white chin tuft, warm brown eyes squinting thoughtfully as he studies an object closely"
+        }
+      ],
+      "turnaround_prompts": {
+        "front": "3D Pixar-style character turnaround sheet, front view standing straight in neutral A-pose on a plain light gray studio background, soft even studio lighting: a gentle, thoughtful 6-year-old boy white goat named Bong, about 115cm tall (1.15x the height of Bi the squirrel, Bi's head reaches Bong's chin), slim upright build, fluffy clean snow-white curly fur, a small soft chin tuft, two short curved cream-colored horns, long floppy ears with pink inner side, big round warm brown eyes, small pink nose, wearing sky-blue denim overalls over a white-and-navy striped t-shirt, a tiny green notebook in the front pocket, brown sandals over small dark hooves.",
+        "three_quarter_left": "3D Pixar-style character turnaround sheet, three-quarter left view standing straight on a plain light gray studio background, soft even studio lighting: a gentle, thoughtful 6-year-old boy white goat named Bong, about 115cm tall (1.15x the height of Bi the squirrel, Bi's head reaches Bong's chin), slim upright build, fluffy clean snow-white curly fur, a small soft chin tuft, two short curved cream-colored horns, long floppy ears with pink inner side, big round warm brown eyes, small pink nose, wearing sky-blue denim overalls over a white-and-navy striped t-shirt, a tiny green notebook in the front pocket, brown sandals over small dark hooves.",
+        "three_quarter_right": "3D Pixar-style character turnaround sheet, three-quarter right view standing straight on a plain light gray studio background, soft even studio lighting: a gentle, thoughtful 6-year-old boy white goat named Bong, about 115cm tall (1.15x the height of Bi the squirrel, Bi's head reaches Bong's chin), slim upright build, fluffy clean snow-white curly fur, a small soft chin tuft, two short curved cream-colored horns, long floppy ears with pink inner side, big round warm brown eyes, small pink nose, wearing sky-blue denim overalls over a white-and-navy striped t-shirt, a tiny green notebook in the front pocket, brown sandals over small dark hooves.",
+        "side": "3D Pixar-style character turnaround sheet, strict 90-degree side profile view standing straight on a plain light gray studio background, soft even studio lighting: a gentle, thoughtful 6-year-old boy white goat named Bong, about 115cm tall (1.15x the height of Bi the squirrel, Bi's head reaches Bong's chin), slim upright build, fluffy clean snow-white curly fur, a small soft chin tuft, two short curved cream-colored horns, long floppy ears with pink inner side, big round warm brown eyes, small pink nose, wearing sky-blue denim overalls over a white-and-navy striped t-shirt, a tiny green notebook in the front pocket, brown sandals over small dark hooves.",
+        "back": "3D Pixar-style character turnaround sheet, direct back view standing straight on a plain light gray studio background, showing crossed denim overall straps and small fluffy white goat tail: a gentle, thoughtful 6-year-old boy white goat named Bong, about 115cm tall (1.15x the height of Bi the squirrel, Bi's head reaches Bong's chin), slim upright build, fluffy clean snow-white curly fur, a small soft chin tuft, two short curved cream-colored horns, long floppy ears with pink inner side, big round warm brown eyes, small pink nose, wearing sky-blue denim overalls over a white-and-navy striped t-shirt, a tiny green notebook in the front pocket, brown sandals over small dark hooves."
+      },
+      "outfit_variants": {
+        "pajamas": "wearing sky-blue striped button-down cotton pajamas with tiny white cloud patterns",
+        "raincoat": "wearing a clear-brimmed navy-blue raincoat with horn slots on the hood over his denim overalls and blue rain boots",
+        "tet_ao_dai": "wearing a scholarly sky-blue silk traditional Vietnamese Ao Dai with bamboo embroidery over white trousers and a navy khan dong",
+        "winter": "wearing a cream cable-knit cardigan over his striped shirt and denim overalls, with a navy-and-white knitted scarf",
+        "swim_with_life_vest": "wearing navy-and-white striped swim shorts and a buckled sky-blue-and-orange child safety life vest"
+      }
+    },
+    {
+      "id": "mun",
+      "name": "Dê Mun",
+      "species": "Dê đen (black goat) nhân hóa",
+      "age_feel": "3 tuổi",
+      "gender": "Nam",
+      "height_cm": 85,
+      "scale_ratio_to_bi": 0.85,
+      "dna_reference_image": "data/projects/soc-nho-tv/characters/de_mun/de_mun_01.png",
+      "personality": [
+        "hồn nhiên",
+        "tinh nghịch",
+        "hay bắt chước",
+        "dễ khóc dễ cười",
+        "nói ngọng nhẹ đáng yêu (chỉ vài từ, không lạm dụng)",
+        "rất thương anh Bông"
+      ],
+      "catchphrase": "Mun cũng muốn! Mun cũng muốn!",
+      "voice_id": "de-mun",
+      "voice_status": "TODO_CLONE",
+      "voice_direction": "Cao độ: cao, trong veo, non nớt đúng chuẩn em bé 3 tuổi. Tốc độ: câu ngắn, nhịp nảy tưng tửng, đôi chỗ ngọng nhẹ rất tự nhiên (ví dụ 'anh Bông ơi' -> 'anh Bông ưi', 'thích lắm' -> 'thích nhắm' — chỉ điểm xuyết 1 từ trong câu, không làm khó nghe). Chất giọng: ngọt ngào, nũng nịu đáng yêu.",
+      "growth_arc": "Là em út hay bắt chước, sợ bóng tối, dễ mếu máo và hay nói 'Mun cũng muốn!', qua 50 tập Mun học được cách tự xúc ăn gọn gàng, biết xếp hàng đợi lượt, dũng cảm nhận lỗi khi làm sai, và tự hào về bộ lông đen óng mượt có ngôi sao trắng trên trán của mình.",
+      "do": [
+        "Luôn giữ chiều cao 85 cm (thấp nhất nhóm, đỉnh đầu Mun chỉ chạm tới mũi Bi)",
+        "Luôn giữ đốm lông trắng hình ngôi sao nhỏ trên trán và hai mầm sừng tròn nhỏ xíu",
+        "Hay chạy lon ton theo sau anh Bông hoặc bắt chước động tác của Bi và Lu chậm hơn nửa nhịp"
+      ],
+      "dont": [
+        "Không lạm dụng nói ngọng khiến trẻ em xem video học phát âm sai (các từ khóa bài học và Câu Thần Chú Mun phải nói chuẩn 100%)",
+        "Không vẽ sừng Mun dài nhọn như dê lớn; sừng Mun chỉ là hai mầm tròn nhỏ xíu (tiny rounded nub horns)",
+        "Không để Mun cao bằng Mimi hoặc Bi"
+      ],
+      "prompt_lock": "a playful 3-year-old toddler boy black goat named Mun, about 85cm tall (0.85x the height of Bi the squirrel, Mun's head reaches Bi's nose), chubby-cheeked toddler build, soft glossy jet-black fur with a small white star-shaped patch on his forehead, two tiny rounded nub horns, short floppy ears with gray-pink inner side, big round sparkling brown eyes, wearing a bright red t-shirt with a small yellow star, navy blue shorts, red rubber rain boots",
+      "expression_set": [
+        {
+          "emotion": "vui",
+          "label_en": "joyful",
+          "description_en": "chubby cheeks lifted in a huge gummy toddler grin, big sparkling brown eyes crinkling with joy, short floppy ears flapping as he jumps up in his red rubber rain boots with both short arms raised high"
+        },
+        {
+          "emotion": "buồn",
+          "label_en": "sad",
+          "description_en": "lower lip pushed out in a big trembling toddler pout, big round brown eyes welling with shiny tears, short ears drooping down, rubbing one eye with a small black furry fist"
+        },
+        {
+          "emotion": "giận",
+          "label_en": "angry",
+          "description_en": "chubby cheeks puffed out like a little dumpling, tiny brows furrowed under his white forehead star patch, arms folded stubby and tight across his yellow-star red t-shirt, stomping one red rain boot softly"
+        },
+        {
+          "emotion": "sợ",
+          "label_en": "scared",
+          "description_en": "wide watery brown eyes, trembling chin, crouching slightly and reaching both short arms up toward his big brother Bong or hugging his knees tightly"
+        },
+        {
+          "emotion": "ngạc nhiên",
+          "label_en": "surprised",
+          "description_en": "mouth wide open in an adorable tiny 'O', big round eyes sparkling like stars, both chubby hands pressed flat against his cheeks, standing on tiptoes in his red rubber rain boots"
+        },
+        {
+          "emotion": "xấu hổ",
+          "label_en": "embarrassed",
+          "description_en": "hiding half his face behind both small hands while peeking through his fingers with big round brown eyes, toes of his red rubber rain boots turned inward"
+        },
+        {
+          "emotion": "tự hào",
+          "label_en": "proud",
+          "description_en": "standing as tall as his 85cm toddler frame allows, beaming with a huge proud smile, pointing both thumbs at the yellow star on his bright red t-shirt"
+        },
+        {
+          "emotion": "tò mò",
+          "label_en": "curious",
+          "description_en": "head tilted far to one side, big sparkling brown eyes peering closely at something near the ground, squatting down in his navy shorts and red rain boots with one finger extended cautiously"
+        }
+      ],
+      "turnaround_prompts": {
+        "front": "3D Pixar-style character turnaround sheet, front view standing straight in neutral A-pose on a plain light gray studio background, soft even studio lighting: a playful 3-year-old toddler boy black goat named Mun, about 85cm tall (0.85x the height of Bi the squirrel, Mun's head reaches Bi's nose), chubby-cheeked toddler build, soft glossy jet-black fur with a small white star-shaped patch on his forehead, two tiny rounded nub horns, short floppy ears with gray-pink inner side, big round sparkling brown eyes, wearing a bright red t-shirt with a small yellow star, navy blue shorts, red rubber rain boots.",
+        "three_quarter_left": "3D Pixar-style character turnaround sheet, three-quarter left view standing straight on a plain light gray studio background, soft even studio lighting: a playful 3-year-old toddler boy black goat named Mun, about 85cm tall (0.85x the height of Bi the squirrel, Mun's head reaches Bi's nose), chubby-cheeked toddler build, soft glossy jet-black fur with a small white star-shaped patch on his forehead, two tiny rounded nub horns, short floppy ears with gray-pink inner side, big round sparkling brown eyes, wearing a bright red t-shirt with a small yellow star, navy blue shorts, red rubber rain boots.",
+        "three_quarter_right": "3D Pixar-style character turnaround sheet, three-quarter right view standing straight on a plain light gray studio background, soft even studio lighting: a playful 3-year-old toddler boy black goat named Mun, about 85cm tall (0.85x the height of Bi the squirrel, Mun's head reaches Bi's nose), chubby-cheeked toddler build, soft glossy jet-black fur with a small white star-shaped patch on his forehead, two tiny rounded nub horns, short floppy ears with gray-pink inner side, big round sparkling brown eyes, wearing a bright red t-shirt with a small yellow star, navy blue shorts, red rubber rain boots.",
+        "side": "3D Pixar-style character turnaround sheet, strict 90-degree side profile view standing straight on a plain light gray studio background, soft even studio lighting: a playful 3-year-old toddler boy black goat named Mun, about 85cm tall (0.85x the height of Bi the squirrel, Mun's head reaches Bi's nose), chubby-cheeked toddler build, soft glossy jet-black fur with a small white star-shaped patch on his forehead, two tiny rounded nub horns, short floppy ears with gray-pink inner side, big round sparkling brown eyes, wearing a bright red t-shirt with a small yellow star, navy blue shorts, red rubber rain boots.",
+        "back": "3D Pixar-style character turnaround sheet, direct back view standing straight on a plain light gray studio background, showing tiny black goat tail above navy shorts and bright red rubber rain boots: a playful 3-year-old toddler boy black goat named Mun, about 85cm tall (0.85x the height of Bi the squirrel, Mun's head reaches Bi's nose), chubby-cheeked toddler build, soft glossy jet-black fur with a small white star-shaped patch on his forehead, two tiny rounded nub horns, short floppy ears with gray-pink inner side, big round sparkling brown eyes, wearing a bright red t-shirt with a small yellow star, navy blue shorts, red rubber rain boots."
+      },
+      "outfit_variants": {
+        "pajamas": "wearing a cozy one-piece bright red footed sleeper pajama patterned with little yellow stars and crescent moons",
+        "raincoat": "wearing a hooded bright red-and-yellow polka-dot poncho raincoat with his signature red rubber rain boots",
+        "tet_ao_dai": "wearing a festive crimson-red toddler Ao Dai with a golden lucky coin emblem on the chest over navy trousers and a tiny red khan dong",
+        "winter": "wearing a puffy bright red quilted vest over a long-sleeve yellow sweater, navy warm pants, and his red rubber rain boots",
+        "swim_with_life_vest": "wearing navy-blue toddler swim shorts with yellow stars and a snugly buckled bright orange child safety life vest with a collar float"
+      }
+    },
+    {
+      "id": "lu",
+      "name": "Cún Lu",
+      "species": "Chó cỏ Việt Nam (Vietnamese native mixed-breed puppy) nhân hóa",
+      "age_feel": "5 tuổi",
+      "gender": "Nữ",
+      "height_cm": 105,
+      "scale_ratio_to_bi": 1.05,
+      "dna_reference_image": "data/projects/soc-nho-tv/characters/cho_lu/cho_lu_01.png",
+      "personality": [
+        "năng động",
+        "yêu thể thao",
+        "trung thành",
+        "mũi thính 'thám tử'",
+        "hay hấp tấp làm trước nghĩ sau",
+        "cười rất to"
+      ],
+      "catchphrase": "Lu ngửi thấy có chuyện rồi!",
+      "voice_id": "cho-lu",
+      "voice_status": "TODO_CLONE",
+      "voice_direction": "Cao độ: sáng, khỏe khoắn, vang rõ kiểu bé gái 5 tuổi hoạt bát. Tốc độ: nhanh, dứt khoát, nhiều câu cảm thán. Chất giọng: hào sảng, nhiệt tình, hay có tiếng khịt mũi dễ thương ('Khịt khịt!') trước khi nói câu cửa miệng.",
+      "growth_arc": "Từ một cô bé cún hiếu động không chịu ngồi yên chờ đợi và hay vội vàng hứa trước quên sau, Lu học được tính kiên nhẫn, biết giữ lời hứa, biết suy nghĩ và quan sát an toàn trước khi lao đi, phát huy tài năng 'thám tử mũi thính' để giúp đỡ cả làng.",
+      "do": [
+        "Luôn giữ chiều cao 105 cm (cao hơn Sóc Bi 5 cm — gần bằng Bi nhưng nhỉnh hơn chút xíu)",
+        "Luôn giữ đặc điểm nhận diện độc quyền: MỘT TAI DỰNG ĐỨNG và MỘT TAI CỤP XUỐNG (one ear standing up and one ear folded down)",
+        "Hay khịt khịt chiếc mũi đen bóng và vẫy chiếc đuôi cong tròn mỗi khi phát hiện mùi hương hay manh mối"
+      ],
+      "dont": [
+        "Không vẽ cả hai tai Lu cùng dựng hoặc cùng cụp",
+        "Không quên chiếc khăn bandana màu xanh lá có in dấu chân trắng buộc quanh cổ",
+        "Không để Lu hành động thô bạo; sự năng động của Lu luôn vui vẻ, tốt bụng và giàu tinh thần đồng đội"
+      ],
+      "prompt_lock": "an energetic 5-year-old girl puppy named Lu, a Vietnamese native mixed-breed dog, about 105cm tall (1.05x the height of Bi the squirrel, almost the same height as Bi), lean athletic build, short warm cream-golden fur with white chest and white muzzle, one ear standing up and one ear folded down (signature look), curled tail, shiny black nose, big honey-brown eyes, wearing a mint-teal t-shirt, a green bandana with a white paw print tied around her neck, khaki shorts, white sneakers",
+      "expression_set": [
+        {
+          "emotion": "vui",
+          "label_en": "joyful",
+          "description_en": "big open-mouthed hearty laugh, honey-brown eyes shining brightly, one ear perked high and one ear flopping happily, curled tail wagging in a blur, jumping into a sporty victory pose"
+        },
+        {
+          "emotion": "buồn",
+          "label_en": "sad",
+          "description_en": "even her upright ear drooping halfway down, big honey-brown eyes looking up with puppy-dog remorse, curled tail uncurled and hanging low, hands clasped behind her back"
+        },
+        {
+          "emotion": "giận",
+          "label_en": "angry",
+          "description_en": "brows drawn together, cheeks puffed, leaning forward slightly with both hands on her knees, upright ear twitching while letting out a tiny playful 'hừm!' huff"
+        },
+        {
+          "emotion": "sợ",
+          "label_en": "scared",
+          "description_en": "honey-brown eyes wide, both paws covering her shiny black nose, tail tucked slightly in, stepping back behind Bong while peeking over his shoulder"
+        },
+        {
+          "emotion": "ngạc nhiên",
+          "label_en": "surprised",
+          "description_en": "even her folded ear flipping momentarily upward in shock, eyes wide as saucers, jaw dropped in excitement, springing slightly off the ground in her white sneakers"
+        },
+        {
+          "emotion": "xấu hổ",
+          "label_en": "embarrassed",
+          "description_en": "laughing sheepishly while scratching behind her folded ear with one hand, cheeks tinted warm pink, shifting her weight from one white sneaker to the other"
+        },
+        {
+          "emotion": "tự hào",
+          "label_en": "proud",
+          "description_en": "standing with feet shoulder-width apart, hands on hips, chin raised so her shiny black nose points up proudly, green paw-print bandana fluttering slightly"
+        },
+        {
+          "emotion": "tò mò",
+          "label_en": "curious",
+          "description_en": "leaning forward in a detective stance, shiny black nose twitching as she sniffs the air, one hand held up like a magnifying glass over one honey-brown eye"
+        }
+      ],
+      "turnaround_prompts": {
+        "front": "3D Pixar-style character turnaround sheet, front view standing straight in neutral A-pose on a plain light gray studio background, soft even studio lighting: an energetic 5-year-old girl puppy named Lu, a Vietnamese native mixed-breed dog, about 105cm tall (1.05x the height of Bi the squirrel, almost the same height as Bi), lean athletic build, short warm cream-golden fur with white chest and white muzzle, one ear standing up and one ear folded down (signature look), curled tail, shiny black nose, big honey-brown eyes, wearing a mint-teal t-shirt, a green bandana with a white paw print tied around her neck, khaki shorts, white sneakers.",
+        "three_quarter_left": "3D Pixar-style character turnaround sheet, three-quarter left view standing straight on a plain light gray studio background, soft even studio lighting: an energetic 5-year-old girl puppy named Lu, a Vietnamese native mixed-breed dog, about 105cm tall (1.05x the height of Bi the squirrel, almost the same height as Bi), lean athletic build, short warm cream-golden fur with white chest and white muzzle, one ear standing up and one ear folded down (signature look), curled tail, shiny black nose, big honey-brown eyes, wearing a mint-teal t-shirt, a green bandana with a white paw print tied around her neck, khaki shorts, white sneakers.",
+        "three_quarter_right": "3D Pixar-style character turnaround sheet, three-quarter right view standing straight on a plain light gray studio background, soft even studio lighting: an energetic 5-year-old girl puppy named Lu, a Vietnamese native mixed-breed dog, about 105cm tall (1.05x the height of Bi the squirrel, almost the same height as Bi), lean athletic build, short warm cream-golden fur with white chest and white muzzle, one ear standing up and one ear folded down (signature look), curled tail, shiny black nose, big honey-brown eyes, wearing a mint-teal t-shirt, a green bandana with a white paw print tied around her neck, khaki shorts, white sneakers.",
+        "side": "3D Pixar-style character turnaround sheet, strict 90-degree side profile view standing straight on a plain light gray studio background, soft even studio lighting: an energetic 5-year-old girl puppy named Lu, a Vietnamese native mixed-breed dog, about 105cm tall (1.05x the height of Bi the squirrel, almost the same height as Bi), lean athletic build, short warm cream-golden fur with white chest and white muzzle, one ear standing up and one ear folded down (signature look), curled tail, shiny black nose, big honey-brown eyes, wearing a mint-teal t-shirt, a green bandana with a white paw print tied around her neck, khaki shorts, white sneakers.",
+        "back": "3D Pixar-style character turnaround sheet, direct back view standing straight on a plain light gray studio background, showing knotted green bandana at nape of neck and curled cream-golden tail above khaki shorts: an energetic 5-year-old girl puppy named Lu, a Vietnamese native mixed-breed dog, about 105cm tall (1.05x the height of Bi the squirrel, almost the same height as Bi), lean athletic build, short warm cream-golden fur with white chest and white muzzle, one ear standing up and one ear folded down (signature look), curled tail, shiny black nose, big honey-brown eyes, wearing a mint-teal t-shirt, a green bandana with a white paw print tied around her neck, khaki shorts, white sneakers."
+      },
+      "outfit_variants": {
+        "pajamas": "wearing mint-green sporty cotton pajamas printed with tiny white bones and paw prints",
+        "raincoat": "wearing a zip-up mint-green waterproof windbreaker raincoat with reflective stripes and green rain boots",
+        "tet_ao_dai": "wearing a cheerful turquoise-mint traditional Vietnamese Ao Dai with apricot blossom embroidery over white silk pants",
+        "winter": "wearing a sporty teal-and-cream varsity fleece jacket over her mint t-shirt, warm khaki joggers, and white sneakers",
+        "swim_with_life_vest": "wearing a sporty mint-teal one-piece rashguard swimsuit and a securely buckled bright orange-and-green child safety life vest"
+      }
+    },
+    {
+      "id": "mimi",
+      "name": "Mèo Mimi",
+      "species": "Mèo tam thể (calico cat) nhân hóa",
+      "age_feel": "5 tuổi",
+      "gender": "Nữ",
+      "height_cm": 95,
+      "scale_ratio_to_bi": 0.95,
+      "dna_reference_image": "data/projects/soc-nho-tv/characters/meo_mimi/meo_mimi_01.png",
+      "personality": [
+        "gọn gàng",
+        "chu đáo",
+        "khéo tay (vẽ, gấp giấy)",
+        "thích luật lệ",
+        "hơi nhút nhát trước đám đông",
+        "sợ bẩn",
+        "rất tinh tế với cảm xúc của bạn"
+      ],
+      "catchphrase": "Mimi có một ý này…",
+      "voice_id": "meo-mimi",
+      "voice_status": "TODO_CLONE",
+      "voice_direction": "Cao độ: cao nhẹ, trong trẻo, êm dịu kiểu bé gái 5 tuổi ngoan ngoãn. Tốc độ: vừa phải, nhẹ nhàng, câu chữ gọn gàng lễ phép. Chất giọng: giàu sự đồng cảm, dịu dàng khi an ủi bạn, reo nhẹ trong trẻo khi nảy ra ý tưởng sáng tạo.",
+      "growth_arc": "Từ một cô bé mèo tam thể hơi nhút nhát trước đám đông, sợ lấm bẩn và dễ buồn khi mất đồ vật quen thuộc, Mimi dần trở nên dạn dĩ, dám bước ra sân khấu chỉ huy trang trí lễ hội, biết cách bảo vệ ranh giới cơ thể an toàn và dùng đôi tay khéo léo để gắn kết mọi người.",
+      "do": [
+        "Luôn giữ chiều cao 95 cm (thấp hơn Bi 5 cm, cao hơn Mun 10 cm)",
+        "Luôn giữ đúng vị trí mảng màu lông tam thể: mảng đen phủ tai trái, mảng cam quanh mắt phải, nơ hồng nhỏ cài tai phải, chóp đuôi đen",
+        "Cử chỉ nhẹ nhàng, tỉ mỉ; luôn là người đầu tiên nhận ra khi một người bạn trong nhóm đang buồn hoặc sợ"
+      ],
+      "dont": [
+        "Không đảo ngược vị trí mảng lông đen (tai trái) và mảng lông cam (quanh mắt phải)",
+        "Không biến sự thích gọn gàng của Mimi thành sự khó tính hay chê bai bạn bè",
+        "Không quên chiếc nơ nhỏ màu hồng trên tai phải và váy yếm màu tím oải hương (lavender)"
+      ],
+      "prompt_lock": "a neat, gentle 5-year-old girl calico cat named Mimi, about 95cm tall (0.95x the height of Bi the squirrel, slightly shorter than Bi), slender graceful build, calico fur with white base and orange and black patches (black patch over her left ear, orange patch around her right eye), long fluffy tail with a black tip, large emerald-green almond eyes, small pink nose, thin white whiskers, wearing a lavender pinafore dress over a white puff-sleeve blouse, a small pink bow on her right ear, white Mary-Jane shoes",
+      "expression_set": [
+        {
+          "emotion": "vui",
+          "label_en": "joyful",
+          "description_en": "sweet graceful smile, large emerald-green almond eyes sparkling warmly, white whiskers perked up, both hands clasped neatly near her cheek as her black-tipped tail swishes in a smooth curve"
+        },
+        {
+          "emotion": "buồn",
+          "label_en": "sad",
+          "description_en": "emerald-green eyes shimmering with tears, ears angled downward so the pink bow on her right ear tilts low, whiskers drooping, holding the hem of her lavender pinafore dress lightly"
+        },
+        {
+          "emotion": "giận",
+          "label_en": "angry",
+          "description_en": "delicate brows furrowed, cheeks puffed in a polite little pout, hands resting neatly on her hips, black-tipped tail flicking side to side while keeping her posture composed"
+        },
+        {
+          "emotion": "sợ",
+          "label_en": "scared",
+          "description_en": "emerald-green eyes wide, whiskers pulled back, hugging her arms across her white puff-sleeve blouse and taking a small step behind Bi or Bong, tail curled close around her legs"
+        },
+        {
+          "emotion": "ngạc nhiên",
+          "label_en": "surprised",
+          "description_en": "eyes wide and bright like emeralds, both dainty white paws covering her small pink mouth in a polite gasp, ears perked straight up with her pink bow neat"
+        },
+        {
+          "emotion": "xấu hổ",
+          "label_en": "embarrassed",
+          "description_en": "rosy blush blooming on her white cheeks, looking down through long lashes, twirling the tip of her black-tipped tail shyly with both hands"
+        },
+        {
+          "emotion": "tự hào",
+          "label_en": "proud",
+          "description_en": "standing gracefully with a warm confident smile, holding up a handmade paper craft or drawing neatly with both hands, pink bow on her right ear perky"
+        },
+        {
+          "emotion": "tò mò",
+          "label_en": "curious",
+          "description_en": "head tilted gently, large emerald-green eyes examining a detail closely, one index finger raised softly as she prepares to say 'Mimi có một ý này…'"
+        }
+      ],
+      "turnaround_prompts": {
+        "front": "3D Pixar-style character turnaround sheet, front view standing straight in neutral A-pose on a plain light gray studio background, soft even studio lighting: a neat, gentle 5-year-old girl calico cat named Mimi, about 95cm tall (0.95x the height of Bi the squirrel, slightly shorter than Bi), slender graceful build, calico fur with white base and orange and black patches (black patch over her left ear, orange patch around her right eye), long fluffy tail with a black tip, large emerald-green almond eyes, small pink nose, thin white whiskers, wearing a lavender pinafore dress over a white puff-sleeve blouse, a small pink bow on her right ear, white Mary-Jane shoes.",
+        "three_quarter_left": "3D Pixar-style character turnaround sheet, three-quarter left view standing straight on a plain light gray studio background, soft even studio lighting: a neat, gentle 5-year-old girl calico cat named Mimi, about 95cm tall (0.95x the height of Bi the squirrel, slightly shorter than Bi), slender graceful build, calico fur with white base and orange and black patches (black patch over her left ear, orange patch around her right eye), long fluffy tail with a black tip, large emerald-green almond eyes, small pink nose, thin white whiskers, wearing a lavender pinafore dress over a white puff-sleeve blouse, a small pink bow on her right ear, white Mary-Jane shoes.",
+        "three_quarter_right": "3D Pixar-style character turnaround sheet, three-quarter right view standing straight on a plain light gray studio background, soft even studio lighting: a neat, gentle 5-year-old girl calico cat named Mimi, about 95cm tall (0.95x the height of Bi the squirrel, slightly shorter than Bi), slender graceful build, calico fur with white base and orange and black patches (black patch over her left ear, orange patch around her right eye), long fluffy tail with a black tip, large emerald-green almond eyes, small pink nose, thin white whiskers, wearing a lavender pinafore dress over a white puff-sleeve blouse, a small pink bow on her right ear, white Mary-Jane shoes.",
+        "side": "3D Pixar-style character turnaround sheet, strict 90-degree side profile view standing straight on a plain light gray studio background, soft even studio lighting: a neat, gentle 5-year-old girl calico cat named Mimi, about 95cm tall (0.95x the height of Bi the squirrel, slightly shorter than Bi), slender graceful build, calico fur with white base and orange and black patches (black patch over her left ear, orange patch around her right eye), long fluffy tail with a black tip, large emerald-green almond eyes, small pink nose, thin white whiskers, wearing a lavender pinafore dress over a white puff-sleeve blouse, a small pink bow on her right ear, white Mary-Jane shoes.",
+        "back": "3D Pixar-style character turnaround sheet, direct back view standing straight on a plain light gray studio background, showing lavender pinafore dress back straps, calico patches on back of head, and long fluffy white tail with a black tip: a neat, gentle 5-year-old girl calico cat named Mimi, about 95cm tall (0.95x the height of Bi the squirrel, slightly shorter than Bi), slender graceful build, calico fur with white base and orange and black patches (black patch over her left ear, orange patch around her right eye), long fluffy tail with a black tip, large emerald-green almond eyes, small pink nose, thin white whiskers, wearing a lavender pinafore dress over a white puff-sleeve blouse, a small pink bow on her right ear, white Mary-Jane shoes."
+      },
+      "outfit_variants": {
+        "pajamas": "wearing a soft pastel-lavender nightgown with delicate white lace trim at the collar and tiny pink bow patterns, keeping the small pink bow on her right ear",
+        "raincoat": "wearing a pastel-lavender flared cape raincoat with a clear hood trim and matching pastel-pink rain boots",
+        "tet_ao_dai": "wearing a graceful lotus-pink and lavender silk Vietnamese Ao Dai with hand-painted white lotus flowers over cream silk trousers and a pearl headband with her pink ear bow",
+        "winter": "wearing a soft lilac knitted wool coat with white wooden toggle buttons, a fluffy white beret and scarf, lavender tights, and white Mary-Jane shoes",
+        "swim_with_life_vest": "wearing a modest lavender-and-white ruffled swimsuit and a properly buckled bright pink-and-orange child safety life vest"
+      }
+    }
+  ],
+  "recurring_adults": [
+    {
+      "id": "bac_si_koala",
+      "name": "Bác sĩ Koala",
+      "species": "Gấu túi koala (koala) nhân hóa",
+      "age_feel": "Lớn tuổi, hiền từ (khoảng 55-60 tuổi cảm giác)",
+      "gender": "Nam",
+      "height_cm": 150,
+      "scale_ratio_to_bi": 1.5,
+      "dna_reference_image": "data/projects/soc-nho-tv/characters/koala/koala_profile.json",
+      "personality": [
+        "hiền từ",
+        "kiên nhẫn",
+        "ấm áp",
+        "thông thái"
+      ],
+      "catchphrase": "Để Bác sĩ Koala kiểm tra xem nào, không đau chút nào đâu nhé!",
+      "voice_id": "voice-koala",
+      "voice_status": "ready",
+      "voice_direction": "Giọng nam trung niên/lớn tuổi trầm ấm, từ tốn, truyền cảm giác an tâm tuyệt đối cho trẻ nhỏ.",
+      "growth_arc": "Người thầy thuốc đáng tin cậy của Làng Rừng Xanh, luôn biến các buổi khám sức khỏe và kiến thức cơ thể thành trò chơi khám phá thú vị.",
+      "do": [
+        "Luôn giữ chiều cao 150 cm (1.5x Bi; Bi đứng ngang ngực bác sĩ Koala)",
+        "Luôn dùng câu khóa tỉ lệ: 'Bi is two-thirds the height of the koala doctor, his head reaches the doctor's chest'",
+        "Thưởng sticker ngôi sao/hình dán khích lệ, tuyệt đối không thưởng kẹo ngọt"
+      ],
+      "dont": [
+        "Không cầm kim tiêm to hay dụng cụ y tế gây sợ hãi cho trẻ mầm non",
+        "Không giải thích bằng thuật ngữ y khoa phức tạp"
+      ],
+      "prompt_lock": "a gentle elderly koala doctor, about 150cm tall (1.5x the height of Bi the squirrel), soft gray fur, large round black nose, fluffy round ears, kind small eyes behind round gold glasses, wearing a clean white doctor coat with a green cross badge, a head mirror on his forehead, a stethoscope around his neck, 3D Pixar-style soft render, soft studio lighting, plain light gray background",
+      "expression_set": [
+        {
+          "emotion": "vui",
+          "label_en": "joyful",
+          "description_en": "warm grandfatherly smile, kind eyes crinkling happily behind round gold glasses, fluffy round ears perked"
+        },
+        {
+          "emotion": "buồn",
+          "label_en": "sad",
+          "description_en": "empathetic gentle frown, eyebrows angled softly in concern behind round gold glasses, leaning down to comfort a child"
+        },
+        {
+          "emotion": "giận",
+          "label_en": "angry",
+          "description_en": "calmly firm expression (never harsh), finger raised gently to signal 'stop' for safety"
+        },
+        {
+          "emotion": "sợ",
+          "label_en": "scared",
+          "description_en": "eyes widened behind gold glasses in alert concern, reaching out quickly to steady a child"
+        },
+        {
+          "emotion": "ngạc nhiên",
+          "label_en": "surprised",
+          "description_en": "eyebrows lifted above his round gold glasses, mouth in a warm amused 'oh!', stethoscope swaying"
+        },
+        {
+          "emotion": "xấu hổ",
+          "label_en": "embarrassed",
+          "description_en": "chuckling softly while adjusting his round gold glasses with one gray paw"
+        },
+        {
+          "emotion": "tự hào",
+          "label_en": "proud",
+          "description_en": "beaming warmly, holding out a gold star sticker sheet and giving a gentle thumbs-up"
+        },
+        {
+          "emotion": "tò mò",
+          "label_en": "curious",
+          "description_en": "tilting his head, peering kindly through his round gold glasses while holding a wooden magnifying glass"
+        }
+      ],
+      "turnaround_prompts": {
+        "front": "3D Pixar-style character turnaround sheet, front view standing straight: a gentle elderly koala doctor, about 150cm tall (1.5x the height of Bi the squirrel), soft gray fur, large round black nose, fluffy round ears, kind small eyes behind round gold glasses, wearing a clean white doctor coat with a green cross badge, a head mirror on his forehead, a stethoscope around his neck, 3D Pixar-style soft render, soft studio lighting, plain light gray background.",
+        "three_quarter_left": "3D Pixar-style character turnaround sheet, three-quarter left view: a gentle elderly koala doctor, about 150cm tall (1.5x the height of Bi the squirrel), soft gray fur, large round black nose, fluffy round ears, kind small eyes behind round gold glasses, wearing a clean white doctor coat with a green cross badge, a head mirror on his forehead, a stethoscope around his neck, 3D Pixar-style soft render, soft studio lighting, plain light gray background.",
+        "three_quarter_right": "3D Pixar-style character turnaround sheet, three-quarter right view: a gentle elderly koala doctor, about 150cm tall (1.5x the height of Bi the squirrel), soft gray fur, large round black nose, fluffy round ears, kind small eyes behind round gold glasses, wearing a clean white doctor coat with a green cross badge, a head mirror on his forehead, a stethoscope around his neck, 3D Pixar-style soft render, soft studio lighting, plain light gray background.",
+        "side": "3D Pixar-style character turnaround sheet, strict 90-degree side profile view: a gentle elderly koala doctor, about 150cm tall (1.5x the height of Bi the squirrel), soft gray fur, large round black nose, fluffy round ears, kind small eyes behind round gold glasses, wearing a clean white doctor coat with a green cross badge, a head mirror on his forehead, a stethoscope around his neck, 3D Pixar-style soft render, soft studio lighting, plain light gray background.",
+        "back": "3D Pixar-style character turnaround sheet, direct back view: a gentle elderly koala doctor, about 150cm tall (1.5x the height of Bi the squirrel), soft gray fur, large round black nose, fluffy round ears, kind small eyes behind round gold glasses, wearing a clean white doctor coat with a green cross badge, a head mirror on his forehead, a stethoscope around his neck, 3D Pixar-style soft render, soft studio lighting, plain light gray background."
+      },
+      "outfit_variants": {
+        "pajamas": "wearing soft sage-green striped pajamas with a warm nightcap",
+        "raincoat": "wearing amint-green waterproof coat over his doctor uniform and holding a bamboo umbrella",
+        "tet_ao_dai": "wearing an emerald-green traditional Vietnamese men's Ao Dai with gold lotus medallions and round gold glasses",
+        "winter": "wearing a forest-green knitted wool vest under his white doctor coat and a warm plaid scarf",
+        "swim_with_life_vest": "wearing lifeguarding shorts, a white sun shirt with a green cross emblem, and an adult orange safety life vest"
+      }
+    },
+    {
+      "id": "me_soc",
+      "name": "Mẹ Sóc",
+      "species": "Sóc đỏ (red squirrel) nhân hóa",
+      "age_feel": "30-35 tuổi (mẹ của Sóc Bi)",
+      "gender": "Nữ",
+      "height_cm": 145,
+      "scale_ratio_to_bi": 1.45,
+      "dna_reference_image": "data/projects/soc-nho-tv/characters/me_soc/me_soc_01.png",
+      "personality": [
+        "dịu dàng",
+        "kiên nhẫn",
+        "khéo léo"
+      ],
+      "catchphrase": "Mẹ luôn ở đây nghe Bi nói mà!",
+      "voice_id": "me-soc",
+      "voice_status": "TODO_CLONE",
+      "voice_direction": "Giọng nữ trẻ ấm áp, mềm mại, truyền cảm, luôn hạ thấp giọng vỗ về khi con lo lắng hoặc mắc lỗi.",
+      "growth_arc": "Điểm tựa tinh thần ấm áp trong ngôi nhà cây sồi, luôn khuyến khích Bi tự lập và lắng nghe cảm xúc của con.",
+      "do": [
+        "Luôn giữ chiều cao 145 cm (1.45x Bi; đỉnh đầu Bi chạm ngang ngực Mẹ Sóc)",
+        "Ngồi xuống ngang tầm mắt Bi (100 cm) mỗi khi trò chuyện hoặc hướng dẫn kỹ năng cho con"
+      ],
+      "dont": [
+        "Không la mắng hay dọa nạt khi Bi làm vỡ đồ hoặc mắc sai lầm",
+        "Không làm thay hết mọi việc cho Bi"
+      ],
+      "prompt_lock": "a warm, gentle adult mother squirrel named Me Soc (mother of Bi), about 145cm tall (1.45x the height of Bi the squirrel, Bi's head reaches her chest), graceful slender build, soft cinnamon-reddish-brown fur with cream belly and cheeks, kind big dark brown eyes with soft eyelashes, small pointed ears with neat tufts, large fluffy curving tail, wearing a soft sage-green linen dress with a cream cotton apron tied at the waist with an embroidered acorn pocket, flat brown woven shoes",
+      "expression_set": [
+        {
+          "emotion": "vui",
+          "label_en": "joyful",
+          "description_en": "loving warm maternal smile, dark brown eyes crinkling gently, arms open for a comforting hug"
+        },
+        {
+          "emotion": "buồn",
+          "label_en": "sad",
+          "description_en": "soft compassionate concern, brows tilted gently, one hand resting over her heart"
+        },
+        {
+          "emotion": "giận",
+          "label_en": "angry",
+          "description_en": "calm serious maternal look, hands resting on her apron waist, shaking her head gently without shouting"
+        },
+        {
+          "emotion": "sợ",
+          "label_en": "scared",
+          "description_en": "alert protective gaze, stepping forward quickly with hands outstretched to keep the children safe"
+        },
+        {
+          "emotion": "ngạc nhiên",
+          "label_en": "surprised",
+          "description_en": "eyebrows raised in pleasant amazement, hands clasped lightly near her cheek"
+        },
+        {
+          "emotion": "xấu hổ",
+          "label_en": "embarrassed",
+          "description_en": "gentle rosy cheeks, laughing softly behind one hand"
+        },
+        {
+          "emotion": "tự hào",
+          "label_en": "proud",
+          "description_en": "beaming with maternal pride, kneeling down to pat Bi's head affectionately"
+        },
+        {
+          "emotion": "tò mò",
+          "label_en": "curious",
+          "description_en": "tilting her head with an encouraging smile, inviting her child to explain"
+        }
+      ],
+      "turnaround_prompts": {
+        "front": "3D Pixar-style character turnaround sheet, front view standing straight on a plain light gray studio background: a warm, gentle adult mother squirrel named Me Soc (mother of Bi), about 145cm tall (1.45x the height of Bi the squirrel, Bi's head reaches her chest), graceful slender build, soft cinnamon-reddish-brown fur with cream belly and cheeks, kind big dark brown eyes with soft eyelashes, small pointed ears with neat tufts, large fluffy curving tail, wearing a soft sage-green linen dress with a cream cotton apron tied at the waist with an embroidered acorn pocket, flat brown woven shoes.",
+        "three_quarter_left": "3D Pixar-style character turnaround sheet, three-quarter left view on a plain light gray studio background: a warm, gentle adult mother squirrel named Me Soc (mother of Bi), about 145cm tall (1.45x the height of Bi the squirrel, Bi's head reaches her chest), graceful slender build, soft cinnamon-reddish-brown fur with cream belly and cheeks, kind big dark brown eyes with soft eyelashes, small pointed ears with neat tufts, large fluffy curving tail, wearing a soft sage-green linen dress with a cream cotton apron tied at the waist with an embroidered acorn pocket, flat brown woven shoes.",
+        "three_quarter_right": "3D Pixar-style character turnaround sheet, three-quarter right view on a plain light gray studio background: a warm, gentle adult mother squirrel named Me Soc (mother of Bi), about 145cm tall (1.45x the height of Bi the squirrel, Bi's head reaches her chest), graceful slender build, soft cinnamon-reddish-brown fur with cream belly and cheeks, kind big dark brown eyes with soft eyelashes, small pointed ears with neat tufts, large fluffy curving tail, wearing a soft sage-green linen dress with a cream cotton apron tied at the waist with an embroidered acorn pocket, flat brown woven shoes.",
+        "side": "3D Pixar-style character turnaround sheet, strict 90-degree side profile view on a plain light gray studio background: a warm, gentle adult mother squirrel named Me Soc (mother of Bi), about 145cm tall (1.45x the height of Bi the squirrel, Bi's head reaches her chest), graceful slender build, soft cinnamon-reddish-brown fur with cream belly and cheeks, kind big dark brown eyes with soft eyelashes, small pointed ears with neat tufts, large fluffy curving tail, wearing a soft sage-green linen dress with a cream cotton apron tied at the waist with an embroidered acorn pocket, flat brown woven shoes.",
+        "back": "3D Pixar-style character turnaround sheet, direct back view on a plain light gray studio background: a warm, gentle adult mother squirrel named Me Soc (mother of Bi), about 145cm tall (1.45x the height of Bi the squirrel, Bi's head reaches her chest), graceful slender build, soft cinnamon-reddish-brown fur with cream belly and cheeks, kind big dark brown eyes with soft eyelashes, small pointed ears with neat tufts, large fluffy curving tail, wearing a soft sage-green linen dress with a cream cotton apron tied at the waist with an embroidered acorn pocket, flat brown woven shoes."
+      },
+      "outfit_variants": {
+        "pajamas": "wearing a soft cream-and-sage cotton nightdress with a knitted shawl",
+        "raincoat": "wearing an olive-green belted trench raincoat and carrying a wide bamboo leaf umbrella",
+        "tet_ao_dai": "wearing an elegant peach-blossom pink traditional Vietnamese silk Ao Dai over cream silk trousers",
+        "winter": "wearing a warm terracotta knitted cardigan over her sage-green linen dress and a cream wool scarf",
+        "swim_with_life_vest": "wearing a modest sage-green swim dress and an adult orange safety life vest"
+      }
+    },
+    {
+      "id": "ong_de_rau_bac",
+      "name": "Ông Dê Râu Bạc",
+      "species": "Dê núi râu bạc (elderly white-and-silver goat) nhân hóa",
+      "age_feel": "65-70 tuổi (ông nội của Dê Bông và Dê Mun)",
+      "gender": "Nam",
+      "height_cm": 155,
+      "scale_ratio_to_bi": 1.55,
+      "dna_reference_image": "data/projects/soc-nho-tv/characters/ong_de/ong_de_01.png",
+      "personality": [
+        "hiền từ",
+        "điềm đạm",
+        "yêu thiên nhiên"
+      ],
+      "catchphrase": "Khà khà, cái gì cũng cần có thời gian các cháu ạ!",
+      "voice_id": "ong-de",
+      "voice_status": "TODO_CLONE",
+      "voice_direction": "Giọng ông nội trầm ấm, hào sảng, nhịp chậm khoan thai, có tiếng cười 'khà khà' hiền hậu.",
+      "growth_arc": "Người giữ gìn nét đẹp truyền thống của Làng Rừng Xanh, dạy các cháu làm vườn, gói bánh chưng và yêu thương gia đình.",
+      "do": [
+        "Luôn giữ chiều cao 155 cm (1.55x Bi; Bông cao 115 cm đứng ngang ngực Ông Dê, Mun 85 cm đứng ngang bụng Ông Dê)",
+        "Hay đội nón lá khi làm vườn hoặc cầm quạt nan ngồi hiên nhà gỗ"
+      ],
+      "dont": [
+        "Không tỏ ra khó tính hay cổ hủ",
+        "Không quên chòm râu bạc dài mềm mại ở cằm"
+      ],
+      "prompt_lock": "a kind elderly grandfather goat named Ong De Rau Bac (grandfather of Bong and Mun), about 155cm tall (1.55x the height of Bi the squirrel), sturdy slightly stooped warm build, silver-white fur, a long soft braided silver chin beard, curved amber-cream horns, warm crinkled brown eyes, wearing a traditional Vietnamese brown cotton Ba Ba shirt with wooden buttons, loose dark linen trousers, a woven bamboo straw hat resting on his back, brown wooden clogs over hooves",
+      "expression_set": [
+        {
+          "emotion": "vui",
+          "label_en": "joyful",
+          "description_en": "hearty grandfatherly laugh, eyes crinkled into warm crescents, stroking his long silver chin beard"
+        },
+        {
+          "emotion": "buồn",
+          "label_en": "sad",
+          "description_en": "gentle wistful look, long ears drooping slightly, patting a grandchild's shoulder"
+        },
+        {
+          "emotion": "giận",
+          "label_en": "angry",
+          "description_en": "calm dignified look of reminder, brows slightly lowered"
+        },
+        {
+          "emotion": "sợ",
+          "label_en": "scared",
+          "description_en": "startled eyes, quickly reaching out both arms to shield Mun and Bong"
+        },
+        {
+          "emotion": "ngạc nhiên",
+          "label_en": "surprised",
+          "description_en": "eyebrows lifted high, mouth open in a delighted 'Ồ!'"
+        },
+        {
+          "emotion": "xấu hổ",
+          "label_en": "embarrassed",
+          "description_en": "scratching his head under his bamboo hat with a humorous chuckle when he forgets where he left his glasses"
+        },
+        {
+          "emotion": "tự hào",
+          "label_en": "proud",
+          "description_en": "standing tall with hands behind his back, nodding approvingly with a warm smile"
+        },
+        {
+          "emotion": "tò mò",
+          "label_en": "curious",
+          "description_en": "leaning down slightly with hands on his knees to inspect a seedling with the children"
+        }
+      ],
+      "turnaround_prompts": {
+        "front": "3D Pixar-style character turnaround sheet, front view standing straight on a plain light gray studio background: a kind elderly grandfather goat named Ong De Rau Bac (grandfather of Bong and Mun), about 155cm tall (1.55x the height of Bi the squirrel), sturdy slightly stooped warm build, silver-white fur, a long soft braided silver chin beard, curved amber-cream horns, warm crinkled brown eyes, wearing a traditional Vietnamese brown cotton Ba Ba shirt with wooden buttons, loose dark linen trousers, a woven bamboo straw hat resting on his back, brown wooden clogs over hooves.",
+        "three_quarter_left": "3D Pixar-style character turnaround sheet, three-quarter left view on a plain light gray studio background: a kind elderly grandfather goat named Ong De Rau Bac (grandfather of Bong and Mun), about 155cm tall (1.55x the height of Bi the squirrel), sturdy slightly stooped warm build, silver-white fur, a long soft braided silver chin beard, curved amber-cream horns, warm crinkled brown eyes, wearing a traditional Vietnamese brown cotton Ba Ba shirt with wooden buttons, loose dark linen trousers, a woven bamboo straw hat resting on his back, brown wooden clogs over hooves.",
+        "three_quarter_right": "3D Pixar-style character turnaround sheet, three-quarter right view on a plain light gray studio background: a kind elderly grandfather goat named Ong De Rau Bac (grandfather of Bong and Mun), about 155cm tall (1.55x the height of Bi the squirrel), sturdy slightly stooped warm build, silver-white fur, a long soft braided silver chin beard, curved amber-cream horns, warm crinkled brown eyes, wearing a traditional Vietnamese brown cotton Ba Ba shirt with wooden buttons, loose dark linen trousers, a woven bamboo straw hat resting on his back, brown wooden clogs over hooves.",
+        "side": "3D Pixar-style character turnaround sheet, strict 90-degree side profile view on a plain light gray studio background: a kind elderly grandfather goat named Ong De Rau Bac (grandfather of Bong and Mun), about 155cm tall (1.55x the height of Bi the squirrel), sturdy slightly stooped warm build, silver-white fur, a long soft braided silver chin beard, curved amber-cream horns, warm crinkled brown eyes, wearing a traditional Vietnamese brown cotton Ba Ba shirt with wooden buttons, loose dark linen trousers, a woven bamboo straw hat resting on his back, brown wooden clogs over hooves.",
+        "back": "3D Pixar-style character turnaround sheet, direct back view on a plain light gray studio background: a kind elderly grandfather goat named Ong De Rau Bac (grandfather of Bong and Mun), about 155cm tall (1.55x the height of Bi the squirrel), sturdy slightly stooped warm build, silver-white fur, a long soft braided silver chin beard, curved amber-cream horns, warm crinkled brown eyes, wearing a traditional Vietnamese brown cotton Ba Ba shirt with wooden buttons, loose dark linen trousers, a woven bamboo straw hat resting on his back, brown wooden clogs over hooves."
+      },
+      "outfit_variants": {
+        "pajamas": "wearing soft cream cotton traditional sleepwear",
+        "raincoat": "wearing a traditional palm-leaf rain cloak/brown waterproof poncho and conical bamboo hat",
+        "tet_ao_dai": "wearing a crimson-and-gold brocade traditional Vietnamese grandfather Ao Dai with a crimson khan dong turban",
+        "winter": "wearing a padded dark-brown quilted cotton jacket over his Ba Ba shirt and a wool scarf",
+        "swim_with_life_vest": "wearing modest knee-length swim trunks, a cotton sun shirt, and an adult orange safety life vest"
+      }
+    },
+    {
+      "id": "co_huou_sao",
+      "name": "Cô giáo Hươu Sao",
+      "species": "Hươu sao Việt Nam (spotted sika deer) nhân hóa",
+      "age_feel": "26-30 tuổi (cô giáo trường mầm non Lá Xanh)",
+      "gender": "Nữ",
+      "height_cm": 160,
+      "scale_ratio_to_bi": 1.6,
+      "dna_reference_image": "data/projects/soc-nho-tv/characters/co_huou_sao/co_huou_sao_01.png",
+      "personality": [
+        "dịu dàng",
+        "vui tươi",
+        "khích lệ"
+      ],
+      "catchphrase": "Lớp Lá Xanh ơi, chúng mình cùng thử xem nhé!",
+      "voice_id": "co-huou-sao",
+      "voice_status": "TODO_CLONE",
+      "voice_direction": "Giọng cô giáo mầm non chuẩn mực, trong trẻo, giàu nhạc tính, phát âm rõ ràng, luôn khích lệ.",
+      "growth_arc": "Người dẫn dắt các hoạt động tập thể, âm nhạc và kỹ năng xã hội tại Trường Mầm Non Lá Xanh.",
+      "do": [
+        "Luôn giữ chiều cao 160 cm (1.6x Bi; Bi đứng ngang ngực dưới/bụng của Cô Hươu Sao)",
+        "Hay đeo chiếc còi gỗ hình chiếc lá hoặc cầm đàn ukulele gỗ khi dạy hát"
+      ],
+      "dont": [
+        "Không la phạt hay so sánh học sinh này với học sinh khác",
+        "Không quên những đốm trắng hình hoa mai trên bộ lông nâu vàng ấm áp"
+      ],
+      "prompt_lock": "a gentle, cheerful young female spotted deer kindergarten teacher named Co Huou Sao, about 160cm tall (1.6x the height of Bi the squirrel), slender graceful build, warm golden-fawn fur with neat white spots on her back and cheeks, expressive large dark eyes with long lashes, graceful ears, wearing a pastel leaf-green cardigan over a cream collared dress with a small green leaf badge on the chest, comfortable beige flats",
+      "expression_set": [
+        {
+          "emotion": "vui",
+          "label_en": "joyful",
+          "description_en": "radiant welcoming teacher smile, clapping hands gently to encourage the class"
+        },
+        {
+          "emotion": "buồn",
+          "label_en": "sad",
+          "description_en": "empathetic caring expression, kneeling down to comfort an upset student"
+        },
+        {
+          "emotion": "giận",
+          "label_en": "angry",
+          "description_en": "calm gentle reminder face with one finger raised politely"
+        },
+        {
+          "emotion": "sợ",
+          "label_en": "scared",
+          "description_en": "attentive protective posture, gathering the children close"
+        },
+        {
+          "emotion": "ngạc nhiên",
+          "label_en": "surprised",
+          "description_en": "delighted wide eyes, hands touching cheeks in praise of a student's discovery"
+        },
+        {
+          "emotion": "xấu hổ",
+          "label_en": "embarrassed",
+          "description_en": "soft blush on spotted cheeks, smiling warmly"
+        },
+        {
+          "emotion": "tự hào",
+          "label_en": "proud",
+          "description_en": "beaming warmly with hands on her heart watching the children cooperate"
+        },
+        {
+          "emotion": "tò mò",
+          "label_en": "curious",
+          "description_en": "leaning down with an inviting smile, asking an open question to the kids"
+        }
+      ],
+      "turnaround_prompts": {
+        "front": "3D Pixar-style character turnaround sheet, front view standing straight on a plain light gray studio background: a gentle, cheerful young female spotted deer kindergarten teacher named Co Huou Sao, about 160cm tall (1.6x the height of Bi the squirrel), slender graceful build, warm golden-fawn fur with neat white spots on her back and cheeks, expressive large dark eyes with long lashes, graceful ears, wearing a pastel leaf-green cardigan over a cream collared dress with a small green leaf badge on the chest, comfortable beige flats.",
+        "three_quarter_left": "3D Pixar-style character turnaround sheet, three-quarter left view on a plain light gray studio background: a gentle, cheerful young female spotted deer kindergarten teacher named Co Huou Sao, about 160cm tall (1.6x the height of Bi the squirrel), slender graceful build, warm golden-fawn fur with neat white spots on her back and cheeks, expressive large dark eyes with long lashes, graceful ears, wearing a pastel leaf-green cardigan over a cream collared dress with a small green leaf badge on the chest, comfortable beige flats.",
+        "three_quarter_right": "3D Pixar-style character turnaround sheet, three-quarter right view on a plain light gray studio background: a gentle, cheerful young female spotted deer kindergarten teacher named Co Huou Sao, about 160cm tall (1.6x the height of Bi the squirrel), slender graceful build, warm golden-fawn fur with neat white spots on her back and cheeks, expressive large dark eyes with long lashes, graceful ears, wearing a pastel leaf-green cardigan over a cream collared dress with a small green leaf badge on the chest, comfortable beige flats.",
+        "side": "3D Pixar-style character turnaround sheet, strict 90-degree side profile view on a plain light gray studio background: a gentle, cheerful young female spotted deer kindergarten teacher named Co Huou Sao, about 160cm tall (1.6x the height of Bi the squirrel), slender graceful build, warm golden-fawn fur with neat white spots on her back and cheeks, expressive large dark eyes with long lashes, graceful ears, wearing a pastel leaf-green cardigan over a cream collared dress with a small green leaf badge on the chest, comfortable beige flats.",
+        "back": "3D Pixar-style character turnaround sheet, direct back view on a plain light gray studio background: a gentle, cheerful young female spotted deer kindergarten teacher named Co Huou Sao, about 160cm tall (1.6x the height of Bi the squirrel), slender graceful build, warm golden-fawn fur with neat white spots on her back and cheeks, expressive large dark eyes with long lashes, graceful ears, wearing a pastel leaf-green cardigan over a cream collared dress with a small green leaf badge on the chest, comfortable beige flats."
+      },
+      "outfit_variants": {
+        "pajamas": "wearing pastel-green lounge pajamas",
+        "raincoat": "wearing a leaf-green hooded raincoat and rain boots",
+        "tet_ao_dai": "wearing a spring-green and golden-apricot traditional Vietnamese silk Ao Dai",
+        "winter": "wearing a long cream wool coat over her green cardigan and a soft beige scarf",
+        "swim_with_life_vest": "wearing a green-and-cream modest teacher's swim outfit and a buckled orange adult safety life vest"
+      }
+    },
+    {
+      "id": "bac_voi",
+      "name": "Bác Voi",
+      "species": "Voi châu Á (friendly Asian elephant) nhân hóa",
+      "age_feel": "45-50 tuổi (chủ quầy rau củ và tạp hóa ở chợ làng)",
+      "gender": "Nam",
+      "height_cm": 180,
+      "scale_ratio_to_bi": 1.8,
+      "dna_reference_image": "data/projects/soc-nho-tv/characters/bac_voi/bac_voi_01.png",
+      "personality": [
+        "hào sảng",
+        "tốt bụng",
+        "thật thà"
+      ],
+      "catchphrase": "Rau củ tươi ngon mới hái sáng nay đây các cháu ơi!",
+      "voice_id": "bac-voi",
+      "voice_status": "TODO_CLONE",
+      "voice_direction": "Giọng nam trầm vang, ấm áp, hào sảng, vui vẻ, tạo cảm giác an toàn vững chãi.",
+      "growth_arc": "Người bác thân thiết ở Chợ Làng Rừng Xanh, giúp đỡ các bạn nhỏ khi đi lạc hoặc tập mua bán, xếp hàng văn minh.",
+      "do": [
+        "Luôn giữ chiều cao 180 cm (1.8x Bi; Bi 100 cm chỉ đứng ngang thắt lưng/bụng Bác Voi)",
+        "Dùng chiếc vòi khéo léo đưa giỏ rau củ hoặc vẫy chào các bạn nhỏ"
+      ],
+      "dont": [
+        "Không bước đi nặng nề gây cảm giác nguy hiểm cho các nhân vật nhỏ",
+        "Không có ngà sắc nhọn (ngà ngắn tròn đầu thân thiện)"
+      ],
+      "prompt_lock": "a jovial, kind-hearted adult Asian elephant grocer named Bac Voi, about 180cm tall (1.8x the height of Bi the squirrel, Bi reaches his waist/belly), big rounded friendly build, warm slate-gray skin, expressive gentle brown eyes, short rounded friendly ivory tusks, medium floppy ears, agile trunk, wearing a warm terracotta-orange linen shirt, a striped woven market apron with big pockets, rolled-up dark trousers, sturdy sandals",
+      "expression_set": [
+        {
+          "emotion": "vui",
+          "label_en": "joyful",
+          "description_en": "trunk curled up cheerfully in a friendly wave, big warm smile, eyes crinkling"
+        },
+        {
+          "emotion": "buồn",
+          "label_en": "sad",
+          "description_en": "trunk hanging low, empathetic gentle eyes"
+        },
+        {
+          "emotion": "giận",
+          "label_en": "angry",
+          "description_en": "hands on wide hips in a gentle protective stance"
+        },
+        {
+          "emotion": "sợ",
+          "label_en": "scared",
+          "description_en": "ears fanned out wide in alert concern to protect the little ones"
+        },
+        {
+          "emotion": "ngạc nhiên",
+          "label_en": "surprised",
+          "description_en": "trunk curled into an 'S' shape, eyes wide in jovial amazement"
+        },
+        {
+          "emotion": "xấu hổ",
+          "label_en": "embarrassed",
+          "description_en": "rubbing the back of his head with his trunk while chuckling"
+        },
+        {
+          "emotion": "tự hào",
+          "label_en": "proud",
+          "description_en": "standing tall behind his market stall with arms folded warmly"
+        },
+        {
+          "emotion": "tò mò",
+          "label_en": "curious",
+          "description_en": "leaning down carefully to listen to a small child"
+        }
+      ],
+      "turnaround_prompts": {
+        "front": "3D Pixar-style character turnaround sheet, front view standing straight on a plain light gray studio background: a jovial, kind-hearted adult Asian elephant grocer named Bac Voi, about 180cm tall (1.8x the height of Bi the squirrel, Bi reaches his waist/belly), big rounded friendly build, warm slate-gray skin, expressive gentle brown eyes, short rounded friendly ivory tusks, medium floppy ears, agile trunk, wearing a warm terracotta-orange linen shirt, a striped woven market apron with big pockets, rolled-up dark trousers, sturdy sandals.",
+        "three_quarter_left": "3D Pixar-style character turnaround sheet, three-quarter left view on a plain light gray studio background: a jovial, kind-hearted adult Asian elephant grocer named Bac Voi, about 180cm tall (1.8x the height of Bi the squirrel, Bi reaches his waist/belly), big rounded friendly build, warm slate-gray skin, expressive gentle brown eyes, short rounded friendly ivory tusks, medium floppy ears, agile trunk, wearing a warm terracotta-orange linen shirt, a striped woven market apron with big pockets, rolled-up dark trousers, sturdy sandals.",
+        "three_quarter_right": "3D Pixar-style character turnaround sheet, three-quarter right view on a plain light gray studio background: a jovial, kind-hearted adult Asian elephant grocer named Bac Voi, about 180cm tall (1.8x the height of Bi the squirrel, Bi reaches his waist/belly), big rounded friendly build, warm slate-gray skin, expressive gentle brown eyes, short rounded friendly ivory tusks, medium floppy ears, agile trunk, wearing a warm terracotta-orange linen shirt, a striped woven market apron with big pockets, rolled-up dark trousers, sturdy sandals.",
+        "side": "3D Pixar-style character turnaround sheet, strict 90-degree side profile view on a plain light gray studio background: a jovial, kind-hearted adult Asian elephant grocer named Bac Voi, about 180cm tall (1.8x the height of Bi the squirrel, Bi reaches his waist/belly), big rounded friendly build, warm slate-gray skin, expressive gentle brown eyes, short rounded friendly ivory tusks, medium floppy ears, agile trunk, wearing a warm terracotta-orange linen shirt, a striped woven market apron with big pockets, rolled-up dark trousers, sturdy sandals.",
+        "back": "3D Pixar-style character turnaround sheet, direct back view on a plain light gray studio background: a jovial, kind-hearted adult Asian elephant grocer named Bac Voi, about 180cm tall (1.8x the height of Bi the squirrel, Bi reaches his waist/belly), big rounded friendly build, warm slate-gray skin, expressive gentle brown eyes, short rounded friendly ivory tusks, medium floppy ears, agile trunk, wearing a warm terracotta-orange linen shirt, a striped woven market apron with big pockets, rolled-up dark trousers, sturdy sandals."
+      },
+      "outfit_variants": {
+        "pajamas": "wearing oversized striped cotton pajamas",
+        "raincoat": "wearing a large yellow canvas market rain cape",
+        "tet_ao_dai": "wearing a festive terracotta-red and gold brocade Vietnamese Ao Dai",
+        "winter": "wearing a thick wool waistcoat over his linen shirt and a knitted scarf",
+        "swim_with_life_vest": "wearing big blue swim shorts and an extra-large orange safety life vest"
+      }
+    }
+  ],
+  "locations": [
+    {
+      "id": "treehouse_bi",
+      "name_vi": "Nhà cây của Bi trong cây sồi khổng lồ",
+      "description_vi": "Ngôi nhà gỗ ấm cúng của gia đình Sóc Bi nằm giữa chạc ba cây sồi cổ thụ khổng lồ: cửa gỗ tròn có tay nắm hạt dẻ, cửa sổ phát ánh đèn vàng ấm, ban công gỗ có lan can an toàn và cầu thang gỗ tay vịn dây thừng, bên trong là phòng ngủ nhỏ có kệ gỗ đựng hạt dẻ và bàn học thấp.",
+      "prompt_en": "3D Pixar-style animated film environment, photoreal-stylized Vietnamese woodland architecture, Bi the squirrel's cozy family treehouse nestled securely in the massive lower fork of an ancient giant oak tree. The exterior features deeply grooved, moss-dappled oak bark with realistic wood grain texture, a charming round honey-oak front door measuring 165cm tall with a polished brass acorn doorknob placed at 55cm height (waist-to-chest level for a 100cm tall character), and circular paned windows glowing with warm amber lantern light. A sturdy wrap-around wooden balcony with a safe 65cm-high carved baluster railing and thick braided hemp rope handrails overlooks the village path. Inside the open cutaway living and bedroom area, warm pine floorboards with subtle knots support a child-sized wooden bed (40cm high, 120cm long) covered in a hand-woven yellow acorn quilt, a tiered wooden wall shelf holding glossy roasted chestnuts and storybooks, a low round study table (48cm tall) with wooden stools (26cm tall), and hanging potted fern baskets with translucent veined leaves catching soft subsurface light.",
+      "lighting_variants": {
+        "morning": "Crisp golden morning sunbeams filtering through dewy green oak leaves at a 30-degree angle, casting dappled leaf shadows across the wooden balcony and filling the bedroom through the round window with cheerful warm bounce light.",
+        "golden_hour": "Rich honey-amber late afternoon sunset glow bathing the oak bark and terracotta balcony pots in warm orange-gold rim light, long soft purple-tinted shadows, floating golden pollen motes in the air.",
+        "night": "Cozy velvet-indigo twilight outside with twinkling fireflies among the oak branches; warm 2700K amber lantern light glowing from the round windows and bedside acorn lamp, creating a comforting safe haven."
+      },
+      "prop_map": [
+        {
+          "prop_id": "acorn_door",
+          "name_vi": "Cửa gỗ tròn tay nắm hạt dẻ",
+          "material": "Gỗ sồi mật & đồng mờ",
+          "dimensions_cm": "cao 165cm, tay nắm ở độ cao 55cm",
+          "zone": "entrance"
+        },
+        {
+          "prop_id": "chestnut_shelf",
+          "name_vi": "Kệ gỗ 3 tầng đựng hạt dẻ & sách",
+          "material": "Gỗ thông tự nhiên",
+          "dimensions_cm": "cao 95cm x rộng 80cm x sâu 25cm",
+          "zone": "bedroom_wall"
+        },
+        {
+          "prop_id": "bi_bed",
+          "name_vi": "Giường gỗ nhỏ của Bi có chăn họa tiết hạt dẻ",
+          "material": "Gỗ thông & vải cotton dệt tay",
+          "dimensions_cm": "dài 125cm x rộng 70cm x cao 38cm",
+          "zone": "bedroom_corner"
+        },
+        {
+          "prop_id": "low_study_table",
+          "name_vi": "Bàn tròn thấp & ghế đôn gỗ",
+          "material": "Gỗ sồi đánh bóng mịn",
+          "dimensions_cm": "bàn cao 48cm đường kính 70cm, ghế cao 26cm",
+          "zone": "center_room"
+        },
+        {
+          "prop_id": "shoe_rack_heart",
+          "name_vi": "Kệ để giày nhỏ cạnh cửa có dán hình hai nửa trái tim",
+          "material": "Gỗ tre ghép",
+          "dimensions_cm": "cao 35cm x rộng 55cm",
+          "zone": "entryway"
+        }
+      ],
+      "camera_spots": [
+        {
+          "spot_id": "treehouse_ext_wide",
+          "name": "Toàn cảnh nhà cây dưới tán sồi",
+          "shot_size": "WS",
+          "angle": "low-angle 15 deg",
+          "lens_mm": 24,
+          "framing_description_en": "Wide establishing shot through blurred foreground oak leaves looking up at the cozy treehouse balcony and round wooden door, showing scale against a 100cm character on the porch."
+        },
+        {
+          "spot_id": "treehouse_int_room",
+          "name": "Góc trung cảnh phòng ngủ & bàn học của Bi",
+          "shot_size": "MS",
+          "angle": "eye-level (at 90cm height)",
+          "lens_mm": 35,
+          "framing_description_en": "Medium eye-level shot inside Bi's warm wooden room, framing the low round table in the midground, chestnut shelf behind, and soft bokeh window light."
+        },
+        {
+          "spot_id": "treehouse_balcony_ots",
+          "name": "Góc ban công nhìn ra Làng Rừng Xanh",
+          "shot_size": "MCU",
+          "angle": "eye-level",
+          "lens_mm": 50,
+          "framing_description_en": "Medium close-up on the wooden balcony with the 65cm safety railing in foreground and blurred green village rooftops in the atmospheric background."
+        }
+      ]
+    },
+    {
+      "id": "goat_farmhouse",
+      "name_vi": "Nhà của Bông & Mun trên sườn đồi",
+      "description_vi": "Ngôi nhà gỗ truyền thống mái ngói đỏ của gia đình Dê Bông, Dê Mun và Ông Dê Râu Bạc nằm trên sườn đồi thoai thoải: hiên gỗ rộng, vườn rau xanh mướt trồng theo luống thẳng tắp, hàng rào tre đan mắt cáo, giàn mướp trổ hoa vàng và bộ bàn ghế tre nơi ông nội ngồi uống trà.",
+      "prompt_en": "3D Pixar-style animated film environment, photoreal-stylized Vietnamese countryside hillside farmhouse belonging to Bong and Mun the goats. The traditional single-story timber house features weathered hand-fired red terracotta roof tiles with patches of velvety green moss, warm lime-washed cream walls, and a wide covered wooden veranda raised 25cm off the ground. Surrounding the sunny packed-earth courtyard is a neat woven split-bamboo lattice fence standing 70cm tall (chest height to a 100cm character) and an arched bamboo trellis draped with lush green loofah vines, bright yellow gourd blossoms, and hanging gourds at 175cm overhead height. In the side garden, straight raised soil beds with moist dark earth texture grow crisp green mustard cabbages, carrots, and herbs. On the veranda sits a polished bamboo tea table (52cm high) with a ceramic teapot, wooden stools (28cm high), child-sized tin watering cans, and a stone water jar with a bamboo ladle, all rendered with tactile surface detail and shallow depth of field.",
+      "lighting_variants": {
+        "morning": "Fresh hillside morning sunlight streaming through the yellow loofah blossoms on the bamboo trellis, glistening dewdrops on cabbage leaves, cool misty blue hills in the distant background.",
+        "golden_hour": "Warm golden-orange sunset light raking across the red terracotta roof tiles and neat vegetable rows, casting long cozy shadows across the front veranda.",
+        "night": "Peaceful countryside evening under a starry sky and crescent moon; warm yellow porch lanterns illuminating the wooden veranda while crickets chirp in the bamboo hedge."
+      },
+      "prop_map": [
+        {
+          "prop_id": "veranda_tea_table",
+          "name_vi": "Bộ bàn ghế tre trên hiên nhà ông Dê",
+          "material": "Tre già lên nước bóng & ấm trà gốm Bát Tràng",
+          "dimensions_cm": "bàn cao 52cm, ghế đẩu cao 28cm",
+          "zone": "veranda"
+        },
+        {
+          "prop_id": "veggie_beds",
+          "name_vi": "Luống rau cải, cà rốt và đậu xanh thẳng tắp",
+          "material": "Đất mùn ẩm & lá rau xanh tươi có giọt sương",
+          "dimensions_cm": "luống cao 20cm x rộng 90cm x dài 300cm",
+          "zone": "front_garden"
+        },
+        {
+          "prop_id": "loofah_trellis",
+          "name_vi": "Giàn mướp hương bằng tre trổ hoa vàng",
+          "material": "Tre buộc dây mây, lá mướp có gân & hoa vàng",
+          "dimensions_cm": "cao 175cm x rộng 220cm",
+          "zone": "courtyard_arch"
+        },
+        {
+          "prop_id": "kid_watering_cans",
+          "name_vi": "Đôi bình tưới cây nhỏ màu xanh và đỏ cho Bông & Mun",
+          "material": "Thiếc sơn tĩnh điện",
+          "dimensions_cm": "cao 24cm",
+          "zone": "garden_edge"
+        },
+        {
+          "prop_id": "bamboo_fence",
+          "name_vi": "Hàng rào tre đan mắt cáo",
+          "material": "Tre chẻ tự nhiên",
+          "dimensions_cm": "cao 70cm (ngang ngực nhân vật 100cm)",
+          "zone": "perimeter"
+        }
+      ],
+      "camera_spots": [
+        {
+          "spot_id": "farm_courtyard_wide",
+          "name": "Toàn cảnh sân nhà ngói đỏ & giàn mướp",
+          "shot_size": "WS",
+          "angle": "eye-level (at 100cm)",
+          "lens_mm": 28,
+          "framing_description_en": "Wide shot framed through blurred yellow loofah flowers in the foreground, showing the red-tiled farmhouse veranda and vegetable beds."
+        },
+        {
+          "spot_id": "farm_veranda_ms",
+          "name": "Trung cảnh hiên gỗ & bàn trà tre",
+          "shot_size": "MS",
+          "angle": "eye-level",
+          "lens_mm": 35,
+          "framing_description_en": "Medium shot along the wooden veranda framing characters seated at the 52cm bamboo table with warm timber pillars."
+        },
+        {
+          "spot_id": "farm_garden_low",
+          "name": "Góc thấp luống rau xanh",
+          "shot_size": "MCU",
+          "angle": "low-angle",
+          "lens_mm": 50,
+          "framing_description_en": "Low-angle close shot right beside the moist soil vegetable bed, dewy cabbage leaves in foreground bokeh and characters kneeling to water plants."
+        }
+      ]
+    },
+    {
+      "id": "lu_house",
+      "name_vi": "Nhà Lu cạnh tiệm bánh mì của gia đình",
+      "description_vi": "Ngôi nhà mái ngói xinh xắn nằm sát tiệm bánh mì truyền thống thơm phức của gia đình Cún Lu: sân gạch đỏ sạch sẽ, những chậu cây cảnh xanh mát, chiếc xe đạp nhỏ có bánh phụ của Lu, và góc vườn nhỏ có 'hố kho báu' nơi Lu hay giấu đồ chơi.",
+      "prompt_en": "3D Pixar-style animated film environment, photoreal-stylized Vietnamese village house and adjacent family bakery belonging to Lu the puppy. The warm ochre-yellow stucco house features a terracotta-tiled porch, a red clay-brick courtyard with authentic weathered brick seams, and a charming wooden bakery display window at 75cm counter height filled with golden-crusted woven baskets of Vietnamese baguettes and steamed buns (no sugary candy). Parked in the courtyard is Lu's mint-green child-sized bicycle (60cm tall to handlebars) with removable training wheels and a woven front basket. Along the low brick garden wall sit glazed ceramic pots with kumquat trees and marigolds, a colorful ceramic piggy bank shelf inside the open living room window, and a shady grassy corner under a frangipani tree with a small wooden sign marked with a white paw print beside a neat sandbox 'treasure spot', all scaled accurately to a 100cm child.",
+      "lighting_variants": {
+        "morning": "Bright cheerful morning sunshine warming the red brick courtyard, soft steam rising from fresh warm bread loaves in the bakery window, crisp shadows under the frangipani tree.",
+        "golden_hour": "Golden late afternoon sun turning the ochre walls and red brick yard a rich warm amber, long playful shadows stretching across the bicycle path.",
+        "night": "Warm bakery oven glow and string lanterns lighting the red brick porch under a calm indigo evening sky."
+      },
+      "prop_map": [
+        {
+          "prop_id": "lu_bicycle",
+          "name_vi": "Xe đạp nhỏ màu xanh bạc hà có bánh phụ của Lu",
+          "material": "Khung thép sơn xanh mint, giỏ mây đan",
+          "dimensions_cm": "cao yên 45cm, cao tay lái 62cm, dài 95cm",
+          "zone": "brick_courtyard"
+        },
+        {
+          "prop_id": "bakery_window",
+          "name_vi": "Khung cửa sổ tiệm bánh mì gia đình Lu",
+          "material": "Gỗ sồi, kính trong, giỏ mây đựng bánh mì vỏ giòn",
+          "dimensions_cm": "bệ cửa cao 75cm, rộng 140cm",
+          "zone": "house_front"
+        },
+        {
+          "prop_id": "treasure_sandbox",
+          "name_vi": "Góc cát 'kho báu' có biển gỗ in dấu chân cún",
+          "material": "Cát vàng sạch, khung gỗ thông, bảng gỗ",
+          "dimensions_cm": "rộng 100cm x dài 100cm, biển cao 40cm",
+          "zone": "side_garden"
+        },
+        {
+          "prop_id": "outdoor_wash_tap",
+          "name_vi": "Vòi nước rửa tay ngoài sân có bục gỗ và khay xà phòng",
+          "material": "Vòi đồng, chậu gốm xanh, bục gỗ chống trượt",
+          "dimensions_cm": "vòi cao 65cm, bục gỗ cao 15cm",
+          "zone": "porch_side"
+        }
+      ],
+      "camera_spots": [
+        {
+          "spot_id": "lu_yard_wide",
+          "name": "Toàn cảnh sân gạch đỏ & tiệm bánh mì",
+          "shot_size": "WS",
+          "angle": "eye-level",
+          "lens_mm": 28,
+          "framing_description_en": "Wide shot of the red brick courtyard with terracotta pots in foreground bokeh, Lu's mint bicycle in midground, and the warm bakery window behind."
+        },
+        {
+          "spot_id": "lu_garden_ms",
+          "name": "Trung cảnh góc vườn kho báu & vòi nước",
+          "shot_size": "MS",
+          "angle": "eye-level",
+          "lens_mm": 35,
+          "framing_description_en": "Medium shot framing the shady garden corner under the frangipani tree and the outdoor handwashing station scaled for 100cm kids."
+        },
+        {
+          "spot_id": "lu_porch_cu",
+          "name": "Cận cảnh hiên nhà & bậc thềm gạch",
+          "shot_size": "MCU",
+          "angle": "eye-level",
+          "lens_mm": 50,
+          "framing_description_en": "Medium close-up on the red brick porch steps with warm bakery glow softly blurred in the background."
+        }
+      ]
+    },
+    {
+      "id": "mimi_house",
+      "name_vi": "Nhà Mimi ngập hoa giấy pastel",
+      "description_vi": "Ngôi nhà ống xinh xắn sơn màu pastel kem - tím nhạt của gia đình Mèo Mimi: giàn hoa giấy hồng tím rực rỡ trước cổng vòm, bên trong là phòng khách và góc học tập siêu ngăn nắp có bàn vẽ cạnh cửa sổ, kệ đồ chơi dán nhãn hình ảnh và góc đọc sách êm ái.",
+      "prompt_en": "3D Pixar-style animated film environment, photoreal-stylized pastel Vietnamese townhouse and garden belonging to Mimi the calico cat. The charming cream-and-lavender house features an arched wooden garden gate draped in cascading magenta and soft pink bougainvillea blossoms with papery petal texture and green leaves. Inside the sunlit room, smooth honey-toned parquet wood floors lead to Mimi's spotless craft and drawing table (48cm tall) positioned beside a large arched window with sheer white cotton curtains fluttering gently. On the table sit neat bamboo cups of colored pencils, origami paper, and watercolor brushes. Against the pastel-lavender wall stands a child-height wooden cubby storage unit (80cm tall, easily reachable by a 95cm-to-100cm child) where every woven basket has a clear picture label (blocks, plushies, books, art supplies), alongside a plush round floor cushion reading nook with Mimi's white plush bunny.",
+      "lighting_variants": {
+        "morning": "Soft pearly morning daylight streaming through the bougainvillea blossoms and sheer white window curtains, casting delicate floral shadows on the drawing table.",
+        "golden_hour": "Warm rose-gold afternoon light illuminating the pink bougainvillea petals and turning the pastel room into a dreamy golden studio.",
+        "night": "Gentle lavender-tinted evening light with a warm paper-lantern nightlight glowing softly beside Mimi's neat reading nook."
+      },
+      "prop_map": [
+        {
+          "prop_id": "mimi_craft_desk",
+          "name_vi": "Bàn vẽ và gấp giấy cạnh cửa sổ của Mimi",
+          "material": "Gỗ sồi trắng kem, ống bút tre, giấy màu",
+          "dimensions_cm": "cao 48cm x dài 90cm x rộng 50cm",
+          "zone": "window_nook"
+        },
+        {
+          "prop_id": "labeled_toy_cubby",
+          "name_vi": "Kệ gỗ 6 ô đựng đồ chơi có dán nhãn hình vẽ",
+          "material": "Gỗ thông sáng màu & giỏ mây có thẻ hình",
+          "dimensions_cm": "cao 80cm x rộng 110cm x sâu 32cm",
+          "zone": "living_wall"
+        },
+        {
+          "prop_id": "reading_cushion",
+          "name_vi": "Đệm tròn đọc sách & chú thỏ bông trắng",
+          "material": "Vải nhung bông màu hồng phấn & kem",
+          "dimensions_cm": "đường kính đệm 85cm, dày 12cm",
+          "zone": "corner_nook"
+        },
+        {
+          "prop_id": "bougainvillea_gate",
+          "name_vi": "Cổng vòm gỗ phủ hoa giấy hồng tím",
+          "material": "Gỗ sơn trắng kem & hoa giấy",
+          "dimensions_cm": "vòm cao 190cm, cửa cổng cao 90cm",
+          "zone": "front_entrance"
+        }
+      ],
+      "camera_spots": [
+        {
+          "spot_id": "mimi_gate_wide",
+          "name": "Toàn cảnh cổng hoa giấy & mặt tiền nhà Mimi",
+          "shot_size": "WS",
+          "angle": "eye-level",
+          "lens_mm": 28,
+          "framing_description_en": "Wide shot framed through soft bokeh pink bougainvillea petals in the foreground, showing Mimi's pastel townhouse and garden path."
+        },
+        {
+          "spot_id": "mimi_room_ms",
+          "name": "Trung cảnh bàn vẽ cạnh cửa sổ & kệ đồ chơi dán nhãn",
+          "shot_size": "MS",
+          "angle": "eye-level (at 95cm)",
+          "lens_mm": 35,
+          "framing_description_en": "Medium shot inside Mimi's tidy room showing the 48cm craft desk by the curtained window and the 80cm picture-labeled toy shelf."
+        },
+        {
+          "spot_id": "mimi_nook_cu",
+          "name": "Cận cảnh góc đọc sách êm ái",
+          "shot_size": "MCU",
+          "angle": "eye-level",
+          "lens_mm": 50,
+          "framing_description_en": "Warm medium close-up at the plush floor cushion reading nook with soft window light and blurred colored pencils in the foreground."
+        }
+      ]
+    },
+    {
+      "id": "la_xanh_school",
+      "name_vi": "Trường mầm non Lá Xanh",
+      "description_vi": "Ngôi trường mầm non thân thiện của Làng Rừng Xanh do Cô giáo Hươu Sao phụ trách: sân trường rợp bóng cây có cầu trượt gỗ an toàn, xích đu thấp, bồn cát sạch, ba thùng rác phân loại có hình mặt cười, và lớp học tràn ngập ánh sáng với bảng chữ cái tiếng Việt.",
+      "prompt_en": "3D Pixar-style animated film environment, photoreal-stylized Vietnamese woodland preschool named 'Trường Mầm Non Lá Xanh'. The sunny outdoor playground features soft shock-absorbing clover turf, a sturdy rounded wooden slide (platform 90cm high with tall 55cm safety side rails and wide non-slip steps scaled for 85cm–115cm children), a low two-seat wooden swing set, a clean octagonal wooden sandbox, and three cute color-coded recycling bins (green organic leaf icon, yellow recycle bottle icon, gray remaining waste icon, each 60cm tall). The single-story classroom pavilion has a leaf-shaped green roof, wide open folding wooden doors, child-sized wooden tables (46cm high) and chairs (25cm high), a colorful Vietnamese alphabet board on the wall, a wooden shoe cubby rack at the entrance, and a low ceramic handwashing trough with six brass taps at 60cm height.",
+      "lighting_variants": {
+        "morning": "Vibrant cheerful morning sunlight illuminating the green playground turf and wooden slide, warm golden rays entering the open classroom windows.",
+        "golden_hour": "Soft warm afternoon dismissal-time glow across the schoolyard, long gentle shadows from the shade trees, cozy amber light inside the classroom.",
+        "night": "Quiet evening festival lighting with colorful paper star lanterns strung across the schoolyard eaves."
+      },
+      "prop_map": [
+        {
+          "prop_id": "wooden_slide",
+          "name_vi": "Cầu trượt gỗ có thành bảo vệ an toàn",
+          "material": "Gỗ sồi bo tròn mịn & máng trượt màu vàng ấm",
+          "dimensions_cm": "sàn đứng cao 90cm, lan can cao 55cm, máng dài 160cm",
+          "zone": "playground_center"
+        },
+        {
+          "prop_id": "recycling_trio",
+          "name_vi": "Bộ 3 thùng rác phân loại có nhãn hình (Hữu cơ - Tái chế - Còn lại)",
+          "material": "Gỗ & nhựa sinh học sơn màu xanh lá, vàng, xám",
+          "dimensions_cm": "mỗi thùng cao 60cm x rộng 35cm",
+          "zone": "playground_walkway"
+        },
+        {
+          "prop_id": "classroom_tables",
+          "name_vi": "Bàn ghế gỗ mầm non trong lớp Lá Xanh",
+          "material": "Gỗ thông tự nhiên sơn bóng an toàn",
+          "dimensions_cm": "bàn cao 46cm, ghế cao 25cm",
+          "zone": "classroom_interior"
+        },
+        {
+          "prop_id": "alphabet_board",
+          "name_vi": "Bảng gỗ chữ cái tiếng Việt và góc trưng bày tranh",
+          "material": "Gỗ khung tre & thẻ chữ gỗ màu pastel",
+          "dimensions_cm": "rộng 180cm x cao 100cm, mép dưới cách sàn 50cm",
+          "zone": "classroom_front"
+        }
+      ],
+      "camera_spots": [
+        {
+          "spot_id": "school_yard_wide",
+          "name": "Toàn cảnh sân trường Lá Xanh & cầu trượt",
+          "shot_size": "WS",
+          "angle": "eye-level",
+          "lens_mm": 24,
+          "framing_description_en": "Wide shot of the sunny preschool playground showing the wooden slide, sandbox, three recycling bins, and open classroom pavilion."
+        },
+        {
+          "spot_id": "school_slide_ms",
+          "name": "Trung cảnh chân cầu trượt nơi xếp hàng",
+          "shot_size": "MS",
+          "angle": "eye-level (at 100cm)",
+          "lens_mm": 35,
+          "framing_description_en": "Medium shot at the steps of the wooden slide showing painted paw/hoof waiting footprints on the ground for lining up."
+        },
+        {
+          "spot_id": "school_class_ms",
+          "name": "Trung cảnh bên trong lớp học Lá Xanh",
+          "shot_size": "MS",
+          "angle": "eye-level",
+          "lens_mm": 35,
+          "framing_description_en": "Warm medium shot inside the bright classroom framing the low wooden tables, alphabet board, and Co Huou Sao's teaching spot."
+        }
+      ]
+    },
+    {
+      "id": "village_market",
+      "name_vi": "Chợ làng Rừng Xanh",
+      "description_vi": "Khu chợ quê nhộn nhịp, ấm áp của Làng Rừng Xanh: những sạp tre bày rau củ quả tươi nhiều màu sắc, nón lá, đèn lồng vải, quầy hàng lớn của Bác Voi, và trạm bảo vệ/hỗ trợ có biển hiệu hình cái loa rất dễ nhận biết khi trẻ bị lạc.",
+      "prompt_en": "3D Pixar-style animated film environment, photoreal-stylized traditional Vietnamese village market in Lang Rung Xanh. A wide stone-paved market lane is lined with thatched-roof bamboo stalls displaying woven rattan baskets of glossy red tomatoes, purple eggplants, orange carrots, green bok choy, yellow bananas, and fragrant herbs. Overhead, woven conical bamboo hats (non la) and pastel silk lanterns hang between bamboo rafters, filtering golden sunlight into warm dappled patterns. At the center stands Bac Voi the elephant's spacious grocery stall with a low wooden display tier at 65cm height so 100cm children can see the produce clearly, a traditional brass balance scale, and painted wooden number signs. Nearby stands a friendly 'Market Help & Security Post' (Chốt Bảo Vệ Chợ) with a clear green shield badge and a wooden bench, all rendered with rich tactile textures and shallow depth of field.",
+      "lighting_variants": {
+        "morning": "Bustling golden morning market light streaming through bamboo awnings and hanging conical hats, illuminating fresh dewy vegetables and fruits.",
+        "golden_hour": "Warm amber late-afternoon sunbeams glowing through silk lanterns along the stone market path.",
+        "night": "Festive Mid-Autumn and Tet night market illuminated by glowing star lanterns, warm yellow stall bulbs, and soft reflections on the stone cobblestones."
+      },
+      "prop_map": [
+        {
+          "prop_id": "bac_voi_stall",
+          "name_vi": "Sạp rau củ quả nhiều màu của Bác Voi",
+          "material": "Khung tre già, mẹt mây đan, rau củ tươi bóng",
+          "dimensions_cm": "kệ bậc thấp cao 60cm, kệ chính cao 85cm, rộng 240cm",
+          "zone": "market_center"
+        },
+        {
+          "prop_id": "security_help_post",
+          "name_vi": "Chốt chú bảo vệ / Điểm hỗ trợ trẻ lạc",
+          "material": "Chòi gỗ sơn xanh lá sáng, ghế gỗ, bảng hiệu ngôi sao",
+          "dimensions_cm": "cao 210cm x rộng 150cm",
+          "zone": "market_entrance"
+        },
+        {
+          "prop_id": "lantern_nonla_canopy",
+          "name_vi": "Giàn nón lá và đèn lồng treo cao",
+          "material": "Lá cói, tre, lụa tơ tằm màu ấm",
+          "dimensions_cm": "treo ở độ cao 230cm",
+          "zone": "overhead"
+        }
+      ],
+      "camera_spots": [
+        {
+          "spot_id": "market_lane_wide",
+          "name": "Toàn cảnh lối đi chợ quê & quầy Bác Voi",
+          "shot_size": "WS",
+          "angle": "eye-level (at 100cm)",
+          "lens_mm": 24,
+          "framing_description_en": "Wide vibrant shot down the stone market lane with blurred fruit baskets in the foreground, Bac Voi's stall in the midground, and hanging conical hats overhead."
+        },
+        {
+          "spot_id": "market_stall_ms",
+          "name": "Trung cảnh trước sạp hàng Bác Voi",
+          "shot_size": "MS",
+          "angle": "eye-level",
+          "lens_mm": 35,
+          "framing_description_en": "Medium shot framing the 60cm low vegetable tier where 85cm–115cm kids stand in line facing 180cm tall Bac Voi."
+        },
+        {
+          "spot_id": "market_help_post_ms",
+          "name": "Trung cảnh chốt bảo vệ chợ",
+          "shot_size": "MS",
+          "angle": "eye-level",
+          "lens_mm": 35,
+          "framing_description_en": "Clear medium shot of the friendly Market Help Post with its green safety badge and wooden waiting bench."
+        }
+      ]
+    },
+    {
+      "id": "crystal_stream",
+      "name_vi": "Bờ suối Pha Lê",
+      "description_vi": "Bờ suối Pha Lê trong vắt uốn lượn qua rừng tre xanh mát: bãi cỏ bằng phẳng, đá cuội tròn nhẵn, cầu tre có tay vịn chắc chắn, biển báo an toàn nước và giá treo áo phao trẻ em (mọi cảnh ở đây LUÔN có người lớn đi cùng giám sát).",
+      "prompt_en": "3D Pixar-style animated film environment, photoreal-stylized Vietnamese bamboo forest stream named 'Suối Pha Lê'. A gentle, crystal-clear shallow brook flows over smooth rounded river pebbles and white sand, bordered by a wide, flat, dry grassy picnic meadow kept safely back from the water's edge by a low natural stone border and a cheerful wooden water-safety sign (80cm tall, showing an adult holding a child's hand and a life vest icon). Spanning the stream is a sturdy wide bamboo bridge (140cm wide) equipped with solid 75cm-high double bamboo safety handrails (chest-to-shoulder height for a 100cm child). Beside the bridge stands a neat wooden rack holding bright orange child-sized safety life vests. Tall emerald bamboo stalks arch overhead, with translucent leaves, blooming pink lotus flowers in a calm side pool, and blue dragonflies hovering in the sunlit air.",
+      "lighting_variants": {
+        "morning": "Sparkling morning sunlight dancing as caustic ripples on the crystal-clear water and illuminating emerald bamboo stalks and dewy meadow grass.",
+        "golden_hour": "Warm golden sunbeams slanting through the bamboo grove, turning the water surface into liquid gold and pink lotus reflections.",
+        "night": "Serene moonlit stream reflecting the silver full moon and glowing fireflies drifting over the bamboo bridge."
+      },
+      "prop_map": [
+        {
+          "prop_id": "safe_bamboo_bridge",
+          "name_vi": "Cầu tre bản rộng có tay vịn đôi chắc chắn",
+          "material": "Tre già ghép khít & dây mây buộc chặt",
+          "dimensions_cm": "rộng 140cm, dài 350cm, lan can cao 75cm",
+          "zone": "stream_crossing"
+        },
+        {
+          "prop_id": "life_vest_station",
+          "name_vi": "Giá gỗ treo áo phao an toàn & biển báo có người lớn",
+          "material": "Gỗ thông & áo phao màu cam có đai khóa",
+          "dimensions_cm": "cao 110cm x rộng 90cm",
+          "zone": "meadow_bank"
+        },
+        {
+          "prop_id": "picnic_mat_zone",
+          "name_vi": "Thảm cỏ bằng phẳng trải chiếu cói dã ngoại xa mép nước",
+          "material": "Cỏ xanh mềm & chiếu cói dệt tay",
+          "dimensions_cm": "chiếu 180cm x 180cm cách mép nước 300cm",
+          "zone": "safe_meadow"
+        }
+      ],
+      "camera_spots": [
+        {
+          "spot_id": "stream_wide",
+          "name": "Toàn cảnh suối Pha Lê, cầu tre & bãi cỏ an toàn",
+          "shot_size": "WS",
+          "angle": "eye-level",
+          "lens_mm": 24,
+          "framing_description_en": "Wide establishing shot with blurred bamboo leaves in the foreground, showing the wide grass meadow, life vest rack, and sturdy handrail bamboo bridge."
+        },
+        {
+          "spot_id": "stream_meadow_ms",
+          "name": "Trung cảnh bãi cỏ dã ngoại có người lớn giám sát",
+          "shot_size": "MS",
+          "angle": "eye-level (at 100cm)",
+          "lens_mm": 35,
+          "framing_description_en": "Medium shot on the dry grassy bank framing the children alongside an adult supervisor and the life vest station."
+        },
+        {
+          "spot_id": "stream_pebbles_cu",
+          "name": "Cận cảnh mặt nước trong vắt & chuồn chuồn đậu trên đá",
+          "shot_size": "CU",
+          "angle": "high-angle",
+          "lens_mm": 50,
+          "framing_description_en": "Close-up of smooth river pebbles and clear rippling water with a blue dragonfly perched on a reed."
+        }
+      ]
+    },
+    {
+      "id": "big_banyan_square",
+      "name_vi": "Sân cây đa đầu làng",
+      "description_vi": "Sân gạch rộng rãi dưới gốc cây đa cổ thụ nghìn năm ở trung tâm Làng Rừng Xanh: rễ đa rủ mềm mại, ghế đá mát rượi, bảng tin gỗ của làng, sân khấu gỗ thấp cho các dịp lễ hội và hồ sen nhỏ bên cạnh.",
+      "prompt_en": "3D Pixar-style animated film environment, photoreal-stylized Vietnamese village communal square ('Sân Cây Đa Đầu Làng'). At the center rises a magnificent ancient banyan tree with a wide fluted trunk, lush emerald canopy, and smooth aerial roots hanging gracefully down. Around the base runs a circular red-brick planter bench (seat height 30cm, comfortable for 85cm–115cm children) and a wide, clean terracotta-tiled courtyard where village children gather to play and celebrate festivals. To the left stands a traditional wooden village notice board with a tiny tiled roof (viewing area at 70cm–110cm height) and a stone drinking-water pavilion; to the right lies a calm lotus pond bordered by a safe 70cm-high carved stone balustrade. Strings of colorful fabric pennants hang between the banyan branches and surrounding bamboo groves, rendered with warm cinematic global illumination.",
+      "lighting_variants": {
+        "morning": "Golden morning god rays piercing through the vast banyan canopy onto the swept terracotta courtyard bricks.",
+        "golden_hour": "Warm nostalgic amber sunset casting long dappled leaf patterns across the stone benches and blooming pink lotus pond.",
+        "night": "Magical festival night with hundreds of warm glowing paper lanterns and star lamps hanging from the banyan branches."
+      },
+      "prop_map": [
+        {
+          "prop_id": "banyan_brick_bench",
+          "name_vi": "Bệ gạch đỏ và ghế đá quanh gốc đa",
+          "material": "Gạch nung đỏ & đá xanh mài nhẵn",
+          "dimensions_cm": "cao mặt ghế 30cm, đường kính vòng 420cm",
+          "zone": "center_tree"
+        },
+        {
+          "prop_id": "village_notice_board",
+          "name_vi": "Bảng tin gỗ mái ngói của Làng Rừng Xanh",
+          "material": "Gỗ lim & ngói vảy cá nhỏ",
+          "dimensions_cm": "cao 145cm x rộng 120cm",
+          "zone": "square_west"
+        },
+        {
+          "prop_id": "festival_stage",
+          "name_vi": "Bục gỗ sân khấu thấp dùng khi tổ chức lễ hội làng",
+          "material": "Gỗ thông ghép chắc chắn",
+          "dimensions_cm": "cao 25cm x rộng 300cm x sâu 200cm",
+          "zone": "square_north"
+        }
+      ],
+      "camera_spots": [
+        {
+          "spot_id": "banyan_square_wide",
+          "name": "Toàn cảnh sân cây đa cổ thụ đầu làng",
+          "shot_size": "EWS",
+          "angle": "eye-level",
+          "lens_mm": 24,
+          "framing_description_en": "Grand wide shot of the communal banyan square with hanging banyan roots in foreground bokeh and the brick courtyard in midground."
+        },
+        {
+          "spot_id": "banyan_bench_ms",
+          "name": "Trung cảnh nhóm bạn ngồi quanh ghế đá gốc đa",
+          "shot_size": "MS",
+          "angle": "eye-level (at 95cm)",
+          "lens_mm": 35,
+          "framing_description_en": "Medium shot framing all five friends gathered around the 30cm circular brick bench under the shade of the banyan tree."
+        },
+        {
+          "spot_id": "banyan_stage_ms",
+          "name": "Trung cảnh bục lễ hội & bảng tin làng",
+          "shot_size": "MS",
+          "angle": "low-angle 10 deg",
+          "lens_mm": 35,
+          "framing_description_en": "Medium low-angle shot looking toward the 25cm wooden festival platform decorated with paper pennants."
+        }
+      ]
+    },
+    {
+      "id": "rice_field",
+      "name_vi": "Cánh đồng lúa & bờ ruộng",
+      "description_vi": "Cánh đồng lúa mênh mông của Làng Rừng Xanh với con đường đất rộng rãi ven bờ ruộng, chú bù nhìn rơm đội nón lá cười hiền, đàn cò trắng bay lượn, rặng tre xanh và dãy núi mờ xa chân trời, nơi các bạn nhỏ quan sát côn trùng, thời tiết và thả diều.",
+      "prompt_en": "3D Pixar-style animated film environment, photoreal-stylized Vietnamese countryside rice paddy fields and wide country path. A broad, dry, flat packed-earth path (220cm wide, bordered by soft green clover and wildflowers) winds gently between lush terraced and lowland rice paddies where individual rice stalks and dewy blades bend in the breeze, reaching about 55cm–65cm high (waist height to a 100cm child standing on the path). Beside a small wooden shelter stands a cheerful straw scarecrow (135cm tall) wearing a conical bamboo hat and a patched blue shirt with a friendly painted smile. In the distance, white egrets glide over emerald bamboo groves and pastel-blue limestone mountains under fluffy cumulus clouds, rendered with rich botanical textures, subsurface scattering on rice leaves, and a 3-layer shallow depth of field.",
+      "lighting_variants": {
+        "morning": "Fresh dewy morning sunlight glittering on millions of green rice blades, soft white mist rising over distant mountains.",
+        "golden_hour": "Breathtaking golden-amber sunset turning the ripening rice field into a shimmering sea of gold with warm rim light on the scarecrow.",
+        "night": "Clear indigo night sky filled with twinkling stars and a glowing silver moon reflecting in the quiet paddy water while fireflies dance."
+      },
+      "prop_map": [
+        {
+          "prop_id": "friendly_scarecrow",
+          "name_vi": "Chú bù nhìn rơm đội nón lá cười tươi",
+          "material": "Rơm vàng khô bện chặt, nón lá, áo vải xanh",
+          "dimensions_cm": "cao 135cm (cao hơn Dê Bông 20cm)",
+          "zone": "field_edge"
+        },
+        {
+          "prop_id": "wooden_rest_hut",
+          "name_vi": "Chòi gỗ nghỉ chân ven đồng lúa",
+          "material": "Tre và mái tranh, băng ghế gỗ thấp",
+          "dimensions_cm": "ghế cao 28cm, mái cao 190cm",
+          "zone": "path_bend"
+        },
+        {
+          "prop_id": "bug_observation_log",
+          "name_vi": "Khúc gỗ mục và bụi hoa dại nơi quan sát ong, bọ rùa, giun đất",
+          "material": "Gỗ phủ rêu xanh, hoa cúc dại vàng trắng",
+          "dimensions_cm": "cao 30cm x dài 110cm",
+          "zone": "path_side"
+        }
+      ],
+      "camera_spots": [
+        {
+          "spot_id": "rice_field_wide",
+          "name": "Toàn cảnh cánh đồng lúa, đường bờ ruộng & núi xa",
+          "shot_size": "EWS",
+          "angle": "eye-level",
+          "lens_mm": 24,
+          "framing_description_en": "Expansive wide shot with golden-green rice stalks in foreground bokeh, the wide country path in midground, and misty mountains behind."
+        },
+        {
+          "spot_id": "rice_path_ms",
+          "name": "Trung cảnh nhóm bạn đi trên đường làng cạnh chú bù nhìn",
+          "shot_size": "MS",
+          "angle": "eye-level (at 100cm)",
+          "lens_mm": 35,
+          "framing_description_en": "Medium tracking shot along the 220cm country path with the 135cm smiling straw scarecrow beside the kids."
+        },
+        {
+          "spot_id": "rice_macro_cu",
+          "name": "Cận cảnh lá lúa đọng sương & chú bọ rùa",
+          "shot_size": "ECU",
+          "angle": "eye-level",
+          "lens_mm": 85,
+          "framing_description_en": "Macro close-up of a translucent green rice leaf with a sparkling dewdrop and a cute red ladybug, with curious children's faces softly framed behind."
+        }
+      ]
+    },
+    {
+      "id": "koala_clinic",
+      "name_vi": "Phòng khám Bác sĩ Koala",
+      "description_vi": "Phòng khám sức khỏe và nha khoa thân thiện của Bác sĩ Koala nằm trong gốc cây cổ thụ lớn: tường sơn màu xanh bạc hà dịu mắt, giường khám thấp êm ái, mô hình hàm răng trắng bóng khổng lồ, thước đo chiều cao hình hươu cao cổ (0–160 cm) và lọ thủy tinh đựng sticker ngôi sao thưởng cho bé ngoan.",
+      "prompt_en": "3D Pixar-style animated film environment, photoreal-stylized child-friendly woodland clinic belonging to Doctor Koala. The cozy round room features soothing pastel mint-green walls with warm natural wood wainscotting, curved windows looking out onto sunny green fern gardens, and smooth non-slip cork flooring. At the center sits a low, cushioned wooden examination bed (45cm high with a cute 20cm two-step wooden footstool) and a friendly 150cm-tall Doctor Koala desk (72cm high). On a low demonstration table (50cm high) rests an oversized cheerful white tooth model with a giant soft-bristle wooden toothbrush for teaching brushing technique. On the wall hang colorful illustrated posters of healthy vegetables, the 6 handwashing steps, and a wooden height-measuring chart marked clearly from 0cm to 160cm, while a clear glass jar on the counter holds gold star and leaf stickers (strictly stickers, no sugary candy).",
+      "lighting_variants": {
+        "morning": "Bright, clean, reassuring morning sunlight streaming through the curved clinic windows, blending with soft warm-white interior lamps for a zero-fear atmosphere.",
+        "golden_hour": "Warm soothing golden-mint afternoon light filling the clinic with a calm, comforting glow.",
+        "night": "Gentle warm interior clinic lighting with a soft mint-green crescent nightlight by the window."
+      },
+      "prop_map": [
+        {
+          "prop_id": "giant_tooth_model",
+          "name_vi": "Mô hình hàm răng trắng và bàn chải lớn dạy đánh răng",
+          "material": "Gỗ sơn men trắng bóng & lông bàn chải mềm màu xanh",
+          "dimensions_cm": "hàm răng rộng 35cm x cao 28cm, bàn chải dài 45cm",
+          "zone": "demo_table"
+        },
+        {
+          "prop_id": "sticker_reward_jar",
+          "name_vi": "Lọ thủy tinh đựng sticker ngôi sao và trái tim (không phải kẹo)",
+          "material": "Thủy tinh trong suốt nắp gỗ & giấy dán sticker lấp lánh",
+          "dimensions_cm": "cao 22cm x đường kính 15cm",
+          "zone": "doctor_desk"
+        },
+        {
+          "prop_id": "height_ruler_wall",
+          "name_vi": "Thước gỗ đo chiều cao 0–160cm gắn tường",
+          "material": "Gỗ thông khắc vạch rõ ở 85cm, 95cm, 100cm, 105cm, 115cm, 150cm",
+          "dimensions_cm": "cao 165cm x rộng 25cm",
+          "zone": "clinic_wall"
+        },
+        {
+          "prop_id": "exam_bed_low",
+          "name_vi": "Giường khám nhỏ bọc nệm xanh kem có bậc bước",
+          "material": "Khung gỗ sồi & nệm bọc vải cotton sạch",
+          "dimensions_cm": "cao 45cm x dài 135cm x rộng 65cm",
+          "zone": "clinic_center"
+        }
+      ],
+      "camera_spots": [
+        {
+          "spot_id": "clinic_wide",
+          "name": "Toàn cảnh phòng khám xanh bạc hà của Bác sĩ Koala",
+          "shot_size": "WS",
+          "angle": "eye-level",
+          "lens_mm": 28,
+          "framing_description_en": "Wide reassuring shot of the mint-green woodland clinic showing the low exam bed, height chart, tooth model, and sunny fern window."
+        },
+        {
+          "spot_id": "clinic_checkup_ms",
+          "name": "Trung cảnh Bác sĩ Koala (150cm) khám cho các bạn nhỏ (85–115cm)",
+          "shot_size": "MS",
+          "angle": "eye-level (at 110cm)",
+          "lens_mm": 35,
+          "framing_description_en": "Medium two-shot clearly showing scale lock where 100cm Bi's head reaches 150cm Doctor Koala's chest beside the tooth model table."
+        },
+        {
+          "spot_id": "clinic_sticker_cu",
+          "name": "Cận cảnh lọ sticker thưởng & mô hình răng",
+          "shot_size": "CU",
+          "angle": "eye-level",
+          "lens_mm": 50,
+          "framing_description_en": "Close-up on the sparkling star sticker jar and the giant tooth model with soft mint bokeh background."
+        }
+      ]
+    }
+  ],
+  "title_sequence": {
+    "duration_s": 15,
+    "tempo_bpm": 116,
+    "mood": "Vui tươi, rộn ràng, trong trẻo âm hưởng đồng dao Việt Nam kết hợp nhạc cụ gỗ mộc mạc (đàn t'rưng, sáo trúc nhẹ, ukulele, tiếng vỗ tay)",
+    "theme_song_lyrics": "Nắng sớm lên rồi, Làng Rừng Xanh ơi!\nSóc Bi lém lỉnh hay hỏi: 'Tại sao?'\nAnh Bông đọc sách, em Mun chạy theo,\nCún Lu thám tử, Mimi khéo tay!\nNắm tay nhau nào — Bi và những người bạn!\nMỗi ngày một điều hay — lớn khôn thật vui!",
+    "shot_list": [
+      {
+        "shot_id": "title_sh01",
+        "t_start": 0,
+        "t_end": 5,
+        "duration_s": 5,
+        "shot_size": "WS",
+        "camera_move": "push-in",
+        "visual_vi": "Cửa gỗ tròn nhà cây sồi bật mở trong nắng sớm, Sóc Bi (100cm) nhảy chân sáo ra ban công vẫy chiếc đuôi xù lớn chào khán giả.",
+        "lyrics_line": "Nắng sớm lên rồi, Làng Rừng Xanh ơi! Sóc Bi lém lỉnh hay hỏi: 'Tại sao?'",
+        "image_prompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] WS, eye-level, 28mm. [CHARACTERS] a slim, agile 3-4 year old boy squirrel named Bi, about 100cm tall, NOT fat, flat belly, short slender limbs, head about 1/4 of body height, reddish orange-brown fur with lighter belly and cheeks, big round glossy black eyes with highlights, light pink cheeks, two front teeth, small pointed ears with tufts, very large bushy tail curving up behind his back and darker red-brown toward the tip, fitted yellow crew-neck t-shirt, black shorts, dark sneakers with white soles, smiling brightly and waving from his treehouse balcony. [ACTION] Bi opens the round honey-oak door and waves happily at the camera. [LOCATION] Bi's giant oak treehouse in Lang Rung Xanh, sunny morning. [DEPTH] foreground: soft bokeh dewy oak leaves; midground: Bi in sharp focus on wooden balcony; background: misty green village roofs and rice fields. [LIGHT] Warm golden morning god rays."
+      },
+      {
+        "shot_id": "title_sh02",
+        "t_start": 5,
+        "t_end": 10,
+        "duration_s": 5,
+        "shot_size": "MS",
+        "camera_move": "lateral-pan",
+        "visual_vi": "Trên con đường bờ ruộng xanh mướt, anh Dê Bông (115cm) cầm sổ tay dẫn em Dê Mun (85cm) mang ủng đỏ, Cún Lu (105cm) khịt mũi cười to và Mèo Mimi (95cm) cầm chong chóng giấy chạy tới hội ngộ cùng Bi.",
+        "lyrics_line": "Anh Bông đọc sách, em Mun chạy theo, Cún Lu thám tử, Mimi khéo tay!",
+        "image_prompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] MS, eye-level, 35mm. [CHARACTERS] a slim, agile 3-4 year old boy squirrel named Bi, about 100cm tall, NOT fat, flat belly, short slender limbs, head about 1/4 of body height, reddish orange-brown fur with lighter belly and cheeks, big round glossy black eyes with highlights, light pink cheeks, two front teeth, small pointed ears with tufts, very large bushy tail curving up behind his back and darker red-brown toward the tip, fitted yellow crew-neck t-shirt, black shorts, dark sneakers with white soles; a gentle, thoughtful 6-year-old boy white goat named Bong, about 115cm tall (1.15x the height of Bi the squirrel, Bi's head reaches Bong's chin), slim upright build, fluffy clean snow-white curly fur, a small soft chin tuft, two short curved cream-colored horns, long floppy ears with pink inner side, big round warm brown eyes, small pink nose, wearing sky-blue denim overalls over a white-and-navy striped t-shirt, a tiny green notebook in the front pocket, brown sandals over small dark hooves; a playful 3-year-old toddler boy black goat named Mun, about 85cm tall (0.85x the height of Bi the squirrel, Mun's head reaches Bi's nose), chubby-cheeked toddler build, soft glossy jet-black fur with a small white star-shaped patch on his forehead, two tiny rounded nub horns, short floppy ears with gray-pink inner side, big round sparkling brown eyes, wearing a bright red t-shirt with a small yellow star, navy blue shorts, red rubber rain boots; an energetic 5-year-old girl puppy named Lu, a Vietnamese native mixed-breed dog, about 105cm tall (1.05x the height of Bi the squirrel, almost the same height as Bi), lean athletic build, short warm cream-golden fur with white chest and white muzzle, one ear standing up and one ear folded down (signature look), curled tail, shiny black nose, big honey-brown eyes, wearing a mint-teal t-shirt, a green bandana with a white paw print tied around her neck, khaki shorts, white sneakers; a neat, gentle 5-year-old girl calico cat named Mimi, about 95cm tall (0.95x the height of Bi the squirrel, slightly shorter than Bi), slender graceful build, calico fur with white base and orange and black patches (black patch over her left ear, orange patch around her right eye), long fluffy tail with a black tip, large emerald-green almond eyes, small pink nose, thin white whiskers, wearing a lavender pinafore dress over a white puff-sleeve blouse, a small pink bow on her right ear, white Mary-Jane shoes. [SCALE] Height order from tallest: Bong 115cm > Lu 105cm > Bi 100cm > Mimi 95cm > Mun 85cm; Bi's head reaches Bong's chin, Mun's head reaches Bi's nose. [ACTION] All five friends run joyfully along the sunny country path, high-fiving and laughing together. [LOCATION] Sunny Vietnamese countryside rice field path, morning. [DEPTH] foreground: blurred golden rice stalks; midground: five friends in sharp focus; background: bamboo grove and distant blue hills. [LIGHT] Crisp morning sunlight."
+      },
+      {
+        "shot_id": "title_sh03",
+        "t_start": 10,
+        "t_end": 15,
+        "duration_s": 5,
+        "shot_size": "WS",
+        "camera_move": "zoom-out",
+        "visual_vi": "Cả 5 bạn đứng dưới gốc cây đa cổ thụ theo đúng thứ tự chiều cao khóa cứng, cùng nhảy lên tạo dáng vui nhộn bên dưới bảng gỗ tên series 'BI VÀ NHỮNG NGƯỜI BẠN' và khung hiển thị tên tập phim.",
+        "lyrics_line": "Nắm tay nhau nào — Bi và những người bạn! Mỗi ngày một điều hay — lớn khôn thật vui!",
+        "image_prompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] WS, low-angle 10 deg, 28mm. [CHARACTERS] a gentle, thoughtful 6-year-old boy white goat named Bong, about 115cm tall (1.15x the height of Bi the squirrel, Bi's head reaches Bong's chin), slim upright build, fluffy clean snow-white curly fur, a small soft chin tuft, two short curved cream-colored horns, long floppy ears with pink inner side, big round warm brown eyes, small pink nose, wearing sky-blue denim overalls over a white-and-navy striped t-shirt, a tiny green notebook in the front pocket, brown sandals over small dark hooves; an energetic 5-year-old girl puppy named Lu, a Vietnamese native mixed-breed dog, about 105cm tall (1.05x the height of Bi the squirrel, almost the same height as Bi), lean athletic build, short warm cream-golden fur with white chest and white muzzle, one ear standing up and one ear folded down (signature look), curled tail, shiny black nose, big honey-brown eyes, wearing a mint-teal t-shirt, a green bandana with a white paw print tied around her neck, khaki shorts, white sneakers; a slim, agile 3-4 year old boy squirrel named Bi, about 100cm tall, NOT fat, flat belly, short slender limbs, head about 1/4 of body height, reddish orange-brown fur with lighter belly and cheeks, big round glossy black eyes with highlights, light pink cheeks, two front teeth, small pointed ears with tufts, very large bushy tail curving up behind his back and darker red-brown toward the tip, fitted yellow crew-neck t-shirt, black shorts, dark sneakers with white soles; a neat, gentle 5-year-old girl calico cat named Mimi, about 95cm tall (0.95x the height of Bi the squirrel, slightly shorter than Bi), slender graceful build, calico fur with white base and orange and black patches (black patch over her left ear, orange patch around her right eye), long fluffy tail with a black tip, large emerald-green almond eyes, small pink nose, thin white whiskers, wearing a lavender pinafore dress over a white puff-sleeve blouse, a small pink bow on her right ear, white Mary-Jane shoes; a playful 3-year-old toddler boy black goat named Mun, about 85cm tall (0.85x the height of Bi the squirrel, Mun's head reaches Bi's nose), chubby-cheeked toddler build, soft glossy jet-black fur with a small white star-shaped patch on his forehead, two tiny rounded nub horns, short floppy ears with gray-pink inner side, big round sparkling brown eyes, wearing a bright red t-shirt with a small yellow star, navy blue shorts, red rubber rain boots. [SCALE] Height order from tallest: Bong 115cm > Lu 105cm > Bi 100cm > Mimi 95cm > Mun 85cm; Bi's head reaches Bong's chin, Mun's head reaches Bi's nose. [ACTION] The five friends stand side by side under the ancient banyan tree waving at the camera, leaving clean upper-center sky/canopy space for the wooden title card. [LOCATION] Big Banyan Square in Lang Rung Xanh, sunny morning. [DEPTH] foreground: bokeh banyan roots and lotus petals; midground: 5 friends in sharp focus; background: sunlit banyan canopy. [LIGHT] Warm volumetric sunbeams."
+      }
+    ]
+  },
+  "end_screen": {
+    "duration_s": 20,
+    "made_for_kids_compliant": true,
+    "spoken_outro_vi": "Hẹn gặp lại bạn nhỏ ở tập sau nhé! Tạm biệt!",
+    "layout": {
+      "canvas": "1920x1080 (16:9)",
+      "background_animation": "Vòng lặp 20s cảnh 5 bạn nhỏ (Bông 115cm, Lu 105cm, Bi 100cm, Mimi 95cm, Mun 85cm) đứng ở nửa dưới bên trái khung hình dưới tán cây đa vẫy tay chào tạm biệt trên nền nhạc điệp khúc không lời nhẹ nhàng.",
+      "next_episode_card_slot": {
+        "label_vi": "Tập tiếp theo",
+        "x_px": 1120,
+        "y_px": 180,
+        "width_px": 640,
+        "height_px": 360
+      },
+      "suggested_episode_card_slot": {
+        "label_vi": "Tập hay cho bé",
+        "x_px": 1120,
+        "y_px": 600,
+        "width_px": 640,
+        "height_px": 360
+      },
+      "channel_subscribe_badge_slot": {
+        "label_vi": "Sóc Nhỏ TV",
+        "x_px": 220,
+        "y_px": 180,
+        "diameter_px": 220
+      },
+      "safety_rules": [
+        "Không kêu gọi bình luận (Made for Kids tắt bình luận)",
+        "Không gắn link ngoại vi ngoài YouTube",
+        "Nhạc nền hạ nhẹ còn -18 LUFS trong 5 giây cuối và fade-out mượt"
+      ]
+    }
+  },
+  "scale_lock_rows_to_append": [
+    {
+      "character_name": "Dê Bông (anh trai, dê trắng)",
+      "id": "bong",
+      "height_cm": 115,
+      "ratio_to_bi": 1.15,
+      "visual_landmark": "Bi's head reaches Bong's chin (Đỉnh đầu Bi chạm cằm Bông)",
+      "markdown_row": "| Dê Bông (anh trai, dê trắng) | 115 cm | 1.15 (Đỉnh đầu Bi chạm tới cằm anh Bông) |"
+    },
+    {
+      "character_name": "Cún Lu (chó cỏ Việt Nam, bé gái)",
+      "id": "lu",
+      "height_cm": 105,
+      "ratio_to_bi": 1.05,
+      "visual_landmark": "Almost the same height as Bi, 5cm taller (Cao hơn Bi một chút xíu)",
+      "markdown_row": "| Cún Lu (chó cỏ Việt Nam, bé gái) | 105 cm | 1.05 (Cao hơn Bi một chút xíu - 5cm) |"
+    },
+    {
+      "character_name": "Mèo Mimi (mèo tam thể, bé gái)",
+      "id": "mimi",
+      "height_cm": 95,
+      "ratio_to_bi": 0.95,
+      "visual_landmark": "Slightly shorter than Bi, 5cm shorter (Thấp hơn Bi một chút)",
+      "markdown_row": "| Mèo Mimi (mèo tam thể, bé gái) | 95 cm | 0.95 (Thấp hơn Bi một chút - 5cm) |"
+    },
+    {
+      "character_name": "Dê Mun (em trai, dê đen)",
+      "id": "mun",
+      "height_cm": 85,
+      "ratio_to_bi": 0.85,
+      "visual_landmark": "Mun's head reaches Bi's nose (Đỉnh đầu Mun chạm tới mũi Bi)",
+      "markdown_row": "| Dê Mun (em trai, dê đen) | 85 cm | 0.85 (Đỉnh đầu Mun chạm tới mũi Bi) |"
+    },
+    {
+      "character_name": "Mẹ Sóc (mẹ của Bi)",
+      "id": "me_soc",
+      "height_cm": 145,
+      "ratio_to_bi": 1.45,
+      "visual_landmark": "Bi's head reaches Mother Squirrel's chest (Đầu Bi ngang ngực Mẹ Sóc)",
+      "markdown_row": "| Mẹ Sóc (mẹ của Bi) | 145 cm | 1.45 (Đầu Bi ngang ngực Mẹ Sóc) |"
+    },
+    {
+      "character_name": "Ông Dê Râu Bạc (ông nội Bông & Mun)",
+      "id": "ong_de_rau_bac",
+      "height_cm": 155,
+      "ratio_to_bi": 1.55,
+      "visual_landmark": "Bi's head reaches Grandfather Goat's lower chest; Mun reaches his belly",
+      "markdown_row": "| Ông Dê Râu Bạc (ông nội Bông & Mun) | 155 cm | 1.55 (Đầu Bi ngang ngực dưới Ông Dê) |"
+    },
+    {
+      "character_name": "Cô giáo Hươu Sao (trường mầm non Lá Xanh)",
+      "id": "co_huou_sao",
+      "height_cm": 160,
+      "ratio_to_bi": 1.6,
+      "visual_landmark": "Bi's head reaches Teacher Deer's lower chest/solar plexus",
+      "markdown_row": "| Cô giáo Hươu Sao (trường Lá Xanh) | 160 cm | 1.60 (Đầu Bi ngang ngực dưới Cô Hươu Sao) |"
+    },
+    {
+      "character_name": "Bác Voi (bán hàng ở chợ làng)",
+      "id": "bac_voi",
+      "height_cm": 180,
+      "ratio_to_bi": 1.8,
+      "visual_landmark": "Bi reaches Bac Voi's waist/belly",
+      "markdown_row": "| Bác Voi (bán hàng ở chợ làng) | 180 cm | 1.80 (Bi đứng ngang thắt lưng/bụng Bác Voi) |"
+    }
+  ],
+  "master_dna_prompts": {
+    "description": "Bộ prompt chuẩn khóa cứng để sinh ảnh Master DNA (1 ảnh chính diện đứng thẳng nền xám sáng cho từng nhân vật mới) và 1 ảnh bảng Lineup 5 nhân vật chính đứng cạnh nhau trên vạch chia chiều cao 0–150cm. Khi sinh ảnh bằng công cụ tạo ảnh (Flow / Imagen / Flux), luôn đính kèm data/projects/soc-nho-tv/characters/soc_nho/soc_nho_01.png làm chuẩn tỉ lệ 100cm.",
+    "single_character_master_dna": {
+      "bong": {
+        "target_file": "data/projects/soc-nho-tv/characters/de_bong/de_bong_01.png",
+        "aspect_ratio": "1:1 or 3:4",
+        "reference_image_to_attach": "data/projects/soc-nho-tv/characters/soc_nho/soc_nho_01.png",
+        "prompt_en": "3D Pixar-style animated character Master DNA reference sheet, single full-body character standing straight in a relaxed front-facing A-pose, centered from head to toe on a clean solid light gray studio background (#E6E6E6), soft even studio lighting with gentle contact shadow under feet, ultra-detailed fur and fabric textures: a gentle, thoughtful 6-year-old boy white goat named Bong, about 115cm tall (1.15x the height of Bi the squirrel, Bi's head reaches Bong's chin), slim upright build, fluffy clean snow-white curly fur, a small soft chin tuft, two short curved cream-colored horns, long floppy ears with pink inner side, big round warm brown eyes, small pink nose, wearing sky-blue denim overalls over a white-and-navy striped t-shirt, a tiny green notebook in the front pocket, brown sandals over small dark hooves. Warm friendly big-brother smile, looking straight at the camera.",
+        "negative_prompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content"
+      },
+      "mun": {
+        "target_file": "data/projects/soc-nho-tv/characters/de_mun/de_mun_01.png",
+        "aspect_ratio": "1:1 or 3:4",
+        "reference_image_to_attach": "data/projects/soc-nho-tv/characters/soc_nho/soc_nho_01.png",
+        "prompt_en": "3D Pixar-style animated character Master DNA reference sheet, single full-body character standing straight in a relaxed front-facing A-pose, centered from head to toe on a clean solid light gray studio background (#E6E6E6), soft even studio lighting with gentle contact shadow under feet, ultra-detailed fur and fabric textures: a playful 3-year-old toddler boy black goat named Mun, about 85cm tall (0.85x the height of Bi the squirrel, Mun's head reaches Bi's nose), chubby-cheeked toddler build, soft glossy jet-black fur with a small white star-shaped patch on his forehead, two tiny rounded nub horns, short floppy ears with gray-pink inner side, big round sparkling brown eyes, wearing a bright red t-shirt with a small yellow star, navy blue shorts, red rubber rain boots. Cheerful innocent toddler grin, looking straight at the camera.",
+        "negative_prompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content"
+      },
+      "lu": {
+        "target_file": "data/projects/soc-nho-tv/characters/cho_lu/cho_lu_01.png",
+        "aspect_ratio": "1:1 or 3:4",
+        "reference_image_to_attach": "data/projects/soc-nho-tv/characters/soc_nho/soc_nho_01.png",
+        "prompt_en": "3D Pixar-style animated character Master DNA reference sheet, single full-body character standing straight in a relaxed front-facing A-pose, centered from head to toe on a clean solid light gray studio background (#E6E6E6), soft even studio lighting with gentle contact shadow under feet, ultra-detailed fur and fabric textures: an energetic 5-year-old girl puppy named Lu, a Vietnamese native mixed-breed dog, about 105cm tall (1.05x the height of Bi the squirrel, almost the same height as Bi), lean athletic build, short warm cream-golden fur with white chest and white muzzle, one ear standing up and one ear folded down (signature look), curled tail, shiny black nose, big honey-brown eyes, wearing a mint-teal t-shirt, a green bandana with a white paw print tied around her neck, khaki shorts, white sneakers. Bright sporty smile, looking straight at the camera.",
+        "negative_prompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content"
+      },
+      "mimi": {
+        "target_file": "data/projects/soc-nho-tv/characters/meo_mimi/meo_mimi_01.png",
+        "aspect_ratio": "1:1 or 3:4",
+        "reference_image_to_attach": "data/projects/soc-nho-tv/characters/soc_nho/soc_nho_01.png",
+        "prompt_en": "3D Pixar-style animated character Master DNA reference sheet, single full-body character standing straight in a relaxed front-facing A-pose, centered from head to toe on a clean solid light gray studio background (#E6E6E6), soft even studio lighting with gentle contact shadow under feet, ultra-detailed fur and fabric textures: a neat, gentle 5-year-old girl calico cat named Mimi, about 95cm tall (0.95x the height of Bi the squirrel, slightly shorter than Bi), slender graceful build, calico fur with white base and orange and black patches (black patch over her left ear, orange patch around her right eye), long fluffy tail with a black tip, large emerald-green almond eyes, small pink nose, thin white whiskers, wearing a lavender pinafore dress over a white puff-sleeve blouse, a small pink bow on her right ear, white Mary-Jane shoes. Sweet polite smile, looking straight at the camera.",
+        "negative_prompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content"
+      }
+    },
+    "five_character_height_lineup": {
+      "target_file": "data/projects/soc-nho-tv/characters/lineup_5_main_characters_0_150cm.png",
+      "aspect_ratio": "16:9 (1920x1080)",
+      "reference_image_to_attach": "data/projects/soc-nho-tv/characters/soc_nho/soc_nho_01.png",
+      "prompt_en": "3D Pixar-style animated character scale-lock lineup chart, orthographic front view, 16:9 widescreen. Five anthropomorphic animal children standing straight side-by-side on a flat studio floor line (0cm) in front of a clean light gray studio wall marked with crisp horizontal height-measurement lines from 0cm to 150cm (major grid lines labeled at 0cm, 50cm, 85cm, 95cm, 100cm, 105cm, 115cm, and 150cm). From left to right in strict descending height order: (1) AT 115CM LINE: a gentle, thoughtful 6-year-old boy white goat named Bong, about 115cm tall (1.15x the height of Bi the squirrel, Bi's head reaches Bong's chin), slim upright build, fluffy clean snow-white curly fur, a small soft chin tuft, two short curved cream-colored horns, long floppy ears with pink inner side, big round warm brown eyes, small pink nose, wearing sky-blue denim overalls over a white-and-navy striped t-shirt, a tiny green notebook in the front pocket, brown sandals over small dark hooves; (2) AT 105CM LINE: an energetic 5-year-old girl puppy named Lu, a Vietnamese native mixed-breed dog, about 105cm tall (1.05x the height of Bi the squirrel, almost the same height as Bi), lean athletic build, short warm cream-golden fur with white chest and white muzzle, one ear standing up and one ear folded down (signature look), curled tail, shiny black nose, big honey-brown eyes, wearing a mint-teal t-shirt, a green bandana with a white paw print tied around her neck, khaki shorts, white sneakers; (3) AT 100CM LINE (CENTER ANCHOR): a slim, agile 3-4 year old boy squirrel named Bi, about 100cm tall, NOT fat, flat belly, short slender limbs, head about 1/4 of body height, reddish orange-brown fur with lighter belly and cheeks, big round glossy black eyes with highlights, light pink cheeks, two front teeth, small pointed ears with tufts, very large bushy tail curving up behind his back and darker red-brown toward the tip, fitted yellow crew-neck t-shirt, black shorts, dark sneakers with white soles; (4) AT 95CM LINE: a neat, gentle 5-year-old girl calico cat named Mimi, about 95cm tall (0.95x the height of Bi the squirrel, slightly shorter than Bi), slender graceful build, calico fur with white base and orange and black patches (black patch over her left ear, orange patch around her right eye), long fluffy tail with a black tip, large emerald-green almond eyes, small pink nose, thin white whiskers, wearing a lavender pinafore dress over a white puff-sleeve blouse, a small pink bow on her right ear, white Mary-Jane shoes; (5) AT 85CM LINE: a playful 3-year-old toddler boy black goat named Mun, about 85cm tall (0.85x the height of Bi the squirrel, Mun's head reaches Bi's nose), chubby-cheeked toddler build, soft glossy jet-black fur with a small white star-shaped patch on his forehead, two tiny rounded nub horns, short floppy ears with gray-pink inner side, big round sparkling brown eyes, wearing a bright red t-shirt with a small yellow star, navy blue shorts, red rubber rain boots. Height order from tallest: Bong 115cm > Lu 105cm > Bi 100cm > Mimi 95cm > Mun 85cm; Bi's head reaches Bong's chin, Mun's head reaches Bi's nose. Soft even studio lighting, razor-sharp focus across all five characters.",
+      "negative_prompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, equal heights, perspective distortion, realistic human, scary, horror, dark gore, watermark, blurry character, duplicate character, adult content"
+    }
+  },
+  "episode_roadmap": [
+    {
+      "episode_no": 1,
+      "slug": "nui-lua-trong-bung-bi",
+      "season_no": 1,
+      "season_name": "Cảm xúc của em",
+      "title_vi": "Núi lửa trong bụng Bi",
+      "core_lesson": "Nhận biết cơn giận & bình tĩnh bằng 'thở 5 ngón tay'",
+      "focus_character": "bi"
+    },
+    {
+      "episode_no": 2,
+      "slug": "mun-so-bong-toi",
+      "season_no": 1,
+      "season_name": "Cảm xúc của em",
+      "title_vi": "Mun sợ bóng tối",
+      "core_lesson": "Gọi tên nỗi sợ, nói ra với người thân, đèn ngủ & thú bông",
+      "focus_character": "mun"
+    },
+    {
+      "episode_no": 3,
+      "slug": "chu-tho-bong-cua-mimi-dau-roi",
+      "season_no": 1,
+      "season_name": "Cảm xúc của em",
+      "title_vi": "Chú thỏ bông của Mimi đâu rồi",
+      "core_lesson": "Buồn là bình thường, tìm người tâm sự, ôm an ủi",
+      "focus_character": "mimi"
+    },
+    {
+      "episode_no": 4,
+      "slug": "anh-bong-ghen-ti",
+      "season_no": 1,
+      "season_name": "Cảm xúc của em",
+      "title_vi": "Anh Bông ghen tị",
+      "core_lesson": "Ghen tị với em; tình thương của bố mẹ không bị chia nhỏ",
+      "focus_character": "bong"
+    },
+    {
+      "episode_no": 5,
+      "slug": "lu-khong-doi-duoc",
+      "season_no": 1,
+      "season_name": "Cảm xúc của em",
+      "title_vi": "Lu không đợi được",
+      "core_lesson": "Kiên nhẫn chờ đợi, trò chơi giúp thời gian trôi nhanh",
+      "focus_character": "lu"
+    },
+    {
+      "episode_no": 6,
+      "slug": "bi-tu-mac-ao-di-giay",
+      "season_no": 2,
+      "season_name": "Em tự làm được",
+      "title_vi": "Bi tự mặc áo đi giày",
+      "core_lesson": "Tự mặc đồ, đi giày đúng chân (mẹo dán hình nửa trái tim)",
+      "focus_character": "bi"
+    },
+    {
+      "episode_no": 7,
+      "slug": "bua-an-khong-roi-vai",
+      "season_no": 2,
+      "season_name": "Em tự làm được",
+      "title_vi": "Bữa ăn không rơi vãi",
+      "core_lesson": "Tự xúc ăn, ngồi vào bàn, không xem màn hình khi ăn",
+      "focus_character": "mun"
+    },
+    {
+      "episode_no": 8,
+      "slug": "do-choi-ve-nha",
+      "season_no": 2,
+      "season_name": "Em tự làm được",
+      "title_vi": "Đồ chơi về nhà",
+      "core_lesson": "Chơi xong cất đồ chơi đúng chỗ (gắn nhãn hình)",
+      "focus_character": "mimi"
+    },
+    {
+      "episode_no": 9,
+      "slug": "lu-rua-tay-sieu-sach",
+      "season_no": 2,
+      "season_name": "Em tự làm được",
+      "title_vi": "Lu rửa tay siêu sạch",
+      "core_lesson": "Rửa tay 6 bước với xà phòng, hát đủ 20 giây",
+      "focus_character": "lu"
+    },
+    {
+      "episode_no": 10,
+      "slug": "anh-bong-thuc-khuya",
+      "season_no": 2,
+      "season_name": "Em tự làm được",
+      "title_vi": "Anh Bông thức khuya",
+      "core_lesson": "Ngủ đúng giờ, thói quen trước khi ngủ",
+      "focus_character": "bong"
+    },
+    {
+      "episode_no": 11,
+      "slug": "den-do-den-xanh",
+      "season_no": 3,
+      "season_name": "An toàn là số 1",
+      "title_vi": "Đèn đỏ, đèn xanh",
+      "core_lesson": "Qua đường nắm tay người lớn, nhìn trái–phải–trái",
+      "focus_character": "bi"
+    },
+    {
+      "episode_no": 12,
+      "slug": "mat-khau-cua-gia-dinh",
+      "season_no": 3,
+      "season_name": "An toàn là số 1",
+      "title_vi": "Mật khẩu của gia đình",
+      "core_lesson": "Không đi theo, không nhận quà người lạ; mật khẩu gia đình",
+      "focus_character": "mimi"
+    },
+    {
+      "episode_no": 13,
+      "slug": "bo-suoi-pha-le",
+      "season_no": 3,
+      "season_name": "An toàn là số 1",
+      "title_vi": "Bờ suối Pha Lê",
+      "core_lesson": "Không chơi gần nước một mình, áo phao, gọi người lớn",
+      "focus_character": "lu"
+    },
+    {
+      "episode_no": 14,
+      "slug": "cai-bep-biet-nong",
+      "season_no": 3,
+      "season_name": "An toàn là số 1",
+      "title_vi": "Cái bếp biết nóng",
+      "core_lesson": "Tránh xa bếp, lửa, ổ điện, bàn là; báo người lớn",
+      "focus_character": "mun"
+    },
+    {
+      "episode_no": 15,
+      "slug": "bi-bi-lac-o-cho",
+      "season_no": 3,
+      "season_name": "An toàn là số 1",
+      "title_vi": "Bi bị lạc ở chợ",
+      "core_lesson": "Đứng yên tại chỗ, tìm cô bán hàng/chú bảo vệ, thuộc số điện thoại bố mẹ",
+      "focus_character": "bi"
+    },
+    {
+      "episode_no": 16,
+      "slug": "ban-sau-rang-tinh-nghich",
+      "season_no": 4,
+      "season_name": "Cơ thể khỏe mạnh",
+      "title_vi": "Bạn sâu răng tinh nghịch",
+      "core_lesson": "Đánh răng 2 phút sáng–tối, hạn chế kẹo",
+      "focus_character": "bi"
+    },
+    {
+      "episode_no": 17,
+      "slug": "cau-vong-trong-dia-an",
+      "season_no": 4,
+      "season_name": "Cơ thể khỏe mạnh",
+      "title_vi": "Cầu vồng trong đĩa ăn",
+      "core_lesson": "Ăn rau củ nhiều màu, thử món mới từng chút",
+      "focus_character": "bong"
+    },
+    {
+      "episode_no": 18,
+      "slug": "nuoc-loc-la-sieu-anh-hung",
+      "season_no": 4,
+      "season_name": "Cơ thể khỏe mạnh",
+      "title_vi": "Nước lọc là siêu anh hùng",
+      "core_lesson": "Uống nước lọc thay nước ngọt",
+      "focus_character": "lu"
+    },
+    {
+      "episode_no": 19,
+      "slug": "co-the-cua-em-la-cua-em",
+      "season_no": 4,
+      "season_name": "Cơ thể khỏe mạnh",
+      "title_vi": "Cơ thể của em là của em",
+      "core_lesson": "Vùng riêng tư; Nói KHÔNG – Chạy đi – Kể ngay",
+      "focus_character": "mimi"
+    },
+    {
+      "episode_no": 20,
+      "slug": "di-kham-bac-si-koala",
+      "season_no": 4,
+      "season_name": "Cơ thể khỏe mạnh",
+      "title_vi": "Đi khám Bác sĩ Koala",
+      "core_lesson": "Không sợ đi khám, che miệng khi ho, uống thuốc theo bác sĩ",
+      "focus_character": "mun"
+    },
+    {
+      "episode_no": 21,
+      "slug": "cau-truot-co-luot",
+      "season_no": 5,
+      "season_name": "Bạn bè thân thiết",
+      "title_vi": "Cầu trượt có lượt",
+      "core_lesson": "Chia sẻ & xếp hàng đợi lượt",
+      "focus_character": "mun"
+    },
+    {
+      "episode_no": 22,
+      "slug": "xin-loi-va-tha-thu",
+      "season_no": 5,
+      "season_name": "Bạn bè thân thiết",
+      "title_vi": "Xin lỗi và tha thứ",
+      "core_lesson": "Nói lời xin lỗi thật lòng, sửa lỗi, tha thứ cho bạn",
+      "focus_character": "bi"
+    },
+    {
+      "episode_no": 23,
+      "slug": "ba-tu-co-phep-mau",
+      "season_no": 5,
+      "season_name": "Bạn bè thân thiết",
+      "title_vi": "Ba từ có phép màu",
+      "core_lesson": "Cảm ơn – Xin lỗi – Xin phép",
+      "focus_character": "lu"
+    },
+    {
+      "episode_no": 24,
+      "slug": "long-den-cung-dep",
+      "season_no": 5,
+      "season_name": "Bạn bè thân thiết",
+      "title_vi": "Lông đen cũng đẹp",
+      "core_lesson": "Tôn trọng khác biệt, không chê ngoại hình bạn",
+      "focus_character": "mun"
+    },
+    {
+      "episode_no": 25,
+      "slug": "khong-la-khong",
+      "season_no": 5,
+      "season_name": "Bạn bè thân thiết",
+      "title_vi": "Không là không",
+      "core_lesson": "Từ chối khi bạn rủ làm điều sai; không bắt nạt, bênh vực bạn",
+      "focus_character": "bong"
+    },
+    {
+      "episode_no": 26,
+      "slug": "chiec-binh-vo",
+      "season_no": 6,
+      "season_name": "Trung thực & Trách nhiệm",
+      "title_vi": "Chiếc bình vỡ",
+      "core_lesson": "Làm sai thì nói thật",
+      "focus_character": "bi"
+    },
+    {
+      "episode_no": 27,
+      "slug": "loi-hua-cua-lu",
+      "season_no": 6,
+      "season_name": "Trung thực & Trách nhiệm",
+      "title_vi": "Lời hứa của Lu",
+      "core_lesson": "Giữ lời hứa, hứa điều mình làm được",
+      "focus_character": "lu"
+    },
+    {
+      "episode_no": 28,
+      "slug": "tai-gio-hay-tai-mun",
+      "season_no": 6,
+      "season_name": "Trung thực & Trách nhiệm",
+      "title_vi": "Tại gió hay tại Mun?",
+      "core_lesson": "Nhận lỗi, không đổ lỗi cho người khác",
+      "focus_character": "mun"
+    },
+    {
+      "episode_no": 29,
+      "slug": "cay-dau-cua-mimi",
+      "season_no": 6,
+      "season_name": "Trung thực & Trách nhiệm",
+      "title_vi": "Cây đậu của Mimi",
+      "core_lesson": "Chăm sóc cây mỗi ngày — trách nhiệm",
+      "focus_character": "mimi"
+    },
+    {
+      "episode_no": 30,
+      "slug": "chiec-vi-o-san-da",
+      "season_no": 6,
+      "season_name": "Trung thực & Trách nhiệm",
+      "title_vi": "Chiếc ví ở sân đa",
+      "core_lesson": "Nhặt được của rơi trả lại người mất",
+      "focus_character": "bong"
+    },
+    {
+      "episode_no": 31,
+      "slug": "bi-giup-me",
+      "season_no": 7,
+      "season_name": "Gia đình yêu thương",
+      "title_vi": "Bi giúp mẹ",
+      "core_lesson": "Làm việc nhà vừa sức (gấp khăn, tưới cây, dọn bàn)",
+      "focus_character": "bi"
+    },
+    {
+      "episode_no": 32,
+      "slug": "ong-hay-quen",
+      "season_no": 7,
+      "season_name": "Gia đình yêu thương",
+      "title_vi": "Ông hay quên",
+      "core_lesson": "Kính trọng, kiên nhẫn & giúp đỡ ông bà",
+      "focus_character": "bong"
+    },
+    {
+      "episode_no": 33,
+      "slug": "anh-em-nhu-tay-chan",
+      "season_no": 7,
+      "season_name": "Gia đình yêu thương",
+      "title_vi": "Anh em như tay chân",
+      "core_lesson": "Anh em hòa thuận, nhường nhịn đúng cách",
+      "focus_character": "mun"
+    },
+    {
+      "episode_no": 34,
+      "slug": "mon-qua-tu-lam",
+      "season_no": 7,
+      "season_name": "Gia đình yêu thương",
+      "title_vi": "Món quà tự làm",
+      "core_lesson": "Biết ơn, tặng quà bằng tấm lòng",
+      "focus_character": "mimi"
+    },
+    {
+      "episode_no": 35,
+      "slug": "bo-me-met-roi",
+      "season_no": 7,
+      "season_name": "Gia đình yêu thương",
+      "title_vi": "Bố mẹ mệt rồi",
+      "core_lesson": "Thấu cảm khi bố mẹ bận/mệt, chơi một mình an toàn",
+      "focus_character": "lu"
+    },
+    {
+      "episode_no": 36,
+      "slug": "hat-dau-thuc-day",
+      "season_no": 8,
+      "season_name": "Nhà khoa học nhí",
+      "title_vi": "Hạt đậu thức dậy",
+      "core_lesson": "Cây cần nước, ánh sáng, đất (thí nghiệm bông gòn)",
+      "focus_character": "bi"
+    },
+    {
+      "episode_no": 37,
+      "slug": "mua-tu-dau-toi",
+      "season_no": 8,
+      "season_name": "Nhà khoa học nhí",
+      "title_vi": "Mưa từ đâu tới?",
+      "core_lesson": "Vòng tuần hoàn nước đơn giản",
+      "focus_character": "bong"
+    },
+    {
+      "episode_no": 38,
+      "slug": "ong-mat-troi-di-ngu",
+      "season_no": 8,
+      "season_name": "Nhà khoa học nhí",
+      "title_vi": "Ông Mặt Trời đi ngủ",
+      "core_lesson": "Ngày và đêm, mặt trăng thay hình",
+      "focus_character": "mun"
+    },
+    {
+      "episode_no": 39,
+      "slug": "hom-nay-mac-gi",
+      "season_no": 8,
+      "season_name": "Nhà khoa học nhí",
+      "title_vi": "Hôm nay mặc gì?",
+      "core_lesson": "Thời tiết & mặc đồ phù hợp (nắng, mưa, lạnh)",
+      "focus_character": "mimi"
+    },
+    {
+      "episode_no": 40,
+      "slug": "nhung-nguoi-ban-ti-hon",
+      "season_no": 8,
+      "season_name": "Nhà khoa học nhí",
+      "title_vi": "Những người bạn tí hon",
+      "core_lesson": "Ong, giun đất, bọ rùa có ích; không làm hại côn trùng",
+      "focus_character": "lu"
+    },
+    {
+      "episode_no": 41,
+      "slug": "rac-ve-dung-nha",
+      "season_no": 9,
+      "season_name": "Em lớn khôn",
+      "title_vi": "Rác về đúng nhà",
+      "core_lesson": "Phân loại rác: hữu cơ, tái chế, còn lại",
+      "focus_character": "bi"
+    },
+    {
+      "episode_no": 42,
+      "slug": "giot-nuoc-tiet-kiem",
+      "season_no": 9,
+      "season_name": "Em lớn khôn",
+      "title_vi": "Giọt nước tiết kiệm",
+      "core_lesson": "Khóa vòi nước, tắt đèn khi ra khỏi phòng",
+      "focus_character": "mimi"
+    },
+    {
+      "episode_no": 43,
+      "slug": "heo-dat-cua-lu",
+      "season_no": 9,
+      "season_name": "Em lớn khôn",
+      "title_vi": "Heo đất của Lu",
+      "core_lesson": "Phân biệt 'muốn' và 'cần', để dành tiền",
+      "focus_character": "lu"
+    },
+    {
+      "episode_no": 44,
+      "slug": "nga-roi-dung-day",
+      "season_no": 9,
+      "season_name": "Em lớn khôn",
+      "title_vi": "Ngã rồi đứng dậy",
+      "core_lesson": "Thất bại không sao, thử lại (tập đi xe đạp/xếp tháp)",
+      "focus_character": "bong"
+    },
+    {
+      "episode_no": 45,
+      "slug": "man-hinh-vua-du",
+      "season_no": 9,
+      "season_name": "Em lớn khôn",
+      "title_vi": "Màn hình vừa đủ",
+      "core_lesson": "Giờ xem tivi/máy tính bảng có giới hạn, chơi ngoài trời",
+      "focus_character": "bi"
+    },
+    {
+      "episode_no": 46,
+      "slug": "banh-chung-ngay-tet",
+      "season_no": 10,
+      "season_name": "Nét đẹp Việt & Cộng đồng",
+      "title_vi": "Bánh chưng ngày Tết",
+      "core_lesson": "Tết cổ truyền, gói bánh chưng, lời chúc & lì xì lễ phép",
+      "focus_character": "bi"
+    },
+    {
+      "episode_no": 47,
+      "slug": "long-den-trung-thu",
+      "season_no": 10,
+      "season_name": "Nét đẹp Việt & Cộng đồng",
+      "title_vi": "Lồng đèn Trung thu",
+      "core_lesson": "Trung thu, làm lồng đèn, chia bánh cho bạn",
+      "focus_character": "mimi"
+    },
+    {
+      "episode_no": 48,
+      "slug": "di-cho-cung-bac-voi",
+      "season_no": 10,
+      "season_name": "Nét đẹp Việt & Cộng đồng",
+      "title_vi": "Đi chợ cùng bác Voi",
+      "core_lesson": "Đi chợ: xếp hàng, chào hỏi, đếm tiền đơn giản",
+      "focus_character": "mun"
+    },
+    {
+      "episode_no": 49,
+      "slug": "ngay-dau-den-truong",
+      "season_no": 10,
+      "season_name": "Nét đẹp Việt & Cộng đồng",
+      "title_vi": "Ngày đầu đến trường",
+      "core_lesson": "Lo lắng khi xa bố mẹ, làm quen bạn mới",
+      "focus_character": "lu"
+    },
+    {
+      "episode_no": 50,
+      "slug": "le-hoi-rung-xanh",
+      "season_no": 10,
+      "season_name": "Nét đẹp Việt & Cộng đồng",
+      "title_vi": "Lễ hội Rừng Xanh",
+      "core_lesson": "Tập tổng kết: cả nhóm dùng lại mọi bài học để tổ chức lễ hội cho làng",
+      "focus_character": "bi"
+    }
+  ],
+  "production_standards": {
+    "screen_time_rules": {
+      "bi_min_shot_ratio": 0.7,
+      "bi_line_ratio_default": [
+        0.3,
+        0.35
+      ],
+      "bi_line_ratio_when_focus": 0.4,
+      "focus_character_line_ratio": [
+        0.22,
+        0.25
+      ],
+      "supporting_main_cast_min_line_ratio": 0.1
+    },
+    "pedagogy_constraints": {
+      "max_words_per_dialogue_line": 15,
+      "max_words_per_shot": 18,
+      "magic_phrase_max_words": 8,
+      "magic_phrase_min_repeats": 3,
+      "skill_steps_count_range": [
+        2,
+        5
+      ],
+      "min_interactive_pauses": 4,
+      "interactive_pause_duration_s": [
+        2,
+        3
+      ],
+      "original_song_structure": "2 verses x 4 lines + chorus (reused at ending)"
+    },
+    "camera_and_transitions": {
+      "allowed_shot_sizes": [
+        "ECU",
+        "CU",
+        "MCU",
+        "MS",
+        "MWS",
+        "WS",
+        "EWS"
+      ],
+      "allowed_camera_moves": [
+        "static",
+        "push-in",
+        "dolly-out",
+        "lateral-pan",
+        "dutch-angle",
+        "punch-in"
+      ],
+      "allowed_transitions": [
+        "hard-cut",
+        "crossfade",
+        "push-right",
+        "push-left",
+        "push-up",
+        "push-down",
+        "whip-right",
+        "whip-left",
+        "zoom-match",
+        "zoom-in",
+        "zoom-out",
+        "flash-cut"
+      ]
+    },
+    "audio": {
+      "voice_map": {
+        "bi": "soc-nho",
+        "bong": "de-bong",
+        "mun": "de-mun",
+        "lu": "cho-lu",
+        "mimi": "meo-mimi",
+        "bac_si_koala": "voice-koala",
+        "me_soc": "me-soc",
+        "ong_de_rau_bac": "ong-de",
+        "co_huou_sao": "co-huou-sao",
+        "bac_voi": "bac-voi"
+      },
+      "voice_status": {
+        "soc-nho": "ready",
+        "voice-koala": "ready",
+        "de-bong": "TODO_CLONE",
+        "de-mun": "TODO_CLONE",
+        "cho-lu": "TODO_CLONE",
+        "meo-mimi": "TODO_CLONE",
+        "me-soc": "TODO_CLONE",
+        "ong-de": "TODO_CLONE",
+        "co-huou-sao": "TODO_CLONE",
+        "bac-voi": "TODO_CLONE"
+      },
+      "mastering": "de-esser, EQ presence +3.5dB @3.2kHz, compressor 4:1, -14 LUFS, MP3 192kbps 44.1kHz",
+      "bgm_ducking_db": -12
+    }
+  }
+}

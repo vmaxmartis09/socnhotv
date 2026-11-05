@@ -1,0 +1,56 @@
+{
+  "id": "mimi",
+  "character_folder_id": "meo_mimi",
+  "name": "Mèo Mimi",
+  "version": "1.0",
+  "purpose": "Bạn gái mèo tam thể khéo tay, gọn gàng, giàu lòng thấu cảm của nhóm trong series Bi Và Những Người Bạn",
+  "identity": {
+    "species": "Mèo tam thể (calico cat) nhân hóa",
+    "gender": "Nữ",
+    "age_feel": "5 tuổi",
+    "personality": [
+      "gọn gàng",
+      "chu đáo",
+      "khéo tay (vẽ tranh, gấp giấy)",
+      "thích luật lệ và ngăn nắp",
+      "hơi nhút nhát trước đám đông và sợ bẩn",
+      "rất tinh tế với cảm xúc của bạn bè"
+    ],
+    "catchphrase": "Mimi có một ý này…"
+  },
+  "body": {
+    "height_cm": 95,
+    "height_ratio_to_bi": 0.95,
+    "build": "Thon thả, thanh mảnh, duyên dáng, thấp hơn Sóc Bi (100cm) một chút",
+    "head_to_body_ratio": "Đầu tròn duyên dáng khoảng 1/4 chiều cao cơ thể",
+    "locked": true
+  },
+  "appearance": {
+    "fur": "Lông tam thể nền trắng mượt với các mảng màu cam và đen (mảng đen phủ tai trái, mảng cam quanh mắt phải)",
+    "face": "Đôi mắt hình hạnh nhân to tròn màu xanh ngọc lục bảo (emerald-green), mũi hồng nhỏ, ria mép trắng mảnh",
+    "tail": "Đuôi dài bông xù có chóp đuôi màu đen"
+  },
+  "outfit_default": {
+    "top": "Áo blouse trắng tay phồng mặc bên trong váy yếm",
+    "bottom": "Váy yếm màu tím oải hương (lavender pinafore dress)",
+    "shoes": "Giày búp bê Mary-Jane màu trắng",
+    "accessories": [
+      "Chiếc nơ nhỏ màu hồng phấn cài trên tai phải"
+    ]
+  },
+  "art_style": {
+    "render": "3D Pixar / hoạt hình CGI",
+    "lighting": "Ánh sáng studio mềm",
+    "background": "Nền trơn xám sáng"
+  },
+  "prompt_lock": "a neat, gentle 5-year-old girl calico cat named Mimi, about 95cm tall (0.95x the height of Bi the squirrel, slightly shorter than Bi), slender graceful build, calico fur with white base and orange and black patches (black patch over her left ear, orange patch around her right eye), long fluffy tail with a black tip, large emerald-green almond eyes, small pink nose, thin white whiskers, wearing a lavender pinafore dress over a white puff-sleeve blouse, a small pink bow on her right ear, white Mary-Jane shoes",
+  "voice": {
+    "voice_id": "meo-mimi",
+    "status": "TODO_CLONE",
+    "direction": "Giọng bé gái 5 tuổi nhẹ nhàng, trong trẻo, lễ phép, dịu dàng và giàu cảm xúc"
+  },
+  "persona_set": {
+    "dir": "data/projects/soc-nho-tv/characters/meo_mimi/persona/",
+    "reference": "data/projects/soc-nho-tv/characters/meo_mimi/meo_mimi_01.png (TODO: sinh từ Master DNA prompt)"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "id": "lu",
+  "character_folder_id": "cho_lu",
+  "name": "Cún Lu",
+  "version": "1.0",
+  "purpose": "Bạn gái năng động, thể thao, có chiếc mũi thính 'thám tử' của nhóm trong series Bi Và Những Người Bạn",
+  "identity": {
+    "species": "Chó cỏ Việt Nam (Vietnamese native mixed-breed puppy) nhân hóa",
+    "gender": "Nữ",
+    "age_feel": "5 tuổi",
+    "personality": [
+      "năng động",
+      "yêu thể thao",
+      "trung thành",
+      "mũi thính như thám tử",
+      "hấp tấp làm trước nghĩ sau",
+      "cười rất to và hào sảng"
+    ],
+    "catchphrase": "Lu ngửi thấy có chuyện rồi!"
+  },
+  "body": {
+    "height_cm": 105,
+    "height_ratio_to_bi": 1.05,
+    "build": "Thon gọn, khỏe khoắn kiểu vận động viên nhí, cao hơn Sóc Bi (100cm) một chút xíu",
+    "head_to_body_ratio": "Đầu cân đối khoảng 1/4 chiều cao cơ thể",
+    "locked": true
+  },
+  "appearance": {
+    "fur": "Lông ngắn màu vàng kem ấm (warm cream-golden), ngực trắng và mõm trắng",
+    "face": "Một bên tai dựng đứng và một bên tai cụp xuống (đặc điểm nhận diện độc quyền), mũi đen bóng ướt, đôi mắt to màu nâu mật ong sáng rực",
+    "tail": "Đuôi cong tròn vểnh lên sau lưng, vẫy tít khi hào hứng"
+  },
+  "outfit_default": {
+    "top": "Áo thun màu xanh bạc hà (mint-teal t-shirt)",
+    "bottom": "Quần short màu kaki",
+    "shoes": "Giày thể thao màu trắng",
+    "accessories": [
+      "Khăn rằn/bandana màu xanh lá có in hình dấu chân trắng buộc quanh cổ"
+    ]
+  },
+  "art_style": {
+    "render": "3D Pixar / hoạt hình CGI",
+    "lighting": "Ánh sáng studio mềm",
+    "background": "Nền trơn xám sáng"
+  },
+  "prompt_lock": "an energetic 5-year-old girl puppy named Lu, a Vietnamese native mixed-breed dog, about 105cm tall (1.05x the height of Bi the squirrel, almost the same height as Bi), lean athletic build, short warm cream-golden fur with white chest and white muzzle, one ear standing up and one ear folded down (signature look), curled tail, shiny black nose, big honey-brown eyes, wearing a mint-teal t-shirt, a green bandana with a white paw print tied around her neck, khaki shorts, white sneakers",
+  "voice": {
+    "voice_id": "cho-lu",
+    "status": "TODO_CLONE",
+    "direction": "Giọng bé gái 5 tuổi khỏe khoắn, giàu năng lượng, nhịp nhanh, hay bật cười sảng khoái"
+  },
+  "persona_set": {
+    "dir": "data/projects/soc-nho-tv/characters/cho_lu/persona/",
+    "reference": "data/projects/soc-nho-tv/characters/cho_lu/cho_lu_01.png (TODO: sinh từ Master DNA prompt)"
+  }
+}

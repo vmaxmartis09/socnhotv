@@ -1,0 +1,54 @@
+{
+  "id": "mun",
+  "character_folder_id": "de_mun",
+  "name": "Dê Mun",
+  "version": "1.0",
+  "purpose": "Em út 3 tuổi của nhóm bạn nhỏ trong series Bi Và Những Người Bạn — em trai của Dê Bông, hồn nhiên, đáng yêu",
+  "identity": {
+    "species": "Dê đen (black goat) nhân hóa",
+    "gender": "Nam",
+    "age_feel": "3 tuổi (em út trong nhóm, em trai Dê Bông)",
+    "personality": [
+      "hồn nhiên",
+      "tinh nghịch",
+      "hay bắt chước các anh chị",
+      "dễ khóc dễ cười",
+      "nói ngọng nhẹ vài từ đáng yêu",
+      "rất thương anh Bông"
+    ],
+    "catchphrase": "Mun cũng muốn! Mun cũng muốn!"
+  },
+  "body": {
+    "height_cm": 85,
+    "height_ratio_to_bi": 0.85,
+    "build": "Thân hình em bé 3 tuổi bụ bẫm đáng yêu, má phính tròn, thấp hơn Bi một cái đầu nhỏ (đầu Mun ngang mũi Bi)",
+    "head_to_body_ratio": "Đầu hơi to kiểu em bé toddler, khoảng 1/3.6 chiều cao cơ thể",
+    "locked": true
+  },
+  "appearance": {
+    "fur": "Lông đen tuyền óng mượt, có một đốm lông trắng hình ngôi sao nhỏ ngay giữa trán",
+    "face": "Hai mầm sừng nhỏ xíu tròn vo trên đỉnh đầu, tai ngắn cụp có mặt trong màu hồng xám, mắt tròn xoe màu nâu lấp lánh, má phính",
+    "tail": "Đuôi ngắn nhỏ màu đen hay ngoe nguẩy khi vui"
+  },
+  "outfit_default": {
+    "top": "Áo thun màu đỏ tươi có in hình ngôi sao nhỏ màu vàng trước ngực",
+    "bottom": "Quần short màu xanh navy",
+    "shoes": "Ủng đi mưa bằng cao su màu đỏ tươi",
+    "accessories": []
+  },
+  "art_style": {
+    "render": "3D Pixar / hoạt hình CGI",
+    "lighting": "Ánh sáng studio mềm",
+    "background": "Nền trơn xám sáng"
+  },
+  "prompt_lock": "a playful 3-year-old toddler boy black goat named Mun, about 85cm tall (0.85x the height of Bi the squirrel, Mun's head reaches Bi's nose), chubby-cheeked toddler build, soft glossy jet-black fur with a small white star-shaped patch on his forehead, two tiny rounded nub horns, short floppy ears with gray-pink inner side, big round sparkling brown eyes, wearing a bright red t-shirt with a small yellow star, navy blue shorts, red rubber rain boots",
+  "voice": {
+    "voice_id": "de-mun",
+    "status": "TODO_CLONE",
+    "direction": "Giọng bé trai 3 tuổi trong trẻo, cao, câu ngắn ngây ngô, thỉnh thoảng ngọng nhẹ vài từ dễ thương nhưng vẫn nghe rõ nghĩa"
+  },
+  "persona_set": {
+    "dir": "data/projects/soc-nho-tv/characters/de_mun/persona/",
+    "reference": "data/projects/soc-nho-tv/characters/de_mun/de_mun_01.png (TODO: sinh từ Master DNA prompt)"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "id": "bong",
+  "character_folder_id": "de_bong",
+  "name": "Dê Bông",
+  "version": "1.0",
+  "purpose": "Anh cả của nhóm bạn nhỏ trong series Bi Và Những Người Bạn — chín chắn, cẩn thận, thích đọc sách và ghi chép",
+  "identity": {
+    "species": "Dê trắng (white goat) nhân hóa",
+    "gender": "Nam",
+    "age_feel": "6 tuổi (anh trai của Dê Mun)",
+    "personality": [
+      "chín chắn",
+      "cẩn thận",
+      "thích đọc sách",
+      "ham ghi chép",
+      "đôi khi ra vẻ người lớn",
+      "đang học cách kiên nhẫn với em nhỏ"
+    ],
+    "catchphrase": "Để anh Bông xem nào…"
+  },
+  "body": {
+    "height_cm": 115,
+    "height_ratio_to_bi": 1.15,
+    "build": "Thon cao, dáng đứng thẳng chững chạc, Bi (100cm) đứng tới cằm Bông",
+    "head_to_body_ratio": "Đầu cân đối khoảng 1/4.2 chiều cao cơ thể",
+    "locked": true
+  },
+  "appearance": {
+    "fur": "Lông trắng như bông tuyết, xoăn nhẹ mềm mại, sạch sẽ, có chùm râu cằm nhỏ mềm",
+    "face": "Hai sừng ngắn cong nhẹ màu kem, đôi tai dài cụp có mặt trong màu hồng phấn, mắt tròn to màu nâu ấm áp, mũi hồng nhỏ xinh",
+    "tail": "Đuôi dê ngắn nhỏ màu trắng bông"
+  },
+  "outfit_default": {
+    "top": "Áo thun sọc ngang trắng xanh navy mặc bên trong quần yếm",
+    "bottom": "Quần yếm jean xanh da trời (sky-blue denim overalls)",
+    "shoes": "Dép sandal màu nâu để lộ móng guốc nhỏ sẫm màu",
+    "accessories": [
+      "Cuốn sổ tay nhỏ bìa xanh lá cài ở túi ngực quần yếm"
+    ]
+  },
+  "art_style": {
+    "render": "3D Pixar / hoạt hình CGI",
+    "lighting": "Ánh sáng studio mềm",
+    "background": "Nền trơn xám sáng"
+  },
+  "prompt_lock": "a gentle, thoughtful 6-year-old boy white goat named Bong, about 115cm tall (1.15x the height of Bi the squirrel, Bi's head reaches Bong's chin), slim upright build, fluffy clean snow-white curly fur, a small soft chin tuft, two short curved cream-colored horns, long floppy ears with pink inner side, big round warm brown eyes, small pink nose, wearing sky-blue denim overalls over a white-and-navy striped t-shirt, a tiny green notebook in the front pocket, brown sandals over small dark hooves",
+  "voice": {
+    "voice_id": "de-bong",
+    "status": "TODO_CLONE",
+    "direction": "Giọng bé trai 6 tuổi ấm áp, điềm tĩnh, rõ chữ, nhịp nói vừa phải hơi chậm rãi khi giải thích"
+  },
+  "persona_set": {
+    "dir": "data/projects/soc-nho-tv/characters/de_bong/persona/",
+    "reference": "data/projects/soc-nho-tv/characters/de_bong/de_bong_01.png (TODO: sinh từ Master DNA prompt)"
+  }
+}
