@@ -159,8 +159,15 @@ export function ProjectHub({
     useHubScope.getState().set(null);
   }, [openProjectId]);
   React.useEffect(() => {
+    let alive = true;
     setCharCount(null);
-    getRepository().listCharacters(activeProjectId).then((l) => setCharCount(l.length)).catch(() => setCharCount(0));
+    getRepository()
+      .listCharacters(activeProjectId)
+      .then((l) => alive && setCharCount(l.length))
+      .catch(() => alive && setCharCount(0));
+    return () => {
+      alive = false;
+    };
   }, [activeProjectId]);
   const [innerTab, setInnerTab] = useState<Tab>("projects");
   const tab = tabProp ?? innerTab;
@@ -261,8 +268,14 @@ export function ProjectHub({
   }, [pendingAction, tab, lib]);
 
   useEffect(() => {
+    let alive = true;
     setError("");
-    fetchProjectLibrary(activeProjectId).then(setLib).catch((e) => setError(String(e.message ?? e)));
+    fetchProjectLibrary(activeProjectId)
+      .then((res) => alive && setLib(res))
+      .catch((e) => alive && setError(String(e.message ?? e)));
+    return () => {
+      alive = false;
+    };
   }, [activeProjectId]);
 
   // Số quy tắc chính sách đang bật của dự án đang xem

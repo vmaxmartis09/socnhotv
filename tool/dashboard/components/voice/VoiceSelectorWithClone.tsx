@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import {
   Mic,
   Play,
@@ -45,13 +45,21 @@ export function VoiceSelectorWithClone({
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  const loadVoices = async () => {
-    const list = await fetchVoiceVault();
-    setVoices(list);
-  };
+  const loadVoices = useCallback(async () => {
+    try {
+      const list = await fetchVoiceVault();
+      setVoices(list);
+    } catch {}
+  }, []);
 
   useEffect(() => {
-    loadVoices();
+    let alive = true;
+    fetchVoiceVault()
+      .then((list) => alive && setVoices(list))
+      .catch(() => {});
+    return () => {
+      alive = false;
+    };
   }, []);
 
   useEffect(() => {

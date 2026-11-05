@@ -251,10 +251,14 @@ function ProjectDetail({
   };
 
   React.useEffect(() => {
+    let alive = true;
     setChars(null);
     setLib(null);
-    getRepository().listCharacters(project.id).then(setChars).catch(() => setChars([]));
-    fetchProjectLibrary(project.id).then(setLib).catch(() => setLib(null));
+    getRepository().listCharacters(project.id).then((c) => alive && setChars(c)).catch(() => alive && setChars([]));
+    fetchProjectLibrary(project.id).then((l) => alive && setLib(l)).catch(() => alive && setLib(null));
+    return () => {
+      alive = false;
+    };
   }, [project.id]);
 
   const counts = [

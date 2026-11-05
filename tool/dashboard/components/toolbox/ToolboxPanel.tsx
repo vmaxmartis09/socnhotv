@@ -766,25 +766,29 @@ export function ToolboxPanel() {
   const [checkMsg, setCheckMsg] = useState<string | null>(null);
   const [saveFor, setSaveFor] = useState<string | null>(null);
 
-  const refresh = useCallback(async () => {
+  const refresh = useCallback(async (signal?: AbortSignal) => {
     try {
       const [a, b, c] = await Promise.all([
-        fetch("/api/toolbox?action=list").then((r) => r.json()),
-        fetch("/api/toolbox?action=vaults").then((r) => r.json()),
-        fetch("/api/toolbox?action=targets").then((r) => r.json()),
+        fetch("/api/toolbox?action=list", { signal }).then((r) => r.json()),
+        fetch("/api/toolbox?action=vaults", { signal }).then((r) => r.json()),
+        fetch("/api/toolbox?action=targets", { signal }).then((r) => r.json()),
       ]);
+      if (signal?.aborted) return;
       if (a.ok) setTools(a.tools);
       if (b.ok) setVaults(b.vaults);
       if (c.ok) setTargets(c);
       setLoadError(a.ok ? null : a.error || "Không đọc được danh mục công cụ");
     } catch (e: any) {
+      if (e.name === "AbortError" || signal?.aborted) return;
       setLoadError(e.message);
     } finally {
-      setLoading(false);
+      if (!signal?.aborted) setLoading(false);
     }
   }, []);
   useEffect(() => {
-    refresh();
+    const controller = new AbortController();
+    refresh(controller.signal);
+    return () => controller.abort();
   }, [refresh]);
 
   const checkFfmpeg = async () => {

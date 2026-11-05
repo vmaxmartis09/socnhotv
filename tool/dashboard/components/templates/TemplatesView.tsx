@@ -62,26 +62,30 @@ export function TemplatesView({ className }: { className?: string }) {
   const [activeTier, setActiveTier] = useState("all");
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
-  const fetchTemplates = async () => {
+  const fetchTemplates = async (signal?: AbortSignal) => {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch("/api/templates");
+      const res = await fetch("/api/templates", { signal });
       const data = await res.json();
+      if (signal?.aborted) return;
       if (data.ok && Array.isArray(data.templates)) {
         setTemplates(data.templates);
       } else {
         setError(data.error || "Không thể tải danh sách template");
       }
     } catch (err: any) {
+      if (err.name === "AbortError" || signal?.aborted) return;
       setError(err.message || "Lỗi mạng khi tải template");
     } finally {
-      setLoading(false);
+      if (!signal?.aborted) setLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchTemplates();
+    const controller = new AbortController();
+    fetchTemplates(controller.signal);
+    return () => controller.abort();
   }, []);
 
   const filtered = useMemo(() => {
@@ -194,7 +198,7 @@ export function TemplatesView({ className }: { className?: string }) {
               type="button"
               title="Tải lại danh sách"
               aria-label="Tải lại danh sách"
-              onClick={fetchTemplates}
+              onClick={() => fetchTemplates()}
               className="flex h-8 w-8 items-center justify-center rounded-xl border border-border text-muted-foreground hover:bg-accent hover:text-foreground active:scale-95 transition-colors"
             >
               <RefreshCw className={cn("h-3.5 w-3.5", loading && "animate-spin")} />
@@ -253,7 +257,7 @@ export function TemplatesView({ className }: { className?: string }) {
           <div className="flex flex-col items-center justify-center gap-3 py-16 text-center text-muted-foreground">
             <AlertTriangle className="h-8 w-8 text-destructive" />
             <p className="text-sm font-semibold text-foreground">{error}</p>
-            <Button variant="outline" size="sm" onClick={fetchTemplates}>
+            <Button variant="outline" size="sm" onClick={() => fetchTemplates()}>
               Thử lại
             </Button>
           </div>
