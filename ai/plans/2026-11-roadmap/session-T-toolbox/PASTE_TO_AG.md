@@ -19,3 +19,9 @@ Bạn là Ag, phụ trách **Session T**. Làm việc trong repo SocNhoTV, nhán
 **Thứ tự:** T-00 → T-01 → T-02 → T-03 → T-04 + T-08 (hạ tầng, không cần chờ) → T-05 tách nền → T-07 phiên âm → T-06 clone giọng → T-11 cắt cảnh → T-10 độ sâu → T-09 (tuỳ chọn) → T-13 giao diện → T-12 báo cáo cuối.
 
 **Bắt đầu ngay với T-00**, rồi tiếp tục theo thứ tự. Báo cáo cuối vào `ai/plans/2026-11-roadmap/status/T.md`.
+
+---
+## BẢN VÁ 2026-11-05 (sau khi người dùng mở UI Toolbox)
+- UI Toolbox hiện **0 công cụ, 0 kho** dù tool đã có trên đĩa. Nguyên nhân đã kiểm: `tool/dashboard/middleware.ts` (next-intl) chặn `/api/toolbox` → 404. Đã sửa bằng cách thêm `api` vào matcher loại trừ. Ag **không được** báo `READY_FOR_USER_TEST` / `verified` cho phần UI hay API khi chưa: (a) `curl` server đang chạy thấy JSON thật, (b) mở trình duyệt chụp ảnh sáng + tối, console sạch.
+- Việc còn lại của T-13 để Ag làm lại và tự kiểm: danh sách công cụ hiện đủ 3 tool, các sub-tab Tách nền/Canh từ/Giọng có dữ liệu thật từ kho, nút "Chạy thử" chạy qua `toolbox run` và hiện kết quả thật; mỗi tool thiếu điều kiện thì mờ + tooltip lý do. Dùng đường dẫn mẫu có thật (kiểm `soc_nho_01.png` và `cloned_default_sample.mp3` có tồn tại, không thì chọn file khác đang có).
+- Ô "Height lock" (SCALE_LOCK) đã bị gỡ khỏi UI theo yêu cầu; không thêm lại.

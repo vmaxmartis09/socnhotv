@@ -24,46 +24,6 @@ import {
 } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
 
-function ScaleLockComparison({ characters }: { characters: Character[] }) {
-  const t = useTranslations("projectTab.profile");
-  const tallest = Math.max(...characters.map((c) => c.heightCm), 1);
-  const maxBarPx = 96;
-
-  return (
-    <div className="rounded-md border border-border bg-muted/20 p-3 space-y-2">
-      <p className="text-[13px] font-medium text-foreground">
-        {t("scaleCompareTitle")}
-      </p>
-      <div className="flex items-end gap-5 border-b border-border pt-2">
-        {characters.map((c) => {
-          const barH = Math.max(18, Math.round((c.heightCm / tallest) * maxBarPx));
-          return (
-            <div key={c.id} className="flex flex-col items-center gap-1">
-              <span className="text-[13px] font-mono tnum text-muted-foreground">
-                {c.heightCm} cm ({c.scaleRatio}x)
-              </span>
-              <div
-                style={{ height: barH }}
-                className={cn(
-                  "w-10 rounded-t-[4px]",
-                  c.role === "main" ? "bg-brand" : "bg-brand/35"
-                )}
-              />
-            </div>
-          );
-        })}
-      </div>
-      <div className="flex gap-5 text-[13px] text-muted-foreground">
-        {characters.map((c) => (
-          <span key={c.id} className="w-16 truncate text-center">
-            {c.name.replace(/\s*\(.*\)/, "")}
-          </span>
-        ))}
-      </div>
-    </div>
-  );
-}
-
 export function ProjectTab() {
   const t = useTranslations("projectTab");
   const c = useTranslations("common");
@@ -553,8 +513,6 @@ export function ProjectTab() {
                 />
               </label>
             </div>
-
-            <ScaleLockComparison characters={characters} />
 
             <label className="block space-y-1">
               <span className="text-muted-foreground">
@@ -1212,9 +1170,6 @@ export function ProjectTab() {
           ))}
         </ul>
 
-        {characters.length > 0 && (
-          <ScaleLockComparison characters={characters} />
-        )}
       </section>
     </div>
   );
