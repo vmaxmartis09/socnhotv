@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "historyId": "92385ef8-5235-4882-8dda-78c1006289cf",
+  "currentRevision": null,
+  "pendingChanges": false,
+  "files": {
+    "index.html": {
+      "hash": "f5f473ff242a107e28c123735168275841ad2438321a454d0956c2f2877a10f6",
+      "content": "C:\\Users\\dtthoai\\.cache\\hyperframes\\history\\92385ef8-5235-4882-8dda-78c1006289cf\\blobs\\f5\\f5f473ff242a107e28c123735168275841ad2438321a454d0956c2f2877a10f6"
+    }
+  },
+  "revisions": {},
+  "checks": {
+    "latest": null,
+    "revisions": {},
+    "unversioned": []
+  },
+  "snapshots": {
+    "latest": null,
+    "revisions": {},
+    "unversioned": []
+  },
+  "renders": {
+    "latest": {
+      "id": "6d767c4e-e181-44db-9f58-b2c207a36bb6",
+      "completedAt": 1793873959041,
+      "output": "D:\\socnhotv\\data\\shared\\templates\\_engine\\test_render\\test.mp4",
+      "status": "completed",
+      "revision": null
+    },
+    "retainedRevisions": []
+  },
+  "pendingArtifactCleanup": []
+}

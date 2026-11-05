@@ -1,0 +1,9 @@
+{
+  "params": {
+    "model": "u2net"
+  },
+  "inputs": [
+    "data/shared/templates/affiliate-compare-v1/product_a_raw.png",
+    "data/shared/templates/affiliate-compare-v1/product_b_raw.png"
+  ]
+}

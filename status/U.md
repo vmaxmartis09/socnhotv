@@ -15,8 +15,8 @@
 | **U-01** | Hợp đồng template v2 (`template.json`) + JSON Schema + Validator | **HOÀN THÀNH** | `data/shared/templates/_schema/template.v2.schema.json`, `data/shared/toolbox/ready/U-01.md` | Đã kiểm định tự động: 8/8 template hợp lệ v2, 7/7 unit tests pass |
 | **U-02** | API danh mục templates + kiểm điều kiện (tools, providers, GPU) | **HOÀN THÀNH** | `tool/dashboard/app/api/templates/route.ts`, `data/shared/toolbox/ready/U-02.md` | `curl` endpoint JSON thật; phát hiện chính xác tool/key/gpu |
 | **U-03** | UI tab Template theo chuẩn dự án (Morphicons, theme sáng/tối) | **HOÀN THÀNH** | `components/templates/**`, `data/shared/toolbox/ready/U-03.md` | Build Next.js pass, check:icons pass, ảnh chụp sáng/tối thật |
-| **U-04** | U-D Review sản phẩm: nối `bg-remove` tách nền thật → MP4 9:16 | ĐANG THỰC HIỆN | MP4 + ffprobe + contact sheet | Tiếp tục U-04 |
-| **U-05** | U-C TikTok KOC review: MP4 thật có giọng OmniVoice + subtitle | CHỜ CHẠY | MP4 + đo WER | Chờ U-04 |
+| **U-04** | U-D Review sản phẩm: nối `bg-remove` tách nền thật → MP4 9:16 | **HOÀN THÀNH** | `affiliate-compare-v1`, `unboxing-v1`, `data/shared/toolbox/ready/U-04.md` | MP4 thật 540x960 84 frames, contact sheet, status verified |
+| **U-05** | U-C TikTok KOC review: MP4 thật có giọng OmniVoice + subtitle | ĐANG THỰC HIỆN | MP4 + đo WER | Tiếp tục U-05 |
 | **U-06** | U-G Video vẽ tay: tool Toolbox `handdraw` + template | CHỜ CHẠY | MP4 vẽ từng nét | Chờ U-05 |
 | **U-07** | U-F Motion graphics / kinetic text bằng HyperFrames | CHỜ CHẠY | MP4 16:9 + 9:16 | Chờ U-06 |
 | **U-08** | U-E Thay nhân vật: Tier A overlay-replace + giới hạn trung thực | CHỜ CHẠY | MP4 Tier A, UI minh bạch | Chờ U-07 |

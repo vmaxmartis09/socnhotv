@@ -1,0 +1,68 @@
+{
+  "ok": true,
+  "outputs": [
+    {
+      "path": "D:\\socnhotv\\data\\shared\\assets\\cutouts\\b7f13388\\cutout.png",
+      "kind": "cutout",
+      "sha256": "0daf1dc2f3480e4dd203faf4a0a1de1e75ca74b7745e18d6f84751f0284fbf05"
+    },
+    {
+      "path": "D:\\socnhotv\\data\\shared\\assets\\cutouts\\b7f13388\\mask.png",
+      "kind": "mask",
+      "sha256": "702f0caceb4c166d072da82278cdb0eaec4d70ffddc70a8e80066be6fd8eb071"
+    },
+    {
+      "path": "D:\\socnhotv\\data\\shared\\assets\\cutouts\\0c10a4f2\\cutout.png",
+      "kind": "cutout",
+      "sha256": "36dba481ec9b8779f5e7fa06be9e43a4bcf5698212d4726dff2530a44b87bb8a"
+    },
+    {
+      "path": "D:\\socnhotv\\data\\shared\\assets\\cutouts\\0c10a4f2\\mask.png",
+      "kind": "mask",
+      "sha256": "6548c997fc9cc1cfe00d868a11bcd4703e40ed36c42db0dd530f33ba5f861790"
+    }
+  ],
+  "store_records": [
+    {
+      "id": "b7f13388",
+      "created_by_tool": "bg-remove",
+      "tool_version": "1.0.0",
+      "source": "D:\\socnhotv\\data\\shared\\templates\\affiliate-compare-v1\\product_a_raw.png",
+      "license": "Internal Project Asset",
+      "created_at": "2026-11-05T17:23:33.333813",
+      "files": {
+        "cutout": "D:\\socnhotv\\data\\shared\\assets\\cutouts\\b7f13388\\cutout.png",
+        "mask": "D:\\socnhotv\\data\\shared\\assets\\cutouts\\b7f13388\\mask.png",
+        "source_json": "D:\\socnhotv\\data\\shared\\assets\\cutouts\\b7f13388\\source.json"
+      },
+      "metadata": {
+        "width": 600,
+        "height": 600,
+        "model": "u2net",
+        "sha256": "b7f133889fe985f1cf2790df0ccb5537c82571bf4767ec473efd2621b5dfe708"
+      }
+    },
+    {
+      "id": "0c10a4f2",
+      "created_by_tool": "bg-remove",
+      "tool_version": "1.0.0",
+      "source": "D:\\socnhotv\\data\\shared\\templates\\affiliate-compare-v1\\product_b_raw.png",
+      "license": "Internal Project Asset",
+      "created_at": "2026-11-05T17:23:34.895202",
+      "files": {
+        "cutout": "D:\\socnhotv\\data\\shared\\assets\\cutouts\\0c10a4f2\\cutout.png",
+        "mask": "D:\\socnhotv\\data\\shared\\assets\\cutouts\\0c10a4f2\\mask.png",
+        "source_json": "D:\\socnhotv\\data\\shared\\assets\\cutouts\\0c10a4f2\\source.json"
+      },
+      "metadata": {
+        "width": 600,
+        "height": 600,
+        "model": "u2net",
+        "sha256": "0c10a4f2e62f4feae19fee8e72de8b8baa2d1de88d301c83ce21fc693c157a4e"
+      }
+    }
+  ],
+  "warnings": [],
+  "error": null,
+  "elapsed_s": 49.8467
+}

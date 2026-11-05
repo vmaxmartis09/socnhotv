@@ -3,12 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width={{ width }}, height={{ height }}, initial-scale=1.0" />
-    <title>{{ data.title }}</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <title>{{ data.title or "So Sánh Sản Phẩm" }}</title>
+    <script src="assets/gsap.min.js"></script>
     <style>
       * { box-sizing: border-box; margin: 0; padding: 0; }
-      body, html { width: {{ width }}px; height: {{ height }}px; overflow: hidden; background: #030712; font-family: -apple-system, sans-serif; }
-      #root { position: relative; width: {{ width }}px; height: {{ height }}px; overflow: hidden; }
+      body, html { width: {{ width }}px; height: {{ height }}px; overflow: hidden; background: #030712; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+      #root { position: relative; width: {{ width }}px; height: {{ height }}px; overflow: hidden; background: radial-gradient(circle at 50% 20%, #1e1b4b 0%, #030712 100%); }
       {{ styles_css }}
     </style>
   </head>
@@ -25,30 +25,56 @@
         ⚖️ {{ data.title or "KÈO ĐẤU: NÊN MUA BÊN NÀO?" }}
       </div>
 
-      <!-- Split VS -->
-      <div id="split-box" class="split-wrapper clip" data-start="0.5" data-duration="{{ total_duration - 0.5 }}" data-track-index="2">
-        <div class="split-col col-a">{{ data.item_a }}</div>
-        <div class="vs-badge">VS</div>
-        <div class="split-col col-b">{{ data.item_b }}</div>
+      <!-- Split VS Wrapper -->
+      <div id="split-box" class="split-wrapper clip" data-start="0.4" data-duration="{{ total_duration - 0.4 }}" data-track-index="2">
+        <!-- Item A -->
+        <div id="col-a" class="split-col col-a">
+          <div class="product-img-wrap">
+            <img src="assets/product_a.png" class="product-cutout" alt="Product A" />
+          </div>
+          <div class="item-title">{{ data.item_a or "Tai Nghe Pro Max" }}</div>
+          <div class="item-price">{{ data.price_a or "1.290.000đ" }}</div>
+          <div class="spec-list">
+            <div class="spec-item">⚡ Pin: 30 Giờ</div>
+            <div class="spec-item">🎧 Âm thanh Hi-Res</div>
+            <div class="spec-item">🛡️ Bảo hành 12T</div>
+          </div>
+        </div>
+
+        <!-- Center VS Badge -->
+        <div id="vs" class="vs-badge">VS</div>
+
+        <!-- Item B -->
+        <div id="col-b" class="split-col col-b">
+          <div class="product-img-wrap">
+            <img src="assets/product_b.png" class="product-cutout" alt="Product B" />
+          </div>
+          <div class="item-title">{{ data.item_b or "Đồng Hồ Ultra GPS" }}</div>
+          <div class="item-price">{{ data.price_b or "1.450.000đ" }}</div>
+          <div class="spec-list">
+            <div class="spec-item">⚡ Pin: 48 Giờ</div>
+            <div class="spec-item">📍 Định vị GPS</div>
+            <div class="spec-item">🌊 Chống nước 5ATM</div>
+          </div>
+        </div>
       </div>
 
       <!-- Winner Verdict -->
-      <div id="verdict" class="verdict-box clip" data-start="2.5" data-duration="{{ total_duration - 2.5 }}" data-track-index="2">
-        🏆 {{ data.winner }}
+      <div id="verdict" class="verdict-box clip" data-start="2.2" data-duration="{{ total_duration - 2.2 }}" data-track-index="2">
+        🏆 {{ data.winner or "CHIẾN THẮNG: ĐỒNG HỒ ULTRA (Đa Năng Hơn!)" }}
       </div>
 
-      <audio id="audio-voiceover" class="clip" src="{{ voiceover_src }}" data-start="0" data-duration="{{ total_duration }}" data-track-index="3"></audio>
-      {% if bgm_src %}
-      <audio id="audio-bgm" class="clip" src="{{ bgm_src }}" data-start="0" data-duration="{{ total_duration }}" data-track-index="4" data-volume="0.16"></audio>
-      {% endif %}
+      <audio id="audio-voiceover" class="clip" src="{{ voiceover_src or 'assets/voiceover.mp3' }}" data-start="0" data-duration="{{ total_duration }}" data-track-index="3"></audio>
     </div>
 
     <script>
       window.__timelines = window.__timelines || {};
       const tl = gsap.timeline({ paused: true });
-      tl.fromTo("#hdr", { y: -30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4 }, 0.1);
-      tl.fromTo("#split-box", { scale: 0.9, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.45, ease: "power2.out" }, 0.5);
-      tl.fromTo("#verdict", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "back.out(1.6)" }, 2.5);
+      tl.fromTo("#hdr", { y: -30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "power2.out" }, 0.1);
+      tl.fromTo("#col-a", { x: -60, opacity: 0 }, { x: 0, opacity: 1, duration: 0.4, ease: "power2.out" }, 0.4);
+      tl.fromTo("#col-b", { x: 60, opacity: 0 }, { x: 0, opacity: 1, duration: 0.4, ease: "power2.out" }, 0.4);
+      tl.fromTo("#vs", { scale: 0, rotation: -180 }, { scale: 1, rotation: 0, duration: 0.4, ease: "back.out(2)" }, 0.6);
+      tl.fromTo("#verdict", { y: 50, scale: 0.8, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 0.45, ease: "back.out(1.5)" }, 2.2);
       window.__timelines["main"] = tl;
       tl.seek(0);
     </script>

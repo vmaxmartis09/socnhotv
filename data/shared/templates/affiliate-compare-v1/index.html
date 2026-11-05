@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=540, height=960, initial-scale=1.0" />
+    <title>KÈO ĐẤU: NÊN MUA BẢN NÀO?</title>
+    <script src="assets/gsap.min.js"></script>
+    <style>
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body, html { width: 540px; height: 960px; overflow: hidden; background: #030712; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+      #root { position: relative; width: 540px; height: 960px; overflow: hidden; background: radial-gradient(circle at 50% 20%, #1e1b4b 0%, #030712 100%); }
+      .compare-header {
+  position: absolute;
+  top: 90px;
+  left: 24px;
+  right: 24px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 9999px;
+  font-size: 20px;
+  font-weight: 900;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.4);
+  letter-spacing: 0.03em;
+  z-index: 20;
+}
+
+.split-wrapper {
+  position: absolute;
+  top: 160px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  z-index: 20;
+}
+
+.split-col {
+  flex: 1;
+  background: rgba(15, 23, 42, 0.88);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-radius: 18px;
+  padding: 14px 10px;
+  text-align: center;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+}
+
+.product-img-wrap {
+  width: 140px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+  background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 70%);
+}
+
+.product-cutout {
+  max-width: 130px;
+  max-height: 130px;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 14px rgba(0,0,0,0.6));
+}
+
+.item-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+
+.item-price {
+  font-size: 14px;
+  font-weight: 700;
+  color: #f59e0b;
+  margin-bottom: 8px;
+}
+
+.spec-list {
+  font-size: 11px;
+  color: #94a3b8;
+  line-height: 1.5;
+  text-align: left;
+  width: 100%;
+  padding: 0 4px;
+}
+
+.spec-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.vs-badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, #ef4444, #b91c1c);
+  color: #fff;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 3px solid #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 900;
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.8);
+  z-index: 30;
+}
+
+.verdict-box {
+  position: absolute;
+  bottom: 180px;
+  left: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #fff;
+  padding: 14px 18px;
+  border-radius: 16px;
+  font-size: 15px;
+  font-weight: 900;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(16, 185, 129, 0.5);
+  z-index: 25;
+}
+    </style>
+  </head>
+  <body>
+    <div id="root"
+         data-composition-id="main"
+         data-start="0"
+         data-duration="3.5"
+         data-width="540"
+         data-height="960">
+
+      <!-- Header -->
+      <div id="hdr" class="compare-header clip" data-start="0" data-duration="3.5" data-track-index="2">
+        ⚖️ KÈO ĐẤU: NÊN MUA BẢN NÀO?
+      </div>
+
+      <!-- Split VS Wrapper -->
+      <div id="split-box" class="split-wrapper clip" data-start="0.4" data-duration="3.1" data-track-index="2">
+        <!-- Item A -->
+        <div id="col-a" class="split-col col-a">
+          <div class="product-img-wrap">
+            <img src="assets/product_a.png" class="product-cutout" alt="Product A" />
+          </div>
+          <div class="item-title">Bản Thường (199K)</div>
+          <div class="item-price">1.290.000đ</div>
+          <div class="spec-list">
+            <div class="spec-item">⚡ Pin: 30 Giờ</div>
+            <div class="spec-item">🎧 Âm thanh Hi-Res</div>
+            <div class="spec-item">🛡️ Bảo hành 12T</div>
+          </div>
+        </div>
+
+        <!-- Center VS Badge -->
+        <div id="vs" class="vs-badge">VS</div>
+
+        <!-- Item B -->
+        <div id="col-b" class="split-col col-b">
+          <div class="product-img-wrap">
+            <img src="assets/product_b.png" class="product-cutout" alt="Product B" />
+          </div>
+          <div class="item-title">Bản Cao Cấp (249K)</div>
+          <div class="item-price">1.450.000đ</div>
+          <div class="spec-list">
+            <div class="spec-item">⚡ Pin: 48 Giờ</div>
+            <div class="spec-item">📍 Định vị GPS</div>
+            <div class="spec-item">🌊 Chống nước 5ATM</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Winner Verdict -->
+      <div id="verdict" class="verdict-box clip" data-start="2.2" data-duration="1.2999999999999998" data-track-index="2">
+        🏆 CHỐT: Thêm 50K lấy Bản Cao Cấp cực hời!
+      </div>
+
+      <audio id="audio-voiceover" class="clip" src="assets/voiceover.mp3" data-start="0" data-duration="3.5" data-track-index="3"></audio>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#hdr", { y: -30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "power2.out" }, 0.1);
+      tl.fromTo("#col-a", { x: -60, opacity: 0 }, { x: 0, opacity: 1, duration: 0.4, ease: "power2.out" }, 0.4);
+      tl.fromTo("#col-b", { x: 60, opacity: 0 }, { x: 0, opacity: 1, duration: 0.4, ease: "power2.out" }, 0.4);
+      tl.fromTo("#vs", { scale: 0, rotation: -180 }, { scale: 1, rotation: 0, duration: 0.4, ease: "back.out(2)" }, 0.6);
+      tl.fromTo("#verdict", { y: 50, scale: 0.8, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 0.45, ease: "back.out(1.5)" }, 2.2);
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
