@@ -111,7 +111,7 @@ def generate_handdraw_video(
         str(output_mp4_path),
     ]
 
-    pipe = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
+    pipe = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
     # Whiteboard canvas background
     board_base = Image.new("RGB", (width, height), (252, 252, 254))
@@ -153,8 +153,7 @@ def generate_handdraw_video(
     pipe.wait()
 
     if pipe.returncode != 0:
-        err = pipe.stderr.read().decode("utf-8", errors="ignore")
-        raise RuntimeError(f"FFmpeg encoding failed: {err}")
+        raise RuntimeError(f"FFmpeg encoding failed with returncode {pipe.returncode}")
 
     return output_mp4_path
 

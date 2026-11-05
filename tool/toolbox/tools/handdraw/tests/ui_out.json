@@ -1,0 +1,32 @@
+{
+  "ok": true,
+  "outputs": [
+    {
+      "path": "D:\\socnhotv\\data\\shared\\assets\\animations\\a687db4c\\whiteboard.mp4",
+      "kind": "video",
+      "sha256": "910f2f69778d025f9549fa55dff1ecd14487df8ca319cc09d773f901079e1dcc"
+    }
+  ],
+  "store_records": [
+    {
+      "id": "a687db4c",
+      "created_by_tool": "handdraw",
+      "tool_version": "1.0.0",
+      "source": "D:\\socnhotv\\data\\shared\\templates\\handdraw-whiteboard-v1\\assets\\sketch.png",
+      "license": "MIT",
+      "created_at": "2026-11-05 17:33:57",
+      "files": {
+        "video": "D:\\socnhotv\\data\\shared\\assets\\animations\\a687db4c\\whiteboard.mp4"
+      },
+      "metadata": {
+        "width": 540,
+        "height": 960,
+        "duration": 3.0,
+        "fps": 24
+      }
+    }
+  ],
+  "warnings": [],
+  "error": null,
+  "elapsed_s": 0.5833
+}

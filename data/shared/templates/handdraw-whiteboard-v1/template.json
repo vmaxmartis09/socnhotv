@@ -1,0 +1,100 @@
+{
+  "id": "handdraw-whiteboard-v1",
+  "name": "Video Vẽ Tay Whiteboard Từng Nét",
+  "version": 2,
+  "kind": "handdrawn",
+  "category": "education",
+  "description": "Video vẽ tay bảng trắng (whiteboard sketch animation), tái hiện từng nét vẽ tay với bút dạ và phụ đề giải thích sinh động.",
+  "platforms": [
+    "tiktok",
+    "youtube_shorts",
+    "facebook_reels"
+  ],
+  "default_platform": "tiktok",
+  "tags": [
+    "whiteboard",
+    "handdraw",
+    "education",
+    "sketch",
+    "explainer"
+  ],
+  "status": "verified",
+  "tier": "A",
+  "requires": {
+    "tools": [
+      "handdraw",
+      "ffmpeg-bin"
+    ],
+    "providers": [],
+    "gpu": false,
+    "ffmpeg": true
+  },
+  "recipe": {
+    "nodes": [
+      "node_script",
+      "node_handdraw",
+      "node_voice",
+      "node_template_render",
+      "node_platform_export"
+    ],
+    "description": "Kịch bản bài học -> Tạo tranh vẽ tay stroke-by-stroke qua Toolbox handdraw -> Thu âm giọng đọc -> Render video dọc 9:16"
+  },
+  "slots": [
+    {
+      "key": "title",
+      "label": "Tiêu đề bài học",
+      "type": "string",
+      "required": true,
+      "default": "HỌC VẼ CÙNG SÓC NHỎ BI",
+      "description": "Tiêu đề hiển thị ở đầu video vẽ tay"
+    },
+    {
+      "key": "sketch_image",
+      "label": "Ảnh nét vẽ đầu vào",
+      "type": "image",
+      "required": true,
+      "default": "assets/sketch.png",
+      "description": "Ảnh nét vẽ mực đen trên nền trắng"
+    },
+    {
+      "key": "caption",
+      "label": "Lời giải thích",
+      "type": "string",
+      "required": false,
+      "default": "Bé hãy vẽ hình tròn trước, rồi thêm đôi tai tam giác nha!",
+      "description": "Phụ đề hướng dẫn từng bước vẽ"
+    }
+  ],
+  "outputs": {
+    "aspect": [
+      "9:16",
+      "16:9"
+    ],
+    "duration": {
+      "min": 2,
+      "max": 60,
+      "default": 3
+    }
+  },
+  "sample_output": "data/shared/templates/handdraw-whiteboard-v1/preview.mp4",
+  "verified_on": "2026-11-05",
+  "sources": [
+    {
+      "name": "whiteboard-animator",
+      "repo": "masihsultani/whiteboard-animator",
+      "license": "MIT",
+      "stars": 261,
+      "pushed_at": "2026-09-08"
+    },
+    {
+      "name": "handanim",
+      "repo": "subroy13/handanim",
+      "license": "MIT",
+      "stars": 50,
+      "pushed_at": "2026-11-05"
+    }
+  ],
+  "learned_from": [
+    "whiteboard-stroke-revelation"
+  ]
+}
