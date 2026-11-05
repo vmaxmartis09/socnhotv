@@ -1,0 +1,12 @@
+{
+  "params": {
+    "duration_sec": 3.0,
+    "fps": 24,
+    "width": 540,
+    "height": 960,
+    "show_hand": true
+  },
+  "inputs": [
+    "data/shared/templates/handdraw-whiteboard-v1/assets/sketch.png"
+  ]
+}

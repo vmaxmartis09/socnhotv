@@ -1,0 +1,9 @@
+{
+  "params": {
+    "model_size": "small",
+    "language": "vi"
+  },
+  "inputs": [
+    "data/shared/voice_vault/soc-nho/cloned_default_sample.mp3"
+  ]
+}

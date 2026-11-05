@@ -1,0 +1,8 @@
+{
+  "params": {
+    "model": "u2net"
+  },
+  "inputs": [
+    "data/projects/soc-nho-tv/characters/soc_nho/soc_nho_01.png"
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "ok": true,
+  "outputs": [
+    {
+      "path": "D:\\socnhotv\\data\\shared\\assets\\cutouts\\71185678\\cutout.png",
+      "kind": "cutout",
+      "sha256": "c6a98c10323738a8db976151781c3c32e3a260c79da90505f26a0a4ae758d2f2"
+    },
+    {
+      "path": "D:\\socnhotv\\data\\shared\\assets\\cutouts\\71185678\\mask.png",
+      "kind": "mask",
+      "sha256": "c203a940813ada310ade7361b47d93d5c17be45b10dcffa0f5f4688e262366e9"
+    }
+  ],
+  "store_records": [
+    {
+      "id": "71185678",
+      "created_by_tool": "bg-remove",
+      "tool_version": "1.0.0",
+      "source": "D:\\socnhotv\\data\\projects\\soc-nho-tv\\characters\\soc_nho\\soc_nho_01.png",
+      "license": "Internal Project Asset",
+      "created_at": "2026-11-05T16:44:05.314060",
+      "files": {
+        "cutout": "D:\\socnhotv\\data\\shared\\assets\\cutouts\\71185678\\cutout.png",
+        "mask": "D:\\socnhotv\\data\\shared\\assets\\cutouts\\71185678\\mask.png",
+        "source_json": "D:\\socnhotv\\data\\shared\\assets\\cutouts\\71185678\\source.json"
+      },
+      "metadata": {
+        "width": 1024,
+        "height": 572,
+        "model": "u2net",
+        "sha256": "71185678d83cb534675c6e9a7ee746a2e284199e89c8cae92c104b761fbbb046"
+      }
+    }
+  ],
+  "warnings": [],
+  "error": null,
+  "elapsed_s": 6.7884
+}

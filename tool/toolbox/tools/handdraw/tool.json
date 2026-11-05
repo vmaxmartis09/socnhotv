@@ -1,0 +1,42 @@
+{
+  "id": "handdraw",
+  "name": "Whiteboard Hand-drawn Video Generator",
+  "version": "1.0.0",
+  "category": "animation",
+  "entry": "run.py",
+  "runtime": "python3.12",
+  "install": {
+    "command": "python -m pip install -r requirements.txt",
+    "requirements_file": "requirements.txt"
+  },
+  "requires_gpu": false,
+  "requires_ffmpeg": true,
+  "license": {
+    "code": "MIT",
+    "weights": "None",
+    "commercial_ok": true,
+    "source_url": "https://github.com/masihsultani/whiteboard-animator",
+    "checked_on": "2026-11-05"
+  },
+  "inputs": [
+    {
+      "name": "input_image",
+      "type": "file",
+      "format": ["png", "jpg", "jpeg", "svg"],
+      "description": "Black-and-white sketch or line-art image on white background"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "video",
+      "type": "file",
+      "description": "Progressive hand-drawn MP4 video"
+    }
+  ],
+  "writes_to": "data/shared/assets/animations/",
+  "smoke_test": {
+    "sample_input": "data/shared/templates/handdraw-whiteboard-v1/assets/sketch.png",
+    "expected_output_kind": "video"
+  },
+  "status": "verified"
+}

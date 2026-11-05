@@ -1,0 +1,33 @@
+{
+  "source": "C:\\Users\\dtthoai\\AppData\\Local\\Temp\\sc_test\\sample3.mp4",
+  "duration": 9.0,
+  "scene_count": 3,
+  "params": {
+    "threshold": 3.0,
+    "min_scene_s": 1.0,
+    "aspect": "9:16"
+  },
+  "scenes": [
+    {
+      "index": 1,
+      "start": 0.0,
+      "end": 3.0,
+      "duration": 3.0,
+      "clip": "D:\\socnhotv\\data\\shared\\assets\\scenes\\baaa472a\\clips\\scene_001.mp4"
+    },
+    {
+      "index": 2,
+      "start": 3.0,
+      "end": 6.0,
+      "duration": 3.0,
+      "clip": "D:\\socnhotv\\data\\shared\\assets\\scenes\\baaa472a\\clips\\scene_002.mp4"
+    },
+    {
+      "index": 3,
+      "start": 6.0,
+      "end": 9.0,
+      "duration": 3.0,
+      "clip": "D:\\socnhotv\\data\\shared\\assets\\scenes\\baaa472a\\clips\\scene_003.mp4"
+    }
+  ]
+}

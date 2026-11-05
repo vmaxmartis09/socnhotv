@@ -133,4 +133,5 @@ def render_template(template_id: str, width: int = 540, height: int = 960, fps: 
 
 if __name__ == "__main__":
     tid = sys.argv[1] if len(sys.argv) > 1 else "affiliate-compare-v1"
-    render_template(tid)
+    dur = float(sys.argv[2]) if len(sys.argv) > 2 else 4.0
+    render_template(tid, duration=dur)
