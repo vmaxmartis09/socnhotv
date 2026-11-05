@@ -84,7 +84,7 @@
     "facebook": "cover"
   },
   "kind": "koc",
-  "status": "draft",
+  "status": "verified",
   "tier": "A",
   "requires": {
     "tools": [
@@ -116,8 +116,8 @@
       "default": 30
     }
   },
-  "sample_output": null,
-  "verified_on": null,
+  "sample_output": "data/shared/templates/koc-review-v1/preview.mp4",
+  "verified_on": "2026-11-05",
   "sources": [
     {
       "name": "openshorts",
