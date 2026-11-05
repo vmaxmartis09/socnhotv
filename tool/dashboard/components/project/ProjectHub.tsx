@@ -11,7 +11,9 @@ import {
   type ProjectLibrary,
   type LibraryItem,
 } from "@/lib/repositories/library";
-import { Users, ScrollText, Clapperboard, Video, Images, X, Film, FolderGit2, ChevronRight, Check, Plus, Pencil, Wand2, Upload } from "@/components/ui/icons";
+import { Users, ScrollText, Clapperboard, Video, Images, X, Film, FolderGit2, ChevronRight, Check, Plus, Pencil, Wand2, Upload, ShieldCheck } from "@/components/ui/icons";
+import { PolicyEditor } from "@/components/studio/PolicyEditor";
+import { fetchProjectPolicy } from "@/lib/api/policy";
 import { Markdown } from "./Markdown";
 import { usePreview } from "@/lib/preview";
 import { useHubScope } from "@/lib/hub";
@@ -23,7 +25,7 @@ import { ProjectsTab } from "./ProjectsTab";
 import { EpisodeDetail } from "./EpisodeDetail";
 import { cn } from "@/lib/utils";
 
-export type HubTab = "projects" | "characters" | "scripts" | "episodes" | "videos" | "images";
+export type HubTab = "projects" | "characters" | "scripts" | "episodes" | "videos" | "images" | "policy";
 type Tab = HubTab;
 
 const TABS: { key: Tab; label: string; Icon: React.ComponentType<{ className?: string }> }[] = [
@@ -33,6 +35,7 @@ const TABS: { key: Tab; label: string; Icon: React.ComponentType<{ className?: s
   { key: "episodes", label: "Tập phim", Icon: Clapperboard },
   { key: "videos", label: "Kho video", Icon: Video },
   { key: "images", label: "Kho hình ảnh", Icon: Images },
+  { key: "policy", label: "Chính sách", Icon: ShieldCheck },
 ];
 
 const fade = {
@@ -255,8 +258,19 @@ export function ProjectHub({
     fetchProjectLibrary(activeProjectId).then(setLib).catch((e) => setError(String(e.message ?? e)));
   }, [activeProjectId]);
 
+  // Số quy tắc chính sách đang bật của dự án đang xem
+  const [policyRules, setPolicyRules] = useState<number | null>(null);
+  useEffect(() => {
+    let alive = true;
+    setPolicyRules(null);
+    fetchProjectPolicy(activeProjectId).then((p) => alive && setPolicyRules(p ? p.rules.filter((r) => r.enabled).length : 0));
+    return () => {
+      alive = false;
+    };
+  }, [activeProjectId, tab]);
+
   const count = (t: Tab) =>
-    t === "projects" ? projects.length : t === "characters" ? charCount ?? 0 : !lib ? 0 : t === "scripts" ? lib.scripts.length : t === "episodes" ? lib.episodes.length : t === "videos" ? lib.videos.length : t === "images" ? lib.images.length : 0;
+    t === "policy" ? policyRules ?? 0 : t === "projects" ? projects.length : t === "characters" ? charCount ?? 0 : !lib ? 0 : t === "scripts" ? lib.scripts.length : t === "episodes" ? lib.episodes.length : t === "videos" ? lib.videos.length : t === "images" ? lib.images.length : 0;
 
   return (
     <div className={cn("space-y-3", compact && "p-2.5")}>
@@ -278,7 +292,7 @@ export function ProjectHub({
               )}
             >
               <Icon className="h-4 w-4" />
-                            {(key === "characters" ? charCount !== null : key === "projects" || lib) && <span className="text-xs text-muted-foreground tnum">{count(key)}</span>}
+                            {(key === "characters" ? charCount !== null : key === "policy" ? policyRules !== null : key === "projects" || lib) && <span className="text-xs text-muted-foreground tnum">{count(key)}</span>}
               {active && <motion.span layoutId="hub-tab" className="absolute inset-x-1 -bottom-px h-0.5 rounded bg-foreground" />}
             </button>
           );
@@ -309,6 +323,15 @@ export function ProjectHub({
 
       <div key={tab}>
           {tab === "characters" && <CharactersManager compact={compact} projectId={activeProjectId} />}
+
+          {tab === "policy" && (
+            <div className="space-y-3 pb-4">
+              <p className="text-[13px] leading-relaxed text-muted-foreground">
+                Chính sách nội dung của <b className="text-foreground">{scopeProject?.name ?? activeProjectId}</b>: áp dụng cho cả dự án, node Kiểm tra chất lượng luôn đối chiếu lời thoại, caption, kịch bản và prompt.
+              </p>
+              <PolicyEditor projectId={activeProjectId} />
+            </div>
+          )}
 
           {tab === "projects" && <ProjectsTab />}
 

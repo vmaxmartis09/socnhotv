@@ -8,7 +8,7 @@ interface HubState {
   detailProjectId: string | null;
   setDetail: (id: string | null) => void;
   /** Yêu cầu mở một tab của hub (từ nơi khác, ví dụ gợi ý "Tạo nhân vật"); FloatingPanels xử lý rồi xóa */
-  pendingTab: "projects" | "characters" | "scripts" | "episodes" | "videos" | "images" | null;
+  pendingTab: "projects" | "characters" | "scripts" | "episodes" | "videos" | "images" | "policy" | null;
   /** Việc cần làm ngay khi tab mở (ví dụ mở form tạo nhân vật). Tab đích xử lý rồi xóa. */
   pendingAction: "create-character" | "compose-script" | "create-episode" | null;
   /** Mục cần chọn sẵn khi tab đích mở (id nhân vật / tập). Tab đích xử lý rồi xóa. */

@@ -24,8 +24,10 @@ const SCOPE_LABEL: Record<string, string> = {
 };
 
 /** Chính sách nội dung xuyên suốt dự án: từ ngữ cấm theo nhóm, mức độ, phạm vi kiểm. */
-export function PolicyEditor() {
-  const projectId = useStudioStore((s: any) => s.activeProjectId) as string;
+export function PolicyEditor({ projectId: projectIdProp }: { projectId?: string } = {}) {
+  const activeId = useStudioStore((s: any) => s.activeProjectId) as string;
+  // Chính sách thuộc về TỪNG dự án: dùng dự án được truyền vào (hub đang xem), mặc định là dự án đang mở
+  const projectId = projectIdProp || activeId;
   const [policy, setPolicy] = useState<ContentPolicy | null>(null);
   const [dirty, setDirty] = useState(false);
   const [busy, setBusy] = useState(false);
