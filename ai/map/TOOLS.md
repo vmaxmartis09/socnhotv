@@ -54,3 +54,5 @@ Tài liệu định vị các công cụ, engine và script chính của hệ th
   - `character-overlay-replace-v1`: Thay nhân vật giữ nội dung Tier A (minh bạch)
   - `yt-animation-episode-v1`: Hoạt hình dài tập 16:9 (chờ Session F `episode_render`)
 - **Dashboard UI Tab Template:** `tool/dashboard/app/[locale]/templates/` & `tool/dashboard/components/templates/`
+- **UI Performance & Style Validation:**
+  - `tool/scripts/check_ui_style.mjs`: Kiểm tra chống thoái lui style (`npm run check:style`) cấm `lucide-react` trực tiếp, cấm `alert`/`window.confirm`, bắt buộc selector `useStudioStore`, và bắt buộc `loading="lazy"` cho ảnh.

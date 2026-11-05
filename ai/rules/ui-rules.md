@@ -44,3 +44,9 @@
     (ví dụ thẻ poster nhân vật `components/characters/CharacterPoster.tsx`), không dựng chip/thẻ riêng. Mọi mục hiển thị đều bấm được và đưa tới đúng
     tab + đúng mục đó (`useHubScope.openTab(tab, action, focusId)`; tab đích đọc `pendingFocus` rồi `clearFocus()`).
 
+23. **Vùng bấm di động**: nút chỉ có icon phải có kích thước tối thiểu hoặc padding để vùng bấm đạt ít nhất 32–44px trên màn hình cảm ứng.
+24. **Selector hoá Zustand store**: cấm gọi `useStudioStore()` trần; luôn dùng selector hẹp kết hợp `useShallow` từ `zustand/react/shallow` để tránh re-render thừa toàn bộ cây component.
+25. **Memo hoá canvas**: mọi node, edge và input subcomponents trên ReactFlow canvas bắt buộc bọc `React.memo` và kiểm soát dependencies chặt chẽ.
+26. **Cô lập timer/polling**: các bộ đếm thời gian (setInterval 1s) phải cô lập vào component lá hiển thị (ví dụ `RunStatusBar`), không đặt ở canvas cấp cao; polling định kỳ phải có exponential backoff và dừng khi tab ẩn (`document.hidden`).
+27. **Hủy request cũ (AbortController)**: khi chuyển tab, đổi dự án hoặc unmount component, phải dùng `AbortController` hoặc `useAbortableEffect` để hủy request fetch dở dang, chống race condition.
+28. **Tối ưu hình ảnh & Virtualization**: mọi thẻ `<img>` bắt buộc có `loading="lazy"` và `decoding="async"`, ưu tiên dùng `components/ui/Img.tsx`. Danh sách dài phải có virtualization nhẹ qua class `.virtual-item` / `.virtual-card` / `.virtual-row` (`content-visibility: auto`).

@@ -1,0 +1,18 @@
+{
+  "bundle": {
+    "studioFirstLoadJs": "314 kB",
+    "studioRouteSize": "84.3 kB",
+    "sharedJs": "103 kB",
+    "rootFirstLoadJs": "209 kB"
+  },
+  "layoutIssues": [],
+  "smallButtons": [],
+  "interactions": {
+    "clickLatencyMs": 1,
+    "events": []
+  },
+  "canvas": {
+    "nodeCount": 9,
+    "edgeCount": 12
+  }
+}
