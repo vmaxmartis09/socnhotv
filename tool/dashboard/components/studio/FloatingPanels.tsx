@@ -39,6 +39,7 @@ const ORDER: View[] = ["project", "characters", "chat", "publish", "jobs", "node
 
 const NAV_CLOSED = 52;
 const NAV_OPEN = 148;
+const TOOLBOX_MIN = 360;
 const BTN = 38;
 const GAP = 2;
 const PAD = 8;
@@ -57,6 +58,35 @@ export function FloatingPanels() {
   const [hubTab, setHubTab] = useState<HubTab>("projects");
   const hostRef = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState({ w: 1200, h: 800 });
+  // Toolbox: mặc định 35% màn hình, kéo mép trái để to/nhỏ; nhớ lại lần sau
+  const [toolboxW, setToolboxW] = useState<number | null>(null);
+  const [resizing, setResizing] = useState(false);
+  useEffect(() => {
+    try {
+      const v = Number(window.localStorage.getItem("toolboxPanelW"));
+      if (v > 0) setToolboxW(v);
+    } catch {}
+  }, []);
+  const startResize = (e: React.PointerEvent, current: number, max: number) => {
+    e.preventDefault();
+    const startX = e.clientX;
+    setResizing(true);
+    let last = current;
+    const move = (ev: PointerEvent) => {
+      last = Math.max(TOOLBOX_MIN, Math.min(max, current + (startX - ev.clientX)));
+      setToolboxW(last);
+    };
+    const up = () => {
+      window.removeEventListener("pointermove", move);
+      window.removeEventListener("pointerup", up);
+      setResizing(false);
+      try {
+        window.localStorage.setItem("toolboxPanelW", String(Math.round(last)));
+      } catch {}
+    };
+    window.addEventListener("pointermove", move);
+    window.addEventListener("pointerup", up);
+  };
 
   useEffect(() => {
     const el = hostRef.current;
@@ -151,7 +181,11 @@ export function FloatingPanels() {
   const wide = view === "project" || view === "characters";
   const navW = open ? NAV_OPEN : NAV_CLOSED;
   const previewW = open && preview ? Math.max(340, Math.min(640, Math.round(size.w * 0.38))) : 0;
-  const panelW = Math.max(300, Math.min(wide ? 720 : 400, size.w - NAV_OPEN - previewW - 24));
+  const maxFree = Math.max(300, size.w - NAV_OPEN - previewW - 24);
+  const isToolbox = view === "toolbox";
+  const panelW = isToolbox
+    ? Math.max(TOOLBOX_MIN, Math.min(maxFree, toolboxW ?? Math.round(size.w * 0.35)))
+    : Math.max(300, Math.min(wide ? 720 : 400, maxFree));
   const totalW = Math.min(size.w - EDGE * 2, navW + (open ? panelW : 0) + previewW);
   const height = open ? Math.max(DOCK_H, size.h - EDGE * 2) : DOCK_H;
   const top = open ? EDGE : Math.max(EDGE, (size.h - DOCK_H) / 2);
@@ -187,7 +221,7 @@ export function FloatingPanels() {
       <motion.div
         initial={false}
         animate={{ top, height, width: totalW }}
-        transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: resizing ? 0 : 0.24, ease: [0.22, 1, 0.36, 1] }}
         style={{
           right: EDGE,
           willChange: "width, height, top",
@@ -216,7 +250,26 @@ export function FloatingPanels() {
         </AnimatePresence>
 
         {/* Nội dung panel (nằm bên trái dải biểu tượng, cùng một khối) */}
-        <div className="min-w-0 flex-1 overflow-hidden">
+        <div className="relative min-w-0 flex-1 overflow-hidden">
+          {open && isToolbox && (
+            <div
+              role="separator"
+              aria-orientation="vertical"
+              aria-label="Kéo để đổi độ rộng"
+              data-tip="Kéo để đổi độ rộng"
+              onPointerDown={(e) => startResize(e, panelW, maxFree)}
+              onDoubleClick={() => {
+                setToolboxW(null);
+                try {
+                  window.localStorage.removeItem("toolboxPanelW");
+                } catch {}
+              }}
+              className={cn(
+                "absolute inset-y-0 left-0 z-10 w-1.5 cursor-col-resize touch-none transition-colors hover:bg-foreground/15",
+                resizing && "bg-foreground/20"
+              )}
+            />
+          )}
           <AnimatePresence initial={false}>
             {open && (
               <motion.div

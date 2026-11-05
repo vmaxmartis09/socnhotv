@@ -1,9 +1,14 @@
 {
   "id": "localized-reup-v1",
   "name": "Bản Địa Hoá Video – Lồng Tiếng & Vietsub",
-  "version": 1,
+  "version": 2,
   "category": "reup",
-  "platforms": ["tiktok", "reels", "shorts", "facebook"],
+  "platforms": [
+    "tiktok",
+    "reels",
+    "shorts",
+    "facebook"
+  ],
   "default_platform": "tiktok",
   "duration": {
     "mode": "auto_from_voice",
@@ -44,12 +49,69 @@
     "duck_db": -12.0
   },
   "scenes": [
-    { "role": "intro", "dur": "2s", "summary": "Logo thương hiệu và giới thiệu clip" },
-    { "role": "main_content", "summary": "Video nguồn kèm vietsub và lồng tiếng" },
-    { "role": "commentary", "dur": "3s", "summary": "Sóc Nhỏ nhận xét và chia sẻ góc nhìn" }
+    {
+      "role": "intro",
+      "dur": "2s",
+      "summary": "Logo thương hiệu và giới thiệu clip"
+    },
+    {
+      "role": "main_content",
+      "summary": "Video nguồn kèm vietsub và lồng tiếng"
+    },
+    {
+      "role": "commentary",
+      "dur": "3s",
+      "summary": "Sóc Nhỏ nhận xét và chia sẻ góc nhìn"
+    }
   ],
   "responsive": {
     "youtube": "contain",
     "facebook": "cover"
-  }
+  },
+  "kind": "reup",
+  "status": "draft",
+  "tier": "A",
+  "requires": {
+    "tools": [
+      "stt-align",
+      "ffmpeg-bin"
+    ],
+    "providers": [],
+    "gpu": false,
+    "ffmpeg": true
+  },
+  "recipe": {
+    "nodes": [
+      "source_video",
+      "voice_tts",
+      "captions",
+      "hyperframes_render",
+      "platform_export"
+    ],
+    "description": "Bản địa hóa video gốc: source_video -> voice_tts -> captions -> hyperframes_render -> platform_export"
+  },
+  "outputs": {
+    "aspect": [
+      "9:16",
+      "16:9"
+    ],
+    "duration": {
+      "min": 15,
+      "max": 180,
+      "default": 45
+    }
+  },
+  "sample_output": null,
+  "verified_on": null,
+  "sources": [
+    {
+      "name": "video-transcribe",
+      "url": "https://github.com/socnhotv/transcribe",
+      "license": "MIT",
+      "notes": "Quy trình lồng tiếng vietsub có bản quyền"
+    }
+  ],
+  "learned_from": [
+    "hook-and-retention"
+  ]
 }

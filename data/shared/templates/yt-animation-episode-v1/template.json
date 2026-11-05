@@ -1,9 +1,13 @@
 {
   "id": "yt-animation-episode-v1",
   "name": "Hoạt Hình Dài Tập YouTube 16:9 – Sóc Nhỏ & Koala",
-  "version": 1,
+  "version": 2,
   "category": "animation",
-  "platforms": ["youtube", "facebook", "tiktok"],
+  "platforms": [
+    "youtube",
+    "facebook",
+    "tiktok"
+  ],
   "default_platform": "youtube",
   "duration": {
     "mode": "auto_from_voice",
@@ -50,13 +54,72 @@
     "duck_db": -14.0
   },
   "scenes": [
-    { "role": "intro_title", "dur": "4s", "summary": "Logo Sóc Nhỏ TV và Title Card mở đầu tập" },
-    { "role": "adventure_scenes", "summary": "Diễn biến câu chuyện hoạt hình giữa Bi và Koala" },
-    { "role": "outro_end_screen", "dur": "5s", "summary": "End-screen đăng ký kênh và video gợi ý" }
+    {
+      "role": "intro_title",
+      "dur": "4s",
+      "summary": "Logo Sóc Nhỏ TV và Title Card mở đầu tập"
+    },
+    {
+      "role": "adventure_scenes",
+      "summary": "Diễn biến câu chuyện hoạt hình giữa Bi và Koala"
+    },
+    {
+      "role": "outro_end_screen",
+      "dur": "5s",
+      "summary": "End-screen đăng ký kênh và video gợi ý"
+    }
   ],
   "responsive": {
     "youtube": "contain",
     "facebook": "cover",
     "tiktok": "blur-pad"
-  }
+  },
+  "kind": "animation",
+  "status": "draft",
+  "tier": "B",
+  "requires": {
+    "tools": [
+      "ffmpeg-bin"
+    ],
+    "providers": [
+      "gemini"
+    ],
+    "gpu": false,
+    "ffmpeg": true
+  },
+  "recipe": {
+    "nodes": [
+      "episode_script",
+      "shot_images",
+      "voice_multi",
+      "captions",
+      "episode_render",
+      "platform_export"
+    ],
+    "description": "Tập hoạt hình dài 16:9 nối Session F: episode_script -> shot_images -> voice_multi -> captions -> episode_render -> platform_export"
+  },
+  "outputs": {
+    "aspect": [
+      "16:9"
+    ],
+    "duration": {
+      "min": 60,
+      "max": 600,
+      "default": 180
+    }
+  },
+  "sample_output": null,
+  "verified_on": null,
+  "sources": [
+    {
+      "name": "bi-series-bible",
+      "url": "data/projects/soc-nho-tv/content/series/",
+      "license": "Proprietary",
+      "notes": "Bible 50 tập hoạt hình Sóc Nhỏ Bi & Bạn Koala"
+    }
+  ],
+  "learned_from": [
+    "yt-animation-episode",
+    "depth-and-composition"
+  ]
 }

@@ -1,9 +1,13 @@
 {
   "id": "shorts-fact-v1",
   "name": "Kiến Thức Thú Vị – Kinetic Typography & Count-up",
-  "version": 1,
+  "version": 2,
   "category": "education",
-  "platforms": ["shorts", "tiktok", "reels"],
+  "platforms": [
+    "shorts",
+    "tiktok",
+    "reels"
+  ],
   "default_platform": "shorts",
   "duration": {
     "mode": "auto_from_voice",
@@ -51,13 +55,74 @@
     "duck_db": -12.0
   },
   "scenes": [
-    { "role": "question", "dur": "2s", "summary": "Đặt câu hỏi tò mò Bạn có biết" },
-    { "role": "stat_reveal", "dur": "3s", "summary": "Hiện con số thống kê bùng nổ" },
-    { "role": "explanation", "summary": "Giải thích chi tiết sự thật" },
-    { "role": "cta", "dur": "2.5s", "summary": "Kêu gọi theo dõi kênh" }
+    {
+      "role": "question",
+      "dur": "2s",
+      "summary": "Đặt câu hỏi tò mò Bạn có biết"
+    },
+    {
+      "role": "stat_reveal",
+      "dur": "3s",
+      "summary": "Hiện con số thống kê bùng nổ"
+    },
+    {
+      "role": "explanation",
+      "summary": "Giải thích chi tiết sự thật"
+    },
+    {
+      "role": "cta",
+      "dur": "2.5s",
+      "summary": "Kêu gọi theo dõi kênh"
+    }
   ],
   "responsive": {
     "youtube": "contain",
     "facebook": "cover"
-  }
+  },
+  "kind": "fact",
+  "status": "draft",
+  "tier": "A",
+  "requires": {
+    "tools": [
+      "stt-align",
+      "ffmpeg-bin"
+    ],
+    "providers": [],
+    "gpu": false,
+    "ffmpeg": true
+  },
+  "recipe": {
+    "nodes": [
+      "text",
+      "script",
+      "voice_tts",
+      "captions",
+      "hyperframes_render",
+      "platform_export"
+    ],
+    "description": "Shorts kiến thức thú vị: text -> script -> voice_tts -> captions -> hyperframes_render -> platform_export"
+  },
+  "outputs": {
+    "aspect": [
+      "9:16"
+    ],
+    "duration": {
+      "min": 15,
+      "max": 60,
+      "default": 30
+    }
+  },
+  "sample_output": null,
+  "verified_on": null,
+  "sources": [
+    {
+      "name": "openshorts",
+      "url": "https://github.com/openshorts/openshorts",
+      "license": "MIT",
+      "notes": "Cấu trúc fact & kinetic counter"
+    }
+  ],
+  "learned_from": [
+    "hook-and-retention"
+  ]
 }

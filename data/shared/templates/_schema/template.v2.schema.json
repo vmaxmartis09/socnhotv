@@ -1,0 +1,265 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://socnhotv.com/schemas/template.v2.schema.json",
+  "title": "VideoTemplateV2",
+  "description": "Hợp đồng template video v2 cho SocNhoTV Dashboard & Studio (Session U)",
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "version",
+    "kind",
+    "category",
+    "status",
+    "tier",
+    "requires",
+    "recipe",
+    "slots",
+    "outputs"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$",
+      "description": "Định danh duy nhất của template (kebab-case)"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 3,
+      "description": "Tên hiển thị người dùng của template"
+    },
+    "version": {
+      "type": ["integer", "string"],
+      "description": "Phiên bản schema template (mặc định 2 cho v2)"
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "animation",
+        "film",
+        "koc",
+        "replace",
+        "review",
+        "remotion-style",
+        "handdrawn",
+        "formula",
+        "fact",
+        "cut",
+        "slideshow",
+        "talk",
+        "reup",
+        "story",
+        "custom"
+      ],
+      "description": "Chủng loại định dạng video cốt lõi"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "sales",
+        "review",
+        "reup",
+        "animation",
+        "education",
+        "affiliate",
+        "story"
+      ],
+      "description": "Danh mục phân loại hiển thị trên Dashboard"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "runnable", "verified"],
+      "description": "Trạng thái kiểm định: draft (khởi thảo), runnable (đã chạy được ra file), verified (đã đo ffprobe và người dùng duyệt)"
+    },
+    "tier": {
+      "type": "string",
+      "enum": ["A", "B", "C"],
+      "description": "Cấp độ tài nguyên: A (offline CPU), B (cần API key Cloud), C (cần GPU NVIDIA/cloud render)"
+    },
+    "requires": {
+      "type": "object",
+      "required": ["tools", "providers", "gpu", "ffmpeg"],
+      "properties": {
+        "tools": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Danh sách mã công cụ Toolbox cần (vd: bg-remove, stt-align, scene-cut, handdraw)"
+        },
+        "providers": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Danh sách nhà cung cấp AI bên ngoài cần key (vd: gemini, claude, runway, veo)"
+        },
+        "gpu": {
+          "type": "boolean",
+          "description": "Có bắt buộc GPU phần cứng không"
+        },
+        "ffmpeg": {
+          "type": "boolean",
+          "description": "Có cần FFmpeg binary không"
+        }
+      },
+      "additionalProperties": false
+    },
+    "recipe": {
+      "type": "object",
+      "required": ["nodes"],
+      "properties": {
+        "nodes": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Chuỗi mã loại node trong Studio Graph (vd: text, script, voice_tts, captions, hyperframes_render, platform_export)"
+        },
+        "description": {
+          "type": "string",
+          "description": "Mô tả công thức dựng đồ thị"
+        }
+      },
+      "additionalProperties": true
+    },
+    "slots": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["key", "type"],
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "Mã khóa của slot trong dữ liệu"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "text",
+              "media",
+              "media[]",
+              "product",
+              "color",
+              "number",
+              "boolean",
+              "character",
+              "select"
+            ],
+            "description": "Kiểu dữ liệu nhập liệu"
+          },
+          "label": {
+            "type": "string",
+            "description": "Nhãn hiển thị tiếng Việt trên form"
+          },
+          "description": {
+            "type": "string",
+            "description": "Mô tả / tooltip hướng dẫn"
+          },
+          "required": {
+            "type": "boolean",
+            "default": false
+          },
+          "default": {},
+          "max_chars": {
+            "type": "integer"
+          },
+          "min_chars": {
+            "type": "integer"
+          },
+          "min": {
+            "type": "number"
+          },
+          "max": {
+            "type": "number"
+          },
+          "validate": {
+            "type": "object",
+            "properties": {
+              "regex": { "type": "string" },
+              "options": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "allowed_extensions": {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            },
+            "additionalProperties": true
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "outputs": {
+      "type": "object",
+      "required": ["aspect"],
+      "properties": {
+        "aspect": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Tỉ lệ khung hình hỗ trợ (vd: ['9:16', '16:9', '1:1'])"
+        },
+        "duration": {
+          "type": "object",
+          "properties": {
+            "min": { "type": "number" },
+            "max": { "type": "number" },
+            "default": { "type": "number" }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "sample_output": {
+      "type": "string",
+      "description": "Đường dẫn file MP4 mẫu thật đã render và kiểm chứng"
+    },
+    "verified_on": {
+      "type": ["string", "null"],
+      "description": "Ngày kiểm định chất lượng (định dạng YYYY-MM-DD)"
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "url", "license"],
+        "properties": {
+          "name": { "type": "string" },
+          "url": { "type": "string" },
+          "license": { "type": "string" },
+          "notes": { "type": "string" }
+        },
+        "additionalProperties": true
+      },
+      "description": "Nguồn học hỏi ý tưởng & giấy phép mã nguồn"
+    },
+    "learned_from": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Danh sách ID thẻ kỹ thuật trong data/shared/knowledge/video_craft/techniques/"
+    },
+    "platforms": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "default_platform": {
+      "type": "string"
+    },
+    "duration": {
+      "type": "object"
+    },
+    "voice": {
+      "type": "object"
+    },
+    "captions": {
+      "type": "object"
+    },
+    "bgm": {
+      "type": "object"
+    },
+    "scenes": {
+      "type": "array"
+    },
+    "responsive": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": true
+}

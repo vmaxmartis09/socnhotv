@@ -1,10 +1,12 @@
 import { NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
-import { exec } from "child_process";
+import os from "os";
+import { execFile } from "child_process";
 import { promisify } from "util";
+import { readProjects, readCharacters, readActiveProject } from "@/lib/toolbox-paths";
 
-const execAsync = promisify(exec);
+const execFileAsync = promisify(execFile);
 
 // Path resolution to repo root
 const REPO_ROOT = path.resolve(process.cwd(), "../..");
@@ -71,7 +73,23 @@ export async function GET(request: Request) {
         }
       }
 
-      return NextResponse.json({ ok: true, vaults: { cutouts, audios, voices } });
+      // index.jsonl là append-only nên có thể trùng id: giữ bản mới nhất, mới lên trước
+      const dedupe = (rows: any[]) => {
+        const m = new Map<string, any>();
+        for (const r of rows) m.set(String(r.id), r);
+        return Array.from(m.values()).reverse();
+      };
+      return NextResponse.json({
+        ok: true,
+        vaults: { cutouts: dedupe(cutouts), audios: dedupe(audios), voices: dedupe(voices) },
+      });
+    }
+
+    if (action === "targets") {
+      const projects = readProjects();
+      const characters: Record<string, { id: string; name: string }[]> = {};
+      for (const p of projects) characters[p.id] = readCharacters(p.id);
+      return NextResponse.json({ ok: true, projects, characters, active: readActiveProject(), sharedDir: SHARED_DIR });
     }
 
     return NextResponse.json({ ok: false, error: "Unknown action" }, { status: 400 });
@@ -81,32 +99,56 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
+  let tmpIn = "";
+  let tmpOut = "";
   try {
-    const body = await request.json();
-    const { toolId, inData } = body;
+    const { toolId, inData } = await request.json();
 
-    if (!toolId) {
-      return NextResponse.json({ ok: false, error: "Missing toolId" }, { status: 400 });
+    // toolId đi vào dòng lệnh → chỉ nhận dạng slug và phải là tool đang có trên đĩa
+    if (typeof toolId !== "string" || !/^[a-z0-9][a-z0-9-]*$/.test(toolId) || !fs.existsSync(path.join(TOOLS_DIR, toolId, "tool.json"))) {
+      return NextResponse.json({ ok: false, error: "toolId không hợp lệ" }, { status: 400 });
     }
 
-    const tmpIn = path.join(REPO_ROOT, "tool", "toolbox", "tools", toolId, "tests", "ui_in.json");
-    const tmpOut = path.join(REPO_ROOT, "tool", "toolbox", "tools", toolId, "tests", "ui_out.json");
+    // Đầu vào phải nằm trong data/ (không cho đọc file tùy ý trên máy)
+    const dataRoot = path.join(REPO_ROOT, "data");
+    const inputs: string[] = [];
+    for (const raw of (inData?.inputs as string[]) || []) {
+      const abs = path.resolve(REPO_ROOT, String(raw));
+      const rel = path.relative(dataRoot, abs);
+      if (rel.startsWith("..") || path.isAbsolute(rel) || !fs.existsSync(abs)) {
+        return NextResponse.json({ ok: false, error: `Đầu vào không hợp lệ hoặc không tồn tại: ${raw}` }, { status: 400 });
+      }
+      inputs.push(abs);
+    }
 
-    fs.mkdirSync(path.dirname(tmpIn), { recursive: true });
-    fs.writeFileSync(tmpIn, JSON.stringify(inData || {}, null, 2), "utf-8");
+    const stamp = `${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+    const dir = path.join(os.tmpdir(), "socnhotv-toolbox");
+    fs.mkdirSync(dir, { recursive: true });
+    tmpIn = path.join(dir, `${toolId}_${stamp}_in.json`);
+    tmpOut = path.join(dir, `${toolId}_${stamp}_out.json`);
+    fs.writeFileSync(tmpIn, JSON.stringify({ ...(inData || {}), inputs }, null, 2), "utf-8");
 
     const cliPath = path.join(REPO_ROOT, "tool", "toolbox", "toolbox_cli", "cli.py");
-    const cmd = `py -3.11 "${cliPath}" run ${toolId} --in "${tmpIn}" --out "${tmpOut}"`;
-
-    const { stdout, stderr } = await execAsync(cmd, { cwd: REPO_ROOT });
+    let stderr = "";
+    try {
+      const r = await execFileAsync("py", ["-3.11", cliPath, "run", toolId, "--in", tmpIn, "--out", tmpOut], {
+        cwd: REPO_ROOT,
+        timeout: 15 * 60 * 1000,
+        maxBuffer: 16 * 1024 * 1024,
+      });
+      stderr = r.stderr;
+    } catch (e: any) {
+      stderr = e.stderr || e.message; // tool thoát mã khác 0 vẫn có thể đã ghi out.json chứa lỗi
+    }
 
     if (fs.existsSync(tmpOut)) {
       const outData = JSON.parse(fs.readFileSync(tmpOut, "utf-8"));
-      return NextResponse.json({ ok: true, result: outData });
+      return NextResponse.json({ ok: outData.ok !== false, result: outData, error: outData.error?.message });
     }
-
-    return NextResponse.json({ ok: false, error: stderr || "Execution produced no output" }, { status: 500 });
+    return NextResponse.json({ ok: false, error: stderr || "Tool không tạo ra kết quả" }, { status: 500 });
   } catch (err: any) {
     return NextResponse.json({ ok: false, error: err.message }, { status: 500 });
+  } finally {
+    for (const f of [tmpIn, tmpOut]) if (f) try { fs.unlinkSync(f); } catch {}
   }
 }
