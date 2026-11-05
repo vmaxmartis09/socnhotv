@@ -6,7 +6,7 @@ import { useStudioStore } from "@/store";
 
 export default function SettingsRedirectPage() {
   const router = useRouter();
-  const { setActiveRightTab } = useStudioStore();
+  const setActiveRightTab = useStudioStore((s) => s.setActiveRightTab);
 
   useEffect(() => {
     setActiveRightTab("chat");

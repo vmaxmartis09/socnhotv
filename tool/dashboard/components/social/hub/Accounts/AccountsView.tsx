@@ -22,7 +22,7 @@ interface AccountsViewProps {
 }
 
 export function AccountsView({ onRefresh }: AccountsViewProps) {
-  const { activeProjectId } = useStudioStore();
+  const activeProjectId = useStudioStore((s) => s.activeProjectId);
   const {
     accounts,
     loadAccounts,

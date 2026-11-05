@@ -1,10 +1,11 @@
 "use client";
 
+import { useShallow } from "zustand/react/shallow";
 import { enterOnce } from "@/lib/motion";
 import React from "react";
 import { useTranslations } from "next-intl";
 import { AnimatePresence, motion } from "framer-motion";
-import { useStudioStore } from "@/store";
+import { useStudioStore, type StudioStore } from "@/store";
 import { cn } from "@/lib/utils";
 import { Link } from "@/i18n/routing";
 import {
@@ -28,7 +29,17 @@ export function StudioBreadcrumb() {
     selectEpisode,
     createEpisode,
     switchProject,
-  } = useStudioStore();
+  } = useStudioStore(
+    useShallow((s: StudioStore) => ({
+      activeProjectId: s.activeProjectId,
+      projects: s.projects,
+      episodes: s.episodes,
+      activeEpisodeId: s.activeEpisodeId,
+      selectEpisode: s.selectEpisode,
+      createEpisode: s.createEpisode,
+      switchProject: s.switchProject,
+    }))
+  );
 
   const [menu, setMenu] = React.useState<"project" | "episode" | null>(null);
   const [newTitle, setNewTitle] = React.useState("");

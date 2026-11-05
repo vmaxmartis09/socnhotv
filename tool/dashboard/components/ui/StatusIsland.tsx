@@ -1,5 +1,6 @@
 "use client";
 
+import { useShallow } from "zustand/react/shallow";
 import React from "react";
 import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
@@ -8,7 +9,9 @@ import { useStudioStore } from "@/store";
 /** Plain status line: a dot and a sentence. Mock mode is stated once, in words. */
 export function StatusIsland({ className }: { className?: string }) {
   const s = useTranslations("shell");
-  const { jobs, isMockMode } = useStudioStore();
+  const { jobs, isMockMode } = useStudioStore(
+    useShallow((s) => ({ jobs: s.jobs, isMockMode: s.isMockMode }))
+  );
   const running = jobs.filter((j) => j.status === "running").length;
   const failed = jobs.filter((j) => j.status === "failed").length;
 

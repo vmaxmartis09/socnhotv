@@ -1,5 +1,6 @@
 "use client";
 
+import { useShallow } from "zustand/react/shallow";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { useStudioStore } from "@/store";
@@ -29,7 +30,18 @@ export function RightPanel() {
     setRightPanelCollapsed,
     mobileSheetOpen,
     setMobileSheetOpen,
-  } = useStudioStore();
+  } = useStudioStore(
+    useShallow((s) => ({
+      activeRightTab: s.activeRightTab,
+      setActiveRightTab: s.setActiveRightTab,
+      rightPanelWidth: s.rightPanelWidth,
+      setRightPanelWidth: s.setRightPanelWidth,
+      rightPanelCollapsed: s.rightPanelCollapsed,
+      setRightPanelCollapsed: s.setRightPanelCollapsed,
+      mobileSheetOpen: s.mobileSheetOpen,
+      setMobileSheetOpen: s.setMobileSheetOpen,
+    }))
+  );
 
   const [isResizing, setIsResizing] = useState(false);
   const startXRef = useRef(0);

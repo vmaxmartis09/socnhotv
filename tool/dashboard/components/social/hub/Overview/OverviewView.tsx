@@ -23,7 +23,7 @@ interface OverviewViewProps {
 }
 
 export function OverviewView({ onNavigateView, onOpenPlanWizard }: OverviewViewProps) {
-  const { activeProjectId } = useStudioStore();
+  const activeProjectId = useStudioStore((s) => s.activeProjectId);
   const { overviewData, loadOverview, loading: isLoadingOverview, accounts, queueData } = useSocialStore();
 
   useEffect(() => {

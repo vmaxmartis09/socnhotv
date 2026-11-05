@@ -30,7 +30,7 @@ const PURPOSES = [
 ];
 
 export function TemplatesView({ onUseTemplate }: TemplatesViewProps) {
-  const { activeProjectId } = useStudioStore();
+  const activeProjectId = useStudioStore((s) => s.activeProjectId);
   const { templates, loadTemplates, loading: isLoadingTemplates } = useSocialStore();
 
   const [purposeFilter, setPurposeFilter] = useState("all");

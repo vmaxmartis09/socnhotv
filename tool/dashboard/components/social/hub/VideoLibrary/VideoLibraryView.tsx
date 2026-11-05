@@ -27,7 +27,7 @@ interface VideoLibraryViewProps {
 }
 
 export function VideoLibraryView({ onPlanVideos }: VideoLibraryViewProps) {
-  const { activeProjectId } = useStudioStore();
+  const activeProjectId = useStudioStore((s) => s.activeProjectId);
   const {
     libraryVideos,
     loadLibrary,

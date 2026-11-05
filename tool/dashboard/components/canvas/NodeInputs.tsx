@@ -58,7 +58,7 @@ export function NodeTextInput({
   isDetailed,
   expanded,
 }: TextInputProps) {
-  const { updateNodeParams } = useStudioStore();
+  const updateNodeParams = useStudioStore((s) => s.updateNodeParams);
   const [val, setVal] = useState(initialContent || "");
   const focused = Boolean(expanded);
   const taRef = useRef<HTMLTextAreaElement>(null);
@@ -187,7 +187,8 @@ export function NodeImageInput({
   compact,
   expanded,
 }: ImageInputProps) {
-  const { activeProjectId, updateNodeParams } = useStudioStore();
+  const activeProjectId = useStudioStore((s) => s.activeProjectId);
+  const updateNodeParams = useStudioStore((s) => s.updateNodeParams);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const [isUploading, setIsUploading] = useState(false);
@@ -508,7 +509,7 @@ export function NodeScriptInput({
   targetDurationSec = 45,
   connectedText,
 }: ScriptInputProps) {
-  const { updateNodeParams } = useStudioStore();
+  const updateNodeParams = useStudioStore((s) => s.updateNodeParams);
   const [mode, setMode] = useState<"ai" | "paste">(initialMode);
   const [raw, setRaw] = useState(initialRaw);
   const [idea, setIdea] = useState(initialIdea);
@@ -745,7 +746,8 @@ export function NodeVoiceInput({
   tempo = 1.1,
   connectedText,
 }: VoiceInputProps) {
-  const { activeProjectId, updateNodeParams } = useStudioStore();
+  const activeProjectId = useStudioStore((s) => s.activeProjectId);
+  const updateNodeParams = useStudioStore((s) => s.updateNodeParams);
   const [val, setVal] = useState(initialText);
   const debounceTimer = useRef<NodeJS.Timeout | null>(null);
 
@@ -815,7 +817,9 @@ export function NodeImageGenInput({
   model = "gemini-2.5-flash-image",
   connectedPrompt,
 }: ImageGenInputProps) {
-  const { activeProjectId, characters, updateNodeParams } = useStudioStore();
+  const activeProjectId = useStudioStore((s) => s.activeProjectId);
+  const characters = useStudioStore((s) => s.characters);
+  const updateNodeParams = useStudioStore((s) => s.updateNodeParams);
   const [val, setVal] = useState(initialPrompt);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const debounceTimer = useRef<NodeJS.Timeout | null>(null);
@@ -951,7 +955,7 @@ export function NodeExportInput({
   platforms = ["tiktok", "youtube"],
   previewUrl,
 }: ExportInputProps) {
-  const { updateNodeParams } = useStudioStore();
+  const updateNodeParams = useStudioStore((s) => s.updateNodeParams);
   const [name, setName] = useState(outputFileName);
 
   const togglePlatform = (p: string) => {
@@ -1045,7 +1049,7 @@ interface CharacterSelectProps {
 }
 
 export function NodeCharacterSelect({ characterId = "soc_nho", onOpen }: CharacterSelectProps & { onOpen?: () => void }) {
-  const { characters } = useStudioStore();
+  const characters = useStudioStore((s) => s.characters);
   const cur = characters.find((c) => c.id === characterId);
   return (
     <button
@@ -1077,7 +1081,7 @@ export function NodeCaptionsInput({
   style = "kinetic_karaoke",
   language = "vi",
 }: CaptionsInputProps) {
-  const { updateNodeParams } = useStudioStore();
+  const updateNodeParams = useStudioStore((s) => s.updateNodeParams);
 
   return (
     <div className="grid grid-cols-2 gap-2 text-xs">

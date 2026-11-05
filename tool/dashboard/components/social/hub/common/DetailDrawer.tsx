@@ -18,7 +18,7 @@ interface DetailDrawerProps {
 
 export function DetailDrawer({ onPlanVideo, onEditPost, onRefresh }: DetailDrawerProps) {
   const { hubSelectedEntity, setHubSelectedEntity, accounts, bulkAction } = useSocialStore();
-  const { activeProjectId } = useStudioStore();
+  const activeProjectId = useStudioStore((s) => s.activeProjectId);
   const [actionLoading, setActionLoading] = React.useState(false);
 
   if (!hubSelectedEntity) return null;

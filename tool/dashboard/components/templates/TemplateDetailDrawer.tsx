@@ -1,5 +1,6 @@
 "use client";
 
+import { useShallow } from "zustand/react/shallow";
 import React, { useState } from "react";
 import type { TemplateV2Data } from "./TemplateV2Card";
 import {
@@ -30,7 +31,9 @@ interface TemplateDetailDrawerProps {
 
 export function TemplateDetailDrawer({ template, onClose }: TemplateDetailDrawerProps) {
   const router = useRouter();
-  const { activeProjectId, setNodesAndEdges } = useStudioStore();
+  const { activeProjectId, setNodesAndEdges } = useStudioStore(
+    useShallow((s) => ({ activeProjectId: s.activeProjectId, setNodesAndEdges: s.setNodesAndEdges }))
+  );
   const [safeZone, setSafeZone] = useState(false);
   const [isBuilding, setIsBuilding] = useState(false);
 

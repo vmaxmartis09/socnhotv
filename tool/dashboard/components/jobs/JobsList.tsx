@@ -1,5 +1,6 @@
 "use client";
 
+import { useShallow } from "zustand/react/shallow";
 import { enterOnce } from "@/lib/motion";
 import React, { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -34,7 +35,15 @@ const statusLabel: Record<Job["status"], string> = {
 
 /** Danh sách tiến trình; `compact` dùng ở Sảnh, bản đầy đủ có chi tiết bên phải và nút focus. */
 export function JobsList({ compact = false }: { compact?: boolean }) {
-  const { jobs, projects, switchProject, setSelectedNodeId, flashNode } = useStudioStore();
+  const { jobs, projects, switchProject, setSelectedNodeId, flashNode } = useStudioStore(
+    useShallow((s) => ({
+      jobs: s.jobs,
+      projects: s.projects,
+      switchProject: s.switchProject,
+      setSelectedNodeId: s.setSelectedNodeId,
+      flashNode: s.flashNode,
+    }))
+  );
   const router = useRouter();
   const [selectedId, setSelectedId] = useState<string | null>(null);
 

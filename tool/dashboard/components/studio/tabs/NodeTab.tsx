@@ -1,8 +1,9 @@
 "use client";
 
+import { useShallow } from "zustand/react/shallow";
 import React from "react";
 import { useTranslations } from "next-intl";
-import { useStudioStore } from "@/store";
+import { useStudioStore, type StudioStore } from "@/store";
 import { FALLBACK_NODE_TYPES, estimateNodeCostUsd } from "@/lib/core-api";
 import { Pin, Check } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
@@ -69,7 +70,19 @@ export function NodeTab() {
     updateNodeParams,
     pinNodeGeneration,
     activeProjectId,
-  } = useStudioStore();
+  } = useStudioStore(
+    useShallow((s: StudioStore) => ({
+      nodes: s.nodes,
+      edges: s.edges,
+      selectedNodeId: s.selectedNodeId,
+      nodeCatalog: s.nodeCatalog,
+      characters: s.characters,
+      isMockMode: s.isMockMode,
+      updateNodeParams: s.updateNodeParams,
+      pinNodeGeneration: s.pinNodeGeneration,
+      activeProjectId: s.activeProjectId,
+    }))
+  );
 
   const node =
     nodes.find((n) => n.id === selectedNodeId) ||

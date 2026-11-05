@@ -1,5 +1,6 @@
 "use client";
 
+import { useShallow } from "zustand/react/shallow";
 import { enterOnce } from "@/lib/motion";
 import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -27,7 +28,15 @@ const slug = (s: string) =>
 
 /** Danh sách tất cả dự án: chọn dự án đang làm việc hoặc tạo dự án mới. */
 export function ProjectsTab({ canCreate = true }: { canCreate?: boolean } = {}) {
-  const { projects, activeProjectId, switchProject, setProjects, setRightPanelCollapsed } = useStudioStore();
+  const { projects, activeProjectId, switchProject, setProjects, setRightPanelCollapsed } = useStudioStore(
+    useShallow((s) => ({
+      projects: s.projects,
+      activeProjectId: s.activeProjectId,
+      switchProject: s.switchProject,
+      setProjects: s.setProjects,
+      setRightPanelCollapsed: s.setRightPanelCollapsed,
+    }))
+  );
   const router = useRouter();
   const detailId = useHubScope((h) => h.detailProjectId);
   const setDetailId = useHubScope.getState().setDetail;
@@ -199,7 +208,7 @@ function ProjectDetail({
 }) {
   const [chars, setChars] = useState<Character[] | null>(null);
   const [lib, setLib] = useState<ProjectLibrary | null>(null);
-  const st = useStudioStore();
+  const st = useStudioStore.getState();
   const router = useRouter();
   const [coreSteps, setCoreSteps] = useState<number | null>(null);
   const [newFlow, setNewFlow] = useState<string | null>(null);

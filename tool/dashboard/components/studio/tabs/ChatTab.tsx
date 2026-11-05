@@ -1,8 +1,9 @@
 "use client";
 
+import { useShallow } from "zustand/react/shallow";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
-import { useStudioStore } from "@/store";
+import { useStudioStore, type StudioStore } from "@/store";
 import {
   sendChatToCore,
   FALLBACK_NODE_TYPES,
@@ -56,7 +57,42 @@ export function ChatTab() {
     setChatContext,
     clearProjectChat,
     addJob,
-  } = useStudioStore();
+  } = useStudioStore(
+    useShallow((s: StudioStore) => ({
+      activeProjectId: s.activeProjectId,
+      chatByProject: s.chatByProject,
+      addChatMessage: s.addChatMessage,
+      markChatActionUndone: s.markChatActionUndone,
+      pendingConfirmation: s.pendingConfirmation,
+      setPendingConfirmation: s.setPendingConfirmation,
+      nodes: s.nodes,
+      edges: s.edges,
+      aspectRatio: s.aspectRatio,
+      setAspectRatio: s.setAspectRatio,
+      setNodesAndEdges: s.setNodesAndEdges,
+      setSelectedNodeId: s.setSelectedNodeId,
+      flashNode: s.flashNode,
+      setActiveRightTab: s.setActiveRightTab,
+      setSelectedCharacterId: s.setSelectedCharacterId,
+      setActiveCharacterSection: s.setActiveCharacterSection,
+      addScheduledPost: s.addScheduledPost,
+      isMockMode: s.isMockMode,
+      setIsMockMode: s.setIsMockMode,
+      updateNodeExecutionState: s.updateNodeExecutionState,
+      projects: s.projects,
+      characters: s.characters,
+      setCharacters: s.setCharacters,
+      episodes: s.episodes,
+      activeEpisodeId: s.activeEpisodeId,
+      selectEpisode: s.selectEpisode,
+      createEpisode: s.createEpisode,
+      switchProject: s.switchProject,
+      chatContext: s.chatContext,
+      setChatContext: s.setChatContext,
+      clearProjectChat: s.clearProjectChat,
+      addJob: s.addJob,
+    }))
+  );
 
   const router = useRouter();
   const [input, setInput] = useState("");

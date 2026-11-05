@@ -1,8 +1,9 @@
 "use client";
 
+import { useShallow } from "zustand/react/shallow";
 import React, { useMemo, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
-import { useStudioStore } from "@/store";
+import { useStudioStore, type StudioStore } from "@/store";
 import type { CharacterProfileSection } from "@/store/slices/rightPanelSlice";
 import { getRepository } from "@/lib/repositories";
 import type { Character, CharacterImageAsset } from "@/lib/repositories/types";
@@ -46,7 +47,27 @@ export function ProjectTab() {
     setNodesAndEdges,
     setSelectedNodeId,
     flashNode,
-  } = useStudioStore();
+  } = useStudioStore(
+    useShallow((s: StudioStore) => ({
+      activeProjectId: s.activeProjectId,
+      projects: s.projects,
+      episodes: s.episodes,
+      activeEpisodeId: s.activeEpisodeId,
+      selectEpisode: s.selectEpisode,
+      characters: s.characters,
+      upsertCharacterInStore: s.upsertCharacterInStore,
+      removeCharacterFromStore: s.removeCharacterFromStore,
+      selectedCharacterId: s.selectedCharacterId,
+      setSelectedCharacterId: s.setSelectedCharacterId,
+      activeCharacterSection: s.activeCharacterSection,
+      setActiveCharacterSection: s.setActiveCharacterSection,
+      nodes: s.nodes,
+      edges: s.edges,
+      setNodesAndEdges: s.setNodesAndEdges,
+      setSelectedNodeId: s.setSelectedNodeId,
+      flashNode: s.flashNode,
+    }))
+  );
 
   const [charSearch, setCharSearch] = useState("");
   const [confirmDeleteCharId, setConfirmDeleteCharId] = useState<string | null>(

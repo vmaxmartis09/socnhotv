@@ -1,5 +1,6 @@
 "use client";
 
+import { useShallow } from "zustand/react/shallow";
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { usePreview, type PreviewItem } from "@/lib/preview";
@@ -19,7 +20,9 @@ import { cn } from "@/lib/utils";
 /** Vùng xem trước mở rộng sang trái của panel: ảnh, video, Markdown, tóm tắt dự án. */
 export function PreviewPane({ item }: { item: PreviewItem }) {
   const { go, close } = usePreview();
-  const { projects, activeProjectId } = useStudioStore();
+  const { projects, activeProjectId } = useStudioStore(
+    useShallow((s) => ({ projects: s.projects, activeProjectId: s.activeProjectId }))
+  );
   const [text, setText] = useState("");
   const [safeZoneEnabled, setSafeZoneEnabled] = useState(true);
   const [platformView, setPlatformView] = useState<"tiktok" | "youtube" | "reels">("tiktok");

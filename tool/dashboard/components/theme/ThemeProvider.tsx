@@ -1,5 +1,6 @@
 "use client";
 
+import { useShallow } from "zustand/react/shallow";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { useStudioStore } from "@/store";
 
@@ -16,7 +17,9 @@ const ThemeContext = createContext<{
 });
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const { theme, setTheme } = useStudioStore();
+  const { theme, setTheme } = useStudioStore(
+    useShallow((s) => ({ theme: s.theme, setTheme: s.setTheme }))
+  );
   const [resolvedTheme, setResolvedTheme] = useState<"light" | "dark">("light");
 
   useEffect(() => {

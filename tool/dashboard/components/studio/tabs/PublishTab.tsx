@@ -22,7 +22,7 @@ import { StatusBadge } from "@/components/social/hub/common/StatusBadge";
 import { PublishCenterModal } from "@/components/social/PublishCenterModal";
 
 export function PublishTab() {
-  const { activeProjectId } = useStudioStore();
+  const activeProjectId = useStudioStore((s) => s.activeProjectId);
   const {
     accounts,
     queueData,

@@ -1,7 +1,8 @@
 "use client";
 
+import { useShallow } from "zustand/react/shallow";
 import React, { useEffect, useMemo, useState } from "react";
-import { useStudioStore } from "@/store";
+import { useStudioStore, type StudioStore } from "@/store";
 import type { NodeDefinition, PortDefinition, PortType } from "@/lib/core-contracts";
 import { getPortOverride } from "@/lib/node-ports";
 import { saveCustomNodeType } from "@/lib/core-api";
@@ -129,7 +130,15 @@ export function PortsEditor({
   baseDef: NodeDefinition;
   params: Record<string, any>;
 }) {
-  const { nodes, edges, setNodesAndEdges, activeProjectId, refreshCustomNodeTypes } = useStudioStore() as any;
+  const { nodes, edges, setNodesAndEdges, activeProjectId, refreshCustomNodeTypes } = useStudioStore(
+    useShallow((s: StudioStore) => ({
+      nodes: s.nodes,
+      edges: s.edges,
+      setNodesAndEdges: s.setNodesAndEdges,
+      activeProjectId: s.activeProjectId,
+      refreshCustomNodeTypes: s.refreshCustomNodeTypes,
+    }))
+  ) as any;
   const override = getPortOverride(params);
   const current = useMemo(
     () => ({

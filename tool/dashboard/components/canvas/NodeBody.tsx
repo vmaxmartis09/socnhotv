@@ -298,7 +298,7 @@ export function NodeBody({
   expanded,
   onPickCharacter,
 }: Props) {
-  const { updateNodeParams } = useStudioStore();
+  const updateNodeParams = useStudioStore((s) => s.updateNodeParams);
   const p = data.params || {};
   const url = data.previewUrl;
   const done = data.status === "succeeded";

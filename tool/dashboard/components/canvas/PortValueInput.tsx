@@ -1,8 +1,9 @@
 "use client";
 
+import { useShallow } from "zustand/react/shallow";
 import React, { useMemo, useRef, useState } from "react";
 import type { Edge } from "@xyflow/react";
-import { useStudioStore } from "@/store";
+import { useStudioStore, type StudioStore } from "@/store";
 import { PORT_TYPE_COLORS } from "@/store/slices/canvasSlice";
 import {
   fetchProjectLibrary,
@@ -96,7 +97,17 @@ export function PortValueInput({ nodeId, port }: Props) {
     characters,
     updateNodeParams,
     setNodesAndEdges,
-  } = useStudioStore() as any;
+  } = useStudioStore(
+    useShallow((s: StudioStore) => ({
+      activeProjectId: s.activeProjectId,
+      nodes: s.nodes,
+      edges: s.edges,
+      nodeCatalog: s.nodeCatalog,
+      characters: s.characters,
+      updateNodeParams: s.updateNodeParams,
+      setNodesAndEdges: s.setNodesAndEdges,
+    }))
+  ) as any;
 
   const kind = MEDIA_KIND[port.portType];
   const multi = port.portType === "image[]";

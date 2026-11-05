@@ -47,7 +47,7 @@ export function SocialHub() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const { activeProjectId } = useStudioStore();
+  const activeProjectId = useStudioStore((s) => s.activeProjectId);
   const {
     isHubOpen,
     hubView,

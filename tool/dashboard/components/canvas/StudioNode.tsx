@@ -80,13 +80,11 @@ export const StudioNode = memo(function StudioNode({
   selected,
 }: NodeProps<StudioCardNodeType>) {
   const t = useTranslations("canvas");
-  const {
-    nodeCatalog,
-    isMockMode,
-    characters,
-    flashingNodeId,
-    setSelectedNodeId,
-  } = useStudioStore();
+  const nodeCatalog = useStudioStore((s) => s.nodeCatalog);
+  const isMockMode = useStudioStore((s) => s.isMockMode);
+  const characters = useStudioStore((s) => s.characters);
+  const isFlashing = useStudioStore((s) => s.flashingNodeId === id);
+  const setSelectedNodeId = useStudioStore((s) => s.setSelectedNodeId);
   const {
     activeDragPort,
     connectedPorts,
@@ -134,7 +132,7 @@ export const StudioNode = memo(function StudioNode({
     isMockMode
   );
   const issues = nodeIssues[id] || [];
-  const isFlashing = flashingNodeId === id;
+  // isFlashing selected from store
 
   // Compact parameter summary
   const compactParams: string[] = [];
@@ -237,7 +235,7 @@ export const StudioNode = memo(function StudioNode({
     : def.typeName === "character" && boundChar
     ? boundChar.name
     : def.displayName;
-  const { updateNodeParams } = useStudioStore();
+  const updateNodeParams = useStudioStore((s) => s.updateNodeParams);
   useEffect(() => {
     if (!selected) setCharPicker(false);
   }, [selected]);

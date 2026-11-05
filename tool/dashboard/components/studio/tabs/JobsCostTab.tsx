@@ -1,8 +1,9 @@
 "use client";
 
+import { useShallow } from "zustand/react/shallow";
 import React, { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
-import { useStudioStore } from "@/store";
+import { useStudioStore, type StudioStore } from "@/store";
 import { useSocialStore } from "@/store/modules/social";
 import { videoApi, type RenderJob } from "@/lib/api/video";
 import { CORE_URL } from "@/lib/repositories/core";
@@ -39,7 +40,18 @@ export function JobsCostTab() {
     setActiveRightTab,
     setSelectedNodeId,
     updateJob,
-  } = useStudioStore();
+  } = useStudioStore(
+    useShallow((s: StudioStore) => ({
+      jobs: s.jobs,
+      activeProjectId: s.activeProjectId,
+      totalSpentUsd: s.totalSpentUsd,
+      perRunSpendingLimitUsd: s.perRunSpendingLimitUsd,
+      dailySpendingLimitUsd: s.dailySpendingLimitUsd,
+      setActiveRightTab: s.setActiveRightTab,
+      setSelectedNodeId: s.setSelectedNodeId,
+      updateJob: s.updateJob,
+    }))
+  );
 
   const { openComposer } = useSocialStore();
 

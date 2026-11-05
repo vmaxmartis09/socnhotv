@@ -1,5 +1,6 @@
 "use client";
 
+import { useShallow } from "zustand/react/shallow";
 import React from "react";
 import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
@@ -21,7 +22,14 @@ export function BottomNav() {
     setActiveRightTab,
     mobileSheetOpen,
     setMobileSheetOpen,
-  } = useStudioStore();
+  } = useStudioStore(
+    useShallow((s) => ({
+      activeRightTab: s.activeRightTab,
+      setActiveRightTab: s.setActiveRightTab,
+      mobileSheetOpen: s.mobileSheetOpen,
+      setMobileSheetOpen: s.setMobileSheetOpen,
+    }))
+  );
 
   const items: Array<{
     tab: RightPanelTab;

@@ -23,7 +23,7 @@ interface CalendarViewProps {
 }
 
 export function CalendarView({ onOpenPlanWizard }: CalendarViewProps) {
-  const { activeProjectId } = useStudioStore();
+  const activeProjectId = useStudioStore((s) => s.activeProjectId);
   const {
     queueData,
     loadQueue,

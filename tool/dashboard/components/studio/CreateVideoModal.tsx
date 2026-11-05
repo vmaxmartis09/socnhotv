@@ -1,8 +1,9 @@
 "use client";
 
+import { useShallow } from "zustand/react/shallow";
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useStudioStore } from "@/store";
+import { useStudioStore, type StudioStore } from "@/store";
 import { videoApi, type TemplateMeta, type Platform, type PlatformPreset } from "@/lib/api/video";
 import { generateTemplateGraph } from "@/lib/template-graphs";
 import { validateGraphWithCore, runGraphOnCore } from "@/lib/core-api";
@@ -51,7 +52,17 @@ export function CreateVideoModal({ isOpen, onClose }: CreateVideoModalProps) {
     selectEpisode,
     addJob,
     updateJob,
-  } = useStudioStore();
+  } = useStudioStore(
+    useShallow((s: StudioStore) => ({
+      activeProjectId: s.activeProjectId,
+      nodeCatalog: s.nodeCatalog,
+      isMockMode: s.isMockMode,
+      createEpisode: s.createEpisode,
+      selectEpisode: s.selectEpisode,
+      addJob: s.addJob,
+      updateJob: s.updateJob,
+    }))
+  );
 
   const [step, setStep] = useState<1 | 2 | 3>(1);
   const [templates, setTemplates] = useState<TemplateMeta[]>([]);

@@ -1,5 +1,6 @@
 "use client";
 
+import { useShallow } from "zustand/react/shallow";
 import React, { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
@@ -54,7 +55,14 @@ export function FloatingPanels() {
   const t = useTranslations("rightPanel");
   const locale = useLocale();
   const { activeRightTab, setActiveRightTab, rightPanelCollapsed, setRightPanelCollapsed } =
-    useStudioStore();
+    useStudioStore(
+      useShallow((s) => ({
+        activeRightTab: s.activeRightTab,
+        setActiveRightTab: s.setActiveRightTab,
+        rightPanelCollapsed: s.rightPanelCollapsed,
+        setRightPanelCollapsed: s.setRightPanelCollapsed,
+      }))
+    );
   const [hubTab, setHubTab] = useState<HubTab>("projects");
   const hostRef = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState({ w: 1200, h: 800 });

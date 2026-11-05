@@ -1,5 +1,6 @@
 "use client";
 
+import { useShallow } from "zustand/react/shallow";
 import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "@/i18n/routing";
@@ -13,7 +14,9 @@ import { cn } from "@/lib/utils";
  * Sảnh › dự án đang mở.
  */
 export function PageBar({ page }: { page?: string }) {
-  const { projects, activeProjectId } = useStudioStore();
+  const { projects, activeProjectId } = useStudioStore(
+    useShallow((s) => ({ projects: s.projects, activeProjectId: s.activeProjectId }))
+  );
   const project = projects.find((p) => p.id === activeProjectId);
 
   return (

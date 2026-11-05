@@ -1,7 +1,8 @@
 "use client";
 
+import { useShallow } from "zustand/react/shallow";
 import React, { useEffect } from "react";
-import { useStudioStore } from "@/store";
+import { useStudioStore, type StudioStore } from "@/store";
 import { getRepository } from "@/lib/repositories";
 import { checkCoreHealth, fetchNodeTypes } from "@/lib/core-api";
 
@@ -16,7 +17,18 @@ export function WorkspaceBootstrap() {
     toggleRightPanel,
     setNodeCatalog,
     setCoreHealth,
-  } = useStudioStore();
+  } = useStudioStore(
+    useShallow((s: StudioStore) => ({
+      activeProjectId: s.activeProjectId,
+      setProjects: s.setProjects,
+      setCharacters: s.setCharacters,
+      setChannels: s.setChannels,
+      setScheduledPosts: s.setScheduledPosts,
+      toggleRightPanel: s.toggleRightPanel,
+      setNodeCatalog: s.setNodeCatalog,
+      setCoreHealth: s.setCoreHealth,
+    }))
+  );
 
   useEffect(() => {
     let active = true;

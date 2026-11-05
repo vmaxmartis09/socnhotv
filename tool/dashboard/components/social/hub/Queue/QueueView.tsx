@@ -36,7 +36,7 @@ const TABS: { id: HubQueueBucket; label: string; icon: string }[] = [
 ];
 
 export function QueueView({ onRefresh }: QueueViewProps) {
-  const { activeProjectId } = useStudioStore();
+  const activeProjectId = useStudioStore((s) => s.activeProjectId);
   const {
     queueData,
     queueBucket,

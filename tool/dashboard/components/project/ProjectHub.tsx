@@ -1,5 +1,6 @@
 "use client";
 
+import { useShallow } from "zustand/react/shallow";
 import { enterOnce } from "@/lib/motion";
 import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -139,7 +140,13 @@ export function ProjectHub({
   onTab?: (t: HubTab) => void;
   compact?: boolean;
 } = {}) {
-  const { activeProjectId: openProjectId, projects, switchProject } = useStudioStore();
+  const { activeProjectId: openProjectId, projects, switchProject } = useStudioStore(
+    useShallow((s) => ({
+      activeProjectId: s.activeProjectId,
+      projects: s.projects,
+      switchProject: s.switchProject,
+    }))
+  );
   const scopeOverride = useHubScope((h) => h.projectId);
   // Panel xem theo dự án đã chọn trong tab Dự án; không chọn thì theo dự án đang mở
   const activeProjectId = scopeOverride ?? openProjectId;

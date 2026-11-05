@@ -1,10 +1,11 @@
 "use client";
 
+import { useShallow } from "zustand/react/shallow";
 import React, { useEffect, useRef, useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { usePathname, useRouter } from "@/i18n/routing";
 import { useTheme } from "@/components/theme/ThemeProvider";
-import { useStudioStore } from "@/store";
+import { useStudioStore, type StudioStore } from "@/store";
 import type { ProviderKeyId } from "@/store/slices/userSettingsSlice";
 import { checkCoreHealth } from "@/lib/core-api";
 import { CORE_URL } from "@/lib/repositories/core";
@@ -71,7 +72,29 @@ export function UserBubble({
     setProviderKeyConfigured,
     coreHealth,
     setCoreHealth,
-  } = useStudioStore();
+  } = useStudioStore(
+    useShallow((s: StudioStore) => ({
+      aspectRatio: s.aspectRatio,
+      setAspectRatio: s.setAspectRatio,
+      isMockMode: s.isMockMode,
+      setIsMockMode: s.setIsMockMode,
+      userProfile: s.userProfile,
+      setUserProfile: s.setUserProfile,
+      perRunSpendingLimitUsd: s.perRunSpendingLimitUsd,
+      setPerRunSpendingLimitUsd: s.setPerRunSpendingLimitUsd,
+      dailySpendingLimitUsd: s.dailySpendingLimitUsd,
+      setDailySpendingLimitUsd: s.setDailySpendingLimitUsd,
+      setSpendingLimitUsd: s.setSpendingLimitUsd,
+      storageBackend: s.storageBackend,
+      setStorageBackend: s.setStorageBackend,
+      storageUsedBytes: s.storageUsedBytes,
+      setStorageUsedBytes: s.setStorageUsedBytes,
+      apiKeyStatus: s.apiKeyStatus,
+      setProviderKeyConfigured: s.setProviderKeyConfigured,
+      coreHealth: s.coreHealth,
+      setCoreHealth: s.setCoreHealth,
+    }))
+  );
 
   const [open, setOpen] = useState(false);
   const [section, setSection] = useState<string | null>(null);

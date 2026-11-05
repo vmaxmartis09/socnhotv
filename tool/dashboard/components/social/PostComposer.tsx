@@ -33,7 +33,7 @@ export function PostComposer({ projectId }: PostComposerProps) {
     loadAll,
   } = useSocialStore();
 
-  const { jobs } = useStudioStore();
+  const jobs = useStudioStore((s) => s.jobs);
 
   const [title, setTitle] = useState("");
   const [mediaPath, setMediaPath] = useState("");

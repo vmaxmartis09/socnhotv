@@ -7,7 +7,7 @@ import { useStudioStore } from "@/store";
 /** Studio là màn duy nhất: mở panel tương ứng rồi quay về canvas. */
 export default function ProjectsRedirectPage() {
   const router = useRouter();
-  const { setActiveRightTab } = useStudioStore();
+  const setActiveRightTab = useStudioStore((s) => s.setActiveRightTab);
 
   useEffect(() => {
     setActiveRightTab("project");

@@ -1,5 +1,6 @@
 "use client";
 
+import { useShallow } from "zustand/react/shallow";
 import React, {
   useState,
   useCallback,
@@ -28,7 +29,7 @@ import "@xyflow/react/dist/style.css";
 import { autoLayout, analyzeGraph } from "@/lib/graph-layout";
 import { applyPortOverride } from "@/lib/node-ports";
 import { StudioEdge } from "./StudioEdge";
-import { useStudioStore } from "@/store";
+import { useStudioStore, type StudioStore } from "@/store";
 import {
   PORT_TYPE_COLORS,
   type StudioNodeData,
@@ -232,7 +233,38 @@ function StudioCanvasInner() {
     updateJob,
     setActiveRightTab,
     setMobileSheetOpen,
-  } = useStudioStore();
+  } = useStudioStore(
+    useShallow((s: StudioStore) => ({
+      activeProjectId: s.activeProjectId,
+      nodeCatalog: s.nodeCatalog,
+      nodes: s.nodes,
+      edges: s.edges,
+      selectedNodeId: s.selectedNodeId,
+      setSelectedNodeId: s.setSelectedNodeId,
+      setNodesAndEdges: s.setNodesAndEdges,
+      pushUndoSnapshot: s.pushUndoSnapshot,
+      undoCanvas: s.undoCanvas,
+      redoCanvas: s.redoCanvas,
+      undoStack: s.undoStack,
+      redoStack: s.redoStack,
+      loadCanvasTemplate: s.loadCanvasTemplate,
+      updateNodeExecutionState: s.updateNodeExecutionState,
+      updateNodeParams: s.updateNodeParams,
+      isMockMode: s.isMockMode,
+      setIsMockMode: s.setIsMockMode,
+      isRunningGraph: s.isRunningGraph,
+      setIsRunningGraph: s.setIsRunningGraph,
+      setSaveState: s.setSaveState,
+      validationResult: s.validationResult,
+      setValidationResult: s.setValidationResult,
+      coreHealth: s.coreHealth,
+      perRunSpendingLimitUsd: s.perRunSpendingLimitUsd,
+      addJob: s.addJob,
+      updateJob: s.updateJob,
+      setActiveRightTab: s.setActiveRightTab,
+      setMobileSheetOpen: s.setMobileSheetOpen,
+    }))
+  );
 
   const [snapToGrid, setSnapToGrid] = useState(true);
   const [addMenuOpen, setAddMenuOpen] = useState(false);

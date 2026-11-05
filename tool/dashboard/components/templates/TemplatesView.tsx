@@ -1,5 +1,6 @@
 "use client";
 
+import { useShallow } from "zustand/react/shallow";
 import React, { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { enterOnce } from "@/lib/motion";
@@ -49,7 +50,9 @@ const TIER_FILTERS = [
 
 export function TemplatesView({ className }: { className?: string }) {
   const router = useRouter();
-  const { activeProjectId, setNodesAndEdges } = useStudioStore();
+  const { activeProjectId, setNodesAndEdges } = useStudioStore(
+    useShallow((s) => ({ activeProjectId: s.activeProjectId, setNodesAndEdges: s.setNodesAndEdges }))
+  );
   const [templates, setTemplates] = useState<TemplateV2Data[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);

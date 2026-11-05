@@ -1,10 +1,11 @@
 "use client";
 
+import { useShallow } from "zustand/react/shallow";
 import React, { useState } from "react";
 import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import { Plus, Film } from "@/components/ui/icons";
-import { useStudioStore } from "@/store";
+import { useStudioStore, type StudioStore } from "@/store";
 import { Mark } from "@/components/brand/Mark";
 import { UserBubble } from "./UserBubble";
 
@@ -20,7 +21,18 @@ export function Sidebar() {
     selectEpisode,
     createEpisode,
     graphsByEpisode,
-  } = useStudioStore();
+  } = useStudioStore(
+    useShallow((s: StudioStore) => ({
+      activeProjectId: s.activeProjectId,
+      setActiveProjectId: s.setActiveProjectId,
+      projects: s.projects,
+      episodes: s.episodes,
+      activeEpisodeId: s.activeEpisodeId,
+      selectEpisode: s.selectEpisode,
+      createEpisode: s.createEpisode,
+      graphsByEpisode: s.graphsByEpisode,
+    }))
+  );
 
   const [creatingEp, setCreatingEp] = useState(false);
   const [newEpTitle, setNewEpTitle] = useState("");
