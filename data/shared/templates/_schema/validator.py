@@ -15,7 +15,7 @@ import sys
 from typing import Any, Dict, List, Optional, Tuple
 
 TEMPLATES_DIR = Path(__file__).resolve().parent.parent
-REPO_ROOT = TEMPLATES_DIR.parent.parent
+REPO_ROOT = TEMPLATES_DIR.parent.parent.parent
 
 VALID_KINDS = {
     "animation",

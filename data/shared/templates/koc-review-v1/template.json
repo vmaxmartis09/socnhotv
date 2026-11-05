@@ -116,7 +116,7 @@
       "default": 30
     }
   },
-  "sample_output": "data/shared/templates/koc-review-v1/preview.mp4",
+  "sample_output": "preview.mp4",
   "verified_on": "2026-11-05",
   "sources": [
     {
