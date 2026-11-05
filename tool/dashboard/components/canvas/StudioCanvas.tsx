@@ -190,7 +190,7 @@ function LinkGhost({ from, onCancel }: { from: ActiveDragPort; onCancel: () => v
         d={`M ${origin.x} ${origin.y} C ${origin.x + dx} ${origin.y}, ${mouse.x - dx} ${mouse.y}, ${mouse.x} ${mouse.y}`}
         fill="none"
         stroke={color}
-        strokeWidth={2}
+        strokeWidth={1.25}
         strokeDasharray="6 5"
       />
       <circle cx={mouse.x} cy={mouse.y} r={4} fill={color} />
@@ -1065,7 +1065,10 @@ function StudioCanvasInner() {
               status,
               progressPct,
               lastLog: message,
-              errorMessage: undefined,
+              errorMessage:
+                status === "failed"
+                  ? String(message || "Node chạy thất bại").replace(/^Node dừng lại:\s*/, "")
+                  : undefined,
             });
 
             setActiveRunState((prev) => {
@@ -1101,6 +1104,7 @@ function StudioCanvasInner() {
       }
 
       const g = toCoreGraph(activeProjectId, nodes, edges);
+      let runError = "";
       const summary = await runGraphOnCore(activeProjectId, {
         graph: g,
         mode,
@@ -1108,7 +1112,8 @@ function StudioCanvasInner() {
         spendingLimitUsd: perRunSpendingLimitUsd,
         mockMode: isMockMode,
       }).catch((err) => {
-        setBannerMsg({ tone: "error", text: `Lỗi chạy đồ thị: ${err?.message || err}` });
+        runError = String(err?.message || err);
+        setBannerMsg({ tone: "error", text: `Lỗi chạy đồ thị: ${runError}` });
         return null;
       });
 
@@ -1118,13 +1123,22 @@ function StudioCanvasInner() {
         const isFailed = summary?.failedNodes?.includes(n.id);
         const nodeError = summary?.errors?.[n.id];
 
-        if (isFailed) {
+        if (!summary) {
+          // Không nhận được kết quả (mất kết nối Core, lỗi mạng...) → báo rõ dưới từng node
+          updateNodeExecutionState(n.id, {
+            status: "failed",
+            errorMessage: `Không chạy được: ${runError || "không nhận được phản hồi từ Core"}`,
+          });
+        } else if (isFailed) {
           updateNodeExecutionState(n.id, {
             status: "failed",
             errorMessage: nodeError || "Lỗi xử lý",
           });
         } else if (isExecuted || summary?.isSuccess) {
-          const preview = buildNodeOutputPreview(n.data.nodeType);
+          // Chế độ thật: không gắn ảnh/video/audio demo giả; chỉ mock mới có preview mẫu
+          const preview: Partial<StudioNodeData> = isMockMode
+            ? buildNodeOutputPreview(n.data.nodeType)
+            : { previewType: "text", summaryText: "Đã chạy xong — xem kết quả trong thư mục output của project" };
           const genId = uid("gen");
           const newGen: NodeGenerationRecord = {
             id: genId,

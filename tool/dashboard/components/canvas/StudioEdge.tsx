@@ -60,7 +60,7 @@ export function StudioEdge({
         path={path}
         markerEnd={markerEnd}
         interactionWidth={22}
-        style={{ ...style, stroke: color, strokeWidth: selected ? 2.5 : 1.75 }}
+        style={{ ...style, stroke: color, strokeWidth: selected ? 1.75 : 1.1 }}
       />
       {selected && (
         <EdgeLabelRenderer>
