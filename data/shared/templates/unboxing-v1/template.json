@@ -1,9 +1,14 @@
 {
   "id": "unboxing-v1",
   "name": "Mở Hộp Đập Hộp – Punch-in Chi Tiết",
-  "version": 1,
+  "version": 2,
   "category": "review",
-  "platforms": ["tiktok", "reels", "shorts", "youtube"],
+  "platforms": [
+    "tiktok",
+    "reels",
+    "shorts",
+    "youtube"
+  ],
   "default_platform": "tiktok",
   "duration": {
     "mode": "auto_from_voice",
@@ -50,13 +55,73 @@
     "duck_db": -10.0
   },
   "scenes": [
-    { "role": "box_reveal", "dur": "3s", "summary": "Xuất hiện hộp và đếm ngược" },
-    { "role": "unpack", "summary": "Mở hộp và các phụ kiện bên trong" },
-    { "role": "punch_in_detail", "summary": "Zoom cận cảnh chi tiết hoàn thiện" },
-    { "role": "conclusion", "dur": "3s", "summary": "Đánh giá tổng thể và CTA" }
+    {
+      "role": "box_reveal",
+      "dur": "3s",
+      "summary": "Xuất hiện hộp và đếm ngược"
+    },
+    {
+      "role": "unpack",
+      "summary": "Mở hộp và các phụ kiện bên trong"
+    },
+    {
+      "role": "punch_in_detail",
+      "summary": "Zoom cận cảnh chi tiết hoàn thiện"
+    },
+    {
+      "role": "conclusion",
+      "dur": "3s",
+      "summary": "Đánh giá tổng thể và CTA"
+    }
   ],
   "responsive": {
     "youtube": "contain",
     "facebook": "cover"
-  }
+  },
+  "kind": "review",
+  "status": "draft",
+  "tier": "A",
+  "requires": {
+    "tools": [
+      "bg-remove"
+    ],
+    "providers": [],
+    "gpu": false,
+    "ffmpeg": true
+  },
+  "recipe": {
+    "nodes": [
+      "text",
+      "script",
+      "voice_tts",
+      "captions",
+      "hyperframes_render",
+      "platform_export"
+    ],
+    "description": "Mở hộp unboxing chi tiết: text -> script -> voice_tts -> captions -> hyperframes_render -> platform_export"
+  },
+  "outputs": {
+    "aspect": [
+      "9:16"
+    ],
+    "duration": {
+      "min": 15,
+      "max": 60,
+      "default": 30
+    }
+  },
+  "sample_output": null,
+  "verified_on": null,
+  "sources": [
+    {
+      "name": "unboxing-craft",
+      "url": "https://github.com/socnhotv/video-craft",
+      "license": "MIT",
+      "notes": "Kỹ thuật punch-in 85mm và zoom cận chi tiết"
+    }
+  ],
+  "learned_from": [
+    "koc-review-and-sales",
+    "camera-and-transitions"
+  ]
 }

@@ -1,9 +1,15 @@
 {
   "id": "tiktok-sales-v1",
   "name": "Bán hàng TikTok – Hook 3s",
-  "version": 1,
+  "version": 2,
   "category": "sales",
-  "platforms": ["tiktok", "reels", "shorts", "douyin", "facebook"],
+  "platforms": [
+    "tiktok",
+    "reels",
+    "shorts",
+    "douyin",
+    "facebook"
+  ],
   "default_platform": "tiktok",
   "duration": {
     "mode": "auto_from_voice",
@@ -62,14 +68,77 @@
     "duck_db": -12.0
   },
   "scenes": [
-    { "role": "hook", "dur": "3s", "summary": "Hook gây sốc và lôi cuốn 3s đầu" },
-    { "role": "problem", "summary": "Nêu vấn đề khách hàng đang gặp" },
-    { "role": "demo", "summary": "Giới thiệu giải pháp từ sản phẩm" },
-    { "role": "proof", "summary": "Bằng chứng ưu đãi và phản hồi tốt" },
-    { "role": "cta", "dur": "3s", "summary": "Kêu gọi bấm giỏ hàng góc trái" }
+    {
+      "role": "hook",
+      "dur": "3s",
+      "summary": "Hook gây sốc và lôi cuốn 3s đầu"
+    },
+    {
+      "role": "problem",
+      "summary": "Nêu vấn đề khách hàng đang gặp"
+    },
+    {
+      "role": "demo",
+      "summary": "Giới thiệu giải pháp từ sản phẩm"
+    },
+    {
+      "role": "proof",
+      "summary": "Bằng chứng ưu đãi và phản hồi tốt"
+    },
+    {
+      "role": "cta",
+      "dur": "3s",
+      "summary": "Kêu gọi bấm giỏ hàng góc trái"
+    }
   ],
   "responsive": {
     "youtube": "blur-pad",
     "facebook": "cover"
-  }
+  },
+  "kind": "koc",
+  "status": "draft",
+  "tier": "A",
+  "requires": {
+    "tools": [
+      "bg-remove"
+    ],
+    "providers": [],
+    "gpu": false,
+    "ffmpeg": true
+  },
+  "recipe": {
+    "nodes": [
+      "text",
+      "script",
+      "voice_tts",
+      "captions",
+      "hyperframes_render",
+      "platform_export"
+    ],
+    "description": "Chuỗi bán hàng TikTok hook 3s: text -> script -> voice_tts -> captions -> hyperframes_render -> platform_export"
+  },
+  "outputs": {
+    "aspect": [
+      "9:16"
+    ],
+    "duration": {
+      "min": 15,
+      "max": 60,
+      "default": 30
+    }
+  },
+  "sample_output": null,
+  "verified_on": null,
+  "sources": [
+    {
+      "name": "MoneyPrinterTurbo",
+      "url": "https://github.com/FujiwaraChoki/MoneyPrinterTurbo",
+      "license": "MIT",
+      "notes": "Học ý tưởng luồng hook bán hàng ngắn, tự viết lại"
+    }
+  ],
+  "learned_from": [
+    "koc-review-and-sales",
+    "hook-and-retention"
+  ]
 }

@@ -1,9 +1,14 @@
 {
   "id": "affiliate-compare-v1",
   "name": "So Sánh Sản Phẩm Affiliate – Kèo Cân Não",
-  "version": 1,
+  "version": 2,
   "category": "affiliate",
-  "platforms": ["tiktok", "reels", "shorts", "youtube"],
+  "platforms": [
+    "tiktok",
+    "reels",
+    "shorts",
+    "youtube"
+  ],
   "default_platform": "tiktok",
   "duration": {
     "mode": "auto_from_voice",
@@ -57,12 +62,68 @@
     "duck_db": -12.0
   },
   "scenes": [
-    { "role": "versus", "dur": "3s", "summary": "Mở màn so sánh 2 bên" },
-    { "role": "breakdown", "summary": "Phân tích điểm mạnh điểm yếu" },
-    { "role": "verdict", "dur": "4s", "summary": "Chốt kèo sản phẩm chiến thắng" }
+    {
+      "role": "versus",
+      "dur": "3s",
+      "summary": "Mở màn so sánh 2 bên"
+    },
+    {
+      "role": "breakdown",
+      "summary": "Phân tích điểm mạnh điểm yếu"
+    },
+    {
+      "role": "verdict",
+      "dur": "4s",
+      "summary": "Chốt kèo sản phẩm chiến thắng"
+    }
   ],
   "responsive": {
     "youtube": "contain",
     "facebook": "cover"
-  }
+  },
+  "kind": "review",
+  "status": "draft",
+  "tier": "A",
+  "requires": {
+    "tools": [
+      "bg-remove"
+    ],
+    "providers": [],
+    "gpu": false,
+    "ffmpeg": true
+  },
+  "recipe": {
+    "nodes": [
+      "text",
+      "script",
+      "voice_tts",
+      "captions",
+      "hyperframes_render",
+      "platform_export"
+    ],
+    "description": "So sánh 2 sản phẩm Affiliate: text -> script -> voice_tts -> captions -> hyperframes_render -> platform_export"
+  },
+  "outputs": {
+    "aspect": [
+      "9:16"
+    ],
+    "duration": {
+      "min": 15,
+      "max": 60,
+      "default": 30
+    }
+  },
+  "sample_output": null,
+  "verified_on": null,
+  "sources": [
+    {
+      "name": "affiliate-guide",
+      "url": "https://github.com/socnhotv/affiliate",
+      "license": "MIT",
+      "notes": "Quy chuẩn so sánh 2 phương án và chốt CTA ghim comment"
+    }
+  ],
+  "learned_from": [
+    "affiliate-links-and-first-comment"
+  ]
 }

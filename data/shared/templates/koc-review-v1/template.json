@@ -1,9 +1,14 @@
 {
   "id": "koc-review-v1",
   "name": "KOC Review Sản Phẩm – 5 Sao",
-  "version": 1,
+  "version": 2,
   "category": "review",
-  "platforms": ["tiktok", "reels", "shorts", "facebook"],
+  "platforms": [
+    "tiktok",
+    "reels",
+    "shorts",
+    "facebook"
+  ],
   "default_platform": "tiktok",
   "duration": {
     "mode": "auto_from_voice",
@@ -55,13 +60,73 @@
     "duck_db": -10.0
   },
   "scenes": [
-    { "role": "intro", "dur": "3s", "summary": "Giới thiệu nhân vật và sản phẩm trên tay" },
-    { "role": "pros", "summary": "Nêu ưu điểm chi tiết" },
-    { "role": "cons", "summary": "Nêu nhược điểm chân thực" },
-    { "role": "rating", "dur": "4s", "summary": "Tổng kết chấm sao và lời khuyên" }
+    {
+      "role": "intro",
+      "dur": "3s",
+      "summary": "Giới thiệu nhân vật và sản phẩm trên tay"
+    },
+    {
+      "role": "pros",
+      "summary": "Nêu ưu điểm chi tiết"
+    },
+    {
+      "role": "cons",
+      "summary": "Nêu nhược điểm chân thực"
+    },
+    {
+      "role": "rating",
+      "dur": "4s",
+      "summary": "Tổng kết chấm sao và lời khuyên"
+    }
   ],
   "responsive": {
     "youtube": "contain",
     "facebook": "cover"
-  }
+  },
+  "kind": "koc",
+  "status": "draft",
+  "tier": "A",
+  "requires": {
+    "tools": [
+      "bg-remove",
+      "stt-align"
+    ],
+    "providers": [],
+    "gpu": false,
+    "ffmpeg": true
+  },
+  "recipe": {
+    "nodes": [
+      "text",
+      "script",
+      "voice_tts",
+      "captions",
+      "hyperframes_render",
+      "platform_export"
+    ],
+    "description": "KOC review 5 sao: text -> script -> voice_tts -> captions -> hyperframes_render -> platform_export"
+  },
+  "outputs": {
+    "aspect": [
+      "9:16"
+    ],
+    "duration": {
+      "min": 15,
+      "max": 60,
+      "default": 30
+    }
+  },
+  "sample_output": null,
+  "verified_on": null,
+  "sources": [
+    {
+      "name": "openshorts",
+      "url": "https://github.com/openshorts/openshorts",
+      "license": "MIT",
+      "notes": "Ý tưởng cấu trúc review sản phẩm đa khung"
+    }
+  ],
+  "learned_from": [
+    "koc-review-and-sales"
+  ]
 }

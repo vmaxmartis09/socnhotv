@@ -1,9 +1,14 @@
 {
   "id": "story-cartoon-v1",
   "name": "Truyện Kể Thiếu Nhi Dọc – Trang Sách Lật & Karaoke Sub",
-  "version": 1,
+  "version": 2,
   "category": "story",
-  "platforms": ["tiktok", "reels", "shorts", "youtube"],
+  "platforms": [
+    "tiktok",
+    "reels",
+    "shorts",
+    "youtube"
+  ],
   "default_platform": "tiktok",
   "duration": {
     "mode": "auto_from_voice",
@@ -44,12 +49,69 @@
     "duck_db": -12.0
   },
   "scenes": [
-    { "role": "book_cover", "dur": "3s", "summary": "Bìa sách mở ra câu chuyện cổ tích" },
-    { "role": "story_reading", "summary": "Kể chuyện kết hợp tranh vẽ minh hoạ và chữ karaoke" },
-    { "role": "lesson_outro", "dur": "4s", "summary": "Bài học đạo đức ý nghĩa cho bé" }
+    {
+      "role": "book_cover",
+      "dur": "3s",
+      "summary": "Bìa sách mở ra câu chuyện cổ tích"
+    },
+    {
+      "role": "story_reading",
+      "summary": "Kể chuyện kết hợp tranh vẽ minh hoạ và chữ karaoke"
+    },
+    {
+      "role": "lesson_outro",
+      "dur": "4s",
+      "summary": "Bài học đạo đức ý nghĩa cho bé"
+    }
   ],
   "responsive": {
     "youtube": "contain",
     "facebook": "cover"
-  }
+  },
+  "kind": "story",
+  "status": "draft",
+  "tier": "A",
+  "requires": {
+    "tools": [
+      "ffmpeg-bin"
+    ],
+    "providers": [],
+    "gpu": false,
+    "ffmpeg": true
+  },
+  "recipe": {
+    "nodes": [
+      "text",
+      "script",
+      "voice_tts",
+      "captions",
+      "hyperframes_render",
+      "platform_export"
+    ],
+    "description": "Truyện kể thiếu nhi trang lật: text -> script -> voice_tts -> captions -> hyperframes_render -> platform_export"
+  },
+  "outputs": {
+    "aspect": [
+      "9:16"
+    ],
+    "duration": {
+      "min": 15,
+      "max": 90,
+      "default": 45
+    }
+  },
+  "sample_output": null,
+  "verified_on": null,
+  "sources": [
+    {
+      "name": "story-fables",
+      "url": "data/shared/knowledge/",
+      "license": "MIT",
+      "notes": "Mô thức kể truyện ngụ ngôn 3 hồi"
+    }
+  ],
+  "learned_from": [
+    "hook-and-retention",
+    "depth-and-composition"
+  ]
 }
