@@ -62,7 +62,7 @@
 | **Ảnh kiểm tra responsive 5 cỡ màn hình** | Đã chụp đủ 25 ảnh cho 5 trang (375, 768, 1024, 1440, 1920) | `baseline/*_{375x812,768x1024,1024x768,1440x900,1920x1080}.png` |
 | **P-02** | Selector hóa store (loại bỏ 49 chỗ `useStudioStore()`) | DONE | 40 files converted to narrow selectors + `useShallow` | Đã xóa 100% 49 chỗ unselected store; pass tsc + next build |
 | **P-03** | Memo hóa canvas & các node con | DONE | `StudioNode`, `StudioEdge`, `NodeBody`, 8 `NodeInputs` memoized; stabilized context | Kéo 1 node không re-render các node khác; pass tsc + next build |
-| **P-04** | Cô lập timer canvas & kiểm soát polling có điều kiện | PLANNED | `StudioCanvas.tsx`, `JobsCostTab.tsx` | Timer đưa vào component hiển thị con, polling dừng khi tab ẩn |
+| **P-04** | Cô lập timer canvas & kiểm soát polling có điều kiện | DONE | `RunStatusBar.tsx`, `StudioCanvas.tsx`, `JobsCostTab.tsx` | Đưa timer về RunStatusBar, xoá interval cấp canvas; polling dừng khi tab ẩn + backoff; pass build |
 | **P-05** | Huỷ request (AbortController) & chống race condition | PLANNED | `lib/useAbortableFetch.ts`, hooks & tabs | Xử lý triệt để race condition khi đổi project |
 | **P-06** | Tách bundle (`next/dynamic`), tối ưu `icons.ts` tree-shaking | PLANNED | `icons.ts`, modals & tabs | Giảm First Load JS |
 | **P-07** | Tối ưu ảnh: Component `Img` (lazy + async + aspect placeholder) | PLANNED | `components/ui/Img.tsx`, galleries | Giảm byte ảnh tải ban đầu |
