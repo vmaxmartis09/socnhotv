@@ -27,6 +27,7 @@ import {
 import "@xyflow/react/dist/style.css";
 import { autoLayout, analyzeGraph } from "@/lib/graph-layout";
 import { applyPortOverride } from "@/lib/node-ports";
+import { StudioEdge } from "./StudioEdge";
 import { useStudioStore } from "@/store";
 import {
   PORT_TYPE_COLORS,
@@ -79,6 +80,10 @@ import { CreateVideoModal } from "@/components/studio/CreateVideoModal";
 
 const nodeTypes = {
   studioCard: StudioNode,
+};
+
+const edgeTypes = {
+  default: StudioEdge,
 };
 
 const DATA_LEGEND = [
@@ -407,6 +412,9 @@ function StudioCanvasInner() {
     [nodes, edges, setNodesAndEdges]
   );
 
+  // Đầu kéo dây bắt đầu từ cổng ra (source) hay cổng vào (target)
+  const dragFromRef = useRef<"source" | "target" | null>(null);
+
   const handleConnectStart = useCallback(
     (
       _: any,
@@ -416,6 +424,7 @@ function StudioCanvasInner() {
         handleType: "source" | "target" | null;
       }
     ) => {
+      dragFromRef.current = params.handleType;
       if (!params.nodeId || !params.handleId || !params.handleType) return;
       const n = nodes.find((x) => x.id === params.nodeId);
       if (!n) return;
@@ -454,6 +463,13 @@ function StudioCanvasInner() {
   const onConnect = useCallback(
     (conn: Connection) => {
       setActiveDragPort(null);
+      // Không cho nối ngược: phải kéo từ cổng ra sang cổng vào
+      if (dragFromRef.current === "target") {
+        dragFromRef.current = null;
+        showBanner("error", "Chỉ nối từ đầu ra sang đầu vào.");
+        return;
+      }
+      dragFromRef.current = null;
       if (
         !conn.source ||
         !conn.target ||
@@ -1736,6 +1752,7 @@ function StudioCanvasInner() {
               nodesDraggable={canvasMode === "select"}
               snapGrid={[24, 24]}
               nodeTypes={nodeTypes}
+              edgeTypes={edgeTypes}
               defaultViewport={{ x: 72, y: 72, zoom: 1 }}
               minZoom={0.4}
               maxZoom={1.4}

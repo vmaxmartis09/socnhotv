@@ -19,6 +19,7 @@ import { useCanvasInteraction } from "@/components/canvas/CanvasContext";
 import { NodeBody } from "./NodeBody";
 import { Reveal } from "./Reveal";
 import { applyPortOverride } from "@/lib/node-ports";
+import { PortValueInput } from "./PortValueInput";
 import { useHubScope } from "@/lib/hub";
 import { CharacterCard } from "@/components/canvas/CharacterCard";
 import { motion, AnimatePresence } from "framer-motion";
@@ -227,6 +228,8 @@ export const StudioNode = memo(function StudioNode({
   const [collapsed, setCollapsed] = useState(false);
   // Card Text có 2 chế độ: xem (mặc định) / chỉnh sửa (mở rộng). Bấm tiêu đề để đổi.
   // Mỗi card tự quản lý trạng thái của mình (không ảnh hưởng card khác, không tự đóng khi bỏ chọn).
+  // Cổng vào đang mở khung chọn nguồn (node khác / tải lên / dự án / nhân vật)
+  const [activeInPort, setActiveInPort] = useState<string | null>(null);
   const [expanded, setExpanded] = useState(() => DETAIL_DEFAULT_TYPES.has(def.typeName));
 
   // Kiểm tra đủ input: cổng bắt buộc phải được nối hoặc đã có giá trị
@@ -580,7 +583,21 @@ export const StudioNode = memo(function StudioNode({
             const connected = connectedPorts.has(`${id}:in:${port.name}`);
             const filled = connected || (p[port.name] !== undefined && p[port.name] !== "");
             return (
-              <div key={port.name} className="flex items-center gap-1.5 px-3 text-xs" style={{ height: ROW }}>
+              <div
+                key={port.name}
+                role="button"
+                tabIndex={-1}
+                title="Chọn nguồn cho đầu vào này"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setActiveInPort((cur) => (cur === port.name ? null : port.name));
+                }}
+                className={cn(
+                  "nodrag flex cursor-pointer items-center gap-1.5 px-3 text-xs transition-colors hover:bg-accent/60",
+                  activeInPort === port.name && "bg-accent/60"
+                )}
+                style={{ height: ROW }}
+              >
                 {!(portIconOf(port.portType) && port.name === port.portType) && (
                   <span className={cn("truncate", filled ? "text-foreground" : port.required ? "text-semantic-danger" : "text-muted-foreground")}>
                     {port.name}
@@ -593,6 +610,21 @@ export const StudioNode = memo(function StudioNode({
               </div>
             );
           })}
+          <Reveal show={activeInPort !== null}>
+            <div className="nodrag space-y-1 px-3 pb-2 pt-1">
+              {(() => {
+                const ap = def.inputPorts.find((pt) => pt.name === activeInPort);
+                return ap ? (
+                  <>
+                    <div className="text-[11px] text-muted-foreground">
+                      Nguồn cho <span className="font-mono text-foreground">{ap.name}</span>
+                    </div>
+                    <PortValueInput nodeId={id} port={ap} />
+                  </>
+                ) : null;
+              })()}
+            </div>
+          </Reveal>
          </Reveal>
         </div>
       )}

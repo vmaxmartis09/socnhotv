@@ -78,3 +78,8 @@ Mỗi cổng vào chọn được nguồn bất kỳ, bằng cùng một khối 
 - **Nhân vật**: thuộc tính nhân vật (text: tên, mô tả, prompt lock, mã giọng, chiều cao; ảnh: ảnh chính/tham chiếu; audio: giọng mẫu). Sao chép giá trị vào cổng.
 - **Gõ trực tiếp** cho cổng text.
 - Đang nối dây thì hiện nguồn + nút **Gỡ dây**; có giá trị nhập tay thì có nút bỏ (X). Các panel nguồn mở inline bằng `Reveal`, mỗi lúc chỉ mở một panel.
+
+## Dây nối & nhận giá trị trên card
+- Bấm vào dây → dây được chọn và hiện nút xoá (icon thùng rác) ở giữa dây (`StudioEdge`, đăng ký làm edge type `default`).
+- Không cho nối ngược: kéo dây phải bắt đầu từ cổng ra (source) sang cổng vào (target); kéo từ cổng vào về cổng ra bị từ chối kèm thông báo.
+- Chế độ chi tiết của card: bấm một dòng ở "Nhận" để mở khung chọn nguồn ngay dưới (node khác / tải lên / dự án / nhân vật / gõ trực tiếp, và gỡ dây) — cùng component `PortValueInput` với tab Node.
