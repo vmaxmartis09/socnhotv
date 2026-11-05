@@ -12,7 +12,7 @@
 | Mã | Nhiệm vụ | Trạng thái | Bằng chứng / Đường dẫn | Ghi chú |
 |---|---|---|---|---|
 | **T-00** | Khởi tạo Session T, kiểm tra môi trường, tạo nhánh & status/T.md | DONE | `status/T.md` | Xác nhận môi trường đúng như mục 0 |
-| **T-01** | Dựng khung `tool/toolbox/` + contracts + _template + README | PLANNED | `tool/toolbox/` | |
+| **T-01** | Dựng khung `tool/toolbox/` + contracts + _template + README | DONE | `tool/toolbox/contracts/`, `tool/toolbox/_template/`, `tool/toolbox/README.md` | JSON schema hợp lệ, echo tool test pass |
 | **T-02** | CLI `toolbox_cli` (list, doctor, run, add) | PLANNED | `tool/toolbox/toolbox_cli/` | |
 | **T-03** | Kho dùng chung: atomic write + append lock + stress test | PLANNED | `tool/toolbox/contracts/` & tests | |
 | **T-04** | Chuẩn hóa `voice_vault`: voice.json, aliases, todo_clone | PLANNED | `data/shared/voice_vault/` | |

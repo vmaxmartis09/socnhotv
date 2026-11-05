@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SharedStoreRecord",
+  "description": "Schema for records stored in shared vaults (e.g. data/shared/assets/**/index.jsonl)",
+  "type": "object",
+  "required": ["id", "created_by_tool", "tool_version", "source", "license", "created_at"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique record id, content hash (sha8), or slug"
+    },
+    "created_by_tool": {
+      "type": "string",
+      "description": "ID of the tool that generated this record"
+    },
+    "tool_version": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string",
+      "description": "Original file path, URL, or hash"
+    },
+    "license": {
+      "type": ["string", "object"],
+      "description": "License of the produced artifact / source"
+    },
+    "created_at": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}",
+      "description": "ISO 8601 creation timestamp"
+    },
+    "files": {
+      "type": "object",
+      "description": "Dictionary of relative file paths associated with this record"
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Domain-specific attributes (e.g. dimensions, sample_rate, audio duration)"
+    }
+  }
+}
