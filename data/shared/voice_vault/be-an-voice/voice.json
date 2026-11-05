@@ -1,0 +1,15 @@
+{
+  "id": "be-an-voice",
+  "display_name": "Bé An",
+  "aliases": [
+    "be-an",
+    "be_an",
+    "voice-be-an"
+  ],
+  "engine": "omnivoice",
+  "lang": "vi",
+  "sample_paths": [],
+  "loudness": -14.0,
+  "status": "ready",
+  "consent_note": "Giọng nhân vật Bé An, dự án SocNhoTV."
+}

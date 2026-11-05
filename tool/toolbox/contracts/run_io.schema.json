@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ToolboxRunIO",
+  "description": "Standardized input and output contracts for Toolbox executions",
+  "definitions": {
+    "RunInput": {
+      "type": "object",
+      "required": ["inputs"],
+      "properties": {
+        "params": {
+          "type": "object",
+          "default": {}
+        },
+        "inputs": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "List of absolute paths to input files or resources"
+        },
+        "project": {
+          "type": ["string", "null"],
+          "default": null,
+          "description": "Project ID if execution is scoped to a project"
+        },
+        "dry_run": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "RunOutput": {
+      "type": "object",
+      "required": ["ok", "outputs", "store_records", "warnings", "error", "elapsed_s"],
+      "properties": {
+        "ok": { "type": "boolean" },
+        "outputs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["path", "kind"],
+            "properties": {
+              "path": { "type": "string" },
+              "kind": { "type": "string" },
+              "sha256": { "type": "string" }
+            }
+          }
+        },
+        "store_records": {
+          "type": "array",
+          "items": { "type": "object" },
+          "description": "Metadata records written or ready to be recorded into shared vaults"
+        },
+        "warnings": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "error": {
+          "type": ["object", "null"],
+          "properties": {
+            "code": { "type": "string" },
+            "message": { "type": "string" },
+            "fix_hint": { "type": "string" }
+          },
+          "required": ["code", "message"]
+        },
+        "elapsed_s": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    }
+  }
+}

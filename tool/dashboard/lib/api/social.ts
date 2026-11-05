@@ -27,12 +27,16 @@ export interface SocialAccount {
   avatar?: string;
   channel_url?: string;
   auth: AccountAuth;
+  auth_mode?: "oauth" | "manual";
   status: "connected" | "expired" | "manual" | "disabled";
   groups?: string[];
+  group?: string;
   default_hashtags: string[];
   default_caption_footer: string;
   posting_windows: PostingWindow[];
+  golden_windows?: string[];
   daily_limit: number;
+  limits?: { daily: number };
   min_gap_minutes?: number;
   color?: string;
   affiliate_default?: { link: string; disclosure: boolean };
@@ -50,6 +54,7 @@ export interface PublishableVideo {
   title: string;
   thumb?: string;
   duration_s: number;
+  duration_sec?: number;
   width: number;
   height: number;
   size_mb: number;
@@ -137,6 +142,7 @@ export interface QueueItem {
   post_id: string;
   target_id: string;
   title: string;
+  video_title?: string;
   platform: PlatformType;
   account_id: string;
   account_name: string;
@@ -145,7 +151,9 @@ export interface QueueItem {
   status: string;
   caption: string;
   thumb: string;
-  bucket: "upcoming" | "overdue" | "published" | "failed";
+  thumbnail?: string;
+  error_message?: string;
+  bucket: "draft" | "pending_approval" | "upcoming" | "overdue" | "published" | "failed";
   approval_required: boolean;
   approval_status: "approved" | "pending" | "rejected";
   is_manual: boolean;
@@ -156,6 +164,7 @@ export interface QueueItem {
 export interface QueueSummary {
   accounts_count: number;
   max_accounts: number;
+  draft_count: number;
   pending_approval_count: number;
   overdue_count: number;
   upcoming_count: number;
@@ -167,6 +176,162 @@ export interface QueueSummary {
 export interface QueueResponse {
   items: QueueItem[];
   summary: QueueSummary;
+  total?: number;
+  page?: number;
+  page_size?: number;
+  groups?: Record<string, QueueItem[]>;
+}
+
+export interface VideoPostTarget {
+  account_id: string;
+  platform: PlatformType;
+  status: string;
+  scheduled_at?: string | null;
+  published_url?: string;
+  post_id: string;
+  target_id: string;
+  caption?: string;
+  hashtags?: string[];
+  title?: string;
+  thumb?: string;
+  error_message?: string;
+}
+
+export interface LibraryVideo extends PublishableVideo {
+  posts_by_account: VideoPostTarget[];
+}
+
+export interface SocialOverview {
+  summary: {
+    upcoming_24h_count: number;
+    overdue_count: number;
+    failed_count: number;
+    pending_approval_count: number;
+    drafts_count?: number;
+    token_expiring_count: number;
+    empty_slots_7d_count: number;
+  };
+  upcoming_24h_count?: number;
+  overdue_count?: number;
+  failed_count?: number;
+  pending_approval_count?: number;
+  drafts_count?: number;
+  expiring_tokens?: Array<{
+    id?: string;
+    account_id?: string;
+    handle?: string;
+    display_name?: string;
+    platform: PlatformType;
+    expires_at: string;
+    days_left?: number;
+  }>;
+  empty_slots?: Array<{
+    date: string;
+    weekday?: number;
+    account_id: string;
+    account_name?: string;
+    platform?: PlatformType;
+    time_slot?: string;
+    start?: string;
+    end?: string;
+  }>;
+  upcoming_24h: Array<{
+    post_id: string;
+    target_id: string;
+    title: string;
+    platform: PlatformType;
+    account_id: string;
+    account_name: string;
+    account_avatar?: string;
+    status: string;
+    scheduled_at?: string | null;
+    thumb?: string;
+    caption?: string;
+  }>;
+  overdue: Array<{
+    post_id: string;
+    target_id: string;
+    title: string;
+    platform: PlatformType;
+    account_id: string;
+    account_name: string;
+    account_avatar?: string;
+    status: string;
+    scheduled_at?: string | null;
+    thumb?: string;
+    caption?: string;
+  }>;
+  failed: Array<{
+    post_id: string;
+    target_id: string;
+    title: string;
+    platform: PlatformType;
+    account_id: string;
+    account_name: string;
+    account_avatar?: string;
+    status: string;
+    scheduled_at?: string | null;
+    thumb?: string;
+    caption?: string;
+  }>;
+  pending_approval: Array<{
+    post_id: string;
+    target_id: string;
+    title: string;
+    platform: PlatformType;
+    account_id: string;
+    account_name: string;
+    account_avatar?: string;
+    status: string;
+    scheduled_at?: string | null;
+    thumb?: string;
+    caption?: string;
+  }>;
+  token_expiring_accounts: Array<{
+    id: string;
+    display_name: string;
+    platform: PlatformType;
+    expires_at: string;
+    days_left: number;
+  }>;
+  empty_slots_7d: Array<{
+    date: string;
+    weekday: number;
+    account_id: string;
+    account_name: string;
+    platform: PlatformType;
+    start: string;
+    end: string;
+  }>;
+}
+
+export interface ContentTemplate {
+  id: string;
+  name: string;
+  title?: string;
+  purpose: "sales" | "koc" | "education" | "story" | "general";
+  platforms: PlatformType[];
+  caption_hook: string;
+  caption_body: string;
+  caption_cta: string;
+  caption_template?: string;
+  cta?: string;
+  hashtags: string[];
+  first_comment: string;
+  footer: string;
+  disclosure: string;
+  created_at?: string;
+  updated_at?: string;
+}
+
+export interface AccountStats {
+  account_id: string;
+  posts_this_week: number;
+  posts_today: number;
+  daily_limit: number;
+  quota_remaining_today: number;
+  next_post_time?: string | null;
+  last_posted_at?: string | null;
 }
 
 export interface PostMedia {
@@ -400,7 +565,7 @@ export const socialApi = {
 
   getQueue: (
     projectId: string,
-    bucket: "upcoming" | "overdue" | "published" | "failed" | "all" = "upcoming",
+    bucket: "draft" | "pending_approval" | "upcoming" | "overdue" | "published" | "failed" | "all" = "upcoming",
     params?: { accountId?: string; platform?: string; fromDate?: string }
   ) => {
     const q = new URLSearchParams();
@@ -716,4 +881,62 @@ export const socialApi = {
       `${SOCIAL_CORE_URL}/projects/${projectId}/social/notifications`,
       { method: "DELETE" }
     ),
+
+  // Hub APIs
+  fetchLibrary: (
+    projectId: string,
+    params?: { filter?: string; account?: string; platform?: string; q?: string }
+  ) => {
+    const sp = new URLSearchParams();
+    if (params?.filter) sp.append("filter", params.filter);
+    if (params?.account) sp.append("account", params.account);
+    if (params?.platform) sp.append("platform", params.platform);
+    if (params?.q) sp.append("q", params.q);
+    const qs = sp.toString() ? `?${sp.toString()}` : "";
+    return fetchJson<LibraryVideo[]>(
+      `${SOCIAL_CORE_URL}/projects/${projectId}/social/library${qs}`
+    );
+  },
+
+  fetchOverview: (projectId: string) =>
+    fetchJson<SocialOverview>(`${SOCIAL_CORE_URL}/projects/${projectId}/social/overview`),
+
+  bulkAction: (
+    projectId: string,
+    payload: { ids: string[]; action: string; params?: any }
+  ) =>
+    fetchJson<{ results: Array<{ id: string; success: boolean; error?: string | null }> }>(
+      `${SOCIAL_CORE_URL}/projects/${projectId}/social/targets/bulk`,
+      {
+        method: "POST",
+        body: JSON.stringify(payload),
+      }
+    ),
+
+  fetchTemplates: (projectId: string) =>
+    fetchJson<ContentTemplate[]>(`${SOCIAL_CORE_URL}/projects/${projectId}/social/templates`),
+
+  createTemplate: (projectId: string, template: Partial<ContentTemplate>) =>
+    fetchJson<ContentTemplate>(`${SOCIAL_CORE_URL}/projects/${projectId}/social/templates`, {
+      method: "POST",
+      body: JSON.stringify(template),
+    }),
+
+  updateTemplate: (projectId: string, templateId: string, template: Partial<ContentTemplate>) =>
+    fetchJson<ContentTemplate>(
+      `${SOCIAL_CORE_URL}/projects/${projectId}/social/templates/${templateId}`,
+      {
+        method: "PUT",
+        body: JSON.stringify(template),
+      }
+    ),
+
+  deleteTemplate: (projectId: string, templateId: string) =>
+    fetchJson<{ status: string; template_id: string }>(
+      `${SOCIAL_CORE_URL}/projects/${projectId}/social/templates/${templateId}`,
+      { method: "DELETE" }
+    ),
+
+  fetchAccountStats: (projectId: string) =>
+    fetchJson<AccountStats[]>(`${SOCIAL_CORE_URL}/projects/${projectId}/social/accounts/stats`),
 };

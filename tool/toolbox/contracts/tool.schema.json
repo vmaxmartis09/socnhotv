@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ToolboxManifest",
+  "description": "Manifest schema for SocNhoTV independent toolbox tools",
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "version",
+    "category",
+    "entry",
+    "runtime",
+    "requires_gpu",
+    "requires_ffmpeg",
+    "license",
+    "inputs",
+    "outputs",
+    "status"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9_-]+$",
+      "description": "Unique tool identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human readable name of the tool"
+    },
+    "version": {
+      "type": "string",
+      "description": "Semantic version of the tool wrapper"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["audio", "image", "video", "utility", "ai"]
+    },
+    "entry": {
+      "type": "string",
+      "default": "run.py",
+      "description": "Entry point script filename, relative to tool directory"
+    },
+    "runtime": {
+      "type": "string",
+      "enum": ["python3.11", "python3.12", "node"],
+      "default": "python3.11"
+    },
+    "install": {
+      "type": "object",
+      "properties": {
+        "command": { "type": "string" },
+        "requirements_file": { "type": "string" }
+      }
+    },
+    "requires_gpu": {
+      "type": "boolean",
+      "default": false
+    },
+    "requires_ffmpeg": {
+      "type": "boolean",
+      "default": false
+    },
+    "license": {
+      "type": "object",
+      "required": ["code", "weights", "commercial_ok", "source_url", "checked_on"],
+      "properties": {
+        "code": { "type": "string" },
+        "weights": { "type": "string" },
+        "commercial_ok": { "type": "boolean" },
+        "source_url": { "type": "string" },
+        "checked_on": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" }
+      }
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "type"],
+        "properties": {
+          "name": { "type": "string" },
+          "type": { "type": "string", "enum": ["file", "directory", "string", "number", "boolean", "json"] },
+          "description": { "type": "string" },
+          "required": { "type": "boolean", "default": true }
+        }
+      }
+    },
+    "outputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["kind", "type"],
+        "properties": {
+          "kind": { "type": "string" },
+          "type": { "type": "string", "enum": ["file", "directory", "json", "stream"] },
+          "description": { "type": "string" }
+        }
+      }
+    },
+    "writes_to": {
+      "type": "string",
+      "description": "Shared vault directory or project directory this tool populates (e.g. data/shared/assets/cutouts/)"
+    },
+    "models": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path", "sha256", "url"],
+        "properties": {
+          "path": { "type": "string" },
+          "sha256": { "type": "string" },
+          "url": { "type": "string" },
+          "license": { "type": "string" }
+        }
+      }
+    },
+    "smoke_test": {
+      "type": "object",
+      "properties": {
+        "sample_input": { "type": "string" },
+        "expected_output_kind": { "type": "string" }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": ["planned", "installed", "verified", "broken"],
+      "default": "planned"
+    }
+  }
+}

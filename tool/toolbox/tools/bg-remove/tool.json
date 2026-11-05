@@ -1,0 +1,55 @@
+{
+  "id": "bg-remove",
+  "name": "Background Removal Tool",
+  "version": "1.0.0",
+  "category": "image",
+  "entry": "run.py",
+  "runtime": "python3.11",
+  "install": {
+    "command": "python -m pip install -r requirements.txt",
+    "requirements_file": "requirements.txt"
+  },
+  "requires_gpu": false,
+  "requires_ffmpeg": false,
+  "license": {
+    "code": "MIT",
+    "weights": "Apache-2.0",
+    "commercial_ok": true,
+    "source_url": "https://github.com/danielgatis/rembg",
+    "checked_on": "2026-11-05"
+  },
+  "inputs": [
+    {
+      "name": "image",
+      "type": "file",
+      "description": "Path to input image (PNG/JPG/WEBP)",
+      "required": true
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "cutout",
+      "type": "file",
+      "description": "RGBA cutout image (PNG)"
+    },
+    {
+      "kind": "mask",
+      "type": "file",
+      "description": "Grayscale mask image (PNG)"
+    }
+  ],
+  "writes_to": "data/shared/assets/cutouts/",
+  "models": [
+    {
+      "path": "u2net.onnx",
+      "sha256": "auto-downloaded",
+      "url": "https://github.com/danielgatis/rembg/releases/download/v0.0.0/u2net.onnx",
+      "license": "Apache-2.0"
+    }
+  ],
+  "smoke_test": {
+    "sample_input": "data/projects/soc-nho-tv/characters/soc_nho/soc_nho_01.png",
+    "expected_output_kind": "cutout"
+  },
+  "status": "verified"
+}

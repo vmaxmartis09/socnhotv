@@ -1,0 +1,18 @@
+{
+  "id": "soc-nho",
+  "display_name": "Sóc Nhỏ (Bi)",
+  "aliases": [
+    "soc_nho",
+    "soc_nho_v1",
+    "bi",
+    "voice-soc-nho"
+  ],
+  "engine": "omnivoice",
+  "lang": "vi",
+  "sample_paths": [
+    "cloned_default_sample.mp3"
+  ],
+  "loudness": -14.0,
+  "status": "ready",
+  "consent_note": "Giọng bản quyền nhân vật chính SocNhoTV (Bi), sử dụng nội bộ cho dự án SocNhoTV."
+}

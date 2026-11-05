@@ -20,7 +20,7 @@
       "name": "Sóc Nhỏ (Bi)",
       "role": "main",
       "height_cm": 100,
-      "scale_ratio": 1.0,
+      "scale_ratio": 1,
       "weight_kg": 15.0,
       "head_body_ratio": "1 : 4.0 (Đầu = 25cm, Thân & Chân = 75cm)",
       "colors": {
@@ -39,7 +39,7 @@
           "#3D2314"
         ]
       },
-      "voice_id": "soc_nho_v1",
+      "voice_id": "soc-nho",
       "profile_path": "characters/soc_nho/soc_nho_profile.json",
       "prompts_path": "characters/soc_nho/prompts.md",
       "dna_dir": "characters/soc_nho"

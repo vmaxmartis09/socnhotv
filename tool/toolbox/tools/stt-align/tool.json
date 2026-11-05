@@ -1,0 +1,55 @@
+{
+  "id": "stt-align",
+  "name": "Speech-to-Text & Word Alignment Tool",
+  "version": "1.0.0",
+  "category": "audio",
+  "entry": "run.py",
+  "runtime": "python3.11",
+  "install": {
+    "command": "python -m pip install -r requirements.txt",
+    "requirements_file": "requirements.txt"
+  },
+  "requires_gpu": false,
+  "requires_ffmpeg": true,
+  "license": {
+    "code": "MIT",
+    "weights": "Apache-2.0",
+    "commercial_ok": true,
+    "source_url": "https://github.com/SYSTRAN/faster-whisper",
+    "checked_on": "2026-11-05"
+  },
+  "inputs": [
+    {
+      "name": "audio",
+      "type": "file",
+      "description": "Path to input audio file (WAV, MP3, M4A, OGG)",
+      "required": true
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "word_timings",
+      "type": "json",
+      "description": "JSON containing segments and word-level timestamps (start, end, word, probability)"
+    },
+    {
+      "kind": "subtitles_srt",
+      "type": "file",
+      "description": "Standard SRT subtitle file"
+    }
+  ],
+  "writes_to": "data/shared/assets/audio/",
+  "models": [
+    {
+      "path": "faster-whisper-small",
+      "sha256": "auto-downloaded",
+      "url": "https://huggingface.co/Systran/faster-whisper-small",
+      "license": "Apache-2.0"
+    }
+  ],
+  "smoke_test": {
+    "sample_input": "data/shared/voice_vault/soc-nho/cloned_default_sample.mp3",
+    "expected_output_kind": "word_timings"
+  },
+  "status": "installed"
+}

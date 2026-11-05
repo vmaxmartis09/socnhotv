@@ -1,0 +1,48 @@
+{
+  "id": "ffmpeg-bin",
+  "name": "FFmpeg Static Binary Bundle",
+  "version": "7.1.0",
+  "category": "utility",
+  "entry": "run.py",
+  "runtime": "python3.11",
+  "install": {
+    "command": "python run.py --setup",
+    "requirements_file": "requirements.txt"
+  },
+  "requires_gpu": false,
+  "requires_ffmpeg": false,
+  "license": {
+    "code": "MIT",
+    "weights": "GPL-3.0",
+    "commercial_ok": true,
+    "source_url": "https://www.gyan.dev/ffmpeg/builds/",
+    "checked_on": "2026-11-05"
+  },
+  "inputs": [],
+  "outputs": [
+    {
+      "kind": "binary",
+      "type": "file",
+      "description": "ffmpeg.exe binary inside data/shared/models/ffmpeg-bin/"
+    },
+    {
+      "kind": "binary",
+      "type": "file",
+      "description": "ffprobe.exe binary inside data/shared/models/ffmpeg-bin/"
+    }
+  ],
+  "writes_to": "data/shared/models/ffmpeg-bin/",
+  "models": [
+    {
+      "path": "data/shared/models/ffmpeg-bin/ffmpeg.exe",
+      "sha256": "auto-computed",
+      "url": "https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip",
+      "license": "GPL-3.0"
+    }
+  ],
+  "smoke_test": {
+    "sample_input": "none",
+    "expected_output_kind": "binary"
+  },
+  "status": "verified"
+}

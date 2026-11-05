@@ -1,0 +1,43 @@
+{
+  "id": "_template",
+  "name": "Template Echo Tool",
+  "version": "0.1.0",
+  "category": "utility",
+  "entry": "run.py",
+  "runtime": "python3.11",
+  "install": {
+    "command": "python -m pip install -r requirements.txt",
+    "requirements_file": "requirements.txt"
+  },
+  "requires_gpu": false,
+  "requires_ffmpeg": false,
+  "license": {
+    "code": "MIT",
+    "weights": "none",
+    "commercial_ok": true,
+    "source_url": "https://github.com/socnhotv/toolbox",
+    "checked_on": "2026-11-05"
+  },
+  "inputs": [
+    {
+      "name": "sample_input",
+      "type": "file",
+      "description": "Any text file to echo or inspect",
+      "required": false
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "echo_result",
+      "type": "json",
+      "description": "Processed echo output metadata"
+    }
+  ],
+  "writes_to": "data/shared/toolbox/",
+  "models": [],
+  "smoke_test": {
+    "sample_input": "tests/sample.txt",
+    "expected_output_kind": "echo_result"
+  },
+  "status": "verified"
+}

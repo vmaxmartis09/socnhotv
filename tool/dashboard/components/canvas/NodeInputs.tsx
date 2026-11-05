@@ -1044,24 +1044,21 @@ interface CharacterSelectProps {
   characterId?: string;
 }
 
-export function NodeCharacterSelect({ nodeId, characterId = "soc_nho" }: CharacterSelectProps) {
-  const { characters, updateNodeParams } = useStudioStore();
-
+export function NodeCharacterSelect({ characterId = "soc_nho", onOpen }: CharacterSelectProps & { onOpen?: () => void }) {
+  const { characters } = useStudioStore();
+  const cur = characters.find((c) => c.id === characterId);
   return (
-    <div className="space-y-1">
-      <label className="text-[11px] text-muted-foreground block">Chọn nhân vật dự án</label>
-      <select
-        value={characterId}
-        onChange={(e) => updateNodeParams(nodeId, { characterId: e.target.value })}
-        className="nodrag h-8 w-full rounded border border-border bg-card px-2 text-xs text-foreground"
-      >
-        {characters.map((c) => (
-          <option key={c.id} value={c.id}>
-            {c.name} ({c.heightCm}cm · {c.voiceId})
-          </option>
-        ))}
-      </select>
-    </div>
+    <button
+      type="button"
+      onClick={(e) => {
+        e.stopPropagation();
+        onOpen?.();
+      }}
+      className="nodrag flex h-8 w-full items-center justify-between rounded border border-border bg-card px-2 text-xs text-foreground transition-colors hover:bg-accent"
+    >
+      <span className="truncate">Đổi nhân vật{cur ? ` · ${cur.name}` : ""}</span>
+      <span aria-hidden>›</span>
+    </button>
   );
 }
 

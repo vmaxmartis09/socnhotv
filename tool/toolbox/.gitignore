@@ -1,0 +1,21 @@
+# Python / venv
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Models & Weights
+*.onnx
+*.bin
+*.pth
+*.pt
+*.safetensors
+models/
+weights/
+
+# Temporary / Run files
+*.tmp
+tmp/
+runs.jsonl
+*.log

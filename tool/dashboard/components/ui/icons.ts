@@ -61,6 +61,7 @@ export {
   XCircle as XCircleNode,
   Grid as GridNode,
   List as ListNode,
+  Wrench as WrenchNode,
 } from "lucide";
 
 // Universal morphing icon components powered by morphicons.com
@@ -180,4 +181,5 @@ export const CheckCircle = createMorphIcon(lucide.CheckCircle, "CheckCircle");
 export const XCircle = createMorphIcon(lucide.XCircle, "XCircle");
 export const Grid = createMorphIcon(lucide.Grid, "Grid");
 export const List = createMorphIcon(lucide.List, "List");
+export const Wrench = createMorphIcon(lucide.Wrench, "Wrench");
 

@@ -1,0 +1,14 @@
+{
+  "id": "lu",
+  "display_name": "Lu",
+  "aliases": [
+    "voice-lu",
+    "chu-cho-lu"
+  ],
+  "engine": "omnivoice",
+  "lang": "vi",
+  "sample_paths": [],
+  "loudness": -14.0,
+  "status": "todo_clone",
+  "consent_note": "Chờ thu thập mẫu giọng thật được cấp phép (todo_clone)."
+}
