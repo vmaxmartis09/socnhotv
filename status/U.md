@@ -13,9 +13,9 @@
 |---|---|---|---|---|
 | **U-00** | Đọc quy chuẩn & kiểm toán thực tế 8 template cũ (chạy thật) | **HOÀN THÀNH** | `status/U.md`, `data/shared/toolbox/ready/U-00.md` | Phát hiện 100% template đang ra ảnh/video mock đen |
 | **U-01** | Hợp đồng template v2 (`template.json`) + JSON Schema + Validator | **HOÀN THÀNH** | `data/shared/templates/_schema/template.v2.schema.json`, `data/shared/toolbox/ready/U-01.md` | Đã kiểm định tự động: 8/8 template hợp lệ v2, 7/7 unit tests pass |
-| **U-02** | API danh mục templates + kiểm điều kiện (tools, providers, GPU) | CHỜ CHẠY | `curl` endpoint JSON thật | Chờ người dùng "OK U-01" |
-| **U-03** | UI tab Template theo chuẩn dự án (Morphicons, theme sáng/tối) | CHỜ CHẠY | Ảnh chụp trình duyệt sáng/tối, build pass | Chờ U-02 |
-| **U-04** | U-D Review sản phẩm: nối `bg-remove` tách nền thật → MP4 9:16 | CHỜ CHẠY | MP4 + ffprobe + contact sheet | Chờ U-03 |
+| **U-02** | API danh mục templates + kiểm điều kiện (tools, providers, GPU) | **HOÀN THÀNH** | `tool/dashboard/app/api/templates/route.ts`, `data/shared/toolbox/ready/U-02.md` | `curl` endpoint JSON thật; phát hiện chính xác tool/key/gpu |
+| **U-03** | UI tab Template theo chuẩn dự án (Morphicons, theme sáng/tối) | **HOÀN THÀNH** | `components/templates/**`, `data/shared/toolbox/ready/U-03.md` | Build Next.js pass, check:icons pass, ảnh chụp sáng/tối thật |
+| **U-04** | U-D Review sản phẩm: nối `bg-remove` tách nền thật → MP4 9:16 | ĐANG THỰC HIỆN | MP4 + ffprobe + contact sheet | Tiếp tục U-04 |
 | **U-05** | U-C TikTok KOC review: MP4 thật có giọng OmniVoice + subtitle | CHỜ CHẠY | MP4 + đo WER | Chờ U-04 |
 | **U-06** | U-G Video vẽ tay: tool Toolbox `handdraw` + template | CHỜ CHẠY | MP4 vẽ từng nét | Chờ U-05 |
 | **U-07** | U-F Motion graphics / kinetic text bằng HyperFrames | CHỜ CHẠY | MP4 16:9 + 9:16 | Chờ U-06 |
