@@ -1,0 +1,10 @@
+{
+  "params": {
+    "model": "u2net"
+  },
+  "inputs": [
+    "D:\\socnhotv\\data\\projects\\soc-nho-tv\\characters\\soc_nho\\soc_nho_01.png"
+  ],
+  "project": "soc-nho-tv",
+  "dry_run": false
+}
