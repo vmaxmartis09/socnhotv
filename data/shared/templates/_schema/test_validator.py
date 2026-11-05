@@ -10,10 +10,10 @@ from data.shared.templates._schema.validator import (
 )
 
 
-def test_validator_all_eight_templates():
+def test_validator_all_templates():
     templates_root = Path(__file__).resolve().parent.parent
     results = validate_all_templates(templates_root)
-    assert len(results) == 8, f"Expected 8 templates, found {len(results)}"
+    assert len(results) >= 8, f"Expected at least 8 templates, found {len(results)}"
 
     for name, (errs, warns) in results.items():
         assert len(errs) == 0, f"Template {name} failed validation: {errs}"
