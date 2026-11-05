@@ -99,6 +99,10 @@ export interface PortDefinition {
   portType: PortType;
   description?: string;
   required?: boolean;
+  /** Cổng tuỳ biến: ánh xạ về cổng/tham số của node gốc */
+  mapTo?: string;
+  /** Giá trị mặc định khi không nối dây và chưa nhập */
+  defaultValue?: any;
 }
 
 export interface NodeDefinition {
@@ -110,6 +114,9 @@ export interface NodeDefinition {
   outputPorts: PortDefinition[];
   defaultParams: Record<string, any>;
   mockable: boolean;
+  /** Loại node tuỳ biến: biến thể của node gốc (dùng chung bộ chạy) */
+  baseType?: string;
+  scope?: "project" | "shared";
 }
 
 export interface NodePortInputRef {

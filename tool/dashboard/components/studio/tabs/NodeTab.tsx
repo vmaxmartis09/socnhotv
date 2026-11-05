@@ -6,6 +6,10 @@ import { useStudioStore } from "@/store";
 import { FALLBACK_NODE_TYPES, estimateNodeCostUsd } from "@/lib/core-api";
 import { Pin, Check } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
+import { PortsEditor } from "./PortsEditor";
+import { PortValueInput } from "@/components/canvas/PortValueInput";
+import { applyPortOverride } from "@/lib/node-ports";
+import type { NodeDefinition } from "@/lib/core-contracts";
 import {
   NodeTextInput,
   NodeImageInput,
@@ -16,6 +20,40 @@ import {
   NodeCharacterSelect,
   NodeCaptionsInput,
 } from "@/components/canvas/NodeInputs";
+
+/** Nhập đầu vào trực tiếp (gõ / tải lên / chọn từ dự án) cho các cổng chưa nối dây. */
+function InputValuesSection({
+  nodeId,
+  def,
+  params,
+}: {
+  nodeId: string;
+  def: NodeDefinition;
+  params: Record<string, any>;
+}) {
+  const ports = applyPortOverride(def, params).inputPorts;
+  if (ports.length === 0) return null;
+  return (
+    <section className="space-y-3 border-b border-border pb-3.5">
+      <h4 className="font-semibold text-foreground">Đầu vào</h4>
+      <p className="text-[13px] leading-relaxed text-muted-foreground">
+        Mỗi cổng nhận từ: output node khác, tải lên, tệp trong dự án, thuộc tính nhân vật hoặc nhập trực tiếp. Có thể gỡ dây bất cứ lúc nào.
+      </p>
+      {ports.map((port) => (
+        <div key={port.name} className="space-y-1">
+          <div className="flex items-center justify-between">
+            <span className="font-mono text-foreground">{port.name}</span>
+            <span className="text-[13px] text-muted-foreground">
+              {port.portType}
+              {port.required === false ? " · tuỳ chọn" : ""}
+            </span>
+          </div>
+          <PortValueInput nodeId={nodeId} port={port} />
+        </div>
+      ))}
+    </section>
+  );
+}
 
 export function NodeTab() {
   const t = useTranslations("nodeTab");
@@ -88,6 +126,10 @@ export function NodeTab() {
           </span>
         </div>
       </div>
+
+      <InputValuesSection nodeId={node.id} def={def} params={params} />
+
+      <PortsEditor nodeId={node.id} baseDef={def} params={params} />
 
       {/* DÙNG CHUNG CÁC COMPONENT NHẬP LIỆU CỐT LÕI (Unified with canvas card) */}
       <section className="space-y-3 border-b border-border pb-3.5">

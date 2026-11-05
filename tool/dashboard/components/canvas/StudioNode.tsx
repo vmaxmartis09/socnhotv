@@ -1,7 +1,7 @@
 "use client";
 
 import { enterOnce } from "@/lib/motion";
-import React, { memo, useEffect, useRef, useState } from "react";
+import React, { memo, useEffect, useMemo, useRef, useState } from "react";
 import { Handle, Position, type NodeProps, type Node } from "@xyflow/react";
 import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
@@ -17,6 +17,9 @@ import {
 } from "@/lib/core-api";
 import { useCanvasInteraction } from "@/components/canvas/CanvasContext";
 import { NodeBody } from "./NodeBody";
+import { Reveal } from "./Reveal";
+import { applyPortOverride } from "@/lib/node-ports";
+import { PortValueInput } from "./PortValueInput";
 import { useHubScope } from "@/lib/hub";
 import { CharacterCard } from "@/components/canvas/CharacterCard";
 import { motion, AnimatePresence } from "framer-motion";
@@ -34,7 +37,10 @@ import {
   AlertTriangle,
   RotateCcw,
   FileText,
+  Images,
   Users,
+  Pencil,
+  RefreshCw,
   Layers,
   Sparkles,
   Volume2,
@@ -47,6 +53,25 @@ export type StudioCardNodeType = Node<StudioNodeData, "studioCard">;
 export type StudioNodeType = StudioCardNodeType;
 export type DataType = string;
 export type { StudioNodeData };
+
+/** Card nguồn (không có đầu vào): có 2 chế độ xem / chỉnh sửa. Xem ai/rules/node-card-style.md */
+const SOURCE_TYPES = new Set(["text", "image", "character"]);
+/** Card xử lý có 2 chế độ: xem = kết quả; chỉnh sửa = tham số + cổng đầy đủ. */
+const PROCESS_TYPES = new Set(["script", "image_gen", "video_gen", "voice_tts", "image_edit", "quality_check", "vision_analyze", "captions", "hyperframes_render", "export"]);
+
+/** Icon thay cho chữ kiểu dữ liệu ở cổng. */
+function portIconOf(portType: string): React.ComponentType<{ className?: string; strokeWidth?: number }> | null {
+  if (portType === "text") return FileText;
+  if (portType === "image" || portType === "image[]") return Images;
+  if (portType === "character") return Users;
+  if (portType === "audio") return Volume2;
+  if (portType === "video") return Film;
+  if (portType === "scenes") return Layers;
+  return null;
+}
+
+/** Card mở sẵn chế độ chi tiết khi hiển thị. */
+const DETAIL_DEFAULT_TYPES = new Set(["character", "hyperframes_render", "export"]);
 
 export const StudioNode = memo(function StudioNode({
   id,
@@ -75,10 +100,12 @@ export const StudioNode = memo(function StudioNode({
   } = useCanvasInteraction();
 
 
-  const def =
+  const baseDef =
     nodeCatalog.find((d) => d.typeName === data.nodeType) ||
     FALLBACK_NODE_TYPES.find((d) => d.typeName === data.nodeType) ||
     FALLBACK_NODE_TYPES[0];
+  // Cổng/tên ghi đè riêng của node (tuỳ biến trong thanh bên phải)
+  const def = useMemo(() => applyPortOverride(baseDef, data.params), [baseDef, data.params]);
 
   const categoryLabel = t(`categories.${def.category}` as any);
 
@@ -183,7 +210,6 @@ export const StudioNode = memo(function StudioNode({
       ? "text-foreground"
       : "text-muted-foreground";
 
-  const hasError = Boolean(data.errorMessage) || issues.length > 0 || data.status === "failed";
 
   // Bố cục 3 vùng: NHẬN (trên) · LÀM (giữa) · TRẢ (dưới). Cổng bám theo hàng của vùng tương ứng.
   const HEADER = 44;
@@ -193,10 +219,32 @@ export const StudioNode = memo(function StudioNode({
   const hasIn = def.inputPorts.length > 0;
   const hasOut = def.outputPorts.length > 0;
   const inTop = (i: number) => HEADER + 1 + LABEL + i * ROW + ROW / 2;
+  // Chân card chỉ hiện khi có nội dung (chi phí > 0 hoặc có lịch sử tạo); không còn nút "chạy từ đây xuống"
+  const hasFooter = !SOURCE_TYPES.has(def.typeName) && (estCost > 0 || data.generations.length > 0);
   const outBottom = (i: number) =>
-    FOOTER + (def.outputPorts.length - 1 - i) * ROW + ROW / 2;
+    (hasFooter ? FOOTER : 8) + (def.outputPorts.length - 1 - i) * ROW + ROW / 2;
 
+  const isSourceNode = SOURCE_TYPES.has(def.typeName);
+  const isModeNode = isSourceNode || PROCESS_TYPES.has(def.typeName);
   const [collapsed, setCollapsed] = useState(false);
+  const [charPicker, setCharPicker] = useState(false);
+  const [renaming, setRenaming] = useState(false);
+  // Tên hiển thị: tên tuỳ đặt > (node nhân vật) tên nhân vật > tên loại node
+  const hasCustomName = typeof p._customName === "string" && p._customName.trim() !== "";
+  const nodeTitle = hasCustomName
+    ? def.displayName
+    : def.typeName === "character" && boundChar
+    ? boundChar.name
+    : def.displayName;
+  const { updateNodeParams } = useStudioStore();
+  useEffect(() => {
+    if (!selected) setCharPicker(false);
+  }, [selected]);
+  // Card Text có 2 chế độ: xem (mặc định) / chỉnh sửa (mở rộng). Bấm tiêu đề để đổi.
+  // Mỗi card tự quản lý trạng thái của mình (không ảnh hưởng card khác, không tự đóng khi bỏ chọn).
+  // Cổng vào đang mở khung chọn nguồn (node khác / tải lên / dự án / nhân vật)
+  const [activeInPort, setActiveInPort] = useState<string | null>(null);
+  const [expanded, setExpanded] = useState(() => DETAIL_DEFAULT_TYPES.has(def.typeName));
 
   // Kiểm tra đủ input: cổng bắt buộc phải được nối hoặc đã có giá trị
   const requiredPorts = def.inputPorts.filter((pt) => pt.required);
@@ -206,6 +254,21 @@ export const StudioNode = memo(function StudioNode({
       (p[pt.name] === undefined || p[pt.name] === "")
   );
   const inputsOk = missingPorts.length === 0;
+
+  // Thông báo lỗi THỐNG NHẤT cho mọi node — luôn hiện ngay dưới card.
+  // Ưu tiên: lỗi chạy thật > lỗi kiểm tra đồ thị > thiếu đầu vào (tính trực tiếp từ dây đang nối).
+  const missingMessage = inputsOk
+    ? null
+    : `Thiếu đầu vào bắt buộc: ${missingPorts
+        .map((pt) => `${pt.name} (${t(`portTypes.${pt.portType}` as any)})`)
+        .join(", ")}. Hãy nối node cấp dữ liệu vào.`;
+  const staleRunError = data.errorMessage && data.status !== "failed" && inputsOk;
+  const errorText =
+    (staleRunError ? null : data.errorMessage) ||
+    issues[0] ||
+    missingMessage ||
+    (data.status === "failed" ? "Node chạy thất bại nhưng không có chi tiết lỗi. Xem log chạy để biết thêm." : null);
+  const hasError = Boolean(errorText);
 
   const [guide, setGuide] = useState<"in" | "out" | null>(null);
   const rootRef = useRef<HTMLDivElement>(null);
@@ -248,7 +311,11 @@ export const StudioNode = memo(function StudioNode({
     const connected = connectedPorts.has(`${id}:${side}:${port.name}`);
     const missing = isIn && port.required && !connected;
     const pos = isIn
-      ? { top: inTop(index), transform: "translate(-50%, -50%)" }
+      ? isModeNode && !expanded
+        ? { top: `${((index + 1) / (def.inputPorts.length + 1)) * 100}%`, transform: "translate(-50%, -50%)" }
+        : { top: inTop(index), transform: "translate(-50%, -50%)" }
+      : isModeNode && !expanded
+      ? { top: `${((index + 1) / (def.outputPorts.length + 1)) * 100}%`, bottom: "auto", transform: "translate(50%, -50%)" }
       : { top: "auto", bottom: outBottom(index), transform: "translate(50%, 50%)" };
     return (
       <Handle
@@ -266,11 +333,15 @@ export const StudioNode = memo(function StudioNode({
         style={{
           ...pos,
           [isIn ? "left" : "right"]: -1,
-          width: compatible ? 16 : 14,
-          height: compatible ? 16 : 14,
-          borderRadius: isIn ? "50%" : 4,
-          backgroundColor: portColor,
-          border: compatible
+          width: portIconOf(port.portType) ? 20 : compatible ? 18 : 16,
+          height: portIconOf(port.portType) ? 20 : compatible ? 18 : 16,
+          borderRadius: portIconOf(port.portType) ? "50%" : isIn ? "50%" : 4,
+          backgroundColor: portIconOf(port.portType) ? "hsl(var(--muted))" : portColor,
+          color: portColor,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          border: portIconOf(port.portType) ? (compatible ? "1.5px solid hsl(var(--brand))" : missing ? "1.5px solid hsl(var(--danger))" : "1px solid hsl(var(--border) / 0.6)") : compatible
             ? "2px solid hsl(var(--brand))"
             : missing
             ? "2px solid hsl(var(--danger))"
@@ -280,7 +351,9 @@ export const StudioNode = memo(function StudioNode({
           cursor: linkMode && compatible ? "pointer" : undefined,
           transition: "all 150ms",
         }}
-      />
+      >
+        {(() => { const PI = portIconOf(port.portType); return PI ? <PI className="h-3 w-3 pointer-events-none opacity-70" strokeWidth={1.75} /> : null; })()}
+      </Handle>
     );
   };
 
@@ -413,6 +486,12 @@ export const StudioNode = memo(function StudioNode({
 
   const outputsDone = data.status === "succeeded" || data.status === "completed";
   const isCharacter = def.typeName === "character";
+  // Cổng text: chỉ hiện icon thay cho chữ "text" thừa
+  const portType = (port: { name: string; portType: string }) =>
+    (() => {
+      const PI = portIconOf(port.portType);
+      return PI ? <PI className="h-3 w-3 shrink-0" /> : typeLabel(port.portType);
+    })();
 
   return (
     <motion.div
@@ -423,8 +502,11 @@ export const StudioNode = memo(function StudioNode({
       initial={enterOnce(`node:${id}`, { opacity: 0 })}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+      onFocusCapture={(e) => {
+        if (isSourceNode && (e.target as HTMLElement).tagName === "TEXTAREA") setExpanded(true);
+      }}
       onKeyDown={(e) => {
-        if (e.key === "Enter") {
+        if (e.key === "Enter" && (e.target as HTMLElement).tagName !== "TEXTAREA") {
           e.preventDefault();
           e.stopPropagation();
           onRequestRun("single_node", id);
@@ -468,7 +550,7 @@ export const StudioNode = memo(function StudioNode({
       {plusBtn("out")}
 
       {/* Đầu card */}
-      <div className="flex items-center gap-2 px-3" style={{ height: HEADER }}>
+      <div className="flex items-center gap-2 px-3 py-1.5" style={{ minHeight: HEADER + 4 }}>
         {stepInfo[id] && (
           <span
             title={stepInfo[id].main ? `Bước ${stepInfo[id].step} · trục chính` : `Bước ${stepInfo[id].step} · hỗ trợ`}
@@ -487,18 +569,44 @@ export const StudioNode = memo(function StudioNode({
           <CategoryIcon className="h-3.5 w-3.5" />
         </span>
         <span
-          className="min-w-0 flex-1 cursor-pointer truncate text-[15px] font-semibold"
-          title={`${def.displayName} · nhấn đúp để ${collapsed ? "mở rộng" : "thu gọn"}`}
+          className="min-w-0 flex-1 cursor-pointer line-clamp-2 break-words text-[15px] font-semibold leading-tight"
+          title={isModeNode ? `${def.displayName} · nhấn để ${expanded ? "thu gọn" : "chỉnh sửa"}` : `${def.displayName} · nhấn đúp để ${collapsed ? "mở rộng" : "thu gọn"}`}
+          onClick={isModeNode ? () => setExpanded((v) => !v) : undefined}
           onDoubleClick={(e) => {
+            if (isModeNode) return;
             e.stopPropagation();
             setCollapsed((v) => !v);
           }}
         >
-          {def.displayName}
+          {renaming ? (
+            <input
+              autoFocus
+              defaultValue={nodeTitle}
+              onClick={(e) => e.stopPropagation()}
+              onDoubleClick={(e) => e.stopPropagation()}
+              onBlur={(e) => {
+                updateNodeParams(id, { _customName: e.target.value.trim() });
+                setRenaming(false);
+              }}
+              onKeyDown={(e) => {
+                e.stopPropagation();
+                if (e.key === "Enter") (e.target as HTMLInputElement).blur();
+                if (e.key === "Escape") setRenaming(false);
+              }}
+              className="nodrag w-full rounded border border-border bg-card px-1 text-[15px] font-semibold outline-none focus:border-foreground"
+            />
+          ) : (
+            nodeTitle
+          )}
         </span>
+        {stateKey !== "ready" && stateKey !== "idle" && (
         <span title={`${stateLabel}${stateKey === "running" && typeof data.progressPct === "number" ? ` ${Math.round(data.progressPct)}%` : ""}`} className={cn("flex h-6 w-6 items-center justify-center", statusColor)}>
           <StatusIcon className={cn("h-3.5 w-3.5", stateKey === "running" && "animate-spin")} />
         </span>
+        )}
+        <IconBtn label="Đổi tên node" onClick={() => setRenaming(true)}>
+          <Pencil className="h-3 w-3" />
+        </IconBtn>
         <IconBtn label={t("editInNodeTab")} onClick={() => { setSelectedNodeId(id); onOpenNodeInspector(id); }}>
           <Sliders className="h-3.5 w-3.5" />
         </IconBtn>
@@ -510,6 +618,7 @@ export const StudioNode = memo(function StudioNode({
       {/* 1. NHẬN — chỉ hiện khi node có đầu vào */}
       {hasIn && (
         <div className="border-t border-border/70">
+         <Reveal show={!isModeNode || expanded}>
           <div className="flex items-center justify-between px-3" style={{ height: LABEL }}>
             <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Nhận</span>
             {requiredPorts.length > 0 ? (
@@ -525,31 +634,67 @@ export const StudioNode = memo(function StudioNode({
             const connected = connectedPorts.has(`${id}:in:${port.name}`);
             const filled = connected || (p[port.name] !== undefined && p[port.name] !== "");
             return (
-              <div key={port.name} className="flex items-center gap-1.5 px-3 text-xs" style={{ height: ROW }}>
-                <span className={cn("truncate", filled ? "text-foreground" : port.required ? "text-semantic-danger" : "text-muted-foreground")}>
-                  {port.name}
-                </span>
-                <span className="text-muted-foreground/70">· {typeLabel(port.portType)}</span>
+              <div
+                key={port.name}
+                role="button"
+                tabIndex={-1}
+                title="Chọn nguồn cho đầu vào này"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setActiveInPort((cur) => (cur === port.name ? null : port.name));
+                }}
+                className={cn(
+                  "nodrag flex cursor-pointer items-center gap-1.5 px-3 text-xs transition-colors hover:bg-accent/60",
+                  activeInPort === port.name && "bg-accent/60"
+                )}
+                style={{ height: ROW }}
+              >
+                {!(portIconOf(port.portType) && port.name === port.portType) && (
+                  <span className={cn("truncate", filled ? "text-foreground" : port.required ? "text-semantic-danger" : "text-muted-foreground")}>
+                    {port.name}
+                  </span>
+                )}
+                {!portIconOf(port.portType) && <span className="flex items-center text-muted-foreground/70">· {portType(port)}</span>}
                 <span className="ml-auto text-[10px]">
                   {filled ? <CheckCircle2 className="h-3 w-3 text-semantic-success" /> : port.required ? <span className="text-semantic-danger">thiếu</span> : <span className="text-muted-foreground/60">tuỳ chọn</span>}
                 </span>
               </div>
             );
           })}
+          <Reveal show={activeInPort !== null}>
+            <div className="nodrag space-y-1 px-3 pb-2 pt-1">
+              {(() => {
+                const ap = def.inputPorts.find((pt) => pt.name === activeInPort);
+                return ap ? (
+                  <>
+                    <div className="text-[11px] text-muted-foreground">
+                      Nguồn cho <span className="font-mono text-foreground">{ap.name}</span>
+                    </div>
+                    <PortValueInput nodeId={id} port={ap} />
+                  </>
+                ) : null;
+              })()}
+            </div>
+          </Reveal>
+         </Reveal>
         </div>
       )}
 
       {/* 2. LÀM (node nguồn không có đầu vào thì gọi là "Cung cấp") */}
       <div className="border-t border-border/70">
-        <div className="flex items-center justify-between px-3" style={{ height: LABEL }}>
-          <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">{hasIn ? "Làm" : "Cung cấp"}</span>
-          <span className="text-[10px] text-muted-foreground/70">{categoryLabel}</span>
-        </div>
-        <div className="space-y-2 px-3 pb-3">
+        <Reveal show={!isModeNode || expanded}>
+          <div className="flex items-center justify-between px-3" style={{ height: LABEL }}>
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">{hasIn ? "Làm" : "Cung cấp"}</span>
+            {hasIn && <span className="text-[10px] text-muted-foreground/70">{categoryLabel}</span>}
+          </div>
+        </Reveal>
+        <div className={cn("space-y-2 px-3 pb-3", isModeNode && "pt-2.5")}>
           {!collapsed && (
-            <p className="line-clamp-2 text-xs text-muted-foreground" title={def.description}>
-              {def.description}
-            </p>
+            <Reveal show={!isModeNode || expanded}>
+              <p className="line-clamp-2 text-xs text-muted-foreground" title={def.description}>
+                {def.description}
+              </p>
+            </Reveal>
           )}
           <NodeBody
             nodeType={def.typeName}
@@ -557,20 +702,39 @@ export const StudioNode = memo(function StudioNode({
             data={data}
             character={boundChar}
             compact={collapsed}
+            expanded={expanded}
             connectedInputs={def.inputPorts.filter((pt) => connectedPorts.has(`${id}:in:${pt.name}`)).map((pt) => pt.name)}
           />
-          {isCharacter && boundChar && !collapsed && (
-            <button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                useHubScope.getState().openTab("characters", null, boundChar.id);
-              }}
-              className="nodrag flex w-full items-center justify-center gap-1 rounded-lg border border-border py-1.5 text-xs text-foreground transition-colors hover:bg-accent"
-            >
-              <Users className="h-3.5 w-3.5" />
-              Mở hồ sơ nhân vật
-            </button>
+          {isCharacter && !collapsed && expanded && (
+            <div className="flex items-center justify-center gap-2">
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setCharPicker((v) => !v);
+                }}
+                title="Đổi nhân vật"
+                aria-label="Đổi nhân vật"
+                aria-expanded={charPicker}
+                className="nodrag flex h-8 w-8 items-center justify-center rounded-lg border border-border text-foreground transition-colors hover:bg-accent"
+              >
+                <RefreshCw className="h-4 w-4" />
+              </button>
+              {boundChar && (
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    useHubScope.getState().openTab("characters", null, boundChar.id);
+                  }}
+                  title="Mở hồ sơ nhân vật"
+                  aria-label="Mở hồ sơ nhân vật"
+                  className="nodrag flex h-8 w-8 items-center justify-center rounded-lg border border-border text-foreground transition-colors hover:bg-accent"
+                >
+                  <Users className="h-4 w-4" />
+                </button>
+              )}
+            </div>
           )}
         </div>
       </div>
@@ -578,6 +742,8 @@ export const StudioNode = memo(function StudioNode({
       {/* 3. TRẢ — chỉ hiện khi node có đầu ra */}
       {hasOut && (
         <div className="border-t border-border/70">
+         <Reveal show={!isModeNode || expanded}>
+          <div className={cn(!hasFooter && "pb-2")}>
           <div className="flex items-center justify-between px-3" style={{ height: LABEL }}>
             <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Trả</span>
             {outputsDone && (
@@ -590,38 +756,100 @@ export const StudioNode = memo(function StudioNode({
             const connected = connectedPorts.has(`${id}:out:${port.name}`);
             return (
               <div key={port.name} className="flex items-center justify-end gap-1.5 px-3 text-xs" style={{ height: ROW }}>
-                <span className="text-muted-foreground/70">{typeLabel(port.portType)} ·</span>
-                <span className={cn("truncate", connected ? "text-foreground" : "text-muted-foreground")}>{port.name}</span>
+                {!portIconOf(port.portType) && <span className="flex items-center text-muted-foreground/70">{portType(port)}</span>}
+                {port.name !== port.portType && (
+                  <span className={cn("truncate", connected ? "text-foreground" : "text-muted-foreground")}>{port.name}</span>
+                )}
               </div>
             );
           })}
+          </div>
+         </Reveal>
         </div>
       )}
 
-      {(data.summaryText || hasError) && (
-        <div className="space-y-1 px-2.5 pb-1">
-          {data.summaryText && (
-            <p className="line-clamp-2 rounded border border-border/70 bg-muted/20 px-2 py-1 text-xs text-foreground">{data.summaryText}</p>
-          )}
-          {hasError && (
-            <p className="rounded border border-semantic-danger/40 px-2 py-1 text-xs text-semantic-danger">
-              {data.errorMessage || issues[0]}
-            </p>
-          )}
+      {data.summaryText && (
+        <div className="px-2.5 pb-1">
+          <p className="line-clamp-2 rounded border border-border/70 bg-muted/20 px-2 py-1 text-xs text-foreground">{data.summaryText}</p>
         </div>
       )}
 
+      {/* Card Text không cần chân card (chi phí 0, không chạy tiếp từ đây) */}
+      <Reveal show={hasFooter}>
       <div className="flex items-center justify-between px-3 text-xs text-muted-foreground tnum" style={{ height: FOOTER }}>
         <span className="truncate">
           {data.generations.length > 0 ? t("pinnedGen", { index: Math.max(1, pinnedIdx), total: data.generations.length }) : ""}
         </span>
         <span className="flex shrink-0 items-center gap-1">
-          <span title={t("estimatedCost", { cost: estCost.toFixed(2) })}>${estCost.toFixed(2)}</span>
-          <IconBtn label={t("runFromHere")} onClick={() => onRequestRun("downstream", id)}>
-            <ChevronsDown className="h-3.5 w-3.5" />
-          </IconBtn>
+          {estCost > 0 && <span title={t("estimatedCost", { cost: estCost.toFixed(2) })}>${estCost.toFixed(2)}</span>}
         </span>
       </div>
+      </Reveal>
+
+      {/* Bảng chọn nhân vật: tab card bên cạnh, dạng avatar + tạo mới */}
+      {isCharacter && charPicker && (
+        <div
+          onClick={(e) => e.stopPropagation()}
+          style={{ left: "calc(100% + 44px)", top: 0 }}
+          className="nodrag nowheel absolute z-30 w-64 rounded-xl border border-border bg-card p-2 shadow-lg"
+        >
+          <p className="px-1 pb-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Chọn nhân vật</p>
+          <div className="grid max-h-80 grid-cols-3 gap-1.5 overflow-y-auto">
+            {characters.map((c) => {
+              const active = c.id === p.characterId;
+              return (
+                <button
+                  key={c.id}
+                  type="button"
+                  title={`${c.name} · ${c.heightCm}cm`}
+                  onClick={() => {
+                    updateNodeParams(id, { characterId: c.id });
+                    setCharPicker(false);
+                  }}
+                  className={cn(
+                    "flex flex-col items-center gap-1 rounded-lg border p-1 text-center transition-colors hover:bg-accent",
+                    active ? "border-foreground bg-accent" : "border-border"
+                  )}
+                >
+                  {c.referenceImages?.[0] ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={c.referenceImages[0]} alt="" className="h-14 w-14 rounded-md object-cover object-top" />
+                  ) : (
+                    <span className="flex h-14 w-14 items-center justify-center rounded-md bg-muted text-base font-semibold text-muted-foreground">
+                      {c.name.charAt(0)}
+                    </span>
+                  )}
+                  <span className="w-full truncate text-[10px] text-foreground">{c.name}</span>
+                </button>
+              );
+            })}
+            <button
+              type="button"
+              title="Tạo nhân vật mới"
+              onClick={() => {
+                setCharPicker(false);
+                useHubScope.getState().openTab("characters", "create-character");
+              }}
+              className="flex flex-col items-center justify-center gap-1 rounded-lg border border-dashed border-border p-1 text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+            >
+              <Plus className="h-5 w-5" />
+              <span className="text-[10px]">Tạo mới</span>
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Thông báo lỗi thống nhất: luôn nằm ngay dưới card, mọi loại node */}
+      {errorText && (
+        <div
+          role="alert"
+          data-node-error
+          className="absolute inset-x-0 top-full z-10 mt-1.5 flex items-start gap-1.5 rounded-lg border border-semantic-danger/50 bg-card px-2.5 py-1.5 text-xs leading-snug text-semantic-danger shadow-sm"
+        >
+          <AlertTriangle className="mt-0.5 h-3.5 w-3.5 shrink-0" />
+          <span className="min-w-0 break-words">{errorText}</span>
+        </div>
+      )}
     </motion.div>
   );
 });

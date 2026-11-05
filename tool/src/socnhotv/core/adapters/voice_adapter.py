@@ -66,15 +66,20 @@ class VoiceAdapter:
         proc = await asyncio.create_subprocess_exec(
             sys.executable, str(script), "speak", "--voice", voice_id, "--script", text,
             "--output", output_path, "--no-master", "--tempo", "1.0",
-            stdout=asyncio.subprocess.DEVNULL, stderr=asyncio.subprocess.DEVNULL,
+            stdout=asyncio.subprocess.DEVNULL, stderr=asyncio.subprocess.PIPE,
             cwd=str(self.repo_root),
         )
         try:
-            await asyncio.wait_for(proc.wait(), timeout=600)
+            _, err = await asyncio.wait_for(proc.communicate(), timeout=600)
         except asyncio.TimeoutError:
             proc.kill()
+            self.last_error = "OmniVoice quá thời gian chờ (600s)"
             return False
-        return proc.returncode == 0 and os.path.exists(output_path) and os.path.getsize(output_path) > 0
+        ok = proc.returncode == 0 and os.path.exists(output_path) and os.path.getsize(output_path) > 0
+        if not ok:
+            tail = (err or b"").decode("utf-8", "ignore").strip().splitlines()[-3:]
+            self.last_error = f"OmniVoice lỗi (mã {proc.returncode}): " + (" | ".join(tail) or "không có chi tiết")
+        return ok
 
     async def _synthesize_edge_tts(
         self,
@@ -126,12 +131,10 @@ class VoiceAdapter:
             engine_used = "omnivoice"
             tts_success = await self._synthesize_omnivoice(text, voice_id, raw_audio_path)
             if not tts_success:
-                # Dự phòng: Edge-TTS là giọng khác, KHÔNG phải giọng soc-nho; ghi nhãn thật trong provenance
-                engine_used = "edge_tts_fallback"
-                tts_success = await self._synthesize_edge_tts(
-                    text=text,
-                    output_path=raw_audio_path,
-                    voice_name="vi-VN-HoaiMyNeural",
+                # KHÔNG âm thầm đổi sang giọng nữ Edge-TTS: báo lỗi rõ để người dùng biết giọng soc-nho chưa chạy được
+                raise RuntimeError(
+                    f"Không tạo được giọng '{voice_id}'. "
+                    + (getattr(self, "last_error", "") or "OmniVoice không chạy được")
                 )
 
             # Fallback nếu mạng lỗi: dùng sample mẫu của Sóc Nhỏ hoặc tạo WAV

@@ -26,6 +26,8 @@ import {
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 import { autoLayout, analyzeGraph } from "@/lib/graph-layout";
+import { applyPortOverride } from "@/lib/node-ports";
+import { StudioEdge } from "./StudioEdge";
 import { useStudioStore } from "@/store";
 import {
   PORT_TYPE_COLORS,
@@ -78,6 +80,10 @@ import { CreateVideoModal } from "@/components/studio/CreateVideoModal";
 
 const nodeTypes = {
   studioCard: StudioNode,
+};
+
+const edgeTypes = {
+  default: StudioEdge,
 };
 
 const DATA_LEGEND = [
@@ -297,9 +303,20 @@ function StudioCanvasInner() {
     edges: Edge[];
   } | null>(null);
 
-  const defMap = useMemo(
+  const baseDefMap = useMemo(
     () => new Map(nodeCatalog.map((d) => [d.typeName, d])),
     [nodeCatalog]
+  );
+  // Tra định nghĩa hiệu lực theo node (có tính cổng ghi đè riêng); gọi: defMap.get(node)
+  const defMap = useMemo(
+    () => ({
+      get: (key: string | { data: { nodeType: string; params?: Record<string, any> } }) => {
+        if (typeof key === "string") return baseDefMap.get(key);
+        const d = baseDefMap.get(key.data.nodeType);
+        return d ? applyPortOverride(d, key.data.params) : undefined;
+      },
+    }),
+    [baseDefMap]
   );
 
   const connectedPorts = useMemo(() => {
@@ -395,6 +412,9 @@ function StudioCanvasInner() {
     [nodes, edges, setNodesAndEdges]
   );
 
+  // Đầu kéo dây bắt đầu từ cổng ra (source) hay cổng vào (target)
+  const dragFromRef = useRef<"source" | "target" | null>(null);
+
   const handleConnectStart = useCallback(
     (
       _: any,
@@ -404,10 +424,11 @@ function StudioCanvasInner() {
         handleType: "source" | "target" | null;
       }
     ) => {
+      dragFromRef.current = params.handleType;
       if (!params.nodeId || !params.handleId || !params.handleType) return;
       const n = nodes.find((x) => x.id === params.nodeId);
       if (!n) return;
-      const def = defMap.get(n.data.nodeType);
+      const def = defMap.get(n);
       if (!def) return;
       const port =
         params.handleType === "source"
@@ -442,6 +463,13 @@ function StudioCanvasInner() {
   const onConnect = useCallback(
     (conn: Connection) => {
       setActiveDragPort(null);
+      // Không cho nối ngược: phải kéo từ cổng ra sang cổng vào
+      if (dragFromRef.current === "target") {
+        dragFromRef.current = null;
+        showBanner("error", "Chỉ nối từ đầu ra sang đầu vào.");
+        return;
+      }
+      dragFromRef.current = null;
       if (
         !conn.source ||
         !conn.target ||
@@ -454,8 +482,8 @@ function StudioCanvasInner() {
       const tgtNode = nodes.find((n) => n.id === conn.target);
       if (!srcNode || !tgtNode) return;
 
-      const srcDef = defMap.get(srcNode.data.nodeType);
-      const tgtDef = defMap.get(tgtNode.data.nodeType);
+      const srcDef = defMap.get(srcNode);
+      const tgtDef = defMap.get(tgtNode);
       const srcPort = srcDef?.outputPorts.find(
         (p) => p.name === conn.sourceHandle
       );
@@ -526,6 +554,8 @@ function StudioCanvasInner() {
       extraParams?: Record<string, any>
     ): Node<StudioNodeData> => {
       const def = defMap.get(typeName) || nodeCatalog[0];
+      // Loại node tuỳ biến: tạo node thuộc loại gốc, kèm cổng + tên riêng
+      const base = def.baseType ? baseDefMap.get(def.baseType) : undefined;
       const defaultPos = pos || {
         x: 240 + (nodes.length % 4) * 80,
         y: 120 + (nodes.length % 3) * 60,
@@ -536,14 +566,25 @@ function StudioCanvasInner() {
         position: defaultPos,
         selected: true,
         data: {
-          nodeType: def.typeName,
+          nodeType: base ? base.typeName : def.typeName,
           status: "idle",
-          params: { ...(def.defaultParams || {}), ...(extraParams || {}) },
+          params: {
+            ...(base?.defaultParams || {}),
+            ...(def.defaultParams || {}),
+            ...(base
+              ? {
+                  _ports: { inputs: def.inputPorts, outputs: def.outputPorts },
+                  _customName: def.displayName,
+                  _customType: def.typeName,
+                }
+              : {}),
+            ...(extraParams || {}),
+          },
           generations: [],
         },
       };
     },
-    [defMap, nodeCatalog, nodes.length]
+    [defMap, baseDefMap, nodeCatalog, nodes.length]
   );
 
   const handlePlaceNewNode = useCallback(
@@ -642,7 +683,7 @@ function StudioCanvasInner() {
         nodes.find((n) => n.id === selectedNodeId) ||
         nodes.find((n) => n.selected);
       if (!sel) return;
-      const def = defMap.get(sel.data.nodeType);
+      const def = defMap.get(sel);
       if (!def) return;
       if (direction === "before" && def.inputPorts.length > 0) {
         const p = def.inputPorts[0];
@@ -838,7 +879,7 @@ function StudioCanvasInner() {
     (mode: RunMode, targetNodeId?: string) => {
       if (mode === "single_node" && targetNodeId) {
         const target = nodes.find((n) => n.id === targetNodeId);
-        const def = target ? defMap.get(target.data.nodeType) : undefined;
+        const def = target ? defMap.get(target) : undefined;
         if (target && def) {
           for (const port of def.inputPorts) {
             if (!port.required) continue;
@@ -1024,7 +1065,10 @@ function StudioCanvasInner() {
               status,
               progressPct,
               lastLog: message,
-              errorMessage: undefined,
+              errorMessage:
+                status === "failed"
+                  ? String(message || "Node chạy thất bại").replace(/^Node dừng lại:\s*/, "")
+                  : undefined,
             });
 
             setActiveRunState((prev) => {
@@ -1060,6 +1104,7 @@ function StudioCanvasInner() {
       }
 
       const g = toCoreGraph(activeProjectId, nodes, edges);
+      let runError = "";
       const summary = await runGraphOnCore(activeProjectId, {
         graph: g,
         mode,
@@ -1067,7 +1112,8 @@ function StudioCanvasInner() {
         spendingLimitUsd: perRunSpendingLimitUsd,
         mockMode: isMockMode,
       }).catch((err) => {
-        setBannerMsg({ tone: "error", text: `Lỗi chạy đồ thị: ${err?.message || err}` });
+        runError = String(err?.message || err);
+        setBannerMsg({ tone: "error", text: `Lỗi chạy đồ thị: ${runError}` });
         return null;
       });
 
@@ -1077,13 +1123,22 @@ function StudioCanvasInner() {
         const isFailed = summary?.failedNodes?.includes(n.id);
         const nodeError = summary?.errors?.[n.id];
 
-        if (isFailed) {
+        if (!summary) {
+          // Không nhận được kết quả (mất kết nối Core, lỗi mạng...) → báo rõ dưới từng node
+          updateNodeExecutionState(n.id, {
+            status: "failed",
+            errorMessage: `Không chạy được: ${runError || "không nhận được phản hồi từ Core"}`,
+          });
+        } else if (isFailed) {
           updateNodeExecutionState(n.id, {
             status: "failed",
             errorMessage: nodeError || "Lỗi xử lý",
           });
         } else if (isExecuted || summary?.isSuccess) {
-          const preview = buildNodeOutputPreview(n.data.nodeType);
+          // Chế độ thật: không gắn ảnh/video/audio demo giả; chỉ mock mới có preview mẫu
+          const preview: Partial<StudioNodeData> = isMockMode
+            ? buildNodeOutputPreview(n.data.nodeType)
+            : { previewType: "text", summaryText: "Đã chạy xong — xem kết quả trong thư mục output của project" };
           const genId = uid("gen");
           const newGen: NodeGenerationRecord = {
             id: genId,
@@ -1711,6 +1766,7 @@ function StudioCanvasInner() {
               nodesDraggable={canvasMode === "select"}
               snapGrid={[24, 24]}
               nodeTypes={nodeTypes}
+              edgeTypes={edgeTypes}
               defaultViewport={{ x: 72, y: 72, zoom: 1 }}
               minZoom={0.4}
               maxZoom={1.4}
@@ -1845,7 +1901,7 @@ function StudioCanvasInner() {
 
           <ol className="space-y-2.5">
             {nodes.map((node, index) => {
-              const def = defMap.get(node.data.nodeType);
+              const def = defMap.get(node);
               return (
                 <li
                   key={node.id}

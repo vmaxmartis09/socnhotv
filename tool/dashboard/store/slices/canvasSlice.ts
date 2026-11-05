@@ -7,7 +7,8 @@ import type {
   PortType,
 } from "@/lib/core-contracts";
 import type { Episode } from "@/lib/repositories/types";
-import { FALLBACK_NODE_TYPES, fetchGraphFromCore } from "@/lib/core-api";
+import { FALLBACK_NODE_TYPES, fetchGraphFromCore, fetchCustomNodeTypes } from "@/lib/core-api";
+import { autoLayout } from "@/lib/graph-layout";
 
 export interface NodeGenerationRecord {
   id: string;
@@ -420,6 +421,8 @@ export interface CanvasSlice {
     }
   ) => Episode;
   setNodeCatalog: (defs: NodeDefinition[], fromCore: boolean) => void;
+  /** Nạp lại các loại node tuỳ biến (dùng chung + theo dự án) và gộp vào catalog */
+  refreshCustomNodeTypes: (projectId: string) => Promise<void>;
   setNodesAndEdges: (
     nodes: Node<StudioNodeData>[],
     edges: Edge[],
@@ -490,7 +493,7 @@ export const createCanvasSlice: StateCreator<
     const s = get() as any;
     if (s.activeProjectId !== projectId) return; // đã chuyển dự án khác trong lúc chờ
     if (g.nodes.length > 0) {
-      const nodes: Node<StudioNodeData>[] = g.nodes.map((n: any) => ({
+      const rawNodes: Node<StudioNodeData>[] = g.nodes.map((n: any) => ({
         id: n.id,
         type: "studioCard",
         position: n.position ?? { x: 0, y: 0 },
@@ -511,6 +514,8 @@ export const createCanvasSlice: StateCreator<
         targetHandle: e.targetPort,
         type: "default",
       }));
+      // Mặc định luôn xếp flow hàng ngang trái → phải theo thứ tự chạy
+      const nodes = autoLayout(rawNodes, edges);
       set({
         nodes,
         edges,
@@ -653,6 +658,12 @@ export const createCanvasSlice: StateCreator<
       },
     });
     return newEp;
+  },
+  refreshCustomNodeTypes: async (projectId) => {
+    const customs = await fetchCustomNodeTypes(projectId);
+    const s = get() as any;
+    const base = (s.nodeCatalog as NodeDefinition[]).filter((d) => !d.baseType);
+    set({ nodeCatalog: [...base, ...customs] } as any);
   },
   setNodeCatalog: (nodeCatalog, nodeCatalogFromCore) =>
     set({ nodeCatalog, nodeCatalogFromCore }),

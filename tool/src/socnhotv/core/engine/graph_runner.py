@@ -369,10 +369,39 @@ class GraphRunner:
                     val = src_out[edge.source_port]
                     tgt_def = NodeRegistry.get(node.type)
                     if tgt_def:
-                        tgt_port_def = next((p for p in tgt_def.input_ports if p.name == edge.target_port), None)
+                        eff_ins, _ = NodeRegistry.effective_ports(node.type, node.params)
+                        tgt_port_def = next((p for p in eff_ins if p.name == edge.target_port), None)
                         if tgt_port_def and tgt_port_def.port_type == PortType.IMAGE_LIST and not isinstance(val, list):
                             val = [val]
                     resolved[edge.target_port] = val
+
+        eff_ins, _ = NodeRegistry.effective_ports(node.type, node.params)
+        # Tham chiếu dữ liệu chuẩn hoá (vd. {"$ref": "script", episode, facet, shot}) -> giá trị thật
+        for key, val in list(resolved.items()):
+            if isinstance(val, dict) and val.get("$ref") == "script":
+                try:
+                    resolved[key] = self._resolve_script_ref(val)
+                except Exception:
+                    resolved.pop(key, None)
+        for p in eff_ins:
+            # Giá trị mặc định khi không nối dây và chưa nhập
+            if p.default_value not in (None, "") and resolved.get(p.name) in (None, "", []):
+                resolved[p.name] = p.default_value
+            # Đầu vào nhập tay (tải lên / chọn từ dự án): đường dẫn tệp -> Artifact cho bộ chạy
+            if p.port_type in (PortType.IMAGE, PortType.IMAGE_LIST, PortType.VIDEO, PortType.AUDIO):
+                val = resolved.get(p.name)
+                if isinstance(val, str) and val:
+                    art = self._literal_artifact(val, p.port_type)
+                    if art is not None:
+                        resolved[p.name] = [art] if p.port_type == PortType.IMAGE_LIST else art
+                elif isinstance(val, list) and val and all(isinstance(v, str) for v in val):
+                    arts = [self._literal_artifact(v, p.port_type) for v in val]
+                    resolved[p.name] = [a for a in arts if a is not None] or val
+
+        # Cổng vào tuỳ biến: ánh xạ về cổng/tham số của node gốc nếu cổng gốc chưa có dữ liệu
+        for p in eff_ins:
+            if p.map_to and p.name in resolved and p.map_to != p.name and p.map_to not in resolved:
+                resolved[p.map_to] = resolved[p.name]
 
         for port_name, in_ref in node.inputs.items():
             if isinstance(in_ref, dict) and "nodeId" in in_ref:
@@ -385,6 +414,53 @@ class GraphRunner:
                 resolved[port_name] = in_ref
 
         return resolved
+
+    def _resolve_script_ref(self, ref: Dict[str, Any]) -> Any:
+        """Giải tham chiếu kịch bản tập: {"$ref":"script","episode":..,"facet":..,"shot":..}."""
+        from socnhotv.core.engine.episode_script import parse_episode_markdown, resolve_facet
+
+        ep = str(ref.get("episode", ""))
+        folder = self.store.project_dir / "content" / "episodes" / ep
+        files = sorted(folder.glob("KICH*.md"))
+        if not files:
+            raise FileNotFoundError(ep)
+        md = files[0].read_text(encoding="utf-8", errors="replace")
+        data = parse_episode_markdown(md, ep)
+        return resolve_facet(data, str(ref.get("facet", "fulltext")), ref.get("shot") or None, md)
+
+    def _literal_artifact(self, uri: str, port_type: PortType) -> Optional[Artifact]:
+        """Dựng Artifact từ tệp trong dự án (đầu vào nhập tay). Trả None nếu không phải tệp cục bộ."""
+        if uri.startswith(("http://", "https://", "data:", "blob:")):
+            return None
+        rel = uri.split("/files/", 1)[-1].lstrip("/")
+        path = (self.store.project_dir / rel).resolve()
+        try:
+            path.relative_to(self.store.project_dir.resolve())
+        except ValueError:
+            return None
+        if not path.is_file():
+            return None
+        import mimetypes
+
+        kind = {
+            PortType.VIDEO: ArtifactKind.VIDEO,
+            PortType.AUDIO: ArtifactKind.AUDIO,
+        }.get(port_type, ArtifactKind.IMAGE)
+        stem = path.stem
+        return Artifact(
+            id=f"art_{stem[:12]}",
+            kind=kind,
+            uri=rel,
+            mime=mimetypes.guess_type(path.name)[0] or "application/octet-stream",
+            size=path.stat().st_size,
+            hash=f"sha256:{stem}" if len(stem) == 64 else "sha256:literal",
+            provenance=ArtifactProvenance(
+                node_id="upload",
+                provider="upload",
+                model="upload",
+                created_at=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+            ),
+        )
 
     def _is_real_provider(self) -> bool:
         pname_fn = getattr(self.provider, "provider_name", None)
@@ -828,7 +904,13 @@ class GraphRunner:
                     )
                 except Exception as e:
                     logger.warning(f"CaptionAdapter gặp lỗi ({e}), dùng phụ đề văn bản...")
+                    if not is_mock:
+                        raise RuntimeError(f"Không tạo được phụ đề từ audio: {e}") from e
 
+            if art is None and not is_mock:
+                raise ValueError(
+                    f"Node '{node.id}' (captions) thiếu audio đầu vào — hãy nối cổng 'audio' từ node giọng đọc."
+                )
             if art is None:
                 dialogue_text = str(resolved_inputs.get("text") or "Chào các bạn, mình là Sóc Nhỏ Bi nè!")
                 sub_text = f"00:00:00,000 --> 00:00:44,870\n{dialogue_text}\n"
@@ -1259,7 +1341,15 @@ class GraphRunner:
             score = 0.98
             report_text = f"ĐẠT · 9.8/10 — Khớp tiêu chí: {criteria}"
 
-            if not is_mock and isinstance(media_in, Artifact) and self._is_real_provider():
+            if not is_mock and not isinstance(media_in, Artifact):
+                raise ValueError(
+                    f"Node '{node.id}' (quality_check) thiếu media cần chấm — hãy nối cổng 'media' từ node ảnh/video."
+                )
+            if not is_mock and not self._is_real_provider():
+                raise RuntimeError(
+                    "quality_check cần provider thật (vision) để chấm điểm; hiện chỉ có mock nên không thể kết luận ĐẠT."
+                )
+            if not is_mock:
                 vis_fn = self.provider.analyze_vision
                 vis_res = await vis_fn(
                     **_filter_kwargs(
@@ -1540,6 +1630,11 @@ class GraphRunner:
                             node, resolved_inputs, run_id, is_mock=req.mock_mode, all_node_outputs=node_outputs
                         )
 
+                        # Cổng ra tuỳ biến: bí danh về cổng ra của node gốc
+                        _, eff_outs = NodeRegistry.effective_ports(node.type, node.params)
+                        for op in eff_outs:
+                            if op.map_to and op.name not in outputs and op.map_to in outputs:
+                                outputs[op.name] = outputs[op.map_to]
                         node_outputs[nid] = outputs
                         total_actual_cost += cost
 

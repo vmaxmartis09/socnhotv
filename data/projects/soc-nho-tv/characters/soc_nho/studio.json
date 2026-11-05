@@ -247,21 +247,6 @@
       "COLOR LOCK: Lông cam nâu (#D96B27), bụng kem (#F7E1C6), áo vàng (#FFD43B), quần short đen (#22252A).",
       "Hay gãi đầu hoặc ôm đuôi bông xù khi bối rối; vẫy đuôi tít mù khi vui."
     ],
-    "pastEvents": [
-      "Tập 01: Núi lửa trong bụng Bi (ep01-nui-lua-trong-bung-bi)",
-      "Tập 05: Lu không đợi được (ep05-lu-khong-doi-duoc)",
-      "Tập 06: Bi tự mặc áo đi giày (ep06-bi-tu-mac-ao-di-giay)",
-      "Tập 08: Đồ chơi về nhà (ep08-do-choi-ve-nha)",
-      "Tập 11: Đèn đỏ, đèn xanh (ep11-den-do-den-xanh)",
-      "Tập 13: Bờ suối Pha Lê (ep13-bo-suoi-pha-le)",
-      "Tập 14: Cái bếp biết nóng (ep14-cai-bep-biet-nong)",
-      "Tập 15: Bi bị lạc ở chợ (ep15-bi-bi-lac-o-cho)",
-      "Tập 16: Bạn sâu răng tinh nghịch (ep16-ban-sau-rang-tinh-nghich)",
-      "Tập 22: Xin lỗi và tha thứ (ep22-xin-loi-va-tha-thu)",
-      "Tập 25: Không là không (ep25-khong-la-khong)",
-      "Tập 26: Chiếc bình vỡ (ep26-chiec-binh-vo)",
-      "... cùng 11 tập khác trong tổng số 23/50 tập."
-    ],
     "pastEventsSummary": [
       "Tập 01: Núi lửa trong bụng Bi (ep01-nui-lua-trong-bung-bi)",
       "Tập 05: Lu không đợi được (ep05-lu-khong-doi-duoc)",
@@ -277,5 +262,7 @@
       "Tập 26: Chiếc bình vỡ (ep26-chiec-binh-vo)",
       "... cùng 11 tập khác trong tổng số 23/50 tập."
     ]
-  }
+  },
+  "defaultTempo": 1,
+  "primaryImage": "soc_nho_01.png"
 }
