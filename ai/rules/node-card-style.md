@@ -96,3 +96,4 @@ Mỗi cổng vào chọn được nguồn bất kỳ, bằng cùng một khối 
 - Cổng `scenes`: facet `scenes`. Cổng `script`: facet `script` (toàn bộ cấu trúc).
 
 **Nhân vật**: thuộc tính chọn được theo nhóm — Thông tin (tên, vai trò, mô tả, chiều cao, tỉ lệ), Prompt (prompt lock), Tính cách & bộ nhớ (tính cách, câu cửa miệng, thói quen, sự kiện), Giọng (mã giọng, tốc độ, giọng mẫu, file giọng), Ảnh (chính, tham chiếu, kho hình ảnh theo góc), Clip đã tạo, Xuất hiện theo tập. Giá trị nhân vật được sao chép vào cổng tại thời điểm chọn.
+- Màu dây luôn theo kiểu dữ liệu của cổng ra nguồn (`StudioEdge` tự tính, kể cả dây nạp từ file): text/script/scenes/captions xám, character xám đậm, image xanh lam, video/composition cam, audio vàng.

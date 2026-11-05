@@ -3,6 +3,9 @@
 import React from "react";
 import { BaseEdge, EdgeLabelRenderer, getBezierPath, type EdgeProps } from "@xyflow/react";
 import { useStudioStore } from "@/store";
+import { PORT_TYPE_COLORS } from "@/store/slices/canvasSlice";
+import { FALLBACK_NODE_TYPES } from "@/lib/core-api";
+import { applyPortOverride } from "@/lib/node-ports";
 import { Trash2 } from "@/components/ui/icons";
 
 /** Dây nối: bấm vào dây thì hiện nút xoá ở giữa dây. */
@@ -17,7 +20,21 @@ export function StudioEdge({
   selected,
   style,
   markerEnd,
+  source,
+  sourceHandleId,
+  data,
 }: EdgeProps) {
+  // Màu dây luôn theo kiểu dữ liệu của cổng ra (tính từ node nguồn, kể cả khi dây được nạp từ file)
+  const portType = useStudioStore((st: any) => {
+    const n = st.nodes.find((x: any) => x.id === source);
+    if (!n) return (data as any)?.portType as string | undefined;
+    const base =
+      st.nodeCatalog.find((d: any) => d.typeName === n.data.nodeType) ||
+      FALLBACK_NODE_TYPES.find((d) => d.typeName === n.data.nodeType);
+    const def = base ? applyPortOverride(base, n.data.params) : undefined;
+    return def?.outputPorts.find((p) => p.name === sourceHandleId)?.portType || ((data as any)?.portType as string | undefined);
+  });
+  const color = (portType && PORT_TYPE_COLORS[portType as keyof typeof PORT_TYPE_COLORS]) || (style as any)?.stroke || "#737373";
   const [path, labelX, labelY] = getBezierPath({
     sourceX,
     sourceY,
@@ -43,7 +60,7 @@ export function StudioEdge({
         path={path}
         markerEnd={markerEnd}
         interactionWidth={22}
-        style={selected ? { ...style, strokeWidth: 2.5 } : style}
+        style={{ ...style, stroke: color, strokeWidth: selected ? 2.5 : 1.75 }}
       />
       {selected && (
         <EdgeLabelRenderer>
