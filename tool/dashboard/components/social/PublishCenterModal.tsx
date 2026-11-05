@@ -514,7 +514,7 @@ export function PublishCenterModal({
                             >
                               <div className="relative aspect-video w-full bg-muted flex items-center justify-center overflow-hidden">
                                 {v.thumb ? (
-                                  <img
+                                  <img decoding="async" loading="lazy"
                                     src={`/api/media?path=${encodeURIComponent(v.thumb)}`}
                                     alt={v.title}
                                     className="h-full w-full object-cover"

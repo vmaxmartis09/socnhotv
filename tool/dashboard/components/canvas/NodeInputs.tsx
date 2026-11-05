@@ -289,7 +289,7 @@ export const NodeImageInput = React.memo(function NodeImageInput({
       {currentUrl && (
         <div className="relative group rounded-lg overflow-hidden border border-border bg-black/5">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <img decoding="async"
             src={currentUrl}
             alt={name || "Node Image"}
             loading="lazy"
@@ -462,7 +462,7 @@ export const NodeImageInput = React.memo(function NodeImageInput({
                       className="group relative cursor-pointer overflow-hidden rounded-lg border border-border hover:border-brand transition-colors aspect-video bg-black/5"
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
+                      <img decoding="async"
                         src={item.url}
                         alt={item.name}
                         loading="lazy"
@@ -906,7 +906,7 @@ export const NodeImageGenInput = React.memo(function NodeImageGenInput({
               return (
                 <div key={idx} className="relative group h-12 w-12 rounded border border-border overflow-hidden bg-muted/40">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={u} alt="" className="h-full w-full object-cover object-top" />
+                  <img decoding="async" loading="lazy" src={u} alt="" className="h-full w-full object-cover object-top" />
                   <button
                     type="button"
                     onClick={() => handleRemoveRef(idx)}

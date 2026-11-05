@@ -79,7 +79,7 @@ export function PostRow({
       {/* Thumbnail or Video Placeholder */}
       <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-lg bg-muted flex items-center justify-center border border-border/50">
         {item.thumb ? (
-          <img
+          <img decoding="async" loading="lazy"
             src={`/api/media?path=${encodeURIComponent(item.thumb)}`}
             alt={item.title}
             className="h-full w-full object-cover"

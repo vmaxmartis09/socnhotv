@@ -101,7 +101,7 @@ function ImagePreview({
     );
   // eslint-disable-next-line @next/next/no-img-element
   return (
-    <img
+    <img decoding="async"
       src={url}
       alt={alt}
       loading="lazy"
@@ -120,7 +120,7 @@ function CharacterHero({ c, compact, detailed, onPick }: { c: Character; compact
     <div className="space-y-1.5 pt-1">
       {c.referenceImages[0] ? (
         // eslint-disable-next-line @next/next/no-img-element
-        <img
+        <img decoding="async" loading="lazy"
           src={c.referenceImages[0]}
           alt={c.name}
           className={cn(
@@ -171,7 +171,7 @@ function CharacterHero({ c, compact, detailed, onPick }: { c: Character; compact
             <div className="flex gap-1 overflow-hidden">
               {gallery.map((u) => (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img
+                <img decoding="async"
                   key={u}
                   src={u}
                   alt=""

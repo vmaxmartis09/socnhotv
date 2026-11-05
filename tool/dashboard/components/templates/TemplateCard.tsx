@@ -41,7 +41,7 @@ export function TemplateCard({ template }: TemplateCardProps) {
     >
       {/* Thumbnail / Video Container */}
       <div className="relative aspect-[9/16] w-full overflow-hidden rounded-xl bg-muted">
-        <img
+        <img decoding="async" loading="lazy"
           src={previewJpgUrl}
           alt={template.name}
           className={`h-full w-full object-cover transition-opacity duration-300 ${

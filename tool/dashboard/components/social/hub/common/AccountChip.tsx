@@ -62,7 +62,7 @@ export function AccountChip({
       {/* Platform Badge / Avatar */}
       {account.avatar ? (
         // eslint-disable-next-line @next/next/no-img-element
-        <img
+        <img decoding="async" loading="lazy"
           src={account.avatar}
           alt={name}
           className="w-4 h-4 rounded-full object-cover shrink-0"

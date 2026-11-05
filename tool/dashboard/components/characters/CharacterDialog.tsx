@@ -400,7 +400,7 @@ export function CharacterDialog({ initial, prefill, projectId, onSave, onClose, 
                   )}
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                  <img decoding="async" loading="lazy"
                     src={item.url}
                     alt={item.name}
                     className="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-105"

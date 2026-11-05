@@ -212,7 +212,7 @@ export function AccountsView({ onRefresh }: AccountsViewProps) {
               <div className="flex items-start justify-between">
                 <div className="flex items-center gap-3">
                   {acc.avatar ? (
-                    <img
+                    <img decoding="async" loading="lazy"
                       src={acc.avatar}
                       alt={acc.display_name}
                       className="w-10 h-10 rounded-full border border-border object-cover"

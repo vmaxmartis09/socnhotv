@@ -135,7 +135,7 @@ export function JobsList({ compact = false }: { compact?: boolean }) {
               </dl>
               {selected.outputUrl && (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img src={selected.outputUrl} alt="" className="max-h-72 rounded-xl border border-border object-contain" />
+                <img decoding="async" loading="lazy" src={selected.outputUrl} alt="" className="max-h-72 rounded-xl border border-border object-contain" />
               )}
               <section className="space-y-1.5">
                 <h3 className="text-[13px] font-semibold">Nhật ký</h3>

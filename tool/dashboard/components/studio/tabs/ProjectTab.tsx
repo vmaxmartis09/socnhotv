@@ -412,7 +412,7 @@ export function ProjectTab() {
         <div className="flex items-center gap-3">
           {selectedChar.referenceImages[0] && (
             // eslint-disable-next-line @next/next/no-img-element
-            <img
+            <img decoding="async" loading="lazy"
               src={selectedChar.referenceImages[0]}
               alt={selectedChar.name}
               className="h-12 w-12 shrink-0 rounded-md border border-border object-cover object-top"
@@ -704,7 +704,7 @@ export function ProjectTab() {
                 >
                   <div className="relative overflow-hidden rounded border border-border bg-muted/20">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
+                    <img decoding="async" loading="lazy"
                       src={asset.url}
                       alt={asset.angle}
                       className="h-28 w-full object-cover object-top"
@@ -785,7 +785,7 @@ export function ProjectTab() {
                     </button>
                   </div>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                  <img decoding="async" loading="lazy"
                     src={lightboxImage.url}
                     alt={lightboxImage.angle}
                     className="max-h-[65dvh] w-full rounded border border-border object-contain bg-background"
@@ -1116,7 +1116,7 @@ export function ProjectTab() {
               >
                 {ch.referenceImages[0] ? (
                   // eslint-disable-next-line @next/next/no-img-element
-                  <img
+                  <img decoding="async" loading="lazy"
                     src={ch.referenceImages[0]}
                     alt={ch.name}
                     className="h-11 w-11 shrink-0 rounded border border-border object-cover object-top"

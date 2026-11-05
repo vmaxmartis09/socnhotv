@@ -336,7 +336,7 @@ export function PortValueInput({ nodeId, port }: Props) {
       <div key={uri} className="flex items-center gap-2 rounded-md border border-border bg-card p-1">
         {kind === "image" && url ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={url} alt={name} className="h-10 w-10 shrink-0 rounded object-cover object-top" />
+          <img decoding="async" loading="lazy" src={url} alt={name} className="h-10 w-10 shrink-0 rounded object-cover object-top" />
         ) : (
           <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded bg-muted text-muted-foreground">
             <Icon className="h-4 w-4" />
@@ -502,7 +502,7 @@ export function PortValueInput({ nodeId, port }: Props) {
                 >
                   {kind === "image" ? (
                     // eslint-disable-next-line @next/next/no-img-element
-                    <img src={it.url} alt={it.name} loading="lazy" className="h-full w-full object-cover object-top" />
+                    <img decoding="async" src={it.url} alt={it.name} loading="lazy" className="h-full w-full object-cover object-top" />
                   ) : (
                     <span className="flex h-full w-full flex-col items-center justify-center gap-1 p-1">
                       <Icon className="h-4 w-4" />
@@ -627,7 +627,7 @@ export function PortValueInput({ nodeId, port }: Props) {
                   >
                     {a.image ? (
                       // eslint-disable-next-line @next/next/no-img-element
-                      <img src={resolveNodeFileUrl(activeProjectId, a.value)} alt="" className="h-8 w-8 shrink-0 rounded object-cover object-top" />
+                      <img decoding="async" loading="lazy" src={resolveNodeFileUrl(activeProjectId, a.value)} alt="" className="h-8 w-8 shrink-0 rounded object-cover object-top" />
                     ) : null}
                     <span className="shrink-0 text-muted-foreground">{a.label}</span>
                     {!a.image && <span className="min-w-0 flex-1 truncate text-right">{a.value}</span>}

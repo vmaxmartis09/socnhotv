@@ -65,7 +65,7 @@
 | **P-04** | Cô lập timer canvas & kiểm soát polling có điều kiện | DONE | `RunStatusBar.tsx`, `StudioCanvas.tsx`, `JobsCostTab.tsx` | Đưa timer về RunStatusBar, xoá interval cấp canvas; polling dừng khi tab ẩn + backoff; pass build |
 | **P-05** | Huỷ request (AbortController) & chống race condition | DONE | `lib/useAbortableFetch.ts`, `TemplatesView`, `ProjectHub`, `ProjectsTab`, `VoiceSelectorWithClone`, `ToolboxPanel` | Hủy in-flight requests, kiểm tra alive trước khi set state, chống race condition; pass build |
 | **P-06** | Tách bundle (`next/dynamic`), tối ưu `icons.ts` tree-shaking | DONE | `icons.ts`, `SocialHubHost`, `CreateVideoModal`, `ToolboxPanel`, `PreviewPane`, `PublishCenterModal` | Route Studio giảm từ 92.5kB -> 84.2kB (-9%), First Load JS giảm 321kB -> 314kB; pass check:icons 167/167 |
-| **P-07** | Tối ưu ảnh: Component `Img` (lazy + async + aspect placeholder) | PLANNED | `components/ui/Img.tsx`, galleries | Giảm byte ảnh tải ban đầu |
+| **P-07** | Tối ưu ảnh: Component `Img` (lazy + async + aspect placeholder) | DONE | `components/ui/Img.tsx`, 28 files updated (46 `<img>` tags) | 100% ảnh áp dụng `loading="lazy"` + `decoding="async"`, có skeleton/fallback; pass build |
 | **P-08** | Danh sách: Sửa `key={index}` và ảo hoá / `content-visibility: auto` | PLANNED | Danh sách jobs, queue, cutouts | Tránh lag khi danh sách dài |
 | **P-09** | Chuẩn hóa style: `confirm()` chung, token màu, `overflow-clip`, `scroll-quiet`, aria | PLANNED | Toàn app | Tuân thủ 100% `ui-rules.md` |
 | **P-10** | Responsive 375px - 1920px: Sảnh, Studio, Modals, Panels | PLANNED | CSS layout, flex-wrap, drawer | Kiểm tra và chụp ảnh ở 5 độ phân giải |

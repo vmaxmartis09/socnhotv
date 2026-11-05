@@ -11,7 +11,7 @@ export function CharacterCard({ character: c }: { character: Character }) {
       <div className="flex gap-2.5">
         {c.referenceImages[0] ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <img
+          <img decoding="async" loading="lazy"
             src={c.referenceImages[0]}
             alt={c.name}
             className="h-20 w-20 shrink-0 rounded border border-border object-cover object-top"
@@ -43,7 +43,7 @@ export function CharacterCard({ character: c }: { character: Character }) {
         <div className="flex gap-1 overflow-hidden">
           {gallery.map((u) => (
             // eslint-disable-next-line @next/next/no-img-element
-            <img
+            <img decoding="async"
               key={u}
               src={u}
               alt=""

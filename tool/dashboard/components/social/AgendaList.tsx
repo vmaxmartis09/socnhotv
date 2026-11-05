@@ -82,7 +82,7 @@ export function AgendaList({
                   className="flex items-center gap-3 rounded-lg border border-border bg-card p-2.5 shadow-2xs hover:border-primary/40 transition-colors cursor-pointer"
                 >
                   {item.thumb ? (
-                    <img
+                    <img decoding="async" loading="lazy"
                       src={item.thumb}
                       alt=""
                       className="h-10 w-10 rounded-md object-cover border border-border shrink-0"

@@ -184,7 +184,7 @@ export function PreviewPane({ item }: { item: PreviewItem }) {
               </div>
             ) : (
               // eslint-disable-next-line @next/next/no-img-element
-              <img
+              <img decoding="async" loading="lazy"
                 src={cur.url}
                 alt={cur.name}
                 className="max-h-full max-w-full rounded-xl object-contain"

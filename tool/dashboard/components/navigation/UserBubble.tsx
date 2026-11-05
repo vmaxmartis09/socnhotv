@@ -292,7 +292,7 @@ export function UserBubble({
       id: "profile",
       icon: userProfile.avatarDataUrl ? (
         // eslint-disable-next-line @next/next/no-img-element
-        <img src={userProfile.avatarDataUrl} alt="" className="h-6 w-6 rounded-full object-cover object-top" />
+        <img decoding="async" loading="lazy" src={userProfile.avatarDataUrl} alt="" className="h-6 w-6 rounded-full object-cover object-top" />
       ) : (
         <span className="flex h-6 w-6 items-center justify-center rounded-full bg-accent text-[10px] font-semibold text-foreground">{initials}</span>
       ),
@@ -536,7 +536,7 @@ export function UserBubble({
       >
         {userProfile.avatarDataUrl ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <img
+          <img decoding="async" loading="lazy"
             src={userProfile.avatarDataUrl}
             alt={userProfile.name}
             className={cn("shrink-0 rounded-full object-cover object-top", compact ? "h-10 w-10" : "h-7 w-7")}

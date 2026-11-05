@@ -782,7 +782,7 @@ export const StudioNode = memo(function StudioNode({
                 >
                   {c.referenceImages?.[0] ? (
                     // eslint-disable-next-line @next/next/no-img-element
-                    <img src={c.referenceImages[0]} alt="" className="h-16 w-16 rounded-full border border-border object-cover object-top" />
+                    <img decoding="async" loading="lazy" src={c.referenceImages[0]} alt="" className="h-16 w-16 rounded-full border border-border object-cover object-top" />
                   ) : (
                     <span className="flex h-16 w-16 items-center justify-center rounded-full bg-muted text-base font-semibold text-muted-foreground">
                       {c.name.charAt(0)}

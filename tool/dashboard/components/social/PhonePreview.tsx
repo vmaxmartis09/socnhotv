@@ -52,7 +52,7 @@ export function PhonePreview({
         {/* Video / Background Layer */}
         <div className="absolute inset-0 z-0 bg-neutral-900 overflow-hidden flex items-center justify-center">
           {videoThumb ? (
-            <img
+            <img decoding="async" loading="lazy"
               src={`/api/media?path=${encodeURIComponent(videoThumb)}`}
               alt="Preview"
               className="h-full w-full object-cover"
@@ -83,7 +83,7 @@ export function PhonePreview({
           {/* Avatar button */}
           <div className="relative h-9 w-9 rounded-full border-2 border-white bg-primary flex items-center justify-center overflow-hidden">
             {accountAvatar ? (
-              <img src={accountAvatar} alt="Avatar" className="h-full w-full object-cover" />
+              <img decoding="async" loading="lazy" src={accountAvatar} alt="Avatar" className="h-full w-full object-cover" />
             ) : (
               <span className="text-xs font-bold text-white uppercase">{accountHandle.slice(1, 3)}</span>
             )}

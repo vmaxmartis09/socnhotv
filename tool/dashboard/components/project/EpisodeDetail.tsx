@@ -86,7 +86,7 @@ export function EpisodeDetail({
             {images.map((im) => (
               <li key={im.id} className="w-20 shrink-0">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={im.url} alt={im.name} loading="lazy" title={im.name} className="aspect-[9/14] w-full rounded-md border border-border object-cover object-top" />
+                <img decoding="async" src={im.url} alt={im.name} loading="lazy" title={im.name} className="aspect-[9/14] w-full rounded-md border border-border object-cover object-top" />
               </li>
             ))}
           </ul>

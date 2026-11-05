@@ -57,7 +57,7 @@ export function VideoThumb({
     >
       {src ? (
         // eslint-disable-next-line @next/next/no-img-element
-        <img
+        <img decoding="async" loading="lazy"
           src={src}
           alt={title || "Video thumbnail"}
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"

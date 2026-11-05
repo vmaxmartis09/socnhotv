@@ -94,7 +94,7 @@ function MediaGrid({
               />
             ) : (
               // eslint-disable-next-line @next/next/no-img-element
-              <img src={it.url} alt={it.name} loading="lazy" className="aspect-[9/12] w-full bg-muted/20 object-cover object-top" />
+              <img decoding="async" src={it.url} alt={it.name} loading="lazy" className="aspect-[9/12] w-full bg-muted/20 object-cover object-top" />
             )}
             <div className="absolute left-1.5 top-1.5 flex gap-1">
               {it.aspect && <Badge>{it.aspect}</Badge>}
@@ -437,7 +437,7 @@ export function ProjectHub({
                       <button type="button" onClick={() => setOpenEpisode(e.id)} className="block w-full overflow-hidden rounded-xl border border-border bg-card text-left transition-colors hover:bg-muted/30">
                         {cover ? (
                           // eslint-disable-next-line @next/next/no-img-element
-                          <img src={cover.url} alt="" loading="lazy" className="h-36 w-full object-cover object-top" />
+                          <img decoding="async" src={cover.url} alt="" loading="lazy" className="h-36 w-full object-cover object-top" />
                         ) : (
                           <div className="flex h-36 items-center justify-center bg-accent"><Film className="h-8 w-8 text-muted-foreground" /></div>
                         )}

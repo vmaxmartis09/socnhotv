@@ -30,7 +30,7 @@ export function CharacterPoster({
     >
       {img ? (
         // eslint-disable-next-line @next/next/no-img-element
-        <img src={img} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-105" />
+        <img decoding="async" src={img} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-105" />
       ) : (
         <span className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-accent to-muted text-5xl font-semibold text-muted-foreground/60">
           {c.name.replace("Bạn ", "").charAt(0)}

@@ -119,7 +119,7 @@ export function CharacterDetail(p: Props) {
       <div className="relative overflow-hidden">
         {avatar && (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={avatar} alt="" aria-hidden="true" className="absolute inset-0 h-full w-full scale-125 object-cover object-top opacity-25 blur-3xl" />
+          <img decoding="async" loading="lazy" src={avatar} alt="" aria-hidden="true" className="absolute inset-0 h-full w-full scale-125 object-cover object-top opacity-25 blur-3xl" />
         )}
         <div className="relative grid grid-cols-1 gap-4 p-3.5 sm:grid-cols-[240px_minmax(0,1fr)]">
           <div className="mx-auto h-[320px] w-[240px] sm:mx-0">
@@ -216,7 +216,7 @@ export function CharacterDetail(p: Props) {
                       title={`${baseName(u)} — click để đặt làm ảnh đại diện, nhấn đúp để xem lớn`}
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={u} alt="" loading="lazy" className="h-28 w-20 object-cover object-top" />
+                      <img decoding="async" src={u} alt="" loading="lazy" className="h-28 w-20 object-cover object-top" />
                     </button>
                   </motion.li>
                 ))}
@@ -404,7 +404,7 @@ export function CharacterDetail(p: Props) {
                     >
                       <button type="button" className="block w-full" onClick={() => openImage(i)} aria-label={name} title={name}>
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={url} alt={name} loading="lazy" className="w-full object-cover transition-transform duration-300 group-hover:scale-[1.04]" />
+                        <img decoding="async" src={url} alt={name} loading="lazy" className="w-full object-cover transition-transform duration-300 group-hover:scale-[1.04]" />
                       </button>
                       {i === 0 && (
                         <span className="absolute left-2 top-2 rounded-full bg-primary px-2 py-0.5 text-[11px] font-medium text-primary-foreground">{t("primary")}</span>

@@ -324,7 +324,7 @@ function BgRemoveWorkspace({ targets, onDone }: { targets: Targets | null; onDon
           <figure className="space-y-1">
             <figcaption className="text-[10px] text-muted-foreground">Ảnh gốc</figcaption>
             <div className={checker}>
-              <img src={previewUrl(src.path)} alt="Ảnh gốc" className="max-h-44 object-contain" />
+              <img decoding="async" loading="lazy" src={previewUrl(src.path)} alt="Ảnh gốc" className="max-h-44 object-contain" />
             </div>
           </figure>
           <figure className="space-y-1">
@@ -333,7 +333,7 @@ function BgRemoveWorkspace({ targets, onDone }: { targets: Targets | null; onDon
               {busy === "run" ? (
                 <AiLoading label="Đang tách nền…" lines={0} />
               ) : cutout ? (
-                <img src={previewUrl(cutout.path)} alt="Ảnh đã tách nền" className="max-h-44 object-contain" />
+                <img decoding="async" loading="lazy" src={previewUrl(cutout.path)} alt="Ảnh đã tách nền" className="max-h-44 object-contain" />
               ) : (
                 <span className="text-[11px] text-muted-foreground">Chưa chạy</span>
               )}
@@ -530,7 +530,7 @@ function DepthWorkspace({ targets, onDone }: { targets: Targets | null; onDone: 
               return (
                 <figure key={l.kind} className="space-y-1">
                   <figcaption className="text-[10px] text-muted-foreground">{l.label}</figcaption>
-                  <div className={cn(checker, "p-1")}>{o && <img src={previewUrl(o.path)} alt={l.label} className="max-h-28 object-contain" />}</div>
+                  <div className={cn(checker, "p-1")}>{o && <img decoding="async" loading="lazy" src={previewUrl(o.path)} alt={l.label} className="max-h-28 object-contain" />}</div>
                 </figure>
               );
             })}
@@ -944,7 +944,7 @@ export function ToolboxPanel() {
                         </span>
                       </div>
                       <div className={checker}>
-                        <img src={previewUrl(item.files?.cutout || "")} alt="Ảnh tách nền" className="max-h-44 object-contain" onError={(e) => ((e.target as HTMLElement).style.display = "none")} />
+                        <img decoding="async" loading="lazy" src={previewUrl(item.files?.cutout || "")} alt="Ảnh tách nền" className="max-h-44 object-contain" onError={(e) => ((e.target as HTMLElement).style.display = "none")} />
                       </div>
                       <p className="truncate text-[10px] text-muted-foreground" title={item.source}>
                         Nguồn: {item.source}

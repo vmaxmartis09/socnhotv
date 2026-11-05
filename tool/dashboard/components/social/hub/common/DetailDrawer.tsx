@@ -324,7 +324,7 @@ function AccountDetailView({ account }: { account: SocialAccount }) {
     <div className="space-y-4">
       <div className="flex items-center gap-3">
         {account.avatar ? (
-          <img src={account.avatar} alt={account.display_name} className="w-12 h-12 rounded-full border border-border" />
+          <img decoding="async" loading="lazy" src={account.avatar} alt={account.display_name} className="w-12 h-12 rounded-full border border-border" />
         ) : (
           <div className="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-lg">
             {account.display_name?.slice(0, 2).toUpperCase() || "AC"}

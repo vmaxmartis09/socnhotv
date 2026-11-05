@@ -523,7 +523,7 @@ export function CreateVideoModal({ isOpen, onClose }: CreateVideoModalProps) {
                     >
                       {/* Thumbnail Container */}
                       <div className="relative aspect-[9/16] w-full overflow-hidden rounded-lg bg-black/40">
-                        <img
+                        <img decoding="async" loading="lazy"
                           src={previewJpgUrl}
                           alt={tpl.name}
                           className={cn(

@@ -318,7 +318,7 @@ export function JobsCostTab() {
                 >
                   {/* Thumbnail / Icon */}
                   <div className="relative w-12 h-16 rounded overflow-hidden bg-black/40 border border-border/80 shrink-0 flex items-center justify-center">
-                    <img
+                    <img decoding="async" loading="lazy"
                       src={thumbFullUrl}
                       alt={out.title}
                       className="w-full h-full object-cover"

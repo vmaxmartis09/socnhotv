@@ -83,7 +83,7 @@ export function TiltedCard({
         className="group relative h-full w-full cursor-zoom-in overflow-hidden rounded-[24px] border border-border bg-muted/20"
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={src} alt={alt} className="h-full w-full object-cover object-top select-none" draggable={false} />
+        <img decoding="async" loading="lazy" src={src} alt={alt} className="h-full w-full object-cover object-top select-none" draggable={false} />
         <motion.span
           aria-hidden="true"
           style={{ background: bgGradient }}

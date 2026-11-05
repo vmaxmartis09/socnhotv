@@ -165,7 +165,7 @@ export function TemplateV2Card({
         )}
       >
         {/* Ảnh thumbnail tĩnh */}
-        <img
+        <img decoding="async" loading="lazy"
           src={previewJpgUrl}
           alt={template.name}
           className={cn(
