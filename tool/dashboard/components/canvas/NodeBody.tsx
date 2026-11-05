@@ -288,7 +288,7 @@ function PolicyBadge() {
 }
 
 /** Thân card cho từng loại node: cho phép nhập liệu trực tiếp ngay trên card. */
-export function NodeBody({
+export const NodeBody = React.memo(function NodeBody({
   nodeType,
   nodeId,
   data,
@@ -661,4 +661,4 @@ export function NodeBody({
         );
       return null;
   }
-}
+});

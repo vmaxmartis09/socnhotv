@@ -50,7 +50,7 @@ interface TextInputProps {
   expanded?: boolean;
 }
 
-export function NodeTextInput({
+export const NodeTextInput = React.memo(function NodeTextInput({
   nodeId,
   content: initialContent,
   connected,
@@ -161,7 +161,7 @@ export function NodeTextInput({
       )}
     </div>
   );
-}
+});
 
 // ============================================================================
 // 2. IMAGE INPUT CONTROL (Upload, Drag-drop, Library, URL, Ctrl+V)
@@ -178,7 +178,7 @@ interface ImageInputProps {
   expanded?: boolean;
 }
 
-export function NodeImageInput({
+export const NodeImageInput = React.memo(function NodeImageInput({
   nodeId,
   uri,
   name,
@@ -484,7 +484,7 @@ export function NodeImageInput({
       )}
     </div>
   );
-}
+});
 
 // ============================================================================
 // 3. SCRIPT INPUT CONTROL (AI vs Paste mode, Scene Breakdown Preview)
@@ -500,7 +500,7 @@ interface ScriptInputProps {
   connectedText?: boolean;
 }
 
-export function NodeScriptInput({
+export const NodeScriptInput = React.memo(function NodeScriptInput({
   nodeId,
   mode: initialMode = "ai",
   rawScript: initialRaw = "",
@@ -725,7 +725,7 @@ export function NodeScriptInput({
       )}
     </div>
   );
-}
+});
 
 // ============================================================================
 // 4. VOICE INPUT CONTROL (Direct speech text, VoiceSelectorWithClone, tempo)
@@ -739,7 +739,7 @@ interface VoiceInputProps {
   connectedText?: boolean;
 }
 
-export function NodeVoiceInput({
+export const NodeVoiceInput = React.memo(function NodeVoiceInput({
   nodeId,
   text: initialText = "",
   voiceId = "soc-nho",
@@ -794,7 +794,7 @@ export function NodeVoiceInput({
       </div>
     </div>
   );
-}
+});
 
 // ============================================================================
 // 5. IMAGE GEN INPUT CONTROL (Prompt + Multiple Reference Images)
@@ -809,7 +809,7 @@ interface ImageGenInputProps {
   connectedPrompt?: boolean;
 }
 
-export function NodeImageGenInput({
+export const NodeImageGenInput = React.memo(function NodeImageGenInput({
   nodeId,
   prompt: initialPrompt = "",
   referenceImages = [],
@@ -936,7 +936,7 @@ export function NodeImageGenInput({
       </div>
     </div>
   );
-}
+});
 
 // ============================================================================
 // 6. EXPORT INPUT CONTROL (Platform checkboxes, file name, download)
@@ -949,7 +949,7 @@ interface ExportInputProps {
   previewUrl?: string;
 }
 
-export function NodeExportInput({
+export const NodeExportInput = React.memo(function NodeExportInput({
   nodeId,
   outputFileName = "final_video.mp4",
   platforms = ["tiktok", "youtube"],
@@ -1037,7 +1037,7 @@ export function NodeExportInput({
       )}
     </div>
   );
-}
+});
 
 // ============================================================================
 // 7. CHARACTER SELECT CONTROL
@@ -1048,7 +1048,7 @@ interface CharacterSelectProps {
   characterId?: string;
 }
 
-export function NodeCharacterSelect({ characterId = "soc_nho", onOpen }: CharacterSelectProps & { onOpen?: () => void }) {
+export const NodeCharacterSelect = React.memo(function NodeCharacterSelect({ characterId = "soc_nho", onOpen }: CharacterSelectProps & { onOpen?: () => void }) {
   const characters = useStudioStore((s) => s.characters);
   const cur = characters.find((c) => c.id === characterId);
   return (
@@ -1064,7 +1064,7 @@ export function NodeCharacterSelect({ characterId = "soc_nho", onOpen }: Charact
       <span aria-hidden>›</span>
     </button>
   );
-}
+});
 
 // ============================================================================
 // 8. CAPTIONS INPUT CONTROL
@@ -1076,7 +1076,7 @@ interface CaptionsInputProps {
   language?: string;
 }
 
-export function NodeCaptionsInput({
+export const NodeCaptionsInput = React.memo(function NodeCaptionsInput({
   nodeId,
   style = "kinetic_karaoke",
   language = "vi",
@@ -1110,4 +1110,4 @@ export function NodeCaptionsInput({
       </div>
     </div>
   );
-}
+});

@@ -9,7 +9,7 @@ import { applyPortOverride } from "@/lib/node-ports";
 import { Trash2 } from "@/components/ui/icons";
 
 /** Dây nối: bấm vào dây thì hiện nút xoá ở giữa dây. */
-export function StudioEdge({
+export const StudioEdge = React.memo(function StudioEdge({
   id,
   sourceX,
   sourceY,
@@ -82,4 +82,4 @@ export function StudioEdge({
       )}
     </>
   );
-}
+});

@@ -364,6 +364,8 @@ function StudioCanvasInner() {
     return s;
   }, [edges]);
 
+  const nodeIdsKey = useMemo(() => nodes.map((n) => n.id).join(","), [nodes]);
+
   const nodeIssues = useMemo(() => {
     const map: Record<string, string[]> = {};
     if (!validationResult) return map;
@@ -378,7 +380,7 @@ function StudioCanvasInner() {
       }
     }
     return map;
-  }, [validationResult, nodes]);
+  }, [validationResult, nodeIdsKey]);
 
   const totalEstimatedCost = useMemo(() => {
     return nodes.reduce(
@@ -1456,19 +1458,25 @@ function StudioCanvasInner() {
       });
   }, [nodeCatalog, quickAddReq, HIDDEN_NODE_TYPES]);
 
-  const stepInfo = useMemo(() => analyzeGraph(nodes, edges), [nodes, edges]);
+  const stepInfo = useMemo(() => analyzeGraph(nodes, edges), [nodeIdsKey, edges]);
+
+  const onOpenQuickAdd = useCallback((req: QuickAddRequest) => setQuickAddReq(req), []);
+  const onOpenNodeInspector = useCallback(
+    (nodeId: string) => {
+      setSelectedNodeId(nodeId);
+      setActiveRightTab("node");
+    },
+    [setSelectedNodeId, setActiveRightTab]
+  );
 
   const contextValue = useMemo(
     () => ({
       activeDragPort,
       connectedPorts,
       nodeIssues,
-      onOpenQuickAdd: (req: QuickAddRequest) => setQuickAddReq(req),
+      onOpenQuickAdd,
       onRequestRun: handleRequestRun,
-      onOpenNodeInspector: (nodeId: string) => {
-        setSelectedNodeId(nodeId);
-        setActiveRightTab("node");
-      },
+      onOpenNodeInspector,
       linkMode,
       startLink,
       finishLink,
