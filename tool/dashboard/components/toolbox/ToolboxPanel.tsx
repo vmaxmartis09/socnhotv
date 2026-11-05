@@ -455,6 +455,303 @@ function AudioWorkspace({ targets, onDone }: { targets: Targets | null; onDone: 
   );
 }
 
+/* ───────────────────────── Không gian làm việc: Tách lớp độ sâu ───────────────────────── */
+
+function DepthWorkspace({ targets, onDone }: { targets: Targets | null; onDone: () => void }) {
+  const [src, setSrc] = useState<{ path: string; name: string } | null>(null);
+  const [busy, setBusy] = useState<"upload" | "run" | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [outs, setOuts] = useState<RunOut[] | null>(null);
+  const [elapsed, setElapsed] = useState<number | null>(null);
+
+  const pick = async (f: File) => {
+    setError(null);
+    setOuts(null);
+    setBusy("upload");
+    try {
+      setSrc(await uploadFile(f));
+    } catch (e: any) {
+      setError(e.message);
+    } finally {
+      setBusy(null);
+    }
+  };
+  const run = async () => {
+    if (!src) return;
+    setError(null);
+    setBusy("run");
+    try {
+      const r = await runTool("depth-layers", {}, [src.path]);
+      setOuts(r.outputs);
+      setElapsed(r.elapsed_s ?? null);
+      onDone();
+    } catch (e: any) {
+      setError(e.message);
+    } finally {
+      setBusy(null);
+    }
+  };
+  const layers = [
+    { kind: "layer_bg", label: "Hậu cảnh (0.2x)" },
+    { kind: "layer_mid", label: "Trung cảnh (1.0x)" },
+    { kind: "layer_fg", label: "Tiền cảnh (1.8x)" },
+  ];
+  const label: Record<string, string> = { layer_bg: "Hậu cảnh", layer_mid: "Trung cảnh", layer_fg: "Tiền cảnh", depth: "Bản đồ độ sâu", layers_json: "Số đo (.json)" };
+
+  return (
+    <div className="space-y-2.5">
+      <Dropzone
+        accept="image/png,image/jpeg,image/webp"
+        icon={<ImageIcon />}
+        title={src ? `Ảnh: ${src.name} — bấm để đổi` : "Nhập ảnh cần tách lớp"}
+        hint="Tách 3 lớp tiền / trung / hậu cảnh để làm parallax (lần đầu tải model ~100MB)"
+        busy={busy !== null}
+        onFile={pick}
+      />
+      {error && <ErrorLine text={error} onClose={() => setError(null)} />}
+      {src && (
+        <button
+          type="button"
+          onClick={run}
+          disabled={busy !== null}
+          data-tip="Chạy Depth Anything V2 Small trên CPU"
+          className="flex h-8 items-center gap-1.5 rounded-md bg-brand px-3 text-[12px] font-medium text-white transition-all hover:opacity-90 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40"
+        >
+          <Play className="h-3.5 w-3.5 fill-current" />
+          {busy === "run" ? "Đang tách lớp…" : "Tách 3 lớp"}
+        </button>
+      )}
+      {busy === "run" && <AiLoading label="Đang ước lượng độ sâu…" lines={2} />}
+      {outs && (
+        <>
+          <div className="grid grid-cols-3 gap-2">
+            {layers.map((l) => {
+              const o = outs.find((x) => x.kind === l.kind);
+              return (
+                <figure key={l.kind} className="space-y-1">
+                  <figcaption className="text-[10px] text-muted-foreground">{l.label}</figcaption>
+                  <div className={cn(checker, "p-1")}>{o && <img src={previewUrl(o.path)} alt={l.label} className="max-h-28 object-contain" />}</div>
+                </figure>
+              );
+            })}
+          </div>
+          {elapsed && <p className="text-[10px] text-muted-foreground">Xong sau {elapsed.toFixed(1)}s</p>}
+          <SaveBar targets={targets} files={outs.map((o) => ({ label: label[o.kind] || o.kind, path: o.path }))} />
+        </>
+      )}
+    </div>
+  );
+}
+
+/* ───────────────────────── Không gian làm việc: Cắt cảnh ───────────────────────── */
+
+function SceneWorkspace({ targets, onDone }: { targets: Targets | null; onDone: () => void }) {
+  const [src, setSrc] = useState<{ path: string; name: string } | null>(null);
+  const [busy, setBusy] = useState<"upload" | "run" | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [aspect, setAspect] = useState<"keep" | "9:16">("keep");
+  const [clips, setClips] = useState(true);
+  const [outs, setOuts] = useState<RunOut[] | null>(null);
+  const [scenes, setScenes] = useState<{ index: number; start: number; end: number; duration: number }[]>([]);
+
+  const pick = async (f: File) => {
+    setError(null);
+    setOuts(null);
+    setScenes([]);
+    setBusy("upload");
+    try {
+      setSrc(await uploadFile(f));
+    } catch (e: any) {
+      setError(e.message);
+    } finally {
+      setBusy(null);
+    }
+  };
+  const run = async () => {
+    if (!src) return;
+    setError(null);
+    setBusy("run");
+    try {
+      const r = await runTool("scene-cut", { aspect, export_clips: clips }, [src.path]);
+      setOuts(r.outputs);
+      const m = r.outputs.find((o) => o.kind === "scenes_json");
+      if (m) setScenes((await fetch(previewUrl(m.path)).then((x) => x.json())).scenes || []);
+      onDone();
+    } catch (e: any) {
+      setError(e.message);
+    } finally {
+      setBusy(null);
+    }
+  };
+  const clipFiles = (outs || []).filter((o) => o.kind === "clip");
+  const sel = "h-8 rounded-md border border-input bg-card px-1.5 text-[11px]";
+
+  return (
+    <div className="space-y-2.5">
+      <Dropzone
+        accept="video/*,.mp4,.mov,.mkv,.webm"
+        icon={<Music />}
+        title={src ? `Video: ${src.name} — bấm để đổi` : "Nhập video cần tách cảnh"}
+        hint="MP4, MOV, MKV, WEBM (tối đa 200MB)"
+        busy={busy !== null}
+        onFile={pick}
+      />
+      {error && <ErrorLine text={error} onClose={() => setError(null)} />}
+      {src && (
+        <div className="flex flex-wrap items-center gap-2">
+          <select aria-label="Khung hình" value={aspect} onChange={(e) => setAspect(e.target.value as any)} className={sel}>
+            <option value="keep">Giữ nguyên khung</option>
+            <option value="9:16">Cắt dọc 9:16 (Shorts)</option>
+          </select>
+          <label className="flex items-center gap-1.5 text-[11px] text-muted-foreground">
+            <input type="checkbox" checked={clips} onChange={(e) => setClips(e.target.checked)} />
+            Xuất clip từng cảnh
+          </label>
+          <button
+            type="button"
+            onClick={run}
+            disabled={busy !== null}
+            className="flex h-8 items-center gap-1.5 rounded-md bg-brand px-3 text-[12px] font-medium text-white transition-all hover:opacity-90 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40"
+          >
+            <Play className="h-3.5 w-3.5 fill-current" />
+            {busy === "run" ? "Đang tách…" : "Tách cảnh"}
+          </button>
+        </div>
+      )}
+      {busy === "run" && <AiLoading label="Đang tìm điểm cắt và xuất clip…" lines={2} />}
+      {scenes.length > 0 && (
+        <div className="space-y-1.5">
+          <p className="text-[11px] font-medium">{scenes.length} cảnh</p>
+          <ul className="space-y-1 text-[11px] text-muted-foreground">
+            {scenes.map((s) => (
+              <li key={s.index} className="flex justify-between rounded bg-muted/40 px-2 py-1">
+                <span>Cảnh {s.index}</span>
+                <span className="tabular-nums">
+                  {s.start.toFixed(1)}s → {s.end.toFixed(1)}s ({s.duration.toFixed(1)}s)
+                </span>
+              </li>
+            ))}
+          </ul>
+          {clipFiles[0] && <video controls src={previewUrl(clipFiles[0].path)} className="max-h-48 w-full rounded-lg bg-black" />}
+        </div>
+      )}
+      {outs && (
+        <SaveBar
+          targets={targets}
+          files={outs.map((o) => ({ label: o.kind === "clip" ? fileName(o.path) : "Danh sách cảnh (.json)", path: o.path }))}
+        />
+      )}
+    </div>
+  );
+}
+
+/* ───────────────────────── Không gian làm việc: Clone giọng ───────────────────────── */
+
+function VoiceCloneWorkspace({ onDone }: { onDone: () => void }) {
+  const [src, setSrc] = useState<{ path: string; name: string } | null>(null);
+  const [busy, setBusy] = useState<"upload" | "run" | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [name, setName] = useState("");
+  const [display, setDisplay] = useState("");
+  const [consent, setConsent] = useState("");
+  const [dialect, setDialect] = useState("south");
+  const [result, setResult] = useState<{ preview?: string; voiceId: string; elapsed?: number } | null>(null);
+
+  const slugOk = /^[a-z0-9][a-z0-9-]{1,40}$/.test(name);
+  const ready = !!src && slugOk && consent.trim().length >= 10;
+
+  const pick = async (f: File) => {
+    setError(null);
+    setResult(null);
+    setBusy("upload");
+    try {
+      setSrc(await uploadFile(f));
+    } catch (e: any) {
+      setError(e.message);
+    } finally {
+      setBusy(null);
+    }
+  };
+  const run = async () => {
+    if (!src || !ready) return;
+    setError(null);
+    setBusy("run");
+    try {
+      const r = await runTool("voice-clone", { name, display_name: display || name, consent_note: consent.trim(), dialect }, [src.path]);
+      setResult({ voiceId: name, preview: r.outputs.find((o) => o.kind === "voice_preview")?.path, elapsed: r.elapsed_s });
+      onDone();
+    } catch (e: any) {
+      setError(e.message);
+    } finally {
+      setBusy(null);
+    }
+  };
+  const inp = "h-8 w-full rounded-md border border-input bg-card px-2 text-[12px] placeholder:text-muted-foreground";
+
+  return (
+    <div className="space-y-2.5">
+      <Dropzone
+        accept="audio/*,.mp3,.wav,.m4a,.ogg,.flac"
+        icon={<Mic />}
+        title={src ? `Mẫu giọng: ${src.name} — bấm để đổi` : "Nhập mẫu giọng cần clone"}
+        hint="Mẫu sạch 3.5–6 giây, một người nói, không nhạc nền"
+        busy={busy !== null}
+        onFile={pick}
+      />
+      {src && <audio controls src={previewUrl(src.path)} className="h-9 w-full" />}
+      <div className="grid grid-cols-2 gap-2">
+        <label className="space-y-1 text-[11px] text-muted-foreground">
+          Mã giọng (chữ thường, số, gạch ngang)
+          <input value={name} onChange={(e) => setName(e.target.value.toLowerCase())} placeholder="de-bong" className={cn(inp, name && !slugOk && "border-semantic-danger")} />
+        </label>
+        <label className="space-y-1 text-[11px] text-muted-foreground">
+          Tên hiển thị
+          <input value={display} onChange={(e) => setDisplay(e.target.value)} placeholder="Dê Bông" className={inp} />
+        </label>
+      </div>
+      <label className="block space-y-1 text-[11px] text-muted-foreground">
+        Giọng vùng miền
+        <select value={dialect} onChange={(e) => setDialect(e.target.value)} className={inp}>
+          <option value="south">Miền Nam</option>
+          <option value="north">Miền Bắc</option>
+          <option value="central">Miền Trung</option>
+        </select>
+      </label>
+      <label className="block space-y-1 text-[11px] text-muted-foreground">
+        Đồng ý sử dụng (bắt buộc): mẫu giọng của ai, được phép dùng làm gì
+        <textarea
+          value={consent}
+          onChange={(e) => setConsent(e.target.value)}
+          rows={2}
+          placeholder="VD: Giọng của tôi, dùng làm giọng nhân vật Dê Bông trong dự án Sóc Nhỏ TV"
+          className="w-full rounded-md border border-input bg-card p-2 text-[12px] placeholder:text-muted-foreground"
+        />
+      </label>
+      {error && <ErrorLine text={error} onClose={() => setError(null)} />}
+      <button
+        type="button"
+        onClick={run}
+        disabled={!ready || busy !== null}
+        data-tip={ready ? "Clone giọng bằng OmniVoice (vài phút trên CPU)" : "Cần mẫu giọng, mã giọng hợp lệ và nội dung đồng ý"}
+        className="flex h-8 items-center gap-1.5 rounded-md bg-brand px-3 text-[12px] font-medium text-white transition-all hover:opacity-90 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40"
+      >
+        <Play className="h-3.5 w-3.5 fill-current" />
+        {busy === "run" ? "Đang clone…" : "Clone giọng"}
+      </button>
+      {busy === "run" && <AiLoading label="OmniVoice đang học giọng… (có thể mất vài phút)" lines={2} />}
+      {result && (
+        <div className="space-y-1.5 rounded-lg border border-semantic-success/30 bg-semantic-success/5 p-2.5 text-[11px]">
+          <p className="flex items-center gap-1 font-medium text-semantic-success">
+            <Check className="h-3.5 w-3.5" />
+            Đã thêm giọng “{result.voiceId}” vào kho{result.elapsed ? ` (${result.elapsed.toFixed(0)}s)` : ""}
+          </p>
+          {result.preview ? <audio controls src={previewUrl(result.preview)} className="h-8 w-full" /> : <p className="text-muted-foreground">Chưa đọc thử được câu mẫu.</p>}
+        </div>
+      )}
+    </div>
+  );
+}
+
 /* ───────────────────────── Panel chính ───────────────────────── */
 
 export function ToolboxPanel() {
@@ -595,6 +892,9 @@ export function ToolboxPanel() {
 
                       {expanded && ready && tool.id === "bg-remove" && <BgRemoveWorkspace targets={targets} onDone={refresh} />}
                       {expanded && ready && tool.id === "stt-align" && <AudioWorkspace targets={targets} onDone={refresh} />}
+                      {expanded && ready && tool.id === "depth-layers" && <DepthWorkspace targets={targets} onDone={refresh} />}
+                      {expanded && ready && tool.id === "scene-cut" && <SceneWorkspace targets={targets} onDone={refresh} />}
+                      {expanded && ready && tool.id === "voice-clone" && <VoiceCloneWorkspace onDone={refresh} />}
                       {expanded && ready && tool.id === "ffmpeg-bin" && (
                         <div className="space-y-2">
                           <p className="text-[11px] text-muted-foreground">Bản ffmpeg dùng chung cho mọi tool (không sửa PATH hệ thống).</p>
@@ -712,12 +1012,10 @@ export function ToolboxPanel() {
                 <div className="space-y-2.5 rounded-xl border border-border bg-card p-3">
                   <p className="text-[12px] font-medium">Mẫu giọng của bạn</p>
                   <AudioWorkspace targets={targets} onDone={refresh} />
-                  <p
-                    className="rounded-lg border border-dashed border-border p-2 text-[11px] text-muted-foreground opacity-70"
-                    data-tip="Tool clone giọng (T-06) chưa được làm"
-                  >
-                    Clone giọng mới từ mẫu: chưa có tool. Hiện chỉ lưu mẫu và phiên âm; clone sẽ thêm khi tool T-06 xong.
-                  </p>
+                </div>
+                <div className="space-y-2.5 rounded-xl border border-border bg-card p-3">
+                  <p className="text-[12px] font-medium">Clone giọng mới</p>
+                  <VoiceCloneWorkspace onDone={refresh} />
                 </div>
                 <p className="px-0.5 text-[11px] font-medium text-muted-foreground">Giọng trong kho ({vaults.voices.length})</p>
                 {vaults.voices.map((v) => {

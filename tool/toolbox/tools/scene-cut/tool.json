@@ -1,0 +1,35 @@
+{
+  "id": "scene-cut",
+  "name": "Scene Detect & Cut (Shorts)",
+  "version": "1.0.0",
+  "category": "video",
+  "entry": "run.py",
+  "runtime": "python3.11",
+  "install": {
+    "command": "python -m pip install -r requirements.txt",
+    "requirements_file": "requirements.txt"
+  },
+  "requires_gpu": false,
+  "requires_ffmpeg": true,
+  "license": {
+    "code": "BSD-3-Clause",
+    "weights": "n/a",
+    "commercial_ok": true,
+    "source_url": "https://github.com/Breakthrough/PySceneDetect",
+    "checked_on": "2026-11-05"
+  },
+  "inputs": [
+    { "name": "video", "type": "file", "description": "Video (MP4, MOV, MKV, WEBM, AVI)", "required": true }
+  ],
+  "outputs": [
+    { "kind": "scenes_json", "type": "json", "description": "Danh sách cảnh: start, end, duration" },
+    { "kind": "clip", "type": "file", "description": "Clip mp4 cho từng cảnh (khi export_clips=true)" }
+  ],
+  "writes_to": "data/shared/assets/scenes/",
+  "models": [],
+  "smoke_test": {
+    "sample_input": "tests/make_sample.py tạo video 3 cảnh bằng ffmpeg lavfi",
+    "expected_output_kind": "scenes_json"
+  },
+  "status": "installed"
+}

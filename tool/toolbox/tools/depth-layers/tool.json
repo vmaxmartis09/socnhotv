@@ -1,0 +1,45 @@
+{
+  "id": "depth-layers",
+  "name": "Depth Layers (parallax 3 lớp)",
+  "version": "1.0.0",
+  "category": "image",
+  "entry": "run.py",
+  "runtime": "python3.11",
+  "install": {
+    "command": "python -m pip install -r requirements.txt",
+    "requirements_file": "requirements.txt"
+  },
+  "requires_gpu": false,
+  "requires_ffmpeg": false,
+  "license": {
+    "code": "Apache-2.0",
+    "weights": "Apache-2.0 (chỉ bản Small; bản Base/Large/Giant khác giấy phép)",
+    "commercial_ok": true,
+    "source_url": "https://github.com/DepthAnything/Depth-Anything-V2",
+    "checked_on": "2026-11-05"
+  },
+  "inputs": [
+    { "name": "image", "type": "file", "description": "Ảnh PNG/JPG/WEBP", "required": true }
+  ],
+  "outputs": [
+    { "kind": "layer_bg", "type": "file", "description": "Nền (toàn ảnh, không lỗ hổng)" },
+    { "kind": "layer_mid", "type": "file", "description": "RGBA trung + tiền cảnh" },
+    { "kind": "layer_fg", "type": "file", "description": "RGBA tiền cảnh" },
+    { "kind": "depth", "type": "file", "description": "Bản đồ độ sâu (sáng = gần)" },
+    { "kind": "layers_json", "type": "json", "description": "Số đo, phân vị, gợi ý tốc độ parallax" }
+  ],
+  "writes_to": "data/shared/assets/frames/",
+  "models": [
+    {
+      "path": "data/shared/models/depth-anything-v2-small/",
+      "sha256": "auto-downloaded",
+      "url": "https://huggingface.co/depth-anything/Depth-Anything-V2-Small-hf",
+      "license": "Apache-2.0"
+    }
+  ],
+  "smoke_test": {
+    "sample_input": "data/projects/soc-nho-tv/characters/soc_nho/soc_nho_01.png",
+    "expected_output_kind": "layer_fg"
+  },
+  "status": "installed"
+}
