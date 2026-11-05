@@ -326,26 +326,29 @@ class SocialStore:
             return False
 
     # --- Templates ---
-    def list_templates(self) -> List[ContentTemplate]:
-        with file_lock(self.lock_file):
-            raw = atomic_read_json(self.templates_file, default={})
-            items = []
-            if isinstance(raw, list):
-                for x in raw:
+    def _list_templates_unlocked(self) -> List[ContentTemplate]:
+        raw = atomic_read_json(self.templates_file, default={})
+        items = []
+        if isinstance(raw, list):
+            for x in raw:
+                try:
+                    items.append(ContentTemplate.model_validate(x))
+                except Exception:
+                    pass
+        elif isinstance(raw, dict):
+            t_dict = raw.get("templates", raw)
+            for k, v in t_dict.items():
+                if isinstance(v, dict):
+                    data = {"id": k, **v}
                     try:
-                        items.append(ContentTemplate.model_validate(x))
+                        items.append(ContentTemplate.model_validate(data))
                     except Exception:
                         pass
-            elif isinstance(raw, dict):
-                t_dict = raw.get("templates", raw)
-                for k, v in t_dict.items():
-                    if isinstance(v, dict):
-                        data = {"id": k, **v}
-                        try:
-                            items.append(ContentTemplate.model_validate(data))
-                        except Exception:
-                            pass
-            return items
+        return items
+
+    def list_templates(self) -> List[ContentTemplate]:
+        with file_lock(self.lock_file):
+            return self._list_templates_unlocked()
 
     def get_template(self, template_id: str) -> Optional[ContentTemplate]:
         for t in self.list_templates():
@@ -355,7 +358,7 @@ class SocialStore:
 
     def save_template(self, template: ContentTemplate) -> ContentTemplate:
         with file_lock(self.lock_file):
-            templates = self.list_templates()
+            templates = self._list_templates_unlocked()
             updated = False
             for idx, t in enumerate(templates):
                 if t.id == template.id:
@@ -375,7 +378,7 @@ class SocialStore:
 
     def delete_template(self, template_id: str) -> bool:
         with file_lock(self.lock_file):
-            templates = self.list_templates()
+            templates = self._list_templates_unlocked()
             initial_len = len(templates)
             templates = [t for t in templates if t.id != template_id]
             if len(templates) < initial_len:

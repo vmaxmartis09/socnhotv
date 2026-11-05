@@ -1,11 +1,14 @@
 import { create } from "zustand";
 import {
+  AccountStats,
   AutomationRule,
   CalendarItem,
   CalendarResponse,
+  ContentTemplate,
   CreativePerformance,
   HeatmapData,
   KPISummary,
+  LibraryVideo,
   OutlierItem,
   PlatformType,
   Post,
@@ -14,8 +17,12 @@ import {
   QueueResponse,
   SocialAccount,
   SocialNotification,
+  SocialOverview,
   socialApi,
 } from "@/lib/api/social";
+
+export type HubView = "overview" | "library" | "queue" | "calendar" | "accounts" | "templates";
+export type HubQueueBucket = "draft" | "pending_approval" | "upcoming" | "overdue" | "published" | "failed";
 
 export interface SocialFilters {
   platform: PlatformType | "all";
@@ -30,9 +37,19 @@ export interface SocialState {
   posts: Post[];
   calendarData: CalendarResponse | null;
   queueData: QueueResponse | null;
-  queueBucket: "upcoming" | "overdue" | "published" | "failed";
+  queueBucket: "draft" | "pending_approval" | "upcoming" | "overdue" | "published" | "failed";
   loading: boolean;
   error: string | null;
+
+  // Social Hub state
+  isHubOpen: boolean;
+  hubView: HubView;
+  hubSelectedEntity: { type: "video" | "account" | "post" | "target" | "template"; id?: string; data: any } | null;
+  hubPreselectedVideoIds: string[];
+  overviewData: SocialOverview | null;
+  libraryVideos: LibraryVideo[];
+  templates: ContentTemplate[];
+  accountsStats: AccountStats[];
 
   // Analytics & Automation Data
   analyticsOverview: {
@@ -73,7 +90,7 @@ export interface SocialState {
   setCalendarView: (view: "month" | "week" | "agenda") => void;
   setSelectedDate: (date: string) => void;
   setFilters: (filters: Partial<SocialFilters>) => void;
-  setQueueBucket: (bucket: "upcoming" | "overdue" | "published" | "failed") => void;
+  setQueueBucket: (bucket: "draft" | "pending_approval" | "upcoming" | "overdue" | "published" | "failed") => void;
   openComposer: (post?: Post | null, date?: string, accountId?: string) => void;
   closeComposer: () => void;
   openPublishCenter: (tab?: "plan" | "calendar") => void;
@@ -83,10 +100,21 @@ export interface SocialState {
   setManualMetricsModalOpen: (open: boolean) => void;
   setImportCsvModalOpen: (open: boolean) => void;
 
+  // Social Hub actions
+  openHub: (opts?: { view?: HubView; videoIds?: string[]; selectedEntity?: any }) => void;
+  closeHub: () => void;
+  setHubView: (view: HubView) => void;
+  setHubSelectedEntity: (entity: any) => void;
+  loadOverview: (projectId: string) => Promise<void>;
+  loadLibrary: (projectId: string, params?: any) => Promise<void>;
+  loadTemplates: (projectId: string) => Promise<void>;
+  loadAccountsStats: (projectId: string) => Promise<void>;
+  bulkAction: (projectId: string, ids: string[], action: string, params?: any) => Promise<any>;
+
   // Async API Actions
   loadAccounts: (projectId: string) => Promise<void>;
   loadPosts: (projectId: string) => Promise<void>;
-  loadQueue: (projectId: string, bucket?: "upcoming" | "overdue" | "published" | "failed") => Promise<void>;
+  loadQueue: (projectId: string, bucket?: "draft" | "pending_approval" | "upcoming" | "overdue" | "published" | "failed") => Promise<void>;
   loadCalendar: (projectId: string, fromDate?: string, toDate?: string) => Promise<void>;
   loadAll: (projectId: string) => Promise<void>;
 
@@ -157,6 +185,16 @@ export const useSocialStore = create<SocialState>((set, get) => ({
   isImportCsvModalOpen: false,
   lastDragAction: null,
 
+  // Social Hub state
+  isHubOpen: false,
+  hubView: "overview",
+  hubSelectedEntity: null,
+  hubPreselectedVideoIds: [],
+  overviewData: null,
+  libraryVideos: [],
+  templates: [],
+  accountsStats: [],
+
   setActiveTab: (tab) => set({ activeTab: tab }),
   setCalendarView: (view) => set({ calendarView: view }),
   setSelectedDate: (date) => set({ selectedDate: date }),
@@ -191,6 +229,61 @@ export const useSocialStore = create<SocialState>((set, get) => ({
   setManualMetricsModalOpen: (open) => set({ isManualMetricsModalOpen: open }),
   setImportCsvModalOpen: (open) => set({ isImportCsvModalOpen: open }),
 
+  // Social Hub actions
+  openHub: (opts) =>
+    set({
+      isHubOpen: true,
+      hubView: opts?.view || "overview",
+      hubPreselectedVideoIds: opts?.videoIds || [],
+      hubSelectedEntity: opts?.selectedEntity || null,
+    }),
+  closeHub: () => set({ isHubOpen: false }),
+  setHubView: (hubView) => set({ hubView }),
+  setHubSelectedEntity: (hubSelectedEntity) => set({ hubSelectedEntity }),
+
+  loadOverview: async (projectId: string) => {
+    try {
+      const data = await socialApi.fetchOverview(projectId);
+      set({ overviewData: data });
+    } catch (e: any) {
+      console.error("Failed to load overview:", e);
+    }
+  },
+
+  loadLibrary: async (projectId: string, params?: any) => {
+    try {
+      const data = await socialApi.fetchLibrary(projectId, params);
+      set({ libraryVideos: data });
+    } catch (e: any) {
+      console.error("Failed to load library:", e);
+    }
+  },
+
+  loadTemplates: async (projectId: string) => {
+    try {
+      const data = await socialApi.fetchTemplates(projectId);
+      set({ templates: data });
+    } catch (e: any) {
+      console.error("Failed to load templates:", e);
+    }
+  },
+
+  loadAccountsStats: async (projectId: string) => {
+    try {
+      const data = await socialApi.fetchAccountStats(projectId);
+      set({ accountsStats: data });
+    } catch (e: any) {
+      console.error("Failed to load accounts stats:", e);
+    }
+  },
+
+  bulkAction: async (projectId: string, ids: string[], action: string, params?: any) => {
+    const res = await socialApi.bulkAction(projectId, { ids, action, params });
+    await get().loadQueue(projectId, get().queueBucket);
+    await get().loadOverview(projectId);
+    return res;
+  },
+
   loadAccounts: async (projectId: string) => {
     try {
       const accounts = await socialApi.listAccounts(projectId);
@@ -209,7 +302,7 @@ export const useSocialStore = create<SocialState>((set, get) => ({
     }
   },
 
-  loadQueue: async (projectId: string, bucket?: "upcoming" | "overdue" | "published" | "failed") => {
+  loadQueue: async (projectId: string, bucket?: "draft" | "pending_approval" | "upcoming" | "overdue" | "published" | "failed") => {
     try {
       const b = bucket || get().queueBucket || "upcoming";
       const queueData = await socialApi.getQueue(projectId, b);
