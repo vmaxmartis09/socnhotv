@@ -43,6 +43,7 @@ interface PublishCenterModalProps {
   projectId: string;
   isOpen: boolean;
   initialTab?: "plan" | "calendar";
+  initialVideoIds?: string[];
   onClose: () => void;
 }
 
@@ -50,6 +51,7 @@ export function PublishCenterModal({
   projectId,
   isOpen,
   initialTab = "plan",
+  initialVideoIds,
   onClose,
 }: PublishCenterModalProps) {
   const { accounts, loadAccounts, loadQueue, loadAll } = useSocialStore();
@@ -63,6 +65,14 @@ export function PublishCenterModal({
   const [videoSearch, setVideoSearch] = useState("");
   const [filterUnpostedOnly, setFilterUnpostedOnly] = useState(false);
   const [selectedVideoIds, setSelectedVideoIds] = useState<string[]>([]);
+
+  // Pre-select videos if passed from Social Hub
+  useEffect(() => {
+    if (isOpen && initialVideoIds && initialVideoIds.length > 0) {
+      setSelectedVideoIds(initialVideoIds);
+      setCurrentStep(2); // Jump directly to Step 2 (Account selection)
+    }
+  }, [isOpen, initialVideoIds]);
 
   // Step 2: Accounts & Matrix
   const [selectedAccountIds, setSelectedAccountIds] = useState<string[]>([]);
