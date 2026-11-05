@@ -6,15 +6,20 @@ import { useStudioStore } from "@/store";
 import { PORT_TYPE_COLORS } from "@/store/slices/canvasSlice";
 import {
   fetchProjectLibrary,
+  fetchProjectScriptEpisodes,
+  fetchScriptData,
   resolveNodeFileUrl,
   uploadNodeFile,
   type LibraryItem,
   type LibraryKind,
+  type ScriptEpisode,
+  type ScriptFacet,
+  type ScriptShot,
 } from "@/lib/api/nodes";
 import { FALLBACK_NODE_TYPES, isPortCompatible } from "@/lib/core-api";
 import { applyPortOverride } from "@/lib/node-ports";
 import type { NodeDefinition, PortDefinition } from "@/lib/core-contracts";
-import { FolderOpen, Upload, X, Images, Volume2, Film, Users, Layers, Unlink } from "@/components/ui/icons";
+import { FolderOpen, Upload, X, Images, Volume2, Film, Users, Layers, Unlink, ScrollText } from "@/components/ui/icons";
 import { Reveal } from "./Reveal";
 import { cn } from "@/lib/utils";
 
@@ -33,7 +38,17 @@ const ACCEPT: Record<LibraryKind, string> = {
 
 const KIND_ICON = { image: Images, video: Film, audio: Volume2 } as const;
 
-type Panel = "node" | "project" | "character" | null;
+type Panel = "node" | "project" | "character" | "script" | null;
+
+/** Tham chiếu dữ liệu chuẩn hoá lưu trong params (backend giải ra giá trị thật khi chạy) */
+interface ScriptRef {
+  $ref: "script";
+  episode: string;
+  facet: string;
+  shot?: string;
+  label: string;
+}
+const isScriptRef = (v: any): v is ScriptRef => Boolean(v && typeof v === "object" && v.$ref === "script");
 
 /** Cổng có thể nhập tay (text hoặc tệp media). */
 export function canTypeIn(portType: string): boolean {
@@ -56,6 +71,7 @@ function wouldCreateCycle(edges: Edge[], sourceId: string, targetId: string): bo
 
 interface CharAttr {
   key: string;
+  group: string;
   label: string;
   value: string;
   image?: boolean;
@@ -92,6 +108,15 @@ export function PortValueInput({ nodeId, port }: Props) {
   const [panel, setPanel] = useState<Panel>(null);
   const [items, setItems] = useState<LibraryItem[] | null>(null);
   const [charId, setCharId] = useState<string>("");
+  // Nguồn kịch bản: tập → mặt cắt (facet) → (tuỳ chọn) một shot
+  const [episodes, setEpisodes] = useState<ScriptEpisode[] | null>(null);
+  const [epId, setEpId] = useState<string>("");
+  const [scriptInfo, setScriptInfo] = useState<{
+    facets: ScriptFacet[];
+    shotFacets: { id: string; label: string }[];
+    shots: ScriptShot[];
+  } | null>(null);
+  const [shotId, setShotId] = useState<string>("");
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState<string | null>(null);
 
@@ -171,6 +196,31 @@ export function PortValueInput({ nodeId, port }: Props) {
     const next = panel === p ? null : p;
     setPanel(next);
     if (next === "project" && kind && items === null) setItems(await fetchProjectLibrary(activeProjectId, kind));
+    if (next === "script" && episodes === null) {
+      const eps = await fetchProjectScriptEpisodes(activeProjectId);
+      setEpisodes(eps);
+      if (eps[0]) pickEpisode(eps[0].id);
+    }
+  };
+
+  const pickEpisode = async (id: string) => {
+    setEpId(id);
+    setShotId("");
+    setScriptInfo(null);
+    setScriptInfo(await fetchScriptData(activeProjectId, id));
+  };
+
+  const applyScript = (facet: string, label: string, shot?: string) => {
+    const ep = episodes?.find((e) => e.id === epId);
+    const ref: ScriptRef = {
+      $ref: "script",
+      episode: epId,
+      facet,
+      ...(shot ? { shot } : {}),
+      label: `${ep?.title || epId} · ${label}`,
+    };
+    set(ref);
+    setPanel(null);
   };
 
   const onFile = async (file: File) => {
@@ -189,30 +239,60 @@ export function PortValueInput({ nodeId, port }: Props) {
 
   // ----- Nguồn: thuộc tính nhân vật -----
   const attrsOf = (c: any): CharAttr[] => {
+    const out: CharAttr[] = [];
+    const add = (group: string, key: string, label: string, value: any, image?: boolean) => {
+      const v = Array.isArray(value) ? value.filter(Boolean).join("; ") : value == null ? "" : String(value);
+      if (v) out.push({ key, group, label, value: v, image });
+    };
+    const mem = c.memory || {};
     if (port.portType === "text") {
-      const a: CharAttr[] = [
-        { key: "name", label: "Tên", value: c.name },
-        { key: "description", label: "Mô tả", value: c.description || "" },
-        { key: "promptLock", label: "Prompt lock", value: c.promptLock || "" },
-        { key: "voiceId", label: "Mã giọng", value: c.voiceId || "" },
-        { key: "height", label: "Chiều cao", value: c.heightCm ? `${c.heightCm} cm` : "" },
-      ];
-      return a.filter((x) => x.value);
+      add("Thông tin", "name", "Tên", c.name);
+      add("Thông tin", "role", "Vai trò", c.role === "main" ? "Nhân vật chính" : c.role === "supporting" ? "Nhân vật phụ" : c.role);
+      add("Thông tin", "description", "Mô tả", c.description);
+      add("Thông tin", "height", "Chiều cao", c.heightCm ? `${c.heightCm} cm` : "");
+      add("Thông tin", "scale", "Tỉ lệ", c.scaleRatio ? `${c.scaleRatio}x` : "");
+      add("Prompt", "promptLock", "Prompt lock", c.promptLock);
+      add("Tính cách & bộ nhớ", "personality", "Tính cách", mem.personality);
+      add("Tính cách & bộ nhớ", "catchphrases", "Câu cửa miệng", mem.catchphrases);
+      add("Tính cách & bộ nhớ", "habits", "Thói quen", mem.habits);
+      add("Tính cách & bộ nhớ", "events", "Sự kiện đã qua", mem.pastEventsSummary);
+      add("Giọng", "voiceId", "Mã giọng", c.voiceId);
+      add("Giọng", "tempo", "Tốc độ mặc định", c.defaultTempo);
+      (c.appearances || []).forEach((a: any, i: number) =>
+        add("Xuất hiện", `app${i}`, a.episodeTitle || a.episodeId, a.scenes)
+      );
+      return out;
     }
     if (kind === "image") {
-      const imgs: string[] = [c.primaryImage, ...(c.referenceImages || [])].filter(Boolean);
-      return Array.from(new Set(imgs)).map((u, i) => ({
-        key: `img${i}`,
-        label: i === 0 ? "Ảnh chính" : `Ảnh tham chiếu ${i}`,
-        value: u,
-        image: true,
-      }));
+      const seen = new Set<string>();
+      const img = (group: string, key: string, label: string, url?: string) => {
+        if (!url || seen.has(url)) return;
+        seen.add(url);
+        add(group, key, label, url, true);
+      };
+      img("Ảnh chính", "primary", "Ảnh chính", c.primaryImage);
+      (c.referenceImages || []).forEach((u: string, i: number) => img("Ảnh tham chiếu", `ref${i}`, `Tham chiếu ${i + 1}`, u));
+      (c.referenceLibrary || []).forEach((a: any, i: number) =>
+        img("Kho hình ảnh", `lib${i}`, a.angle || `Ảnh ${i + 1}`, a.url)
+      );
+      return out;
     }
-    if (kind === "audio" && c.sampleAudioUrl) return [{ key: "sample", label: "Giọng mẫu", value: c.sampleAudioUrl }];
-    return [];
+    if (kind === "audio") {
+      add("Giọng", "sample", "Giọng mẫu", c.sampleAudioUrl);
+      (c.voiceFiles || []).forEach((f: any, i: number) => add("Giọng", `vf${i}`, f.name || `Giọng ${i + 1}`, f.url));
+      return out;
+    }
+    if (kind === "video") {
+      (c.generatedClips || []).forEach((cl: any, i: number) =>
+        add("Clip đã tạo", `clip${i}`, cl.sceneLabel || cl.episodeTitle || `Clip ${i + 1}`, cl.url)
+      );
+      return out;
+    }
+    return out;
   };
   const charList: any[] = characters || [];
-  const hasCharSource = port.portType === "text" || kind === "image" || kind === "audio";
+  const hasCharSource = port.portType === "text" || Boolean(kind);
+  const hasScriptSource = port.portType === "text" || port.portType === "scenes" || port.portType === "script";
   const activeChar = charList.find((c) => c.id === charId) || charList[0];
 
   const pickAttr = (a: CharAttr) => {
@@ -266,6 +346,26 @@ export function PortValueInput({ nodeId, port }: Props) {
       </div>
     );
   };
+
+  // Đang dùng tham chiếu kịch bản
+  if (!incoming && isScriptRef(value)) {
+    return (
+      <div className="flex items-center gap-2 rounded-md border border-border bg-card px-2 py-1.5">
+        <ScrollText className="h-3.5 w-3.5 shrink-0 text-muted-foreground" />
+        <span className="min-w-0 flex-1 truncate text-[13px] text-foreground" title={value.label}>
+          {value.label}
+        </span>
+        <button
+          type="button"
+          onClick={() => set("")}
+          title="Bỏ nguồn kịch bản"
+          className="nodrag flex h-7 w-7 shrink-0 items-center justify-center rounded text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+        >
+          <X className="h-3.5 w-3.5" />
+        </button>
+      </div>
+    );
+  }
 
   // Đang nối dây
   if (incoming) {
@@ -343,6 +443,7 @@ export function PortValueInput({ nodeId, port }: Props) {
             </button>
           )}
           {kind && tabBtn("project", "Dự án", FolderOpen)}
+          {hasScriptSource && tabBtn("script", "Kịch bản", ScrollText)}
           {hasCharSource && tabBtn("character", "Nhân vật", Users)}
         </div>
       )}
@@ -404,6 +505,78 @@ export function PortValueInput({ nodeId, port }: Props) {
         </div>
       </Reveal>
 
+      {/* Nguồn: kịch bản trong dự án */}
+      <Reveal show={panel === "script"}>
+        <div className="space-y-1.5 rounded-md border border-border bg-muted/20 p-1.5">
+          {episodes === null ? (
+            <p className="p-2 text-center text-[13px] text-muted-foreground">Đang tải…</p>
+          ) : episodes.length === 0 ? (
+            <p className="p-2 text-center text-[13px] text-muted-foreground">Dự án chưa có kịch bản.</p>
+          ) : (
+            <>
+              <select
+                value={epId}
+                onChange={(e) => pickEpisode(e.target.value)}
+                className="nodrag h-8 w-full rounded-md border border-border bg-card px-2 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-brand"
+              >
+                {episodes.map((e) => (
+                  <option key={e.id} value={e.id}>
+                    {e.title}
+                  </option>
+                ))}
+              </select>
+              {!scriptInfo ? (
+                <p className="p-1 text-center text-[13px] text-muted-foreground">Đang đọc kịch bản…</p>
+              ) : (
+                <>
+                  {scriptInfo.facets
+                    .filter((f) => f.type === port.portType)
+                    .map((f) => (
+                      <button
+                        key={f.id}
+                        type="button"
+                        onClick={() => applyScript(f.id, f.label)}
+                        className="nodrag flex w-full items-center rounded px-2 py-1.5 text-left text-xs text-foreground transition-colors hover:bg-accent"
+                      >
+                        {f.label}
+                      </button>
+                    ))}
+                  {port.portType === "text" && (
+                    <div className="space-y-1 border-t border-border pt-1.5">
+                      <div className="px-1 text-[12px] text-muted-foreground">Hoặc một shot cụ thể</div>
+                      <select
+                        value={shotId}
+                        onChange={(e) => setShotId(e.target.value)}
+                        className="nodrag h-8 w-full rounded-md border border-border bg-card px-2 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-brand"
+                      >
+                        <option value="">— chọn shot —</option>
+                        {scriptInfo.shots.map((sh) => (
+                          <option key={sh.id} value={sh.id}>
+                            {sh.id} · Cảnh {sh.scene}
+                            {sh.speaker ? ` · ${sh.speaker.replace(/\s*\(.*$/, "")}` : ""}
+                          </option>
+                        ))}
+                      </select>
+                      {shotId &&
+                        scriptInfo.shotFacets.map((sf) => (
+                          <button
+                            key={sf.id}
+                            type="button"
+                            onClick={() => applyScript(sf.id, `${shotId} · ${sf.label}`, shotId)}
+                            className="nodrag flex w-full items-center rounded px-2 py-1.5 text-left text-xs text-foreground transition-colors hover:bg-accent"
+                          >
+                            {sf.label} của {shotId}
+                          </button>
+                        ))}
+                    </div>
+                  )}
+                </>
+              )}
+            </>
+          )}
+        </div>
+      </Reveal>
+
       {/* Nguồn: thuộc tính nhân vật */}
       <Reveal show={panel === "character"}>
         <div className="space-y-1.5 rounded-md border border-border bg-muted/20 p-1.5">
@@ -430,7 +603,11 @@ export function PortValueInput({ nodeId, port }: Props) {
                 <p className="p-1 text-center text-[13px] text-muted-foreground">Nhân vật chưa có thuộc tính phù hợp.</p>
               )}
               {activeChar &&
-                attrsOf(activeChar).map((a) => (
+                attrsOf(activeChar).map((a, idx, arr) => (
+                  <React.Fragment key={a.key}>
+                    {(idx === 0 || arr[idx - 1].group !== a.group) && (
+                      <div className="px-1 pt-1 text-[12px] font-medium text-muted-foreground">{a.group}</div>
+                    )}
                   <button
                     key={a.key}
                     type="button"
@@ -444,6 +621,7 @@ export function PortValueInput({ nodeId, port }: Props) {
                     <span className="shrink-0 text-muted-foreground">{a.label}</span>
                     {!a.image && <span className="min-w-0 flex-1 truncate text-right">{a.value}</span>}
                   </button>
+                  </React.Fragment>
                 ))}
             </>
           )}

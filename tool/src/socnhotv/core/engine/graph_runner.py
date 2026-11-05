@@ -376,6 +376,13 @@ class GraphRunner:
                     resolved[edge.target_port] = val
 
         eff_ins, _ = NodeRegistry.effective_ports(node.type, node.params)
+        # Tham chiếu dữ liệu chuẩn hoá (vd. {"$ref": "script", episode, facet, shot}) -> giá trị thật
+        for key, val in list(resolved.items()):
+            if isinstance(val, dict) and val.get("$ref") == "script":
+                try:
+                    resolved[key] = self._resolve_script_ref(val)
+                except Exception:
+                    resolved.pop(key, None)
         for p in eff_ins:
             # Giá trị mặc định khi không nối dây và chưa nhập
             if p.default_value not in (None, "") and resolved.get(p.name) in (None, "", []):
@@ -407,6 +414,19 @@ class GraphRunner:
                 resolved[port_name] = in_ref
 
         return resolved
+
+    def _resolve_script_ref(self, ref: Dict[str, Any]) -> Any:
+        """Giải tham chiếu kịch bản tập: {"$ref":"script","episode":..,"facet":..,"shot":..}."""
+        from socnhotv.core.engine.episode_script import parse_episode_markdown, resolve_facet
+
+        ep = str(ref.get("episode", ""))
+        folder = self.store.project_dir / "content" / "episodes" / ep
+        files = sorted(folder.glob("KICH*.md"))
+        if not files:
+            raise FileNotFoundError(ep)
+        md = files[0].read_text(encoding="utf-8", errors="replace")
+        data = parse_episode_markdown(md, ep)
+        return resolve_facet(data, str(ref.get("facet", "fulltext")), ref.get("shot") or None, md)
 
     def _literal_artifact(self, uri: str, port_type: PortType) -> Optional[Artifact]:
         """Dựng Artifact từ tệp trong dự án (đầu vào nhập tay). Trả None nếu không phải tệp cục bộ."""

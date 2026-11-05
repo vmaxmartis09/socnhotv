@@ -83,3 +83,16 @@ Mỗi cổng vào chọn được nguồn bất kỳ, bằng cùng một khối 
 - Bấm vào dây → dây được chọn và hiện nút xoá (icon thùng rác) ở giữa dây (`StudioEdge`, đăng ký làm edge type `default`).
 - Không cho nối ngược: kéo dây phải bắt đầu từ cổng ra (source) sang cổng vào (target); kéo từ cổng vào về cổng ra bị từ chối kèm thông báo.
 - Chế độ chi tiết của card: bấm một dòng ở "Nhận" để mở khung chọn nguồn ngay dưới (node khác / tải lên / dự án / nhân vật / gõ trực tiếp, và gỡ dây) — cùng component `PortValueInput` với tab Node.
+
+## Chuẩn dữ liệu đầu vào (kiểu `script` & `character`)
+**Kịch bản tập** (`content/episodes/<tập>/KICH-BAN-*.md`) được `engine/episode_script.py` phân tích thành dữ liệu chuẩn (API: `GET /data/projects/{id}/script-data/{tập}`):
+- `Script`: id, episodeNumber, title, series, season, durationSec, aspect, style, leadCharacter, cast[{name,heightCm}], setting{name,code,timeOfDay}, lesson, mantra, summary, environmentPromptLock, characters[{name,heightCm,species,personality,catchphrase,voiceDirection,do,dont,promptLock}], scenes[].
+- `Scene`: index, title, startSec, endSec, location, purpose, shots[].
+- `Shot`: id (S01…), sceneIndex, sceneTitle, startSec, endSec, durationSec, shotSize, camera, characters[], action, expression, actingNotes, speaker, dialogue, voiceDelivery, sfx, bgm, imagePrompt, videoPrompt, negativePrompt.
+- Mỗi shot cũng xuất sang `scenes` (cổng `scenes`) với `sceneNumber, shotId, title, imagePrompt, videoPrompt, dialogue, speaker, durationSec, characters, shotSize, camera, sfx, bgm`.
+
+**Chọn kịch bản làm đầu vào** (nút "Kịch bản" ở `PortValueInput`): lưu tham chiếu `{"$ref":"script", episode, facet, shot?, label}` trong `params[cổng]`; backend giải ra giá trị thật khi chạy (`_resolve_script_ref`) nên luôn khớp file kịch bản mới nhất.
+- Cổng `text`: fulltext, summary, lesson, mantra, dialogue_all, environment; hoặc một shot cụ thể (dialogue, imagePrompt, videoPrompt, action, expression).
+- Cổng `scenes`: facet `scenes`. Cổng `script`: facet `script` (toàn bộ cấu trúc).
+
+**Nhân vật**: thuộc tính chọn được theo nhóm — Thông tin (tên, vai trò, mô tả, chiều cao, tỉ lệ), Prompt (prompt lock), Tính cách & bộ nhớ (tính cách, câu cửa miệng, thói quen, sự kiện), Giọng (mã giọng, tốc độ, giọng mẫu, file giọng), Ảnh (chính, tham chiếu, kho hình ảnh theo góc), Clip đã tạo, Xuất hiện theo tập. Giá trị nhân vật được sao chép vào cổng tại thời điểm chọn.

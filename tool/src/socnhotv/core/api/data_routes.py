@@ -658,6 +658,38 @@ async def create_script(project_id: str, payload: Dict[str, Any] = Body(...)) ->
     return {"episodeId": ep.name, "name": target.name}
 
 
+def _episode_script_file(project_id: str, episode_id: str) -> Path:
+    ep = _project_dir(project_id) / "content" / "episodes" / episode_id
+    files = sorted(ep.glob("KICH*.md")) if ep.is_dir() else []
+    if not files:
+        raise HTTPException(404, f"Không tìm thấy kịch bản của tập '{episode_id}'")
+    return files[0]
+
+
+def load_episode_script(project_id: str, episode_id: str) -> Dict[str, Any]:
+    """Đọc + phân tích kịch bản tập thành dữ liệu có cấu trúc (kiểu `script`)."""
+    from socnhotv.core.engine.episode_script import parse_episode_markdown
+
+    f = _episode_script_file(project_id, episode_id)
+    md = f.read_text(encoding="utf-8", errors="replace")
+    return {"data": parse_episode_markdown(md, episode_id), "markdown": md, "file": f.name}
+
+
+@router.get("/projects/{project_id}/script-data/{episode_id}")
+async def get_script_data(project_id: str, episode_id: str) -> Dict[str, Any]:
+    """Kịch bản tập có cấu trúc + danh mục các 'mặt cắt' (facet) để chọn làm đầu vào node."""
+    from socnhotv.core.engine.episode_script import FACETS, SHOT_FACETS
+
+    loaded = load_episode_script(project_id, episode_id)
+    data = loaded["data"]
+    shots = [
+        {"id": sh["id"], "scene": sc["index"], "sceneTitle": sc["title"], "dialogue": sh["dialogue"][:80], "speaker": sh["speaker"]}
+        for sc in data["scenes"]
+        for sh in sc["shots"]
+    ]
+    return {"script": data, "facets": FACETS, "shotFacets": SHOT_FACETS, "shots": shots}
+
+
 @router.post("/projects/{project_id}/library/upload")
 async def upload_library_file(project_id: str, payload: Dict[str, Any] = Body(...)) -> Dict[str, Any]:
     """Tải ảnh/video lên kho (assets/ + meta.json). Body: {name, data(base64)}."""

@@ -77,6 +77,56 @@ export async function fetchProjectLibraryImages(
   }
 }
 
+export interface ScriptEpisode {
+  id: string;
+  title: string;
+}
+
+export interface ScriptFacet {
+  id: string;
+  label: string;
+  type: "text" | "scenes" | "script";
+}
+
+export interface ScriptShot {
+  id: string;
+  scene: number;
+  sceneTitle: string;
+  speaker: string;
+  dialogue: string;
+}
+
+/** Các tập có kịch bản trong dự án (để chọn làm nội dung đầu vào) */
+export async function fetchProjectScriptEpisodes(projectId: string): Promise<ScriptEpisode[]> {
+  try {
+    const res = await fetch(`${CORE_URL}/data/projects/${projectId}/library`, { cache: "no-store" });
+    if (!res.ok) return [];
+    const data = await res.json();
+    const withScript = new Set<string>((data.scripts || []).map((s: any) => s.episodeId));
+    return (data.episodes || [])
+      .filter((e: any) => withScript.has(e.id))
+      .map((e: any) => ({ id: e.id, title: e.title || e.id }));
+  } catch {
+    return [];
+  }
+}
+
+/** Kịch bản tập có cấu trúc: danh mục facet + danh sách shot (GET .../script-data/{episode}) */
+export async function fetchScriptData(
+  projectId: string,
+  episodeId: string
+): Promise<{ facets: ScriptFacet[]; shotFacets: { id: string; label: string }[]; shots: ScriptShot[] } | null> {
+  try {
+    const res = await fetch(`${CORE_URL}/data/projects/${projectId}/script-data/${encodeURIComponent(episodeId)}`, {
+      cache: "no-store",
+    });
+    if (!res.ok) return null;
+    return await res.json();
+  } catch {
+    return null;
+  }
+}
+
 export type LibraryKind = "image" | "video" | "audio";
 
 /** Kho tư liệu dự án theo loại (ảnh / video / âm thanh) để chọn làm đầu vào node */
