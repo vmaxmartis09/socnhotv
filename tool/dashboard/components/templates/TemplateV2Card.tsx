@@ -290,7 +290,7 @@ export function TemplateV2Card({
               className="inline-flex items-center gap-1 rounded bg-muted/80 px-1.5 py-0.5 text-[10px] text-muted-foreground"
               title={`Cần khóa API: ${template.requires.providers.join(", ")}`}
             >
-              <Key className="h-2.5 w-2.5 text-amber-500" />
+              <Key className="h-2.5 w-2.5 text-semantic-warning" />
               <span>{template.requires.providers.join(", ")}</span>
             </span>
           )}

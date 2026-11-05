@@ -137,7 +137,7 @@ export function TemplateDetailDrawer({ template, onClose }: TemplateDetailDrawer
 
         <div
           className={cn(
-            "relative mx-auto overflow-hidden rounded-xl bg-black border border-border flex items-center justify-center",
+            "relative mx-auto overflow-clip rounded-xl bg-black border border-border flex items-center justify-center",
             isLandscape ? "aspect-[16/9] w-full" : "aspect-[9/16] max-h-[360px]"
           )}
         >

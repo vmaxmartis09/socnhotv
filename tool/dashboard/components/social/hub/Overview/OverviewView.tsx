@@ -41,7 +41,7 @@ export function OverviewView({ onNavigateView, onOpenPlanWizard }: OverviewViewP
   const emptySlots = overviewData?.empty_slots_7d ?? overviewData?.empty_slots ?? [];
 
   return (
-    <div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-6">
+    <div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-6 scroll-quiet">
       {/* Top Banner / Hero */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 rounded-xl bg-gradient-to-r from-card to-muted/40 border border-border shadow-sm">
         <div>
@@ -218,7 +218,7 @@ export function OverviewView({ onNavigateView, onOpenPlanWizard }: OverviewViewP
         <div className="rounded-xl border border-border bg-card p-4 space-y-3">
           <div className="flex items-center justify-between border-b border-border pb-3">
             <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
-              <Flame className="w-4 h-4 text-amber-500" />
+              <Flame className="w-4 h-4 text-semantic-warning" />
               Khoảng Trống Khung Giờ Vàng (7 ngày tới)
             </h3>
             <button
@@ -236,7 +236,7 @@ export function OverviewView({ onNavigateView, onOpenPlanWizard }: OverviewViewP
               Các khung giờ vàng đều đã có bài đăng được lên lịch hoặc chưa thiết lập khung giờ vàng.
             </div>
           ) : (
-            <div className="space-y-2 max-h-60 overflow-y-auto pr-1">
+            <div className="space-y-2 max-h-60 overflow-y-auto pr-1 scroll-quiet">
               {emptySlots.slice(0, 6).map((slot, idx) => {
                 const acc = accounts.find((a) => a.id === slot.account_id);
                 return (

@@ -1,4 +1,5 @@
 "use client";
+import { confirm, showAlert } from "@/lib/confirm";
 
 import React, { useState } from "react";
 import { cn } from "@/lib/utils";
@@ -64,12 +65,12 @@ export function AccountDetailSheet({
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!handle.trim() || !displayName.trim()) {
-      alert("Vui lòng điền Handle và Tên hiển thị");
+      await showAlert("Thiếu thông tin", "Vui lòng điền Handle và Tên hiển thị", "warning");
       return;
     }
 
     if (isNew && totalAccountsCount >= 10) {
-      alert("Đã đạt giới hạn tối đa 10 tài khoản");
+      await showAlert("Giới hạn tài khoản", "Đã đạt giới hạn tối đa 10 tài khoản", "warning");
       return;
     }
 
@@ -109,7 +110,7 @@ export function AccountDetailSheet({
       onSaved();
       onClose();
     } catch (err: any) {
-      alert(`Lỗi lưu tài khoản: ${err.message}`);
+      await showAlert("Lỗi lưu tài khoản", err.message, "danger");
     } finally {
       setIsSaving(false);
     }
@@ -117,13 +118,13 @@ export function AccountDetailSheet({
 
   const handleDelete = async () => {
     if (!account) return;
-    if (confirm(`Bạn có chắc chắn muốn xóa tài khoản ${account.display_name}?`)) {
+    if (await confirm({ tone: "danger", title: "Xóa tài khoản", message: `Bạn có chắc chắn muốn xóa tài khoản ${account.display_name}?` })) {
       try {
         await socialApi.deleteAccount(projectId, account.id);
         onSaved();
         onClose();
       } catch (err: any) {
-        alert(`Lỗi xóa tài khoản: ${err.message}`);
+        await showAlert("Lỗi xóa tài khoản", err.message, "danger");
       }
     }
   };
@@ -157,7 +158,7 @@ export function AccountDetailSheet({
         </div>
 
         {/* Form Body */}
-        <form onSubmit={handleSave} className="flex-1 overflow-y-auto p-4 space-y-4 text-xs">
+        <form onSubmit={handleSave} className="flex-1 overflow-y-auto p-4 space-y-4 text-xs scroll-quiet">
           {/* Platform selection */}
           <div className="space-y-1">
             <label className="text-[11px] font-semibold text-muted-foreground">Nền tảng:</label>
@@ -346,7 +347,7 @@ export function AccountDetailSheet({
                     onClick={() => {
                       setPostingWindows(postingWindows.filter((_, i) => i !== idx));
                     }}
-                    className="text-muted-foreground hover:text-rose-500 p-1"
+                    className="text-muted-foreground hover:text-semantic-danger p-1"
                   >
                     <Trash2 className="h-3.5 w-3.5" />
                   </button>
@@ -384,7 +385,7 @@ export function AccountDetailSheet({
               <button
                 type="button"
                 onClick={handleDelete}
-                className="flex items-center gap-1 text-xs font-semibold text-rose-500 hover:bg-rose-500/10 px-3 py-2 rounded-xl transition-colors"
+                className="flex items-center gap-1 text-xs font-semibold text-semantic-danger hover:bg-rose-500/10 px-3 py-2 rounded-xl transition-colors"
               >
                 <Trash2 className="h-3.5 w-3.5" />
                 <span>Xóa kênh</span>

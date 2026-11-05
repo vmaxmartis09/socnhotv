@@ -70,7 +70,7 @@ export function PublishTab() {
   };
 
   return (
-    <div className="flex h-full flex-col p-3.5 space-y-4 text-xs select-none overflow-y-auto">
+    <div className="flex h-full flex-col p-3.5 space-y-4 text-xs select-none overflow-y-auto scroll-quiet">
       {/* 1. Header Banner & Open Social Hub Button */}
       <div className="rounded-xl border border-border bg-gradient-to-br from-card to-muted/40 p-3.5 shadow-2xs space-y-3">
         <div className="flex items-center justify-between">

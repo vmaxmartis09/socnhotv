@@ -506,7 +506,7 @@ export function UserBubble({
         initial: false,
         animate: { width: open ? 316 : 48 },
         transition: { duration: 0.24, ease: [0.22, 1, 0.36, 1] },
-        className: "absolute bottom-0 left-0 flex flex-col-reverse overflow-hidden rounded-3xl border border-border bg-card",
+        className: "absolute bottom-0 left-0 flex flex-col-reverse overflow-clip rounded-3xl border border-border bg-card",
       }
     : {};
 

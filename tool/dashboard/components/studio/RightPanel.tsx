@@ -166,7 +166,7 @@ export function RightPanel() {
           </div>
 
           {/* Tab Panel Content */}
-          <div className="flex-1 min-h-0 overflow-y-auto select-text">
+          <div className="flex-1 min-h-0 overflow-y-auto select-text scroll-quiet">
             {renderActiveTabContent()}
           </div>
         </aside>
@@ -225,7 +225,7 @@ export function RightPanel() {
             </button>
           </div>
 
-          <div className="flex-1 min-h-0 overflow-y-auto">
+          <div className="flex-1 min-h-0 overflow-y-auto scroll-quiet">
             {renderActiveTabContent()}
           </div>
         </div>

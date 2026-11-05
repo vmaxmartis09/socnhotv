@@ -126,7 +126,7 @@ export function Sidebar() {
       {/* Episode / Graph list */}
       <nav
         aria-label={t("episodesLabel")}
-        className="flex-1 space-y-1 overflow-y-auto px-0.5"
+        className="flex-1 space-y-1 overflow-y-auto px-0.5 scroll-quiet"
       >
         {episodes.map((ep) => {
           const active = ep.id === activeEpisodeId;

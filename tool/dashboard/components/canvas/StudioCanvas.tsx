@@ -1627,7 +1627,7 @@ function StudioCanvasInner() {
                 <X className="h-3.5 w-3.5" />
               </button>
             </div>
-            <ul className="max-h-60 space-y-1 overflow-y-auto">
+            <ul className="max-h-60 space-y-1 overflow-y-auto scroll-quiet">
               {compatibleQuickAddDefs.map((def) => (
                 <li key={def.typeName}>
                   <button
@@ -1831,7 +1831,7 @@ function StudioCanvasInner() {
                         className="h-7 w-full rounded border border-border bg-background pl-7 pr-2 text-xs text-foreground"
                       />
                     </div>
-                    <ul className="max-h-72 space-y-1 overflow-y-auto">
+                    <ul className="max-h-72 space-y-1 overflow-y-auto scroll-quiet">
                       {filteredAddDefs.map((def) => (
                         <li key={def.typeName}>
                           <button
@@ -1919,7 +1919,7 @@ function StudioCanvasInner() {
         </div>
 
         {/* Mobile Read-Only Vertical Node List (< 768px) */}
-        <div className="md:hidden flex-1 overflow-y-auto px-4 py-4 space-y-3">
+        <div className="md:hidden flex-1 overflow-y-auto px-4 py-4 space-y-3 scroll-quiet">
           <div className="flex items-center justify-between border-b border-border pb-2.5">
             <div>
               <h2 className="text-sm font-semibold text-foreground">

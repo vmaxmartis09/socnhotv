@@ -254,7 +254,7 @@ export function PolicyEditor({ projectId: projectIdProp }: { projectId?: string 
               {page && (
                 <details className="rounded-md border border-border bg-card p-1.5 text-[12px]">
                   <summary className="cursor-pointer text-foreground">Xem nội dung đã lấy: {page.title}</summary>
-                  <pre className="nowheel mt-1 max-h-48 overflow-y-auto whitespace-pre-wrap break-words text-muted-foreground">{page.text.slice(0, 6000)}</pre>
+                  <pre className="nowheel mt-1 max-h-48 overflow-y-auto whitespace-pre-wrap break-words text-muted-foreground scroll-quiet">{page.text.slice(0, 6000)}</pre>
                 </details>
               )}
             </div>

@@ -21,9 +21,9 @@ interface AccountChipProps {
 }
 
 const PLATFORM_ICONS: Record<string, { label: string; bg: string; text: string }> = {
-  youtube: { label: "YT", bg: "bg-red-500/10", text: "text-red-500" },
+  youtube: { label: "YT", bg: "bg-red-500/10", text: "text-semantic-danger" },
   tiktok: { label: "TT", bg: "bg-pink-500/10", text: "text-pink-400" },
-  facebook: { label: "FB", bg: "bg-blue-500/10", text: "text-blue-500" },
+  facebook: { label: "FB", bg: "bg-blue-500/10", text: "text-semantic-info" },
   instagram: { label: "IG", bg: "bg-purple-500/10", text: "text-purple-400" },
   threads: { label: "TH", bg: "bg-zinc-500/10", text: "text-zinc-200" },
   x: { label: "X", bg: "bg-zinc-500/10", text: "text-zinc-200" },

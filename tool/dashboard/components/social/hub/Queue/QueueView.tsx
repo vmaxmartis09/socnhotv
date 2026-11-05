@@ -1,4 +1,5 @@
 "use client";
+import { confirm } from "@/lib/confirm";
 
 import React, { useState, useEffect, useMemo } from "react";
 import { cn } from "@/lib/utils";
@@ -127,7 +128,7 @@ export function QueueView({ onRefresh }: QueueViewProps) {
 
   const handleBulkCancel = async () => {
     if (!activeProjectId || selectedTargetIds.length === 0) return;
-    if (!confirm(`Bạn có chắc muốn hủy ${selectedTargetIds.length} bài đăng đã chọn?`)) return;
+    if (!(await confirm({ tone: "danger", title: "Hủy bài đăng", message: `Bạn có chắc muốn hủy ${selectedTargetIds.length} bài đăng đã chọn?` }))) return;
     setActionLoading(true);
     try {
       await bulkAction(activeProjectId, selectedTargetIds, "cancel");
@@ -166,7 +167,7 @@ export function QueueView({ onRefresh }: QueueViewProps) {
 
   const handleBulkDeleteDraft = async () => {
     if (!activeProjectId || selectedTargetIds.length === 0) return;
-    if (!confirm(`Bạn có chắc muốn xóa vĩnh viễn ${selectedTargetIds.length} bản nháp đã chọn?`)) return;
+    if (!(await confirm({ tone: "danger", title: "Xóa bản nháp", message: `Bạn có chắc muốn xóa vĩnh viễn ${selectedTargetIds.length} bản nháp đã chọn?` }))) return;
     setActionLoading(true);
     try {
       await bulkAction(activeProjectId, selectedTargetIds, "delete_draft");
@@ -423,7 +424,7 @@ export function QueueView({ onRefresh }: QueueViewProps) {
       )}
 
       {/* Table Content */}
-      <div className="flex-1 overflow-y-auto p-4 md:p-6">
+      <div className="flex-1 overflow-y-auto p-4 md:p-6 scroll-quiet">
         {isLoadingQueue && items.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-16 text-muted-foreground">
             <RefreshCw className="w-8 h-8 animate-spin mb-3 text-primary" />

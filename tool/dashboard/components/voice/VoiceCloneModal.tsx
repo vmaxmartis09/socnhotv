@@ -440,7 +440,7 @@ export function VoiceCloneModal({
                   )}
                 </button>
                 <div className="flex items-center gap-1 text-[11px] text-muted-foreground">
-                  <AudioLines className="h-3.5 w-3.5 text-emerald-500" />
+                  <AudioLines className="h-3.5 w-3.5 text-semantic-success" />
                   <span>{result.mastering}</span>
                 </div>
               </div>

@@ -198,7 +198,7 @@ export function CalendarView({ onOpenPlanWizard }: CalendarViewProps) {
         </div>
 
         {/* Calendar Grid */}
-        <div className="flex-1 grid grid-cols-7 grid-rows-5 md:grid-rows-6 gap-[1px] bg-border overflow-y-auto">
+        <div className="flex-1 grid grid-cols-7 grid-rows-5 md:grid-rows-6 gap-[1px] bg-border overflow-y-auto scroll-quiet">
           {/* Empty cells before month start */}
           {Array.from({ length: firstDayOfWeek }).map((_, idx) => (
             <div key={`empty-${idx}`} className="bg-card/30 p-1.5 min-h-[90px]" />
@@ -240,7 +240,7 @@ export function CalendarView({ onOpenPlanWizard }: CalendarViewProps) {
                 </div>
 
                 {/* Posts in this day */}
-                <div className="space-y-1 my-1 overflow-y-auto max-h-24">
+                <div className="space-y-1 my-1 overflow-y-auto max-h-24 scroll-quiet">
                   {postsForDay.slice(0, 3).map((p) => {
                     const acc = accounts.find((a) => a.id === p.account_id);
                     const timeStr = p.scheduled_at ? p.scheduled_at.slice(11, 16) : "";
@@ -273,7 +273,7 @@ export function CalendarView({ onOpenPlanWizard }: CalendarViewProps) {
                 </div>
 
                 {/* Gold slot hint */}
-                <div className="text-[9px] text-amber-500/80 flex items-center gap-0.5">
+                <div className="text-[9px] text-semantic-warning/80 flex items-center gap-0.5">
                   <Flame className="w-2.5 h-2.5" />
                   <span>11:30 · 19:30</span>
                 </div>
@@ -306,7 +306,7 @@ export function CalendarView({ onOpenPlanWizard }: CalendarViewProps) {
           Kéo thả các bản nháp vào ô ngày trên lịch để tự động hẹn giờ đăng.
         </p>
 
-        <div className="flex-1 overflow-y-auto space-y-2 pr-1">
+        <div className="flex-1 overflow-y-auto space-y-2 pr-1 scroll-quiet">
           {draftItems.length === 0 ? (
             <div className="py-8 text-center text-xs text-muted-foreground border border-dashed border-border rounded-lg p-3">
               Không có bản nháp nào cần hẹn giờ.

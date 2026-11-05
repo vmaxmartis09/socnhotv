@@ -1,4 +1,5 @@
 "use client";
+import { showAlert } from "@/lib/confirm";
 
 import { useShallow } from "zustand/react/shallow";
 import React, { useState, useEffect } from "react";
@@ -213,7 +214,7 @@ export function JobsCostTab() {
       await fetchJobs();
       updateJob(jobId, { status: "failed" });
     } catch (err: any) {
-      alert(`Huỷ job thất bại: ${err.message}`);
+      await showAlert("Huỷ job thất bại", err.message, "danger");
     } finally {
       setCancellingId(null);
     }
@@ -296,7 +297,7 @@ export function JobsCostTab() {
         <section className="rounded-xl border border-emerald-500/30 bg-emerald-500/5 p-3.5 space-y-2.5">
           <div className="flex items-center justify-between">
             <h3 className="font-semibold text-foreground flex items-center gap-1.5">
-              <CheckCircle2 className="h-4 w-4 text-emerald-500" />
+              <CheckCircle2 className="h-4 w-4 text-semantic-success" />
               <span>Video Thành phẩm ({outputsList.length})</span>
             </h3>
             <span className="text-[10px] text-emerald-400 font-medium">data/projects/{activeProjectId}/output/</span>
@@ -440,10 +441,10 @@ export function JobsCostTab() {
                       className={cn(
                         "rounded-full px-2 py-0.2 text-[10px] font-semibold uppercase tracking-wider",
                         isRunning
-                          ? "bg-sky-500/10 text-sky-500 border border-sky-500/20"
+                          ? "bg-sky-500/10 text-semantic-info border border-sky-500/20"
                           : isDone
-                          ? "bg-emerald-500/10 text-emerald-500 border border-emerald-500/20"
-                          : "bg-rose-500/10 text-rose-500 border border-rose-500/20"
+                          ? "bg-emerald-500/10 text-semantic-success border border-emerald-500/20"
+                          : "bg-rose-500/10 text-semantic-danger border border-rose-500/20"
                       )}
                     >
                       {isRunning && <Loader2 className="mr-1 inline h-2.5 w-2.5 animate-spin" />}
@@ -515,7 +516,7 @@ export function JobsCostTab() {
 
                 {/* Error message if failed */}
                 {isFailed && j.error && (
-                  <p className="text-[11px] text-rose-500 line-clamp-2">
+                  <p className="text-[11px] text-semantic-danger line-clamp-2">
                     {j.error}
                   </p>
                 )}

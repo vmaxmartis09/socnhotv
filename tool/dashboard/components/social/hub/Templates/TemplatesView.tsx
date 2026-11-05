@@ -1,4 +1,5 @@
 "use client";
+import { confirm } from "@/lib/confirm";
 
 import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
@@ -128,7 +129,7 @@ export function TemplatesView({ onUseTemplate }: TemplatesViewProps) {
 
   const handleDelete = async (tmplId: string, title: string) => {
     if (!activeProjectId) return;
-    if (!confirm(`Bạn có chắc muốn xóa mẫu "${title}"?`)) return;
+    if (!(await confirm({ tone: "danger", title: "Xóa mẫu", message: `Bạn có chắc muốn xóa mẫu "${title}"?` }))) return;
 
     try {
       const res = await fetch(`/core/projects/${activeProjectId}/social/templates/${tmplId}`, {
@@ -151,7 +152,7 @@ export function TemplatesView({ onUseTemplate }: TemplatesViewProps) {
   };
 
   return (
-    <div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-6">
+    <div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-6 scroll-quiet">
       {/* Header and Controls */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-xl bg-card border border-border">
         <div>

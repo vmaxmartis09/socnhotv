@@ -1,4 +1,5 @@
 "use client";
+import { showAlert } from "@/lib/confirm";
 
 import React, { useEffect, useState, useMemo } from "react";
 import { cn } from "@/lib/utils";
@@ -263,7 +264,7 @@ export function PublishCenterModal({
         }));
       }
     } catch (err: any) {
-      alert(`Lỗi sinh caption: ${err.message}`);
+      await showAlert("Lỗi sinh caption", err.message, "danger");
     } finally {
       setIsGeneratingCaptions(false);
     }
@@ -283,7 +284,7 @@ export function PublishCenterModal({
       });
       setPreviewTargets(planned);
     } catch (err: any) {
-      alert(`Lỗi xem trước lịch: ${err.message}`);
+      await showAlert("Lỗi xem trước lịch", err.message, "danger");
     } finally {
       setIsLoadingPreview(false);
     }
@@ -326,7 +327,7 @@ export function PublishCenterModal({
       });
       await loadAll(projectId);
     } catch (err: any) {
-      alert(`Lỗi lưu lịch xuất bản: ${err.message}`);
+      await showAlert("Lỗi lưu lịch xuất bản", err.message, "danger");
     } finally {
       setIsSubmittingPlan(false);
     }
@@ -336,7 +337,7 @@ export function PublishCenterModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-3 sm:p-6 animate-in fade-in-50">
-      <div className="relative w-full max-w-6xl h-[92vh] flex flex-col rounded-2xl border border-border bg-card shadow-2xl overflow-hidden text-foreground">
+      <div className="relative w-full max-w-6xl h-[92vh] flex flex-col rounded-2xl border border-border bg-card shadow-2xl overflow-clip text-foreground">
         {/* Top Modal Header */}
         <div className="flex items-center justify-between border-b border-border bg-muted/40 px-5 py-3.5 shrink-0">
           <div className="flex items-center gap-3">
@@ -401,7 +402,7 @@ export function PublishCenterModal({
         <div className="flex-1 overflow-hidden flex flex-col">
           {activeMainTab === "calendar" ? (
             /* Tab 2: Calendar View */
-            <div className="flex-1 p-4 overflow-y-auto">
+            <div className="flex-1 p-4 overflow-y-auto scroll-quiet">
               <CalendarView projectId={projectId} />
             </div>
           ) : (
@@ -429,7 +430,7 @@ export function PublishCenterModal({
                         isCurrent
                           ? "bg-primary/10 text-primary border border-primary/20 shadow-2xs"
                           : isDone
-                          ? "text-emerald-500 hover:bg-emerald-500/10"
+                          ? "text-semantic-success hover:bg-emerald-500/10"
                           : "text-muted-foreground hover:text-foreground"
                       )}
                     >
@@ -452,7 +453,7 @@ export function PublishCenterModal({
               </div>
 
               {/* Step Content Container */}
-              <div className="flex-1 overflow-y-auto p-5">
+              <div className="flex-1 overflow-y-auto p-5 scroll-quiet">
                 {/* STEP 1: Select Video */}
                 {currentStep === 1 && (
                   <div className="space-y-4">
@@ -506,7 +507,7 @@ export function PublishCenterModal({
                                 }
                               }}
                               className={cn(
-                                "group relative flex flex-col rounded-xl border bg-card overflow-hidden cursor-pointer transition-all shadow-2xs hover:border-primary/60",
+                                "group relative flex flex-col rounded-xl border bg-card overflow-clip cursor-pointer transition-all shadow-2xs hover:border-primary/60",
                                 isSelected
                                   ? "border-primary ring-2 ring-primary/20 bg-primary/5"
                                   : "border-border"
@@ -547,7 +548,7 @@ export function PublishCenterModal({
                                   <span
                                     className={cn(
                                       "font-medium",
-                                      v.posted_count > 0 ? "text-amber-500" : "text-emerald-500"
+                                      v.posted_count > 0 ? "text-semantic-warning" : "text-semantic-success"
                                     )}
                                   >
                                     {v.posted_count > 0 ? `Đã đăng ${v.posted_count} lần` : "Chưa đăng"}
@@ -619,7 +620,7 @@ export function PublishCenterModal({
                                 setSelectedAccountIds(selectedAccountIds.filter((id) => id !== acc.id));
                               } else {
                                 if (selectedAccountIds.length >= 10) {
-                                  alert("Tối đa chọn 10 tài khoản");
+                                  showAlert("Giới hạn tài khoản", "Tối đa chọn 10 tài khoản", "warning");
                                   return;
                                 }
                                 setSelectedAccountIds([...selectedAccountIds, acc.id]);
@@ -701,7 +702,7 @@ export function PublishCenterModal({
                                       {cell.status === "ok" && (
                                         <span
                                           title={cell.message}
-                                          className="inline-flex items-center justify-center h-6 w-6 rounded-full bg-emerald-500/10 text-emerald-500 font-bold border border-emerald-500/20"
+                                          className="inline-flex items-center justify-center h-6 w-6 rounded-full bg-emerald-500/10 text-semantic-success font-bold border border-emerald-500/20"
                                         >
                                           ✓
                                         </span>
@@ -709,7 +710,7 @@ export function PublishCenterModal({
                                       {cell.status === "warn" && (
                                         <span
                                           title={cell.message}
-                                          className="inline-flex items-center justify-center h-6 w-6 rounded-full bg-amber-500/10 text-amber-500 font-bold border border-amber-500/20"
+                                          className="inline-flex items-center justify-center h-6 w-6 rounded-full bg-amber-500/10 text-semantic-warning font-bold border border-amber-500/20"
                                         >
                                           ⚠
                                         </span>
@@ -717,7 +718,7 @@ export function PublishCenterModal({
                                       {cell.status === "error" && (
                                         <span
                                           title={cell.message}
-                                          className="inline-flex items-center justify-center h-6 w-6 rounded-full bg-rose-500/10 text-rose-500 font-bold border border-rose-500/20"
+                                          className="inline-flex items-center justify-center h-6 w-6 rounded-full bg-rose-500/10 text-semantic-danger font-bold border border-rose-500/20"
                                         >
                                           ✕
                                         </span>
@@ -990,7 +991,7 @@ export function PublishCenterModal({
                           <span className="font-mono text-[11px]">Múi giờ: Asia/Ho_Chi_Minh (+07:00)</span>
                         </div>
 
-                        <div className="rounded-xl border border-border bg-card overflow-hidden shadow-2xs">
+                        <div className="rounded-xl border border-border bg-card overflow-clip shadow-2xs">
                           <table className="w-full text-xs text-left">
                             <thead className="bg-muted/50 border-b border-border text-[11px] font-semibold text-muted-foreground">
                               <tr>
@@ -1035,13 +1036,13 @@ export function PublishCenterModal({
                                     {pt.issues && pt.issues.length > 0 ? (
                                       <span
                                         title={pt.issues.map((i) => i.message_vi).join("\n")}
-                                        className="inline-flex items-center gap-1 text-amber-500 font-medium"
+                                        className="inline-flex items-center gap-1 text-semantic-warning font-medium"
                                       >
                                         <AlertTriangle className="h-3 w-3" />
                                         <span>{pt.issues[0].code}</span>
                                       </span>
                                     ) : (
-                                      <span className="text-emerald-500 font-medium">✓ Sẵn sàng</span>
+                                      <span className="text-semantic-success font-medium">✓ Sẵn sàng</span>
                                     )}
                                   </td>
                                 </tr>
@@ -1060,7 +1061,7 @@ export function PublishCenterModal({
                     {commitResult ? (
                       /* Success Screen */
                       <div className="rounded-2xl border border-emerald-500/30 bg-emerald-500/5 p-8 text-center space-y-4">
-                        <div className="flex h-14 w-14 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-500 mx-auto">
+                        <div className="flex h-14 w-14 items-center justify-center rounded-full bg-emerald-500/20 text-semantic-success mx-auto">
                           <CheckCircle2 className="h-8 w-8" />
                         </div>
                         <h3 className="text-lg font-bold text-foreground">Lên kế hoạch xuất bản thành công!</h3>
@@ -1118,7 +1119,7 @@ export function PublishCenterModal({
                         {/* Safe lock toggle */}
                         <div className="flex items-center justify-between rounded-xl border border-amber-500/30 bg-amber-500/5 p-4">
                           <div className="space-y-0.5">
-                            <p className="text-xs font-bold text-amber-500 flex items-center gap-1.5">
+                            <p className="text-xs font-bold text-semantic-warning flex items-center gap-1.5">
                               <ShieldCheck className="h-4 w-4" />
                               Duyệt trước khi đăng (Khóa an toàn)
                             </p>

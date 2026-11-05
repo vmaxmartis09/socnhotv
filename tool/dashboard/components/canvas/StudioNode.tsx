@@ -763,7 +763,7 @@ export const StudioNode = memo(function StudioNode({
           className="nodrag nowheel absolute z-30 w-[380px] rounded-xl border border-border bg-card p-2 shadow-lg"
         >
           <p className="px-1 pb-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Đổi nhân vật</p>
-          <div className="grid max-h-[460px] grid-cols-4 gap-2 overflow-y-auto">
+          <div className="grid max-h-[460px] grid-cols-4 gap-2 overflow-y-auto scroll-quiet">
             {characters.map((c) => {
               const active = c.id === p.characterId;
               return (

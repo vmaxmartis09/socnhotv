@@ -1,4 +1,5 @@
 "use client";
+import { confirm } from "@/lib/confirm";
 
 import React, { useState, useEffect } from "react";
 import { format } from "date-fns";
@@ -159,7 +160,7 @@ export function PostComposer({ projectId }: PostComposerProps) {
     }
 
     if (action === "publish_now") {
-      if (!window.confirm("Bạn có chắc chắn muốn ĐĂNG NGAY lên các tài khoản đã chọn?")) {
+      if (!(await confirm({ tone: "warning", title: "Xác nhận đăng bài", message: "Bạn có chắc chắn muốn ĐĂNG NGAY lên các tài khoản đã chọn?" }))) {
         return;
       }
     }
@@ -232,7 +233,7 @@ export function PostComposer({ projectId }: PostComposerProps) {
         {/* Form Body */}
         <div className="flex-1 overflow-y-auto p-4 space-y-3.5 scroll-quiet text-xs">
           {errorMessage && (
-            <div className="rounded-lg bg-rose-500/10 border border-rose-500/30 p-2.5 text-rose-500 text-xs">
+            <div className="rounded-lg bg-rose-500/10 border border-rose-500/30 p-2.5 text-semantic-danger text-xs">
               {errorMessage}
             </div>
           )}

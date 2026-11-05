@@ -226,7 +226,7 @@ export function VideoLibraryView({ onPlanVideos }: VideoLibraryViewProps) {
       )}
 
       {/* Content Area */}
-      <div className="flex-1 overflow-y-auto p-4 md:p-6">
+      <div className="flex-1 overflow-y-auto p-4 md:p-6 scroll-quiet">
         {isLoadingLibrary && libraryVideos.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-16 text-muted-foreground">
             <RefreshCw className="w-8 h-8 animate-spin mb-3 text-primary" />

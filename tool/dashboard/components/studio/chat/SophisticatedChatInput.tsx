@@ -1,4 +1,5 @@
 "use client";
+import { showAlert } from "@/lib/confirm";
 
 import React, { useRef, useState, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
@@ -126,7 +127,7 @@ export function SophisticatedChatInput({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
     if (!SpeechRecognition) {
-      alert(isVi ? "Trình duyệt chưa hỗ trợ ghi âm trực tiếp." : "Speech recognition not supported in this browser.");
+      showAlert("Ghi âm giọng nói", isVi ? "Trình duyệt chưa hỗ trợ ghi âm trực tiếp." : "Speech recognition not supported in this browser.", "warning");
       return;
     }
 
@@ -172,7 +173,7 @@ export function SophisticatedChatInput({
     <div ref={containerRef} className="relative w-full">
       {/* Autocomplete Menu: Slash Commands */}
       {isSlash && (
-        <ul className="absolute bottom-full left-0 right-0 mb-2 max-h-48 overflow-y-auto rounded-2xl border border-border/80 bg-popover/95 p-1.5 shadow-xl backdrop-blur-xl animate-in fade-in-0 zoom-in-95 z-20">
+        <ul className="absolute bottom-full left-0 right-0 mb-2 max-h-48 overflow-y-auto rounded-2xl border border-border/80 bg-popover/95 p-1.5 shadow-xl backdrop-blur-xl animate-in fade-in-0 zoom-in-95 z-20 scroll-quiet">
           {slashCommands
             .filter((x) => x.cmd.startsWith(input.trim()))
             .map((item) => (
@@ -195,7 +196,7 @@ export function SophisticatedChatInput({
 
       {/* Autocomplete Menu: @ Mentions */}
       {isMention && filteredChars.length > 0 && (
-        <ul className="absolute bottom-full left-0 right-0 mb-2 max-h-48 overflow-y-auto rounded-2xl border border-border/80 bg-popover/95 p-1.5 shadow-xl backdrop-blur-xl animate-in fade-in-0 zoom-in-95 z-20">
+        <ul className="absolute bottom-full left-0 right-0 mb-2 max-h-48 overflow-y-auto rounded-2xl border border-border/80 bg-popover/95 p-1.5 shadow-xl backdrop-blur-xl animate-in fade-in-0 zoom-in-95 z-20 scroll-quiet">
           {filteredChars.map((ch) => (
             <li key={ch.id}>
               <button

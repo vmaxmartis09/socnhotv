@@ -19,6 +19,7 @@ export interface ConfirmOptions {
   /** Nhãn nút xác nhận (mặc định theo tone) */
   confirmLabel?: string;
   cancelLabel?: string;
+  hideCancel?: boolean;
 }
 
 interface ConfirmState {
@@ -61,5 +62,18 @@ export function confirm(options: ConfirmOptions): Promise<boolean> {
         },
       },
     });
+  });
+}
+
+/**
+ * Hộp thông báo / cảnh báo đơn nút dùng chung thay cho alert() gốc.
+ */
+export function showAlert(title: string, message?: ReactNode, tone: ConfirmTone = "warning"): Promise<boolean> {
+  return confirm({
+    title,
+    message,
+    tone,
+    confirmLabel: "Đóng",
+    hideCancel: true,
   });
 }

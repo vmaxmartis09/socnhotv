@@ -1,4 +1,5 @@
 "use client";
+import { confirm } from "@/lib/confirm";
 
 import React, { useState } from "react";
 import { format, parseISO } from "date-fns";
@@ -32,13 +33,13 @@ interface PostRowProps {
 }
 
 const PLATFORM_COLORS: Record<PlatformType, { bg: string; text: string; border: string; label: string }> = {
-  youtube: { bg: "bg-red-500/10", text: "text-red-500", border: "border-red-500/20", label: "YouTube" },
+  youtube: { bg: "bg-red-500/10", text: "text-semantic-danger", border: "border-red-500/20", label: "YouTube" },
   tiktok: { bg: "bg-pink-500/10", text: "text-pink-500", border: "border-pink-500/20", label: "TikTok" },
   facebook: { bg: "bg-blue-600/10", text: "text-blue-600", border: "border-blue-600/20", label: "Facebook" },
   instagram: { bg: "bg-purple-500/10", text: "text-purple-500", border: "border-purple-500/20", label: "Instagram" },
   threads: { bg: "bg-neutral-500/10", text: "text-neutral-400", border: "border-neutral-500/20", label: "Threads" },
-  x: { bg: "bg-sky-500/10", text: "text-sky-500", border: "border-sky-500/20", label: "X (Twitter)" },
-  douyin: { bg: "bg-amber-500/10", text: "text-amber-500", border: "border-amber-500/20", label: "Douyin" },
+  x: { bg: "bg-sky-500/10", text: "text-semantic-info", border: "border-sky-500/20", label: "X (Twitter)" },
+  douyin: { bg: "bg-amber-500/10", text: "text-semantic-warning", border: "border-amber-500/20", label: "Douyin" },
 };
 
 export function PostRow({
@@ -129,12 +130,12 @@ export function PostRow({
 
           {/* Status Badge */}
           {item.bucket === "overdue" && (
-            <span className="rounded-md bg-amber-500/10 px-1.5 py-0.5 font-semibold text-amber-500 border border-amber-500/20">
+            <span className="rounded-md bg-amber-500/10 px-1.5 py-0.5 font-semibold text-semantic-warning border border-amber-500/20">
               Quá hạn
             </span>
           )}
           {item.status === "pending_approval" && item.bucket !== "overdue" && (
-            <span className="rounded-md bg-amber-500/10 px-1.5 py-0.5 font-semibold text-amber-500 border border-amber-500/20">
+            <span className="rounded-md bg-amber-500/10 px-1.5 py-0.5 font-semibold text-semantic-warning border border-amber-500/20">
               Chờ duyệt
             </span>
           )}
@@ -144,13 +145,13 @@ export function PostRow({
             </span>
           )}
           {item.status === "published" && (
-            <span className="rounded-md bg-emerald-500/10 px-1.5 py-0.5 font-semibold text-emerald-500 border border-emerald-500/20 flex items-center gap-0.5">
+            <span className="rounded-md bg-emerald-500/10 px-1.5 py-0.5 font-semibold text-semantic-success border border-emerald-500/20 flex items-center gap-0.5">
               <CheckCircle2 className="h-3 w-3" />
               Đã đăng
             </span>
           )}
           {item.status === "failed" && (
-            <span className="rounded-md bg-rose-500/10 px-1.5 py-0.5 font-semibold text-rose-500 border border-rose-500/20">
+            <span className="rounded-md bg-rose-500/10 px-1.5 py-0.5 font-semibold text-semantic-danger border border-rose-500/20">
               Lỗi
             </span>
           )}
@@ -159,7 +160,7 @@ export function PostRow({
           {item.issues && item.issues.length > 0 && (
             <span
               title={item.issues.map((i) => i.message_vi).join("\n")}
-              className="inline-flex items-center text-amber-500"
+              className="inline-flex items-center text-semantic-warning"
             >
               <AlertTriangle className="h-3 w-3" />
             </span>
@@ -219,13 +220,14 @@ export function PostRow({
 
               <button
                 type="button"
-                onClick={() => {
+                onClick={async () => {
                   setMenuOpen(false);
-                  if (confirm(`Xác nhận đăng bài "${item.title}" lên ${item.account_name} ngay bây giờ?`)) {
+                  const ok = await confirm({ tone: "info", title: "Đăng bài ngay", message: `Xác nhận đăng bài "${item.title}" lên ${item.account_name} ngay bây giờ?` });
+                  if (ok) {
                     onPublishNow && onPublishNow(item);
                   }
                 }}
-                className="w-full flex items-center gap-2 rounded-lg px-2.5 py-1.5 text-left font-medium text-emerald-500 hover:bg-emerald-500/10 transition-colors"
+                className="w-full flex items-center gap-2 rounded-lg px-2.5 py-1.5 text-left font-medium text-semantic-success hover:bg-emerald-500/10 transition-colors"
               >
                 <Play className="h-3.5 w-3.5" />
                 <span>Đăng ngay (Xác nhận)</span>
@@ -241,7 +243,7 @@ export function PostRow({
                     }}
                     className="w-full flex items-center gap-2 rounded-lg px-2.5 py-1.5 text-left text-foreground hover:bg-accent transition-colors"
                   >
-                    <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500" />
+                    <CheckCircle2 className="h-3.5 w-3.5 text-semantic-success" />
                     <span>Tôi đã đăng</span>
                   </button>
 
@@ -263,13 +265,14 @@ export function PostRow({
 
               <button
                 type="button"
-                onClick={() => {
+                onClick={async () => {
                   setMenuOpen(false);
-                  if (confirm(`Hủy lịch đăng bài "${item.title}" trên ${item.account_name}?`)) {
+                  const ok = await confirm({ tone: "danger", title: "Hủy lịch đăng bài", message: `Hủy lịch đăng bài "${item.title}" trên ${item.account_name}?` });
+                  if (ok) {
                     onCancel && onCancel(item);
                   }
                 }}
-                className="w-full flex items-center gap-2 rounded-lg px-2.5 py-1.5 text-left font-medium text-rose-500 hover:bg-rose-500/10 transition-colors"
+                className="w-full flex items-center gap-2 rounded-lg px-2.5 py-1.5 text-left font-medium text-semantic-danger hover:bg-rose-500/10 transition-colors"
               >
                 <Trash2 className="h-3.5 w-3.5" />
                 <span>Huỷ lịch đăng</span>

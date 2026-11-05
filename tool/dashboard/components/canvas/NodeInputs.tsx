@@ -442,7 +442,7 @@ export const NodeImageInput = React.memo(function NodeImageInput({
                 <X className="h-4 w-4" />
               </button>
             </div>
-            <div className="p-3 overflow-y-auto flex-1">
+            <div className="p-3 overflow-y-auto flex-1 scroll-quiet">
               {libraryItems.length === 0 ? (
                 <div className="py-12 text-center text-xs text-muted-foreground">
                   Chưa có ảnh nào trong thư viện media.
@@ -659,7 +659,7 @@ export const NodeScriptInput = React.memo(function NodeScriptInput({
                   Chi tiết
                 </button>
               </div>
-              <div className="space-y-1 max-h-28 overflow-y-auto pr-1">
+              <div className="space-y-1 max-h-28 overflow-y-auto pr-1 scroll-quiet">
                 {parsedScenes.slice(0, 3).map((sc) => (
                   <div key={sc.sceneNumber} className="rounded bg-card/60 p-1.5 text-[11px] border border-border/60">
                     <div className="font-semibold text-foreground">{sc.title} <span className="text-muted-foreground font-normal">({sc.durationSec}s)</span></div>
@@ -700,7 +700,7 @@ export const NodeScriptInput = React.memo(function NodeScriptInput({
                 <X className="h-4 w-4" />
               </button>
             </div>
-            <div className="p-3.5 overflow-y-auto space-y-2.5 flex-1">
+            <div className="p-3.5 overflow-y-auto space-y-2.5 flex-1 scroll-quiet">
               {parsedScenes.map((sc) => (
                 <div key={sc.sceneNumber} className="rounded-lg border border-border bg-background p-3 space-y-1.5 text-xs">
                   <div className="flex items-center justify-between border-b border-border/60 pb-1">

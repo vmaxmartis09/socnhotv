@@ -488,7 +488,7 @@ export function PortValueInput({ nodeId, port }: Props) {
           ) : items.length === 0 ? (
             <p className="p-2 text-center text-[13px] text-muted-foreground">Dự án chưa có tệp loại này.</p>
           ) : (
-            <div className="nowheel grid max-h-44 grid-cols-3 gap-1.5 overflow-y-auto">
+            <div className="nowheel grid max-h-44 grid-cols-3 gap-1.5 overflow-y-auto scroll-quiet">
               {items.map((it) => (
                 <button
                   key={it.uri || it.url}

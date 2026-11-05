@@ -1,4 +1,5 @@
 "use client";
+import { showAlert } from "@/lib/confirm";
 
 import React, { useState, useMemo } from "react";
 import {
@@ -175,7 +176,7 @@ function WeekHourCell({
       )}
     >
       {isGolden && items.length === 0 && (
-        <span className="absolute bottom-1 right-1 text-[9px] font-mono font-medium text-amber-500/70">
+        <span className="absolute bottom-1 right-1 text-[9px] font-mono font-medium text-semantic-warning/70">
           Khung vàng
         </span>
       )}
@@ -257,7 +258,7 @@ export function CalendarView({ projectId }: CalendarViewProps) {
       setToastMessage(`Đã đổi lịch sang ${format(parseISO(newScheduledAt), "HH:mm dd/MM")}`);
       setTimeout(() => setToastMessage(null), 5000);
     } catch (err: any) {
-      alert(`Không thể đổi lịch: ${err.message}`);
+      await showAlert("Không thể đổi lịch", err.message, "danger");
     }
   };
 
@@ -457,7 +458,7 @@ export function CalendarView({ projectId }: CalendarViewProps) {
               </div>
 
               {/* 24-Hour Grid */}
-              <div className="max-h-[600px] overflow-y-auto">
+              <div className="max-h-[600px] overflow-y-auto scroll-quiet">
                 {Array.from({ length: 24 }).map((_, hour) => (
                   <div key={hour} className="grid grid-cols-[60px_repeat(7,1fr)]">
                     <div className="border-b border-r border-border/40 p-1 text-center font-mono text-[10px] text-muted-foreground">

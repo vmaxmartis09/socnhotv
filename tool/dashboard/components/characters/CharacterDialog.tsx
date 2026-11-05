@@ -395,7 +395,7 @@ export function CharacterDialog({ initial, prefill, projectId, onSave, onClose, 
                 <div
                   key={item.id}
                   className={cn(
-                    "group relative aspect-[3/4] overflow-hidden rounded-xl border bg-card transition-all",
+                    "group relative aspect-[3/4] overflow-clip rounded-xl border bg-card transition-all",
                     isPrimary ? "border-brand ring-2 ring-brand shadow-sm" : "border-border"
                   )}
                 >

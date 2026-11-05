@@ -166,17 +166,17 @@ export function PreviewPane({ item }: { item: PreviewItem }) {
                 {safeZoneEnabled && platformView !== "youtube" && (
                   <div className="pointer-events-none absolute inset-0 z-20 flex flex-col justify-between">
                     {/* Top Header Safe Zone (180px on 1920 ~ 9.4%) */}
-                    <div className="h-[9.4%] w-full bg-rose-500/15 border-b border-dashed border-rose-500/40 flex items-center justify-center text-[10px] font-medium text-rose-500">
+                    <div className="h-[9.4%] w-full bg-rose-500/15 border-b border-dashed border-rose-500/40 flex items-center justify-center text-[10px] font-medium text-semantic-danger">
                       Top Safe (180px)
                     </div>
 
                     {/* Right Interactions Safe Zone */}
-                    <div className="absolute right-0 top-[25%] bottom-[25%] w-[15%] bg-amber-500/10 border-l border-dashed border-amber-500/30 flex items-center justify-center text-[9px] font-medium text-amber-500 [writing-mode:vertical-rl]">
+                    <div className="absolute right-0 top-[25%] bottom-[25%] w-[15%] bg-amber-500/10 border-l border-dashed border-amber-500/30 flex items-center justify-center text-[9px] font-medium text-semantic-warning [writing-mode:vertical-rl]">
                       Icons
                     </div>
 
                     {/* Bottom Cart & Controls Safe Zone (320px on 1920 ~ 16.7%) */}
-                    <div className="h-[16.7%] w-full bg-rose-500/15 border-t border-dashed border-rose-500/40 flex items-center justify-center text-[10px] font-medium text-rose-500">
+                    <div className="h-[16.7%] w-full bg-rose-500/15 border-t border-dashed border-rose-500/40 flex items-center justify-center text-[10px] font-medium text-semantic-danger">
                       Bottom Safe (320px) — Giỏ hàng / Controls
                     </div>
                   </div>

@@ -182,7 +182,7 @@ export function SocialHub() {
         {/* Left Sidebar Navigation (Desktop) */}
         <nav
           aria-label="Điều hướng Trung tâm Social"
-          className="w-full md:w-56 lg:w-60 border-b md:border-b-0 md:border-r border-border bg-card/40 flex flex-row md:flex-col justify-between shrink-0 overflow-x-auto md:overflow-y-auto"
+          className="w-full md:w-56 lg:w-60 border-b md:border-b-0 md:border-r border-border bg-card/40 flex flex-row md:flex-col justify-between shrink-0 overflow-x-auto md:overflow-y-auto scroll-quiet"
         >
           <div className="p-2 md:p-3 space-x-1 md:space-x-0 md:space-y-1 flex flex-row md:flex-col">
             {NAV_ITEMS.map((item) => {

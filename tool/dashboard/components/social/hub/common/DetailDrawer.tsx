@@ -1,4 +1,5 @@
 "use client";
+import { confirm } from "@/lib/confirm";
 
 import React from "react";
 import { cn } from "@/lib/utils";
@@ -53,7 +54,7 @@ export function DetailDrawer({ onPlanVideo, onEditPost, onRefresh }: DetailDrawe
 
   const handleCancelPost = async (targetId: string) => {
     if (!activeProjectId) return;
-    if (!confirm("Bạn có chắc chắn muốn hủy bài đăng này?")) return;
+    if (!(await confirm({ tone: "danger", title: "Hủy bài đăng", message: "Bạn có chắc chắn muốn hủy bài đăng này?" }))) return;
     setActionLoading(true);
     try {
       await bulkAction(activeProjectId, [targetId], "cancel");
@@ -129,7 +130,7 @@ function VideoDetailView({
   return (
     <div className="space-y-4">
       {/* Thumbnail preview */}
-      <div className="rounded-lg overflow-hidden border border-border bg-black/40">
+      <div className="rounded-lg overflow-clip border border-border bg-black/40">
         <VideoThumb
           thumb={video.thumb}
           title={video.title}
@@ -353,7 +354,7 @@ function AccountDetailView({ account }: { account: SocialAccount }) {
 
       {account.golden_windows && account.golden_windows.length > 0 && (
         <div className="p-3 rounded-lg bg-amber-500/10 border border-amber-500/20 text-xs space-y-1">
-          <span className="text-amber-500 font-semibold block">Khung giờ vàng</span>
+          <span className="text-semantic-warning font-semibold block">Khung giờ vàng</span>
           <div className="flex flex-wrap gap-1.5">
             {account.golden_windows.map((w, idx) => (
               <span key={`${w}-${idx}`} className="bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded text-[11px] font-mono">

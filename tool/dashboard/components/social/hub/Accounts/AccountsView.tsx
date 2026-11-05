@@ -1,4 +1,5 @@
 "use client";
+import { confirm } from "@/lib/confirm";
 
 import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
@@ -145,7 +146,7 @@ export function AccountsView({ onRefresh }: AccountsViewProps) {
 
   const handleDeleteAccount = async (accId: string, accName: string) => {
     if (!activeProjectId) return;
-    if (!confirm(`Bạn có chắc muốn xóa kênh "${accName}" khỏi danh sách tài khoản?`)) return;
+    if (!(await confirm({ tone: "danger", title: "Xóa tài khoản", message: `Bạn có chắc muốn xóa kênh "${accName}" khỏi danh sách tài khoản?` }))) return;
 
     try {
       const res = await fetch(`/core/projects/${activeProjectId}/social/accounts/${accId}`, {
@@ -162,7 +163,7 @@ export function AccountsView({ onRefresh }: AccountsViewProps) {
   };
 
   return (
-    <div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-6">
+    <div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-6 scroll-quiet">
       {/* Header with Account Count Pill */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-xl bg-card border border-border">
         <div>
@@ -254,7 +255,7 @@ export function AccountsView({ onRefresh }: AccountsViewProps) {
 
                 {acc.golden_windows && acc.golden_windows.length > 0 && (
                   <div className="flex items-center justify-between text-[11px]">
-                    <span className="text-amber-500/90 flex items-center gap-1">
+                    <span className="text-semantic-warning/90 flex items-center gap-1">
                       <Flame className="w-3 h-3" />
                       Giờ vàng
                     </span>

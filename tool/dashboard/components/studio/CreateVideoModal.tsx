@@ -394,7 +394,7 @@ export function CreateVideoModal({ isOpen, onClose }: CreateVideoModalProps) {
         initial={{ opacity: 0, scale: 0.96, y: 8 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.96 }}
-        className="relative flex flex-col w-full max-w-4xl max-h-[90vh] rounded-2xl border border-border bg-card shadow-2xl overflow-hidden"
+        className="relative flex flex-col w-full max-w-4xl max-h-[90vh] rounded-2xl border border-border bg-card shadow-2xl overflow-clip"
       >
         {/* Header */}
         <div className="flex items-center justify-between border-b border-border px-5 py-3.5 shrink-0 bg-accent/30">
@@ -522,7 +522,7 @@ export function CreateVideoModal({ isOpen, onClose }: CreateVideoModalProps) {
                       )}
                     >
                       {/* Thumbnail Container */}
-                      <div className="relative aspect-[9/16] w-full overflow-hidden rounded-lg bg-black/40">
+                      <div className="relative aspect-[9/16] w-full overflow-clip rounded-lg bg-black/40">
                         <img decoding="async" loading="lazy"
                           src={previewJpgUrl}
                           alt={tpl.name}
