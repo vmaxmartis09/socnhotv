@@ -32,8 +32,8 @@
   "recipe": {
     "nodes": [
       "character",
-      "bg_remove",
-      "video_background",
+      "script",
+      "voice_tts",
       "hyperframes_render",
       "platform_export"
     ],
@@ -76,7 +76,7 @@
       "default": 3
     }
   },
-  "sample_output": "data/shared/templates/character-overlay-replace-v1/preview.mp4",
+  "sample_output": "preview.mp4",
   "verified_on": "2026-11-05",
   "sources": [
     {

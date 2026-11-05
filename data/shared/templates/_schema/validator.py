@@ -14,6 +14,9 @@ import re
 import sys
 from typing import Any, Dict, List, Optional, Tuple
 
+TEMPLATES_DIR = Path(__file__).resolve().parent.parent
+REPO_ROOT = TEMPLATES_DIR.parent.parent
+
 VALID_KINDS = {
     "animation",
     "film",
@@ -237,6 +240,8 @@ def validate_template_dict(
             err("sample_output", "Template trạng thái 'verified' BẮT BUỘC có 'sample_output' trỏ tới file MP4 mẫu thật.")
         elif template_dir:
             mp4_path = template_dir / sample_output if not Path(sample_output).is_absolute() else Path(sample_output)
+            if not mp4_path.exists() and (REPO_ROOT / sample_output).exists():
+                mp4_path = REPO_ROOT / sample_output
             if not mp4_path.exists():
                 err("sample_output", f"File sample_output không tồn tại trên đĩa: {mp4_path}")
             elif mp4_path.stat().st_size < 1000:
