@@ -20,7 +20,9 @@ from socnhotv.social.models import (
     MAX_ACCOUNTS,
     AccountLimitExceededError,
     AutomationRule,
+    BulkActionRequest,
     CalendarNote,
+    ContentTemplate,
     DEFAULT_TZ,
     Post,
     PostingWindow,
@@ -63,6 +65,30 @@ async def get_publishable_videos(project_id: str):
 async def get_publishable_videos_alias(project_id: str = Query("soc-nho-tv")):
     lib = VideoLibrary(project_id)
     return lib.list_videos()
+
+
+@router.get("/projects/{project_id}/social/library")
+async def get_social_library(
+    project_id: str,
+    filter: Optional[str] = Query(None),
+    account: Optional[str] = Query(None),
+    platform: Optional[str] = Query(None),
+    q: Optional[str] = Query(None),
+):
+    lib = VideoLibrary(project_id)
+    return lib.list_library(filter_type=filter, account_id=account, platform=platform, q=q)
+
+
+@router.get("/social/library")
+async def get_social_library_alias(
+    project_id: str = Query("soc-nho-tv"),
+    filter: Optional[str] = Query(None),
+    account: Optional[str] = Query(None),
+    platform: Optional[str] = Query(None),
+    q: Optional[str] = Query(None),
+):
+    lib = VideoLibrary(project_id)
+    return lib.list_library(filter_type=filter, account_id=account, platform=platform, q=q)
 
 
 @router.post("/projects/{project_id}/social/plans/preview")
@@ -108,6 +134,10 @@ async def get_queue_route(
     account: Optional[str] = Query(None),
     platform: Optional[str] = Query(None),
     from_date: Optional[str] = Query(None, alias="from"),
+    group_by: Optional[str] = Query(None),
+    sort: Optional[str] = Query(None),
+    page: int = Query(1, ge=1),
+    page_size: int = Query(100, ge=1, le=500),
 ):
     return get_social_queue(
         project_id=project_id,
@@ -115,6 +145,10 @@ async def get_queue_route(
         account_id=account,
         platform=platform,
         from_date=from_date,
+        group_by=group_by,
+        sort=sort,
+        page=page,
+        page_size=page_size,
     )
 
 
@@ -125,6 +159,10 @@ async def get_queue_alias(
     account: Optional[str] = Query(None),
     platform: Optional[str] = Query(None),
     from_date: Optional[str] = Query(None, alias="from"),
+    group_by: Optional[str] = Query(None),
+    sort: Optional[str] = Query(None),
+    page: int = Query(1, ge=1),
+    page_size: int = Query(100, ge=1, le=500),
 ):
     return get_social_queue(
         project_id=project_id,
@@ -132,7 +170,245 @@ async def get_queue_alias(
         account_id=account,
         platform=platform,
         from_date=from_date,
+        group_by=group_by,
+        sort=sort,
+        page=page,
+        page_size=page_size,
     )
+
+
+# ==========================================
+# Overview & Bulk Operations
+# ==========================================
+
+@router.get("/projects/{project_id}/social/overview")
+async def get_social_overview(project_id: str):
+    store = SocialStore(project_id)
+    posts = store.list_posts()
+    accounts = store.list_accounts()
+    acc_map = {a.id: a for a in accounts}
+    now_dt = datetime.now(DEFAULT_TZ)
+    plus_24h = now_dt + timedelta(hours=24)
+    plus_7d = now_dt + timedelta(days=7)
+
+    upcoming_24h = []
+    overdue = []
+    failed = []
+    pending_approval = []
+
+    scheduled_dates_per_account: Dict[str, set] = {a.id: set() for a in accounts}
+
+    for p in posts:
+        for t in p.targets:
+            acc = acc_map.get(t.account_id)
+            target_info = {
+                "post_id": p.id,
+                "target_id": t.id,
+                "title": p.title,
+                "platform": t.platform,
+                "account_id": t.account_id,
+                "account_name": acc.display_name if acc else t.account_id,
+                "account_avatar": acc.avatar if acc else "",
+                "status": t.status,
+                "scheduled_at": t.scheduled_at,
+                "thumb": p.media[0].thumb if p.media and p.media[0].thumb else "",
+                "caption": t.caption,
+            }
+
+            if t.status == "failed":
+                failed.append(target_info)
+            elif t.status == "published":
+                pass
+            elif p.approval.required and (p.status == "pending_approval" or t.status == "pending_approval"):
+                pending_approval.append(target_info)
+            elif t.scheduled_at:
+                try:
+                    t_dt = ensure_tz(datetime.fromisoformat(t.scheduled_at.replace("Z", "+00:00")))
+                except Exception:
+                    t_dt = None
+
+                if t_dt:
+                    date_str = t_dt.strftime("%Y-%m-%d")
+                    scheduled_dates_per_account.setdefault(t.account_id, set()).add(date_str)
+
+                    if t_dt < now_dt:
+                        overdue.append(target_info)
+                    elif now_dt <= t_dt <= plus_24h:
+                        upcoming_24h.append(target_info)
+
+    token_expiring = []
+    for a in accounts:
+        if a.auth and a.auth.expires_at:
+            try:
+                exp_dt = ensure_tz(datetime.fromisoformat(a.auth.expires_at.replace("Z", "+00:00")))
+                if now_dt <= exp_dt <= plus_7d:
+                    token_expiring.append({
+                        "id": a.id,
+                        "display_name": a.display_name,
+                        "platform": a.platform,
+                        "expires_at": a.auth.expires_at,
+                        "days_left": max(0, (exp_dt - now_dt).days),
+                    })
+            except Exception:
+                pass
+
+    empty_slots = []
+    for day_offset in range(7):
+        target_day = now_dt + timedelta(days=day_offset)
+        weekday = target_day.weekday()
+        date_str = target_day.strftime("%Y-%m-%d")
+
+        for a in accounts:
+            if date_str not in scheduled_dates_per_account.get(a.id, set()):
+                matching_windows = [w for w in a.posting_windows if w.weekday == weekday]
+                if matching_windows:
+                    for w in matching_windows:
+                        empty_slots.append({
+                            "date": date_str,
+                            "weekday": weekday,
+                            "account_id": a.id,
+                            "account_name": a.display_name,
+                            "platform": a.platform,
+                            "start": w.start,
+                            "end": w.end,
+                        })
+
+    return {
+        "summary": {
+            "upcoming_24h_count": len(upcoming_24h),
+            "overdue_count": len(overdue),
+            "failed_count": len(failed),
+            "pending_approval_count": len(pending_approval),
+            "token_expiring_count": len(token_expiring),
+            "empty_slots_7d_count": len(empty_slots),
+        },
+        "upcoming_24h": upcoming_24h,
+        "overdue": overdue,
+        "failed": failed,
+        "pending_approval": pending_approval,
+        "token_expiring_accounts": token_expiring,
+        "empty_slots_7d": empty_slots[:15],
+    }
+
+
+@router.get("/social/overview")
+async def get_social_overview_alias(project_id: str = Query("soc-nho-tv")):
+    return await get_social_overview(project_id)
+
+
+@router.post("/projects/{project_id}/social/targets/bulk")
+async def bulk_targets_action(project_id: str, payload: BulkActionRequest):
+    store = SocialStore(project_id)
+    posts = store.list_posts()
+    results = []
+
+    target_map = {}
+    for p in posts:
+        for t in p.targets:
+            target_map[t.id] = (p, t)
+
+    now_dt = datetime.now(DEFAULT_TZ)
+
+    for tid in payload.ids:
+        if tid not in target_map:
+            results.append({"id": tid, "success": False, "error": "Target not found"})
+            continue
+
+        p, t = target_map[tid]
+        try:
+            if payload.action == "approve":
+                t.status = "scheduled" if t.scheduled_at else "approved"
+                if all(other_t.status in ("scheduled", "approved", "published") for other_t in p.targets):
+                    p.status = "scheduled" if any(other_t.scheduled_at for other_t in p.targets) else "approved"
+                store.save_post(p)
+                store.append_audit("user", "bulk_approve", p.id, target_id=t.id, note="Bulk approved")
+                results.append({"id": tid, "success": True, "error": None})
+
+            elif payload.action == "reschedule":
+                new_time = payload.params.get("new_time")
+                shift_hours = payload.params.get("shift_hours")
+                shift_days = payload.params.get("shift_days")
+
+                if new_time:
+                    t.scheduled_at = new_time
+                elif shift_hours is not None or shift_days is not None:
+                    base_dt = now_dt
+                    if t.scheduled_at:
+                        try:
+                            base_dt = ensure_tz(datetime.fromisoformat(t.scheduled_at.replace("Z", "+00:00")))
+                        except Exception:
+                            base_dt = now_dt
+                    if base_dt < now_dt:
+                        base_dt = now_dt
+                    shift = timedelta(hours=int(shift_hours or 0), days=int(shift_days or 0))
+                    t.scheduled_at = (base_dt + shift).isoformat()
+
+                t.status = "scheduled"
+                store.save_post(p)
+                store.append_audit("user", "bulk_reschedule", p.id, target_id=t.id, note=f"Rescheduled to {t.scheduled_at}")
+                results.append({"id": tid, "success": True, "error": None})
+
+            elif payload.action == "duplicate_to":
+                target_account_id = payload.params.get("account_id")
+                if not target_account_id:
+                    results.append({"id": tid, "success": False, "error": "Missing target account_id"})
+                    continue
+                acc = store.get_account(target_account_id)
+                if not acc:
+                    results.append({"id": tid, "success": False, "error": f"Account {target_account_id} not found"})
+                    continue
+                import uuid as _uuid
+                new_tgt = t.model_copy(update={
+                    "id": f"tgt_{_uuid.uuid4().hex[:10]}",
+                    "account_id": target_account_id,
+                    "platform": acc.platform,
+                    "status": "draft",
+                    "scheduled_at": None,
+                    "external_id": None,
+                    "external_url": None,
+                })
+                p.targets.append(new_tgt)
+                store.save_post(p)
+                store.append_audit("user", "bulk_duplicate", p.id, target_id=t.id, note=f"Duplicated to {target_account_id}")
+                results.append({"id": tid, "success": True, "error": None})
+
+            elif payload.action == "cancel":
+                t.status = "cancelled"
+                store.save_post(p)
+                store.append_audit("user", "bulk_cancel", p.id, target_id=t.id, note="Bulk cancelled")
+                results.append({"id": tid, "success": True, "error": None})
+
+            elif payload.action == "delete_draft":
+                p.targets = [other for other in p.targets if other.id != t.id]
+                if not p.targets:
+                    store.delete_post(p.id)
+                else:
+                    store.save_post(p)
+                store.append_audit("user", "bulk_delete_draft", p.id, target_id=t.id, note="Draft deleted")
+                results.append({"id": tid, "success": True, "error": None})
+
+            elif payload.action == "retry":
+                t.status = "scheduled"
+                t.last_error = None
+                t.attempts = 0
+                t.scheduled_at = (now_dt + timedelta(minutes=5)).isoformat()
+                store.save_post(p)
+                store.append_audit("user", "bulk_retry", p.id, target_id=t.id, note="Bulk retried")
+                results.append({"id": tid, "success": True, "error": None})
+
+            else:
+                results.append({"id": tid, "success": False, "error": f"Unsupported action '{payload.action}'"})
+
+        except Exception as e:
+            results.append({"id": tid, "success": False, "error": str(e)})
+
+    return {"results": results}
+
+
+@router.post("/social/targets/bulk")
+async def bulk_targets_action_alias(payload: BulkActionRequest, project_id: str = Query("soc-nho-tv")):
+    return await bulk_targets_action(project_id, payload)
+
 
 
 # ==========================================
@@ -155,7 +431,66 @@ async def create_account(project_id: str, payload: SocialAccount):
                 status_code=409,
                 detail=f"Tối đa {MAX_ACCOUNTS} tài khoản mỗi dự án (MAX_ACCOUNTS = {MAX_ACCOUNTS})",
             )
-    return store.save_account(payload, enforce_limit=True)
+    try:
+        return store.save_account(payload, enforce_limit=True)
+    except (ValueError, AccountLimitExceededError) as e:
+        raise HTTPException(status_code=409, detail=str(e))
+
+
+@router.get("/projects/{project_id}/social/accounts/stats")
+async def get_accounts_stats_route(project_id: str):
+    store = SocialStore(project_id)
+    accounts = store.list_accounts()
+    posts = store.list_posts()
+    now_dt = datetime.now(DEFAULT_TZ)
+
+    start_of_week = (now_dt - timedelta(days=now_dt.weekday())).replace(hour=0, minute=0, second=0, microsecond=0)
+    today_str = now_dt.strftime("%Y-%m-%d")
+
+    stats = {}
+    for a in accounts:
+        stats[a.id] = {
+            "account_id": a.id,
+            "posts_this_week": 0,
+            "posts_today": 0,
+            "daily_limit": a.daily_limit,
+            "quota_remaining_today": a.daily_limit,
+            "next_post_time": None,
+            "last_posted_at": None,
+        }
+
+    for p in posts:
+        for t in p.targets:
+            acc_stat = stats.get(t.account_id)
+            if not acc_stat:
+                continue
+
+            if t.published_at:
+                if not acc_stat["last_posted_at"] or t.published_at > acc_stat["last_posted_at"]:
+                    acc_stat["last_posted_at"] = t.published_at
+
+            if t.scheduled_at:
+                try:
+                    t_dt = ensure_tz(datetime.fromisoformat(t.scheduled_at.replace("Z", "+00:00")))
+                    if t_dt >= start_of_week:
+                        acc_stat["posts_this_week"] += 1
+                    if t.scheduled_at[:10] == today_str:
+                        acc_stat["posts_today"] += 1
+                    if t_dt >= now_dt:
+                        if not acc_stat["next_post_time"] or t.scheduled_at < acc_stat["next_post_time"]:
+                            acc_stat["next_post_time"] = t.scheduled_at
+                except Exception:
+                    pass
+
+    for s in stats.values():
+        s["quota_remaining_today"] = max(0, s["daily_limit"] - s["posts_today"])
+
+    return list(stats.values())
+
+
+@router.get("/social/accounts/stats")
+async def get_accounts_stats_alias(project_id: str = Query("soc-nho-tv")):
+    return await get_accounts_stats_route(project_id)
 
 
 @router.get("/projects/{project_id}/social/accounts/{account_id}", response_model=SocialAccount)
@@ -171,7 +506,73 @@ async def get_account(project_id: str, account_id: str):
 async def update_account(project_id: str, account_id: str, payload: SocialAccount):
     store = SocialStore(project_id)
     payload.id = account_id
-    return store.save_account(payload)
+    try:
+        return store.save_account(payload)
+    except (ValueError, AccountLimitExceededError) as e:
+        raise HTTPException(status_code=409, detail=str(e))
+
+
+# ==========================================
+# Templates CRUD
+# ==========================================
+
+@router.get("/projects/{project_id}/social/templates", response_model=List[ContentTemplate])
+async def list_templates_route(project_id: str):
+    store = SocialStore(project_id)
+    return store.list_templates()
+
+
+@router.get("/social/templates", response_model=List[ContentTemplate])
+async def list_templates_alias(project_id: str = Query("soc-nho-tv")):
+    store = SocialStore(project_id)
+    return store.list_templates()
+
+
+@router.post("/projects/{project_id}/social/templates", response_model=ContentTemplate)
+async def create_template_route(project_id: str, payload: ContentTemplate):
+    store = SocialStore(project_id)
+    return store.save_template(payload)
+
+
+@router.post("/social/templates", response_model=ContentTemplate)
+async def create_template_alias(payload: ContentTemplate, project_id: str = Query("soc-nho-tv")):
+    store = SocialStore(project_id)
+    return store.save_template(payload)
+
+
+@router.put("/projects/{project_id}/social/templates/{template_id}", response_model=ContentTemplate)
+async def update_template_route(project_id: str, template_id: str, payload: ContentTemplate):
+    store = SocialStore(project_id)
+    payload.id = template_id
+    payload.updated_at = now_iso()
+    return store.save_template(payload)
+
+
+@router.put("/social/templates/{template_id}", response_model=ContentTemplate)
+async def update_template_alias(template_id: str, payload: ContentTemplate, project_id: str = Query("soc-nho-tv")):
+    store = SocialStore(project_id)
+    payload.id = template_id
+    payload.updated_at = now_iso()
+    return store.save_template(payload)
+
+
+@router.delete("/projects/{project_id}/social/templates/{template_id}")
+async def delete_template_route(project_id: str, template_id: str):
+    store = SocialStore(project_id)
+    deleted = store.delete_template(template_id)
+    if not deleted:
+        raise HTTPException(status_code=404, detail="Template not found")
+    return {"status": "deleted", "template_id": template_id}
+
+
+@router.delete("/social/templates/{template_id}")
+async def delete_template_alias(template_id: str, project_id: str = Query("soc-nho-tv")):
+    store = SocialStore(project_id)
+    deleted = store.delete_template(template_id)
+    if not deleted:
+        raise HTTPException(status_code=404, detail="Template not found")
+    return {"status": "deleted", "template_id": template_id}
+
 
 
 @router.delete("/projects/{project_id}/social/accounts/{account_id}")

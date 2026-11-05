@@ -238,3 +238,26 @@ class SocialNotification(BaseModel):
     action_url: Optional[str] = None
     data: dict = Field(default_factory=dict)
 
+
+class ContentTemplate(BaseModel):
+    id: str = Field(default_factory=lambda: f"tpl_{uuid.uuid4().hex[:8]}")
+    name: str
+    purpose: str = "general"  # "sales", "koc", "education", "story"
+    platforms: List[PlatformType] = Field(default_factory=list)
+    caption_hook: str = ""
+    caption_body: str = ""
+    caption_cta: str = ""
+    hashtags: List[str] = Field(default_factory=list)
+    first_comment: str = ""
+    footer: str = ""
+    disclosure: str = ""
+    created_at: str = Field(default_factory=now_iso)
+    updated_at: str = Field(default_factory=now_iso)
+
+
+class BulkActionRequest(BaseModel):
+    ids: List[str]  # target_ids
+    action: Literal["approve", "reschedule", "duplicate_to", "cancel", "delete_draft", "retry"]
+    params: dict = Field(default_factory=dict)
+
+

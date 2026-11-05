@@ -49,6 +49,12 @@ def create_draft_post(
     store = SocialStore(project_id)
     post_id = f"post_{uuid.uuid4().hex[:12]}"
 
+    if not title or title in ("Video mới", "Video moi", "Untitled Draft"):
+        if media_path:
+            title = Path(media_path).stem.replace("_", " ").title()
+        else:
+            title = "Video Thành Phẩm"
+
     accounts = store.list_accounts()
     targets: List[PostTarget] = []
 

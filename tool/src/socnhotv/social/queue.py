@@ -30,7 +30,7 @@ class QueueItem(BaseModel):
     status: str
     caption: str = ""
     thumb: str = ""
-    bucket: Literal["upcoming", "overdue", "published", "failed"]
+    bucket: Literal["draft", "pending_approval", "upcoming", "overdue", "published", "failed"]
     approval_required: bool = True
     approval_status: str = "pending"  # "approved", "pending", "rejected"
     is_manual: bool = False
@@ -41,6 +41,7 @@ class QueueItem(BaseModel):
 class QueueSummary(BaseModel):
     accounts_count: int
     max_accounts: int = MAX_ACCOUNTS
+    draft_count: int = 0
     pending_approval_count: int = 0
     overdue_count: int = 0
     upcoming_count: int = 0
@@ -52,6 +53,10 @@ class QueueSummary(BaseModel):
 class QueueResponse(BaseModel):
     items: List[QueueItem]
     summary: QueueSummary
+    total: int = 0
+    page: int = 1
+    page_size: int = 100
+    groups: Optional[Dict[str, List[QueueItem]]] = None
 
 
 def get_social_queue(
@@ -60,6 +65,10 @@ def get_social_queue(
     account_id: Optional[str] = None,
     platform: Optional[str] = None,
     from_date: Optional[str] = None,
+    group_by: Optional[str] = None,
+    sort: Optional[str] = None,
+    page: int = 1,
+    page_size: int = 100,
 ) -> QueueResponse:
     store = SocialStore(project_id)
     all_accounts = {a.id: a for a in store.list_accounts()}
@@ -81,11 +90,6 @@ def get_social_queue(
             "duration_s": p.media[0].duration_s if p.media else 30.0,
         }
 
-        # Check approval status
-        is_pending_approval = p.approval.required and p.status in ("pending_approval", "draft")
-        if is_pending_approval:
-            summary.pending_approval_count += 1
-
         for t in p.targets:
             acc = all_accounts.get(t.account_id)
             acc_name = acc.display_name if acc else t.account_id
@@ -105,7 +109,7 @@ def get_social_queue(
             if pkg_path.exists():
                 has_pkg = True
 
-            # Determine bucket
+            # Determine scheduled datetime
             t_dt: Optional[datetime] = None
             if t.scheduled_at:
                 try:
@@ -113,26 +117,37 @@ def get_social_queue(
                 except Exception:
                     t_dt = None
 
+            # Accurate bucket partitioning:
+            # 1. published
+            # 2. failed
+            # 3. pending_approval
+            # 4. draft (no scheduled_at OR status is draft)
+            # 5. upcoming (scheduled_at >= now_dt AND not draft)
+            # 6. overdue (scheduled_at < now_dt AND not published)
             if t.status == "published":
-                item_bucket: Literal["upcoming", "overdue", "published", "failed"] = "published"
+                item_bucket = "published"
                 summary.published_count += 1
             elif t.status == "failed":
                 item_bucket = "failed"
                 summary.failed_count += 1
-            else:
-                # Scheduled, approved, draft, pending_approval
-                if t_dt:
-                    if t_dt >= now_dt:
-                        item_bucket = "upcoming"
-                        summary.upcoming_count += 1
-                        if next_dt is None or t_dt < next_dt:
-                            next_dt = t_dt
-                    else:
-                        item_bucket = "overdue"
-                        summary.overdue_count += 1
-                else:
+            elif p.approval.required and (p.status == "pending_approval" or t.status == "pending_approval"):
+                item_bucket = "pending_approval"
+                summary.pending_approval_count += 1
+            elif not t.scheduled_at or t.status == "draft":
+                item_bucket = "draft"
+                summary.draft_count += 1
+            elif t_dt is not None:
+                if t_dt >= now_dt:
                     item_bucket = "upcoming"
                     summary.upcoming_count += 1
+                    if next_dt is None or t_dt < next_dt:
+                        next_dt = t_dt
+                else:
+                    item_bucket = "overdue"
+                    summary.overdue_count += 1
+            else:
+                item_bucket = "draft"
+                summary.draft_count += 1
 
             appr_status = "approved" if not p.approval.required or p.status == "approved" else "pending"
             issues = validate(video_info, t, acc)
@@ -175,12 +190,46 @@ def get_social_queue(
     if from_date:
         filtered = [item for item in filtered if item.scheduled_at and item.scheduled_at >= from_date]
 
-    # Sort upcoming by scheduled_at ascending; overdue by scheduled_at descending
-    if bucket == "overdue":
+    # Sorting
+    if sort == "title":
+        filtered.sort(key=lambda x: x.title.lower())
+    elif sort == "-title":
+        filtered.sort(key=lambda x: x.title.lower(), reverse=True)
+    elif sort == "-scheduled_at" or bucket in ("overdue", "published"):
         filtered.sort(key=lambda x: x.scheduled_at or "", reverse=True)
-    elif bucket == "published":
-        filtered.sort(key=lambda x: x.scheduled_at or "", reverse=True)
+    elif sort == "scheduled_at" or bucket == "upcoming":
+        filtered.sort(key=lambda x: x.scheduled_at or "")
     else:
         filtered.sort(key=lambda x: x.scheduled_at or "")
 
-    return QueueResponse(items=filtered, summary=summary)
+    total_count = len(filtered)
+
+    # Grouping if requested
+    groups_dict = None
+    if group_by:
+        groups_dict = {}
+        for it in filtered:
+            if group_by == "date":
+                key = it.scheduled_at[:10] if it.scheduled_at else "Chưa hẹn giờ"
+            elif group_by == "account":
+                key = it.account_name or it.account_id
+            elif group_by == "platform":
+                key = it.platform
+            elif group_by == "status":
+                key = it.status
+            else:
+                key = "Tất cả"
+            groups_dict.setdefault(key, []).append(it)
+
+    # Pagination slice
+    start_idx = max(0, (page - 1) * page_size)
+    paged_items = filtered[start_idx : start_idx + page_size]
+
+    return QueueResponse(
+        items=paged_items,
+        summary=summary,
+        total=total_count,
+        page=page,
+        page_size=page_size,
+        groups=groups_dict,
+    )

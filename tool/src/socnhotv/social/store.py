@@ -15,6 +15,7 @@ from socnhotv.social.models import (
     AccountLimitExceededError,
     AutomationRule,
     CalendarNote,
+    ContentTemplate,
     Post,
     PostMedia,
     PostMetricsSnapshot,
@@ -91,6 +92,7 @@ class SocialStore:
         self.audit_file = self.pub_dir / "audit.jsonl"
         self.rules_file = self.pub_dir / "automation_rules.json"
         self.notifications_file = self.pub_dir / "notifications.json"
+        self.templates_file = self.pub_dir / "templates.json"
         self.lock_file = self.pub_dir / ".store.lock"
 
         # Analytics paths
@@ -119,6 +121,12 @@ class SocialStore:
         with file_lock(self.lock_file):
             raw = atomic_read_json(self.accounts_file, default=[])
             accounts = [SocialAccount.model_validate(x) for x in raw]
+            # Check duplicate platform + handle
+            clean_handle = (account.handle or "").strip().lower()
+            if clean_handle:
+                for a in accounts:
+                    if a.id != account.id and a.platform == account.platform and (a.handle or "").strip().lower() == clean_handle:
+                        raise ValueError(f"Tài khoản với handle '{account.handle}' trên nền tảng {account.platform} đã tồn tại.")
             updated = False
             for idx, a in enumerate(accounts):
                 if a.id == account.id:
@@ -294,6 +302,69 @@ class SocialStore:
             notes = [n for n in notes if n.id != note_id]
             if len(notes) < init_len:
                 atomic_write_json(self.notes_file, [n.model_dump() for n in notes])
+                return True
+            return False
+
+    # --- Templates ---
+    def list_templates(self) -> List[ContentTemplate]:
+        with file_lock(self.lock_file):
+            raw = atomic_read_json(self.templates_file, default={})
+            items = []
+            if isinstance(raw, list):
+                for x in raw:
+                    try:
+                        items.append(ContentTemplate.model_validate(x))
+                    except Exception:
+                        pass
+            elif isinstance(raw, dict):
+                t_dict = raw.get("templates", raw)
+                for k, v in t_dict.items():
+                    if isinstance(v, dict):
+                        data = {"id": k, **v}
+                        try:
+                            items.append(ContentTemplate.model_validate(data))
+                        except Exception:
+                            pass
+            return items
+
+    def get_template(self, template_id: str) -> Optional[ContentTemplate]:
+        for t in self.list_templates():
+            if t.id == template_id:
+                return t
+        return None
+
+    def save_template(self, template: ContentTemplate) -> ContentTemplate:
+        with file_lock(self.lock_file):
+            templates = self.list_templates()
+            updated = False
+            for idx, t in enumerate(templates):
+                if t.id == template.id:
+                    templates[idx] = template
+                    updated = True
+                    break
+            if not updated:
+                templates.append(template)
+
+            data = {
+                "version": "1.0.0",
+                "description": "Kho mẫu nội dung mạng xã hội",
+                "templates": {t.id: t.model_dump() for t in templates},
+            }
+            atomic_write_json(self.templates_file, data)
+            return template
+
+    def delete_template(self, template_id: str) -> bool:
+        with file_lock(self.lock_file):
+            templates = self.list_templates()
+            initial_len = len(templates)
+            templates = [t for t in templates if t.id != template_id]
+            if len(templates) < initial_len:
+                data = {
+                    "version": "1.0.0",
+                    "description": "Kho mẫu nội dung mạng xã hội",
+                    "templates": {t.id: t.model_dump() for t in templates},
+                }
+                atomic_write_json(self.templates_file, data)
                 return True
             return False
 

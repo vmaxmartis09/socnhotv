@@ -1,0 +1,689 @@
+[
+  {
+    "id": "chan_yt_1",
+    "platform": "youtube",
+    "handle": "@socnhotv_official",
+    "display_name": "Sóc Nhỏ TV Official",
+    "avatar": "",
+    "channel_url": "",
+    "auth": {
+      "mode": "manual",
+      "token_ref": null,
+      "scopes": [],
+      "expires_at": null
+    },
+    "status": "connected",
+    "groups": [
+      "Kênh chính"
+    ],
+    "default_hashtags": [
+      "#SocNhoTV",
+      "#HoatHinh3D",
+      "#ThieuNhi"
+    ],
+    "default_caption_footer": "",
+    "posting_windows": [
+      {
+        "weekday": 0,
+        "start": "19:00",
+        "end": "21:00"
+      },
+      {
+        "weekday": 1,
+        "start": "19:00",
+        "end": "21:00"
+      },
+      {
+        "weekday": 2,
+        "start": "19:00",
+        "end": "21:00"
+      },
+      {
+        "weekday": 3,
+        "start": "19:00",
+        "end": "21:00"
+      },
+      {
+        "weekday": 4,
+        "start": "19:00",
+        "end": "21:00"
+      },
+      {
+        "weekday": 5,
+        "start": "19:00",
+        "end": "21:00"
+      },
+      {
+        "weekday": 6,
+        "start": "19:00",
+        "end": "21:00"
+      }
+    ],
+    "daily_limit": 6,
+    "min_gap_minutes": 120,
+    "color": "#6366f1",
+    "affiliate_default": {
+      "link": "",
+      "disclosure": false
+    },
+    "tags": []
+  },
+  {
+    "id": "chan_tt_1",
+    "platform": "tiktok",
+    "handle": "@socnhotv.official",
+    "display_name": "Sóc Nhỏ TV TikTok",
+    "avatar": "",
+    "channel_url": "",
+    "auth": {
+      "mode": "manual",
+      "token_ref": null,
+      "scopes": [],
+      "expires_at": null
+    },
+    "status": "connected",
+    "groups": [
+      "Kênh chính"
+    ],
+    "default_hashtags": [
+      "#socnhotv",
+      "#cartoon3d",
+      "#learnontiktok"
+    ],
+    "default_caption_footer": "",
+    "posting_windows": [
+      {
+        "weekday": 0,
+        "start": "20:00",
+        "end": "22:00"
+      },
+      {
+        "weekday": 1,
+        "start": "20:00",
+        "end": "22:00"
+      },
+      {
+        "weekday": 2,
+        "start": "20:00",
+        "end": "22:00"
+      },
+      {
+        "weekday": 3,
+        "start": "20:00",
+        "end": "22:00"
+      },
+      {
+        "weekday": 4,
+        "start": "20:00",
+        "end": "22:00"
+      },
+      {
+        "weekday": 5,
+        "start": "20:00",
+        "end": "22:00"
+      },
+      {
+        "weekday": 6,
+        "start": "20:00",
+        "end": "22:00"
+      }
+    ],
+    "daily_limit": 5,
+    "min_gap_minutes": 120,
+    "color": "#6366f1",
+    "affiliate_default": {
+      "link": "",
+      "disclosure": false
+    },
+    "tags": []
+  },
+  {
+    "id": "chan_yt_2",
+    "platform": "youtube",
+    "handle": "@socnhotv_shorts",
+    "display_name": "Sóc Nhỏ Shorts",
+    "avatar": "",
+    "channel_url": "",
+    "auth": {
+      "mode": "manual",
+      "token_ref": null,
+      "scopes": [],
+      "expires_at": null
+    },
+    "status": "connected",
+    "groups": [
+      "Kênh phụ / Shorts"
+    ],
+    "default_hashtags": [
+      "#Shorts",
+      "#SocNhoShorts",
+      "#HoatHinh"
+    ],
+    "default_caption_footer": "",
+    "posting_windows": [
+      {
+        "weekday": 0,
+        "start": "12:00",
+        "end": "13:30"
+      },
+      {
+        "weekday": 1,
+        "start": "12:00",
+        "end": "13:30"
+      },
+      {
+        "weekday": 2,
+        "start": "12:00",
+        "end": "13:30"
+      },
+      {
+        "weekday": 3,
+        "start": "12:00",
+        "end": "13:30"
+      },
+      {
+        "weekday": 4,
+        "start": "12:00",
+        "end": "13:30"
+      },
+      {
+        "weekday": 5,
+        "start": "12:00",
+        "end": "13:30"
+      },
+      {
+        "weekday": 6,
+        "start": "12:00",
+        "end": "13:30"
+      }
+    ],
+    "daily_limit": 6,
+    "min_gap_minutes": 120,
+    "color": "#6366f1",
+    "affiliate_default": {
+      "link": "",
+      "disclosure": false
+    },
+    "tags": []
+  },
+  {
+    "id": "chan_yt_3",
+    "platform": "youtube",
+    "handle": "@socnhotv_koc",
+    "display_name": "Sóc Nhỏ Review KOC",
+    "avatar": "",
+    "channel_url": "",
+    "auth": {
+      "mode": "manual",
+      "token_ref": null,
+      "scopes": [],
+      "expires_at": null
+    },
+    "status": "connected",
+    "groups": [
+      "Bán hàng"
+    ],
+    "default_hashtags": [
+      "#ReviewDoChoi",
+      "#KOC",
+      "#SocNhoTV"
+    ],
+    "default_caption_footer": "",
+    "posting_windows": [
+      {
+        "weekday": 0,
+        "start": "20:30",
+        "end": "22:00"
+      },
+      {
+        "weekday": 1,
+        "start": "20:30",
+        "end": "22:00"
+      },
+      {
+        "weekday": 2,
+        "start": "20:30",
+        "end": "22:00"
+      },
+      {
+        "weekday": 3,
+        "start": "20:30",
+        "end": "22:00"
+      },
+      {
+        "weekday": 4,
+        "start": "20:30",
+        "end": "22:00"
+      },
+      {
+        "weekday": 5,
+        "start": "20:30",
+        "end": "22:00"
+      },
+      {
+        "weekday": 6,
+        "start": "20:30",
+        "end": "22:00"
+      }
+    ],
+    "daily_limit": 4,
+    "min_gap_minutes": 120,
+    "color": "#6366f1",
+    "affiliate_default": {
+      "link": "",
+      "disclosure": false
+    },
+    "tags": []
+  },
+  {
+    "id": "chan_tt_2",
+    "platform": "tiktok",
+    "handle": "@bi_koala_fun",
+    "display_name": "Bi & Bạn Koala Hài Hước",
+    "avatar": "",
+    "channel_url": "",
+    "auth": {
+      "mode": "manual",
+      "token_ref": null,
+      "scopes": [],
+      "expires_at": null
+    },
+    "status": "connected",
+    "groups": [
+      "Giải trí"
+    ],
+    "default_hashtags": [
+      "#bikoala",
+      "#haihuoc",
+      "#hoathinh"
+    ],
+    "default_caption_footer": "",
+    "posting_windows": [
+      {
+        "weekday": 0,
+        "start": "18:00",
+        "end": "19:30"
+      },
+      {
+        "weekday": 1,
+        "start": "18:00",
+        "end": "19:30"
+      },
+      {
+        "weekday": 2,
+        "start": "18:00",
+        "end": "19:30"
+      },
+      {
+        "weekday": 3,
+        "start": "18:00",
+        "end": "19:30"
+      },
+      {
+        "weekday": 4,
+        "start": "18:00",
+        "end": "19:30"
+      },
+      {
+        "weekday": 5,
+        "start": "18:00",
+        "end": "19:30"
+      },
+      {
+        "weekday": 6,
+        "start": "18:00",
+        "end": "19:30"
+      }
+    ],
+    "daily_limit": 5,
+    "min_gap_minutes": 120,
+    "color": "#6366f1",
+    "affiliate_default": {
+      "link": "",
+      "disclosure": false
+    },
+    "tags": []
+  },
+  {
+    "id": "chan_tt_3",
+    "platform": "tiktok",
+    "handle": "@socnhotv.shop",
+    "display_name": "Sóc Nhỏ Shop KOC",
+    "avatar": "",
+    "channel_url": "",
+    "auth": {
+      "mode": "manual",
+      "token_ref": null,
+      "scopes": [],
+      "expires_at": null
+    },
+    "status": "connected",
+    "groups": [
+      "Bán hàng"
+    ],
+    "default_hashtags": [
+      "#tiktokshop",
+      "#kocreview",
+      "#socnhoshop"
+    ],
+    "default_caption_footer": "",
+    "posting_windows": [
+      {
+        "weekday": 0,
+        "start": "21:00",
+        "end": "22:30"
+      },
+      {
+        "weekday": 1,
+        "start": "21:00",
+        "end": "22:30"
+      },
+      {
+        "weekday": 2,
+        "start": "21:00",
+        "end": "22:30"
+      },
+      {
+        "weekday": 3,
+        "start": "21:00",
+        "end": "22:30"
+      },
+      {
+        "weekday": 4,
+        "start": "21:00",
+        "end": "22:30"
+      },
+      {
+        "weekday": 5,
+        "start": "21:00",
+        "end": "22:30"
+      },
+      {
+        "weekday": 6,
+        "start": "21:00",
+        "end": "22:30"
+      }
+    ],
+    "daily_limit": 5,
+    "min_gap_minutes": 120,
+    "color": "#6366f1",
+    "affiliate_default": {
+      "link": "",
+      "disclosure": false
+    },
+    "tags": []
+  },
+  {
+    "id": "chan_fb_1",
+    "platform": "facebook",
+    "handle": "socnhotv.page",
+    "display_name": "Sóc Nhỏ TV Fanpage",
+    "avatar": "",
+    "channel_url": "",
+    "auth": {
+      "mode": "manual",
+      "token_ref": null,
+      "scopes": [],
+      "expires_at": null
+    },
+    "status": "connected",
+    "groups": [
+      "Kênh chính"
+    ],
+    "default_hashtags": [
+      "#SocNhoTV",
+      "#HoatHinhThieuNhi"
+    ],
+    "default_caption_footer": "",
+    "posting_windows": [
+      {
+        "weekday": 0,
+        "start": "19:30",
+        "end": "21:30"
+      },
+      {
+        "weekday": 1,
+        "start": "19:30",
+        "end": "21:30"
+      },
+      {
+        "weekday": 2,
+        "start": "19:30",
+        "end": "21:30"
+      },
+      {
+        "weekday": 3,
+        "start": "19:30",
+        "end": "21:30"
+      },
+      {
+        "weekday": 4,
+        "start": "19:30",
+        "end": "21:30"
+      },
+      {
+        "weekday": 5,
+        "start": "19:30",
+        "end": "21:30"
+      },
+      {
+        "weekday": 6,
+        "start": "19:30",
+        "end": "21:30"
+      }
+    ],
+    "daily_limit": 4,
+    "min_gap_minutes": 120,
+    "color": "#6366f1",
+    "affiliate_default": {
+      "link": "",
+      "disclosure": false
+    },
+    "tags": []
+  },
+  {
+    "id": "chan_fb_2",
+    "platform": "facebook",
+    "handle": "hoimebim.socnho",
+    "display_name": "Hội Phụ Huynh Nuôi Con",
+    "avatar": "",
+    "channel_url": "",
+    "auth": {
+      "mode": "manual",
+      "token_ref": null,
+      "scopes": [],
+      "expires_at": null
+    },
+    "status": "connected",
+    "groups": [
+      "Cộng đồng"
+    ],
+    "default_hashtags": [
+      "#NuoiDayCon",
+      "#KienThucChoBe"
+    ],
+    "default_caption_footer": "",
+    "posting_windows": [
+      {
+        "weekday": 0,
+        "start": "20:00",
+        "end": "21:30"
+      },
+      {
+        "weekday": 1,
+        "start": "20:00",
+        "end": "21:30"
+      },
+      {
+        "weekday": 2,
+        "start": "20:00",
+        "end": "21:30"
+      },
+      {
+        "weekday": 3,
+        "start": "20:00",
+        "end": "21:30"
+      },
+      {
+        "weekday": 4,
+        "start": "20:00",
+        "end": "21:30"
+      },
+      {
+        "weekday": 5,
+        "start": "20:00",
+        "end": "21:30"
+      },
+      {
+        "weekday": 6,
+        "start": "20:00",
+        "end": "21:30"
+      }
+    ],
+    "daily_limit": 3,
+    "min_gap_minutes": 120,
+    "color": "#6366f1",
+    "affiliate_default": {
+      "link": "",
+      "disclosure": false
+    },
+    "tags": []
+  },
+  {
+    "id": "chan_ig_1",
+    "platform": "instagram",
+    "handle": "@socnhotv_ig",
+    "display_name": "Sóc Nhỏ TV Instagram",
+    "avatar": "",
+    "channel_url": "",
+    "auth": {
+      "mode": "manual",
+      "token_ref": null,
+      "scopes": [],
+      "expires_at": null
+    },
+    "status": "connected",
+    "groups": [
+      "Kênh chính"
+    ],
+    "default_hashtags": [
+      "#socnhotv",
+      "#cartoon3d",
+      "#kidstv"
+    ],
+    "default_caption_footer": "",
+    "posting_windows": [
+      {
+        "weekday": 0,
+        "start": "19:00",
+        "end": "21:00"
+      },
+      {
+        "weekday": 1,
+        "start": "19:00",
+        "end": "21:00"
+      },
+      {
+        "weekday": 2,
+        "start": "19:00",
+        "end": "21:00"
+      },
+      {
+        "weekday": 3,
+        "start": "19:00",
+        "end": "21:00"
+      },
+      {
+        "weekday": 4,
+        "start": "19:00",
+        "end": "21:00"
+      },
+      {
+        "weekday": 5,
+        "start": "19:00",
+        "end": "21:00"
+      },
+      {
+        "weekday": 6,
+        "start": "19:00",
+        "end": "21:00"
+      }
+    ],
+    "daily_limit": 5,
+    "min_gap_minutes": 120,
+    "color": "#6366f1",
+    "affiliate_default": {
+      "link": "",
+      "disclosure": false
+    },
+    "tags": []
+  },
+  {
+    "id": "chan_th_1",
+    "platform": "threads",
+    "handle": "@socnhotv_threads",
+    "display_name": "Sóc Nhỏ TV Threads",
+    "avatar": "",
+    "channel_url": "",
+    "auth": {
+      "mode": "manual",
+      "token_ref": null,
+      "scopes": [],
+      "expires_at": null
+    },
+    "status": "connected",
+    "groups": [
+      "Kênh chính"
+    ],
+    "default_hashtags": [
+      "#socnhotv",
+      "#hoathinh"
+    ],
+    "default_caption_footer": "",
+    "posting_windows": [
+      {
+        "weekday": 0,
+        "start": "21:00",
+        "end": "22:00"
+      },
+      {
+        "weekday": 1,
+        "start": "21:00",
+        "end": "22:00"
+      },
+      {
+        "weekday": 2,
+        "start": "21:00",
+        "end": "22:00"
+      },
+      {
+        "weekday": 3,
+        "start": "21:00",
+        "end": "22:00"
+      },
+      {
+        "weekday": 4,
+        "start": "21:00",
+        "end": "22:00"
+      },
+      {
+        "weekday": 5,
+        "start": "21:00",
+        "end": "22:00"
+      },
+      {
+        "weekday": 6,
+        "start": "21:00",
+        "end": "22:00"
+      }
+    ],
+    "daily_limit": 5,
+    "min_gap_minutes": 120,
+    "color": "#6366f1",
+    "affiliate_default": {
+      "link": "",
+      "disclosure": false
+    },
+    "tags": []
+  }
+]

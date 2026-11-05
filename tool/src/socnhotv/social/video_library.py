@@ -10,6 +10,38 @@ from socnhotv.social.store import SocialStore, atomic_read_json, atomic_write_js
 from socnhotv.workspace.paths import project_path
 
 
+def _generate_video_thumbnail(project_id: str, video_path: Path, video_id: str) -> str:
+    """Extract a 1s frame from video to publishing/.thumbs/{safe_id}.jpg and return relative path."""
+    if not video_path.exists():
+        return ""
+    safe_id = "".join(c if c.isalnum() or c in ("-", "_") else "_" for c in video_id)
+    thumb_rel = f"publishing/.thumbs/{safe_id}.jpg"
+    thumb_abs = project_path(project_id, thumb_rel, ensure=False)
+    if thumb_abs.exists():
+        return thumb_rel
+    try:
+        thumb_abs.parent.mkdir(parents=True, exist_ok=True)
+        cmd = [
+            "ffmpeg",
+            "-y",
+            "-ss",
+            "00:00:01",
+            "-i",
+            str(video_path),
+            "-vframes",
+            "1",
+            "-q:v",
+            "2",
+            str(thumb_abs),
+        ]
+        res = subprocess.run(cmd, capture_output=True, timeout=5)
+        if res.returncode == 0 and thumb_abs.exists():
+            return thumb_rel
+    except Exception:
+        pass
+    return ""
+
+
 def _probe_video_file(file_path: Path) -> Dict[str, Any]:
     """Run ffprobe to get duration, width, height, and size_mb."""
     default_meta = {
@@ -321,3 +353,92 @@ class VideoLibrary:
 
         self._save_cache(cache)
         return videos
+
+    def list_library(
+        self,
+        filter_type: Optional[str] = None,
+        account_id: Optional[str] = None,
+        platform: Optional[str] = None,
+        q: Optional[str] = None,
+    ) -> List[Dict[str, Any]]:
+        raw_videos = self.list_videos()
+        store = SocialStore(self.project_id)
+        existing_posts = store.list_posts()
+
+        library_items = []
+        for v in raw_videos:
+            v_id = v["id"]
+            primary_path = v.get("primary_path", "")
+            variants = v.get("variants", {})
+
+            # Generate thumb if empty
+            if not v.get("thumb"):
+                abs_v_path = project_path(self.project_id, primary_path, ensure=False)
+                generated_thumb = _generate_video_thumbnail(self.project_id, abs_v_path, v_id)
+                if generated_thumb:
+                    v["thumb"] = generated_thumb
+
+            # Find matching posts and targets
+            matching_targets = []
+            for p in existing_posts:
+                matches_post = False
+                if p.render_job_id and p.render_job_id == v_id:
+                    matches_post = True
+                elif any(m.path == primary_path or m.path in variants.values() for m in p.media):
+                    matches_post = True
+                elif p.id == v_id:
+                    matches_post = True
+
+                if matches_post:
+                    for t in p.targets:
+                        matching_targets.append({
+                            "account_id": t.account_id,
+                            "platform": t.platform,
+                            "status": t.status,
+                            "scheduled_at": t.scheduled_at,
+                            "published_url": t.external_url or "",
+                            "post_id": p.id,
+                            "target_id": t.id,
+                        })
+
+            v["posts_by_account"] = matching_targets
+
+            # Apply search filter
+            if q:
+                if q.lower() not in v.get("title", "").lower():
+                    continue
+
+            # Apply status filter
+            if filter_type:
+                if filter_type == "unposted":
+                    has_scheduled_or_pub = any(t["status"] in ("published", "scheduled") for t in matching_targets)
+                    if has_scheduled_or_pub:
+                        continue
+                elif filter_type == "posted":
+                    if not any(t["status"] == "published" for t in matching_targets):
+                        continue
+                elif filter_type == "scheduled":
+                    if not any(t["status"] == "scheduled" for t in matching_targets):
+                        continue
+                elif filter_type == "draft":
+                    if not any(t["status"] == "draft" for t in matching_targets):
+                        continue
+
+            # Apply account filter
+            if account_id:
+                if account_id.startswith("not:"):
+                    not_acc = account_id[4:]
+                    if any(t["account_id"] == not_acc and t["status"] in ("published", "scheduled") for t in matching_targets):
+                        continue
+                else:
+                    if not any(t["account_id"] == account_id for t in matching_targets):
+                        continue
+
+            # Apply platform filter
+            if platform:
+                if not any(t["platform"] == platform for t in matching_targets):
+                    continue
+
+            library_items.append(v)
+
+        return library_items
