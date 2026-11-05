@@ -19,7 +19,12 @@ import {
 import { VideoThumb } from "@/components/social/hub/common/VideoThumb";
 import { AccountChip } from "@/components/social/hub/common/AccountChip";
 import { StatusBadge } from "@/components/social/hub/common/StatusBadge";
-import { PublishCenterModal } from "@/components/social/PublishCenterModal";
+import dynamic from "next/dynamic";
+
+const PublishCenterModal = dynamic(
+  () => import("@/components/social/PublishCenterModal").then((m) => m.PublishCenterModal),
+  { ssr: false }
+);
 
 export function PublishTab() {
   const activeProjectId = useStudioStore((s) => s.activeProjectId);

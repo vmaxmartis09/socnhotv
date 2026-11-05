@@ -12,7 +12,12 @@ import { PublishTab } from "./tabs/PublishTab";
 import { JobsCostTab } from "./tabs/JobsCostTab";
 import { ShortcutsView } from "./ShortcutsView";
 import { PolicyTab } from "./tabs/PolicyTab";
-import { ToolboxPanel } from "@/components/toolbox/ToolboxPanel";
+import dynamic from "next/dynamic";
+
+const ToolboxPanel = dynamic(
+  () => import("@/components/toolbox/ToolboxPanel").then((m) => m.ToolboxPanel),
+  { ssr: false }
+);
 import { X, PanelRightClose, PanelRightOpen } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
 

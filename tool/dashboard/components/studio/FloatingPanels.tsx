@@ -13,10 +13,18 @@ import { JobsList } from "@/components/jobs/JobsList";
 import { ProjectHub, type HubTab } from "@/components/project/ProjectHub";
 import { FolderGit2, Users, MessageSquare, Calendar, Activity, Sliders, Keyboard } from "@/components/ui/icons";
 import { ShortcutsView } from "./ShortcutsView";
-import { ToolboxPanel } from "@/components/toolbox/ToolboxPanel";
+import dynamic from "next/dynamic";
+
+const ToolboxPanel = dynamic(
+  () => import("@/components/toolbox/ToolboxPanel").then((m) => m.ToolboxPanel),
+  { ssr: false }
+);
 import { Wrench, ShieldCheck } from "@/components/ui/icons";
 import { PolicyTab } from "./tabs/PolicyTab";
-import { PreviewPane } from "./PreviewPane";
+const PreviewPane = dynamic(
+  () => import("./PreviewPane").then((m) => m.PreviewPane),
+  { ssr: false }
+);
 import { usePreview } from "@/lib/preview";
 import { useHubScope } from "@/lib/hub";
 import { useConfirmStore } from "@/lib/confirm";

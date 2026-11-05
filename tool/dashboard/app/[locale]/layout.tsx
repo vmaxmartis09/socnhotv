@@ -10,7 +10,7 @@ import { AppRail } from "@/components/navigation/AppRail";
 import { ConfirmHost } from "@/components/ui/ConfirmHost";
 import { TooltipHost } from "@/components/ui/TooltipHost";
 import { FloatingPanels } from "@/components/studio/FloatingPanels";
-import { SocialHub } from "@/components/social/hub/SocialHub";
+import { SocialHubHost } from "@/components/social/hub/SocialHubHost";
 import { Suspense } from "react";
 import { IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
 import "@/app/globals.css";
@@ -66,7 +66,7 @@ export default async function LocaleLayout({
             <ConfirmHost />
             <TooltipHost />
             <Suspense fallback={null}>
-              <SocialHub />
+              <SocialHubHost />
             </Suspense>
           </ThemeProvider>
         </NextIntlClientProvider>

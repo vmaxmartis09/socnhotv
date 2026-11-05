@@ -77,7 +77,12 @@ import {
   DollarSign,
 } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
-import { CreateVideoModal } from "@/components/studio/CreateVideoModal";
+import dynamic from "next/dynamic";
+
+const CreateVideoModal = dynamic(
+  () => import("@/components/studio/CreateVideoModal").then((m) => m.CreateVideoModal),
+  { ssr: false }
+);
 
 const nodeTypes = {
   studioCard: StudioNode,
