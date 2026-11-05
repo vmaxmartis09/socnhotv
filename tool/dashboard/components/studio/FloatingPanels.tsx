@@ -19,7 +19,11 @@ const ToolboxPanel = dynamic(
   () => import("@/components/toolbox/ToolboxPanel").then((m) => m.ToolboxPanel),
   { ssr: false }
 );
-import { Wrench, ShieldCheck } from "@/components/ui/icons";
+const TemplatesView = dynamic(
+  () => import("@/components/templates/TemplatesView").then((m) => m.TemplatesView),
+  { ssr: false }
+);
+import { Wrench, ShieldCheck, Layers } from "@/components/ui/icons";
 import { PolicyTab } from "./tabs/PolicyTab";
 const PreviewPane = dynamic(
   () => import("./PreviewPane").then((m) => m.PreviewPane),
@@ -30,7 +34,7 @@ import { useHubScope } from "@/lib/hub";
 import { useConfirmStore } from "@/lib/confirm";
 import { cn } from "@/lib/utils";
 
-type View = "project" | "characters" | "chat" | "publish" | "jobs" | "node" | "policy" | "toolbox" | "shortcuts";
+type View = "project" | "characters" | "chat" | "publish" | "jobs" | "node" | "policy" | "templates" | "toolbox" | "shortcuts";
 
 const ICONS: Record<View, React.ComponentType<{ className?: string }>> = {
   project: FolderGit2,
@@ -40,11 +44,12 @@ const ICONS: Record<View, React.ComponentType<{ className?: string }>> = {
   jobs: Activity,
   node: Sliders,
   policy: ShieldCheck,
+  templates: Layers,
   toolbox: Wrench,
   shortcuts: Keyboard,
 };
 
-const ORDER: View[] = ["project", "characters", "chat", "publish", "jobs", "node", "policy", "toolbox", "shortcuts"];
+const ORDER: View[] = ["project", "characters", "chat", "publish", "jobs", "node", "policy", "templates", "toolbox", "shortcuts"];
 
 const NAV_CLOSED = 52;
 const NAV_OPEN = 148;
@@ -199,8 +204,9 @@ export function FloatingPanels() {
   const previewW = open && preview ? Math.max(340, Math.min(640, Math.round(size.w * 0.38))) : 0;
   const maxFree = Math.max(300, size.w - NAV_OPEN - previewW - 24);
   const isToolbox = view === "toolbox";
-  const panelW = isToolbox
-    ? Math.max(TOOLBOX_MIN, Math.min(maxFree, toolboxW ?? Math.round(size.w * 0.35)))
+  const isTemplates = view === "templates";
+  const panelW = isToolbox || isTemplates
+    ? Math.max(TOOLBOX_MIN, Math.min(maxFree, toolboxW ?? Math.round(size.w * 0.42)))
     : Math.max(300, Math.min(wide ? 720 : 400, maxFree));
   const totalW = Math.min(size.w - EDGE * 2, navW + (open ? panelW : 0) + previewW);
   const height = open ? Math.max(DOCK_H, size.h - EDGE * 2) : DOCK_H;
@@ -225,6 +231,8 @@ export function FloatingPanels() {
         );
       case "policy":
         return <PolicyTab />;
+      case "templates":
+        return <TemplatesView className="p-3" />;
       case "toolbox":
         return <ToolboxPanel />;
       case "shortcuts":
@@ -267,7 +275,7 @@ export function FloatingPanels() {
 
         {/* Nội dung panel (nằm bên trái dải biểu tượng, cùng một khối) */}
         <div className="relative min-w-0 flex-1 overflow-hidden">
-          {open && isToolbox && (
+          {open && (isToolbox || isTemplates) && (
             <div
               role="separator"
               aria-orientation="vertical"

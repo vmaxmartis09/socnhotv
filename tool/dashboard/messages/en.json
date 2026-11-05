@@ -252,7 +252,8 @@
       "node": "Node",
       "policy": "Policy",
       "toolbox": "Toolbox",
-      "shortcuts": "Shortcuts"
+      "shortcuts": "Shortcuts",
+      "templates": "Templates"
     }
   },
   "nodeTab": {

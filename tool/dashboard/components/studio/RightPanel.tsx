@@ -21,7 +21,12 @@ const ToolboxPanel = dynamic(
 import { X, PanelRightClose, PanelRightOpen } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
 
-const TABS: RightPanelTab[] = ["project", "chat", "publish", "jobs", "node", "policy", "shortcuts"];
+const TemplatesView = dynamic(
+  () => import("@/components/templates/TemplatesView").then((m) => m.TemplatesView),
+  { ssr: false }
+);
+
+const TABS: RightPanelTab[] = ["project", "chat", "publish", "jobs", "node", "policy", "templates", "toolbox", "shortcuts"];
 
 export function RightPanel() {
   const t = useTranslations("rightPanel");
@@ -103,6 +108,8 @@ export function RightPanel() {
         return <JobsCostTab />;
       case "policy":
         return <PolicyTab />;
+      case "templates":
+        return <TemplatesView className="p-3" />;
       case "toolbox":
         return <ToolboxPanel />;
       case "shortcuts":
