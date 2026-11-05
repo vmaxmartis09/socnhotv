@@ -1,0 +1,146 @@
+{
+  "id": "meta",
+  "name": "Facebook / Instagram — Tiêu chuẩn cộng đồng (Meta)",
+  "platform": "meta",
+  "sourceUrl": "https://transparency.meta.com/policies/community-standards/",
+  "description": "Nhóm vi phạm chính của Meta: bạo lực, tổ chức nguy hiểm, thù ghét, tự hại, bóc lột trẻ em, tình dục, lừa đảo, thông tin sai lệch.",
+  "rules": [
+    {
+      "id": "violence",
+      "category": "Bạo lực",
+      "label": "Bạo lực và kích động",
+      "severity": "block",
+      "enabled": true,
+      "terms": [
+        "giết",
+        "đổ máu",
+        "máu me",
+        "tra tấn",
+        "bắn chết",
+        "kill",
+        "gore"
+      ],
+      "note": ""
+    },
+    {
+      "id": "dangerous_orgs",
+      "category": "Tổ chức nguy hiểm",
+      "label": "Tổ chức & cá nhân nguy hiểm",
+      "severity": "block",
+      "enabled": true,
+      "terms": [
+        "khủng bố",
+        "thánh chiến",
+        "băng đảng",
+        "terrorist",
+        "extremist"
+      ],
+      "note": ""
+    },
+    {
+      "id": "hate",
+      "category": "Thù ghét",
+      "label": "Ngôn từ thù ghét",
+      "severity": "block",
+      "enabled": true,
+      "terms": [
+        "kỳ thị",
+        "miệt thị",
+        "phân biệt chủng tộc",
+        "racist",
+        "slur"
+      ],
+      "note": ""
+    },
+    {
+      "id": "selfharm",
+      "category": "Tự hại",
+      "label": "Tự tử, tự hại, rối loạn ăn uống",
+      "severity": "block",
+      "enabled": true,
+      "terms": [
+        "tự tử",
+        "tự sát",
+        "rạch tay",
+        "nhịn ăn để gầy",
+        "suicide",
+        "self-harm"
+      ],
+      "note": ""
+    },
+    {
+      "id": "child",
+      "category": "Trẻ em",
+      "label": "Bóc lột & nguy hại cho trẻ em",
+      "severity": "block",
+      "enabled": true,
+      "terms": [
+        "lạm dụng trẻ em",
+        "gặp riêng bé",
+        "child abuse",
+        "grooming"
+      ],
+      "note": ""
+    },
+    {
+      "id": "sexual",
+      "category": "Tình dục",
+      "label": "Khoả thân & nội dung tình dục",
+      "severity": "block",
+      "enabled": true,
+      "terms": [
+        "khiêu dâm",
+        "khỏa thân",
+        "sex",
+        "nude",
+        "porn"
+      ],
+      "note": ""
+    },
+    {
+      "id": "fraud",
+      "category": "Lừa đảo",
+      "label": "Lừa đảo, gian lận, spam",
+      "severity": "block",
+      "enabled": true,
+      "terms": [
+        "kiếm tiền nhanh",
+        "làm giàu nhanh",
+        "đầu tư x10",
+        "free money",
+        "chia sẻ để nhận quà",
+        "click vào link"
+      ],
+      "note": ""
+    },
+    {
+      "id": "misinfo",
+      "category": "Thông tin sai lệch",
+      "label": "Thông tin sai lệch (y tế, bầu cử)",
+      "severity": "warn",
+      "enabled": true,
+      "terms": [
+        "chữa khỏi ung thư",
+        "tin giả",
+        "miracle cure",
+        "fake news"
+      ],
+      "note": ""
+    },
+    {
+      "id": "bullying",
+      "category": "Bắt nạt",
+      "label": "Bắt nạt và quấy rối",
+      "severity": "block",
+      "enabled": true,
+      "terms": [
+        "đồ ngu",
+        "đồ béo",
+        "chết đi",
+        "bully",
+        "loser"
+      ],
+      "note": ""
+    }
+  ]
+}

@@ -1,0 +1,149 @@
+{
+  "id": "tiktok",
+  "name": "TikTok — Nguyên tắc cộng đồng",
+  "platform": "tiktok",
+  "sourceUrl": "https://www.tiktok.com/community-guidelines",
+  "description": "An toàn người dưới 18 tuổi, bạo lực, thù ghét, hoạt động bất hợp pháp, tự hại, tình dục, quấy rối, thông tin sai lệch.",
+  "rules": [
+    {
+      "id": "minor_safety",
+      "category": "Người chưa thành niên",
+      "label": "An toàn của người dưới 18 tuổi",
+      "severity": "block",
+      "enabled": true,
+      "terms": [
+        "lạm dụng trẻ em",
+        "gặp riêng bé",
+        "gửi ảnh riêng tư",
+        "child abuse",
+        "grooming"
+      ],
+      "note": ""
+    },
+    {
+      "id": "violence",
+      "category": "Bạo lực",
+      "label": "Bạo lực và hình ảnh máu me",
+      "severity": "block",
+      "enabled": true,
+      "terms": [
+        "giết",
+        "đổ máu",
+        "máu me",
+        "đánh nhau",
+        "tra tấn",
+        "gore",
+        "murder"
+      ],
+      "note": ""
+    },
+    {
+      "id": "hate",
+      "category": "Thù ghét",
+      "label": "Hành vi thù ghét",
+      "severity": "block",
+      "enabled": true,
+      "terms": [
+        "kỳ thị",
+        "miệt thị",
+        "phân biệt chủng tộc",
+        "racist",
+        "slur"
+      ],
+      "note": ""
+    },
+    {
+      "id": "illegal",
+      "category": "Bất hợp pháp",
+      "label": "Hoạt động & hàng hoá bất hợp pháp",
+      "severity": "block",
+      "enabled": true,
+      "terms": [
+        "ma túy",
+        "buôn bán vũ khí",
+        "cần sa",
+        "hàng lậu",
+        "cờ bạc online",
+        "cá độ",
+        "drugs for sale"
+      ],
+      "note": ""
+    },
+    {
+      "id": "selfharm",
+      "category": "Tự hại",
+      "label": "Tự tử và tự hại",
+      "severity": "block",
+      "enabled": true,
+      "terms": [
+        "tự tử",
+        "tự sát",
+        "rạch tay",
+        "muốn chết",
+        "suicide",
+        "self-harm"
+      ],
+      "note": ""
+    },
+    {
+      "id": "sexual",
+      "category": "Tình dục",
+      "label": "Khoả thân & hoạt động tình dục",
+      "severity": "block",
+      "enabled": true,
+      "terms": [
+        "khiêu dâm",
+        "khỏa thân",
+        "sex",
+        "nude",
+        "porn"
+      ],
+      "note": ""
+    },
+    {
+      "id": "bullying",
+      "category": "Quấy rối",
+      "label": "Quấy rối và bắt nạt",
+      "severity": "block",
+      "enabled": true,
+      "terms": [
+        "đồ ngu",
+        "đồ béo",
+        "đồ xấu xí",
+        "chết đi",
+        "bully",
+        "loser"
+      ],
+      "note": ""
+    },
+    {
+      "id": "misinfo",
+      "category": "Thông tin sai lệch",
+      "label": "Thông tin sai lệch gây hại",
+      "severity": "warn",
+      "enabled": true,
+      "terms": [
+        "chữa khỏi ung thư",
+        "vaccine gây tự kỷ",
+        "tin giả",
+        "miracle cure"
+      ],
+      "note": ""
+    },
+    {
+      "id": "commerce",
+      "category": "Thương mại",
+      "label": "Quảng cáo lừa đảo / dẫn dắt ra ngoài nền tảng",
+      "severity": "warn",
+      "enabled": true,
+      "terms": [
+        "kiếm tiền nhanh",
+        "link bio",
+        "inbox để mua",
+        "free money",
+        "mua ngay"
+      ],
+      "note": ""
+    }
+  ]
+}

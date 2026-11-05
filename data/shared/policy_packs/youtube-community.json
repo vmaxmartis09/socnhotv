@@ -1,0 +1,133 @@
+{
+  "id": "youtube-community",
+  "name": "YouTube — Nguyên tắc cộng đồng",
+  "platform": "youtube",
+  "sourceUrl": "https://www.youtube.com/howyoutubeworks/policies/community-guidelines/",
+  "description": "Các nhóm vi phạm chính của Nguyên tắc cộng đồng YouTube: thù ghét, quấy rối, cực đoan, tự hại, lừa đảo, thông tin y tế sai lệch.",
+  "rules": [
+    {
+      "id": "hate",
+      "category": "Thù ghét",
+      "label": "Ngôn từ thù ghét, kỳ thị",
+      "severity": "block",
+      "enabled": true,
+      "terms": [
+        "kỳ thị",
+        "miệt thị",
+        "phân biệt chủng tộc",
+        "dân tộc thấp kém",
+        "hate speech",
+        "racist"
+      ],
+      "note": ""
+    },
+    {
+      "id": "harassment",
+      "category": "Quấy rối",
+      "label": "Quấy rối, đe doạ",
+      "severity": "block",
+      "enabled": true,
+      "terms": [
+        "tao giết mày",
+        "đe doạ",
+        "doxx",
+        "lộ thông tin",
+        "đồ rác rưởi",
+        "kill yourself"
+      ],
+      "note": ""
+    },
+    {
+      "id": "extremism",
+      "category": "Cực đoan",
+      "label": "Cực đoan bạo lực",
+      "severity": "block",
+      "enabled": true,
+      "terms": [
+        "khủng bố",
+        "thánh chiến",
+        "đánh bom",
+        "terrorist",
+        "jihad"
+      ],
+      "note": ""
+    },
+    {
+      "id": "selfharm",
+      "category": "Tự hại",
+      "label": "Tự tử, tự hại",
+      "severity": "block",
+      "enabled": true,
+      "terms": [
+        "tự tử",
+        "tự sát",
+        "rạch tay",
+        "muốn chết",
+        "suicide",
+        "self-harm"
+      ],
+      "note": ""
+    },
+    {
+      "id": "scam",
+      "category": "Lừa đảo / spam",
+      "label": "Lừa đảo, spam, câu tương tác",
+      "severity": "block",
+      "enabled": true,
+      "terms": [
+        "kiếm tiền nhanh",
+        "làm giàu nhanh",
+        "đầu tư x10",
+        "click vào link",
+        "free money",
+        "giveaway giả",
+        "sub for sub"
+      ],
+      "note": ""
+    },
+    {
+      "id": "medical",
+      "category": "Y tế sai lệch",
+      "label": "Thông tin y tế sai lệch",
+      "severity": "warn",
+      "enabled": true,
+      "terms": [
+        "chữa khỏi ung thư",
+        "không cần đi bác sĩ",
+        "thuốc thần kỳ",
+        "cure cancer",
+        "miracle cure"
+      ],
+      "note": ""
+    },
+    {
+      "id": "child_safety",
+      "category": "An toàn trẻ em",
+      "label": "Gây nguy hại cho trẻ vị thành niên",
+      "severity": "block",
+      "enabled": true,
+      "terms": [
+        "lạm dụng trẻ em",
+        "child abuse",
+        "gặp riêng bé",
+        "bí mật giữa hai chúng ta"
+      ],
+      "note": ""
+    },
+    {
+      "id": "sexual",
+      "category": "Tình dục",
+      "label": "Nội dung tình dục",
+      "severity": "block",
+      "enabled": true,
+      "terms": [
+        "khiêu dâm",
+        "sex",
+        "porn",
+        "khỏa thân",
+        "nude"
+      ],
+      "note": ""
+    }
+  ]
+}

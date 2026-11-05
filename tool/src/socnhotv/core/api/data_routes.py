@@ -707,6 +707,72 @@ async def put_project_policy(project_id: str, payload: Dict[str, Any] = Body(...
     return content_policy.save_policy(get_repo_root(), project_id, payload)
 
 
+@router.get("/policy-packs")
+async def get_policy_packs() -> List[Dict[str, Any]]:
+    """Các gói chính sách chuẩn của nền tảng (YouTube, TikTok, Meta…)."""
+    from socnhotv.core.engine import content_policy
+
+    return content_policy.list_packs(get_repo_root())
+
+
+@router.post("/projects/{project_id}/policy/import-pack")
+async def import_policy_pack(project_id: str, payload: Dict[str, Any] = Body(...)) -> Dict[str, Any]:
+    from socnhotv.core.engine import content_policy
+
+    _project_dir(project_id)
+    root = get_repo_root()
+    pack = content_policy.load_pack(root, str(payload.get("packId", "")))
+    if not pack:
+        raise HTTPException(404, "Không tìm thấy gói chính sách")
+    pol = content_policy.import_pack(content_policy.load_policy(root, project_id), pack)
+    return content_policy.save_policy(root, project_id, pol)
+
+
+@router.post("/projects/{project_id}/policy/import")
+async def import_policy_file(project_id: str, payload: Dict[str, Any] = Body(...)) -> Dict[str, Any]:
+    """Nhập chính sách từ tệp tải lên (.json / .txt / .md / .csv). Body: {name, text}."""
+    from socnhotv.core.engine import content_policy
+
+    _project_dir(project_id)
+    name = str(payload.get("name") or "upload.txt")
+    try:
+        rules = content_policy.parse_policy_text(name, str(payload.get("text") or ""))
+    except Exception as e:  # noqa: BLE001
+        raise HTTPException(400, f"Không đọc được tệp: {e}") from e
+    if not rules:
+        raise HTTPException(400, "Tệp không có từ/quy tắc nào")
+    root = get_repo_root()
+    source = "upload-" + _slug(Path(name).stem, "tep")
+    pol = content_policy.merge_rules(content_policy.load_policy(root, project_id), rules, source)
+    saved = content_policy.save_policy(root, project_id, pol)
+    return {"policy": saved, "added": len(rules), "terms": sum(len(r["terms"]) for r in rules)}
+
+
+@router.post("/projects/{project_id}/policy/fetch-url")
+async def fetch_policy_url(project_id: str, payload: Dict[str, Any] = Body(...)) -> Dict[str, Any]:
+    """Lấy trang chính sách công khai từ nền tảng và lưu làm tài liệu tham chiếu của chính sách dự án."""
+    import time as _time
+
+    from socnhotv.core.engine import content_policy
+
+    _project_dir(project_id)
+    url = str(payload.get("url") or "").strip()
+    try:
+        page = content_policy.fetch_policy_page(url)
+    except Exception as e:  # noqa: BLE001
+        raise HTTPException(400, f"Không lấy được trang: {e}") from e
+    root = get_repo_root()
+    ref = {
+        "url": url,
+        "title": page["title"],
+        "kind": "url",
+        "fetchedAt": _time.strftime("%Y-%m-%d %H:%M"),
+        "excerpt": page["text"][:600],
+    }
+    saved = content_policy.save_policy(root, project_id, content_policy.add_reference(content_policy.load_policy(root, project_id), ref))
+    return {"policy": saved, "page": {"title": page["title"], "chars": page["chars"], "text": page["text"]}}
+
+
 @router.post("/projects/{project_id}/policy/check")
 async def check_project_policy(project_id: str, payload: Dict[str, Any] = Body(...)) -> Dict[str, Any]:
     """Kiểm nhanh văn bản theo chính sách dự án: {texts: {nguồn: văn bản}} hoặc {text}."""

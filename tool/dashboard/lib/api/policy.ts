@@ -8,6 +8,25 @@ export interface PolicyRule {
   enabled: boolean;
   terms: string[];
   note?: string;
+  /** Nguồn quy tắc: pack-<gói> hoặc upload-<tệp>; trống = tự tạo */
+  source?: string;
+}
+
+export interface PolicyReference {
+  url: string;
+  title?: string;
+  kind?: string;
+  fetchedAt?: string;
+  excerpt?: string;
+}
+
+export interface PolicyPack {
+  id: string;
+  name: string;
+  platform: string;
+  sourceUrl: string;
+  description: string;
+  ruleCount: number;
 }
 
 export interface ContentPolicy {
@@ -15,6 +34,7 @@ export interface ContentPolicy {
   mode: "strict" | "standard";
   scopes: { dialogue: boolean; caption: boolean; script: boolean; prompt: boolean };
   allowlist: string[];
+  references?: PolicyReference[];
   rules: PolicyRule[];
 }
 
@@ -70,3 +90,35 @@ export async function checkPolicyText(projectId: string, texts: Record<string, s
     return null;
   }
 }
+
+export async function fetchPolicyPacks(): Promise<PolicyPack[]> {
+  try {
+    const res = await fetch(`${CORE_URL}/data/policy-packs`, { cache: "no-store" });
+    return res.ok ? ((await res.json()) as PolicyPack[]) : [];
+  } catch {
+    return [];
+  }
+}
+
+async function post<T>(url: string, body: unknown): Promise<T> {
+  const res = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+  if (!res.ok) {
+    let msg = "";
+    try {
+      msg = (await res.json()).detail || "";
+    } catch {
+      msg = await res.text();
+    }
+    throw new Error(msg || `Lỗi ${res.status}`);
+  }
+  return (await res.json()) as T;
+}
+
+export const importPolicyPack = (projectId: string, packId: string) =>
+  post<ContentPolicy>(`${base(projectId)}/import-pack`, { packId });
+
+export const importPolicyFile = (projectId: string, name: string, text: string) =>
+  post<{ policy: ContentPolicy; added: number; terms: number }>(`${base(projectId)}/import`, { name, text });
+
+export const fetchPolicyUrl = (projectId: string, url: string) =>
+  post<{ policy: ContentPolicy; page: { title: string; chars: number; text: string } }>(`${base(projectId)}/fetch-url`, { url });

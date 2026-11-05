@@ -1,16 +1,22 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useStudioStore } from "@/store";
 import {
   checkPolicyText,
+  fetchPolicyPacks,
+  fetchPolicyUrl,
   fetchProjectPolicy,
+  importPolicyFile,
+  importPolicyPack,
   saveProjectPolicy,
   type ContentPolicy,
+  type PolicyPack,
   type PolicyReport,
   type PolicyRule,
 } from "@/lib/api/policy";
-import { Plus, ShieldCheck, Trash2 } from "@/components/ui/icons";
+import { Download, ExternalLink, Plus, ShieldCheck, Trash2, Upload } from "@/components/ui/icons";
+import { Reveal } from "@/components/canvas/Reveal";
 import { cn } from "@/lib/utils";
 
 const field =
@@ -35,6 +41,17 @@ export function PolicyEditor({ projectId: projectIdProp }: { projectId?: string 
   const [sample, setSample] = useState("");
   const [report, setReport] = useState<PolicyReport | null>(null);
   const [open, setOpen] = useState<string | null>(null);
+  const [packs, setPacks] = useState<PolicyPack[]>([]);
+  const [srcOpen, setSrcOpen] = useState(false);
+  const [srcBusy, setSrcBusy] = useState<string | null>(null);
+  const [srcMsg, setSrcMsg] = useState<string | null>(null);
+  const [url, setUrl] = useState("");
+  const [page, setPage] = useState<{ title: string; chars: number; text: string } | null>(null);
+  const fileRef = useRef<HTMLInputElement | null>(null);
+
+  useEffect(() => {
+    fetchPolicyPacks().then(setPacks);
+  }, []);
 
   useEffect(() => {
     let alive = true;
@@ -81,6 +98,46 @@ export function PolicyEditor({ projectId: projectIdProp }: { projectId?: string 
     }
   };
 
+  // Các thao tác nhập đều lưu thẳng vào chính sách của dự án rồi nạp lại
+  const runSource = async (key: string, fn: () => Promise<string>) => {
+    setSrcBusy(key);
+    setSrcMsg(null);
+    try {
+      setSrcMsg(await fn());
+      setDirty(false);
+    } catch (e: any) {
+      setSrcMsg(e?.message || "Thao tác thất bại");
+    } finally {
+      setSrcBusy(null);
+    }
+  };
+  const addPack = (pk: PolicyPack) =>
+    runSource(pk.id, async () => {
+      setPolicy(await importPolicyPack(projectId, pk.id));
+      return `Đã thêm gói "${pk.name}" (${pk.ruleCount} quy tắc).`;
+    });
+  const onFile = (f: File) =>
+    runSource("file", async () => {
+      const r = await importPolicyFile(projectId, f.name, await f.text());
+      setPolicy(r.policy);
+      return `Đã nhập ${r.added} nhóm / ${r.terms} từ từ "${f.name}".`;
+    });
+  const onUrl = () =>
+    runSource("url", async () => {
+      const r = await fetchPolicyUrl(projectId, url.trim());
+      setPolicy(r.policy);
+      setPage(r.page);
+      return `Đã lấy "${r.page.title}" (${r.page.chars.toLocaleString("vi-VN")} ký tự) làm tài liệu tham chiếu. Thêm từ cấm vào quy tắc dựa trên nội dung này.`;
+    });
+  const exportPolicy = () => {
+    const blob = new Blob([JSON.stringify(policy, null, 2)], { type: "application/json" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = `policy-${projectId}.json`;
+    a.click();
+    URL.revokeObjectURL(a.href);
+  };
+
   const test = async () => setReport(await checkPolicyText(projectId, { "văn bản thử": sample }));
 
   return (
@@ -93,6 +150,137 @@ export function PolicyEditor({ projectId: projectIdProp }: { projectId?: string 
           className={cn(field, "h-8 w-full")}
         />
       </label>
+
+      <div className="space-y-1.5 rounded-md border border-border p-2">
+        <button
+          type="button"
+          onClick={() => setSrcOpen((v) => !v)}
+          className="flex w-full items-center justify-between text-left text-xs text-foreground"
+        >
+          <span className="font-medium">Nguồn chính sách chuẩn</span>
+          <span className="text-muted-foreground">{srcOpen ? "Thu gọn" : "Gói nền tảng · Tải lên · Từ URL"}</span>
+        </button>
+        <Reveal show={srcOpen}>
+          <div className="space-y-3 pt-1.5">
+            <div className="space-y-1">
+              <span className="text-[13px] text-muted-foreground">Gói chuẩn của nền tảng</span>
+              {packs.length === 0 && <p className="text-[13px] text-muted-foreground">Chưa đọc được danh sách gói (core chưa chạy?).</p>}
+              {packs.map((pk) => {
+                const added = policy.rules.some((r) => r.source === `pack-${pk.id}`);
+                return (
+                  <div key={pk.id} className="flex items-start gap-2 rounded-md border border-border bg-card p-1.5">
+                    <div className="min-w-0 flex-1">
+                      <div className="truncate text-xs font-medium text-foreground">{pk.name}</div>
+                      <div className="line-clamp-2 text-[12px] text-muted-foreground">{pk.description}</div>
+                      <a
+                        href={pk.sourceUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-1 text-[12px] text-muted-foreground underline-offset-2 hover:text-foreground hover:underline"
+                      >
+                        <ExternalLink className="h-3 w-3" /> Trang chính thức
+                      </a>
+                    </div>
+                    <button
+                      type="button"
+                      disabled={srcBusy !== null}
+                      onClick={() => addPack(pk)}
+                      className="h-8 shrink-0 rounded-md border border-border bg-card px-2 text-xs text-foreground hover:bg-accent disabled:opacity-50"
+                    >
+                      {srcBusy === pk.id ? "Đang thêm…" : added ? "Cập nhật" : `Thêm (${pk.ruleCount})`}
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="space-y-1">
+              <span className="text-[13px] text-muted-foreground">Tải tệp lên (.json, .txt, .md, .csv)</span>
+              <input
+                ref={fileRef}
+                type="file"
+                accept=".json,.txt,.md,.csv,text/plain,application/json"
+                className="hidden"
+                onChange={(e) => {
+                  const f = e.target.files?.[0];
+                  if (f) onFile(f);
+                  e.target.value = "";
+                }}
+              />
+              <div className="flex gap-1.5">
+                <button
+                  type="button"
+                  disabled={srcBusy !== null}
+                  onClick={() => fileRef.current?.click()}
+                  className={cn(field, "flex h-8 flex-1 items-center justify-center gap-1.5 hover:bg-accent disabled:opacity-50")}
+                >
+                  <Upload className="h-3.5 w-3.5" /> {srcBusy === "file" ? "Đang nhập…" : "Chọn tệp để nhập"}
+                </button>
+                <button
+                  type="button"
+                  onClick={exportPolicy}
+                  title="Tải chính sách hiện tại xuống (.json)"
+                  className={cn(field, "flex h-8 items-center justify-center gap-1.5 px-2.5 hover:bg-accent")}
+                >
+                  <Download className="h-3.5 w-3.5" /> Xuất
+                </button>
+              </div>
+              <p className="text-[12px] leading-relaxed text-muted-foreground">
+                Văn bản: mỗi dòng một từ; <code>Nhóm: từ1, từ2</code> hoặc <code># Nhóm</code> để đặt nhóm. JSON: xuất từ chính sách khác.
+              </p>
+            </div>
+
+            <div className="space-y-1">
+              <span className="text-[13px] text-muted-foreground">Lấy từ trang chính sách của nền tảng (URL https)</span>
+              <div className="flex gap-1.5">
+                <input
+                  value={url}
+                  onChange={(e) => setUrl(e.target.value)}
+                  placeholder="https://support.google.com/youtube/answer/…"
+                  className={cn(field, "h-8 min-w-0 flex-1")}
+                />
+                <button
+                  type="button"
+                  disabled={!/^https:\/\//.test(url.trim()) || srcBusy !== null}
+                  onClick={onUrl}
+                  className={cn(field, "h-8 shrink-0 px-3 hover:bg-accent disabled:opacity-50")}
+                >
+                  {srcBusy === "url" ? "Đang lấy…" : "Lấy"}
+                </button>
+              </div>
+              <p className="text-[12px] leading-relaxed text-muted-foreground">
+                Trang được lưu làm tài liệu tham chiếu của dự án; từ cấm cần bạn chọn thêm (trang chính sách là văn xuôi, không tự suy ra danh sách từ). Một số nền tảng (vd. TikTok) chặn truy cập tự động.
+              </p>
+              {page && (
+                <details className="rounded-md border border-border bg-card p-1.5 text-[12px]">
+                  <summary className="cursor-pointer text-foreground">Xem nội dung đã lấy: {page.title}</summary>
+                  <pre className="nowheel mt-1 max-h-48 overflow-y-auto whitespace-pre-wrap break-words text-muted-foreground">{page.text.slice(0, 6000)}</pre>
+                </details>
+              )}
+            </div>
+
+            {(policy.references || []).length > 0 && (
+              <div className="space-y-1">
+                <span className="text-[13px] text-muted-foreground">Tài liệu tham chiếu ({policy.references!.length})</span>
+                {policy.references!.map((r) => (
+                  <a
+                    key={r.url}
+                    href={r.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center gap-1.5 rounded-md border border-border bg-card px-2 py-1 text-[12px] text-foreground hover:bg-accent"
+                  >
+                    <ExternalLink className="h-3 w-3 shrink-0 text-muted-foreground" />
+                    <span className="min-w-0 flex-1 truncate">{r.title || r.url}</span>
+                    {r.fetchedAt && <span className="shrink-0 text-muted-foreground">{r.fetchedAt}</span>}
+                  </a>
+                ))}
+              </div>
+            )}
+            {srcMsg && <p className="rounded bg-muted p-1.5 text-[13px] text-foreground">{srcMsg}</p>}
+          </div>
+        </Reveal>
+      </div>
 
       <div className="grid grid-cols-2 gap-2">
         <label className="block space-y-1">
@@ -150,6 +338,7 @@ export function PolicyEditor({ projectId: projectIdProp }: { projectId?: string 
               >
                 {r.label}
                 <span className="text-muted-foreground"> · {r.terms.length} từ</span>
+                {r.source && <span className="ml-1 rounded bg-muted px-1 text-[11px] text-muted-foreground">{r.source.replace(/^pack-/, "gói ").replace(/^upload-/, "tệp ")}</span>}
               </button>
               <span
                 className={cn(

@@ -141,6 +141,11 @@ def save_policy(repo_root: Path, project_id: str, policy: Dict[str, Any]) -> Dic
         "mode": "strict" if policy.get("mode") == "strict" else "standard",
         "scopes": {k: bool((policy.get("scopes") or {}).get(k, True)) for k in DEFAULT_POLICY["scopes"]},
         "allowlist": [str(t).strip() for t in policy.get("allowlist", []) if str(t).strip()],
+        "references": [
+            {k: str(v) for k, v in r.items() if k in ("url", "title", "kind", "fetchedAt", "excerpt")}
+            for r in policy.get("references", [])
+            if isinstance(r, dict) and r.get("url")
+        ],
         "rules": [],
     }
     for r in policy.get("rules", []):
@@ -154,6 +159,7 @@ def save_policy(repo_root: Path, project_id: str, policy: Dict[str, Any]) -> Dic
                 "enabled": bool(r.get("enabled", True)),
                 "terms": terms,
                 "note": str(r.get("note") or ""),
+                **({"source": str(r["source"])} if r.get("source") else {}),
             }
         )
     p = policy_path(repo_root, project_id)
@@ -179,6 +185,180 @@ def merge_extra_terms(policy: Dict[str, Any], extra_terms: List[str], severity: 
             "note": "",
         }
     )
+    return out
+
+
+# ---------------------------------------------------------------------------
+# Gói chính sách chuẩn của nền tảng, nhập từ tệp, lấy từ URL
+# ---------------------------------------------------------------------------
+
+def packs_dir(repo_root: Path) -> Path:
+    return repo_root / "data" / "shared" / "policy_packs"
+
+
+def list_packs(repo_root: Path) -> List[Dict[str, Any]]:
+    out: List[Dict[str, Any]] = []
+    d = packs_dir(repo_root)
+    for f in sorted(d.glob("*.json")) if d.is_dir() else []:
+        try:
+            p = json.loads(f.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        out.append(
+            {
+                "id": p.get("id", f.stem),
+                "name": p.get("name", f.stem),
+                "platform": p.get("platform", ""),
+                "sourceUrl": p.get("sourceUrl", ""),
+                "description": p.get("description", ""),
+                "ruleCount": len(p.get("rules", [])),
+            }
+        )
+    return out
+
+
+def load_pack(repo_root: Path, pack_id: str) -> Optional[Dict[str, Any]]:
+    if not re.fullmatch(r"[a-z0-9_-]+", pack_id or ""):
+        return None
+    f = packs_dir(repo_root) / f"{pack_id}.json"
+    if not f.is_file():
+        return None
+    try:
+        return json.loads(f.read_text(encoding="utf-8"))
+    except Exception:
+        return None
+
+
+def merge_rules(policy: Dict[str, Any], rules: List[Dict[str, Any]], source: str) -> Dict[str, Any]:
+    """Gộp quy tắc vào chính sách: cùng id thì ghi đè, đánh dấu nguồn (pack:/upload:)."""
+    out = deepcopy(policy)
+    by_id = {r.get("id"): i for i, r in enumerate(out["rules"])}
+    for r in rules:
+        rid = f"{source}:{r.get('id')}"
+        item = {**r, "id": rid, "source": source}
+        if rid in by_id:
+            out["rules"][by_id[rid]] = item
+        else:
+            out["rules"].append(item)
+            by_id[rid] = len(out["rules"]) - 1
+    return out
+
+
+def import_pack(policy: Dict[str, Any], pack: Dict[str, Any]) -> Dict[str, Any]:
+    out = merge_rules(policy, pack.get("rules", []), f"pack-{pack.get('id', 'x')}")
+    refs = [r for r in out.get("references", []) if r.get("url") != pack.get("sourceUrl")]
+    if pack.get("sourceUrl"):
+        refs.append({"url": pack["sourceUrl"], "title": pack.get("name", ""), "kind": "pack", "fetchedAt": ""})
+    out["references"] = refs
+    return out
+
+
+def parse_policy_text(filename: str, text: str) -> List[Dict[str, Any]]:
+    """Đọc tệp chính sách tải lên → danh sách quy tắc.
+
+    Hỗ trợ: .json (policy đầy đủ {rules:[...]}, hoặc mảng chuỗi / mảng quy tắc),
+    văn bản (.txt/.md/.csv): mỗi dòng một từ; '# Nhóm' hoặc 'Nhóm: từ1, từ2' để đặt nhóm.
+    """
+    name = (filename or "").lower()
+    rules: List[Dict[str, Any]] = []
+
+    def mk(category: str, terms: List[str], severity: str = "block") -> None:
+        terms = [t.strip() for t in terms if t.strip()]
+        if not terms:
+            return
+        rid = re.sub(r"[^a-z0-9]+", "_", _norm(category)).strip("_") or f"nhom_{len(rules) + 1}"
+        for r in rules:
+            if r["id"] == rid:
+                r["terms"].extend(terms)
+                return
+        rules.append(
+            {"id": rid, "category": category, "label": category, "severity": severity, "enabled": True, "terms": terms, "note": ""}
+        )
+
+    if name.endswith(".json"):
+        data = json.loads(text)
+        if isinstance(data, dict) and isinstance(data.get("rules"), list):
+            for r in data["rules"]:
+                mk_terms = [str(t) for t in r.get("terms", [])]
+                mk(str(r.get("category") or r.get("label") or "Tải lên"), mk_terms, "warn" if r.get("severity") == "warn" else "block")
+                if rules:
+                    rules[-1]["label"] = str(r.get("label") or rules[-1]["label"])
+                    rules[-1]["note"] = str(r.get("note") or "")
+        elif isinstance(data, list):
+            for item in data:
+                if isinstance(item, str):
+                    mk("Tải lên", [item])
+                elif isinstance(item, dict):
+                    mk(str(item.get("category") or "Tải lên"), [str(t) for t in item.get("terms", [])], "warn" if item.get("severity") == "warn" else "block")
+        return rules
+
+    cat = "Tải lên"
+    for raw in text.replace("\r\n", "\n").split("\n"):
+        line = raw.strip().lstrip("\ufeff")
+        if not line:
+            continue
+        if line.startswith("#"):
+            cat = line.lstrip("#").strip() or cat
+            continue
+        if ":" in line and not line.startswith(("http://", "https://")):
+            head, _, tail = line.partition(":")
+            if 0 < len(head) <= 40:
+                mk(head.strip(), re.split(r"[,;|]", tail))
+                continue
+        mk(cat, re.split(r"[,;|]" if "," in line or ";" in line or "|" in line else r"\n", line.lstrip("-*• ").strip()))
+    return rules
+
+
+def _is_public_host(host: str) -> bool:
+    import ipaddress
+    import socket
+
+    try:
+        infos = socket.getaddrinfo(host, None)
+    except Exception:
+        return False
+    for info in infos:
+        ip = ipaddress.ip_address(info[4][0])
+        if ip.is_private or ip.is_loopback or ip.is_link_local or ip.is_reserved or ip.is_multicast:
+            return False
+    return True
+
+
+def fetch_policy_page(url: str, max_bytes: int = 1_500_000, timeout: float = 12.0) -> Dict[str, Any]:
+    """Tải trang chính sách công khai (https), trả về tiêu đề + văn bản thuần. Chặn địa chỉ nội bộ (SSRF)."""
+    import html as _html
+    import urllib.request
+    from urllib.parse import urlparse
+
+    u = urlparse(url)
+    if u.scheme != "https" or not u.hostname:
+        raise ValueError("Chỉ hỗ trợ đường dẫn https.")
+    if not _is_public_host(u.hostname):
+        raise ValueError("Không truy cập được địa chỉ này (nội bộ hoặc không phân giải được).")
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (compatible; PolicyFetcher/1.0)", "Accept-Language": "vi,en;q=0.8"})
+    with urllib.request.urlopen(req, timeout=timeout) as resp:  # noqa: S310 - https + host đã kiểm tra
+        raw = resp.read(max_bytes)
+        charset = resp.headers.get_content_charset() or "utf-8"
+    page = raw.decode(charset, errors="replace")
+    title_m = re.search(r"<title[^>]*>(.*?)</title>", page, re.S | re.I)
+    body = re.sub(r"(?is)<(script|style|noscript|svg)[^>]*>.*?</\1>", " ", page)
+    body = re.sub(r"(?s)<br\s*/?>|</p>|</li>|</h\d>|</div>", "\n", body)
+    text = _html.unescape(re.sub(r"<[^>]+>", " ", body))
+    text = re.sub(r"[ \t\r\f\v]+", " ", text)
+    text = re.sub(r"\n\s*\n+", "\n\n", text).strip()
+    return {
+        "url": url,
+        "title": _html.unescape(title_m.group(1)).strip() if title_m else u.hostname,
+        "text": text[:60000],
+        "chars": len(text),
+    }
+
+
+def add_reference(policy: Dict[str, Any], ref: Dict[str, Any]) -> Dict[str, Any]:
+    out = deepcopy(policy)
+    refs = [r for r in out.get("references", []) if r.get("url") != ref.get("url")]
+    refs.append(ref)
+    out["references"] = refs
     return out
 
 
@@ -215,6 +395,13 @@ def check_texts(texts: Dict[str, str], policy: Dict[str, Any]) -> Dict[str, Any]
                             "note": rule.get("note", ""),
                         }
                     )
+    # Bỏ trùng (cùng nguồn + cùng từ + cùng ngữ cảnh) khi nhiều quy tắc/gói cùng chứa một từ; giữ mức nặng nhất
+    best: Dict[Tuple[str, str, str], Dict[str, Any]] = {}
+    for v in violations:
+        key = (v["source"], v["term"].lower(), v["snippet"])
+        if key not in best or (v["severity"] == "block" and best[key]["severity"] != "block"):
+            best[key] = v
+    violations = list(best.values())
     strict = policy.get("mode") == "strict"
     blocking = [v for v in violations if strict or v["severity"] == "block"]
     return {

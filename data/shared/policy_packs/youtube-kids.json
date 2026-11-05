@@ -1,0 +1,169 @@
+{
+  "id": "youtube-kids",
+  "name": "YouTube — Nội dung cho trẻ em (Made for Kids)",
+  "platform": "youtube",
+  "sourceUrl": "https://support.google.com/youtube/answer/9527654",
+  "description": "Chuẩn an toàn cho video dành cho trẻ em: không bạo lực, nội dung người lớn, hành vi nguy hiểm, kêu gọi thương mại, thu thập thông tin cá nhân.",
+  "rules": [
+    {
+      "id": "violence",
+      "category": "Bạo lực",
+      "label": "Bạo lực, gây thương tích",
+      "severity": "block",
+      "enabled": true,
+      "terms": [
+        "giết",
+        "đánh nhau",
+        "đấm",
+        "máu me",
+        "đổ máu",
+        "tra tấn",
+        "bắn chết",
+        "kill",
+        "gore",
+        "blood",
+        "murder"
+      ],
+      "note": ""
+    },
+    {
+      "id": "scary",
+      "category": "Gây sợ hãi",
+      "label": "Kinh dị, gây ám ảnh",
+      "severity": "warn",
+      "enabled": true,
+      "terms": [
+        "ma quỷ",
+        "kinh dị",
+        "xác chết",
+        "rùng rợn",
+        "horror",
+        "creepy"
+      ],
+      "note": ""
+    },
+    {
+      "id": "adult",
+      "category": "Người lớn",
+      "label": "Chủ đề người lớn",
+      "severity": "block",
+      "enabled": true,
+      "terms": [
+        "khiêu dâm",
+        "sex",
+        "làm tình",
+        "khỏa thân",
+        "nude",
+        "18+",
+        "porn"
+      ],
+      "note": ""
+    },
+    {
+      "id": "substances",
+      "category": "Chất cấm",
+      "label": "Rượu bia, thuốc lá, ma túy",
+      "severity": "block",
+      "enabled": true,
+      "terms": [
+        "ma túy",
+        "heroin",
+        "cần sa",
+        "thuốc lá",
+        "vape",
+        "rượu bia",
+        "say rượu",
+        "cocaine",
+        "drugs"
+      ],
+      "note": ""
+    },
+    {
+      "id": "weapons",
+      "category": "Vũ khí",
+      "label": "Vũ khí",
+      "severity": "block",
+      "enabled": true,
+      "terms": [
+        "súng",
+        "dao găm",
+        "lựu đạn",
+        "bom",
+        "gun",
+        "knife attack",
+        "weapon"
+      ],
+      "note": ""
+    },
+    {
+      "id": "danger",
+      "category": "Hành vi nguy hiểm",
+      "label": "Hành vi trẻ có thể bắt chước",
+      "severity": "warn",
+      "enabled": true,
+      "terms": [
+        "nhảy từ trên cao",
+        "chơi với lửa",
+        "uống thuốc một mình",
+        "đùa với điện",
+        "leo lên mái nhà",
+        "thử thách nguy hiểm",
+        "challenge"
+      ],
+      "note": ""
+    },
+    {
+      "id": "bullying",
+      "category": "Bắt nạt",
+      "label": "Chửi thề, bắt nạt, lăng mạ",
+      "severity": "block",
+      "enabled": true,
+      "terms": [
+        "đồ ngu",
+        "ngu ngốc",
+        "đồ béo",
+        "đồ xấu xí",
+        "chết tiệt",
+        "khốn nạn",
+        "stupid",
+        "idiot",
+        "loser"
+      ],
+      "note": ""
+    },
+    {
+      "id": "commercial",
+      "category": "Thương mại",
+      "label": "Kêu gọi mua bán / liên kết ngoài",
+      "severity": "warn",
+      "enabled": true,
+      "terms": [
+        "mua ngay",
+        "đặt hàng",
+        "giảm giá",
+        "khuyến mãi",
+        "link bio",
+        "inbox để mua",
+        "buy now",
+        "discount"
+      ],
+      "note": ""
+    },
+    {
+      "id": "personal",
+      "category": "Thông tin cá nhân",
+      "label": "Thu thập thông tin cá nhân",
+      "severity": "block",
+      "enabled": true,
+      "terms": [
+        "số điện thoại",
+        "địa chỉ nhà",
+        "zalo",
+        "gmail.com",
+        "mật khẩu",
+        "phone number"
+      ],
+      "note": ""
+    }
+  ]
+}
