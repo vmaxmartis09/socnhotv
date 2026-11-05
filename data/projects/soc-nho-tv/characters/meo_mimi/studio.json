@@ -1,0 +1,200 @@
+{
+  "id": "meo_mimi",
+  "projectId": "soc-nho-tv",
+  "name": "Mèo Mimi (Khéo Tay)",
+  "role": "main",
+  "heightCm": 95,
+  "scaleRatio": 0.95,
+  "weightKg": 13.5,
+  "headBodyRatio": "1 : 4.0 (Đầu = 24cm, Thân & Chân = 71cm)",
+  "colors": {
+    "primary_fur": "#FFFFFF (Trắng tuyết mềm mượt làm nền chủ đạo - Pure Snow White)",
+    "calico_patches": "#2B2D42 (Mảng đen than ở tai trái & chóp đuôi) + #F4A261 (Mảng cam mơ quanh mắt phải & lưng)",
+    "eyes": "#2ECC71 (Xanh ngọc lục bảo to tròn long lanh - Emerald Green Eyes)",
+    "bow": "#FF8FAB (Nơ vải hồng phấn nhỏ nhắn gắn trên tai phải - Pastel Pink Ribbon)",
+    "dress": "#B39DDB (Váy yếm màu tím oải hương - Lavender Pinafore Dress) mặc ngoài áo blouse trắng tay phồng",
+    "shoes": "#FFFFFF & #FF8FAB (Giày búp bê Mary-Jane trắng có quai cài hồng)",
+    "swatches": [
+      "#FFFFFF",
+      "#F4A261",
+      "#2B2D42",
+      "#2ECC71",
+      "#B39DDB",
+      "#FF8FAB"
+    ]
+  },
+  "description": "Mèo Mimi (Khéo Tay) — Cô bé mèo tam thể tinh tế, yêu nghệ thuật (4.5 tuổi). Chiều cao: 95 cm (Tỉ lệ 0.95x - Thấp hơn Bi 5cm) | Cân nặng: 13.5 kg | Đầu/thân: 1:4.0. Màu sắc khóa cứng: Lông tam thể nền trắng (#FFFFFF), mảng đen ở tai trái & chóp đuôi (#2B2D42), mảng cam mơ quanh mắt phải (#F4A261), mắt xanh ngọc lục bảo (#2ECC71), nơ hồng phấn (#FF8FAB) trên tai phải, váy yếm tím oải hương (#B39DDB) ngoài áo trắng tay phồng, giày Mary-Jane trắng.",
+  "promptLock": "3D Pixar-style cute anthropomorphic calico kitten girl named Meo Mimi, 4.5 years old, exact height 95cm (0.95x scale, head-to-body ratio 1:4, slender graceful build), snow-white fur base (#FFFFFF) with FIXED CALICO PATCHES (charcoal black patch on left ear and tail tip #2B2D42, warm apricot-orange patch around right eye #F4A261), large sparkling emerald-green eyes (#2ECC71), small pink nose, delicate white whiskers, wearing a pastel pink ribbon bow (#FF8FAB) on her right ear, a white puff-sleeve blouse under a lavender purple pinafore dress (#B39DDB) with a flower-shaped pocket, white ankle socks and white Mary-Jane shoes, soft 3D fur texture",
+  "voiceSampleUrl": "voice://meo_mimi_v1",
+  "appearances": [
+    {
+      "episodeId": "ep03-chu-tho-bong-cua-mimi-dau-roi",
+      "episodeTitle": "Tập 03: Chú thỏ bông của Mimi đâu rồi",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep08-do-choi-ve-nha",
+      "episodeTitle": "Tập 08: Đồ chơi về nhà",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep12-mat-khau-cua-gia-dinh",
+      "episodeTitle": "Tập 12: Mật khẩu của gia đình",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep19-co-the-cua-em-la-cua-em",
+      "episodeTitle": "Tập 19: Cơ thể của em là của em",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep22-xin-loi-va-tha-thu",
+      "episodeTitle": "Tập 22: Xin lỗi và tha thứ",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep24-long-den-cung-dep",
+      "episodeTitle": "Tập 24: Lông đen cũng đẹp",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep27-loi-hua-cua-lu",
+      "episodeTitle": "Tập 27: Lời hứa của Lu",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep29-cay-dau-cua-mimi",
+      "episodeTitle": "Tập 29: Cây đậu của Mimi",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep34-mon-qua-tu-lam",
+      "episodeTitle": "Tập 34: Món quà tự làm",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep36-hat-dau-thuc-day",
+      "episodeTitle": "Tập 36: Hạt đậu thức dậy",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep39-hom-nay-mac-gi",
+      "episodeTitle": "Tập 39: Hôm nay mặc gì?",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep42-giot-nuoc-tiet-kiem",
+      "episodeTitle": "Tập 42: Giọt nước tiết kiệm",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep47-long-den-trung-thu",
+      "episodeTitle": "Tập 47: Lồng đèn Trung thu",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep50-le-hoi-rung-xanh",
+      "episodeTitle": "Tập 50: Lễ hội Rừng Xanh",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    }
+  ],
+  "memory": {
+    "personality": "Khéo léo, tinh tế, yêu cái đẹp, thích vẽ tranh và làm đồ thủ công, rất giàu lòng trắc ẩn nhưng hơi nhạy cảm và sợ bẩn.",
+    "catchphrases": [
+      "Meo~ Để Mimi trang trí thêm một chút sắc màu nhé!",
+      "Nhẹ nhàng thôi nào, kẻo đau bạn ấy đấy!",
+      "Oa, gọn gàng và xinh xắn quá đi!"
+    ],
+    "habits": [
+      "SCALE LOCK: 95 cm (0.95x - Thấp hơn Bi 5cm) | 13.5 kg | Đầu/Thân 1:4.0.",
+      "COLOR LOCK: Tam thể nền trắng (#FFFFFF), tai trái đen (#2B2D42), mắt phải đốm cam (#F4A261), mắt xanh ngọc (#2ECC71), váy tím (#B39DDB), nơ hồng (#FF8FAB).",
+      "Luôn mang theo túi vải nhỏ đựng bút màu hoặc khăn tay sạch."
+    ],
+    "pastEvents": [
+      "Tập 03: Chú thỏ bông của Mimi đâu rồi (ep03-chu-tho-bong-cua-mimi-dau-roi)",
+      "Tập 08: Đồ chơi về nhà (ep08-do-choi-ve-nha)",
+      "Tập 12: Mật khẩu của gia đình (ep12-mat-khau-cua-gia-dinh)",
+      "Tập 19: Cơ thể của em là của em (ep19-co-the-cua-em-la-cua-em)",
+      "Tập 22: Xin lỗi và tha thứ (ep22-xin-loi-va-tha-thu)",
+      "Tập 24: Lông đen cũng đẹp (ep24-long-den-cung-dep)",
+      "Tập 27: Lời hứa của Lu (ep27-loi-hua-cua-lu)",
+      "Tập 29: Cây đậu của Mimi (ep29-cay-dau-cua-mimi)",
+      "Tập 34: Món quà tự làm (ep34-mon-qua-tu-lam)",
+      "Tập 36: Hạt đậu thức dậy (ep36-hat-dau-thuc-day)",
+      "Tập 39: Hôm nay mặc gì? (ep39-hom-nay-mac-gi)",
+      "Tập 42: Giọt nước tiết kiệm (ep42-giot-nuoc-tiet-kiem)",
+      "... cùng 2 tập khác trong tổng số 14/50 tập."
+    ],
+    "pastEventsSummary": [
+      "Tập 03: Chú thỏ bông của Mimi đâu rồi (ep03-chu-tho-bong-cua-mimi-dau-roi)",
+      "Tập 08: Đồ chơi về nhà (ep08-do-choi-ve-nha)",
+      "Tập 12: Mật khẩu của gia đình (ep12-mat-khau-cua-gia-dinh)",
+      "Tập 19: Cơ thể của em là của em (ep19-co-the-cua-em-la-cua-em)",
+      "Tập 22: Xin lỗi và tha thứ (ep22-xin-loi-va-tha-thu)",
+      "Tập 24: Lông đen cũng đẹp (ep24-long-den-cung-dep)",
+      "Tập 27: Lời hứa của Lu (ep27-loi-hua-cua-lu)",
+      "Tập 29: Cây đậu của Mimi (ep29-cay-dau-cua-mimi)",
+      "Tập 34: Món quà tự làm (ep34-mon-qua-tu-lam)",
+      "Tập 36: Hạt đậu thức dậy (ep36-hat-dau-thuc-day)",
+      "Tập 39: Hôm nay mặc gì? (ep39-hom-nay-mac-gi)",
+      "Tập 42: Giọt nước tiết kiệm (ep42-giot-nuoc-tiet-kiem)",
+      "... cùng 2 tập khác trong tổng số 14/50 tập."
+    ]
+  }
+}

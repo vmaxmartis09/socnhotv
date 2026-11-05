@@ -1,0 +1,72 @@
+{
+  "id": "ong_de_rau_bac",
+  "name": "Ông Dê Râu Bạc (Ông Nội)",
+  "short_name": "Ông Dê Râu Bạc",
+  "species": "Dê núi trưởng thành cao tuổi (Elderly Wise Mountain Goat)",
+  "age": "68 tuổi",
+  "role": "supporting",
+  "height_cm": 155,
+  "scale_ratio": 1.55,
+  "weight_kg": 40.0,
+  "head_body_ratio": "1 : 5.2 (Dáng ông nội phúc hậu, hơi khom nhẹ ấm áp)",
+  "scale_note": "Cao 155 cm (1.55x). Cháu nội Dê Bông (115 cm) đứng ngang ngực Ông; Dê Mun (85 cm) đứng ngang bụng Ông.",
+  "voice_id": "ong_de_v1",
+  "voice_description": "Giọng ông nội trầm ấm, khoan thai, giàu chất kể chuyện cổ tích.",
+  "body": {
+    "height_cm": 155,
+    "weight_kg": 40.0,
+    "head_body_ratio": "1 : 5.2 (Dáng ông nội phúc hậu, hơi khom nhẹ ấm áp)",
+    "build": "Cao 155 cm, chòm râu bạc dài đặc trưng, đôi sừng cong màu hổ phách, phong thái điềm đạm hiền minh.",
+    "scale_note": "Cao 155 cm (1.55x). Cháu nội Dê Bông (115 cm) đứng ngang ngực Ông; Dê Mun (85 cm) đứng ngang bụng Ông."
+  },
+  "colors": {
+    "primary_fur": "#ECEFF1 (Trắng bạc pha ánh xám nhẹ của tuổi tác - Silver White)",
+    "beard_horns": "#CFD8DC (Chòm râu bạc dài vuốt gọn) & Sừng cong màu hổ phách (#D4A373)",
+    "glasses": "#5D4037 (Kính lão tròn gọng đồi mồi nâu)",
+    "shirt": "#795548 (Áo bà ba truyền thống màu nâu đất ấm áp cài cúc gỗ)",
+    "scarf_pants": "#D7CCC8 (Khăn rằn vắt vai & Quần vải đũi màu kem ngà)",
+    "prop": "#C5A880 (Gậy chống bằng tre vàng óng uốn cong đầu)",
+    "swatches": [
+      "#ECEFF1",
+      "#D4A373",
+      "#795548",
+      "#D7CCC8",
+      "#5D4037"
+    ]
+  },
+  "prompt_lock": "3D Pixar-style wise elderly anthropomorphic grandfather goat named Ong De Rau Bac, exact height 155cm (1.55x scale), silver-white fur (#ECEFF1) with a long neat silver beard (#CFD8DC), curved amber-tan horns (#D4A373), tortoise-shell round reading glasses (#5D4037), kind wrinkled eyes, wearing a traditional Vietnamese earth-brown Ao Ba Ba tunic (#795548) with wooden buttons, a woven scarf over shoulder, cream linen trousers (#D7CCC8), holding a smooth bamboo walking stick (#C5A880), warm golden-hour lighting",
+  "turnaround_prompts": {
+    "front": "Front view of Ong De Rau Bac (155cm, 1.55x scale), silver-white fur (#ECEFF1), long silver beard, curved amber horns (#D4A373), brown Ao Ba Ba tunic (#795548), cream trousers, bamboo cane.",
+    "three_quarter_left": "3/4 left view of Ong De Rau Bac (155cm), showing gentle grandfather posture, silver beard and bamboo walking stick.",
+    "side_profile": "90-degree side profile of Ong De Rau Bac (155cm), curved amber horns, long beard, brown tunic.",
+    "back": "Back view of Ong De Rau Bac (155cm), brown Ao Ba Ba tunic (#795548) with woven scarf, silver horns.",
+    "three_quarter_right": "3/4 right view of Ong De Rau Bac (155cm) stroking his silver beard and smiling warmly at his grandchildren."
+  },
+  "expression_prompts": {
+    "storytelling": "Ong De Rau Bac smiling warmly, eyes twinkling behind glasses, gesturing gently with one hand.",
+    "wise_nod": "Ong De Rau Bac stroking his silver beard thoughtfully, nodding with deep understanding.",
+    "laughing": "Ong De Rau Bac laughing heartily 'Khà khà!', shoulders shaking gently with joy.",
+    "proud_grandpa": "Ong De Rau Bac patting two grandchildren's heads at once with boundless affection."
+  },
+  "outfit_prompts": {
+    "default": "Earth-brown Ao Ba Ba tunic (#795548), woven scarf, cream linen trousers (#D7CCC8), bamboo cane.",
+    "gardening": "Default brown tunic with a conical bamboo hat (non la) and wooden watering ladle."
+  },
+  "episode_count": 14,
+  "appearances": [
+    "ep02-mun-so-bong-toi",
+    "ep04-anh-bong-ghen-ti",
+    "ep07-bua-an-khong-roi-vai",
+    "ep10-anh-bong-thuc-khuya",
+    "ep13-bo-suoi-pha-le",
+    "ep17-cau-vong-trong-dia-an",
+    "ep28-tai-gio-hay-tai-mun",
+    "ep29-cay-dau-cua-mimi",
+    "ep32-ong-hay-quen",
+    "ep33-anh-em-nhu-tay-chan",
+    "ep37-mua-tu-dau-toi",
+    "ep38-ong-mat-troi-di-ngu",
+    "ep44-nga-roi-dung-day",
+    "ep46-banh-chung-ngay-tet"
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "id": "post_29e738a1fb07",
+  "project_id": "soc-nho-tv",
+  "title": "Test",
+  "media": [
+    {
+      "path": "output/test.mp4",
+      "platform_variant": null,
+      "kind": "video",
+      "duration_s": 0.0,
+      "thumb": ""
+    }
+  ],
+  "source_ref": null,
+  "render_job_id": null,
+  "idea_id": null,
+  "status": "draft",
+  "approval": {
+    "required": true,
+    "by": null,
+    "at": null,
+    "note": null
+  },
+  "targets": [
+    {
+      "id": "tgt_55f9ed77d0",
+      "account_id": "chan_tt_1",
+      "platform": "tiktok",
+      "scheduled_at": null,
+      "caption": "Cung xem soc nho",
+      "hashtags": [
+        "#socnhotv",
+        "#cartoon3d",
+        "#learnontiktok"
+      ],
+      "title": "Test",
+      "description": "",
+      "tags": [],
+      "privacy": "public",
+      "made_for_kids": false,
+      "cover_time_s": 0.0,
+      "cover_url": null,
+      "first_comment": "",
+      "product_link": "",
+      "disclosure_ad": false,
+      "ai_generated_label": false,
+      "comment_enabled": true,
+      "duet_enabled": true,
+      "stitch_enabled": true,
+      "category": "22",
+      "status": "draft",
+      "external_id": null,
+      "external_url": null,
+      "attempts": 0,
+      "last_error": null,
+      "published_at": null
+    },
+    {
+      "id": "tgt_b2e3af8ea2",
+      "account_id": "chan_yt_1",
+      "platform": "youtube",
+      "scheduled_at": null,
+      "caption": "Cung xem soc nho",
+      "hashtags": [
+        "#SocNhoTV",
+        "#HoatHinh3D",
+        "#ThieuNhi"
+      ],
+      "title": "Test",
+      "description": "",
+      "tags": [],
+      "privacy": "public",
+      "made_for_kids": false,
+      "cover_time_s": 0.0,
+      "cover_url": null,
+      "first_comment": "",
+      "product_link": "",
+      "disclosure_ad": false,
+      "ai_generated_label": false,
+      "comment_enabled": true,
+      "duet_enabled": true,
+      "stitch_enabled": true,
+      "category": "22",
+      "status": "draft",
+      "external_id": null,
+      "external_url": null,
+      "attempts": 0,
+      "last_error": null,
+      "published_at": null
+    }
+  ],
+  "created_at": "2026-11-05T08:29:58.945448+07:00",
+  "updated_at": "2026-11-05T08:29:58.945448+07:00"
+}

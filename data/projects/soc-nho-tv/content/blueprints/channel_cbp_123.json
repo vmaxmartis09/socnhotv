@@ -1,0 +1,14 @@
+{
+  "id": "cbp_123",
+  "channel_url": "https://youtube.com/@test",
+  "niche": "kids",
+  "pillars": [
+    "education",
+    "story"
+  ],
+  "title_patterns": [],
+  "avg_duration_s": 0.0,
+  "upload_cadence": "",
+  "top_videos": [],
+  "best_hooks": []
+}

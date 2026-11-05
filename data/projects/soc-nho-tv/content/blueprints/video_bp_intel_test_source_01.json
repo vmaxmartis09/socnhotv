@@ -1,0 +1,36 @@
+{
+  "id": "bp_intel_test_source_01",
+  "source_ref": "intel_test_source_01",
+  "duration_s": 20.0,
+  "platform": "tiktok",
+  "hook": "Đừng bỏ qua sản phẩm này Dùng thử thấy rất tiện",
+  "beats": [
+    {
+      "t_start": 0.0,
+      "t_end": 3.0,
+      "role": "hook",
+      "summary": "Đừng bỏ qua sản phẩm này Dùng thử thấy rất tiện",
+      "visual": "Cảnh hành động 1",
+      "on_screen_text": "Đừng bỏ qua sản phẩm này Dùng "
+    },
+    {
+      "t_start": 3.0,
+      "t_end": 10.0,
+      "role": "hook",
+      "summary": "Đừng bỏ qua sản phẩm này Dùng thử thấy rất tiện Mua ngay tại giỏ hàng",
+      "visual": "Cảnh hành động 2",
+      "on_screen_text": "Đừng bỏ qua sản phẩm này Dùng "
+    },
+    {
+      "t_start": 10.0,
+      "t_end": 20.0,
+      "role": "cta",
+      "summary": "Dùng thử thấy rất tiện Mua ngay tại giỏ hàng",
+      "visual": "Cảnh hành động 3",
+      "on_screen_text": "Dùng thử thấy rất tiện Mua nga"
+    }
+  ],
+  "cta": "Dùng thử thấy rất tiện Mua ngay tại giỏ hàng",
+  "pacing_cuts_per_10s": 1.0,
+  "suggested_template_id": "affiliate-compare-v1"
+}

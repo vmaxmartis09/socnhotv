@@ -1,54 +1,87 @@
 {
-  "id": "mun",
-  "character_folder_id": "de_mun",
-  "name": "Dê Mun",
-  "version": "1.0",
-  "purpose": "Em út 3 tuổi của nhóm bạn nhỏ trong series Bi Và Những Người Bạn — em trai của Dê Bông, hồn nhiên, đáng yêu",
-  "identity": {
-    "species": "Dê đen (black goat) nhân hóa",
-    "gender": "Nam",
-    "age_feel": "3 tuổi (em út trong nhóm, em trai Dê Bông)",
-    "personality": [
-      "hồn nhiên",
-      "tinh nghịch",
-      "hay bắt chước các anh chị",
-      "dễ khóc dễ cười",
-      "nói ngọng nhẹ vài từ đáng yêu",
-      "rất thương anh Bông"
-    ],
-    "catchphrase": "Mun cũng muốn! Mun cũng muốn!"
-  },
+  "id": "de_mun",
+  "name": "Dê Mun (Em Út)",
+  "short_name": "Dê Mun",
+  "species": "Dê đen nhỏ (Little Black Kid Goat)",
+  "age": "3 tuổi",
+  "role": "main",
+  "height_cm": 85,
+  "scale_ratio": 0.85,
+  "weight_kg": 12.0,
+  "head_body_ratio": "1 : 3.6 (Đầu = 23.5cm, Thân & Chân = 61.5cm - Tỉ lệ em bé mầm non)",
+  "scale_note": "Nhỏ nhất nhóm (85 cm, 0.85x). Đỉnh đầu Mun chạm đúng mũi Sóc Bi (100 cm) và ngang ngực anh ruột Dê Bông (115 cm).",
+  "voice_id": "de_mun_v1",
+  "voice_description": "Giọng em bé 3 tuổi non nớt, ngọt ngào, đôi chữ hơi ngọng đáng yêu, hay cười khúc khích.",
   "body": {
     "height_cm": 85,
-    "height_ratio_to_bi": 0.85,
-    "build": "Thân hình em bé 3 tuổi bụ bẫm đáng yêu, má phính tròn, thấp hơn Bi một cái đầu nhỏ (đầu Mun ngang mũi Bi)",
-    "head_to_body_ratio": "Đầu hơi to kiểu em bé toddler, khoảng 1/3.6 chiều cao cơ thể",
-    "locked": true
+    "weight_kg": 12.0,
+    "head_body_ratio": "1 : 3.6 (Đầu = 23.5cm, Thân & Chân = 61.5cm - Tỉ lệ em bé mầm non)",
+    "build": "Nhỏ nhắn, má phúng phính bầu bĩnh kiểu em bé 3 tuổi (85 cm, tỉ lệ đầu/thân 1:3.6), có đốm sao trắng giữa trán và 2 mầm sừng tí hon.",
+    "scale_note": "Nhỏ nhất nhóm (85 cm, 0.85x). Đỉnh đầu Mun chạm đúng mũi Sóc Bi (100 cm) và ngang ngực anh ruột Dê Bông (115 cm)."
   },
-  "appearance": {
-    "fur": "Lông đen tuyền óng mượt, có một đốm lông trắng hình ngôi sao nhỏ ngay giữa trán",
-    "face": "Hai mầm sừng nhỏ xíu tròn vo trên đỉnh đầu, tai ngắn cụp có mặt trong màu hồng xám, mắt tròn xoe màu nâu lấp lánh, má phính",
-    "tail": "Đuôi ngắn nhỏ màu đen hay ngoe nguẩy khi vui"
+  "colors": {
+    "primary_fur": "#1E1E24 (Đen tuyền óng mượt ánh nhung - Velvety Jet Black)",
+    "forehead_mark": "#FFFFFF (ĐỐM NGÔI SAO TRẮNG NHỎ GIỮA TRÁN - Signature White Forehead Star)",
+    "horns": "#E6CCB2 (Hai mầm sừng tròn xíu như hai hạt đậu màu kem trên đỉnh đầu)",
+    "eyes": "#3E2723 (Đen nâu to tròn chiếm tỉ lệ lớn trên gương mặt bầu bĩnh)",
+    "shirt": "#E53935 (Áo thun đỏ tươi in hình ngôi sao vàng #FFD700 giữa ngực)",
+    "pants": "#1A365D (Quần short thun màu xanh navy đậm)",
+    "boots": "#E53935 & #FFD700 (Ủng cao su nhỏ màu đỏ tươi viền vàng)",
+    "swatches": [
+      "#1E1E24",
+      "#FFFFFF",
+      "#E53935",
+      "#FFD700",
+      "#1A365D"
+    ]
   },
-  "outfit_default": {
-    "top": "Áo thun màu đỏ tươi có in hình ngôi sao nhỏ màu vàng trước ngực",
-    "bottom": "Quần short màu xanh navy",
-    "shoes": "Ủng đi mưa bằng cao su màu đỏ tươi",
-    "accessories": []
+  "prompt_lock": "3D Pixar-style adorable toddler black goat boy named De Mun, 3 years old, exact height 85cm (0.85x scale, shortest child in group, toddler head-to-body ratio 1:3.6, chubby cheeks), velvety jet-black fur (#1E1E24) with a SIGNATURE SMALL WHITE STAR MARKING ON CENTER FOREHEAD (#FFFFFF), two tiny rounded cream horn buds (#E6CCB2), huge sparkling dark brown eyes (#3E2723), wearing a bright red crew-neck t-shirt (#E53935) with a big yellow star (#FFD700) printed on the chest, dark navy shorts (#1A365D), and cute little red rubber boots with yellow trim, ultra-soft 3D Pixar lighting",
+  "turnaround_prompts": {
+    "front": "Front view T-pose of De Mun the 3D Pixar toddler black goat boy (85cm, 0.85x scale, 1:3.6 head-to-body ratio), jet-black fur (#1E1E24), white star on forehead (#FFFFFF), tiny cream horn buds, red t-shirt (#E53935) with yellow star on chest, navy shorts, red rubber boots.",
+    "three_quarter_left": "3/4 left view of De Mun (85cm), chubby toddler cheeks, white forehead star, tiny horn buds, red star shirt (#E53935) and little red boots.",
+    "side_profile": "90-degree side profile of De Mun (85cm), small toddler silhouette, short upturned black goat tail, red t-shirt and red boots.",
+    "back": "Back view of De Mun (85cm), velvety black ears and head, red t-shirt (#E53935), navy shorts (#1A365D), red boots with yellow soles.",
+    "three_quarter_right": "3/4 right view of De Mun (85cm) toddling happily with arms outstretched, big innocent smile."
   },
-  "art_style": {
-    "render": "3D Pixar / hoạt hình CGI",
-    "lighting": "Ánh sáng studio mềm",
-    "background": "Nền trơn xám sáng"
+  "expression_prompts": {
+    "happy": "De Mun giggling with mouth open, chubby cheeks lifted, jumping in his red boots.",
+    "curious": "De Mun squatting down to poke a ladybug on a leaf, huge eyes wide with awe.",
+    "crying": "De Mun sitting on grass, mouth wide open crying 'Be-e-e!', big cartoon tears, rubbing eyes.",
+    "scared_dark": "De Mun hiding behind older brother Bong's leg, peeking out with only one big eye and white forehead star visible.",
+    "proud_try": "De Mun holding up a shoe he put on by himself, beaming with toddler pride.",
+    "sleepy": "De Mun yawning Cute, rubbing right eye with one paw, holding a small cloud pillow.",
+    "pouting": "De Mun puffing chubby black cheeks, arms crossed clumsily over yellow star on shirt.",
+    "hugging": "De Mun wrapping short arms tightly around a friend in a warm toddler hug."
   },
-  "prompt_lock": "a playful 3-year-old toddler boy black goat named Mun, about 85cm tall (0.85x the height of Bi the squirrel, Mun's head reaches Bi's nose), chubby-cheeked toddler build, soft glossy jet-black fur with a small white star-shaped patch on his forehead, two tiny rounded nub horns, short floppy ears with gray-pink inner side, big round sparkling brown eyes, wearing a bright red t-shirt with a small yellow star, navy blue shorts, red rubber rain boots",
-  "voice": {
-    "voice_id": "de-mun",
-    "status": "TODO_CLONE",
-    "direction": "Giọng bé trai 3 tuổi trong trẻo, cao, câu ngắn ngây ngô, thỉnh thoảng ngọng nhẹ vài từ dễ thương nhưng vẫn nghe rõ nghĩa"
+  "outfit_prompts": {
+    "default": "Bright red t-shirt (#E53935) with yellow star (#FFD700) on chest, dark navy shorts (#1A365D), red rubber boots.",
+    "sleepwear": "Yellow onesie pajamas printed with little white sheep and stars, footed slippers.",
+    "rainwear": "Default red boots plus a bright yellow duckling poncho with hood.",
+    "winter": "Puffy red vest over long-sleeve striped shirt, yellow knit scarf.",
+    "bib_mealtime": "Default outfit with a cute sky-blue silicone bib around neck."
   },
-  "persona_set": {
-    "dir": "data/projects/soc-nho-tv/characters/de_mun/persona/",
-    "reference": "data/projects/soc-nho-tv/characters/de_mun/de_mun_01.png (TODO: sinh từ Master DNA prompt)"
-  }
+  "episode_count": 21,
+  "appearances": [
+    "ep01-nui-lua-trong-bung-bi",
+    "ep02-mun-so-bong-toi",
+    "ep04-anh-bong-ghen-ti",
+    "ep07-bua-an-khong-roi-vai",
+    "ep09-lu-rua-tay-sieu-sach",
+    "ep10-anh-bong-thuc-khuya",
+    "ep14-cai-bep-biet-nong",
+    "ep17-cau-vong-trong-dia-an",
+    "ep20-di-kham-bac-si-koala",
+    "ep21-cau-truot-co-luot",
+    "ep24-long-den-cung-dep",
+    "ep28-tai-gio-hay-tai-mun",
+    "ep32-ong-hay-quen",
+    "ep33-anh-em-nhu-tay-chan",
+    "ep38-ong-mat-troi-di-ngu",
+    "ep39-hom-nay-mac-gi",
+    "ep42-giot-nuoc-tiet-kiem",
+    "ep47-long-den-trung-thu",
+    "ep48-di-cho-cung-bac-voi",
+    "ep49-ngay-dau-den-truong",
+    "ep50-le-hoi-rung-xanh"
+  ]
 }

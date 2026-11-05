@@ -1,0 +1,20 @@
+{
+  "id": "vbp_123",
+  "source_ref": "yt_xyz",
+  "duration_s": 45.0,
+  "platform": "tiktok",
+  "hook": "Ban co biet?",
+  "beats": [
+    {
+      "t_start": 0.0,
+      "t_end": 3.0,
+      "role": "hook",
+      "summary": "Hook beat",
+      "visual": "",
+      "on_screen_text": ""
+    }
+  ],
+  "cta": "Follow ngay",
+  "pacing_cuts_per_10s": 0.0,
+  "suggested_template_id": null
+}

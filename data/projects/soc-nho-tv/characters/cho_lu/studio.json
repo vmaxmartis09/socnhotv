@@ -1,0 +1,218 @@
+{
+  "id": "cho_lu",
+  "projectId": "soc-nho-tv",
+  "name": "Cún Lu (Thám Tử Nhí)",
+  "role": "main",
+  "heightCm": 105,
+  "scaleRatio": 1.05,
+  "weightKg": 16.5,
+  "headBodyRatio": "1 : 4.0 (Đầu = 26cm, Thân & Chân = 79cm)",
+  "colors": {
+    "primary_fur": "#E8B86D (Vàng mật ong ấm áp - Warm Honey Gold)",
+    "secondary_fur": "#FFF8E7 (Trắng kem ở mõm, ngực và 4 bàn chân - Creamy White)",
+    "ears_nose": "#8D5524 (Tai nâu vàng sẫm: 1 TAI ĐỨNG + 1 TAI CỤP đặc trưng) & Mũi đen bóng (#1C1C1C)",
+    "eyes": "#8B4513 (Nâu hổ phách sáng lấp lánh - Amber Brown)",
+    "shirt": "#4DB6AC (Áo thun thể thao màu xanh bạc hà - Mint Teal)",
+    "bandana": "#2E7D32 (Khăn bandana xanh lá rừng in họa tiết dấu chân trắng quàng cổ)",
+    "pants_shoes": "#C5A880 (Quần short túi hộp màu kaki) & Giày sneaker trắng sọc xanh (#FFFFFF)",
+    "swatches": [
+      "#E8B86D",
+      "#FFF8E7",
+      "#4DB6AC",
+      "#2E7D32",
+      "#C5A880"
+    ]
+  },
+  "description": "Cún Lu (Thám Tử Nhí) — Bạn thân năng động (5 tuổi). Chiều cao: 105 cm (Tỉ lệ 1.05x - Cao hơn Bi 5cm) | Cân nặng: 16.5 kg | Đầu/thân: 1:4.0. Đặc điểm khóa cứng: 1 TAI TRÁI ĐỨNG + 1 TAI PHẢI CỤP. Màu sắc: Lông vàng mật ong (#E8B86D), ngực & mõm trắng kem (#FFF8E7), áo thun xanh bạc hà (#4DB6AC), khăn bandana xanh lá (#2E7D32) in dấu chân trắng ở cổ, quần short kaki (#C5A880), giày sneaker trắng.",
+  "promptLock": "3D Pixar-style cute anthropomorphic golden puppy boy named Cun Lu, 5 years old, exact height 105cm (1.05x scale, head-to-body ratio 1:4, athletic energetic build), smooth warm honey-gold fur (#E8B86D) with creamy white muzzle, chest and paws (#FFF8E7), SIGNATURE ASYMMETRIC EARS (left ear perked upright, right ear flopped down), shiny black nose (#1C1C1C), amber brown eyes (#8B4513), wearing a mint-teal sporty t-shirt (#4DB6AC), a forest-green neck bandana (#2E7D32) printed with white paw prints, khaki cargo shorts (#C5A880), and white sneakers with green stripes, vibrant 3D lighting",
+  "voiceSampleUrl": "voice://cho_lu_v1",
+  "appearances": [
+    {
+      "episodeId": "ep03-chu-tho-bong-cua-mimi-dau-roi",
+      "episodeTitle": "Tập 03: Chú thỏ bông của Mimi đâu rồi",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep05-lu-khong-doi-duoc",
+      "episodeTitle": "Tập 05: Lu không đợi được",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep09-lu-rua-tay-sieu-sach",
+      "episodeTitle": "Tập 09: Lu rửa tay siêu sạch",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep13-bo-suoi-pha-le",
+      "episodeTitle": "Tập 13: Bờ suối Pha Lê",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep18-nuoc-loc-la-sieu-anh-hung",
+      "episodeTitle": "Tập 18: Nước lọc là siêu anh hùng",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep19-co-the-cua-em-la-cua-em",
+      "episodeTitle": "Tập 19: Cơ thể của em là của em",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep21-cau-truot-co-luot",
+      "episodeTitle": "Tập 21: Cầu trượt có lượt",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep23-ba-tu-co-phep-mau",
+      "episodeTitle": "Tập 23: Ba từ có phép màu",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep25-khong-la-khong",
+      "episodeTitle": "Tập 25: Không là không",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep27-loi-hua-cua-lu",
+      "episodeTitle": "Tập 27: Lời hứa của Lu",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep40-nhung-nguoi-ban-ti-hon",
+      "episodeTitle": "Tập 40: Những người bạn tí hon",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep41-rac-ve-dung-nha",
+      "episodeTitle": "Tập 41: Rác về đúng nhà",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep43-heo-dat-cua-lu",
+      "episodeTitle": "Tập 43: Heo đất của Lu",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep45-man-hinh-vua-du",
+      "episodeTitle": "Tập 45: Màn hình vừa đủ",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep49-ngay-dau-den-truong",
+      "episodeTitle": "Tập 49: Ngày đầu đến trường",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep50-le-hoi-rung-xanh",
+      "episodeTitle": "Tập 50: Lễ hội Rừng Xanh",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    }
+  ],
+  "memory": {
+    "personality": "Nhiệt tình, dũng cảm, thích khám phá và đóng vai 'Thám tử nhí' tìm đồ thất lạc giúp bạn bè, đôi khi hơi ồn ào nhưng cực kỳ trung thành.",
+    "catchphrases": [
+      "Mũi thính của Thám tử Lu đã đánh hơi thấy manh mối rồi!",
+      "Gâu gâu! Để Lu giúp một tay nhé!",
+      "Đội tuần tra Rừng Xanh xuất phát thôi!"
+    ],
+    "habits": [
+      "SCALE LOCK: 105 cm (1.05x) | 16.5 kg | Đầu/Thân 1:4.0.",
+      "COLOR & EAR LOCK: 1 tai trái đứng + 1 tai phải cụp, lông vàng mật ong (#E8B86D), áo xanh bạc hà (#4DB6AC), khăn bandana xanh lá (#2E7D32).",
+      "Hay khịt mũi ngửi manh mối và vẫy đuôi tít mù khi tìm ra câu trả lời."
+    ],
+    "pastEvents": [
+      "Tập 03: Chú thỏ bông của Mimi đâu rồi (ep03-chu-tho-bong-cua-mimi-dau-roi)",
+      "Tập 05: Lu không đợi được (ep05-lu-khong-doi-duoc)",
+      "Tập 09: Lu rửa tay siêu sạch (ep09-lu-rua-tay-sieu-sach)",
+      "Tập 13: Bờ suối Pha Lê (ep13-bo-suoi-pha-le)",
+      "Tập 18: Nước lọc là siêu anh hùng (ep18-nuoc-loc-la-sieu-anh-hung)",
+      "Tập 19: Cơ thể của em là của em (ep19-co-the-cua-em-la-cua-em)",
+      "Tập 21: Cầu trượt có lượt (ep21-cau-truot-co-luot)",
+      "Tập 23: Ba từ có phép màu (ep23-ba-tu-co-phep-mau)",
+      "Tập 25: Không là không (ep25-khong-la-khong)",
+      "Tập 27: Lời hứa của Lu (ep27-loi-hua-cua-lu)",
+      "Tập 40: Những người bạn tí hon (ep40-nhung-nguoi-ban-ti-hon)",
+      "Tập 41: Rác về đúng nhà (ep41-rac-ve-dung-nha)",
+      "... cùng 4 tập khác trong tổng số 16/50 tập."
+    ],
+    "pastEventsSummary": [
+      "Tập 03: Chú thỏ bông của Mimi đâu rồi (ep03-chu-tho-bong-cua-mimi-dau-roi)",
+      "Tập 05: Lu không đợi được (ep05-lu-khong-doi-duoc)",
+      "Tập 09: Lu rửa tay siêu sạch (ep09-lu-rua-tay-sieu-sach)",
+      "Tập 13: Bờ suối Pha Lê (ep13-bo-suoi-pha-le)",
+      "Tập 18: Nước lọc là siêu anh hùng (ep18-nuoc-loc-la-sieu-anh-hung)",
+      "Tập 19: Cơ thể của em là của em (ep19-co-the-cua-em-la-cua-em)",
+      "Tập 21: Cầu trượt có lượt (ep21-cau-truot-co-luot)",
+      "Tập 23: Ba từ có phép màu (ep23-ba-tu-co-phep-mau)",
+      "Tập 25: Không là không (ep25-khong-la-khong)",
+      "Tập 27: Lời hứa của Lu (ep27-loi-hua-cua-lu)",
+      "Tập 40: Những người bạn tí hon (ep40-nhung-nguoi-ban-ti-hon)",
+      "Tập 41: Rác về đúng nhà (ep41-rac-ve-dung-nha)",
+      "... cùng 4 tập khác trong tổng số 16/50 tập."
+    ]
+  }
+}

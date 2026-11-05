@@ -133,7 +133,8 @@ class VideoLibrary:
                     p_time = t.published_at or t.scheduled_at
             for m in p.media:
                 if m.path:
-                    stat = posted_stats.setdefault(m.path, {"count": 0, "last": None})
+                    m_p = m.path.replace("\\", "/")
+                    stat = posted_stats.setdefault(m_p, {"count": 0, "last": None})
                     stat["count"] += 1
                     if not stat["last"] or p_time > stat["last"]:
                         stat["last"] = p_time
@@ -191,7 +192,7 @@ class VideoLibrary:
                         parent_dir = primary_abs_path.parent
                         jpg_files = list(parent_dir.glob("*.jpg")) + list(parent_dir.glob("*.png"))
                         if jpg_files:
-                            thumb = str(jpg_files[0].relative_to(project_path(self.project_id, ensure=False)))
+                            thumb = str(jpg_files[0].relative_to(project_path(self.project_id, ensure=False))).replace("\\", "/")
 
                     p_stat = posted_stats.get(job_id) or posted_stats.get(primary_rel_path) or {"count": 0, "last": None}
 
@@ -219,7 +220,7 @@ class VideoLibrary:
         episodes_dir = project_path(self.project_id, "content", "episodes", ensure=False)
         if episodes_dir.exists():
             for ep_mp4 in episodes_dir.rglob("*.mp4"):
-                rel_path = str(ep_mp4.relative_to(project_path(self.project_id, ensure=False)))
+                rel_path = str(ep_mp4.relative_to(project_path(self.project_id, ensure=False))).replace("\\", "/")
                 if rel_path in seen_paths:
                     continue
                 seen_paths.add(rel_path)
@@ -319,7 +320,7 @@ class VideoLibrary:
             f_dir = project_path(self.project_id, folder_name, ensure=False)
             if f_dir.exists():
                 for mp4 in f_dir.rglob("*.mp4"):
-                    rel_path = str(mp4.relative_to(project_path(self.project_id, ensure=False)))
+                    rel_path = str(mp4.relative_to(project_path(self.project_id, ensure=False))).replace("\\", "/")
                     if rel_path in seen_paths:
                         continue
                     seen_paths.add(rel_path)
@@ -384,7 +385,11 @@ class VideoLibrary:
                 matches_post = False
                 if p.render_job_id and p.render_job_id == v_id:
                     matches_post = True
-                elif any(m.path == primary_path or m.path in variants.values() for m in p.media):
+                elif any(
+                    (m.path and m.path.replace("\\", "/") == primary_path.replace("\\", "/"))
+                    or any(m.path and m.path.replace("\\", "/") == v.replace("\\", "/") for v in variants.values())
+                    for m in p.media
+                ):
                     matches_post = True
                 elif p.id == v_id:
                     matches_post = True

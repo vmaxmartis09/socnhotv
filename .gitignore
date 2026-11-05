@@ -31,6 +31,7 @@ data/projects/*/runs/*
 !data/projects/*/runs/.gitkeep
 !data/projects/*/characters/**
 !data/projects/*/content/series/**
+!data/projects/*/content/episodes/**
 output/
 
 # Third-party integrations

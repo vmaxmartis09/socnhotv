@@ -1,56 +1,80 @@
 {
-  "id": "mimi",
-  "character_folder_id": "meo_mimi",
-  "name": "Mèo Mimi",
-  "version": "1.0",
-  "purpose": "Bạn gái mèo tam thể khéo tay, gọn gàng, giàu lòng thấu cảm của nhóm trong series Bi Và Những Người Bạn",
-  "identity": {
-    "species": "Mèo tam thể (calico cat) nhân hóa",
-    "gender": "Nữ",
-    "age_feel": "5 tuổi",
-    "personality": [
-      "gọn gàng",
-      "chu đáo",
-      "khéo tay (vẽ tranh, gấp giấy)",
-      "thích luật lệ và ngăn nắp",
-      "hơi nhút nhát trước đám đông và sợ bẩn",
-      "rất tinh tế với cảm xúc của bạn bè"
-    ],
-    "catchphrase": "Mimi có một ý này…"
-  },
+  "id": "meo_mimi",
+  "name": "Mèo Mimi (Khéo Tay)",
+  "short_name": "Mèo Mimi",
+  "species": "Mèo tam thể (Calico Kitten)",
+  "age": "4.5 tuổi",
+  "role": "main",
+  "height_cm": 95,
+  "scale_ratio": 0.95,
+  "weight_kg": 13.5,
+  "head_body_ratio": "1 : 4.0 (Đầu = 24cm, Thân & Chân = 71cm)",
+  "scale_note": "Cao 95 cm (0.95x). Thấp hơn Sóc Bi 5 cm (đỉnh đầu Mimi ngang trán Bi), cao hơn Dê Mun 10 cm.",
+  "voice_id": "meo_mimi_v1",
+  "voice_description": "Giọng bé gái 4.5 tuổi nhẹ nhàng, trong trẻo, giàu cảm xúc, thích ngân nga hát.",
   "body": {
     "height_cm": 95,
-    "height_ratio_to_bi": 0.95,
-    "build": "Thon thả, thanh mảnh, duyên dáng, thấp hơn Sóc Bi (100cm) một chút",
-    "head_to_body_ratio": "Đầu tròn duyên dáng khoảng 1/4 chiều cao cơ thể",
-    "locked": true
+    "weight_kg": 13.5,
+    "head_body_ratio": "1 : 4.0 (Đầu = 24cm, Thân & Chân = 71cm)",
+    "build": "Thanh mảnh, duyên dáng (95 cm), 3 cặp râu mèo trắng mảnh hai bên má, đuôi mèo dài uyển chuyển có chóp đen.",
+    "scale_note": "Cao 95 cm (0.95x). Thấp hơn Sóc Bi 5 cm (đỉnh đầu Mimi ngang trán Bi), cao hơn Dê Mun 10 cm."
   },
-  "appearance": {
-    "fur": "Lông tam thể nền trắng mượt với các mảng màu cam và đen (mảng đen phủ tai trái, mảng cam quanh mắt phải)",
-    "face": "Đôi mắt hình hạnh nhân to tròn màu xanh ngọc lục bảo (emerald-green), mũi hồng nhỏ, ria mép trắng mảnh",
-    "tail": "Đuôi dài bông xù có chóp đuôi màu đen"
-  },
-  "outfit_default": {
-    "top": "Áo blouse trắng tay phồng mặc bên trong váy yếm",
-    "bottom": "Váy yếm màu tím oải hương (lavender pinafore dress)",
-    "shoes": "Giày búp bê Mary-Jane màu trắng",
-    "accessories": [
-      "Chiếc nơ nhỏ màu hồng phấn cài trên tai phải"
+  "colors": {
+    "primary_fur": "#FFFFFF (Trắng tuyết mềm mượt làm nền chủ đạo - Pure Snow White)",
+    "calico_patches": "#2B2D42 (Mảng đen than ở tai trái & chóp đuôi) + #F4A261 (Mảng cam mơ quanh mắt phải & lưng)",
+    "eyes": "#2ECC71 (Xanh ngọc lục bảo to tròn long lanh - Emerald Green Eyes)",
+    "bow": "#FF8FAB (Nơ vải hồng phấn nhỏ nhắn gắn trên tai phải - Pastel Pink Ribbon)",
+    "dress": "#B39DDB (Váy yếm màu tím oải hương - Lavender Pinafore Dress) mặc ngoài áo blouse trắng tay phồng",
+    "shoes": "#FFFFFF & #FF8FAB (Giày búp bê Mary-Jane trắng có quai cài hồng)",
+    "swatches": [
+      "#FFFFFF",
+      "#F4A261",
+      "#2B2D42",
+      "#2ECC71",
+      "#B39DDB",
+      "#FF8FAB"
     ]
   },
-  "art_style": {
-    "render": "3D Pixar / hoạt hình CGI",
-    "lighting": "Ánh sáng studio mềm",
-    "background": "Nền trơn xám sáng"
+  "prompt_lock": "3D Pixar-style cute anthropomorphic calico kitten girl named Meo Mimi, 4.5 years old, exact height 95cm (0.95x scale, head-to-body ratio 1:4, slender graceful build), snow-white fur base (#FFFFFF) with FIXED CALICO PATCHES (charcoal black patch on left ear and tail tip #2B2D42, warm apricot-orange patch around right eye #F4A261), large sparkling emerald-green eyes (#2ECC71), small pink nose, delicate white whiskers, wearing a pastel pink ribbon bow (#FF8FAB) on her right ear, a white puff-sleeve blouse under a lavender purple pinafore dress (#B39DDB) with a flower-shaped pocket, white ankle socks and white Mary-Jane shoes, soft 3D fur texture",
+  "turnaround_prompts": {
+    "front": "Front view T-pose of Meo Mimi the 3D Pixar calico kitten girl (95cm, 0.95x scale), white fur with black left ear (#2B2D42) and orange patch around right eye (#F4A261), emerald green eyes (#2ECC71), pink bow (#FF8FAB) on right ear, lavender pinafore dress (#B39DDB), white Mary-Jane shoes.",
+    "three_quarter_left": "3/4 left view of Meo Mimi (95cm), clearly showing black left ear patch (#2B2D42), graceful slender tail with black tip, lavender dress (#B39DDB).",
+    "side_profile": "90-degree side profile of Meo Mimi (95cm), dainty kitten profile, puff-sleeve white blouse under lavender pinafore (#B39DDB), curved tail.",
+    "back": "Back view of Meo Mimi (95cm), showing apricot-orange spot on upper back (#F4A261), black-tipped white tail, lavender dress ribbon.",
+    "three_quarter_right": "3/4 right view of Meo Mimi (95cm) holding a pastel drawing pad and colored pencils, pink bow (#FF8FAB) on right ear, sweet smile."
   },
-  "prompt_lock": "a neat, gentle 5-year-old girl calico cat named Mimi, about 95cm tall (0.95x the height of Bi the squirrel, slightly shorter than Bi), slender graceful build, calico fur with white base and orange and black patches (black patch over her left ear, orange patch around her right eye), long fluffy tail with a black tip, large emerald-green almond eyes, small pink nose, thin white whiskers, wearing a lavender pinafore dress over a white puff-sleeve blouse, a small pink bow on her right ear, white Mary-Jane shoes",
-  "voice": {
-    "voice_id": "meo-mimi",
-    "status": "TODO_CLONE",
-    "direction": "Giọng bé gái 5 tuổi nhẹ nhàng, trong trẻo, lễ phép, dịu dàng và giàu cảm xúc"
+  "expression_prompts": {
+    "happy": "Meo Mimi smiling sweetly with paws clasped near cheek, emerald eyes sparkling, tail tip curling into a heart shape.",
+    "artistic_focus": "Meo Mimi holding a paintbrush, tongue tip peeking out slightly in concentration, eyes bright.",
+    "shy": "Meo Mimi hiding half her face behind her sketchbook, cheeks blushing pink, ears angled sideways.",
+    "sad": "Meo Mimi hugging her plush bunny, emerald eyes glistening with tears, whiskers drooping.",
+    "disgusted_mess": "Meo Mimi lifting both paws up to avoid mud, nose wrinkled cute, stepping back on tiptoes.",
+    "gentle_comfort": "Meo Mimi offering a clean floral handkerchief with a warm empathetic smile.",
+    "surprised": "Meo Mimi covering mouth with both white paws, emerald eyes round like marbles.",
+    "singing": "Meo Mimi closing eyes blissfully with musical notes around her, swaying gently."
   },
-  "persona_set": {
-    "dir": "data/projects/soc-nho-tv/characters/meo_mimi/persona/",
-    "reference": "data/projects/soc-nho-tv/characters/meo_mimi/meo_mimi_01.png (TODO: sinh từ Master DNA prompt)"
-  }
+  "outfit_prompts": {
+    "default": "White puff-sleeve blouse under lavender purple pinafore dress (#B39DDB), pink ear bow (#FF8FAB), white Mary-Jane shoes.",
+    "art_smock": "Default dress covered by a pastel pink painter's smock with colorful paint dabs and a lavender beret.",
+    "sleepwear": "Soft lavender nightgown with lace trim and a matching sleeping eye-mask pushed up on forehead.",
+    "rainwear": "Pastel pink polka-dot raincoat with flared hem, lavender rain boots.",
+    "ballet": "Pastel pink tutu dress with satin ribbon shoes for forest dance performances."
+  },
+  "episode_count": 14,
+  "appearances": [
+    "ep03-chu-tho-bong-cua-mimi-dau-roi",
+    "ep08-do-choi-ve-nha",
+    "ep12-mat-khau-cua-gia-dinh",
+    "ep19-co-the-cua-em-la-cua-em",
+    "ep22-xin-loi-va-tha-thu",
+    "ep24-long-den-cung-dep",
+    "ep27-loi-hua-cua-lu",
+    "ep29-cay-dau-cua-mimi",
+    "ep34-mon-qua-tu-lam",
+    "ep36-hat-dau-thuc-day",
+    "ep39-hom-nay-mac-gi",
+    "ep42-giot-nuoc-tiet-kiem",
+    "ep47-long-den-trung-thu",
+    "ep50-le-hoi-rung-xanh"
+  ]
 }

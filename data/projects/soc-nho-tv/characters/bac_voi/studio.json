@@ -1,0 +1,102 @@
+{
+  "id": "bac_voi",
+  "projectId": "soc-nho-tv",
+  "name": "Bác Voi (Chợ Làng Rừng Xanh)",
+  "role": "supporting",
+  "heightCm": 180,
+  "scaleRatio": 1.8,
+  "weightKg": 65.0,
+  "headBodyRatio": "1 : 4.8 (To lớn, vạm vỡ nhưng tròn trịa thân thiện)",
+  "colors": {
+    "primary_skin": "#78909C (Xám xanh ấm áp, mịn màng - Warm Slate Blue-Grey)",
+    "inner_ears_cheeks": "#F48FB1 (Hồng ấm ở lòng tai lớn và hai gò má)",
+    "hat": "#E6CCB2 (Nón lá / Mũ cói rộng vành truyền thống Việt Nam đội trên đầu)",
+    "shirt": "#3F51B5 (Áo sơ mi vải đũi màu xanh chàm xắn tay gọn gàng - Indigo Linen Shirt)",
+    "apron": "#5D4037 (Tạp dề vải bố màu nâu sẫm nhiều túi đựng hạt giống và trái cây)",
+    "pants": "#8D6E63 (Quần vải ống rộng màu nâu nhạt & Dép mộc)",
+    "swatches": [
+      "#78909C",
+      "#3F51B5",
+      "#5D4037",
+      "#E6CCB2",
+      "#F48FB1"
+    ]
+  },
+  "description": "Bác Voi — Chủ tiệm tạp hóa & nông sản tốt bụng ở Chợ Làng Rừng Xanh (50 tuổi). Chiều cao: 180 cm (Tỉ lệ 1.80x - Cao lớn nhất series, Bi đứng ngang thắt lưng Bác Voi) | Cân nặng: 65 kg. Màu sắc: Da xám xanh ấm (#78909C), lòng tai hồng nhạt (#F48FB1), đội mũ cói/nón lá (#E6CCB2), mặc áo vải đũi xanh chàm (#3F51B5), tạp dề nâu sẫm nhiều túi (#5D4037), quần nâu nhạt (#8D6E63).",
+  "promptLock": "3D Pixar-style cheerful giant anthropomorphic Asian elephant shopkeeper named Bac Voi, exact height 180cm (1.80x scale, tallest character in village, Bi reaches his waist, sturdy round build), warm slate blue-grey skin (#78909C) with rosy inner ears (#F48FB1), friendly expressive trunk, short rounded ivory tusks, wearing a traditional woven straw hat (#E6CCB2), a rolled-sleeve indigo-blue linen shirt (#3F51B5), a dark-brown canvas shopkeeper apron (#5D4037) with big pockets full of fresh fruits, and tan trousers (#8D6E63), warm bustling village market lighting",
+  "voiceSampleUrl": "voice://bac_voi_v1",
+  "appearances": [
+    {
+      "episodeId": "ep15-bi-bi-lac-o-cho",
+      "episodeTitle": "Tập 15: Bi bị lạc ở chợ",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep23-ba-tu-co-phep-mau",
+      "episodeTitle": "Tập 23: Ba từ có phép màu",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep30-chiec-vi-o-san-da",
+      "episodeTitle": "Tập 30: Chiếc ví ở sân đa",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep43-heo-dat-cua-lu",
+      "episodeTitle": "Tập 43: Heo đất của Lu",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep48-di-cho-cung-bac-voi",
+      "episodeTitle": "Tập 48: Đi chợ cùng bác Voi",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    }
+  ],
+  "memory": {
+    "personality": "Hào sảng, tốt bụng, khỏe mạnh, luôn sẵn sàng dùng chiếc vòi dài giúp đỡ các bạn nhỏ và thưởng trái cây tươi cho bé ngoan.",
+    "catchphrases": [
+      "Haha! Chào các bạn nhỏ của Bác Voi nhé!",
+      "Vòi dài sức khỏe, việc khó để Bác Voi lo!",
+      "Giúp đỡ nhau một tay là cả làng cùng vui!"
+    ],
+    "habits": [
+      "SCALE LOCK: 180 cm (1.80x - Cao nhất làng, Bi đứng ngang thắt lưng Bác Voi) | 65 kg.",
+      "COLOR LOCK: Da xám xanh (#78909C), áo xanh chàm (#3F51B5), tạp dề nâu sẫm (#5D4037), mũ cói (#E6CCB2).",
+      "Thường dùng vòi cuốn nhẹ giỏ đồ giúp người già và trẻ nhỏ."
+    ],
+    "pastEvents": [
+      "Tập 15: Bi bị lạc ở chợ (ep15-bi-bi-lac-o-cho)",
+      "Tập 23: Ba từ có phép màu (ep23-ba-tu-co-phep-mau)",
+      "Tập 30: Chiếc ví ở sân đa (ep30-chiec-vi-o-san-da)",
+      "Tập 43: Heo đất của Lu (ep43-heo-dat-cua-lu)",
+      "Tập 48: Đi chợ cùng bác Voi (ep48-di-cho-cung-bac-voi)"
+    ],
+    "pastEventsSummary": [
+      "Tập 15: Bi bị lạc ở chợ (ep15-bi-bi-lac-o-cho)",
+      "Tập 23: Ba từ có phép màu (ep23-ba-tu-co-phep-mau)",
+      "Tập 30: Chiếc ví ở sân đa (ep30-chiec-vi-o-san-da)",
+      "Tập 43: Heo đất của Lu (ep43-heo-dat-cua-lu)",
+      "Tập 48: Đi chợ cùng bác Voi (ep48-di-cho-cung-bac-voi)"
+    ]
+  }
+}

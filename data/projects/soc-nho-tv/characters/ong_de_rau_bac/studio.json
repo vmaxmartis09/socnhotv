@@ -1,0 +1,199 @@
+{
+  "id": "ong_de_rau_bac",
+  "projectId": "soc-nho-tv",
+  "name": "Ông Dê Râu Bạc (Ông Nội)",
+  "role": "supporting",
+  "heightCm": 155,
+  "scaleRatio": 1.55,
+  "weightKg": 40.0,
+  "headBodyRatio": "1 : 5.2 (Dáng ông nội phúc hậu, hơi khom nhẹ ấm áp)",
+  "colors": {
+    "primary_fur": "#ECEFF1 (Trắng bạc pha ánh xám nhẹ của tuổi tác - Silver White)",
+    "beard_horns": "#CFD8DC (Chòm râu bạc dài vuốt gọn) & Sừng cong màu hổ phách (#D4A373)",
+    "glasses": "#5D4037 (Kính lão tròn gọng đồi mồi nâu)",
+    "shirt": "#795548 (Áo bà ba truyền thống màu nâu đất ấm áp cài cúc gỗ)",
+    "scarf_pants": "#D7CCC8 (Khăn rằn vắt vai & Quần vải đũi màu kem ngà)",
+    "prop": "#C5A880 (Gậy chống bằng tre vàng óng uốn cong đầu)",
+    "swatches": [
+      "#ECEFF1",
+      "#D4A373",
+      "#795548",
+      "#D7CCC8",
+      "#5D4037"
+    ]
+  },
+  "description": "Ông Dê Râu Bạc — Ông nội của Dê Bông và Dê Mun, người giữ vườn cây cổ thụ Làng Rừng Xanh (68 tuổi). Chiều cao: 155 cm (Tỉ lệ 1.55x - Bông ngang ngực Ông, Mun ngang bụng Ông) | Cân nặng: 40 kg. Màu sắc: Lông trắng bạc (#ECEFF1), chòm râu bạc dài (#CFD8DC), sừng cong màu hổ phách (#D4A373), kính lão gọng đồi mồi, áo bà ba nâu đất (#795548), quần đũi kem (#D7CCC8), tay cầm gậy tre.",
+  "promptLock": "3D Pixar-style wise elderly anthropomorphic grandfather goat named Ong De Rau Bac, exact height 155cm (1.55x scale), silver-white fur (#ECEFF1) with a long neat silver beard (#CFD8DC), curved amber-tan horns (#D4A373), tortoise-shell round reading glasses (#5D4037), kind wrinkled eyes, wearing a traditional Vietnamese earth-brown Ao Ba Ba tunic (#795548) with wooden buttons, a woven scarf over shoulder, cream linen trousers (#D7CCC8), holding a smooth bamboo walking stick (#C5A880), warm golden-hour lighting",
+  "voiceSampleUrl": "voice://ong_de_v1",
+  "appearances": [
+    {
+      "episodeId": "ep02-mun-so-bong-toi",
+      "episodeTitle": "Tập 02: Mun sợ bóng tối",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep04-anh-bong-ghen-ti",
+      "episodeTitle": "Tập 04: Anh Bông ghen tị",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep07-bua-an-khong-roi-vai",
+      "episodeTitle": "Tập 07: Bữa ăn không rơi vãi",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep10-anh-bong-thuc-khuya",
+      "episodeTitle": "Tập 10: Anh Bông thức khuya",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep13-bo-suoi-pha-le",
+      "episodeTitle": "Tập 13: Bờ suối Pha Lê",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep17-cau-vong-trong-dia-an",
+      "episodeTitle": "Tập 17: Cầu vồng trong đĩa ăn",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep28-tai-gio-hay-tai-mun",
+      "episodeTitle": "Tập 28: Tại gió hay tại Mun?",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep29-cay-dau-cua-mimi",
+      "episodeTitle": "Tập 29: Cây đậu của Mimi",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep32-ong-hay-quen",
+      "episodeTitle": "Tập 32: Ông hay quên",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep33-anh-em-nhu-tay-chan",
+      "episodeTitle": "Tập 33: Anh em như tay chân",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep37-mua-tu-dau-toi",
+      "episodeTitle": "Tập 37: Mưa từ đâu tới?",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep38-ong-mat-troi-di-ngu",
+      "episodeTitle": "Tập 38: Ông Mặt Trời đi ngủ",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep44-nga-roi-dung-day",
+      "episodeTitle": "Tập 44: Ngã rồi đứng dậy",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep46-banh-chung-ngay-tet",
+      "episodeTitle": "Tập 46: Bánh chưng ngày Tết",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    }
+  ],
+  "memory": {
+    "personality": "Hiền minh, khoan dung, thuộc lòng mọi câu chuyện cổ tích và quy luật thiên nhiên của Làng Rừng Xanh.",
+    "catchphrases": [
+      "Khà khà, cái cây lớn lên cũng cần thời gian, các cháu cũng vậy!",
+      "Ông cháu mình cùng nhìn xem thiên nhiên dạy gì nhé!",
+      "Quý nhất là tấm lòng biết yêu thương nhau."
+    ],
+    "habits": [
+      "SCALE LOCK: 155 cm (1.55x - Bông cao ngang ngực Ông, Mun ngang bụng Ông) | 40 kg.",
+      "COLOR LOCK: Lông & râu trắng bạc (#ECEFF1), sừng hổ phách (#D4A373), áo bà ba nâu đất (#795548).",
+      "Hay vuốt chòm râu bạc và kể chuyện dưới gốc cây Sồi Cổ Thụ."
+    ],
+    "pastEvents": [
+      "Tập 02: Mun sợ bóng tối (ep02-mun-so-bong-toi)",
+      "Tập 04: Anh Bông ghen tị (ep04-anh-bong-ghen-ti)",
+      "Tập 07: Bữa ăn không rơi vãi (ep07-bua-an-khong-roi-vai)",
+      "Tập 10: Anh Bông thức khuya (ep10-anh-bong-thuc-khuya)",
+      "Tập 13: Bờ suối Pha Lê (ep13-bo-suoi-pha-le)",
+      "Tập 17: Cầu vồng trong đĩa ăn (ep17-cau-vong-trong-dia-an)",
+      "Tập 28: Tại gió hay tại Mun? (ep28-tai-gio-hay-tai-mun)",
+      "Tập 29: Cây đậu của Mimi (ep29-cay-dau-cua-mimi)",
+      "Tập 32: Ông hay quên (ep32-ong-hay-quen)",
+      "Tập 33: Anh em như tay chân (ep33-anh-em-nhu-tay-chan)",
+      "Tập 37: Mưa từ đâu tới? (ep37-mua-tu-dau-toi)",
+      "Tập 38: Ông Mặt Trời đi ngủ (ep38-ong-mat-troi-di-ngu)",
+      "... cùng 2 tập khác trong tổng số 14/50 tập."
+    ],
+    "pastEventsSummary": [
+      "Tập 02: Mun sợ bóng tối (ep02-mun-so-bong-toi)",
+      "Tập 04: Anh Bông ghen tị (ep04-anh-bong-ghen-ti)",
+      "Tập 07: Bữa ăn không rơi vãi (ep07-bua-an-khong-roi-vai)",
+      "Tập 10: Anh Bông thức khuya (ep10-anh-bong-thuc-khuya)",
+      "Tập 13: Bờ suối Pha Lê (ep13-bo-suoi-pha-le)",
+      "Tập 17: Cầu vồng trong đĩa ăn (ep17-cau-vong-trong-dia-an)",
+      "Tập 28: Tại gió hay tại Mun? (ep28-tai-gio-hay-tai-mun)",
+      "Tập 29: Cây đậu của Mimi (ep29-cay-dau-cua-mimi)",
+      "Tập 32: Ông hay quên (ep32-ong-hay-quen)",
+      "Tập 33: Anh em như tay chân (ep33-anh-em-nhu-tay-chan)",
+      "Tập 37: Mưa từ đâu tới? (ep37-mua-tu-dau-toi)",
+      "Tập 38: Ông Mặt Trời đi ngủ (ep38-ong-mat-troi-di-ngu)",
+      "... cùng 2 tập khác trong tổng số 14/50 tập."
+    ]
+  }
+}

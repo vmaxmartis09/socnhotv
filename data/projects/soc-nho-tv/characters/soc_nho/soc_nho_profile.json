@@ -1,97 +1,89 @@
 {
   "id": "soc_nho",
-  "name": "Sóc Nhỏ",
-  "version": "1.1",
-  "source": "Phương án số 2 trong bảng 4 phương án (Gemini, 2026-11-01)",
-  "purpose": "Nhân vật chính kênh YouTube Kids",
-  "identity": {
-    "species": "Sóc đỏ (red squirrel) nhân hóa",
-    "gender": "Nam",
-    "age_equivalent_years": "3-4",
-    "nationality_feel": "Gần gũi trẻ em Việt Nam",
-    "personality": [
-      "nhanh nhẹn",
-      "lanh lợi",
-      "thân thiện",
-      "tinh nghịch",
-      "tò mò"
-    ]
-  },
+  "name": "Sóc Nhỏ (Bi)",
+  "short_name": "Sóc Bi",
+  "species": "Sóc đỏ Bắc Âu (Red Squirrel)",
+  "age": "4.5 tuổi",
+  "role": "main",
+  "height_cm": 100,
+  "scale_ratio": 1.0,
+  "weight_kg": 15.0,
+  "head_body_ratio": "1 : 4.0 (Đầu = 25cm, Thân & Chân = 75cm)",
+  "scale_note": "Mốc chuẩn 1.0x (100 cm). Cao ngang cằm Dê Bông (115 cm), thấp hơn Cún Lu 5 cm, cao hơn Mèo Mimi 5 cm, đỉnh đầu Dê Mun chạm mũi Bi.",
+  "voice_id": "soc_nho_v1",
+  "voice_description": "Giọng bé trai 4.5 tuổi, trong trẻo, lanh lợi, giàu năng lượng, đôi khi hơi vội vàng.",
   "body": {
     "height_cm": 100,
-    "weight_kg": 15,
-    "build": "Thon gọn, nhanh nhẹn, khỏe khoắn như trẻ 3-4 tuổi hay chạy nhảy (KHÔNG béo, KHÔNG phình)",
-    "head_to_body_ratio": "Đầu to vừa phải, chiếm khoảng 1/4 chiều cao cơ thể (nét hoạt hình đáng yêu)",
-    "limbs": "Tay chân ngắn nhưng thon, linh hoạt",
-    "belly": "Phẳng, thân gọn, không bụng phệ",
-    "locked": true,
-    "note": "Giữ thon gọn ở MỌI góc máy; má vẫn hơi phính nhưng thân người gầy gọn"
+    "weight_kg": 15.0,
+    "head_body_ratio": "1 : 4.0 (Đầu = 25cm, Thân & Chân = 75cm)",
+    "build": "Thon gọn, nhanh nhẹn, bụng phẳng (TUYỆT ĐỐI KHÔNG BỤNG BỰ), tay chân linh hoạt, đuôi bông xù lớn cong chữ S cao bằng lưng.",
+    "scale_note": "Mốc chuẩn 1.0x (100 cm). Cao ngang cằm Dê Bông (115 cm), thấp hơn Cún Lu 5 cm, cao hơn Mèo Mimi 5 cm, đỉnh đầu Dê Mun chạm mũi Bi."
   },
-  "appearance": {
-    "fur": "Nâu đỏ cam ấm, bụng và má sáng hơn",
-    "face": {
-      "eyes": "Đen tròn to, bóng, có highlight",
-      "cheeks": "Hơi phính nhẹ, hồng nhẹ (mặt thon, không tròn phệ)",
-      "mouth": "Cười thân thiện, lộ hai răng cửa",
-      "ears": "Nhọn nhỏ, có chùm lông ở đỉnh tai"
-    },
-    "tail": "Đuôi xù rất lớn, cong lên sau lưng, nâu đỏ đậm dần về ngọn",
-    "skin_tone_feel": "Tông ấm nâu, gần da trẻ em Việt Nam"
-  },
-  "outfit_default": {
-    "top": "Áo phông vàng cổ tròn",
-    "bottom": "Quần short đen",
-    "shoes": "Giày thể thao tối màu, đế trắng",
-    "accessories": []
-  },
-  "outfit_alternatives_not_chosen": [
-    "Áo thun đỏ + quần yếm jean",
-    "Áo bà ba xanh lá + nón lá",
-    "Hoodie cam + ba lô"
-  ],
-  "art_style": {
-    "render": "3D Pixar / hoạt hình CGI",
-    "lighting": "Ánh sáng studio mềm, bóng đổ nhẹ dưới chân",
-    "background": "Nền trơn sáng (dễ tách nền)",
-    "aspect_ratio": "16:9 cho video ngang; 9:16 khi làm Shorts",
-    "quality": "Ultra detailed, chi tiết lông mịn"
-  },
-  "prompt_lock": "Bé sóc nam, 3-4 tuổi, cao ~100cm nặng ~15kg, thân hình THON GỌN, ốm khỏe, nhanh nhẹn như trẻ hay chạy nhảy, KHÔNG béo, bụng phẳng, thân nhỏ gọn, tay chân ngắn thon, đầu to vừa phải khoảng 1/4 thân, lông nâu đỏ cam, mắt đen tròn to, má hồng nhẹ, hai răng cửa, đuôi xù lớn, áo phông vàng vừa người, quần short đen, giày thể thao tối màu, 3D Pixar, ánh sáng studio mềm, nền trơn sáng",
-  "shot_list": {
-    "sheet_1": [
-      "chính diện vẫy tay",
-      "3/4 trái",
-      "3/4 phải",
-      "nhìn từ sau",
-      "cận mặt cười toe",
-      "ngạc nhiên há miệng",
-      "chạy nhanh",
-      "nhảy cao vui mừng",
-      "ngồi xếp bằng vỗ tay"
-    ],
-    "sheet_2": [
-      "đi bộ nhìn bên hông",
-      "góc thấp chống nạnh",
-      "góc cao ngước lên",
-      "ôm quả hạt dẻ",
-      "giơ ngón cái",
-      "mếu máo",
-      "ngủ gật ôm gối",
-      "chỉ tay dẫn đường",
-      "cười nhắm mắt giang tay"
+  "colors": {
+    "primary_fur": "#D96B27 (Cam nâu đất ấm - Warm Terracotta Orange)",
+    "secondary_fur": "#F7E1C6 (Kem sữa sáng ở má, cằm, bụng - Soft Cream)",
+    "eyes": "#1A1110 (Đen nhánh to tròn có đốm sáng trắng lớn - Glossy Obsidian)",
+    "nose": "#3D2314 (Nâu hạt dẻ sẫm hình tam giác nhỏ)",
+    "shirt": "#FFD43B (Áo thun cổ tròn màu vàng nắng ấm - Sunny Yellow)",
+    "pants": "#22252A (Quần short vải kaki mềm màu đen than - Charcoal Black)",
+    "shoes": "#2B2D42 & #FFFFFF (Giày sneaker tối màu, đế cao su trắng dày)",
+    "swatches": [
+      "#D96B27",
+      "#F7E1C6",
+      "#FFD43B",
+      "#22252A",
+      "#3D2314"
     ]
   },
-  "output_dir": "assets/soc_nho/",
-  "file_naming": "soc_nho_NN.png",
-  "master_reference": {
-    "file": "assets/soc_nho/soc_nho_01.png",
-    "approved_by_user": true,
-    "note": "Mẫu chuẩn thể hình thon gọn, nhanh nhẹn. Mọi ảnh/video khác phải khớp ảnh này"
+  "prompt_lock": "3D Pixar-style cute anthropomorphic red squirrel boy named Bi, 4.5 years old, exact height 100cm (1.0x reference scale, head-to-body ratio 1:4, slim agile build, flat tummy, NO chubby belly), warm terracotta orange-brown fur (#D96B27) with soft cream cheeks and chest (#F7E1C6), large glossy black eyes (#1A1110) with expressive eyebrows, upright tufted squirrel ears, big fluffy S-curved bushy tail as tall as his back, wearing a bright sunny yellow crew-neck t-shirt (#FFD43B), charcoal black shorts (#22252A), and dark sneakers with white rubber soles, ultra-detailed soft fur texture, warm cinematic lighting",
+  "turnaround_prompts": {
+    "front": "Front view T-pose of Bi the 3D Pixar red squirrel boy (100cm, 1:4 head-to-body ratio, slim flat tummy), terracotta orange fur (#D96B27), cream belly (#F7E1C6), yellow t-shirt (#FFD43B), black shorts (#22252A), dark sneakers with white soles, neutral studio background, character sheet.",
+    "three_quarter_left": "3/4 left view of Bi the 3D Pixar red squirrel boy (100cm), showing fluffy S-curved bushy tail silhouette, terracotta orange fur (#D96B27), yellow t-shirt (#FFD43B), black shorts (#22252A), consistent proportions.",
+    "side_profile": "90-degree side profile of Bi the 3D Pixar red squirrel boy (100cm), flat tummy, short cute snout, large S-curved fluffy tail behind back, yellow t-shirt (#FFD43B), black shorts (#22252A).",
+    "back": "Back view of Bi the 3D Pixar red squirrel boy (100cm), prominent fluffy terracotta tail (#D96B27) with cream tip, yellow t-shirt (#FFD43B), black shorts (#22252A).",
+    "three_quarter_right": "Dynamic 3/4 right view of Bi the 3D Pixar red squirrel boy (100cm) waving cheerfully, bright smile, yellow t-shirt (#FFD43B), black shorts (#22252A)."
   },
-  "scale_lock": {
-    "ref": "assets/character_scale/SCALE_LOCK.md",
-    "height_cm": 100,
-    "ratio": 1.0,
-    "vs_koala": "Bi cao bằng 2/3 bác sĩ Koala"
-  }
+  "expression_prompts": {
+    "happy": "Bi smiling brightly, eyes curved like crescent moons, ears perked up high, bushy tail wagging.",
+    "curious": "Bi tilting head 15 degrees, right ear twitching forward, big glossy eyes wide open with wonder, index finger on chin.",
+    "angry": "Bi puffing cheeks red, eyebrows furrowed down, fists clenched at sides, tail bristled up ('volcano in tummy').",
+    "scared": "Bi hugging his own fluffy tail in front of chest, ears flattened back, pupils shrunk, trembling slightly.",
+    "sad": "Bi looking down at toes, ears drooping low, single teardrop on cream cheek, tail dragging down.",
+    "proud": "Bi standing tall with hands on hips, chest out, confident grin, tail curled high.",
+    "patient_breathing": "Bi holding left hand open like a star, right index finger tracing fingers slowly, eyes closed peacefully, inhaling deeply ('5-finger breathing').",
+    "apologetic": "Bi bowing head slightly, hands clasped together in front of chest, soft sincere eyes."
+  },
+  "outfit_prompts": {
+    "default": "Bright sunny yellow crew-neck t-shirt (#FFD43B), charcoal black shorts (#22252A), dark sneakers with white soles.",
+    "sleepwear": "Soft pastel blue two-piece pajama set printed with tiny golden acorns, barefoot.",
+    "rainwear": "Translucent yellow hooded raincoat with ear slots, matching yellow rain boots.",
+    "explorer": "Default yellow t-shirt (#FFD43B) plus khaki explorer vest, leaf-green canvas backpack, wooden magnifying glass.",
+    "festival": "Traditional Vietnamese crimson-red Ao Dai vest with gold coin patterns over yellow shirt."
+  },
+  "episode_count": 23,
+  "appearances": [
+    "ep01-nui-lua-trong-bung-bi",
+    "ep05-lu-khong-doi-duoc",
+    "ep06-bi-tu-mac-ao-di-giay",
+    "ep08-do-choi-ve-nha",
+    "ep11-den-do-den-xanh",
+    "ep13-bo-suoi-pha-le",
+    "ep14-cai-bep-biet-nong",
+    "ep15-bi-bi-lac-o-cho",
+    "ep16-ban-sau-rang-tinh-nghich",
+    "ep22-xin-loi-va-tha-thu",
+    "ep25-khong-la-khong",
+    "ep26-chiec-binh-vo",
+    "ep30-chiec-vi-o-san-da",
+    "ep31-bi-giup-me",
+    "ep34-mon-qua-tu-lam",
+    "ep35-bo-me-met-roi",
+    "ep36-hat-dau-thuc-day",
+    "ep37-mua-tu-dau-toi",
+    "ep41-rac-ve-dung-nha",
+    "ep45-man-hinh-vua-du",
+    "ep46-banh-chung-ngay-tet",
+    "ep47-long-den-trung-thu",
+    "ep50-le-hoi-rung-xanh"
+  ]
 }

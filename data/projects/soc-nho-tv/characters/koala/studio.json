@@ -1,0 +1,80 @@
+{
+  "id": "koala",
+  "projectId": "soc-nho-tv",
+  "name": "Bác sĩ Koala (Gấu Túi)",
+  "role": "supporting",
+  "heightCm": 150,
+  "scaleRatio": 1.5,
+  "weightKg": 38.0,
+  "headBodyRatio": "1 : 4.8 (Dáng tròn trịa phúc hậu)",
+  "colors": {
+    "primary_fur": "#9E9E9E (Xám bạc mềm mịn - Soft Silver Grey)",
+    "secondary_fur": "#FFFFFF (Trắng bông ở ngực và rìa hai tai tròn lớn)",
+    "nose_glasses": "#212121 (Mũi đen to bầu dục) & Kính tròn gọng vàng kim (#FFD700)",
+    "coat": "#FFFFFF (Áo blouse bác sĩ trắng tinh có huy hiệu chữ thập xanh lá #2ECC71 trên ngực trái)",
+    "under_clothes": "#4FC3F7 (Áo sơ mi xanh dương nhạt, cà vạt nơ xanh đậm) & Quần tây xám (#616161)",
+    "medical_gear": "#B0BEC5 (Ống nghe y tế bạc quàng cổ & Gương soi trán bác sĩ)",
+    "swatches": [
+      "#9E9E9E",
+      "#FFFFFF",
+      "#FFD700",
+      "#2ECC71",
+      "#4FC3F7"
+    ]
+  },
+  "description": "Bác sĩ Koala — Bác sĩ nhi khoa tận tâm của Phòng khám Rừng Xanh (45 tuổi). Chiều cao: 150 cm (Tỉ lệ 1.50x - Đầu Bi chạm ngực Bác sĩ) | Cân nặng: 38 kg | Đầu/thân: 1:4.8. Màu sắc: Lông xám bạc (#9E9E9E), tai tròn viền lông trắng (#FFFFFF), kính tròn gọng vàng (#FFD700), áo blouse trắng có huy hiệu chữ thập xanh lá (#2ECC71), sơ mi xanh nhạt (#4FC3F7), ống nghe bạc & gương soi trán.",
+  "promptLock": "3D Pixar-style friendly anthropomorphic adult male Koala doctor, exact height 150cm (1.50x scale, Bi's head reaches his chest, warm rounded friendly build), soft silver-grey fur (#9E9E9E) with fluffy white ear fringes and chest (#FFFFFF), large oval black koala nose (#212121), wearing round gold-rimmed glasses (#FFD700), a medical head mirror on forehead, a crisp white doctor's lab coat (#FFFFFF) with a green cross badge (#2ECC71) over a light blue shirt (#4FC3F7) and bow tie, silver stethoscope around neck, grey trousers (#616161), warm reassuring smile, clean clinic lighting",
+  "voiceSampleUrl": "voice://koala_doc_v1",
+  "appearances": [
+    {
+      "episodeId": "ep16-ban-sau-rang-tinh-nghich",
+      "episodeTitle": "Tập 16: Bạn sâu răng tinh nghịch",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep18-nuoc-loc-la-sieu-anh-hung",
+      "episodeTitle": "Tập 18: Nước lọc là siêu anh hùng",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep20-di-kham-bac-si-koala",
+      "episodeTitle": "Tập 20: Đi khám Bác sĩ Koala",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    }
+  ],
+  "memory": {
+    "personality": "Hiền từ, điềm tĩnh, hài hước nhẹ nhàng, luôn biến việc khám sức khỏe thành trò chơi thú vị để các bé không sợ bác sĩ.",
+    "catchphrases": [
+      "Chà, để Bác sĩ Koala xem bạn nhỏ nào dũng cảm nhất hôm nay nhé!",
+      "Cơ thể khỏe mạnh là kho báu quý nhất của chúng mình!",
+      "Tặng cháu một ngôi sao Dũng Cảm nhé!"
+    ],
+    "habits": [
+      "SCALE LOCK: 150 cm (1.50x - Đầu Bi chạm ngực Bác sĩ) | 38 kg.",
+      "COLOR LOCK: Lông xám bạc (#9E9E9E), kính gọng vàng (#FFD700), blouse trắng chữ thập xanh lá (#2ECC71).",
+      "Luôn có sẵn huy hiệu sticker hình ngôi sao và lá khuynh diệp thơm trong túi áo blouse."
+    ],
+    "pastEvents": [
+      "Tập 16: Bạn sâu răng tinh nghịch (ep16-ban-sau-rang-tinh-nghich)",
+      "Tập 18: Nước lọc là siêu anh hùng (ep18-nuoc-loc-la-sieu-anh-hung)",
+      "Tập 20: Đi khám Bác sĩ Koala (ep20-di-kham-bac-si-koala)"
+    ],
+    "pastEventsSummary": [
+      "Tập 16: Bạn sâu răng tinh nghịch (ep16-ban-sau-rang-tinh-nghich)",
+      "Tập 18: Nước lọc là siêu anh hùng (ep18-nuoc-loc-la-sieu-anh-hung)",
+      "Tập 20: Đi khám Bác sĩ Koala (ep20-di-kham-bac-si-koala)"
+    ]
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "id": "bac_voi",
+  "name": "Bác Voi (Chợ Làng Rừng Xanh)",
+  "short_name": "Bác Voi",
+  "species": "Voi châu Á hiền lành (Friendly Asian Elephant)",
+  "age": "50 tuổi",
+  "role": "supporting",
+  "height_cm": 180,
+  "scale_ratio": 1.8,
+  "weight_kg": 65.0,
+  "head_body_ratio": "1 : 4.8 (To lớn, vạm vỡ nhưng tròn trịa thân thiện)",
+  "scale_note": "Cao lớn nhất toàn series (180 cm, 1.80x). Sóc Bi (100 cm) đứng ngang thắt lưng/bụng dưới của Bác Voi; Dê Mun (85 cm) đứng ngang hông Bác Voi.",
+  "voice_id": "bac_voi_v1",
+  "voice_description": "Giọng nam trầm vang, hào sảng, vui tính, tiếng cười rộn rã cả góc chợ.",
+  "body": {
+    "height_cm": 180,
+    "weight_kg": 65.0,
+    "head_body_ratio": "1 : 4.8 (To lớn, vạm vỡ nhưng tròn trịa thân thiện)",
+    "build": "Cao lớn nhất làng (180 cm), chiếc vòi dài linh hoạt hay giúp đỡ mọi người, đôi tai lớn biết vẫy quạt mát.",
+    "scale_note": "Cao lớn nhất toàn series (180 cm, 1.80x). Sóc Bi (100 cm) đứng ngang thắt lưng/bụng dưới của Bác Voi; Dê Mun (85 cm) đứng ngang hông Bác Voi."
+  },
+  "colors": {
+    "primary_skin": "#78909C (Xám xanh ấm áp, mịn màng - Warm Slate Blue-Grey)",
+    "inner_ears_cheeks": "#F48FB1 (Hồng ấm ở lòng tai lớn và hai gò má)",
+    "hat": "#E6CCB2 (Nón lá / Mũ cói rộng vành truyền thống Việt Nam đội trên đầu)",
+    "shirt": "#3F51B5 (Áo sơ mi vải đũi màu xanh chàm xắn tay gọn gàng - Indigo Linen Shirt)",
+    "apron": "#5D4037 (Tạp dề vải bố màu nâu sẫm nhiều túi đựng hạt giống và trái cây)",
+    "pants": "#8D6E63 (Quần vải ống rộng màu nâu nhạt & Dép mộc)",
+    "swatches": [
+      "#78909C",
+      "#3F51B5",
+      "#5D4037",
+      "#E6CCB2",
+      "#F48FB1"
+    ]
+  },
+  "prompt_lock": "3D Pixar-style cheerful giant anthropomorphic Asian elephant shopkeeper named Bac Voi, exact height 180cm (1.80x scale, tallest character in village, Bi reaches his waist, sturdy round build), warm slate blue-grey skin (#78909C) with rosy inner ears (#F48FB1), friendly expressive trunk, short rounded ivory tusks, wearing a traditional woven straw hat (#E6CCB2), a rolled-sleeve indigo-blue linen shirt (#3F51B5), a dark-brown canvas shopkeeper apron (#5D4037) with big pockets full of fresh fruits, and tan trousers (#8D6E63), warm bustling village market lighting",
+  "turnaround_prompts": {
+    "front": "Front view of Bac Voi the 3D Pixar elephant shopkeeper (180cm, 1.80x scale), slate blue-grey skin (#78909C), straw hat (#E6CCB2), indigo shirt (#3F51B5), brown multi-pocket apron (#5D4037), friendly curved trunk.",
+    "three_quarter_left": "3/4 left view of Bac Voi (180cm), large expressive ears, trunk holding a basket of red apples, brown apron.",
+    "side_profile": "90-degree side profile of Bac Voi (180cm), sturdy gentle giant silhouette, curved trunk, straw hat.",
+    "back": "Back view of Bac Voi (180cm), broad indigo-shirted shoulders (#3F51B5), apron ties, cute elephant tail.",
+    "three_quarter_right": "3/4 right view of Bac Voi (180cm) waving his trunk cheerfully and offering a ripe fruit."
+  },
+  "expression_prompts": {
+    "hearty_laugh": "Bac Voi raising his trunk up in a joyful trumpet, eyes crinkled in a big hearty laugh.",
+    "helpful": "Bac Voi curling his trunk gently to lift a heavy basket for a small child.",
+    "proud_merchant": "Bac Voi resting hands on his brown apron hips, beaming warmly.",
+    "gentle_listen": "Bac Voi fanning his big ears softly and leaning down kindly to hear a small child speak."
+  },
+  "outfit_prompts": {
+    "default": "Woven straw hat (#E6CCB2), indigo linen shirt (#3F51B5), dark-brown multi-pocket apron (#5D4037), tan trousers.",
+    "festival": "Traditional Vietnamese festive tunic with a red silk headband and flower garland."
+  },
+  "episode_count": 5,
+  "appearances": [
+    "ep15-bi-bi-lac-o-cho",
+    "ep23-ba-tu-co-phep-mau",
+    "ep30-chiec-vi-o-san-da",
+    "ep43-heo-dat-cua-lu",
+    "ep48-di-cho-cung-bac-voi"
+  ]
+}

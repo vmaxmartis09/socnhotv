@@ -1,56 +1,87 @@
 {
-  "id": "bong",
-  "character_folder_id": "de_bong",
-  "name": "Dê Bông",
-  "version": "1.0",
-  "purpose": "Anh cả của nhóm bạn nhỏ trong series Bi Và Những Người Bạn — chín chắn, cẩn thận, thích đọc sách và ghi chép",
-  "identity": {
-    "species": "Dê trắng (white goat) nhân hóa",
-    "gender": "Nam",
-    "age_feel": "6 tuổi (anh trai của Dê Mun)",
-    "personality": [
-      "chín chắn",
-      "cẩn thận",
-      "thích đọc sách",
-      "ham ghi chép",
-      "đôi khi ra vẻ người lớn",
-      "đang học cách kiên nhẫn với em nhỏ"
-    ],
-    "catchphrase": "Để anh Bông xem nào…"
-  },
+  "id": "de_bong",
+  "name": "Dê Bông (Anh Cả)",
+  "short_name": "Dê Bông",
+  "species": "Dê trắng núi (White Mountain Goat)",
+  "age": "6 tuổi",
+  "role": "main",
+  "height_cm": 115,
+  "scale_ratio": 1.15,
+  "weight_kg": 20.0,
+  "head_body_ratio": "1 : 4.2 (Đầu = 27cm, Thân & Chân = 88cm)",
+  "scale_note": "Cao nhất nhóm trẻ (115 cm, 1.15x). Đỉnh đầu Sóc Bi (100 cm) chạm cằm Dê Bông; cao hơn Cún Lu 10 cm, cao hơn em ruột Dê Mun 30 cm.",
+  "voice_id": "de_bong_v1",
+  "voice_description": "Giọng bé trai 6 tuổi ấm áp, điềm đạm, rõ chữ, chững chạc như anh cả.",
   "body": {
     "height_cm": 115,
-    "height_ratio_to_bi": 1.15,
-    "build": "Thon cao, dáng đứng thẳng chững chạc, Bi (100cm) đứng tới cằm Bông",
-    "head_to_body_ratio": "Đầu cân đối khoảng 1/4.2 chiều cao cơ thể",
-    "locked": true
+    "weight_kg": 20.0,
+    "head_body_ratio": "1 : 4.2 (Đầu = 27cm, Thân & Chân = 88cm)",
+    "build": "Cao ráo, vững chãi của bé 6 tuổi (115 cm), lông trắng bông xù mềm mại ở đỉnh đầu và hai má, sừng ngắn bo tròn an toàn.",
+    "scale_note": "Cao nhất nhóm trẻ (115 cm, 1.15x). Đỉnh đầu Sóc Bi (100 cm) chạm cằm Dê Bông; cao hơn Cún Lu 10 cm, cao hơn em ruột Dê Mun 30 cm."
   },
-  "appearance": {
-    "fur": "Lông trắng như bông tuyết, xoăn nhẹ mềm mại, sạch sẽ, có chùm râu cằm nhỏ mềm",
-    "face": "Hai sừng ngắn cong nhẹ màu kem, đôi tai dài cụp có mặt trong màu hồng phấn, mắt tròn to màu nâu ấm áp, mũi hồng nhỏ xinh",
-    "tail": "Đuôi dê ngắn nhỏ màu trắng bông"
-  },
-  "outfit_default": {
-    "top": "Áo thun sọc ngang trắng xanh navy mặc bên trong quần yếm",
-    "bottom": "Quần yếm jean xanh da trời (sky-blue denim overalls)",
-    "shoes": "Dép sandal màu nâu để lộ móng guốc nhỏ sẫm màu",
-    "accessories": [
-      "Cuốn sổ tay nhỏ bìa xanh lá cài ở túi ngực quần yếm"
+  "colors": {
+    "primary_fur": "#F9FAFB (Trắng bông tuyết xoăn nhẹ như mây - Cloud White Wool)",
+    "secondary_fur": "#FFE5EC (Hồng phấn nhẹ ở lòng tai và má - Soft Blush Pink)",
+    "horns": "#F3E5AB (Sừng ngắn bo tròn màu kem bơ ấm - Buttercream Horns)",
+    "eyes": "#5D4037 (Nâu hạt dẻ trầm ấm, ánh nhìn điềm tĩnh - Warm Chestnut Brown)",
+    "shirt": "#FFFFFF & #1B365D (Áo thun sọc ngang trắng - xanh navy bên trong)",
+    "overalls": "#5C9CE6 (Quần yếm jean màu xanh da trời nhạt có 2 cúc gỗ - Sky Denim Overalls)",
+    "accessory": "#4CAF50 (Sổ tay bìa xanh lá cây cài ở túi ngực yếm) & Sandal da nâu (#8D6E63)",
+    "swatches": [
+      "#F9FAFB",
+      "#F3E5AB",
+      "#5C9CE6",
+      "#1B365D",
+      "#4CAF50"
     ]
   },
-  "art_style": {
-    "render": "3D Pixar / hoạt hình CGI",
-    "lighting": "Ánh sáng studio mềm",
-    "background": "Nền trơn xám sáng"
+  "prompt_lock": "3D Pixar-style cute anthropomorphic white goat boy named De Bong, 6 years old, exact height 115cm (1.15x scale, tallest child in group, head-to-body ratio 1:4.2, sturdy gentle build), fluffy cloud-white curly wool fur (#F9FAFB) with soft pink inner ears (#FFE5EC), short rounded buttercream horns (#F3E5AB), warm chestnut brown eyes (#5D4037), wearing a navy-and-white striped t-shirt under light sky-blue denim overalls (#5C9CE6) with wooden buttons, a small green notebook (#4CAF50) peeking from the chest pocket, and brown leather sandals (#8D6E63), soft 3D fur rendering, warm sunlight",
+  "turnaround_prompts": {
+    "front": "Front view T-pose of De Bong the 3D Pixar white goat boy (115cm, 1.15x scale), cloud-white curly wool (#F9FAFB), short rounded cream horns (#F3E5AB), striped navy-white shirt under sky-blue denim overalls (#5C9CE6), green notebook in chest pocket, brown sandals.",
+    "three_quarter_left": "3/4 left view of De Bong (115cm), showing curly white fleece texture, short curved cream horns, denim overalls (#5C9CE6) with green notebook in chest pocket.",
+    "side_profile": "90-degree side profile of De Bong (115cm), upright calm posture, short goat tail, denim overalls (#5C9CE6) and brown leather sandals.",
+    "back": "Back view of De Bong (115cm), crossed denim overall straps (#5C9CE6) over navy-white striped shirt, fluffy white wool head and short tail.",
+    "three_quarter_right": "3/4 right view of De Bong (115cm) holding his green notebook (#4CAF50) and smiling kindly like a caring older brother."
   },
-  "prompt_lock": "a gentle, thoughtful 6-year-old boy white goat named Bong, about 115cm tall (1.15x the height of Bi the squirrel, Bi's head reaches Bong's chin), slim upright build, fluffy clean snow-white curly fur, a small soft chin tuft, two short curved cream-colored horns, long floppy ears with pink inner side, big round warm brown eyes, small pink nose, wearing sky-blue denim overalls over a white-and-navy striped t-shirt, a tiny green notebook in the front pocket, brown sandals over small dark hooves",
-  "voice": {
-    "voice_id": "de-bong",
-    "status": "TODO_CLONE",
-    "direction": "Giọng bé trai 6 tuổi ấm áp, điềm tĩnh, rõ chữ, nhịp nói vừa phải hơi chậm rãi khi giải thích"
+  "expression_prompts": {
+    "happy": "De Bong smiling warmly with gentle brown eyes, ears relaxed horizontally.",
+    "thoughtful": "De Bong holding his green notebook, tapping chin gently, calm analytical gaze.",
+    "caring": "De Bong kneeling slightly to pat a younger friend's shoulder, soft reassuring smile.",
+    "worried": "De Bong's eyebrows knitted upward, holding both hands out protectively.",
+    "patient": "De Bong demonstrating slow breathing, eyes half-closed, steady posture.",
+    "surprised": "De Bong's ears perking straight out, mouth forming a small 'O', eyes wide.",
+    "proud": "De Bong giving a warm thumbs-up, gentle nod of approval.",
+    "firm_mediator": "De Bong raising one open palm calmly between friends to stop an argument."
   },
-  "persona_set": {
-    "dir": "data/projects/soc-nho-tv/characters/de_bong/persona/",
-    "reference": "data/projects/soc-nho-tv/characters/de_bong/de_bong_01.png (TODO: sinh từ Master DNA prompt)"
-  }
+  "outfit_prompts": {
+    "default": "Navy-and-white striped shirt under sky-blue denim overalls (#5C9CE6), green notebook (#4CAF50) in chest pocket, brown sandals.",
+    "sleepwear": "Cream cotton pajamas with tiny cloud patterns, fluffy white slippers.",
+    "rainwear": "Sky-blue waterproof poncho with hood slots for horns, navy rain boots.",
+    "gardening": "Default denim overalls with rolled-up legs, straw sun hat, small watering can.",
+    "school": "Default outfit with a tidy olive-green canvas satchel slung across shoulder."
+  },
+  "episode_count": 21,
+  "appearances": [
+    "ep02-mun-so-bong-toi",
+    "ep04-anh-bong-ghen-ti",
+    "ep07-bua-an-khong-roi-vai",
+    "ep10-anh-bong-thuc-khuya",
+    "ep17-cau-vong-trong-dia-an",
+    "ep20-di-kham-bac-si-koala",
+    "ep23-ba-tu-co-phep-mau",
+    "ep24-long-den-cung-dep",
+    "ep25-khong-la-khong",
+    "ep28-tai-gio-hay-tai-mun",
+    "ep30-chiec-vi-o-san-da",
+    "ep32-ong-hay-quen",
+    "ep33-anh-em-nhu-tay-chan",
+    "ep37-mua-tu-dau-toi",
+    "ep38-ong-mat-troi-di-ngu",
+    "ep40-nhung-nguoi-ban-ti-hon",
+    "ep43-heo-dat-cua-lu",
+    "ep44-nga-roi-dung-day",
+    "ep46-banh-chung-ngay-tet",
+    "ep48-di-cho-cung-bac-voi",
+    "ep50-le-hoi-rung-xanh"
+  ]
 }

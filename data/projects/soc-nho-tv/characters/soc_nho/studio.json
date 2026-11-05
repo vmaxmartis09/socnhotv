@@ -1,12 +1,281 @@
 {
-  "description": "",
-  "promptLock": "a slim, agile 3-4 year old boy squirrel named Bi, about 100cm tall, NOT fat, flat belly, short slender limbs, head about 1/4 of body height, reddish orange-brown fur with lighter belly and cheeks, big round glossy black eyes with highlights, light pink cheeks, two front teeth, small pointed ears with tufts, very large bushy tail curving up behind his back and darker red-brown toward the tip, fitted yellow crew-neck t-shirt, black shorts, dark sneakers with white soles, 3D Pixar-style soft render, soft studio lighting, plain light gray background",
-  "memory": {
-    "personality": "",
-    "catchphrases": [],
-    "habits": [],
-    "pastEventsSummary": []
+  "id": "soc_nho",
+  "projectId": "soc-nho-tv",
+  "name": "Sóc Nhỏ (Bi)",
+  "role": "main",
+  "heightCm": 100,
+  "scaleRatio": 1.0,
+  "weightKg": 15.0,
+  "headBodyRatio": "1 : 4.0 (Đầu = 25cm, Thân & Chân = 75cm)",
+  "colors": {
+    "primary_fur": "#D96B27 (Cam nâu đất ấm - Warm Terracotta Orange)",
+    "secondary_fur": "#F7E1C6 (Kem sữa sáng ở má, cằm, bụng - Soft Cream)",
+    "eyes": "#1A1110 (Đen nhánh to tròn có đốm sáng trắng lớn - Glossy Obsidian)",
+    "nose": "#3D2314 (Nâu hạt dẻ sẫm hình tam giác nhỏ)",
+    "shirt": "#FFD43B (Áo thun cổ tròn màu vàng nắng ấm - Sunny Yellow)",
+    "pants": "#22252A (Quần short vải kaki mềm màu đen than - Charcoal Black)",
+    "shoes": "#2B2D42 & #FFFFFF (Giày sneaker tối màu, đế cao su trắng dày)",
+    "swatches": [
+      "#D96B27",
+      "#F7E1C6",
+      "#FFD43B",
+      "#22252A",
+      "#3D2314"
+    ]
   },
-  "defaultTempo": 1,
-  "primaryImage": "soc_nho_06.png"
+  "description": "Sóc Nhỏ (Bi) — Nhân vật chính (4.5 tuổi). Chiều cao: 100 cm (Tỉ lệ chuẩn 1.0x) | Cân nặng: 15 kg | Tỉ lệ đầu/thân: 1:4 (thon gọn, bụng phẳng). Màu sắc: Lông cam nâu ấm (#D96B27), má & bụng kem sáng (#F7E1C6), mắt đen to tròn (#1A1110), áo thun vàng nắng (#FFD43B), quần short đen (#22252A), giày sneaker tối màu đế trắng.",
+  "promptLock": "3D Pixar-style cute anthropomorphic red squirrel boy named Bi, 4.5 years old, exact height 100cm (1.0x reference scale, head-to-body ratio 1:4, slim agile build, flat tummy, NO chubby belly), warm terracotta orange-brown fur (#D96B27) with soft cream cheeks and chest (#F7E1C6), large glossy black eyes (#1A1110) with expressive eyebrows, upright tufted squirrel ears, big fluffy S-curved bushy tail as tall as his back, wearing a bright sunny yellow crew-neck t-shirt (#FFD43B), charcoal black shorts (#22252A), and dark sneakers with white rubber soles, ultra-detailed soft fur texture, warm cinematic lighting",
+  "voiceSampleUrl": "voice://soc_nho_v1",
+  "appearances": [
+    {
+      "episodeId": "ep01-nui-lua-trong-bung-bi",
+      "episodeTitle": "Tập 01: Núi lửa trong bụng Bi",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep05-lu-khong-doi-duoc",
+      "episodeTitle": "Tập 05: Lu không đợi được",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep06-bi-tu-mac-ao-di-giay",
+      "episodeTitle": "Tập 06: Bi tự mặc áo đi giày",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep08-do-choi-ve-nha",
+      "episodeTitle": "Tập 08: Đồ chơi về nhà",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep11-den-do-den-xanh",
+      "episodeTitle": "Tập 11: Đèn đỏ, đèn xanh",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep13-bo-suoi-pha-le",
+      "episodeTitle": "Tập 13: Bờ suối Pha Lê",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep14-cai-bep-biet-nong",
+      "episodeTitle": "Tập 14: Cái bếp biết nóng",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep15-bi-bi-lac-o-cho",
+      "episodeTitle": "Tập 15: Bi bị lạc ở chợ",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep16-ban-sau-rang-tinh-nghich",
+      "episodeTitle": "Tập 16: Bạn sâu răng tinh nghịch",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep22-xin-loi-va-tha-thu",
+      "episodeTitle": "Tập 22: Xin lỗi và tha thứ",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep25-khong-la-khong",
+      "episodeTitle": "Tập 25: Không là không",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep26-chiec-binh-vo",
+      "episodeTitle": "Tập 26: Chiếc bình vỡ",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep30-chiec-vi-o-san-da",
+      "episodeTitle": "Tập 30: Chiếc ví ở sân đa",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep31-bi-giup-me",
+      "episodeTitle": "Tập 31: Bi giúp mẹ",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep34-mon-qua-tu-lam",
+      "episodeTitle": "Tập 34: Món quà tự làm",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep35-bo-me-met-roi",
+      "episodeTitle": "Tập 35: Bố mẹ mệt rồi",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep36-hat-dau-thuc-day",
+      "episodeTitle": "Tập 36: Hạt đậu thức dậy",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep37-mua-tu-dau-toi",
+      "episodeTitle": "Tập 37: Mưa từ đâu tới?",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep41-rac-ve-dung-nha",
+      "episodeTitle": "Tập 41: Rác về đúng nhà",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep45-man-hinh-vua-du",
+      "episodeTitle": "Tập 45: Màn hình vừa đủ",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep46-banh-chung-ngay-tet",
+      "episodeTitle": "Tập 46: Bánh chưng ngày Tết",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep47-long-den-trung-thu",
+      "episodeTitle": "Tập 47: Lồng đèn Trung thu",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep50-le-hoi-rung-xanh",
+      "episodeTitle": "Tập 50: Lễ hội Rừng Xanh",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    }
+  ],
+  "memory": {
+    "personality": "Tò mò, giàu năng lượng, tốt bụng nhưng đôi khi hấp tấp, dễ bùng nổ cảm xúc ('núi lửa trong bụng') rồi học cách tự điều chỉnh qua từng tập.",
+    "catchphrases": [
+      "Ơ kìa, sao lại thế nhỉ?",
+      "Xòe tay hít sâu, núi lửa nguội mau!",
+      "Bi biết lỗi rồi ạ, mình làm lại nhé!"
+    ],
+    "habits": [
+      "SCALE LOCK: 100 cm (1.0x) | 15 kg | Đầu/Thân 1:4 | Bụng phẳng thon gọn.",
+      "COLOR LOCK: Lông cam nâu (#D96B27), bụng kem (#F7E1C6), áo vàng (#FFD43B), quần short đen (#22252A).",
+      "Hay gãi đầu hoặc ôm đuôi bông xù khi bối rối; vẫy đuôi tít mù khi vui."
+    ],
+    "pastEvents": [
+      "Tập 01: Núi lửa trong bụng Bi (ep01-nui-lua-trong-bung-bi)",
+      "Tập 05: Lu không đợi được (ep05-lu-khong-doi-duoc)",
+      "Tập 06: Bi tự mặc áo đi giày (ep06-bi-tu-mac-ao-di-giay)",
+      "Tập 08: Đồ chơi về nhà (ep08-do-choi-ve-nha)",
+      "Tập 11: Đèn đỏ, đèn xanh (ep11-den-do-den-xanh)",
+      "Tập 13: Bờ suối Pha Lê (ep13-bo-suoi-pha-le)",
+      "Tập 14: Cái bếp biết nóng (ep14-cai-bep-biet-nong)",
+      "Tập 15: Bi bị lạc ở chợ (ep15-bi-bi-lac-o-cho)",
+      "Tập 16: Bạn sâu răng tinh nghịch (ep16-ban-sau-rang-tinh-nghich)",
+      "Tập 22: Xin lỗi và tha thứ (ep22-xin-loi-va-tha-thu)",
+      "Tập 25: Không là không (ep25-khong-la-khong)",
+      "Tập 26: Chiếc bình vỡ (ep26-chiec-binh-vo)",
+      "... cùng 11 tập khác trong tổng số 23/50 tập."
+    ],
+    "pastEventsSummary": [
+      "Tập 01: Núi lửa trong bụng Bi (ep01-nui-lua-trong-bung-bi)",
+      "Tập 05: Lu không đợi được (ep05-lu-khong-doi-duoc)",
+      "Tập 06: Bi tự mặc áo đi giày (ep06-bi-tu-mac-ao-di-giay)",
+      "Tập 08: Đồ chơi về nhà (ep08-do-choi-ve-nha)",
+      "Tập 11: Đèn đỏ, đèn xanh (ep11-den-do-den-xanh)",
+      "Tập 13: Bờ suối Pha Lê (ep13-bo-suoi-pha-le)",
+      "Tập 14: Cái bếp biết nóng (ep14-cai-bep-biet-nong)",
+      "Tập 15: Bi bị lạc ở chợ (ep15-bi-bi-lac-o-cho)",
+      "Tập 16: Bạn sâu răng tinh nghịch (ep16-ban-sau-rang-tinh-nghich)",
+      "Tập 22: Xin lỗi và tha thứ (ep22-xin-loi-va-tha-thu)",
+      "Tập 25: Không là không (ep25-khong-la-khong)",
+      "Tập 26: Chiếc bình vỡ (ep26-chiec-binh-vo)",
+      "... cùng 11 tập khác trong tổng số 23/50 tập."
+    ]
+  }
 }

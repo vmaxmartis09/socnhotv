@@ -478,7 +478,8 @@ def test_key_vault_and_api_keys_endpoints_never_leak_secrets(
         env_local = tmp_path / ".env.local"
         assert env_local.exists()
         mode = stat.S_IMODE(os.stat(env_local).st_mode)
-        assert mode == 0o600
+        if os.name != 'nt':
+            assert mode == 0o600
 
         # Kiểm tra GET /settings/api-keys và GET /providers không bao giờ trả khóa
         st_res = client.get("/settings/api-keys")

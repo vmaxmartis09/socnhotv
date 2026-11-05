@@ -20,29 +20,276 @@
       "name": "Sóc Nhỏ (Bi)",
       "role": "main",
       "height_cm": 100,
-      "scale_ratio": 1,
-      "voice_id": "soc-nho",
-      "profile_path": "characters/soc_nho/profile.md",
+      "scale_ratio": 1.0,
+      "weight_kg": 15.0,
+      "head_body_ratio": "1 : 4.0 (Đầu = 25cm, Thân & Chân = 75cm)",
+      "colors": {
+        "primary_fur": "#D96B27 (Cam nâu đất ấm - Warm Terracotta Orange)",
+        "secondary_fur": "#F7E1C6 (Kem sữa sáng ở má, cằm, bụng - Soft Cream)",
+        "eyes": "#1A1110 (Đen nhánh to tròn có đốm sáng trắng lớn - Glossy Obsidian)",
+        "nose": "#3D2314 (Nâu hạt dẻ sẫm hình tam giác nhỏ)",
+        "shirt": "#FFD43B (Áo thun cổ tròn màu vàng nắng ấm - Sunny Yellow)",
+        "pants": "#22252A (Quần short vải kaki mềm màu đen than - Charcoal Black)",
+        "shoes": "#2B2D42 & #FFFFFF (Giày sneaker tối màu, đế cao su trắng dày)",
+        "swatches": [
+          "#D96B27",
+          "#F7E1C6",
+          "#FFD43B",
+          "#22252A",
+          "#3D2314"
+        ]
+      },
+      "voice_id": "soc_nho_v1",
+      "profile_path": "characters/soc_nho/soc_nho_profile.json",
       "prompts_path": "characters/soc_nho/prompts.md",
-      "dna_dir": "characters/soc_nho",
-      "master_panels": "characters/soc_nho"
+      "dna_dir": "characters/soc_nho"
+    },
+    "de_bong": {
+      "name": "Dê Bông (Anh Cả)",
+      "role": "main",
+      "height_cm": 115,
+      "scale_ratio": 1.15,
+      "weight_kg": 20.0,
+      "head_body_ratio": "1 : 4.2 (Đầu = 27cm, Thân & Chân = 88cm)",
+      "colors": {
+        "primary_fur": "#F9FAFB (Trắng bông tuyết xoăn nhẹ như mây - Cloud White Wool)",
+        "secondary_fur": "#FFE5EC (Hồng phấn nhẹ ở lòng tai và má - Soft Blush Pink)",
+        "horns": "#F3E5AB (Sừng ngắn bo tròn màu kem bơ ấm - Buttercream Horns)",
+        "eyes": "#5D4037 (Nâu hạt dẻ trầm ấm, ánh nhìn điềm tĩnh - Warm Chestnut Brown)",
+        "shirt": "#FFFFFF & #1B365D (Áo thun sọc ngang trắng - xanh navy bên trong)",
+        "overalls": "#5C9CE6 (Quần yếm jean màu xanh da trời nhạt có 2 cúc gỗ - Sky Denim Overalls)",
+        "accessory": "#4CAF50 (Sổ tay bìa xanh lá cây cài ở túi ngực yếm) & Sandal da nâu (#8D6E63)",
+        "swatches": [
+          "#F9FAFB",
+          "#F3E5AB",
+          "#5C9CE6",
+          "#1B365D",
+          "#4CAF50"
+        ]
+      },
+      "voice_id": "de_bong_v1",
+      "profile_path": "characters/de_bong/de_bong_profile.json",
+      "prompts_path": "characters/de_bong/prompts.md",
+      "dna_dir": "characters/de_bong"
+    },
+    "cho_lu": {
+      "name": "Cún Lu (Thám Tử Nhí)",
+      "role": "main",
+      "height_cm": 105,
+      "scale_ratio": 1.05,
+      "weight_kg": 16.5,
+      "head_body_ratio": "1 : 4.0 (Đầu = 26cm, Thân & Chân = 79cm)",
+      "colors": {
+        "primary_fur": "#E8B86D (Vàng mật ong ấm áp - Warm Honey Gold)",
+        "secondary_fur": "#FFF8E7 (Trắng kem ở mõm, ngực và 4 bàn chân - Creamy White)",
+        "ears_nose": "#8D5524 (Tai nâu vàng sẫm: 1 TAI ĐỨNG + 1 TAI CỤP đặc trưng) & Mũi đen bóng (#1C1C1C)",
+        "eyes": "#8B4513 (Nâu hổ phách sáng lấp lánh - Amber Brown)",
+        "shirt": "#4DB6AC (Áo thun thể thao màu xanh bạc hà - Mint Teal)",
+        "bandana": "#2E7D32 (Khăn bandana xanh lá rừng in họa tiết dấu chân trắng quàng cổ)",
+        "pants_shoes": "#C5A880 (Quần short túi hộp màu kaki) & Giày sneaker trắng sọc xanh (#FFFFFF)",
+        "swatches": [
+          "#E8B86D",
+          "#FFF8E7",
+          "#4DB6AC",
+          "#2E7D32",
+          "#C5A880"
+        ]
+      },
+      "voice_id": "cho_lu_v1",
+      "profile_path": "characters/cho_lu/cho_lu_profile.json",
+      "prompts_path": "characters/cho_lu/prompts.md",
+      "dna_dir": "characters/cho_lu"
+    },
+    "meo_mimi": {
+      "name": "Mèo Mimi (Khéo Tay)",
+      "role": "main",
+      "height_cm": 95,
+      "scale_ratio": 0.95,
+      "weight_kg": 13.5,
+      "head_body_ratio": "1 : 4.0 (Đầu = 24cm, Thân & Chân = 71cm)",
+      "colors": {
+        "primary_fur": "#FFFFFF (Trắng tuyết mềm mượt làm nền chủ đạo - Pure Snow White)",
+        "calico_patches": "#2B2D42 (Mảng đen than ở tai trái & chóp đuôi) + #F4A261 (Mảng cam mơ quanh mắt phải & lưng)",
+        "eyes": "#2ECC71 (Xanh ngọc lục bảo to tròn long lanh - Emerald Green Eyes)",
+        "bow": "#FF8FAB (Nơ vải hồng phấn nhỏ nhắn gắn trên tai phải - Pastel Pink Ribbon)",
+        "dress": "#B39DDB (Váy yếm màu tím oải hương - Lavender Pinafore Dress) mặc ngoài áo blouse trắng tay phồng",
+        "shoes": "#FFFFFF & #FF8FAB (Giày búp bê Mary-Jane trắng có quai cài hồng)",
+        "swatches": [
+          "#FFFFFF",
+          "#F4A261",
+          "#2B2D42",
+          "#2ECC71",
+          "#B39DDB",
+          "#FF8FAB"
+        ]
+      },
+      "voice_id": "meo_mimi_v1",
+      "profile_path": "characters/meo_mimi/meo_mimi_profile.json",
+      "prompts_path": "characters/meo_mimi/prompts.md",
+      "dna_dir": "characters/meo_mimi"
+    },
+    "de_mun": {
+      "name": "Dê Mun (Em Út)",
+      "role": "main",
+      "height_cm": 85,
+      "scale_ratio": 0.85,
+      "weight_kg": 12.0,
+      "head_body_ratio": "1 : 3.6 (Đầu = 23.5cm, Thân & Chân = 61.5cm - Tỉ lệ em bé mầm non)",
+      "colors": {
+        "primary_fur": "#1E1E24 (Đen tuyền óng mượt ánh nhung - Velvety Jet Black)",
+        "forehead_mark": "#FFFFFF (ĐỐM NGÔI SAO TRẮNG NHỎ GIỮA TRÁN - Signature White Forehead Star)",
+        "horns": "#E6CCB2 (Hai mầm sừng tròn xíu như hai hạt đậu màu kem trên đỉnh đầu)",
+        "eyes": "#3E2723 (Đen nâu to tròn chiếm tỉ lệ lớn trên gương mặt bầu bĩnh)",
+        "shirt": "#E53935 (Áo thun đỏ tươi in hình ngôi sao vàng #FFD700 giữa ngực)",
+        "pants": "#1A365D (Quần short thun màu xanh navy đậm)",
+        "boots": "#E53935 & #FFD700 (Ủng cao su nhỏ màu đỏ tươi viền vàng)",
+        "swatches": [
+          "#1E1E24",
+          "#FFFFFF",
+          "#E53935",
+          "#FFD700",
+          "#1A365D"
+        ]
+      },
+      "voice_id": "de_mun_v1",
+      "profile_path": "characters/de_mun/de_mun_profile.json",
+      "prompts_path": "characters/de_mun/prompts.md",
+      "dna_dir": "characters/de_mun"
+    },
+    "me_soc": {
+      "name": "Mẹ Sóc (Mẹ của Bi)",
+      "role": "supporting",
+      "height_cm": 145,
+      "scale_ratio": 1.45,
+      "weight_kg": 32.0,
+      "head_body_ratio": "1 : 5.2 (Tỉ lệ người lớn hiền hậu)",
+      "colors": {
+        "primary_fur": "#C85A32 (Nâu đỏ quế trầm ấm hơn Bi - Warm Cinnamon Russet)",
+        "secondary_fur": "#F7E1C6 (Kem ấm ở má, cổ và bụng)",
+        "eyes": "#3E2723 (Nâu hạt dẻ dịu dàng, hàng mi cong nhẹ)",
+        "dress": "#8FBC8F (Váy dài vải lanh màu xanh xô thơm dịu mắt - Sage Green Linen Dress)",
+        "apron": "#FFFDD0 (Tạp dề vải thô màu kem sữa có thêu hình hạt dẻ nâu ở túi trước)",
+        "shoes": "#6D4C41 (Giày bệt vải mềm màu nâu đất)",
+        "swatches": [
+          "#C85A32",
+          "#F7E1C6",
+          "#8FBC8F",
+          "#FFFDD0",
+          "#6D4C41"
+        ]
+      },
+      "voice_id": "me_soc_v1",
+      "profile_path": "characters/me_soc/me_soc_profile.json",
+      "prompts_path": "characters/me_soc/prompts.md",
+      "dna_dir": "characters/me_soc"
     },
     "koala": {
-      "name": "Bạn Koala",
+      "name": "Bác sĩ Koala (Gấu Túi)",
       "role": "supporting",
       "height_cm": 150,
       "scale_ratio": 1.5,
+      "weight_kg": 38.0,
+      "head_body_ratio": "1 : 4.8 (Dáng tròn trịa phúc hậu)",
+      "colors": {
+        "primary_fur": "#9E9E9E (Xám bạc mềm mịn - Soft Silver Grey)",
+        "secondary_fur": "#FFFFFF (Trắng bông ở ngực và rìa hai tai tròn lớn)",
+        "nose_glasses": "#212121 (Mũi đen to bầu dục) & Kính tròn gọng vàng kim (#FFD700)",
+        "coat": "#FFFFFF (Áo blouse bác sĩ trắng tinh có huy hiệu chữ thập xanh lá #2ECC71 trên ngực trái)",
+        "under_clothes": "#4FC3F7 (Áo sơ mi xanh dương nhạt, cà vạt nơ xanh đậm) & Quần tây xám (#616161)",
+        "medical_gear": "#B0BEC5 (Ống nghe y tế bạc quàng cổ & Gương soi trán bác sĩ)",
+        "swatches": [
+          "#9E9E9E",
+          "#FFFFFF",
+          "#FFD700",
+          "#2ECC71",
+          "#4FC3F7"
+        ]
+      },
+      "voice_id": "koala_doc_v1",
       "profile_path": "characters/koala/koala_profile.json",
-      "dna_dir": "characters/koala",
-      "voice_id": "voice-koala"
+      "prompts_path": "characters/koala/prompts.md",
+      "dna_dir": "characters/koala"
     },
-    "soc_nho_copy": {
-      "name": "Sóc Nhỏ (Bi) (bản sao)",
+    "ong_de_rau_bac": {
+      "name": "Ông Dê Râu Bạc (Ông Nội)",
       "role": "supporting",
-      "height_cm": 100,
-      "scale_ratio": 1,
-      "voice_id": "soc-nho",
-      "dna_dir": "characters/soc_nho_copy"
+      "height_cm": 155,
+      "scale_ratio": 1.55,
+      "weight_kg": 40.0,
+      "head_body_ratio": "1 : 5.2 (Dáng ông nội phúc hậu, hơi khom nhẹ ấm áp)",
+      "colors": {
+        "primary_fur": "#ECEFF1 (Trắng bạc pha ánh xám nhẹ của tuổi tác - Silver White)",
+        "beard_horns": "#CFD8DC (Chòm râu bạc dài vuốt gọn) & Sừng cong màu hổ phách (#D4A373)",
+        "glasses": "#5D4037 (Kính lão tròn gọng đồi mồi nâu)",
+        "shirt": "#795548 (Áo bà ba truyền thống màu nâu đất ấm áp cài cúc gỗ)",
+        "scarf_pants": "#D7CCC8 (Khăn rằn vắt vai & Quần vải đũi màu kem ngà)",
+        "prop": "#C5A880 (Gậy chống bằng tre vàng óng uốn cong đầu)",
+        "swatches": [
+          "#ECEFF1",
+          "#D4A373",
+          "#795548",
+          "#D7CCC8",
+          "#5D4037"
+        ]
+      },
+      "voice_id": "ong_de_v1",
+      "profile_path": "characters/ong_de_rau_bac/ong_de_rau_bac_profile.json",
+      "prompts_path": "characters/ong_de_rau_bac/prompts.md",
+      "dna_dir": "characters/ong_de_rau_bac"
+    },
+    "co_huou_sao": {
+      "name": "Cô giáo Hươu Sao (Trường Lá Xanh)",
+      "role": "supporting",
+      "height_cm": 160,
+      "scale_ratio": 1.6,
+      "weight_kg": 36.0,
+      "head_body_ratio": "1 : 5.5 (Dáng thanh mảnh, cao ráo, duyên dáng)",
+      "colors": {
+        "primary_fur": "#D4883A (Vàng nâu mật ong điểm các đốm sao trắng #FFFFFF trên lưng và hai bên má)",
+        "secondary_fur": "#FFF8E7 (Trắng kem ở cổ thanh mảnh và bụng)",
+        "eyes": "#2C1810 (Nâu đen to tròn, hàng mi dài dịu dàng)",
+        "cardigan": "#81C784 (Áo khoác len cardigan mỏng màu xanh lá non - Leaf Green)",
+        "dress": "#FFFDF5 (Váy dài chữ A màu kem sữa thêu hoa cúc nhỏ ở gấu váy)",
+        "badge": "#4CAF50 (Huy hiệu tên hình chiếc lá xanh cài trên ngực áo)",
+        "swatches": [
+          "#D4883A",
+          "#FFFFFF",
+          "#81C784",
+          "#FFFDF5",
+          "#4CAF50"
+        ]
+      },
+      "voice_id": "co_huou_v1",
+      "profile_path": "characters/co_huou_sao/co_huou_sao_profile.json",
+      "prompts_path": "characters/co_huou_sao/prompts.md",
+      "dna_dir": "characters/co_huou_sao"
+    },
+    "bac_voi": {
+      "name": "Bác Voi (Chợ Làng Rừng Xanh)",
+      "role": "supporting",
+      "height_cm": 180,
+      "scale_ratio": 1.8,
+      "weight_kg": 65.0,
+      "head_body_ratio": "1 : 4.8 (To lớn, vạm vỡ nhưng tròn trịa thân thiện)",
+      "colors": {
+        "primary_skin": "#78909C (Xám xanh ấm áp, mịn màng - Warm Slate Blue-Grey)",
+        "inner_ears_cheeks": "#F48FB1 (Hồng ấm ở lòng tai lớn và hai gò má)",
+        "hat": "#E6CCB2 (Nón lá / Mũ cói rộng vành truyền thống Việt Nam đội trên đầu)",
+        "shirt": "#3F51B5 (Áo sơ mi vải đũi màu xanh chàm xắn tay gọn gàng - Indigo Linen Shirt)",
+        "apron": "#5D4037 (Tạp dề vải bố màu nâu sẫm nhiều túi đựng hạt giống và trái cây)",
+        "pants": "#8D6E63 (Quần vải ống rộng màu nâu nhạt & Dép mộc)",
+        "swatches": [
+          "#78909C",
+          "#3F51B5",
+          "#5D4037",
+          "#E6CCB2",
+          "#F48FB1"
+        ]
+      },
+      "voice_id": "bac_voi_v1",
+      "profile_path": "characters/bac_voi/bac_voi_profile.json",
+      "prompts_path": "characters/bac_voi/prompts.md",
+      "dna_dir": "characters/bac_voi"
     }
   },
   "scale_lock_path": "characters/SCALE_LOCK.md",

@@ -1,0 +1,179 @@
+{
+  "id": "me_soc",
+  "projectId": "soc-nho-tv",
+  "name": "Mẹ Sóc (Mẹ của Bi)",
+  "role": "supporting",
+  "heightCm": 145,
+  "scaleRatio": 1.45,
+  "weightKg": 32.0,
+  "headBodyRatio": "1 : 5.2 (Tỉ lệ người lớn hiền hậu)",
+  "colors": {
+    "primary_fur": "#C85A32 (Nâu đỏ quế trầm ấm hơn Bi - Warm Cinnamon Russet)",
+    "secondary_fur": "#F7E1C6 (Kem ấm ở má, cổ và bụng)",
+    "eyes": "#3E2723 (Nâu hạt dẻ dịu dàng, hàng mi cong nhẹ)",
+    "dress": "#8FBC8F (Váy dài vải lanh màu xanh xô thơm dịu mắt - Sage Green Linen Dress)",
+    "apron": "#FFFDD0 (Tạp dề vải thô màu kem sữa có thêu hình hạt dẻ nâu ở túi trước)",
+    "shoes": "#6D4C41 (Giày bệt vải mềm màu nâu đất)",
+    "swatches": [
+      "#C85A32",
+      "#F7E1C6",
+      "#8FBC8F",
+      "#FFFDD0",
+      "#6D4C41"
+    ]
+  },
+  "description": "Mẹ Sóc — Mẹ ruột của Sóc Bi (32 tuổi). Chiều cao: 145 cm (Tỉ lệ 1.45x - Đỉnh đầu Bi chạm ngực Mẹ) | Cân nặng: 32 kg | Đầu/thân: 1:5.2. Màu sắc: Lông nâu đỏ quế ấm (#C85A32), má & cổ màu kem (#F7E1C6), mặc váy vải lanh xanh xô thơm (#8FBC8F) kèm tạp dề màu kem (#FFFDD0) thêu hình hạt dẻ, giày bệt nâu (#6D4C41).",
+  "promptLock": "3D Pixar-style gentle anthropomorphic adult mother red squirrel named Me Soc, exact height 145cm (1.45x scale, Bi's head reaches her chest, head-to-body ratio 1:5.2, slender maternal build), warm cinnamon-russet fur (#C85A32) with soft cream cheeks and throat (#F7E1C6), kind chestnut-brown eyes (#3E2723), tufted squirrel ears, large graceful bushy tail, wearing a soft sage-green linen midi dress (#8FBC8F) with rolled sleeves, a cream cotton apron (#FFFDD0) embroidered with a cute brown acorn on the front pocket, and brown flat shoes (#6D4C41), warm cozy home lighting",
+  "voiceSampleUrl": "voice://me_soc_v1",
+  "appearances": [
+    {
+      "episodeId": "ep01-nui-lua-trong-bung-bi",
+      "episodeTitle": "Tập 01: Núi lửa trong bụng Bi",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep05-lu-khong-doi-duoc",
+      "episodeTitle": "Tập 05: Lu không đợi được",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep06-bi-tu-mac-ao-di-giay",
+      "episodeTitle": "Tập 06: Bi tự mặc áo đi giày",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep11-den-do-den-xanh",
+      "episodeTitle": "Tập 11: Đèn đỏ, đèn xanh",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep12-mat-khau-cua-gia-dinh",
+      "episodeTitle": "Tập 12: Mật khẩu của gia đình",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep14-cai-bep-biet-nong",
+      "episodeTitle": "Tập 14: Cái bếp biết nóng",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep15-bi-bi-lac-o-cho",
+      "episodeTitle": "Tập 15: Bi bị lạc ở chợ",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep26-chiec-binh-vo",
+      "episodeTitle": "Tập 26: Chiếc bình vỡ",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep31-bi-giup-me",
+      "episodeTitle": "Tập 31: Bi giúp mẹ",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep34-mon-qua-tu-lam",
+      "episodeTitle": "Tập 34: Món quà tự làm",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep35-bo-me-met-roi",
+      "episodeTitle": "Tập 35: Bố mẹ mệt rồi",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep45-man-hinh-vua-du",
+      "episodeTitle": "Tập 45: Màn hình vừa đủ",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    }
+  ],
+  "memory": {
+    "personality": "Dịu dàng, kiên nhẫn, không bao giờ la mắng khi con sai mà luôn ngồi xuống ngang tầm mắt con để dẫn dắt bằng câu hỏi gợi mở.",
+    "catchphrases": [
+      "Mẹ ở đây rồi, con kể cho mẹ nghe nào.",
+      "Cảm xúc nào cũng là bạn của mình cả con ạ.",
+      "Con trai của mẹ đã biết tự suy nghĩ rồi đấy!"
+    ],
+    "habits": [
+      "SCALE LOCK: 145 cm (1.45x - Đỉnh đầu Bi chạm ngực Mẹ) | 32 kg.",
+      "COLOR LOCK: Lông nâu đỏ quế (#C85A32), váy xanh xô thơm (#8FBC8F), tạp dề kem thêu hạt dẻ (#FFFDD0).",
+      "Luôn ngồi khuỵu gối xuống để ngang tầm mắt với các bé khi trò chuyện."
+    ],
+    "pastEvents": [
+      "Tập 01: Núi lửa trong bụng Bi (ep01-nui-lua-trong-bung-bi)",
+      "Tập 05: Lu không đợi được (ep05-lu-khong-doi-duoc)",
+      "Tập 06: Bi tự mặc áo đi giày (ep06-bi-tu-mac-ao-di-giay)",
+      "Tập 11: Đèn đỏ, đèn xanh (ep11-den-do-den-xanh)",
+      "Tập 12: Mật khẩu của gia đình (ep12-mat-khau-cua-gia-dinh)",
+      "Tập 14: Cái bếp biết nóng (ep14-cai-bep-biet-nong)",
+      "Tập 15: Bi bị lạc ở chợ (ep15-bi-bi-lac-o-cho)",
+      "Tập 26: Chiếc bình vỡ (ep26-chiec-binh-vo)",
+      "Tập 31: Bi giúp mẹ (ep31-bi-giup-me)",
+      "Tập 34: Món quà tự làm (ep34-mon-qua-tu-lam)",
+      "Tập 35: Bố mẹ mệt rồi (ep35-bo-me-met-roi)",
+      "Tập 45: Màn hình vừa đủ (ep45-man-hinh-vua-du)"
+    ],
+    "pastEventsSummary": [
+      "Tập 01: Núi lửa trong bụng Bi (ep01-nui-lua-trong-bung-bi)",
+      "Tập 05: Lu không đợi được (ep05-lu-khong-doi-duoc)",
+      "Tập 06: Bi tự mặc áo đi giày (ep06-bi-tu-mac-ao-di-giay)",
+      "Tập 11: Đèn đỏ, đèn xanh (ep11-den-do-den-xanh)",
+      "Tập 12: Mật khẩu của gia đình (ep12-mat-khau-cua-gia-dinh)",
+      "Tập 14: Cái bếp biết nóng (ep14-cai-bep-biet-nong)",
+      "Tập 15: Bi bị lạc ở chợ (ep15-bi-bi-lac-o-cho)",
+      "Tập 26: Chiếc bình vỡ (ep26-chiec-binh-vo)",
+      "Tập 31: Bi giúp mẹ (ep31-bi-giup-me)",
+      "Tập 34: Món quà tự làm (ep34-mon-qua-tu-lam)",
+      "Tập 35: Bố mẹ mệt rồi (ep35-bo-me-met-roi)",
+      "Tập 45: Màn hình vừa đủ (ep45-man-hinh-vua-du)"
+    ]
+  }
+}

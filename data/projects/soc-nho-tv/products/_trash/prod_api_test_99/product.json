@@ -1,0 +1,27 @@
+{
+  "id": "prod_api_test_99",
+  "name": "Bình Nước Hoạt Hình Sóc Nhỏ",
+  "brand": "SocNhoTV",
+  "category": "kids",
+  "price": 135000.0,
+  "sale_price": 99000.0,
+  "currency": "VND",
+  "affiliate_links": {
+    "tiktok_shop": "https://tiktok.com/@socnhotv/live",
+    "shopee": "https://shopee.vn/socnhotv",
+    "lazada": "",
+    "other": ""
+  },
+  "usp": [
+    "giữ nhiệt 12h",
+    "inox 316 an toàn"
+  ],
+  "pain_points": [
+    "bình dễ đổ vỡ"
+  ],
+  "specs": {},
+  "images": [],
+  "videos": [],
+  "target_audience": "",
+  "compliance_notes": ""
+}

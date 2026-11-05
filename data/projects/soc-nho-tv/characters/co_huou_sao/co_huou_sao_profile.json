@@ -1,0 +1,67 @@
+{
+  "id": "co_huou_sao",
+  "name": "Cô giáo Hươu Sao (Trường Lá Xanh)",
+  "short_name": "Cô giáo Hươu Sao",
+  "species": "Hươu sao Á Đông (Spotted Sika Deer)",
+  "age": "28 tuổi",
+  "role": "supporting",
+  "height_cm": 160,
+  "scale_ratio": 1.6,
+  "weight_kg": 36.0,
+  "head_body_ratio": "1 : 5.5 (Dáng thanh mảnh, cao ráo, duyên dáng)",
+  "scale_note": "Cao 160 cm (1.60x). Sóc Bi (100 cm) đứng ngang ngực dưới của Cô giáo Hươu Sao.",
+  "voice_id": "co_huou_v1",
+  "voice_description": "Giọng cô giáo mầm non trong trẻo, truyền cảm, phát âm chuẩn mực, giàu nhịp điệu.",
+  "body": {
+    "height_cm": 160,
+    "weight_kg": 36.0,
+    "head_body_ratio": "1 : 5.5 (Dáng thanh mảnh, cao ráo, duyên dáng)",
+    "build": "Cao ráo, thanh thoát (160 cm), cổ thon dài duyên dáng, bộ lông vàng nâu điểm đốm sao trắng đặc trưng.",
+    "scale_note": "Cao 160 cm (1.60x). Sóc Bi (100 cm) đứng ngang ngực dưới của Cô giáo Hươu Sao."
+  },
+  "colors": {
+    "primary_fur": "#D4883A (Vàng nâu mật ong điểm các đốm sao trắng #FFFFFF trên lưng và hai bên má)",
+    "secondary_fur": "#FFF8E7 (Trắng kem ở cổ thanh mảnh và bụng)",
+    "eyes": "#2C1810 (Nâu đen to tròn, hàng mi dài dịu dàng)",
+    "cardigan": "#81C784 (Áo khoác len cardigan mỏng màu xanh lá non - Leaf Green)",
+    "dress": "#FFFDF5 (Váy dài chữ A màu kem sữa thêu hoa cúc nhỏ ở gấu váy)",
+    "badge": "#4CAF50 (Huy hiệu tên hình chiếc lá xanh cài trên ngực áo)",
+    "swatches": [
+      "#D4883A",
+      "#FFFFFF",
+      "#81C784",
+      "#FFFDF5",
+      "#4CAF50"
+    ]
+  },
+  "prompt_lock": "3D Pixar-style graceful anthropomorphic female spotted deer kindergarten teacher named Co Huou Sao, exact height 160cm (1.60x scale, slender tall build, head-to-body ratio 1:5.5), warm honey-fawn fur (#D4883A) dappled with white star spots (#FFFFFF) on cheeks and back, creamy white slender neck (#FFF8E7), large expressive dark-brown eyes (#2C1810) with long eyelashes, wearing a soft leaf-green knit cardigan (#81C784) over a cream A-line midi dress (#FFFDF5) embroidered with tiny daisies at the hem, a leaf-shaped teacher name badge (#4CAF50) on chest, and tan flat shoes, warm classroom lighting",
+  "turnaround_prompts": {
+    "front": "Front view of Co Huou Sao the 3D Pixar spotted deer teacher (160cm, 1.60x scale), honey-fawn fur (#D4883A) with white spots, leaf-green cardigan (#81C784) over cream daisy dress (#FFFDF5), leaf badge.",
+    "three_quarter_left": "3/4 left view of Co Huou Sao (160cm), graceful slender neck, white star spots on back, holding a picture book.",
+    "side_profile": "90-degree side profile of Co Huou Sao (160cm), elegant posture, deer ears perked gently, cream midi dress.",
+    "back": "Back view of Co Huou Sao (160cm), leaf-green cardigan (#81C784), white-spotted fawn back and short deer tail.",
+    "three_quarter_right": "3/4 right view of Co Huou Sao (160cm) bending slightly with a welcoming smile to greet students."
+  },
+  "expression_prompts": {
+    "welcoming": "Co Huou Sao smiling warmly with hands clasped gently, eyes bright and encouraging.",
+    "singing_rhythm": "Co Huou Sao clapping hands to keep rhythm, cheerful musical expression.",
+    "guiding": "Co Huou Sao gesturing open-palmed toward a blackboard or activity table with patience.",
+    "praising": "Co Huou Sao placing a star sticker on a child's chart with a proud gentle beam."
+  },
+  "outfit_prompts": {
+    "default": "Leaf-green cardigan (#81C784) over cream daisy-hem midi dress (#FFFDF5), leaf name badge (#4CAF50).",
+    "field_trip": "Default dress with a light canvas sun hat and a whistle on a green lanyard."
+  },
+  "episode_count": 9,
+  "appearances": [
+    "ep09-lu-rua-tay-sieu-sach",
+    "ep12-mat-khau-cua-gia-dinh",
+    "ep19-co-the-cua-em-la-cua-em",
+    "ep21-cau-truot-co-luot",
+    "ep36-hat-dau-thuc-day",
+    "ep39-hom-nay-mac-gi",
+    "ep41-rac-ve-dung-nha",
+    "ep49-ngay-dau-den-truong",
+    "ep50-le-hoi-rung-xanh"
+  ]
+}

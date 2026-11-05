@@ -1,56 +1,82 @@
 {
-  "id": "lu",
-  "character_folder_id": "cho_lu",
-  "name": "Cún Lu",
-  "version": "1.0",
-  "purpose": "Bạn gái năng động, thể thao, có chiếc mũi thính 'thám tử' của nhóm trong series Bi Và Những Người Bạn",
-  "identity": {
-    "species": "Chó cỏ Việt Nam (Vietnamese native mixed-breed puppy) nhân hóa",
-    "gender": "Nữ",
-    "age_feel": "5 tuổi",
-    "personality": [
-      "năng động",
-      "yêu thể thao",
-      "trung thành",
-      "mũi thính như thám tử",
-      "hấp tấp làm trước nghĩ sau",
-      "cười rất to và hào sảng"
-    ],
-    "catchphrase": "Lu ngửi thấy có chuyện rồi!"
-  },
+  "id": "cho_lu",
+  "name": "Cún Lu (Thám Tử Nhí)",
+  "short_name": "Cún Lu",
+  "species": "Chó săn lông vàng lai (Golden Retriever Mix Puppy)",
+  "age": "5 tuổi",
+  "role": "main",
+  "height_cm": 105,
+  "scale_ratio": 1.05,
+  "weight_kg": 16.5,
+  "head_body_ratio": "1 : 4.0 (Đầu = 26cm, Thân & Chân = 79cm)",
+  "scale_note": "Cao thứ 2 nhóm trẻ (105 cm, 1.05x). Cao hơn Sóc Bi 5 cm, thấp hơn Dê Bông 10 cm, cao hơn Mèo Mimi 10 cm.",
+  "voice_id": "cho_lu_v1",
+  "voice_description": "Giọng bé trai 5 tuổi hào hứng, khỏe khoắn, nhiệt tình, hay bật cười sảng khoái.",
   "body": {
     "height_cm": 105,
-    "height_ratio_to_bi": 1.05,
-    "build": "Thon gọn, khỏe khoắn kiểu vận động viên nhí, cao hơn Sóc Bi (100cm) một chút xíu",
-    "head_to_body_ratio": "Đầu cân đối khoảng 1/4 chiều cao cơ thể",
-    "locked": true
+    "weight_kg": 16.5,
+    "head_body_ratio": "1 : 4.0 (Đầu = 26cm, Thân & Chân = 79cm)",
+    "build": "Khỏe khoắn, năng động (105 cm), lông ngắn mượt, ĐẶC ĐIỂM NHẬN DIỆN ĐỘC QUYỀN: Tai trái dựng đứng, tai phải cụp mềm mại.",
+    "scale_note": "Cao thứ 2 nhóm trẻ (105 cm, 1.05x). Cao hơn Sóc Bi 5 cm, thấp hơn Dê Bông 10 cm, cao hơn Mèo Mimi 10 cm."
   },
-  "appearance": {
-    "fur": "Lông ngắn màu vàng kem ấm (warm cream-golden), ngực trắng và mõm trắng",
-    "face": "Một bên tai dựng đứng và một bên tai cụp xuống (đặc điểm nhận diện độc quyền), mũi đen bóng ướt, đôi mắt to màu nâu mật ong sáng rực",
-    "tail": "Đuôi cong tròn vểnh lên sau lưng, vẫy tít khi hào hứng"
-  },
-  "outfit_default": {
-    "top": "Áo thun màu xanh bạc hà (mint-teal t-shirt)",
-    "bottom": "Quần short màu kaki",
-    "shoes": "Giày thể thao màu trắng",
-    "accessories": [
-      "Khăn rằn/bandana màu xanh lá có in hình dấu chân trắng buộc quanh cổ"
+  "colors": {
+    "primary_fur": "#E8B86D (Vàng mật ong ấm áp - Warm Honey Gold)",
+    "secondary_fur": "#FFF8E7 (Trắng kem ở mõm, ngực và 4 bàn chân - Creamy White)",
+    "ears_nose": "#8D5524 (Tai nâu vàng sẫm: 1 TAI ĐỨNG + 1 TAI CỤP đặc trưng) & Mũi đen bóng (#1C1C1C)",
+    "eyes": "#8B4513 (Nâu hổ phách sáng lấp lánh - Amber Brown)",
+    "shirt": "#4DB6AC (Áo thun thể thao màu xanh bạc hà - Mint Teal)",
+    "bandana": "#2E7D32 (Khăn bandana xanh lá rừng in họa tiết dấu chân trắng quàng cổ)",
+    "pants_shoes": "#C5A880 (Quần short túi hộp màu kaki) & Giày sneaker trắng sọc xanh (#FFFFFF)",
+    "swatches": [
+      "#E8B86D",
+      "#FFF8E7",
+      "#4DB6AC",
+      "#2E7D32",
+      "#C5A880"
     ]
   },
-  "art_style": {
-    "render": "3D Pixar / hoạt hình CGI",
-    "lighting": "Ánh sáng studio mềm",
-    "background": "Nền trơn xám sáng"
+  "prompt_lock": "3D Pixar-style cute anthropomorphic golden puppy boy named Cun Lu, 5 years old, exact height 105cm (1.05x scale, head-to-body ratio 1:4, athletic energetic build), smooth warm honey-gold fur (#E8B86D) with creamy white muzzle, chest and paws (#FFF8E7), SIGNATURE ASYMMETRIC EARS (left ear perked upright, right ear flopped down), shiny black nose (#1C1C1C), amber brown eyes (#8B4513), wearing a mint-teal sporty t-shirt (#4DB6AC), a forest-green neck bandana (#2E7D32) printed with white paw prints, khaki cargo shorts (#C5A880), and white sneakers with green stripes, vibrant 3D lighting",
+  "turnaround_prompts": {
+    "front": "Front view T-pose of Cun Lu the 3D Pixar golden puppy boy (105cm, 1.05x scale), honey-gold fur (#E8B86D), signature asymmetric ears (left upright, right floppy), mint-teal t-shirt (#4DB6AC), green paw-print bandana (#2E7D32), khaki cargo shorts, white sneakers.",
+    "three_quarter_left": "3/4 left view of Cun Lu (105cm), highlighting upright left ear and floppy right ear, wagging golden tail with white tip, mint shirt (#4DB6AC) and green bandana.",
+    "side_profile": "90-degree side profile of Cun Lu (105cm), cute puppy snout with glossy black nose, athletic posture, cargo shorts (#C5A880).",
+    "back": "Back view of Cun Lu (105cm), showing tied green bandana knot (#2E7D32) over mint-teal shirt (#4DB6AC), golden tail raised happily.",
+    "three_quarter_right": "3/4 right action pose of Cun Lu (105cm) sniffing a clue with a magnifying glass, tail wagging, asymmetric ears."
   },
-  "prompt_lock": "an energetic 5-year-old girl puppy named Lu, a Vietnamese native mixed-breed dog, about 105cm tall (1.05x the height of Bi the squirrel, almost the same height as Bi), lean athletic build, short warm cream-golden fur with white chest and white muzzle, one ear standing up and one ear folded down (signature look), curled tail, shiny black nose, big honey-brown eyes, wearing a mint-teal t-shirt, a green bandana with a white paw print tied around her neck, khaki shorts, white sneakers",
-  "voice": {
-    "voice_id": "cho-lu",
-    "status": "TODO_CLONE",
-    "direction": "Giọng bé gái 5 tuổi khỏe khoắn, giàu năng lượng, nhịp nhanh, hay bật cười sảng khoái"
+  "expression_prompts": {
+    "happy": "Cun Lu grinning widely with pink tongue slightly out, tail wagging fast, left ear high.",
+    "detective": "Cun Lu squinting one eye through a magnifying glass, nose twitching to sniff a trail.",
+    "excited": "Cun Lu jumping with both paws raised, both ears bouncing, sparkling amber eyes.",
+    "guilty": "Cun Lu lowering head, both ears drooping down, looking up shyly with puppy eyes.",
+    "confused": "Cun Lu tilting head 30 degrees to the right, floppy ear swinging out, 'Huh?' expression.",
+    "brave": "Cun Lu standing firm with chest puffed, green bandana fluttering, determined nod.",
+    "listening": "Cun Lu cupping left upright ear with paw, leaning forward attentively.",
+    "laughing": "Cun Lu holding belly and laughing heartily with eyes squinted shut."
   },
-  "persona_set": {
-    "dir": "data/projects/soc-nho-tv/characters/cho_lu/persona/",
-    "reference": "data/projects/soc-nho-tv/characters/cho_lu/cho_lu_01.png (TODO: sinh từ Master DNA prompt)"
-  }
+  "outfit_prompts": {
+    "default": "Mint-teal t-shirt (#4DB6AC), forest-green paw-print neck bandana (#2E7D32), khaki cargo shorts (#C5A880), white sneakers.",
+    "detective_cape": "Default outfit plus a light tan sherlock deerstalker cap and wooden magnifying glass.",
+    "sleepwear": "Green-and-white striped pajamas with bone-shaped buttons.",
+    "rainwear": "Bright green raincoat with clear visor hood, white-and-green rain boots.",
+    "sports": "Mint-teal jersey (#4DB6AC) with number '05' on back, sweatband on forehead."
+  },
+  "episode_count": 16,
+  "appearances": [
+    "ep03-chu-tho-bong-cua-mimi-dau-roi",
+    "ep05-lu-khong-doi-duoc",
+    "ep09-lu-rua-tay-sieu-sach",
+    "ep13-bo-suoi-pha-le",
+    "ep18-nuoc-loc-la-sieu-anh-hung",
+    "ep19-co-the-cua-em-la-cua-em",
+    "ep21-cau-truot-co-luot",
+    "ep23-ba-tu-co-phep-mau",
+    "ep25-khong-la-khong",
+    "ep27-loi-hua-cua-lu",
+    "ep40-nhung-nguoi-ban-ti-hon",
+    "ep41-rac-ve-dung-nha",
+    "ep43-heo-dat-cua-lu",
+    "ep45-man-hinh-vua-du",
+    "ep49-ngay-dau-den-truong",
+    "ep50-le-hoi-rung-xanh"
+  ]
 }

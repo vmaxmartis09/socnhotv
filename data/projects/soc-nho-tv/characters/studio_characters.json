@@ -1,169 +1,1828 @@
-[
-  {
-    "id": "soc_nho",
-    "projectId": "soc-nho-tv",
-    "name": "Sóc Nhỏ (Bi)",
-    "role": "main",
-    "description": "Bé sóc đỏ 3-4 tuổi thân hình thon gọn, nhanh nhẹn, mặc áo phông vàng cổ tròn, quần short đen, giày thể thao tối màu, đuôi xù lớn.",
-    "heightCm": 100,
-    "scaleRatio": 1.0,
-    "voiceId": "soc-nho",
-    "defaultTempo": 1.1,
-    "sampleAudioUrl": "/demo/voice/soc-nho_sample.mp3",
-    "promptLock": "Bé sóc nam, 3-4 tuổi, cao ~100cm nặng ~15kg, thân hình THON GỌN, ốm khỏe, nhanh nhẹn như trẻ hay chạy nhảy, KHÔNG béo, bụng phẳng, thân nhỏ gọn, tay chân ngắn thon, đầu to vừa phải khoảng 1/4 thân, lông nâu đỏ cam, mắt đen tròn to, má hồng nhẹ, hai răng cửa, đuôi xù lớn, áo phông vàng vừa người, quần short đen, giày thể thao tối màu, 3D Pixar, ánh sáng studio mềm, nền trơn sáng",
-    "referenceImages": [
-      "/demo/characters/soc_nho_01.png",
-      "/demo/characters/soc_nho_02.png",
-      "/demo/characters/soc_nho_03.png",
-      "/demo/characters/soc_nho_04.png"
-    ],
-    "referenceLibrary": [
-      {
-        "id": "ref_sn_01",
-        "url": "/demo/characters/soc_nho_01.png",
-        "angle": "Chính diện vẫy tay (Master DNA)",
-        "isPrimary": true,
-        "sourceType": "master_dna",
-        "model": "gemini-2.5-flash-image",
-        "prompt": "assets/soc_nho/soc_nho_01.png — Chính diện chuẩn tỉ lệ 100cm",
-        "createdAt": "2026-11-01T17:30:00Z"
-      },
-      {
-        "id": "ref_sn_02",
-        "url": "/demo/characters/soc_nho_02.png",
-        "angle": "Góc nghiêng 3/4 trái",
-        "isPrimary": false,
-        "sourceType": "master_dna",
-        "model": "gemini-2.5-flash-image",
-        "prompt": "assets/soc_nho/soc_nho_02.png — Góc 3/4 trái giữ đuôi xù lớn",
-        "createdAt": "2026-11-01T17:30:30Z"
-      },
-      {
-        "id": "ref_sn_03",
-        "url": "/demo/characters/soc_nho_03.png",
-        "angle": "Góc nghiêng 3/4 phải",
-        "isPrimary": false,
-        "sourceType": "master_dna",
-        "model": "gemini-2.5-flash-image",
-        "prompt": "assets/soc_nho/soc_nho_03.png — Góc 3/4 phải cười tươi lộ 2 răng cửa",
-        "createdAt": "2026-11-01T17:31:00Z"
-      },
-      {
-        "id": "ref_sn_04",
-        "url": "/demo/characters/soc_nho_04.png",
-        "angle": "Nhìn từ sau (đuôi xù cong)",
-        "isPrimary": false,
-        "sourceType": "master_dna",
-        "model": "gemini-2.5-flash-image",
-        "prompt": "assets/soc_nho/soc_nho_04.png — Nhìn từ sau kiểm tra đuôi xù nâu đỏ",
-        "createdAt": "2026-11-01T17:31:30Z"
-      }
-    ],
-    "generatedClips": [
-      {
-        "id": "clip_sn_ep1_s1",
-        "url": "/demo/videos/canh_01.mp4",
-        "thumbnailUrl": "/demo/scenes/canh_01.jpg",
-        "episodeId": "ep_01_kham_rang",
-        "episodeTitle": "Tập 1: Sóc Nhỏ và Chiếc Răng Sâu",
-        "sceneIndex": 1,
-        "sceneTitle": "Cảnh 1: Bi ở nhà cây mắt sáng rực nhìn kệ kẹo",
-        "durationSec": 8.0,
-        "model": "google-veo-2",
-        "createdAt": "2026-11-01T22:41:00Z"
-      }
-    ],
-    "appearances": [
-      {
-        "episodeId": "ep_01_kham_rang",
-        "episodeTitle": "Tập 1: Sóc Nhỏ và Chiếc Răng Sâu",
-        "scenes": [
-          "Cảnh 1: Nhà cây & kệ kẹo",
-          "Cảnh 2: Ăn kẹo quên đánh răng",
-          "Cảnh 3: Sáng dậy ôm má đau răng",
-          "Cảnh 4: Khám răng cùng Bác sĩ Koala",
-          "Cảnh 5: Học chải răng đúng cách",
-          "Cảnh 6: Răng trắng sáng bóng"
+{
+  "characters": [
+    {
+      "id": "soc_nho",
+      "projectId": "soc-nho-tv",
+      "name": "Sóc Nhỏ (Bi)",
+      "role": "main",
+      "description": "Sóc Nhỏ (Bi) — Nhân vật chính (4.5 tuổi). Chiều cao: 100 cm (Tỉ lệ chuẩn 1.0x) | Cân nặng: 15 kg | Tỉ lệ đầu/thân: 1:4 (thon gọn, bụng phẳng). Màu sắc: Lông cam nâu ấm (#D96B27), má & bụng kem sáng (#F7E1C6), mắt đen to tròn (#1A1110), áo thun vàng nắng (#FFD43B), quần short đen (#22252A), giày sneaker tối màu đế trắng.",
+      "heightCm": 100,
+      "scaleRatio": 1.0,
+      "voiceId": "soc_nho_v1",
+      "defaultTempo": 1.1,
+      "promptLock": "3D Pixar-style cute anthropomorphic red squirrel boy named Bi, 4.5 years old, exact height 100cm (1.0x reference scale, head-to-body ratio 1:4, slim agile build, flat tummy, NO chubby belly), warm terracotta orange-brown fur (#D96B27) with soft cream cheeks and chest (#F7E1C6), large glossy black eyes (#1A1110) with expressive eyebrows, upright tufted squirrel ears, big fluffy S-curved bushy tail as tall as his back, wearing a bright sunny yellow crew-neck t-shirt (#FFD43B), charcoal black shorts (#22252A), and dark sneakers with white rubber soles, ultra-detailed soft fur texture, warm cinematic lighting",
+      "referenceImages": [
+        "/data/projects/soc-nho-tv/characters/soc_nho/soc_nho_01.png",
+        "/data/projects/soc-nho-tv/characters/soc_nho/soc_nho_02.png",
+        "/data/projects/soc-nho-tv/characters/soc_nho/soc_nho_03.png",
+        "/data/projects/soc-nho-tv/characters/soc_nho/soc_nho_04.png",
+        "/data/projects/soc-nho-tv/characters/soc_nho/soc_nho_05.png",
+        "/data/projects/soc-nho-tv/characters/soc_nho/soc_nho_06.png",
+        "/data/projects/soc-nho-tv/characters/soc_nho/soc_nho_07.png",
+        "/data/projects/soc-nho-tv/characters/soc_nho/soc_nho_08.png",
+        "/data/projects/soc-nho-tv/characters/soc_nho/soc_nho_09.png",
+        "/data/projects/soc-nho-tv/characters/soc_nho/soc_nho_10.png",
+        "/data/projects/soc-nho-tv/characters/soc_nho/soc_nho_11.png",
+        "/data/projects/soc-nho-tv/characters/soc_nho/soc_nho_12.png",
+        "/data/projects/soc-nho-tv/characters/soc_nho/soc_nho_13.png",
+        "/data/projects/soc-nho-tv/characters/soc_nho/soc_nho_14.png",
+        "/data/projects/soc-nho-tv/characters/soc_nho/soc_nho_15.png",
+        "/data/projects/soc-nho-tv/characters/soc_nho/soc_nho_16.png",
+        "/data/projects/soc-nho-tv/characters/soc_nho/soc_nho_17.png",
+        "/data/projects/soc-nho-tv/characters/soc_nho/soc_nho_18.png",
+        "/data/projects/soc-nho-tv/characters/soc_nho/soc_nho_dna_sheet.png"
+      ],
+      "voiceSampleUrl": "voice://soc_nho_v1",
+      "appearances": [
+        {
+          "episodeId": "ep01-nui-lua-trong-bung-bi",
+          "episodeTitle": "Tập 01: Núi lửa trong bụng Bi",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep05-lu-khong-doi-duoc",
+          "episodeTitle": "Tập 05: Lu không đợi được",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep06-bi-tu-mac-ao-di-giay",
+          "episodeTitle": "Tập 06: Bi tự mặc áo đi giày",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep08-do-choi-ve-nha",
+          "episodeTitle": "Tập 08: Đồ chơi về nhà",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep11-den-do-den-xanh",
+          "episodeTitle": "Tập 11: Đèn đỏ, đèn xanh",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep13-bo-suoi-pha-le",
+          "episodeTitle": "Tập 13: Bờ suối Pha Lê",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep14-cai-bep-biet-nong",
+          "episodeTitle": "Tập 14: Cái bếp biết nóng",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep15-bi-bi-lac-o-cho",
+          "episodeTitle": "Tập 15: Bi bị lạc ở chợ",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep16-ban-sau-rang-tinh-nghich",
+          "episodeTitle": "Tập 16: Bạn sâu răng tinh nghịch",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep22-xin-loi-va-tha-thu",
+          "episodeTitle": "Tập 22: Xin lỗi và tha thứ",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep25-khong-la-khong",
+          "episodeTitle": "Tập 25: Không là không",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep26-chiec-binh-vo",
+          "episodeTitle": "Tập 26: Chiếc bình vỡ",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep30-chiec-vi-o-san-da",
+          "episodeTitle": "Tập 30: Chiếc ví ở sân đa",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep31-bi-giup-me",
+          "episodeTitle": "Tập 31: Bi giúp mẹ",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep34-mon-qua-tu-lam",
+          "episodeTitle": "Tập 34: Món quà tự làm",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep35-bo-me-met-roi",
+          "episodeTitle": "Tập 35: Bố mẹ mệt rồi",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep36-hat-dau-thuc-day",
+          "episodeTitle": "Tập 36: Hạt đậu thức dậy",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep37-mua-tu-dau-toi",
+          "episodeTitle": "Tập 37: Mưa từ đâu tới?",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep41-rac-ve-dung-nha",
+          "episodeTitle": "Tập 41: Rác về đúng nhà",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep45-man-hinh-vua-du",
+          "episodeTitle": "Tập 45: Màn hình vừa đủ",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep46-banh-chung-ngay-tet",
+          "episodeTitle": "Tập 46: Bánh chưng ngày Tết",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep47-long-den-trung-thu",
+          "episodeTitle": "Tập 47: Lồng đèn Trung thu",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep50-le-hoi-rung-xanh",
+          "episodeTitle": "Tập 50: Lễ hội Rừng Xanh",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        }
+      ],
+      "memory": {
+        "personality": "Tò mò, giàu năng lượng, tốt bụng nhưng đôi khi hấp tấp, dễ bùng nổ cảm xúc ('núi lửa trong bụng') rồi học cách tự điều chỉnh qua từng tập.",
+        "catchphrases": [
+          "Ơ kìa, sao lại thế nhỉ?",
+          "Xòe tay hít sâu, núi lửa nguội mau!",
+          "Bi biết lỗi rồi ạ, mình làm lại nhé!"
+        ],
+        "habits": [
+          "SCALE LOCK: 100 cm (1.0x) | 15 kg | Đầu/Thân 1:4 | Bụng phẳng thon gọn.",
+          "COLOR LOCK: Lông cam nâu (#D96B27), bụng kem (#F7E1C6), áo vàng (#FFD43B), quần short đen (#22252A).",
+          "Hay gãi đầu hoặc ôm đuôi bông xù khi bối rối; vẫy đuôi tít mù khi vui."
+        ],
+        "pastEvents": [
+          "Tập 01: Núi lửa trong bụng Bi (ep01-nui-lua-trong-bung-bi)",
+          "Tập 05: Lu không đợi được (ep05-lu-khong-doi-duoc)",
+          "Tập 06: Bi tự mặc áo đi giày (ep06-bi-tu-mac-ao-di-giay)",
+          "Tập 08: Đồ chơi về nhà (ep08-do-choi-ve-nha)",
+          "Tập 11: Đèn đỏ, đèn xanh (ep11-den-do-den-xanh)",
+          "Tập 13: Bờ suối Pha Lê (ep13-bo-suoi-pha-le)",
+          "Tập 14: Cái bếp biết nóng (ep14-cai-bep-biet-nong)",
+          "Tập 15: Bi bị lạc ở chợ (ep15-bi-bi-lac-o-cho)",
+          "Tập 16: Bạn sâu răng tinh nghịch (ep16-ban-sau-rang-tinh-nghich)",
+          "Tập 22: Xin lỗi và tha thứ (ep22-xin-loi-va-tha-thu)",
+          "Tập 25: Không là không (ep25-khong-la-khong)",
+          "Tập 26: Chiếc bình vỡ (ep26-chiec-binh-vo)",
+          "... cùng 11 tập khác trong tổng số 23/50 tập."
+        ],
+        "pastEventsSummary": [
+          "Tập 01: Núi lửa trong bụng Bi (ep01-nui-lua-trong-bung-bi)",
+          "Tập 05: Lu không đợi được (ep05-lu-khong-doi-duoc)",
+          "Tập 06: Bi tự mặc áo đi giày (ep06-bi-tu-mac-ao-di-giay)",
+          "Tập 08: Đồ chơi về nhà (ep08-do-choi-ve-nha)",
+          "Tập 11: Đèn đỏ, đèn xanh (ep11-den-do-den-xanh)",
+          "Tập 13: Bờ suối Pha Lê (ep13-bo-suoi-pha-le)",
+          "Tập 14: Cái bếp biết nóng (ep14-cai-bep-biet-nong)",
+          "Tập 15: Bi bị lạc ở chợ (ep15-bi-bi-lac-o-cho)",
+          "Tập 16: Bạn sâu răng tinh nghịch (ep16-ban-sau-rang-tinh-nghich)",
+          "Tập 22: Xin lỗi và tha thứ (ep22-xin-loi-va-tha-thu)",
+          "Tập 25: Không là không (ep25-khong-la-khong)",
+          "Tập 26: Chiếc bình vỡ (ep26-chiec-binh-vo)",
+          "... cùng 11 tập khác trong tổng số 23/50 tập."
         ]
       }
-    ],
-    "memory": {
-      "personality": "Nhanh nhẹn, lanh lợi, thân thiện, tinh nghịch, tò mò, hay quên đánh răng buổi tối",
-      "catchphrases": [
-        "Oa, nhiều kẹo quá! Hôm nay Bi sẽ ăn thật nhiều luôn!",
-        "Cảm ơn bác sĩ! Từ nay Bi sẽ chăm sóc răng thật tốt!"
+    },
+    {
+      "id": "de_bong",
+      "projectId": "soc-nho-tv",
+      "name": "Dê Bông (Anh Cả)",
+      "role": "main",
+      "description": "Dê Bông (Anh Cả) — Anh trai của Dê Mun (6 tuổi). Chiều cao: 115 cm (Tỉ lệ 1.15x - Cao nhất nhóm bạn nhỏ, Bi đứng tới cằm Bông) | Cân nặng: 20 kg | Đầu/thân: 1:4.2. Màu sắc: Lông trắng bông tuyết xoăn nhẹ (#F9FAFB), sừng ngắn màu kem (#F3E5AB), mắt nâu ấm (#5D4037), áo thun sọc trắng-navy, quần yếm jean xanh da trời (#5C9CE6), túi ngực cài sổ tay xanh lá (#4CAF50), sandal nâu.",
+      "heightCm": 115,
+      "scaleRatio": 1.15,
+      "voiceId": "de_bong_v1",
+      "defaultTempo": 1.0,
+      "promptLock": "3D Pixar-style cute anthropomorphic white goat boy named De Bong, 6 years old, exact height 115cm (1.15x scale, tallest child in group, head-to-body ratio 1:4.2, sturdy gentle build), fluffy cloud-white curly wool fur (#F9FAFB) with soft pink inner ears (#FFE5EC), short rounded buttercream horns (#F3E5AB), warm chestnut brown eyes (#5D4037), wearing a navy-and-white striped t-shirt under light sky-blue denim overalls (#5C9CE6) with wooden buttons, a small green notebook (#4CAF50) peeking from the chest pocket, and brown leather sandals (#8D6E63), soft 3D fur rendering, warm sunlight",
+      "referenceImages": [
+        "/data/projects/soc-nho-tv/characters/de_bong/de_bong_dna_sheet.png"
       ],
-      "habits": [
-        "Thích ăn hạt dẻ và kẹo ngọt",
-        "Luôn vẫy cái đuôi xù lớn khi hào hứng"
+      "voiceSampleUrl": "voice://de_bong_v1",
+      "appearances": [
+        {
+          "episodeId": "ep02-mun-so-bong-toi",
+          "episodeTitle": "Tập 02: Mun sợ bóng tối",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep04-anh-bong-ghen-ti",
+          "episodeTitle": "Tập 04: Anh Bông ghen tị",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep07-bua-an-khong-roi-vai",
+          "episodeTitle": "Tập 07: Bữa ăn không rơi vãi",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep10-anh-bong-thuc-khuya",
+          "episodeTitle": "Tập 10: Anh Bông thức khuya",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep17-cau-vong-trong-dia-an",
+          "episodeTitle": "Tập 17: Cầu vồng trong đĩa ăn",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep20-di-kham-bac-si-koala",
+          "episodeTitle": "Tập 20: Đi khám Bác sĩ Koala",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep23-ba-tu-co-phep-mau",
+          "episodeTitle": "Tập 23: Ba từ có phép màu",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep24-long-den-cung-dep",
+          "episodeTitle": "Tập 24: Lông đen cũng đẹp",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep25-khong-la-khong",
+          "episodeTitle": "Tập 25: Không là không",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep28-tai-gio-hay-tai-mun",
+          "episodeTitle": "Tập 28: Tại gió hay tại Mun?",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep30-chiec-vi-o-san-da",
+          "episodeTitle": "Tập 30: Chiếc ví ở sân đa",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep32-ong-hay-quen",
+          "episodeTitle": "Tập 32: Ông hay quên",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep33-anh-em-nhu-tay-chan",
+          "episodeTitle": "Tập 33: Anh em như tay chân",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep37-mua-tu-dau-toi",
+          "episodeTitle": "Tập 37: Mưa từ đâu tới?",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep38-ong-mat-troi-di-ngu",
+          "episodeTitle": "Tập 38: Ông Mặt Trời đi ngủ",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep40-nhung-nguoi-ban-ti-hon",
+          "episodeTitle": "Tập 40: Những người bạn tí hon",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep43-heo-dat-cua-lu",
+          "episodeTitle": "Tập 43: Heo đất của Lu",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep44-nga-roi-dung-day",
+          "episodeTitle": "Tập 44: Ngã rồi đứng dậy",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep46-banh-chung-ngay-tet",
+          "episodeTitle": "Tập 46: Bánh chưng ngày Tết",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep48-di-cho-cung-bac-voi",
+          "episodeTitle": "Tập 48: Đi chợ cùng bác Voi",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep50-le-hoi-rung-xanh",
+          "episodeTitle": "Tập 50: Lễ hội Rừng Xanh",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        }
       ],
-      "pastEventsSummary": [
-        "Tập 1 (Sóc Nhỏ và Chiếc Răng Sâu): Ăn nhiều kẹo quên đánh răng nên bị sâu răng, được Bác sĩ Koala chữa và dạy đánh răng sáng tối."
-      ]
-    }
-  },
-  {
-    "id": "koala",
-    "projectId": "soc-nho-tv",
-    "name": "Bác sĩ Koala (Gấu Túi)",
-    "role": "supporting",
-    "description": "Bác sĩ nha khoa gấu túi lớn tuổi hiền từ, lông xám mềm, đeo kính tròn gọng vàng, mặc áo blouse trắng có huy hiệu chữ thập xanh lá.",
-    "heightCm": 150,
-    "scaleRatio": 1.5,
-    "voiceId": "voice-koala",
-    "defaultTempo": 1.0,
-    "sampleAudioUrl": "/demo/voice/canh_01.mp3",
-    "promptLock": "a gentle elderly koala doctor, about 150cm tall (1.5x the height of Bi the squirrel), soft gray fur, large round black nose, fluffy round ears, kind small eyes behind round gold glasses, wearing a clean white doctor coat with a green cross badge, a head mirror on his forehead, a stethoscope around his neck, 3D Pixar-style soft render, soft studio lighting, plain light gray background",
-    "referenceImages": [
-      "/demo/scenes/canh_04.jpg",
-      "/demo/scenes/canh_05.jpg"
-    ],
-    "referenceLibrary": [
-      {
-        "id": "ref_kl_01",
-        "url": "/demo/scenes/canh_04.jpg",
-        "angle": "Khám răng cho Sóc Bi (Tỉ lệ 150cm : 100cm)",
-        "isPrimary": true,
-        "sourceType": "generated",
-        "model": "gemini-2.5-flash-image",
-        "prompt": "Bác sĩ Koala 150cm soi gương khám răng cho Sóc Bi 100cm tại phòng khám rừng xanh",
-        "createdAt": "2026-11-01T22:37:00Z"
-      },
-      {
-        "id": "ref_kl_02",
-        "url": "/demo/scenes/canh_05.jpg",
-        "angle": "Hướng dẫn cầm bàn chải mẫu",
-        "isPrimary": false,
-        "sourceType": "generated",
-        "model": "gemini-2.5-flash-image",
-        "prompt": "Bác sĩ Koala cầm bàn chải lớn hướng dẫn Bi đánh răng xoay tròn",
-        "createdAt": "2026-11-01T22:38:00Z"
-      }
-    ],
-    "generatedClips": [],
-    "appearances": [
-      {
-        "episodeId": "ep_01_kham_rang",
-        "episodeTitle": "Tập 1: Sóc Nhỏ và Chiếc Răng Sâu",
-        "scenes": [
-          "Cảnh 4: Khám răng cho Sóc Bi tại phòng khám gốc cây",
-          "Cảnh 5: Dạy Sóc Bi đánh răng xoay tròn sáng và tối"
+      "memory": {
+        "personality": "Điềm đạm, chu đáo, kiên nhẫn, luôn bảo vệ em út Dê Mun và làm người hòa giải đáng tin cậy của cả nhóm.",
+        "catchphrases": [
+          "Bình tĩnh nào, để anh Bông xem sổ tay nhé!",
+          "Mình làm từng bước một thôi, không sao đâu!",
+          "Chia đôi niềm vui, nỗi buồn vơi một nửa!"
+        ],
+        "habits": [
+          "SCALE LOCK: 115 cm (1.15x - Cao nhất nhóm trẻ) | 20 kg | Đầu/Thân 1:4.2.",
+          "COLOR LOCK: Lông trắng bông (#F9FAFB), sừng kem (#F3E5AB), yếm jean xanh (#5C9CE6), sổ tay xanh lá (#4CAF50).",
+          "Luôn rút cuốn sổ tay xanh lá ở túi ngực ra vẽ sơ đồ hoặc dán sticker khen thưởng cho các em."
+        ],
+        "pastEvents": [
+          "Tập 02: Mun sợ bóng tối (ep02-mun-so-bong-toi)",
+          "Tập 04: Anh Bông ghen tị (ep04-anh-bong-ghen-ti)",
+          "Tập 07: Bữa ăn không rơi vãi (ep07-bua-an-khong-roi-vai)",
+          "Tập 10: Anh Bông thức khuya (ep10-anh-bong-thuc-khuya)",
+          "Tập 17: Cầu vồng trong đĩa ăn (ep17-cau-vong-trong-dia-an)",
+          "Tập 20: Đi khám Bác sĩ Koala (ep20-di-kham-bac-si-koala)",
+          "Tập 23: Ba từ có phép màu (ep23-ba-tu-co-phep-mau)",
+          "Tập 24: Lông đen cũng đẹp (ep24-long-den-cung-dep)",
+          "Tập 25: Không là không (ep25-khong-la-khong)",
+          "Tập 28: Tại gió hay tại Mun? (ep28-tai-gio-hay-tai-mun)",
+          "Tập 30: Chiếc ví ở sân đa (ep30-chiec-vi-o-san-da)",
+          "Tập 32: Ông hay quên (ep32-ong-hay-quen)",
+          "... cùng 9 tập khác trong tổng số 21/50 tập."
+        ],
+        "pastEventsSummary": [
+          "Tập 02: Mun sợ bóng tối (ep02-mun-so-bong-toi)",
+          "Tập 04: Anh Bông ghen tị (ep04-anh-bong-ghen-ti)",
+          "Tập 07: Bữa ăn không rơi vãi (ep07-bua-an-khong-roi-vai)",
+          "Tập 10: Anh Bông thức khuya (ep10-anh-bong-thuc-khuya)",
+          "Tập 17: Cầu vồng trong đĩa ăn (ep17-cau-vong-trong-dia-an)",
+          "Tập 20: Đi khám Bác sĩ Koala (ep20-di-kham-bac-si-koala)",
+          "Tập 23: Ba từ có phép màu (ep23-ba-tu-co-phep-mau)",
+          "Tập 24: Lông đen cũng đẹp (ep24-long-den-cung-dep)",
+          "Tập 25: Không là không (ep25-khong-la-khong)",
+          "Tập 28: Tại gió hay tại Mun? (ep28-tai-gio-hay-tai-mun)",
+          "Tập 30: Chiếc ví ở sân đa (ep30-chiec-vi-o-san-da)",
+          "Tập 32: Ông hay quên (ep32-ong-hay-quen)",
+          "... cùng 9 tập khác trong tổng số 21/50 tập."
         ]
       }
-    ],
-    "memory": {
-      "personality": "Hiền hậu, kiên nhẫn, ấm áp, dạy dỗ nhẹ nhàng",
-      "catchphrases": [
-        "Cháu bị sâu răng rồi. Do ăn quá nhiều kẹo ngọt đấy.",
-        "Hãy đánh răng sáng và tối, ăn ít kẹo, uống nhiều nước nhé."
+    },
+    {
+      "id": "cho_lu",
+      "projectId": "soc-nho-tv",
+      "name": "Cún Lu (Thám Tử Nhí)",
+      "role": "main",
+      "description": "Cún Lu (Thám Tử Nhí) — Bạn thân năng động (5 tuổi). Chiều cao: 105 cm (Tỉ lệ 1.05x - Cao hơn Bi 5cm) | Cân nặng: 16.5 kg | Đầu/thân: 1:4.0. Đặc điểm khóa cứng: 1 TAI TRÁI ĐỨNG + 1 TAI PHẢI CỤP. Màu sắc: Lông vàng mật ong (#E8B86D), ngực & mõm trắng kem (#FFF8E7), áo thun xanh bạc hà (#4DB6AC), khăn bandana xanh lá (#2E7D32) in dấu chân trắng ở cổ, quần short kaki (#C5A880), giày sneaker trắng.",
+      "heightCm": 105,
+      "scaleRatio": 1.05,
+      "voiceId": "cho_lu_v1",
+      "defaultTempo": 1.0,
+      "promptLock": "3D Pixar-style cute anthropomorphic golden puppy boy named Cun Lu, 5 years old, exact height 105cm (1.05x scale, head-to-body ratio 1:4, athletic energetic build), smooth warm honey-gold fur (#E8B86D) with creamy white muzzle, chest and paws (#FFF8E7), SIGNATURE ASYMMETRIC EARS (left ear perked upright, right ear flopped down), shiny black nose (#1C1C1C), amber brown eyes (#8B4513), wearing a mint-teal sporty t-shirt (#4DB6AC), a forest-green neck bandana (#2E7D32) printed with white paw prints, khaki cargo shorts (#C5A880), and white sneakers with green stripes, vibrant 3D lighting",
+      "referenceImages": [
+        "/data/projects/soc-nho-tv/characters/cho_lu/cho_lu_dna_sheet.png"
       ],
-      "habits": [
-        "Luôn đeo kính tròn gọng vàng và ống nghe quanh cổ",
-        "Dùng mô hình răng khổng lồ để hướng dẫn các bạn nhỏ"
+      "voiceSampleUrl": "voice://cho_lu_v1",
+      "appearances": [
+        {
+          "episodeId": "ep03-chu-tho-bong-cua-mimi-dau-roi",
+          "episodeTitle": "Tập 03: Chú thỏ bông của Mimi đâu rồi",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep05-lu-khong-doi-duoc",
+          "episodeTitle": "Tập 05: Lu không đợi được",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep09-lu-rua-tay-sieu-sach",
+          "episodeTitle": "Tập 09: Lu rửa tay siêu sạch",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep13-bo-suoi-pha-le",
+          "episodeTitle": "Tập 13: Bờ suối Pha Lê",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep18-nuoc-loc-la-sieu-anh-hung",
+          "episodeTitle": "Tập 18: Nước lọc là siêu anh hùng",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep19-co-the-cua-em-la-cua-em",
+          "episodeTitle": "Tập 19: Cơ thể của em là của em",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep21-cau-truot-co-luot",
+          "episodeTitle": "Tập 21: Cầu trượt có lượt",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep23-ba-tu-co-phep-mau",
+          "episodeTitle": "Tập 23: Ba từ có phép màu",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep25-khong-la-khong",
+          "episodeTitle": "Tập 25: Không là không",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep27-loi-hua-cua-lu",
+          "episodeTitle": "Tập 27: Lời hứa của Lu",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep40-nhung-nguoi-ban-ti-hon",
+          "episodeTitle": "Tập 40: Những người bạn tí hon",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep41-rac-ve-dung-nha",
+          "episodeTitle": "Tập 41: Rác về đúng nhà",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep43-heo-dat-cua-lu",
+          "episodeTitle": "Tập 43: Heo đất của Lu",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep45-man-hinh-vua-du",
+          "episodeTitle": "Tập 45: Màn hình vừa đủ",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep49-ngay-dau-den-truong",
+          "episodeTitle": "Tập 49: Ngày đầu đến trường",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep50-le-hoi-rung-xanh",
+          "episodeTitle": "Tập 50: Lễ hội Rừng Xanh",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        }
       ],
-      "pastEventsSummary": [
-        "Tập 1 (Sóc Nhỏ và Chiếc Răng Sâu): Khám và chữa chiếc răng sâu cho Sóc Bi, tặng Bi bàn chải mới."
-      ]
+      "memory": {
+        "personality": "Nhiệt tình, dũng cảm, thích khám phá và đóng vai 'Thám tử nhí' tìm đồ thất lạc giúp bạn bè, đôi khi hơi ồn ào nhưng cực kỳ trung thành.",
+        "catchphrases": [
+          "Mũi thính của Thám tử Lu đã đánh hơi thấy manh mối rồi!",
+          "Gâu gâu! Để Lu giúp một tay nhé!",
+          "Đội tuần tra Rừng Xanh xuất phát thôi!"
+        ],
+        "habits": [
+          "SCALE LOCK: 105 cm (1.05x) | 16.5 kg | Đầu/Thân 1:4.0.",
+          "COLOR & EAR LOCK: 1 tai trái đứng + 1 tai phải cụp, lông vàng mật ong (#E8B86D), áo xanh bạc hà (#4DB6AC), khăn bandana xanh lá (#2E7D32).",
+          "Hay khịt mũi ngửi manh mối và vẫy đuôi tít mù khi tìm ra câu trả lời."
+        ],
+        "pastEvents": [
+          "Tập 03: Chú thỏ bông của Mimi đâu rồi (ep03-chu-tho-bong-cua-mimi-dau-roi)",
+          "Tập 05: Lu không đợi được (ep05-lu-khong-doi-duoc)",
+          "Tập 09: Lu rửa tay siêu sạch (ep09-lu-rua-tay-sieu-sach)",
+          "Tập 13: Bờ suối Pha Lê (ep13-bo-suoi-pha-le)",
+          "Tập 18: Nước lọc là siêu anh hùng (ep18-nuoc-loc-la-sieu-anh-hung)",
+          "Tập 19: Cơ thể của em là của em (ep19-co-the-cua-em-la-cua-em)",
+          "Tập 21: Cầu trượt có lượt (ep21-cau-truot-co-luot)",
+          "Tập 23: Ba từ có phép màu (ep23-ba-tu-co-phep-mau)",
+          "Tập 25: Không là không (ep25-khong-la-khong)",
+          "Tập 27: Lời hứa của Lu (ep27-loi-hua-cua-lu)",
+          "Tập 40: Những người bạn tí hon (ep40-nhung-nguoi-ban-ti-hon)",
+          "Tập 41: Rác về đúng nhà (ep41-rac-ve-dung-nha)",
+          "... cùng 4 tập khác trong tổng số 16/50 tập."
+        ],
+        "pastEventsSummary": [
+          "Tập 03: Chú thỏ bông của Mimi đâu rồi (ep03-chu-tho-bong-cua-mimi-dau-roi)",
+          "Tập 05: Lu không đợi được (ep05-lu-khong-doi-duoc)",
+          "Tập 09: Lu rửa tay siêu sạch (ep09-lu-rua-tay-sieu-sach)",
+          "Tập 13: Bờ suối Pha Lê (ep13-bo-suoi-pha-le)",
+          "Tập 18: Nước lọc là siêu anh hùng (ep18-nuoc-loc-la-sieu-anh-hung)",
+          "Tập 19: Cơ thể của em là của em (ep19-co-the-cua-em-la-cua-em)",
+          "Tập 21: Cầu trượt có lượt (ep21-cau-truot-co-luot)",
+          "Tập 23: Ba từ có phép màu (ep23-ba-tu-co-phep-mau)",
+          "Tập 25: Không là không (ep25-khong-la-khong)",
+          "Tập 27: Lời hứa của Lu (ep27-loi-hua-cua-lu)",
+          "Tập 40: Những người bạn tí hon (ep40-nhung-nguoi-ban-ti-hon)",
+          "Tập 41: Rác về đúng nhà (ep41-rac-ve-dung-nha)",
+          "... cùng 4 tập khác trong tổng số 16/50 tập."
+        ]
+      }
+    },
+    {
+      "id": "meo_mimi",
+      "projectId": "soc-nho-tv",
+      "name": "Mèo Mimi (Khéo Tay)",
+      "role": "main",
+      "description": "Mèo Mimi (Khéo Tay) — Cô bé mèo tam thể tinh tế, yêu nghệ thuật (4.5 tuổi). Chiều cao: 95 cm (Tỉ lệ 0.95x - Thấp hơn Bi 5cm) | Cân nặng: 13.5 kg | Đầu/thân: 1:4.0. Màu sắc khóa cứng: Lông tam thể nền trắng (#FFFFFF), mảng đen ở tai trái & chóp đuôi (#2B2D42), mảng cam mơ quanh mắt phải (#F4A261), mắt xanh ngọc lục bảo (#2ECC71), nơ hồng phấn (#FF8FAB) trên tai phải, váy yếm tím oải hương (#B39DDB) ngoài áo trắng tay phồng, giày Mary-Jane trắng.",
+      "heightCm": 95,
+      "scaleRatio": 0.95,
+      "voiceId": "meo_mimi_v1",
+      "defaultTempo": 1.0,
+      "promptLock": "3D Pixar-style cute anthropomorphic calico kitten girl named Meo Mimi, 4.5 years old, exact height 95cm (0.95x scale, head-to-body ratio 1:4, slender graceful build), snow-white fur base (#FFFFFF) with FIXED CALICO PATCHES (charcoal black patch on left ear and tail tip #2B2D42, warm apricot-orange patch around right eye #F4A261), large sparkling emerald-green eyes (#2ECC71), small pink nose, delicate white whiskers, wearing a pastel pink ribbon bow (#FF8FAB) on her right ear, a white puff-sleeve blouse under a lavender purple pinafore dress (#B39DDB) with a flower-shaped pocket, white ankle socks and white Mary-Jane shoes, soft 3D fur texture",
+      "referenceImages": [
+        "/data/projects/soc-nho-tv/characters/meo_mimi/meo_mimi_dna_sheet.png"
+      ],
+      "voiceSampleUrl": "voice://meo_mimi_v1",
+      "appearances": [
+        {
+          "episodeId": "ep03-chu-tho-bong-cua-mimi-dau-roi",
+          "episodeTitle": "Tập 03: Chú thỏ bông của Mimi đâu rồi",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep08-do-choi-ve-nha",
+          "episodeTitle": "Tập 08: Đồ chơi về nhà",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep12-mat-khau-cua-gia-dinh",
+          "episodeTitle": "Tập 12: Mật khẩu của gia đình",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep19-co-the-cua-em-la-cua-em",
+          "episodeTitle": "Tập 19: Cơ thể của em là của em",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep22-xin-loi-va-tha-thu",
+          "episodeTitle": "Tập 22: Xin lỗi và tha thứ",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep24-long-den-cung-dep",
+          "episodeTitle": "Tập 24: Lông đen cũng đẹp",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep27-loi-hua-cua-lu",
+          "episodeTitle": "Tập 27: Lời hứa của Lu",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep29-cay-dau-cua-mimi",
+          "episodeTitle": "Tập 29: Cây đậu của Mimi",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep34-mon-qua-tu-lam",
+          "episodeTitle": "Tập 34: Món quà tự làm",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep36-hat-dau-thuc-day",
+          "episodeTitle": "Tập 36: Hạt đậu thức dậy",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep39-hom-nay-mac-gi",
+          "episodeTitle": "Tập 39: Hôm nay mặc gì?",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep42-giot-nuoc-tiet-kiem",
+          "episodeTitle": "Tập 42: Giọt nước tiết kiệm",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep47-long-den-trung-thu",
+          "episodeTitle": "Tập 47: Lồng đèn Trung thu",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep50-le-hoi-rung-xanh",
+          "episodeTitle": "Tập 50: Lễ hội Rừng Xanh",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        }
+      ],
+      "memory": {
+        "personality": "Khéo léo, tinh tế, yêu cái đẹp, thích vẽ tranh và làm đồ thủ công, rất giàu lòng trắc ẩn nhưng hơi nhạy cảm và sợ bẩn.",
+        "catchphrases": [
+          "Meo~ Để Mimi trang trí thêm một chút sắc màu nhé!",
+          "Nhẹ nhàng thôi nào, kẻo đau bạn ấy đấy!",
+          "Oa, gọn gàng và xinh xắn quá đi!"
+        ],
+        "habits": [
+          "SCALE LOCK: 95 cm (0.95x - Thấp hơn Bi 5cm) | 13.5 kg | Đầu/Thân 1:4.0.",
+          "COLOR LOCK: Tam thể nền trắng (#FFFFFF), tai trái đen (#2B2D42), mắt phải đốm cam (#F4A261), mắt xanh ngọc (#2ECC71), váy tím (#B39DDB), nơ hồng (#FF8FAB).",
+          "Luôn mang theo túi vải nhỏ đựng bút màu hoặc khăn tay sạch."
+        ],
+        "pastEvents": [
+          "Tập 03: Chú thỏ bông của Mimi đâu rồi (ep03-chu-tho-bong-cua-mimi-dau-roi)",
+          "Tập 08: Đồ chơi về nhà (ep08-do-choi-ve-nha)",
+          "Tập 12: Mật khẩu của gia đình (ep12-mat-khau-cua-gia-dinh)",
+          "Tập 19: Cơ thể của em là của em (ep19-co-the-cua-em-la-cua-em)",
+          "Tập 22: Xin lỗi và tha thứ (ep22-xin-loi-va-tha-thu)",
+          "Tập 24: Lông đen cũng đẹp (ep24-long-den-cung-dep)",
+          "Tập 27: Lời hứa của Lu (ep27-loi-hua-cua-lu)",
+          "Tập 29: Cây đậu của Mimi (ep29-cay-dau-cua-mimi)",
+          "Tập 34: Món quà tự làm (ep34-mon-qua-tu-lam)",
+          "Tập 36: Hạt đậu thức dậy (ep36-hat-dau-thuc-day)",
+          "Tập 39: Hôm nay mặc gì? (ep39-hom-nay-mac-gi)",
+          "Tập 42: Giọt nước tiết kiệm (ep42-giot-nuoc-tiet-kiem)",
+          "... cùng 2 tập khác trong tổng số 14/50 tập."
+        ],
+        "pastEventsSummary": [
+          "Tập 03: Chú thỏ bông của Mimi đâu rồi (ep03-chu-tho-bong-cua-mimi-dau-roi)",
+          "Tập 08: Đồ chơi về nhà (ep08-do-choi-ve-nha)",
+          "Tập 12: Mật khẩu của gia đình (ep12-mat-khau-cua-gia-dinh)",
+          "Tập 19: Cơ thể của em là của em (ep19-co-the-cua-em-la-cua-em)",
+          "Tập 22: Xin lỗi và tha thứ (ep22-xin-loi-va-tha-thu)",
+          "Tập 24: Lông đen cũng đẹp (ep24-long-den-cung-dep)",
+          "Tập 27: Lời hứa của Lu (ep27-loi-hua-cua-lu)",
+          "Tập 29: Cây đậu của Mimi (ep29-cay-dau-cua-mimi)",
+          "Tập 34: Món quà tự làm (ep34-mon-qua-tu-lam)",
+          "Tập 36: Hạt đậu thức dậy (ep36-hat-dau-thuc-day)",
+          "Tập 39: Hôm nay mặc gì? (ep39-hom-nay-mac-gi)",
+          "Tập 42: Giọt nước tiết kiệm (ep42-giot-nuoc-tiet-kiem)",
+          "... cùng 2 tập khác trong tổng số 14/50 tập."
+        ]
+      }
+    },
+    {
+      "id": "de_mun",
+      "projectId": "soc-nho-tv",
+      "name": "Dê Mun (Em Út)",
+      "role": "main",
+      "description": "Dê Mun (Em Út) — Em trai út của Dê Bông (3 tuổi). Chiều cao: 85 cm (Tỉ lệ 0.85x - Nhỏ nhất nhóm, đỉnh đầu chạm mũi Bi) | Cân nặng: 12 kg | Đầu/thân: 1:3.6 (má bầu bĩnh). Màu sắc khóa cứng: Lông đen tuyền óng mượt (#1E1E24) với ĐỐM NGÔI SAO TRẮNG NHỎ GIỮA TRÁN (#FFFFFF), 2 mầm sừng tròn tí hon màu kem (#E6CCB2), áo thun đỏ tươi (#E53935) in ngôi sao vàng (#FFD700), quần short xanh navy (#1A365D), ủng đỏ viền vàng.",
+      "heightCm": 85,
+      "scaleRatio": 0.85,
+      "voiceId": "de_mun_v1",
+      "defaultTempo": 1.0,
+      "promptLock": "3D Pixar-style adorable toddler black goat boy named De Mun, 3 years old, exact height 85cm (0.85x scale, shortest child in group, toddler head-to-body ratio 1:3.6, chubby cheeks), velvety jet-black fur (#1E1E24) with a SIGNATURE SMALL WHITE STAR MARKING ON CENTER FOREHEAD (#FFFFFF), two tiny rounded cream horn buds (#E6CCB2), huge sparkling dark brown eyes (#3E2723), wearing a bright red crew-neck t-shirt (#E53935) with a big yellow star (#FFD700) printed on the chest, dark navy shorts (#1A365D), and cute little red rubber boots with yellow trim, ultra-soft 3D Pixar lighting",
+      "referenceImages": [
+        "/data/projects/soc-nho-tv/characters/de_mun/de_mun_dna_sheet.png"
+      ],
+      "voiceSampleUrl": "voice://de_mun_v1",
+      "appearances": [
+        {
+          "episodeId": "ep01-nui-lua-trong-bung-bi",
+          "episodeTitle": "Tập 01: Núi lửa trong bụng Bi",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep02-mun-so-bong-toi",
+          "episodeTitle": "Tập 02: Mun sợ bóng tối",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep04-anh-bong-ghen-ti",
+          "episodeTitle": "Tập 04: Anh Bông ghen tị",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep07-bua-an-khong-roi-vai",
+          "episodeTitle": "Tập 07: Bữa ăn không rơi vãi",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep09-lu-rua-tay-sieu-sach",
+          "episodeTitle": "Tập 09: Lu rửa tay siêu sạch",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep10-anh-bong-thuc-khuya",
+          "episodeTitle": "Tập 10: Anh Bông thức khuya",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep14-cai-bep-biet-nong",
+          "episodeTitle": "Tập 14: Cái bếp biết nóng",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep17-cau-vong-trong-dia-an",
+          "episodeTitle": "Tập 17: Cầu vồng trong đĩa ăn",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep20-di-kham-bac-si-koala",
+          "episodeTitle": "Tập 20: Đi khám Bác sĩ Koala",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep21-cau-truot-co-luot",
+          "episodeTitle": "Tập 21: Cầu trượt có lượt",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep24-long-den-cung-dep",
+          "episodeTitle": "Tập 24: Lông đen cũng đẹp",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep28-tai-gio-hay-tai-mun",
+          "episodeTitle": "Tập 28: Tại gió hay tại Mun?",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep32-ong-hay-quen",
+          "episodeTitle": "Tập 32: Ông hay quên",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep33-anh-em-nhu-tay-chan",
+          "episodeTitle": "Tập 33: Anh em như tay chân",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep38-ong-mat-troi-di-ngu",
+          "episodeTitle": "Tập 38: Ông Mặt Trời đi ngủ",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep39-hom-nay-mac-gi",
+          "episodeTitle": "Tập 39: Hôm nay mặc gì?",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep42-giot-nuoc-tiet-kiem",
+          "episodeTitle": "Tập 42: Giọt nước tiết kiệm",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep47-long-den-trung-thu",
+          "episodeTitle": "Tập 47: Lồng đèn Trung thu",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep48-di-cho-cung-bac-voi",
+          "episodeTitle": "Tập 48: Đi chợ cùng bác Voi",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep49-ngay-dau-den-truong",
+          "episodeTitle": "Tập 49: Ngày đầu đến trường",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep50-le-hoi-rung-xanh",
+          "episodeTitle": "Tập 50: Lễ hội Rừng Xanh",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        }
+      ],
+      "memory": {
+        "personality": "Hồn nhiên, đáng yêu, hay bắt chước các anh chị, đôi khi nhút nhát hoặc mè nheo đúng lứa tuổi lên 3 nhưng rất ngoan khi được khích lệ.",
+        "catchphrases": [
+          "Anh Bông ơi, đợi Mun với!",
+          "Mun tự làm được nè!",
+          "Hehe, thích quá đi!"
+        ],
+        "habits": [
+          "SCALE LOCK: 85 cm (0.85x - Nhỏ nhất nhóm, chạm mũi Bi) | 12 kg | Đầu/Thân 1:3.6.",
+          "COLOR LOCK: Lông đen tuyền (#1E1E24), ngôi sao trắng giữa trán (#FFFFFF), áo đỏ sao vàng (#E53935 & #FFD700), ủng đỏ.",
+          "Hay nắm vạt áo anh Bông khi đến chỗ lạ và nhảy chân sáo phát ra tiếng 'lộp bộp' từ đôi ủng đỏ."
+        ],
+        "pastEvents": [
+          "Tập 01: Núi lửa trong bụng Bi (ep01-nui-lua-trong-bung-bi)",
+          "Tập 02: Mun sợ bóng tối (ep02-mun-so-bong-toi)",
+          "Tập 04: Anh Bông ghen tị (ep04-anh-bong-ghen-ti)",
+          "Tập 07: Bữa ăn không rơi vãi (ep07-bua-an-khong-roi-vai)",
+          "Tập 09: Lu rửa tay siêu sạch (ep09-lu-rua-tay-sieu-sach)",
+          "Tập 10: Anh Bông thức khuya (ep10-anh-bong-thuc-khuya)",
+          "Tập 14: Cái bếp biết nóng (ep14-cai-bep-biet-nong)",
+          "Tập 17: Cầu vồng trong đĩa ăn (ep17-cau-vong-trong-dia-an)",
+          "Tập 20: Đi khám Bác sĩ Koala (ep20-di-kham-bac-si-koala)",
+          "Tập 21: Cầu trượt có lượt (ep21-cau-truot-co-luot)",
+          "Tập 24: Lông đen cũng đẹp (ep24-long-den-cung-dep)",
+          "Tập 28: Tại gió hay tại Mun? (ep28-tai-gio-hay-tai-mun)",
+          "... cùng 9 tập khác trong tổng số 21/50 tập."
+        ],
+        "pastEventsSummary": [
+          "Tập 01: Núi lửa trong bụng Bi (ep01-nui-lua-trong-bung-bi)",
+          "Tập 02: Mun sợ bóng tối (ep02-mun-so-bong-toi)",
+          "Tập 04: Anh Bông ghen tị (ep04-anh-bong-ghen-ti)",
+          "Tập 07: Bữa ăn không rơi vãi (ep07-bua-an-khong-roi-vai)",
+          "Tập 09: Lu rửa tay siêu sạch (ep09-lu-rua-tay-sieu-sach)",
+          "Tập 10: Anh Bông thức khuya (ep10-anh-bong-thuc-khuya)",
+          "Tập 14: Cái bếp biết nóng (ep14-cai-bep-biet-nong)",
+          "Tập 17: Cầu vồng trong đĩa ăn (ep17-cau-vong-trong-dia-an)",
+          "Tập 20: Đi khám Bác sĩ Koala (ep20-di-kham-bac-si-koala)",
+          "Tập 21: Cầu trượt có lượt (ep21-cau-truot-co-luot)",
+          "Tập 24: Lông đen cũng đẹp (ep24-long-den-cung-dep)",
+          "Tập 28: Tại gió hay tại Mun? (ep28-tai-gio-hay-tai-mun)",
+          "... cùng 9 tập khác trong tổng số 21/50 tập."
+        ]
+      }
+    },
+    {
+      "id": "me_soc",
+      "projectId": "soc-nho-tv",
+      "name": "Mẹ Sóc (Mẹ của Bi)",
+      "role": "supporting",
+      "description": "Mẹ Sóc — Mẹ ruột của Sóc Bi (32 tuổi). Chiều cao: 145 cm (Tỉ lệ 1.45x - Đỉnh đầu Bi chạm ngực Mẹ) | Cân nặng: 32 kg | Đầu/thân: 1:5.2. Màu sắc: Lông nâu đỏ quế ấm (#C85A32), má & cổ màu kem (#F7E1C6), mặc váy vải lanh xanh xô thơm (#8FBC8F) kèm tạp dề màu kem (#FFFDD0) thêu hình hạt dẻ, giày bệt nâu (#6D4C41).",
+      "heightCm": 145,
+      "scaleRatio": 1.45,
+      "voiceId": "me_soc_v1",
+      "defaultTempo": 1.0,
+      "promptLock": "3D Pixar-style gentle anthropomorphic adult mother red squirrel named Me Soc, exact height 145cm (1.45x scale, Bi's head reaches her chest, head-to-body ratio 1:5.2, slender maternal build), warm cinnamon-russet fur (#C85A32) with soft cream cheeks and throat (#F7E1C6), kind chestnut-brown eyes (#3E2723), tufted squirrel ears, large graceful bushy tail, wearing a soft sage-green linen midi dress (#8FBC8F) with rolled sleeves, a cream cotton apron (#FFFDD0) embroidered with a cute brown acorn on the front pocket, and brown flat shoes (#6D4C41), warm cozy home lighting",
+      "referenceImages": [
+        "/data/projects/soc-nho-tv/characters/me_soc/me_soc_dna_sheet.png"
+      ],
+      "voiceSampleUrl": "voice://me_soc_v1",
+      "appearances": [
+        {
+          "episodeId": "ep01-nui-lua-trong-bung-bi",
+          "episodeTitle": "Tập 01: Núi lửa trong bụng Bi",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep05-lu-khong-doi-duoc",
+          "episodeTitle": "Tập 05: Lu không đợi được",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep06-bi-tu-mac-ao-di-giay",
+          "episodeTitle": "Tập 06: Bi tự mặc áo đi giày",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep11-den-do-den-xanh",
+          "episodeTitle": "Tập 11: Đèn đỏ, đèn xanh",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep12-mat-khau-cua-gia-dinh",
+          "episodeTitle": "Tập 12: Mật khẩu của gia đình",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep14-cai-bep-biet-nong",
+          "episodeTitle": "Tập 14: Cái bếp biết nóng",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep15-bi-bi-lac-o-cho",
+          "episodeTitle": "Tập 15: Bi bị lạc ở chợ",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep26-chiec-binh-vo",
+          "episodeTitle": "Tập 26: Chiếc bình vỡ",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep31-bi-giup-me",
+          "episodeTitle": "Tập 31: Bi giúp mẹ",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep34-mon-qua-tu-lam",
+          "episodeTitle": "Tập 34: Món quà tự làm",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep35-bo-me-met-roi",
+          "episodeTitle": "Tập 35: Bố mẹ mệt rồi",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep45-man-hinh-vua-du",
+          "episodeTitle": "Tập 45: Màn hình vừa đủ",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        }
+      ],
+      "memory": {
+        "personality": "Dịu dàng, kiên nhẫn, không bao giờ la mắng khi con sai mà luôn ngồi xuống ngang tầm mắt con để dẫn dắt bằng câu hỏi gợi mở.",
+        "catchphrases": [
+          "Mẹ ở đây rồi, con kể cho mẹ nghe nào.",
+          "Cảm xúc nào cũng là bạn của mình cả con ạ.",
+          "Con trai của mẹ đã biết tự suy nghĩ rồi đấy!"
+        ],
+        "habits": [
+          "SCALE LOCK: 145 cm (1.45x - Đỉnh đầu Bi chạm ngực Mẹ) | 32 kg.",
+          "COLOR LOCK: Lông nâu đỏ quế (#C85A32), váy xanh xô thơm (#8FBC8F), tạp dề kem thêu hạt dẻ (#FFFDD0).",
+          "Luôn ngồi khuỵu gối xuống để ngang tầm mắt với các bé khi trò chuyện."
+        ],
+        "pastEvents": [
+          "Tập 01: Núi lửa trong bụng Bi (ep01-nui-lua-trong-bung-bi)",
+          "Tập 05: Lu không đợi được (ep05-lu-khong-doi-duoc)",
+          "Tập 06: Bi tự mặc áo đi giày (ep06-bi-tu-mac-ao-di-giay)",
+          "Tập 11: Đèn đỏ, đèn xanh (ep11-den-do-den-xanh)",
+          "Tập 12: Mật khẩu của gia đình (ep12-mat-khau-cua-gia-dinh)",
+          "Tập 14: Cái bếp biết nóng (ep14-cai-bep-biet-nong)",
+          "Tập 15: Bi bị lạc ở chợ (ep15-bi-bi-lac-o-cho)",
+          "Tập 26: Chiếc bình vỡ (ep26-chiec-binh-vo)",
+          "Tập 31: Bi giúp mẹ (ep31-bi-giup-me)",
+          "Tập 34: Món quà tự làm (ep34-mon-qua-tu-lam)",
+          "Tập 35: Bố mẹ mệt rồi (ep35-bo-me-met-roi)",
+          "Tập 45: Màn hình vừa đủ (ep45-man-hinh-vua-du)"
+        ],
+        "pastEventsSummary": [
+          "Tập 01: Núi lửa trong bụng Bi (ep01-nui-lua-trong-bung-bi)",
+          "Tập 05: Lu không đợi được (ep05-lu-khong-doi-duoc)",
+          "Tập 06: Bi tự mặc áo đi giày (ep06-bi-tu-mac-ao-di-giay)",
+          "Tập 11: Đèn đỏ, đèn xanh (ep11-den-do-den-xanh)",
+          "Tập 12: Mật khẩu của gia đình (ep12-mat-khau-cua-gia-dinh)",
+          "Tập 14: Cái bếp biết nóng (ep14-cai-bep-biet-nong)",
+          "Tập 15: Bi bị lạc ở chợ (ep15-bi-bi-lac-o-cho)",
+          "Tập 26: Chiếc bình vỡ (ep26-chiec-binh-vo)",
+          "Tập 31: Bi giúp mẹ (ep31-bi-giup-me)",
+          "Tập 34: Món quà tự làm (ep34-mon-qua-tu-lam)",
+          "Tập 35: Bố mẹ mệt rồi (ep35-bo-me-met-roi)",
+          "Tập 45: Màn hình vừa đủ (ep45-man-hinh-vua-du)"
+        ]
+      }
+    },
+    {
+      "id": "koala",
+      "projectId": "soc-nho-tv",
+      "name": "Bác sĩ Koala (Gấu Túi)",
+      "role": "supporting",
+      "description": "Bác sĩ Koala — Bác sĩ nhi khoa tận tâm của Phòng khám Rừng Xanh (45 tuổi). Chiều cao: 150 cm (Tỉ lệ 1.50x - Đầu Bi chạm ngực Bác sĩ) | Cân nặng: 38 kg | Đầu/thân: 1:4.8. Màu sắc: Lông xám bạc (#9E9E9E), tai tròn viền lông trắng (#FFFFFF), kính tròn gọng vàng (#FFD700), áo blouse trắng có huy hiệu chữ thập xanh lá (#2ECC71), sơ mi xanh nhạt (#4FC3F7), ống nghe bạc & gương soi trán.",
+      "heightCm": 150,
+      "scaleRatio": 1.5,
+      "voiceId": "koala_doc_v1",
+      "defaultTempo": 1.0,
+      "promptLock": "3D Pixar-style friendly anthropomorphic adult male Koala doctor, exact height 150cm (1.50x scale, Bi's head reaches his chest, warm rounded friendly build), soft silver-grey fur (#9E9E9E) with fluffy white ear fringes and chest (#FFFFFF), large oval black koala nose (#212121), wearing round gold-rimmed glasses (#FFD700), a medical head mirror on forehead, a crisp white doctor's lab coat (#FFFFFF) with a green cross badge (#2ECC71) over a light blue shirt (#4FC3F7) and bow tie, silver stethoscope around neck, grey trousers (#616161), warm reassuring smile, clean clinic lighting",
+      "referenceImages": [
+        "/data/projects/soc-nho-tv/characters/koala/koala_dna_sheet.png"
+      ],
+      "voiceSampleUrl": "voice://koala_doc_v1",
+      "appearances": [
+        {
+          "episodeId": "ep16-ban-sau-rang-tinh-nghich",
+          "episodeTitle": "Tập 16: Bạn sâu răng tinh nghịch",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep18-nuoc-loc-la-sieu-anh-hung",
+          "episodeTitle": "Tập 18: Nước lọc là siêu anh hùng",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep20-di-kham-bac-si-koala",
+          "episodeTitle": "Tập 20: Đi khám Bác sĩ Koala",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        }
+      ],
+      "memory": {
+        "personality": "Hiền từ, điềm tĩnh, hài hước nhẹ nhàng, luôn biến việc khám sức khỏe thành trò chơi thú vị để các bé không sợ bác sĩ.",
+        "catchphrases": [
+          "Chà, để Bác sĩ Koala xem bạn nhỏ nào dũng cảm nhất hôm nay nhé!",
+          "Cơ thể khỏe mạnh là kho báu quý nhất của chúng mình!",
+          "Tặng cháu một ngôi sao Dũng Cảm nhé!"
+        ],
+        "habits": [
+          "SCALE LOCK: 150 cm (1.50x - Đầu Bi chạm ngực Bác sĩ) | 38 kg.",
+          "COLOR LOCK: Lông xám bạc (#9E9E9E), kính gọng vàng (#FFD700), blouse trắng chữ thập xanh lá (#2ECC71).",
+          "Luôn có sẵn huy hiệu sticker hình ngôi sao và lá khuynh diệp thơm trong túi áo blouse."
+        ],
+        "pastEvents": [
+          "Tập 16: Bạn sâu răng tinh nghịch (ep16-ban-sau-rang-tinh-nghich)",
+          "Tập 18: Nước lọc là siêu anh hùng (ep18-nuoc-loc-la-sieu-anh-hung)",
+          "Tập 20: Đi khám Bác sĩ Koala (ep20-di-kham-bac-si-koala)"
+        ],
+        "pastEventsSummary": [
+          "Tập 16: Bạn sâu răng tinh nghịch (ep16-ban-sau-rang-tinh-nghich)",
+          "Tập 18: Nước lọc là siêu anh hùng (ep18-nuoc-loc-la-sieu-anh-hung)",
+          "Tập 20: Đi khám Bác sĩ Koala (ep20-di-kham-bac-si-koala)"
+        ]
+      }
+    },
+    {
+      "id": "ong_de_rau_bac",
+      "projectId": "soc-nho-tv",
+      "name": "Ông Dê Râu Bạc (Ông Nội)",
+      "role": "supporting",
+      "description": "Ông Dê Râu Bạc — Ông nội của Dê Bông và Dê Mun, người giữ vườn cây cổ thụ Làng Rừng Xanh (68 tuổi). Chiều cao: 155 cm (Tỉ lệ 1.55x - Bông ngang ngực Ông, Mun ngang bụng Ông) | Cân nặng: 40 kg. Màu sắc: Lông trắng bạc (#ECEFF1), chòm râu bạc dài (#CFD8DC), sừng cong màu hổ phách (#D4A373), kính lão gọng đồi mồi, áo bà ba nâu đất (#795548), quần đũi kem (#D7CCC8), tay cầm gậy tre.",
+      "heightCm": 155,
+      "scaleRatio": 1.55,
+      "voiceId": "ong_de_v1",
+      "defaultTempo": 1.0,
+      "promptLock": "3D Pixar-style wise elderly anthropomorphic grandfather goat named Ong De Rau Bac, exact height 155cm (1.55x scale), silver-white fur (#ECEFF1) with a long neat silver beard (#CFD8DC), curved amber-tan horns (#D4A373), tortoise-shell round reading glasses (#5D4037), kind wrinkled eyes, wearing a traditional Vietnamese earth-brown Ao Ba Ba tunic (#795548) with wooden buttons, a woven scarf over shoulder, cream linen trousers (#D7CCC8), holding a smooth bamboo walking stick (#C5A880), warm golden-hour lighting",
+      "referenceImages": [
+        "/data/projects/soc-nho-tv/characters/ong_de_rau_bac/ong_de_rau_bac_dna_sheet.png"
+      ],
+      "voiceSampleUrl": "voice://ong_de_v1",
+      "appearances": [
+        {
+          "episodeId": "ep02-mun-so-bong-toi",
+          "episodeTitle": "Tập 02: Mun sợ bóng tối",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep04-anh-bong-ghen-ti",
+          "episodeTitle": "Tập 04: Anh Bông ghen tị",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep07-bua-an-khong-roi-vai",
+          "episodeTitle": "Tập 07: Bữa ăn không rơi vãi",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep10-anh-bong-thuc-khuya",
+          "episodeTitle": "Tập 10: Anh Bông thức khuya",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep13-bo-suoi-pha-le",
+          "episodeTitle": "Tập 13: Bờ suối Pha Lê",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep17-cau-vong-trong-dia-an",
+          "episodeTitle": "Tập 17: Cầu vồng trong đĩa ăn",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep28-tai-gio-hay-tai-mun",
+          "episodeTitle": "Tập 28: Tại gió hay tại Mun?",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep29-cay-dau-cua-mimi",
+          "episodeTitle": "Tập 29: Cây đậu của Mimi",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep32-ong-hay-quen",
+          "episodeTitle": "Tập 32: Ông hay quên",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep33-anh-em-nhu-tay-chan",
+          "episodeTitle": "Tập 33: Anh em như tay chân",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep37-mua-tu-dau-toi",
+          "episodeTitle": "Tập 37: Mưa từ đâu tới?",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep38-ong-mat-troi-di-ngu",
+          "episodeTitle": "Tập 38: Ông Mặt Trời đi ngủ",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep44-nga-roi-dung-day",
+          "episodeTitle": "Tập 44: Ngã rồi đứng dậy",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep46-banh-chung-ngay-tet",
+          "episodeTitle": "Tập 46: Bánh chưng ngày Tết",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        }
+      ],
+      "memory": {
+        "personality": "Hiền minh, khoan dung, thuộc lòng mọi câu chuyện cổ tích và quy luật thiên nhiên của Làng Rừng Xanh.",
+        "catchphrases": [
+          "Khà khà, cái cây lớn lên cũng cần thời gian, các cháu cũng vậy!",
+          "Ông cháu mình cùng nhìn xem thiên nhiên dạy gì nhé!",
+          "Quý nhất là tấm lòng biết yêu thương nhau."
+        ],
+        "habits": [
+          "SCALE LOCK: 155 cm (1.55x - Bông cao ngang ngực Ông, Mun ngang bụng Ông) | 40 kg.",
+          "COLOR LOCK: Lông & râu trắng bạc (#ECEFF1), sừng hổ phách (#D4A373), áo bà ba nâu đất (#795548).",
+          "Hay vuốt chòm râu bạc và kể chuyện dưới gốc cây Sồi Cổ Thụ."
+        ],
+        "pastEvents": [
+          "Tập 02: Mun sợ bóng tối (ep02-mun-so-bong-toi)",
+          "Tập 04: Anh Bông ghen tị (ep04-anh-bong-ghen-ti)",
+          "Tập 07: Bữa ăn không rơi vãi (ep07-bua-an-khong-roi-vai)",
+          "Tập 10: Anh Bông thức khuya (ep10-anh-bong-thuc-khuya)",
+          "Tập 13: Bờ suối Pha Lê (ep13-bo-suoi-pha-le)",
+          "Tập 17: Cầu vồng trong đĩa ăn (ep17-cau-vong-trong-dia-an)",
+          "Tập 28: Tại gió hay tại Mun? (ep28-tai-gio-hay-tai-mun)",
+          "Tập 29: Cây đậu của Mimi (ep29-cay-dau-cua-mimi)",
+          "Tập 32: Ông hay quên (ep32-ong-hay-quen)",
+          "Tập 33: Anh em như tay chân (ep33-anh-em-nhu-tay-chan)",
+          "Tập 37: Mưa từ đâu tới? (ep37-mua-tu-dau-toi)",
+          "Tập 38: Ông Mặt Trời đi ngủ (ep38-ong-mat-troi-di-ngu)",
+          "... cùng 2 tập khác trong tổng số 14/50 tập."
+        ],
+        "pastEventsSummary": [
+          "Tập 02: Mun sợ bóng tối (ep02-mun-so-bong-toi)",
+          "Tập 04: Anh Bông ghen tị (ep04-anh-bong-ghen-ti)",
+          "Tập 07: Bữa ăn không rơi vãi (ep07-bua-an-khong-roi-vai)",
+          "Tập 10: Anh Bông thức khuya (ep10-anh-bong-thuc-khuya)",
+          "Tập 13: Bờ suối Pha Lê (ep13-bo-suoi-pha-le)",
+          "Tập 17: Cầu vồng trong đĩa ăn (ep17-cau-vong-trong-dia-an)",
+          "Tập 28: Tại gió hay tại Mun? (ep28-tai-gio-hay-tai-mun)",
+          "Tập 29: Cây đậu của Mimi (ep29-cay-dau-cua-mimi)",
+          "Tập 32: Ông hay quên (ep32-ong-hay-quen)",
+          "Tập 33: Anh em như tay chân (ep33-anh-em-nhu-tay-chan)",
+          "Tập 37: Mưa từ đâu tới? (ep37-mua-tu-dau-toi)",
+          "Tập 38: Ông Mặt Trời đi ngủ (ep38-ong-mat-troi-di-ngu)",
+          "... cùng 2 tập khác trong tổng số 14/50 tập."
+        ]
+      }
+    },
+    {
+      "id": "co_huou_sao",
+      "projectId": "soc-nho-tv",
+      "name": "Cô giáo Hươu Sao (Trường Lá Xanh)",
+      "role": "supporting",
+      "description": "Cô giáo Hươu Sao — Cô giáo chủ nhiệm lớp Mầm Non Lá Xanh (28 tuổi). Chiều cao: 160 cm (Tỉ lệ 1.60x - Bi đứng ngang ngực dưới của Cô) | Cân nặng: 36 kg | Đầu/thân: 1:5.5. Màu sắc: Lông vàng nâu ấm (#D4883A) điểm các đốm sao trắng (#FFFFFF), cổ trắng kem (#FFF8E7), mặc áo cardigan len xanh lá non (#81C784) ngoài váy dài màu kem (#FFFDF5) thêu hoa cúc, đeo thẻ tên hình chiếc lá (#4CAF50).",
+      "heightCm": 160,
+      "scaleRatio": 1.6,
+      "voiceId": "co_huou_v1",
+      "defaultTempo": 1.0,
+      "promptLock": "3D Pixar-style graceful anthropomorphic female spotted deer kindergarten teacher named Co Huou Sao, exact height 160cm (1.60x scale, slender tall build, head-to-body ratio 1:5.5), warm honey-fawn fur (#D4883A) dappled with white star spots (#FFFFFF) on cheeks and back, creamy white slender neck (#FFF8E7), large expressive dark-brown eyes (#2C1810) with long eyelashes, wearing a soft leaf-green knit cardigan (#81C784) over a cream A-line midi dress (#FFFDF5) embroidered with tiny daisies at the hem, a leaf-shaped teacher name badge (#4CAF50) on chest, and tan flat shoes, warm classroom lighting",
+      "referenceImages": [
+        "/data/projects/soc-nho-tv/characters/co_huou_sao/co_huou_sao_dna_sheet.png"
+      ],
+      "voiceSampleUrl": "voice://co_huou_v1",
+      "appearances": [
+        {
+          "episodeId": "ep09-lu-rua-tay-sieu-sach",
+          "episodeTitle": "Tập 09: Lu rửa tay siêu sạch",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep12-mat-khau-cua-gia-dinh",
+          "episodeTitle": "Tập 12: Mật khẩu của gia đình",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep19-co-the-cua-em-la-cua-em",
+          "episodeTitle": "Tập 19: Cơ thể của em là của em",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep21-cau-truot-co-luot",
+          "episodeTitle": "Tập 21: Cầu trượt có lượt",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep36-hat-dau-thuc-day",
+          "episodeTitle": "Tập 36: Hạt đậu thức dậy",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep39-hom-nay-mac-gi",
+          "episodeTitle": "Tập 39: Hôm nay mặc gì?",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep41-rac-ve-dung-nha",
+          "episodeTitle": "Tập 41: Rác về đúng nhà",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep49-ngay-dau-den-truong",
+          "episodeTitle": "Tập 49: Ngày đầu đến trường",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep50-le-hoi-rung-xanh",
+          "episodeTitle": "Tập 50: Lễ hội Rừng Xanh",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        }
+      ],
+      "memory": {
+        "personality": "Dịu dàng, sáng tạo, luôn khuyến khích mọi học sinh thể hiện bản thân và biến mỗi bài học kỹ năng sống thành một trò chơi tập thể.",
+        "catchphrases": [
+          "Lớp Lá Xanh ơi, chúng mình cùng lắng nghe nhé!",
+          "Mỗi bạn nhỏ đều có một tài năng thật đặc biệt!",
+          "Cô khen cả nhóm vì đã biết hợp tác cùng nhau!"
+        ],
+        "habits": [
+          "SCALE LOCK: 160 cm (1.60x - Bi đứng ngang ngực dưới của Cô) | 36 kg.",
+          "COLOR LOCK: Lông vàng nâu đốm sao trắng (#D4883A & #FFFFFF), cardigan xanh lá non (#81C784), váy kem (#FFFDF5).",
+          "Thường gõ nhẹ chiếc chuông gỗ nhỏ hình quả thông để bắt đầu giờ học."
+        ],
+        "pastEvents": [
+          "Tập 09: Lu rửa tay siêu sạch (ep09-lu-rua-tay-sieu-sach)",
+          "Tập 12: Mật khẩu của gia đình (ep12-mat-khau-cua-gia-dinh)",
+          "Tập 19: Cơ thể của em là của em (ep19-co-the-cua-em-la-cua-em)",
+          "Tập 21: Cầu trượt có lượt (ep21-cau-truot-co-luot)",
+          "Tập 36: Hạt đậu thức dậy (ep36-hat-dau-thuc-day)",
+          "Tập 39: Hôm nay mặc gì? (ep39-hom-nay-mac-gi)",
+          "Tập 41: Rác về đúng nhà (ep41-rac-ve-dung-nha)",
+          "Tập 49: Ngày đầu đến trường (ep49-ngay-dau-den-truong)",
+          "Tập 50: Lễ hội Rừng Xanh (ep50-le-hoi-rung-xanh)"
+        ],
+        "pastEventsSummary": [
+          "Tập 09: Lu rửa tay siêu sạch (ep09-lu-rua-tay-sieu-sach)",
+          "Tập 12: Mật khẩu của gia đình (ep12-mat-khau-cua-gia-dinh)",
+          "Tập 19: Cơ thể của em là của em (ep19-co-the-cua-em-la-cua-em)",
+          "Tập 21: Cầu trượt có lượt (ep21-cau-truot-co-luot)",
+          "Tập 36: Hạt đậu thức dậy (ep36-hat-dau-thuc-day)",
+          "Tập 39: Hôm nay mặc gì? (ep39-hom-nay-mac-gi)",
+          "Tập 41: Rác về đúng nhà (ep41-rac-ve-dung-nha)",
+          "Tập 49: Ngày đầu đến trường (ep49-ngay-dau-den-truong)",
+          "Tập 50: Lễ hội Rừng Xanh (ep50-le-hoi-rung-xanh)"
+        ]
+      }
+    },
+    {
+      "id": "bac_voi",
+      "projectId": "soc-nho-tv",
+      "name": "Bác Voi (Chợ Làng Rừng Xanh)",
+      "role": "supporting",
+      "description": "Bác Voi — Chủ tiệm tạp hóa & nông sản tốt bụng ở Chợ Làng Rừng Xanh (50 tuổi). Chiều cao: 180 cm (Tỉ lệ 1.80x - Cao lớn nhất series, Bi đứng ngang thắt lưng Bác Voi) | Cân nặng: 65 kg. Màu sắc: Da xám xanh ấm (#78909C), lòng tai hồng nhạt (#F48FB1), đội mũ cói/nón lá (#E6CCB2), mặc áo vải đũi xanh chàm (#3F51B5), tạp dề nâu sẫm nhiều túi (#5D4037), quần nâu nhạt (#8D6E63).",
+      "heightCm": 180,
+      "scaleRatio": 1.8,
+      "voiceId": "bac_voi_v1",
+      "defaultTempo": 1.0,
+      "promptLock": "3D Pixar-style cheerful giant anthropomorphic Asian elephant shopkeeper named Bac Voi, exact height 180cm (1.80x scale, tallest character in village, Bi reaches his waist, sturdy round build), warm slate blue-grey skin (#78909C) with rosy inner ears (#F48FB1), friendly expressive trunk, short rounded ivory tusks, wearing a traditional woven straw hat (#E6CCB2), a rolled-sleeve indigo-blue linen shirt (#3F51B5), a dark-brown canvas shopkeeper apron (#5D4037) with big pockets full of fresh fruits, and tan trousers (#8D6E63), warm bustling village market lighting",
+      "referenceImages": [
+        "/data/projects/soc-nho-tv/characters/bac_voi/bac_voi_dna_sheet.png"
+      ],
+      "voiceSampleUrl": "voice://bac_voi_v1",
+      "appearances": [
+        {
+          "episodeId": "ep15-bi-bi-lac-o-cho",
+          "episodeTitle": "Tập 15: Bi bị lạc ở chợ",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep23-ba-tu-co-phep-mau",
+          "episodeTitle": "Tập 23: Ba từ có phép màu",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep30-chiec-vi-o-san-da",
+          "episodeTitle": "Tập 30: Chiếc ví ở sân đa",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep43-heo-dat-cua-lu",
+          "episodeTitle": "Tập 43: Heo đất của Lu",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        },
+        {
+          "episodeId": "ep48-di-cho-cung-bac-voi",
+          "episodeTitle": "Tập 48: Đi chợ cùng bác Voi",
+          "scenes": [
+            "Cảnh 1: Mở đầu",
+            "Cảnh 5: Cao trào",
+            "Cảnh 10: Kết thúc & Bài học"
+          ]
+        }
+      ],
+      "memory": {
+        "personality": "Hào sảng, tốt bụng, khỏe mạnh, luôn sẵn sàng dùng chiếc vòi dài giúp đỡ các bạn nhỏ và thưởng trái cây tươi cho bé ngoan.",
+        "catchphrases": [
+          "Haha! Chào các bạn nhỏ của Bác Voi nhé!",
+          "Vòi dài sức khỏe, việc khó để Bác Voi lo!",
+          "Giúp đỡ nhau một tay là cả làng cùng vui!"
+        ],
+        "habits": [
+          "SCALE LOCK: 180 cm (1.80x - Cao nhất làng, Bi đứng ngang thắt lưng Bác Voi) | 65 kg.",
+          "COLOR LOCK: Da xám xanh (#78909C), áo xanh chàm (#3F51B5), tạp dề nâu sẫm (#5D4037), mũ cói (#E6CCB2).",
+          "Thường dùng vòi cuốn nhẹ giỏ đồ giúp người già và trẻ nhỏ."
+        ],
+        "pastEvents": [
+          "Tập 15: Bi bị lạc ở chợ (ep15-bi-bi-lac-o-cho)",
+          "Tập 23: Ba từ có phép màu (ep23-ba-tu-co-phep-mau)",
+          "Tập 30: Chiếc ví ở sân đa (ep30-chiec-vi-o-san-da)",
+          "Tập 43: Heo đất của Lu (ep43-heo-dat-cua-lu)",
+          "Tập 48: Đi chợ cùng bác Voi (ep48-di-cho-cung-bac-voi)"
+        ],
+        "pastEventsSummary": [
+          "Tập 15: Bi bị lạc ở chợ (ep15-bi-bi-lac-o-cho)",
+          "Tập 23: Ba từ có phép màu (ep23-ba-tu-co-phep-mau)",
+          "Tập 30: Chiếc ví ở sân đa (ep30-chiec-vi-o-san-da)",
+          "Tập 43: Heo đất của Lu (ep43-heo-dat-cua-lu)",
+          "Tập 48: Đi chợ cùng bác Voi (ep48-di-cho-cung-bac-voi)"
+        ]
+      }
     }
-  }
-]
+  ]
+}

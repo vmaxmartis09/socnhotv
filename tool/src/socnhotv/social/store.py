@@ -1,7 +1,10 @@
 from __future__ import annotations
 
 import contextlib
-import fcntl
+try:
+    import fcntl
+except ImportError:
+    fcntl = None  # type: ignore
 import json
 import os
 import shutil
@@ -30,17 +33,34 @@ from socnhotv.workspace.paths import project_path
 
 @contextlib.contextmanager
 def file_lock(lock_file_path: Path) -> Iterator[None]:
-    """Context manager providing inter-process file locking using fcntl."""
+    """Context manager providing inter-process file locking using fcntl (Unix) or msvcrt (Windows)."""
     lock_file_path.parent.mkdir(parents=True, exist_ok=True)
     with open(lock_file_path, "a") as lock_file:
-        fcntl.flock(lock_file.fileno(), fcntl.LOCK_EX)
-        try:
-            yield
-        finally:
+        if fcntl is not None:
+            fcntl.flock(lock_file.fileno(), fcntl.LOCK_EX)
             try:
-                fcntl.flock(lock_file.fileno(), fcntl.LOCK_UN)
-            except Exception:
-                pass
+                yield
+            finally:
+                try:
+                    fcntl.flock(lock_file.fileno(), fcntl.LOCK_UN)
+                except Exception:
+                    pass
+        else:
+            try:
+                import msvcrt
+                try:
+                    msvcrt.locking(lock_file.fileno(), msvcrt.LK_LOCK, 1)
+                except Exception:
+                    pass
+                try:
+                    yield
+                finally:
+                    try:
+                        msvcrt.locking(lock_file.fileno(), msvcrt.LK_UNLCK, 1)
+                    except Exception:
+                        pass
+            except ImportError:
+                yield
 
 
 def atomic_write_json(file_path: Path, data: Any, indent: int = 2) -> None:

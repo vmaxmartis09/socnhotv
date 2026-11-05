@@ -1,0 +1,10 @@
+[
+  {
+    "start": 0.0,
+    "end": 3.0,
+    "text": "Xin chào",
+    "orig_text": "你好",
+    "char_count": 8,
+    "max_allowed_chars": 56
+  }
+]

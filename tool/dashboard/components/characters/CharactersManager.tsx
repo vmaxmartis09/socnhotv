@@ -27,29 +27,58 @@ import { confirm } from "@/lib/confirm";
 import { usePreview } from "@/lib/preview";
 import { cn } from "@/lib/utils";
 
-function ScaleLockGraph({ characters }: { characters: Character[] }) {
+function ScaleLockGraph({
+  characters,
+  selectedId,
+  onSelect,
+}: {
+  characters: Character[];
+  selectedId?: string | null;
+  onSelect?: (id: string) => void;
+}) {
   const t = useTranslations("characters");
   const tallest = Math.max(...characters.map((c) => c.heightCm), 1);
-  const H = 140;
+  const H = 108;
 
   return (
-    <figure aria-label={t("scaleLock")} className="rounded-lg border border-border bg-card p-4">
-      <figcaption className="text-sm font-semibold text-foreground">{t("scaleLock")}</figcaption>
-      <p className="mt-0.5 text-xs text-muted-foreground">{t("scaleLockNote")}</p>
-      <div className="mt-6 flex items-end justify-center gap-8 border-b border-border pb-1">
+    <figure aria-label={t("scaleLock")} className="rounded-xl border border-border bg-card p-3">
+      <div className="flex items-center justify-between gap-2">
+        <figcaption className="text-xs font-semibold text-foreground">{t("scaleLock")}</figcaption>
+        <span className="text-[11px] text-muted-foreground">{characters.length} nhân vật · Chuẩn Bi = 100cm (1.0x)</span>
+      </div>
+      <p className="mt-0.5 text-[11px] text-muted-foreground">{t("scaleLockNote")}</p>
+      <div className="no-scrollbar mt-3 flex items-end justify-start gap-2.5 overflow-x-auto border-b border-border px-1 pb-1.5">
         {characters.map((c) => {
-          const h = Math.round((c.heightCm / tallest) * H);
+          const h = Math.max(24, Math.round((c.heightCm / tallest) * H));
+          const active = c.id === selectedId;
           return (
-            <div key={c.id} className="flex flex-col items-center gap-1.5">
-              <span className="text-xs tnum font-medium text-foreground">{t("cm", { value: c.heightCm })}</span>
+            <button
+              key={c.id}
+              type="button"
+              onClick={() => onSelect?.(c.id)}
+              title={`${c.name} — ${c.heightCm} cm (${c.scaleRatio}x)`}
+              className={cn(
+                "group flex shrink-0 flex-col items-center gap-0.5 rounded-lg px-1.5 py-1 transition-colors hover:bg-accent/60",
+                active && "bg-accent ring-1 ring-foreground/30"
+              )}
+            >
+              <span className="text-[11px] tnum font-semibold text-foreground">{t("cm", { value: c.heightCm })}</span>
+              <span className="text-[10px] tnum text-muted-foreground">{c.scaleRatio}x</span>
               <div
                 style={{ height: h }}
-                className={cn("w-12 rounded-t transition-all", c.role === "main" ? "bg-brand" : "bg-brand/35")}
+                className={cn(
+                  "w-8 rounded-t transition-all",
+                  active
+                    ? "bg-foreground"
+                    : c.role === "main"
+                    ? "bg-brand group-hover:bg-brand/85"
+                    : "bg-brand/40 group-hover:bg-brand/60"
+                )}
               />
-              <span className="mt-1 text-xs font-medium text-muted-foreground">
+              <span className="mt-0.5 max-w-[68px] truncate text-[11px] font-medium text-muted-foreground group-hover:text-foreground">
                 {c.name.replace(/\s*\(.*\)/, "").replace("Bạn ", "")}
               </span>
-            </div>
+            </button>
           );
         })}
       </div>
@@ -419,7 +448,7 @@ export function CharactersManager({ compact = false, projectId }: { compact?: bo
               onVoiceClone={() => { setCreateMenu(false); setVoiceCloneOpen(true); }}
               roleLabel={(c) => `${c.role === "main" ? t("roleMain") : t("roleSupporting")} · ${t("cm", { value: c.heightCm })}`}
             />
-            {!compact && <ScaleLockGraph characters={characters} />}
+            <ScaleLockGraph characters={characters} selectedId={selectedId} onSelect={(id) => { usePreview.getState().close(); setSelectedId(id); }} />
           </aside>
 
           <div className="min-w-0">

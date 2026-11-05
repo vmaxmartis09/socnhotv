@@ -1,0 +1,15 @@
+{
+  "source_id": "douyin_test_mode_r",
+  "project_id": "soc-nho-tv",
+  "mode": "R",
+  "style": "hook_boost",
+  "voice_id": "soc-nho",
+  "platforms": [
+    "tiktok",
+    "youtube"
+  ],
+  "template_id": "remake-v1",
+  "render_job_id": "render_f54619066b04",
+  "voice_path": "D:\\socnhotv\\data\\projects\\soc-nho-tv\\raw\\douyin_test_mode_r\\voice.vi.mp3",
+  "status": "queued"
+}

@@ -172,6 +172,7 @@ export function ProjectHub({
   const [openScript, setOpenScript] = useState<string | null>(null);
   const [scriptText, setScriptText] = useState<Record<string, string>>({});
   const [openEpisode, setOpenEpisode] = useState<string | null>(null);
+  const preview = usePreview((st) => st.item);
 
   const mockMode = useStudioStore((st) => st.isMockMode);
   const [creatingEp, setCreatingEp] = useState(false);
@@ -331,28 +332,40 @@ export function ProjectHub({
                   <button type="button" title="Kịch bản mới" aria-label="Kịch bản mới" onClick={() => openComposer(false)} className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground transition-transform active:scale-90"><Plus className="h-4 w-4" /></button>
                 </div>
               <ul className="space-y-2">
-                {lib.scripts.map((s, i) => (
-                  <motion.li key={s.id} initial={enterOnce(`script:${s.id}`, { opacity: 0, y: 6 })} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.04 }} whileHover={{ y: -1 }}>
-                    <button
-                      type="button"
-                      className="flex w-full items-start gap-3 rounded-xl border border-border bg-card p-3 text-left transition-colors hover:bg-muted/30"
-                      title="Click để xem trước · nhấn đúp để đọc đầy đủ"
-                      onClick={() => usePreview.getState().open({ kind: "markdown", title: s.name, url: s.url })}
-                      onDoubleClick={() => {
-                        usePreview.getState().close();
-                        setOpenScript(s.id);
-                        if (!scriptText[s.id]) fetchText(s.url).then((t) => setScriptText((m) => ({ ...m, [s.id]: t }))).catch(() => {});
-                      }}
-                    >
-                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-accent"><ScrollText className="h-4 w-4" /></span>
-                      <span className="min-w-0">
-                        <span className="block text-sm font-semibold text-foreground">{s.name.replace(/\.md$/, "")}</span>
-                        <span className="block text-xs text-muted-foreground">{s.episodeId}</span>
-                        <span className="mt-1 line-clamp-2 block text-[13px] text-muted-foreground">{s.preview.replace(/[#*>`|-]/g, " ")}</span>
-                      </span>
-                    </button>
-                  </motion.li>
-                ))}
+                {lib.scripts.map((s, i) => {
+                  const isSelected = preview?.kind === "markdown" && (preview.url === s.url || preview.title === s.name);
+                  return (
+                    <motion.li key={s.id} initial={enterOnce(`script:${s.id}`, { opacity: 0, y: 6 })} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.04 }} whileHover={{ y: -1 }}>
+                      <button
+                        type="button"
+                        className={cn(
+                          "flex w-full items-start gap-3 rounded-xl border p-3 text-left transition-all",
+                          isSelected
+                            ? "border-primary bg-primary/10 shadow-sm ring-2 ring-primary/40"
+                            : "border-border bg-card hover:bg-muted/30 hover:border-foreground/30"
+                        )}
+                        title="Click để xem trước · nhấn đúp để đọc đầy đủ"
+                        onClick={() => usePreview.getState().open({ kind: "markdown", title: s.name, url: s.url })}
+                        onDoubleClick={() => {
+                          usePreview.getState().close();
+                          setOpenScript(s.id);
+                          if (!scriptText[s.id]) fetchText(s.url).then((t) => setScriptText((m) => ({ ...m, [s.id]: t }))).catch(() => {});
+                        }}
+                      >
+                        <span className={cn("flex h-9 w-9 shrink-0 items-center justify-center rounded-lg transition-colors", isSelected ? "bg-primary text-primary-foreground" : "bg-accent text-foreground")}>
+                          <ScrollText className="h-4 w-4" />
+                        </span>
+                        <span className="min-w-0 flex-1">
+                          <span className={cn("block text-sm font-semibold transition-colors", isSelected ? "text-primary font-bold" : "text-foreground")}>
+                            {s.name.replace(/\.md$/, "")}
+                          </span>
+                          <span className="block text-xs text-muted-foreground">{s.episodeId}</span>
+                          <span className="mt-1 line-clamp-2 block text-[13px] text-muted-foreground">{s.preview.replace(/[#*>`|-]/g, " ")}</span>
+                        </span>
+                      </button>
+                    </motion.li>
+                  );
+                })}
               </ul>
               </div>
             ) : (

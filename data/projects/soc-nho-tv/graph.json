@@ -1,7 +1,7 @@
 {
-  "id": "test_graph",
+  "id": "graph_soc-nho-tv",
   "projectId": "soc-nho-tv",
-  "name": "Default Graph",
+  "name": "Graph soc-nho-tv",
   "nodes": [
     {
       "id": "node_text",
@@ -12,16 +12,16 @@
       },
       "inputs": {},
       "position": {
-        "x": 0.0,
-        "y": 0.0
+        "x": 40.0,
+        "y": 136.0
       },
       "ui": {},
       "state": "completed",
       "isStale": false,
-      "pinnedGenerationId": "gen_14c16b37",
+      "pinnedGenerationId": "gen_531703ea",
       "generations": [
         {
-          "id": "gen_14c16b37",
+          "id": "gen_531703ea",
           "nodeId": "node_text",
           "params": {
             "content": "Vì sao cầu vồng có nhiều màu?",
@@ -29,7 +29,7 @@
           },
           "artifactId": "art_c7819fa3d7ec",
           "costUsd": 0.0,
-          "createdAt": "2026-11-04T16:41:20Z",
+          "createdAt": "2026-11-05T01:31:23Z",
           "isPinned": true
         }
       ]
@@ -38,32 +38,27 @@
       "id": "node_script",
       "type": "script",
       "params": {
-        "mode": "ai"
+        "mode": "paste"
       },
-      "inputs": {
-        "text": {
-          "nodeId": "node_text",
-          "outputPort": "text"
-        }
-      },
+      "inputs": {},
       "position": {
-        "x": 200.0,
-        "y": 0.0
+        "x": 450.0,
+        "y": 40.0
       },
       "ui": {},
       "state": "completed",
       "isStale": false,
-      "pinnedGenerationId": "gen_793a5f63",
+      "pinnedGenerationId": "gen_26ef6e4e",
       "generations": [
         {
-          "id": "gen_793a5f63",
+          "id": "gen_26ef6e4e",
           "nodeId": "node_script",
           "params": {
             "mode": "ai"
           },
           "artifactId": "art_93a6e2f48a75",
           "costUsd": 0.0,
-          "createdAt": "2026-11-04T16:41:20Z",
+          "createdAt": "2026-11-05T01:31:23Z",
           "isPinned": true
         }
       ]
@@ -78,5 +73,5 @@
       "targetPort": "text"
     }
   ],
-  "updatedAt": "2026-11-04T16:41:20Z"
+  "updatedAt": "2026-11-05T04:06:43Z"
 }

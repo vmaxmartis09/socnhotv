@@ -1,0 +1,263 @@
+{
+  "id": "de_mun",
+  "projectId": "soc-nho-tv",
+  "name": "Dê Mun (Em Út)",
+  "role": "main",
+  "heightCm": 85,
+  "scaleRatio": 0.85,
+  "weightKg": 12.0,
+  "headBodyRatio": "1 : 3.6 (Đầu = 23.5cm, Thân & Chân = 61.5cm - Tỉ lệ em bé mầm non)",
+  "colors": {
+    "primary_fur": "#1E1E24 (Đen tuyền óng mượt ánh nhung - Velvety Jet Black)",
+    "forehead_mark": "#FFFFFF (ĐỐM NGÔI SAO TRẮNG NHỎ GIỮA TRÁN - Signature White Forehead Star)",
+    "horns": "#E6CCB2 (Hai mầm sừng tròn xíu như hai hạt đậu màu kem trên đỉnh đầu)",
+    "eyes": "#3E2723 (Đen nâu to tròn chiếm tỉ lệ lớn trên gương mặt bầu bĩnh)",
+    "shirt": "#E53935 (Áo thun đỏ tươi in hình ngôi sao vàng #FFD700 giữa ngực)",
+    "pants": "#1A365D (Quần short thun màu xanh navy đậm)",
+    "boots": "#E53935 & #FFD700 (Ủng cao su nhỏ màu đỏ tươi viền vàng)",
+    "swatches": [
+      "#1E1E24",
+      "#FFFFFF",
+      "#E53935",
+      "#FFD700",
+      "#1A365D"
+    ]
+  },
+  "description": "Dê Mun (Em Út) — Em trai út của Dê Bông (3 tuổi). Chiều cao: 85 cm (Tỉ lệ 0.85x - Nhỏ nhất nhóm, đỉnh đầu chạm mũi Bi) | Cân nặng: 12 kg | Đầu/thân: 1:3.6 (má bầu bĩnh). Màu sắc khóa cứng: Lông đen tuyền óng mượt (#1E1E24) với ĐỐM NGÔI SAO TRẮNG NHỎ GIỮA TRÁN (#FFFFFF), 2 mầm sừng tròn tí hon màu kem (#E6CCB2), áo thun đỏ tươi (#E53935) in ngôi sao vàng (#FFD700), quần short xanh navy (#1A365D), ủng đỏ viền vàng.",
+  "promptLock": "3D Pixar-style adorable toddler black goat boy named De Mun, 3 years old, exact height 85cm (0.85x scale, shortest child in group, toddler head-to-body ratio 1:3.6, chubby cheeks), velvety jet-black fur (#1E1E24) with a SIGNATURE SMALL WHITE STAR MARKING ON CENTER FOREHEAD (#FFFFFF), two tiny rounded cream horn buds (#E6CCB2), huge sparkling dark brown eyes (#3E2723), wearing a bright red crew-neck t-shirt (#E53935) with a big yellow star (#FFD700) printed on the chest, dark navy shorts (#1A365D), and cute little red rubber boots with yellow trim, ultra-soft 3D Pixar lighting",
+  "voiceSampleUrl": "voice://de_mun_v1",
+  "appearances": [
+    {
+      "episodeId": "ep01-nui-lua-trong-bung-bi",
+      "episodeTitle": "Tập 01: Núi lửa trong bụng Bi",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep02-mun-so-bong-toi",
+      "episodeTitle": "Tập 02: Mun sợ bóng tối",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep04-anh-bong-ghen-ti",
+      "episodeTitle": "Tập 04: Anh Bông ghen tị",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep07-bua-an-khong-roi-vai",
+      "episodeTitle": "Tập 07: Bữa ăn không rơi vãi",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep09-lu-rua-tay-sieu-sach",
+      "episodeTitle": "Tập 09: Lu rửa tay siêu sạch",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep10-anh-bong-thuc-khuya",
+      "episodeTitle": "Tập 10: Anh Bông thức khuya",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep14-cai-bep-biet-nong",
+      "episodeTitle": "Tập 14: Cái bếp biết nóng",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep17-cau-vong-trong-dia-an",
+      "episodeTitle": "Tập 17: Cầu vồng trong đĩa ăn",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep20-di-kham-bac-si-koala",
+      "episodeTitle": "Tập 20: Đi khám Bác sĩ Koala",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep21-cau-truot-co-luot",
+      "episodeTitle": "Tập 21: Cầu trượt có lượt",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep24-long-den-cung-dep",
+      "episodeTitle": "Tập 24: Lông đen cũng đẹp",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep28-tai-gio-hay-tai-mun",
+      "episodeTitle": "Tập 28: Tại gió hay tại Mun?",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep32-ong-hay-quen",
+      "episodeTitle": "Tập 32: Ông hay quên",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep33-anh-em-nhu-tay-chan",
+      "episodeTitle": "Tập 33: Anh em như tay chân",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep38-ong-mat-troi-di-ngu",
+      "episodeTitle": "Tập 38: Ông Mặt Trời đi ngủ",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep39-hom-nay-mac-gi",
+      "episodeTitle": "Tập 39: Hôm nay mặc gì?",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep42-giot-nuoc-tiet-kiem",
+      "episodeTitle": "Tập 42: Giọt nước tiết kiệm",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep47-long-den-trung-thu",
+      "episodeTitle": "Tập 47: Lồng đèn Trung thu",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep48-di-cho-cung-bac-voi",
+      "episodeTitle": "Tập 48: Đi chợ cùng bác Voi",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep49-ngay-dau-den-truong",
+      "episodeTitle": "Tập 49: Ngày đầu đến trường",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    },
+    {
+      "episodeId": "ep50-le-hoi-rung-xanh",
+      "episodeTitle": "Tập 50: Lễ hội Rừng Xanh",
+      "scenes": [
+        "Cảnh 1: Mở đầu",
+        "Cảnh 5: Cao trào",
+        "Cảnh 10: Kết thúc & Bài học"
+      ]
+    }
+  ],
+  "memory": {
+    "personality": "Hồn nhiên, đáng yêu, hay bắt chước các anh chị, đôi khi nhút nhát hoặc mè nheo đúng lứa tuổi lên 3 nhưng rất ngoan khi được khích lệ.",
+    "catchphrases": [
+      "Anh Bông ơi, đợi Mun với!",
+      "Mun tự làm được nè!",
+      "Hehe, thích quá đi!"
+    ],
+    "habits": [
+      "SCALE LOCK: 85 cm (0.85x - Nhỏ nhất nhóm, chạm mũi Bi) | 12 kg | Đầu/Thân 1:3.6.",
+      "COLOR LOCK: Lông đen tuyền (#1E1E24), ngôi sao trắng giữa trán (#FFFFFF), áo đỏ sao vàng (#E53935 & #FFD700), ủng đỏ.",
+      "Hay nắm vạt áo anh Bông khi đến chỗ lạ và nhảy chân sáo phát ra tiếng 'lộp bộp' từ đôi ủng đỏ."
+    ],
+    "pastEvents": [
+      "Tập 01: Núi lửa trong bụng Bi (ep01-nui-lua-trong-bung-bi)",
+      "Tập 02: Mun sợ bóng tối (ep02-mun-so-bong-toi)",
+      "Tập 04: Anh Bông ghen tị (ep04-anh-bong-ghen-ti)",
+      "Tập 07: Bữa ăn không rơi vãi (ep07-bua-an-khong-roi-vai)",
+      "Tập 09: Lu rửa tay siêu sạch (ep09-lu-rua-tay-sieu-sach)",
+      "Tập 10: Anh Bông thức khuya (ep10-anh-bong-thuc-khuya)",
+      "Tập 14: Cái bếp biết nóng (ep14-cai-bep-biet-nong)",
+      "Tập 17: Cầu vồng trong đĩa ăn (ep17-cau-vong-trong-dia-an)",
+      "Tập 20: Đi khám Bác sĩ Koala (ep20-di-kham-bac-si-koala)",
+      "Tập 21: Cầu trượt có lượt (ep21-cau-truot-co-luot)",
+      "Tập 24: Lông đen cũng đẹp (ep24-long-den-cung-dep)",
+      "Tập 28: Tại gió hay tại Mun? (ep28-tai-gio-hay-tai-mun)",
+      "... cùng 9 tập khác trong tổng số 21/50 tập."
+    ],
+    "pastEventsSummary": [
+      "Tập 01: Núi lửa trong bụng Bi (ep01-nui-lua-trong-bung-bi)",
+      "Tập 02: Mun sợ bóng tối (ep02-mun-so-bong-toi)",
+      "Tập 04: Anh Bông ghen tị (ep04-anh-bong-ghen-ti)",
+      "Tập 07: Bữa ăn không rơi vãi (ep07-bua-an-khong-roi-vai)",
+      "Tập 09: Lu rửa tay siêu sạch (ep09-lu-rua-tay-sieu-sach)",
+      "Tập 10: Anh Bông thức khuya (ep10-anh-bong-thuc-khuya)",
+      "Tập 14: Cái bếp biết nóng (ep14-cai-bep-biet-nong)",
+      "Tập 17: Cầu vồng trong đĩa ăn (ep17-cau-vong-trong-dia-an)",
+      "Tập 20: Đi khám Bác sĩ Koala (ep20-di-kham-bac-si-koala)",
+      "Tập 21: Cầu trượt có lượt (ep21-cau-truot-co-luot)",
+      "Tập 24: Lông đen cũng đẹp (ep24-long-den-cung-dep)",
+      "Tập 28: Tại gió hay tại Mun? (ep28-tai-gio-hay-tai-mun)",
+      "... cùng 9 tập khác trong tổng số 21/50 tập."
+    ]
+  }
+}

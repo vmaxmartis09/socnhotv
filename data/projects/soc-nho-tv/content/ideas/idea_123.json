@@ -1,0 +1,13 @@
+{
+  "id": "idea_123",
+  "project_id": "soc-nho-tv",
+  "title": "5 meo cho soc nho",
+  "platform_targets": [
+    "tiktok",
+    "youtube"
+  ],
+  "template_id": null,
+  "blueprint_ref": null,
+  "priority": 0,
+  "status": "new"
+}

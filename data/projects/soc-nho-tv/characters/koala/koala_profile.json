@@ -1,34 +1,61 @@
 {
-  "id": "bac_si_koala",
-  "name": "Bác sĩ Koala (Bác sĩ Gấu Túi)",
-  "version": "1.0",
-  "purpose": "Nhân vật bác sĩ/nha sĩ hiền hậu, đồng hành cùng Sóc Nhỏ Bi",
-  "identity": {
-    "species": "Gấu túi koala nhân hóa",
-    "gender": "Nam",
-    "age_feel": "Lớn tuổi, hiền từ",
-    "personality": ["hiền", "kiên nhẫn", "ấm áp", "dạy dỗ nhẹ nhàng"]
-  },
+  "id": "koala",
+  "name": "Bác sĩ Koala (Gấu Túi)",
+  "short_name": "Bác sĩ Koala",
+  "species": "Gấu túi Úc (Koala)",
+  "age": "45 tuổi",
+  "role": "supporting",
+  "height_cm": 150,
+  "scale_ratio": 1.5,
+  "weight_kg": 38.0,
+  "head_body_ratio": "1 : 4.8 (Dáng tròn trịa phúc hậu)",
+  "scale_note": "Cao 150 cm (1.50x). Đỉnh đầu Sóc Bi (100 cm) chạm ngang ngực Bác sĩ Koala.",
+  "voice_id": "koala_doc_v1",
+  "voice_description": "Giọng nam trung niên trầm ấm, chậm rãi, trấn an, giúp các bé hết sợ khi đi khám.",
   "body": {
     "height_cm": 150,
-    "height_ratio_to_bi": 1.5,
-    "build": "Tròn trịa, vững chãi, thân hơi đẫy (khác Bi thon gọn)",
-    "head_to_body_ratio": "Đầu to, khoảng 1/3.5 chiều cao",
-    "locked": true
+    "weight_kg": 38.0,
+    "head_body_ratio": "1 : 4.8 (Dáng tròn trịa phúc hậu)",
+    "build": "Tròn trịa, phúc hậu (150 cm), đôi tai tròn lớn có lông trắng xù ở rìa, mũi đen to đặc trưng của gấu Koala.",
+    "scale_note": "Cao 150 cm (1.50x). Đỉnh đầu Sóc Bi (100 cm) chạm ngang ngực Bác sĩ Koala."
   },
-  "appearance": {
-    "fur": "Xám mềm, bụng sáng hơn",
-    "face": "Mũi đen to tròn, tai tròn xù lông, mắt nhỏ hiền sau kính tròn gọng vàng"
+  "colors": {
+    "primary_fur": "#9E9E9E (Xám bạc mềm mịn - Soft Silver Grey)",
+    "secondary_fur": "#FFFFFF (Trắng bông ở ngực và rìa hai tai tròn lớn)",
+    "nose_glasses": "#212121 (Mũi đen to bầu dục) & Kính tròn gọng vàng kim (#FFD700)",
+    "coat": "#FFFFFF (Áo blouse bác sĩ trắng tinh có huy hiệu chữ thập xanh lá #2ECC71 trên ngực trái)",
+    "under_clothes": "#4FC3F7 (Áo sơ mi xanh dương nhạt, cà vạt nơ xanh đậm) & Quần tây xám (#616161)",
+    "medical_gear": "#B0BEC5 (Ống nghe y tế bạc quàng cổ & Gương soi trán bác sĩ)",
+    "swatches": [
+      "#9E9E9E",
+      "#FFFFFF",
+      "#FFD700",
+      "#2ECC71",
+      "#4FC3F7"
+    ]
   },
-  "outfit_default": {
-    "top": "Áo blouse trắng sạch có huy hiệu chữ thập xanh lá",
-    "accessories": ["gương soi trán", "ống nghe quanh cổ", "kính tròn gọng vàng"]
+  "prompt_lock": "3D Pixar-style friendly anthropomorphic adult male Koala doctor, exact height 150cm (1.50x scale, Bi's head reaches his chest, warm rounded friendly build), soft silver-grey fur (#9E9E9E) with fluffy white ear fringes and chest (#FFFFFF), large oval black koala nose (#212121), wearing round gold-rimmed glasses (#FFD700), a medical head mirror on forehead, a crisp white doctor's lab coat (#FFFFFF) with a green cross badge (#2ECC71) over a light blue shirt (#4FC3F7) and bow tie, silver stethoscope around neck, grey trousers (#616161), warm reassuring smile, clean clinic lighting",
+  "turnaround_prompts": {
+    "front": "Front view of Doctor Koala (150cm, 1.50x scale), silver-grey fur (#9E9E9E), fluffy white ears, gold round glasses (#FFD700), head mirror, white doctor coat with green cross badge (#2ECC71), stethoscope.",
+    "three_quarter_left": "3/4 left view of Doctor Koala (150cm) holding a giant tooth model and toothbrush for teaching kids.",
+    "side_profile": "90-degree side profile of Doctor Koala (150cm), rounded gentle posture, white lab coat, oval black nose.",
+    "back": "Back view of Doctor Koala (150cm), crisp white lab coat, big fluffy white-fringed koala ears.",
+    "three_quarter_right": "3/4 right view of Doctor Koala (150cm) offering a bravery star sticker with a warm reassuring smile."
   },
-  "art_style": {
-    "render": "3D Pixar / hoạt hình CGI",
-    "lighting": "Ánh sáng studio mềm",
-    "background": "Nền trơn xám sáng"
+  "expression_prompts": {
+    "reassuring": "Doctor Koala smiling kindly behind gold glasses, holding up a colorful sticker.",
+    "examining": "Doctor Koala adjusting his round glasses, looking closely with a gentle comforting expression.",
+    "explaining": "Doctor Koala pointing at an illustrated chart with a wooden pointer, cheerful pedagogical look.",
+    "thumbs_up": "Doctor Koala giving two big thumbs up, eyes crinkling happily."
   },
-  "prompt_lock": "a gentle elderly koala doctor, about 150cm tall (1.5x the height of Bi the squirrel), soft gray fur, large round black nose, fluffy round ears, kind small eyes behind round gold glasses, wearing a clean white doctor coat with a green cross badge, a head mirror on his forehead, a stethoscope around his neck, 3D Pixar-style soft render, soft studio lighting, plain light gray background",
-  "persona_set": {"dir": "assets/koala/persona/", "reference": "assets/koala/koala_01.png (tạo bằng Flow, chưa có)"}
+  "outfit_prompts": {
+    "default": "White lab coat (#FFFFFF) with green cross badge (#2ECC71), light blue shirt (#4FC3F7), gold glasses, stethoscope, head mirror.",
+    "first_aid_field": "Light blue medical scrub top with first-aid crossbody kit bag for outdoor forest events."
+  },
+  "episode_count": 3,
+  "appearances": [
+    "ep16-ban-sau-rang-tinh-nghich",
+    "ep18-nuoc-loc-la-sieu-anh-hung",
+    "ep20-di-kham-bac-si-koala"
+  ]
 }

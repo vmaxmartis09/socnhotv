@@ -1,62 +1,104 @@
-# Bộ prompt mẫu cho Sóc Nhỏ (viết riêng cho project)
+# Bộ Prompt Tạo Ảnh & Video AI — Sóc Nhỏ (Bi) (`soc_nho`)
 
-Rút từ cấu trúc quy trình trong video TikTok của Huan.academy, xem [TIKTOK_AI_ANIMATION_WORKFLOW_LESSONS.md](TIKTOK_AI_ANIMATION_WORKFLOW_LESSONS.md). Nội dung dưới đây là bản viết lại của project, không phải prompt gốc của tác giả.
-
-Dùng với nhân vật chuẩn trong [SOC_NHO_CHARACTER_PROFILE.md](SOC_NHO_CHARACTER_PROFILE.md) và `assets/soc_nho`. Không vẽ nhân vật mới.
-
-## Prompt 1: Lên 30 ý tưởng
-
-```
-Bạn là người lên kế hoạch nội dung cho kênh YouTube hoạt hình 3D dành cho trẻ 3-6 tuổi, nhân vật chính là bé sóc nhỏ (Sóc Nhỏ) cùng bạn bè và người lớn giúp đỡ.
-Mỗi tập là một tình huống đời thường gần gũi với trẻ Việt Nam (đi chợ, đi học, nhà bà ngoại, công viên...), có một sự cố nhỏ, có cảm xúc (tò mò, sợ, xấu hổ, nhẹ nhõm) và kết bằng một bài học nhẹ nhàng.
-Chủ đề lần này: {{CHỦ_ĐỀ}}
-Hãy viết 30 ý tưởng. Chỉ trả về tiêu đề, mỗi tiêu đề một dòng, theo kiểu gợi tò mò, kèm 1-3 emoji. Không giải thích, không đánh số.
+## 1. Master DNA Prompt Lock (Khóa nhận diện cốt lõi)
+```text
+3D Pixar-style cute anthropomorphic red squirrel boy named Bi, 4.5 years old, exact height 100cm (1.0x reference scale, head-to-body ratio 1:4, slim agile build, flat tummy, NO chubby belly), warm terracotta orange-brown fur (#D96B27) with soft cream cheeks and chest (#F7E1C6), large glossy black eyes (#1A1110) with expressive eyebrows, upright tufted squirrel ears, big fluffy S-curved bushy tail as tall as his back, wearing a bright sunny yellow crew-neck t-shirt (#FFD43B), charcoal black shorts (#22252A), and dark sneakers with white rubber soles, ultra-detailed soft fur texture, warm cinematic lighting
 ```
 
-## Prompt 2: Viết kịch bản (tuyển tập mini-story)
-
-```
-Bạn là biên kịch cho kênh hoạt hình thiếu nhi, dàn nhân vật cố định: Sóc Nhỏ, {{NHÂN_VẬT_PHỤ}}, cùng một người lớn giúp đỡ khi cần.
-Viết kịch bản đầy đủ bắt đầu từ chủ đề: {{TIÊU_ĐỀ_ĐÃ_CHỌN}}
-Quy tắc quan trọng nhất: video là một TUYỂN TẬP 4-6 truyện ngắn độc lập nối tiếp nhau. Truyện đầu bám chủ đề chính, kết gọn rồi cắt sang truyện mới ở bối cảnh khác, cùng nhân vật.
-Độ dài mục tiêu: {{SỐ_TỪ}} từ thoại. Câu ngắn, từ đơn giản, lặp lại, có lời trấn an.
-Định dạng đầu ra: chỉ lời thoại, mỗi câu một dòng, bắt đầu bằng "Tên nhân vật:". Không tiêu đề, không đề mục, không chỉ dẫn sân khấu, không đếm từ, không bình luận.
+## 2. Character Turnaround Prompts (5 góc xoay chuẩn Model Sheet)
+### Front
+```text
+Front view T-pose of Bi the 3D Pixar red squirrel boy (100cm, 1:4 head-to-body ratio, slim flat tummy), terracotta orange fur (#D96B27), cream belly (#F7E1C6), yellow t-shirt (#FFD43B), black shorts (#22252A), dark sneakers with white soles, neutral studio background, character sheet.
 ```
 
-## Prompt 3: Bộ prompt hình ảnh và video
-
-### 3A. Style bible (dán nguyên văn vào mọi prompt ảnh và video)
-```
-3D Pixar-style animation, bóng mượt, ánh sáng studio mềm ấm, nền sạch, màu rực nhưng cân bằng, mắt to bóng có highlight, tỉ lệ 16:9, không chữ, không watermark, không phụ đề trong ảnh
-```
-Cụm style phải giữ đúng một cách viết; xem quy tắc trong skill `flow-auto-video`.
-
-### 3B. Bước 1, ảnh tham chiếu nhân vật
-```
-Với mỗi nhân vật lặp lại trong kịch bản, viết một prompt ảnh tham chiếu: toàn thân, đứng chính diện, tư thế trung tính, nhìn vào camera, nền trắng thuần #FFFFFF, ánh sáng đều, không đạo cụ, không nhân vật khác.
-Dùng đúng mô tả cố định (lông, mắt, trang phục, giày). Với Sóc Nhỏ dùng nguyên prompt khóa trong hồ sơ nhân vật.
-Kèm một dòng "từ khóa nhất quán" ngắn để dán lại khi cần.
+### Three Quarter Left
+```text
+3/4 left view of Bi the 3D Pixar red squirrel boy (100cm), showing fluffy S-curved bushy tail silhouette, terracotta orange fur (#D96B27), yellow t-shirt (#FFD43B), black shorts (#22252A), consistent proportions.
 ```
 
-### 3C. Bước 2, bộ prompt từng beat
-```
-Phủ toàn bộ kịch bản, không tóm tắt, không bỏ beat. Mỗi beat theo mẫu:
-
-Câu thoại: "..."
-Nhân vật trong khung: ...
-Prompt ảnh: ... (ảnh tĩnh, không chữ trong ảnh)
-Prompt video: ... (chuyển động + thoại trong ngoặc kép, ghi rõ ai nói)
-
-Quy tắc:
-- Mỗi prompt tự đứng được, dán thẳng vào model là chạy.
-- Mỗi câu thoại xuất hiện nguyên văn trong prompt video của beat đó, gán đúng người nói.
-- Mỗi beat dài 3-8 giây; thoại quá dài thì tách beat.
-- Không đổi trang phục, kiểu lông hay giọng của nhân vật giữa các beat.
-Kịch bản: {{DÁN_KỊCH_BẢN}}
+### Side Profile
+```text
+90-degree side profile of Bi the 3D Pixar red squirrel boy (100cm), flat tummy, short cute snout, large S-curved fluffy tail behind back, yellow t-shirt (#FFD43B), black shorts (#22252A).
 ```
 
-### 3D. Voice bible (thêm vào hồ sơ nhân vật)
-Mỗi nhân vật một dòng giọng cố định (tuổi, âm sắc, tốc độ). Sóc Nhỏ: giọng bé trai khoảng 4 tuổi, trong, tinh nghịch (chốt lại khi chọn giọng, liên kết `vietnamese-voice-clone`).
+### Back
+```text
+Back view of Bi the 3D Pixar red squirrel boy (100cm), prominent fluffy terracotta tail (#D96B27) with cream tip, yellow t-shirt (#FFD43B), black shorts (#22252A).
+```
 
-## Đưa vào Google Flow
-Dán danh sách beat theo dạng `[Prompt ảnh] | [Prompt video]` mỗi dòng. Nhân vật tải từ ảnh chuẩn `assets/soc_nho/soc_nho_01.png`, không sinh mới.
+### Three Quarter Right
+```text
+Dynamic 3/4 right view of Bi the 3D Pixar red squirrel boy (100cm) waving cheerfully, bright smile, yellow t-shirt (#FFD43B), black shorts (#22252A).
+```
+
+## 3. Expression Sheet Prompts (Bộ biểu cảm diễn xuất)
+### Biểu cảm: `happy`
+```text
+3D Pixar-style cute anthropomorphic red squirrel boy named Bi, 4.5 years old, exact height 100cm (1.0x reference scale, head-to-body ratio 1:4, slim agile build, flat tummy, NO chubby belly), warm terracotta orange-brown fur (#D96B27) with soft cream cheeks and chest (#F7E1C6), large glossy black eyes (#1A1110) with expressive eyebrows, upright tufted squirrel ears, big fluffy S-curved bushy tail as tall as his back, wearing a bright sunny yellow crew-neck t-shirt (#FFD43B), charcoal black shorts (#22252A), and dark sneakers with white rubber soles, ultra-detailed soft fur texture, warm cinematic lighting, Bi smiling brightly, eyes curved like crescent moons, ears perked up high, bushy tail wagging.
+```
+
+### Biểu cảm: `curious`
+```text
+3D Pixar-style cute anthropomorphic red squirrel boy named Bi, 4.5 years old, exact height 100cm (1.0x reference scale, head-to-body ratio 1:4, slim agile build, flat tummy, NO chubby belly), warm terracotta orange-brown fur (#D96B27) with soft cream cheeks and chest (#F7E1C6), large glossy black eyes (#1A1110) with expressive eyebrows, upright tufted squirrel ears, big fluffy S-curved bushy tail as tall as his back, wearing a bright sunny yellow crew-neck t-shirt (#FFD43B), charcoal black shorts (#22252A), and dark sneakers with white rubber soles, ultra-detailed soft fur texture, warm cinematic lighting, Bi tilting head 15 degrees, right ear twitching forward, big glossy eyes wide open with wonder, index finger on chin.
+```
+
+### Biểu cảm: `angry`
+```text
+3D Pixar-style cute anthropomorphic red squirrel boy named Bi, 4.5 years old, exact height 100cm (1.0x reference scale, head-to-body ratio 1:4, slim agile build, flat tummy, NO chubby belly), warm terracotta orange-brown fur (#D96B27) with soft cream cheeks and chest (#F7E1C6), large glossy black eyes (#1A1110) with expressive eyebrows, upright tufted squirrel ears, big fluffy S-curved bushy tail as tall as his back, wearing a bright sunny yellow crew-neck t-shirt (#FFD43B), charcoal black shorts (#22252A), and dark sneakers with white rubber soles, ultra-detailed soft fur texture, warm cinematic lighting, Bi puffing cheeks red, eyebrows furrowed down, fists clenched at sides, tail bristled up ('volcano in tummy').
+```
+
+### Biểu cảm: `scared`
+```text
+3D Pixar-style cute anthropomorphic red squirrel boy named Bi, 4.5 years old, exact height 100cm (1.0x reference scale, head-to-body ratio 1:4, slim agile build, flat tummy, NO chubby belly), warm terracotta orange-brown fur (#D96B27) with soft cream cheeks and chest (#F7E1C6), large glossy black eyes (#1A1110) with expressive eyebrows, upright tufted squirrel ears, big fluffy S-curved bushy tail as tall as his back, wearing a bright sunny yellow crew-neck t-shirt (#FFD43B), charcoal black shorts (#22252A), and dark sneakers with white rubber soles, ultra-detailed soft fur texture, warm cinematic lighting, Bi hugging his own fluffy tail in front of chest, ears flattened back, pupils shrunk, trembling slightly.
+```
+
+### Biểu cảm: `sad`
+```text
+3D Pixar-style cute anthropomorphic red squirrel boy named Bi, 4.5 years old, exact height 100cm (1.0x reference scale, head-to-body ratio 1:4, slim agile build, flat tummy, NO chubby belly), warm terracotta orange-brown fur (#D96B27) with soft cream cheeks and chest (#F7E1C6), large glossy black eyes (#1A1110) with expressive eyebrows, upright tufted squirrel ears, big fluffy S-curved bushy tail as tall as his back, wearing a bright sunny yellow crew-neck t-shirt (#FFD43B), charcoal black shorts (#22252A), and dark sneakers with white rubber soles, ultra-detailed soft fur texture, warm cinematic lighting, Bi looking down at toes, ears drooping low, single teardrop on cream cheek, tail dragging down.
+```
+
+### Biểu cảm: `proud`
+```text
+3D Pixar-style cute anthropomorphic red squirrel boy named Bi, 4.5 years old, exact height 100cm (1.0x reference scale, head-to-body ratio 1:4, slim agile build, flat tummy, NO chubby belly), warm terracotta orange-brown fur (#D96B27) with soft cream cheeks and chest (#F7E1C6), large glossy black eyes (#1A1110) with expressive eyebrows, upright tufted squirrel ears, big fluffy S-curved bushy tail as tall as his back, wearing a bright sunny yellow crew-neck t-shirt (#FFD43B), charcoal black shorts (#22252A), and dark sneakers with white rubber soles, ultra-detailed soft fur texture, warm cinematic lighting, Bi standing tall with hands on hips, chest out, confident grin, tail curled high.
+```
+
+### Biểu cảm: `patient_breathing`
+```text
+3D Pixar-style cute anthropomorphic red squirrel boy named Bi, 4.5 years old, exact height 100cm (1.0x reference scale, head-to-body ratio 1:4, slim agile build, flat tummy, NO chubby belly), warm terracotta orange-brown fur (#D96B27) with soft cream cheeks and chest (#F7E1C6), large glossy black eyes (#1A1110) with expressive eyebrows, upright tufted squirrel ears, big fluffy S-curved bushy tail as tall as his back, wearing a bright sunny yellow crew-neck t-shirt (#FFD43B), charcoal black shorts (#22252A), and dark sneakers with white rubber soles, ultra-detailed soft fur texture, warm cinematic lighting, Bi holding left hand open like a star, right index finger tracing fingers slowly, eyes closed peacefully, inhaling deeply ('5-finger breathing').
+```
+
+### Biểu cảm: `apologetic`
+```text
+3D Pixar-style cute anthropomorphic red squirrel boy named Bi, 4.5 years old, exact height 100cm (1.0x reference scale, head-to-body ratio 1:4, slim agile build, flat tummy, NO chubby belly), warm terracotta orange-brown fur (#D96B27) with soft cream cheeks and chest (#F7E1C6), large glossy black eyes (#1A1110) with expressive eyebrows, upright tufted squirrel ears, big fluffy S-curved bushy tail as tall as his back, wearing a bright sunny yellow crew-neck t-shirt (#FFD43B), charcoal black shorts (#22252A), and dark sneakers with white rubber soles, ultra-detailed soft fur texture, warm cinematic lighting, Bi bowing head slightly, hands clasped together in front of chest, soft sincere eyes.
+```
+
+## 4. Outfit Variants (Biến thể trang phục theo bối cảnh)
+### Trang phục: `default`
+```text
+3D Pixar-style cute anthropomorphic red squirrel boy named Bi, 4.5 years old, exact height 100cm (1.0x reference scale, head-to-body ratio 1:4, slim agile build, flat tummy, NO chubby belly), warm terracotta orange-brown fur (#D96B27) with soft cream cheeks and chest (#F7E1C6), large glossy black eyes (#1A1110) with expressive eyebrows, upright tufted squirrel ears, big fluffy S-curved bushy tail as tall as his back, wearing a bright sunny yellow crew-neck t-shirt (#FFD43B), charcoal black shorts (#22252A), and dark sneakers with white rubber soles, ultra-detailed soft fur texture, warm cinematic lighting -- outfit override: Bright sunny yellow crew-neck t-shirt (#FFD43B), charcoal black shorts (#22252A), dark sneakers with white soles.
+```
+
+### Trang phục: `sleepwear`
+```text
+3D Pixar-style cute anthropomorphic red squirrel boy named Bi, 4.5 years old, exact height 100cm (1.0x reference scale, head-to-body ratio 1:4, slim agile build, flat tummy, NO chubby belly), warm terracotta orange-brown fur (#D96B27) with soft cream cheeks and chest (#F7E1C6), large glossy black eyes (#1A1110) with expressive eyebrows, upright tufted squirrel ears, big fluffy S-curved bushy tail as tall as his back, wearing a bright sunny yellow crew-neck t-shirt (#FFD43B), charcoal black shorts (#22252A), and dark sneakers with white rubber soles, ultra-detailed soft fur texture, warm cinematic lighting -- outfit override: Soft pastel blue two-piece pajama set printed with tiny golden acorns, barefoot.
+```
+
+### Trang phục: `rainwear`
+```text
+3D Pixar-style cute anthropomorphic red squirrel boy named Bi, 4.5 years old, exact height 100cm (1.0x reference scale, head-to-body ratio 1:4, slim agile build, flat tummy, NO chubby belly), warm terracotta orange-brown fur (#D96B27) with soft cream cheeks and chest (#F7E1C6), large glossy black eyes (#1A1110) with expressive eyebrows, upright tufted squirrel ears, big fluffy S-curved bushy tail as tall as his back, wearing a bright sunny yellow crew-neck t-shirt (#FFD43B), charcoal black shorts (#22252A), and dark sneakers with white rubber soles, ultra-detailed soft fur texture, warm cinematic lighting -- outfit override: Translucent yellow hooded raincoat with ear slots, matching yellow rain boots.
+```
+
+### Trang phục: `explorer`
+```text
+3D Pixar-style cute anthropomorphic red squirrel boy named Bi, 4.5 years old, exact height 100cm (1.0x reference scale, head-to-body ratio 1:4, slim agile build, flat tummy, NO chubby belly), warm terracotta orange-brown fur (#D96B27) with soft cream cheeks and chest (#F7E1C6), large glossy black eyes (#1A1110) with expressive eyebrows, upright tufted squirrel ears, big fluffy S-curved bushy tail as tall as his back, wearing a bright sunny yellow crew-neck t-shirt (#FFD43B), charcoal black shorts (#22252A), and dark sneakers with white rubber soles, ultra-detailed soft fur texture, warm cinematic lighting -- outfit override: Default yellow t-shirt (#FFD43B) plus khaki explorer vest, leaf-green canvas backpack, wooden magnifying glass.
+```
+
+### Trang phục: `festival`
+```text
+3D Pixar-style cute anthropomorphic red squirrel boy named Bi, 4.5 years old, exact height 100cm (1.0x reference scale, head-to-body ratio 1:4, slim agile build, flat tummy, NO chubby belly), warm terracotta orange-brown fur (#D96B27) with soft cream cheeks and chest (#F7E1C6), large glossy black eyes (#1A1110) with expressive eyebrows, upright tufted squirrel ears, big fluffy S-curved bushy tail as tall as his back, wearing a bright sunny yellow crew-neck t-shirt (#FFD43B), charcoal black shorts (#22252A), and dark sneakers with white rubber soles, ultra-detailed soft fur texture, warm cinematic lighting -- outfit override: Traditional Vietnamese crimson-red Ao Dai vest with gold coin patterns over yellow shirt.
+```
+
+## 5. Multi-Character Scale Lock Rule (Khi đứng chung với nhân vật khác)
+```text
+Height order from tallest to shortest: Bac Voi 180cm (1.80x) > Co Huou Sao 160cm (1.60x) > Ong De Rau Bac 155cm (1.55x) > Doctor Koala 150cm (1.50x) > Me Soc 145cm (1.45x) > De Bong 115cm (1.15x) > Cun Lu 105cm (1.05x) > Soc Bi 100cm (1.00x) > Meo Mimi 95cm (0.95x) > De Mun 85cm (0.85x). Mốc chuẩn 1.0x (100 cm). Cao ngang cằm Dê Bông (115 cm), thấp hơn Cún Lu 5 cm, cao hơn Mèo Mimi 5 cm, đỉnh đầu Dê Mun chạm mũi Bi.
+```
