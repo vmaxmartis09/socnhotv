@@ -3,12 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width={{ width }}, height={{ height }}, initial-scale=1.0" />
-    <title>{{ data.fact_question }}</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <title>{{ data.fact_question or "Kiến Thức Thú Vị" }}</title>
+    <script src="assets/gsap.min.js"></script>
     <style>
       * { box-sizing: border-box; margin: 0; padding: 0; }
-      body, html { width: {{ width }}px; height: {{ height }}px; overflow: hidden; background: #09090b; font-family: -apple-system, sans-serif; }
-      #root { position: relative; width: {{ width }}px; height: {{ height }}px; overflow: hidden; }
+      body, html { width: {{ width }}px; height: {{ height }}px; overflow: hidden; background: #030712; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+      #root { position: relative; width: {{ width }}px; height: {{ height }}px; overflow: hidden; background: radial-gradient(circle at 50% 20%, #172554 0%, #030712 100%); }
       {{ styles_css }}
     </style>
   </head>
@@ -20,33 +20,47 @@
          data-width="{{ width }}"
          data-height="{{ height }}">
 
-      <!-- Hook Top -->
+      <!-- Background Animated Glow Orbs -->
+      <div id="orb1" class="bg-glow-orb-1 clip" data-start="0" data-duration="{{ total_duration }}" data-track-index="0"></div>
+      <div id="orb2" class="bg-glow-orb-2 clip" data-start="0" data-duration="{{ total_duration }}" data-track-index="0"></div>
+
+      <!-- Hook Top Badge -->
       <div id="fact-hook" class="fact-badge-top clip" data-start="0" data-duration="{{ total_duration }}" data-track-index="2">
-        💡 {{ data.fact_question or "BẠN CÓ BIẾT?" }}
+        💡 {{ data.fact_question or "BẠN CÓ BIẾT ĐIỀU NÀY?" }}
       </div>
 
-      <!-- Stat Big Number -->
-      <div id="stat-num" class="stat-number-box clip" data-start="0.6" data-duration="{{ total_duration - 0.6 }}" data-track-index="2">
-        {{ data.stat_number or "99%" }}
+      <!-- Kinetic Stat Big Number -->
+      <div id="stat-box" class="stat-number-box clip" data-start="0.4" data-duration="{{ total_duration - 0.4 }}" data-track-index="2">
+        <div id="stat-num" class="giant-number">{{ data.stat_number or "10.000" }}</div>
+        <div id="unit" class="unit-label">HẠT DẺ MỖI MÙA THU</div>
       </div>
 
-      <!-- Statement Body -->
-      <div id="statement" class="statement-card clip" data-start="1.8" data-duration="{{ total_duration - 1.8 }}" data-track-index="2">
-        {{ data.fact_statement }}
+      <!-- Fact Statement Glass Card -->
+      <div id="statement" class="statement-card clip" data-start="1.6" data-duration="{{ total_duration - 1.6 }}" data-track-index="2">
+        <div class="statement-text">{{ data.fact_statement or "Mỗi chú sóc nhỏ có thể giấu hơn 10.000 hạt dẻ mỗi mùa thu và nhớ chính xác vị trí nhờ khứu giác siêu phàm!" }}</div>
+        <div class="cta-text">
+          <span>❤️</span>
+          <span>{{ data.follow_cta or "Thả tim và follow Sóc Nhỏ TV nhé!" }}</span>
+        </div>
       </div>
 
-      <audio id="audio-voiceover" class="clip" src="{{ voiceover_src }}" data-start="0" data-duration="{{ total_duration }}" data-track-index="3"></audio>
-      {% if bgm_src %}
-      <audio id="audio-bgm" class="clip" src="{{ bgm_src }}" data-start="0" data-duration="{{ total_duration }}" data-track-index="4" data-volume="0.15"></audio>
-      {% endif %}
+      <audio id="audio-voiceover" class="clip" src="{{ voiceover_src or 'assets/voiceover.mp3' }}" data-start="0" data-duration="{{ total_duration }}" data-track-index="3"></audio>
     </div>
 
     <script>
       window.__timelines = window.__timelines || {};
       const tl = gsap.timeline({ paused: true });
-      tl.fromTo("#fact-hook", { y: -40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "back.out(1.8)" }, 0.1);
-      tl.fromTo("#stat-num", { scale: 0.2, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: "elastic.out(1, 0.4)" }, 0.6);
-      tl.fromTo("#statement", { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }, 1.8);
+
+      // Kinetic Typography animations
+      tl.fromTo("#fact-hook", { y: -40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "back.out(1.8)" }, 0.1);
+      tl.fromTo("#stat-box", { scale: 0.2, rotation: -12, opacity: 0 }, { scale: 1, rotation: 0, opacity: 1, duration: 0.5, ease: "back.out(2)" }, 0.4);
+      tl.fromTo("#unit", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "power2.out" }, 0.7);
+      tl.fromTo("#statement", { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 1.6);
+
+      // Subtle float animation for orbs
+      tl.to("#orb1", { x: 30, y: 20, duration: 2.5, ease: "sine.inOut", yoyo: true, repeat: -1 }, 0);
+      tl.to("#orb2", { x: -30, y: -20, duration: 2.8, ease: "sine.inOut", yoyo: true, repeat: -1 }, 0);
+
       window.__timelines["main"] = tl;
       tl.seek(0);
     </script>

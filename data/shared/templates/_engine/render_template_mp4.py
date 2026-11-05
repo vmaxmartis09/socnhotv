@@ -16,7 +16,14 @@ FFMPEG_BIN = REPO_ROOT / "data" / "shared" / "models" / "ffmpeg-bin" / "ffmpeg.e
 FFPROBE_BIN = REPO_ROOT / "data" / "shared" / "models" / "ffmpeg-bin" / "ffprobe.exe"
 
 
-def render_template(template_id: str, width: int = 540, height: int = 960, fps: int = 24, duration: float = 3.5) -> dict:
+def render_template(
+    template_id: str,
+    width: int = 540,
+    height: int = 960,
+    fps: int = 24,
+    duration: float = 3.5,
+    out_filename: str = "preview.mp4",
+) -> dict:
     t_dir = REPO_ROOT / "data" / "shared" / "templates" / template_id
     if not t_dir.exists():
         raise FileNotFoundError(f"Template dir not found: {t_dir}")
@@ -30,12 +37,13 @@ def render_template(template_id: str, width: int = 540, height: int = 960, fps: 
         data = json.load(f)
 
     styles = styles_css.read_text(encoding="utf-8") if styles_css.exists() else ""
-    # Safe zone for 9:16
+    # Safe zone for 9:16 or 16:9
+    is_landscape = width > height
     safe_zone = {
-        "top": int(180 * (height / 1920)),
-        "bottom": int(320 * (height / 1920)),
-        "left": 20,
-        "right": 20,
+        "top": int(60 * (height / 540)) if is_landscape else int(180 * (height / 1920)),
+        "bottom": int(60 * (height / 540)) if is_landscape else int(320 * (height / 1920)),
+        "left": 40 if is_landscape else 20,
+        "right": 40 if is_landscape else 20,
     }
 
     # Render Jinja2 for styles
@@ -55,8 +63,8 @@ def render_template(template_id: str, width: int = 540, height: int = 960, fps: 
     index_html = t_dir / "index.html"
     index_html.write_text(comp_rendered, encoding="utf-8")
 
-    out_mp4 = t_dir / "preview.mp4"
-    out_jpg = t_dir / "preview.jpg"
+    out_mp4 = t_dir / out_filename
+    out_jpg = out_mp4.with_suffix(".jpg")
 
     # Render via HyperFrames
     cmd = [

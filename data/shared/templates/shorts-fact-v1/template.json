@@ -80,7 +80,7 @@
     "facebook": "cover"
   },
   "kind": "fact",
-  "status": "draft",
+  "status": "verified",
   "tier": "A",
   "requires": {
     "tools": [
@@ -104,7 +104,8 @@
   },
   "outputs": {
     "aspect": [
-      "9:16"
+      "9:16",
+      "16:9"
     ],
     "duration": {
       "min": 15,
@@ -112,8 +113,8 @@
       "default": 30
     }
   },
-  "sample_output": null,
-  "verified_on": null,
+  "sample_output": "preview.mp4",
+  "verified_on": "2026-11-05",
   "sources": [
     {
       "name": "openshorts",
