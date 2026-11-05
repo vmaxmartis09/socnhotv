@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width={{ width }}, height={{ height }}, initial-scale=1.0" />
+    <title>{{ data.title or "Thay Nhân Vật Tier A" }}</title>
+    <script src="assets/gsap.min.js"></script>
+    <style>
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body, html { width: {{ width }}px; height: {{ height }}px; overflow: hidden; background: #030712; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+      #root { position: relative; width: {{ width }}px; height: {{ height }}px; overflow: hidden; }
+      {{ styles_css }}
+    </style>
+  </head>
+  <body>
+    <div id="root"
+         data-composition-id="main"
+         data-start="0"
+         data-duration="{{ total_duration }}"
+         data-width="{{ width }}"
+         data-height="{{ height }}">
+
+      <!-- Base Moving Background Video -->
+      <video id="scene-bg" class="bg-video-layer clip" src="assets/scene_bg.mp4" playsinline muted preload="auto" data-start="0" data-duration="{{ total_duration }}" data-track-index="0"></video>
+      <div class="scene-vignette"></div>
+
+      <!-- Transparent Tier A Disclaimer Badge (Rule 5 compliance) -->
+      <div id="disclaimer-badge" class="tier-a-badge clip" data-start="0" data-duration="{{ total_duration }}" data-track-index="2">
+        {{ data.disclaimer or "⚠️ GHÉP LỚP ĐỒ HỌA TIER A (OVERLAY-REPLACE) — KHÔNG PHẢI AI GENERATIVE SWAP" }}
+      </div>
+
+      <!-- Character Overlay Stage with Breathing / Subtle Animation -->
+      <div id="char-stage" class="character-composite-stage clip" data-start="0.3" data-duration="{{ total_duration - 0.3 }}" data-track-index="2">
+        <div class="character-aura"></div>
+        <img id="char-sprite" src="assets/character_cutout.png" class="character-sprite" alt="Replaced Character" />
+      </div>
+
+      <!-- Bottom Meta Pill -->
+      <div id="nametag" class="character-nametag clip" data-start="0.5" data-duration="{{ total_duration - 0.5 }}" data-track-index="2">
+        <div class="char-title">🎭 {{ data.character_name or "Nhân Vật Mới: Sóc Nhỏ Bi" }}</div>
+        <div class="disclaimer-sub">{{ data.scene_info or "Phân cảnh nền gốc: Rừng Xanh Vũ Trụ (Animated Base)" }} · Ghép lớp CPU</div>
+      </div>
+
+      <audio id="audio-voiceover" class="clip" src="{{ voiceover_src or 'assets/voiceover.mp3' }}" data-start="0" data-duration="{{ total_duration }}" data-track-index="3"></audio>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      tl.fromTo("#disclaimer-badge", { y: -30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "power2.out" }, 0.1);
+      tl.fromTo("#char-stage", { scale: 0.85, opacity: 0, y: 30 }, { scale: 1, opacity: 1, y: 0, duration: 0.5, ease: "back.out(1.5)" }, 0.3);
+      tl.fromTo("#nametag", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }, 0.5);
+
+      // Subtle breathing / idle motion on character
+      tl.to("#char-sprite", { y: -12, scale: 1.02, duration: 1.2, ease: "sine.inOut", yoyo: true, repeat: -1 }, 0.8);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

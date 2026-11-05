@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=540, height=960, initial-scale=1.0" />
+    <title>🎭 THAY THẾ NHÂN VẬT: SÓC NHỎ BI</title>
+    <script src="assets/gsap.min.js"></script>
+    <style>
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body, html { width: 540px; height: 960px; overflow: hidden; background: #030712; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+      #root { position: relative; width: 540px; height: 960px; overflow: hidden; }
+      .bg-video-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.scene-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, transparent 40%, rgba(0, 0, 0, 0.75) 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.tier-a-badge {
+  position: absolute;
+  top: 90px;
+  left: 20px;
+  right: 20px;
+  background: rgba(15, 23, 42, 0.88);
+  border: 1.5px solid #f59e0b;
+  color: #fbbf24;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 800;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.3);
+  letter-spacing: 0.02em;
+  z-index: 20;
+}
+
+.character-composite-stage {
+  position: absolute;
+  bottom: 230px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+}
+
+.character-aura {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.25) 0%, transparent 70%);
+  filter: blur(20px);
+  z-index: 8;
+}
+
+.character-sprite {
+  max-width: 280px;
+  max-height: 380px;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.8));
+  z-index: 12;
+}
+
+.character-nametag {
+  position: absolute;
+  bottom: 176px;
+  left: 24px;
+  right: 24px;
+  background: rgba(15, 23, 42, 0.92);
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(14px);
+  padding: 12px 18px;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  z-index: 25;
+}
+
+.char-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: #38bdf8;
+  margin-bottom: 4px;
+}
+
+.disclaimer-sub {
+  font-size: 11px;
+  font-weight: 600;
+  color: #94a3b8;
+  line-height: 1.35;
+}
+    </style>
+  </head>
+  <body>
+    <div id="root"
+         data-composition-id="main"
+         data-start="0"
+         data-duration="3.0"
+         data-width="540"
+         data-height="960">
+
+      <!-- Base Moving Background Video -->
+      <video id="scene-bg" class="bg-video-layer clip" src="assets/scene_bg.mp4" playsinline muted preload="auto" data-start="0" data-duration="3.0" data-track-index="0"></video>
+      <div class="scene-vignette"></div>
+
+      <!-- Transparent Tier A Disclaimer Badge (Rule 5 compliance) -->
+      <div id="disclaimer-badge" class="tier-a-badge clip" data-start="0" data-duration="3.0" data-track-index="2">
+        ⚠️ GHÉP LỚP ĐỒ HỌA TIER A (OVERLAY-REPLACE) — KHÔNG PHẢI AI GENERATIVE SWAP
+      </div>
+
+      <!-- Character Overlay Stage with Breathing / Subtle Animation -->
+      <div id="char-stage" class="character-composite-stage clip" data-start="0.3" data-duration="2.7" data-track-index="2">
+        <div class="character-aura"></div>
+        <img id="char-sprite" src="assets/character_cutout.png" class="character-sprite" alt="Replaced Character" />
+      </div>
+
+      <!-- Bottom Meta Pill -->
+      <div id="nametag" class="character-nametag clip" data-start="0.5" data-duration="2.5" data-track-index="2">
+        <div class="char-title">🎭 Sóc Nhỏ Bi (Cutout RGBA)</div>
+        <div class="disclaimer-sub">Phân cảnh nền gốc: Rừng Xanh Vũ Trụ (Animated Base) · Ghép lớp CPU</div>
+      </div>
+
+      <audio id="audio-voiceover" class="clip" src="assets/voiceover.mp3" data-start="0" data-duration="3.0" data-track-index="3"></audio>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      tl.fromTo("#disclaimer-badge", { y: -30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "power2.out" }, 0.1);
+      tl.fromTo("#char-stage", { scale: 0.85, opacity: 0, y: 30 }, { scale: 1, opacity: 1, y: 0, duration: 0.5, ease: "back.out(1.5)" }, 0.3);
+      tl.fromTo("#nametag", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }, 0.5);
+
+      // Subtle breathing / idle motion on character
+      tl.to("#char-sprite", { y: -12, scale: 1.02, duration: 1.2, ease: "sine.inOut", yoyo: true, repeat: -1 }, 0.8);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

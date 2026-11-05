@@ -1,0 +1,98 @@
+{
+  "id": "character-overlay-replace-v1",
+  "name": "Thay Nhân Vật Giữ Nội Dung (Ghép Lớp Tier A)",
+  "version": 2,
+  "kind": "replace",
+  "category": "animation",
+  "description": "Ghép lớp thay thế nhân vật (Overlay-replace Tier A trên CPU): tách nền nhân vật mới bằng bg-remove và tổng hợp ghép chuyển động lên video cảnh gốc qua HyperFrames. LƯU Ý: Đây là giải pháp ghép lớp đồ họa trực quan (Layer Composite), KHÔNG PHẢI AI Video-to-Video Model sinh khuôn mặt sâu (Tier C yêu cầu GPU NVIDIA).",
+  "platforms": [
+    "tiktok",
+    "youtube_shorts",
+    "facebook_reels"
+  ],
+  "default_platform": "tiktok",
+  "tags": [
+    "character",
+    "overlay",
+    "replace",
+    "composite",
+    "tier-a"
+  ],
+  "status": "verified",
+  "tier": "A",
+  "requires": {
+    "tools": [
+      "bg-remove",
+      "ffmpeg-bin"
+    ],
+    "providers": [],
+    "gpu": false,
+    "ffmpeg": true
+  },
+  "recipe": {
+    "nodes": [
+      "character",
+      "bg_remove",
+      "video_background",
+      "hyperframes_render",
+      "platform_export"
+    ],
+    "description": "Nhân vật mới -> Tách nền RGBA qua bg-remove -> Ghép lớp lên cảnh gốc chuyển động qua HyperFrames -> Xuất MP4 9:16"
+  },
+  "slots": [
+    {
+      "key": "title",
+      "label": "Tiêu đề phân cảnh",
+      "type": "text",
+      "required": true,
+      "default": "THAY THẾ NHÂN VẬT (OVERLAY-REPLACE TIER A)",
+      "description": "Tiêu đề trên video"
+    },
+    {
+      "key": "character_image",
+      "label": "Ảnh nhân vật thay thế",
+      "type": "media",
+      "required": true,
+      "default": "assets/character_cutout.png",
+      "description": "Ảnh chân dung hoặc toàn thân của nhân vật mới"
+    },
+    {
+      "key": "disclaimer",
+      "label": "Ghi chú minh bạch kỹ thuật",
+      "type": "text",
+      "required": false,
+      "default": "Ghép lớp đồ họa CPU · Không phải AI deepfake",
+      "description": "Cảnh báo kỹ thuật trung thực"
+    }
+  ],
+  "outputs": {
+    "aspect": [
+      "9:16",
+      "16:9"
+    ],
+    "duration": {
+      "min": 2,
+      "max": 60,
+      "default": 3
+    }
+  },
+  "sample_output": "data/shared/templates/character-overlay-replace-v1/preview.mp4",
+  "verified_on": "2026-11-05",
+  "sources": [
+    {
+      "name": "wan-video",
+      "repo": "Wan-Video/Wan2.2",
+      "license": "Apache-2.0",
+      "notes": "Tham chiếu cấu trúc Video-to-Video Tier C (yêu cầu GPU NVIDIA, hiện dùng Tier A thay thế)"
+    },
+    {
+      "name": "comfyui-wan-wrapper",
+      "repo": "kijai/ComfyUI-WanVideoWrapper",
+      "license": "Apache-2.0",
+      "notes": "Kiến trúc node thay nhân vật"
+    }
+  ],
+  "learned_from": [
+    "character-overlay-replace-tier-a"
+  ]
+}

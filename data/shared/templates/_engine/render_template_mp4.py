@@ -122,7 +122,7 @@ def render_template(
         meta = json.load(f)
 
     meta["status"] = "verified"
-    meta["sample_output"] = f"data/shared/templates/{template_id}/preview.mp4"
+    meta["sample_output"] = out_filename
     meta["verified_on"] = "2026-11-05"
 
     with open(template_json, "w", encoding="utf-8") as f:

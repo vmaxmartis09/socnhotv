@@ -1,0 +1,91 @@
+.bg-video-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.scene-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, transparent 40%, rgba(0, 0, 0, 0.75) 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.tier-a-badge {
+  position: absolute;
+  top: {{ safe_zone.top or 90 }}px;
+  left: 20px;
+  right: 20px;
+  background: rgba(15, 23, 42, 0.88);
+  border: 1.5px solid #f59e0b;
+  color: #fbbf24;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 800;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.3);
+  letter-spacing: 0.02em;
+  z-index: 20;
+}
+
+.character-composite-stage {
+  position: absolute;
+  bottom: {{ (safe_zone.bottom or 160) + 70 }}px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+}
+
+.character-aura {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.25) 0%, transparent 70%);
+  filter: blur(20px);
+  z-index: 8;
+}
+
+.character-sprite {
+  max-width: 280px;
+  max-height: 380px;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.8));
+  z-index: 12;
+}
+
+.character-nametag {
+  position: absolute;
+  bottom: {{ (safe_zone.bottom or 160) + 16 }}px;
+  left: 24px;
+  right: 24px;
+  background: rgba(15, 23, 42, 0.92);
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(14px);
+  padding: 12px 18px;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  z-index: 25;
+}
+
+.char-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: #38bdf8;
+  margin-bottom: 4px;
+}
+
+.disclaimer-sub {
+  font-size: 11px;
+  font-weight: 600;
+  color: #94a3b8;
+  line-height: 1.35;
+}

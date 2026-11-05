@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "historyId": "630d6bfe-0efe-424c-ba25-55892fa065b4",
+  "currentRevision": null,
+  "pendingChanges": false,
+  "files": {
+    "assets/character_cutout.png": {
+      "hash": "c6a98c10323738a8db976151781c3c32e3a260c79da90505f26a0a4ae758d2f2",
+      "content": "C:\\Users\\dtthoai\\.cache\\hyperframes\\history\\630d6bfe-0efe-424c-ba25-55892fa065b4\\blobs\\c6\\c6a98c10323738a8db976151781c3c32e3a260c79da90505f26a0a4ae758d2f2"
+    },
+    "assets/gsap.min.js": {
+      "hash": "92bb9a96476f983d212a2bc4f54c889039c1696dd4461d40a736860938570fbb",
+      "content": "C:\\Users\\dtthoai\\.cache\\hyperframes\\history\\630d6bfe-0efe-424c-ba25-55892fa065b4\\blobs\\92\\92bb9a96476f983d212a2bc4f54c889039c1696dd4461d40a736860938570fbb"
+    },
+    "assets/scene_bg.mp4": {
+      "hash": "c8b9ea09096124e1fa4d4f844c8a4241127840560d979d24d3df3a9a5bc3ea50",
+      "content": "C:\\Users\\dtthoai\\.cache\\hyperframes\\history\\630d6bfe-0efe-424c-ba25-55892fa065b4\\blobs\\c8\\c8b9ea09096124e1fa4d4f844c8a4241127840560d979d24d3df3a9a5bc3ea50"
+    },
+    "assets/voiceover.mp3": {
+      "hash": "1ac82b3a3f395728533549dfc241c8400ab8da314a4319921f9a8f9284bd03be",
+      "content": "C:\\Users\\dtthoai\\.cache\\hyperframes\\history\\630d6bfe-0efe-424c-ba25-55892fa065b4\\blobs\\1a\\1ac82b3a3f395728533549dfc241c8400ab8da314a4319921f9a8f9284bd03be"
+    },
+    "composition.html.j2": {
+      "hash": "ebc6528bfa9d83cadee5d781452c920ae17c38d296976a2775efbf75bbf45309",
+      "content": "C:\\Users\\dtthoai\\.cache\\hyperframes\\history\\630d6bfe-0efe-424c-ba25-55892fa065b4\\blobs\\eb\\ebc6528bfa9d83cadee5d781452c920ae17c38d296976a2775efbf75bbf45309"
+    },
+    "index.html": {
+      "hash": "325b21e7d3692c2d9681639893df6fa3570dfe5a7eea98e2083e10cf721a0f6a",
+      "content": "C:\\Users\\dtthoai\\.cache\\hyperframes\\history\\630d6bfe-0efe-424c-ba25-55892fa065b4\\blobs\\32\\325b21e7d3692c2d9681639893df6fa3570dfe5a7eea98e2083e10cf721a0f6a"
+    },
+    "sample.data.json": {
+      "hash": "1cbbca9921606ea93363792014786ecc819155e4e68eb797014437564d5a7243",
+      "content": "C:\\Users\\dtthoai\\.cache\\hyperframes\\history\\630d6bfe-0efe-424c-ba25-55892fa065b4\\blobs\\1c\\1cbbca9921606ea93363792014786ecc819155e4e68eb797014437564d5a7243"
+    },
+    "styles.css": {
+      "hash": "8326a8d0c7ac55b77c39a31e2b241344e2558cfc2b2a015af604d3a0d6ad4fe1",
+      "content": "C:\\Users\\dtthoai\\.cache\\hyperframes\\history\\630d6bfe-0efe-424c-ba25-55892fa065b4\\blobs\\83\\8326a8d0c7ac55b77c39a31e2b241344e2558cfc2b2a015af604d3a0d6ad4fe1"
+    },
+    "template.json": {
+      "hash": "d9080b3e388b789226881e362ab55bc6530e413538da334e608625404c2dcf79",
+      "content": "C:\\Users\\dtthoai\\.cache\\hyperframes\\history\\630d6bfe-0efe-424c-ba25-55892fa065b4\\blobs\\d9\\d9080b3e388b789226881e362ab55bc6530e413538da334e608625404c2dcf79"
+    }
+  },
+  "revisions": {},
+  "checks": {
+    "latest": null,
+    "revisions": {},
+    "unversioned": []
+  },
+  "snapshots": {
+    "latest": null,
+    "revisions": {},
+    "unversioned": []
+  },
+  "renders": {
+    "latest": {
+      "id": "0cdda607-481d-4fd7-a9bb-9798d0120eb9",
+      "completedAt": 1793875407696,
+      "output": "D:\\socnhotv\\data\\shared\\templates\\character-overlay-replace-v1\\preview.mp4",
+      "status": "completed",
+      "revision": null
+    },
+    "retainedRevisions": []
+  },
+  "pendingArtifactCleanup": []
+}
