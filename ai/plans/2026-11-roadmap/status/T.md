@@ -16,7 +16,7 @@
 | **T-02** | CLI `toolbox_cli` (list, doctor, run, add) | DONE | `tool/toolbox/toolbox_cli/`, `tool/toolbox/toolbox.cmd` | `toolbox doctor` in báo cáo thật, phát hiện thiếu ffmpeg, không GPU, runs.jsonl hoạt động |
 | **T-03** | Kho dùng chung: atomic write + append lock + stress test | DONE | `tool/toolbox/toolbox_cli/store.py`, `tool/toolbox/tests/test_store_concurrency.py` | 2 tiến trình ghi 200 bản ghi song song: 0 hỏng, 0 trùng lặp, lock an toàn |
 | **T-04** | Chuẩn hóa `voice_vault`: voice.json, aliases, todo_clone | DONE | `data/shared/voice_vault/`, `tool/toolbox/toolbox_cli/vault_resolver.py` | 8 voice (3 ready, 5 todo_clone), alias voice-koala -> koala-voice chuẩn, file cũ nguyên vẹn |
-| **T-08** | Tool bundle ffmpeg static (CPU) | PLANNED | `data/shared/models/ffmpeg-bin/` | |
+| **T-08** | Tool bundle ffmpeg static (CPU) | DONE | `tool/toolbox/tools/ffmpeg-bin/`, `data/shared/models/ffmpeg-bin/` | Tải bản static ffmpeg 9.0.2 CPU, toolbox doctor tự phát hiện, không đụng PATH |
 | **T-05** | Tool tách nền `bg-remove` (rembg CPU) | PLANNED | `tool/toolbox/tools/bg-remove/` | Chờ test user |
 | **T-07** | Tool phiên âm `stt-align` (faster-whisper CPU) | PLANNED | `tool/toolbox/tools/stt-align/` | Chờ test user |
 | **T-06** | Tool clone giọng `voice-clone` (OmniVoice wrapper) | PLANNED | `tool/toolbox/tools/voice-clone/` | Chờ test user |
