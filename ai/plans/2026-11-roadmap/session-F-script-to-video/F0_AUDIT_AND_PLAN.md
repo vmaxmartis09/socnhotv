@@ -96,3 +96,28 @@ Cách kiểm: đọc code + chạy thật 2 đồ thị qua core API với kịc
 3. **Mẫu giọng** cho Bông, Mun, Lu, Mimi (và người lớn) để clone; chưa có thì dùng giọng thay thế có gắn nhãn.
 4. **Duyệt ảnh DNA** 5 nhân vật sau khi sinh (một lần, rồi khoá).
 5. Có push commit `3320c23` lên GitHub không (hiện local đi trước remote).
+
+---
+
+## 5. Bài học dựng video từ nghiên cứu FB/TikTok (2026-11-04) → áp vào plan
+
+Nguồn: `data/shared/knowledge/video_craft/` (Session D: ~23 video Facebook phân tích riêng từng video; Session D2: 6 video TikTok phân tích sâu, 282 video chỉ sàng lọc theo tiêu đề trong 35 phút).
+**Độ tin cậy:** số đo `edit_metrics.json` là thật (ffprobe). REPORT của 6 video TikTok là **văn mẫu lặp lại** (giống nhau từng câu, tự mâu thuẫn số liệu) → chỉ lấy số đo. Trạng thái `in-studio` của thẻ craft bị thổi phồng: `craft/{camera,transitions,depth}` **chưa được gọi khi render** (chỉ 2 API gợi ý hook / lint kịch bản dùng tới).
+
+| # | Bài học (nguồn) | Áp vào mốc |
+|---|---|---|
+| 1 | **Phân rã theo shot ngắn + ghép tất định**: model AI chỉ ổn định 4–8s/clip; chữ, phụ đề, thời gian do engine HTML quản lý, không để AI vẽ chữ (FB `seq_n03`, TikTok SUMMARY) | Khẳng định hợp đồng shot 8s của series. `on_screen_text`, phụ đề, title card luôn là lớp HTML — M2/M4 |
+| 2 | **Neo nhân vật 3 góc** (chính diện / 3/4 / nghiêng) truyền làm ảnh tham chiếu cho mọi lần sinh hình (FB `seq_n01`) | M3: mỗi nhân vật sinh 3 anchor + lineup chiều cao; Bi hiện chỉ có góc chính diện |
+| 3 | **Image-to-video khoá khung đầu/cuối, không text-to-video; biên độ chuyển động vừa phải; nối shot liền mạch bằng khung cuối shot trước** (`ai-video-realism`, `dual-node-stitching`, FB `seq_007`) | M5 Veo: start frame = ảnh shot; shot liên tiếp cùng cảnh lấy tail-frame shot trước |
+| 4 | **Transition foresight**: hướng chuyển cảnh nối tiếp vector chuyển động 0,5s cuối shot trước, tránh "đụng trục" (FB `seq_n01`) | M2: nối `craft/transitions.py` vào `episode_render`; validator M1 báo lỗi khi `transition_out` ngược hướng `camera_move` |
+| 5 | **Ngữ pháp camera có tham số**: push-in 1.0→1.08 suốt shot; punch-in 1.25 trong 0,15s đúng điểm nhấn âm; dolly-out 1.1→1.0; pan parallax; whip kèm blur. Zoom chỉ 5–10% mỗi 3–5s để không chóng mặt (playbook camera, FB `seq_006`, `seq_n10`) | M2: map `camera_move` → preset GSAP qua `craft/camera.py`. Đây là thứ làm shot ảnh tĩnh 8s "sống" |
+| 6 | **Chiều sâu 3 lớp**: prompt tiền/trung/hậu cảnh (bible đã có); khi dựng từ ảnh thì parallax 0.2x / 1.0x / 1.8x; tiền cảnh chỉ 5–15% mép khung; luôn có bóng tiếp xúc dưới chân (FB `seq_n08`, playbook depth) | M2 Tier 0 dựng 3 lớp; M3 thêm lớp hạt/bokeh tiền cảnh phủ trên ảnh AI |
+| 7 | **Chống "rác AI" ở hậu kỳ**: hạt film 6–8% overlay, grade màu thống nhất (ấm), bóng tiếp xúc (`ai-video-realism-anti-artifact`) | M3/M4: thêm 1 pass grade + grain chung cho mọi shot → các ảnh sinh độc lập trông như cùng một phim |
+| 8 | **Prompt chỉ ~10% chất lượng; 90% là ảnh điều kiện, camera và nhịp dựng** (TikTok SUMMARY) | Ưu tiên đầu tư anchor DNA + dựng, không kéo dài prompt |
+| 9 | **Nhịp đo thật**: clip quảng cáo/KOC 3,75–5,65 cắt/10s (shot ~1,8–2,7s); video kiến thức/nói chuyện 0,1–0,4 cắt/10s; tốc độ nói 2,6–3,4 từ/s. Series dùng ≤18 từ/8s ≈ 2,25 từ/s (chậm, hợp trẻ 3–7) | Shot 8s là **đơn vị sinh hình**, không bắt buộc là đơn vị cắt: cho phép reframe/punch-in bên trong 1 shot khi có đổi người nói. Shorts cắt ra (M5) cần nhịp nhanh hơn hẳn bản 16:9 |
+| 10 | **Hook**: hình/chữ xuất hiện trong ≤0,5s, không chào hỏi, 3 biến thể chấm điểm (playbook hook, `craft/hooks.py`) | M1: validator chấm `hooks[A/B/C]` bằng `hooks.py`; cold open không mở bằng lời chào |
+| 11 | **Âm thanh**: -14 LUFS, ducking khi có thoại, SFX nhấn ở điểm lật, cắt đúng phách nhạc | M4: ducking -12dB theo bible; đặt SFX theo `sfx[]` của shot; punch-in trùng SFX |
+| 12 | **Render song song theo đoạn rồi ghép** (FB `seq_n03`) | M4: render từng scene song song → concat, thay vì 1 composition 10 phút |
+| 13 | **Ra nhanh rồi sửa theo đường giữ chân** (FB `seq_014`) | Củng cố thứ tự mốc: animatic trước, chất lượng sau; P2 nối analytics retention về kịch bản tập sau |
+
+**Không áp dụng / cần thận trọng:** thẻ VTON, lookbook, affiliate, KOC (lệch mục tiêu series thiếu nhi); Kling/Runway/ComfyUI (stack hiện chỉ có provider Google; ComfyUI cần GPU NVIDIA); playbook `yt-animation-episode.md` đã lỗi thời (45–90s, chỉ Bi + Koala, ghi DNA "RGBA trong suốt" nhưng thực tế ảnh nền trắng); vài thẻ trỏ tới file không tồn tại (`outfit-scan-pedestal.md`, `beat-matched-camera.md`); thông số Kling motion 3–5 và "60% xem tắt tiếng" chưa có nguồn kiểm chứng.
