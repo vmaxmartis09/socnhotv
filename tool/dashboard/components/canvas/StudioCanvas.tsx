@@ -299,7 +299,7 @@ function StudioCanvasInner() {
         if (!isMounted) return;
         if (active && active.status === "running") {
           setIsRunningGraph(true);
-          setActiveRunState(active);
+          setActiveRunState({ ...active, startedAt: Date.now() - (active.elapsedSec || 0) * 1000 });
           if (active.nodes) {
             for (const n of active.nodes) {
               updateNodeExecutionState(n.id, {
@@ -320,14 +320,7 @@ function StudioCanvasInner() {
     };
   }, [activeProjectId, setIsRunningGraph, updateNodeExecutionState]);
 
-  // Bộ đếm thời gian cho phiên chạy đang hoạt động
-  useEffect(() => {
-    if (!isRunningGraph) return;
-    const interval = setInterval(() => {
-      setActiveRunState((prev) => (prev ? { ...prev, elapsedSec: (prev.elapsedSec || 0) + 1 } : prev));
-    }, 1000);
-    return () => clearInterval(interval);
-  }, [isRunningGraph]);
+  // Canvas timer isolated to RunStatusBar (P-04)
 
   const canvasWrapperRef = useRef<HTMLDivElement>(null);
   const clipboardRef = useRef<{
@@ -1079,6 +1072,7 @@ function StudioCanvasInner() {
       progress: 0.05,
       progressPct: 5,
       elapsedSec: 0,
+      startedAt: Date.now(),
       nodes: initialRunNodes,
     });
 

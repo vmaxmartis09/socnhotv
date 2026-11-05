@@ -11,6 +11,7 @@ export interface RunStateInfo {
   progress?: number;
   progressPct?: number;
   elapsedSec?: number;
+  startedAt?: number;
   error?: string;
   nodes?: Array<{
     id: string;
@@ -47,7 +48,22 @@ export const RunStatusBar: React.FC<RunStatusBarProps> = ({
   const currentNodes = activeRun?.nodes || [];
   const status = activeRun?.status || (isRunning ? "running" : "idle");
   const progressPct = Math.min(100, Math.max(0, activeRun?.progressPct ?? (activeRun?.progress ? Math.round(activeRun.progress * 100) : 0)));
-  const elapsed = Math.round(activeRun?.elapsedSec || 0);
+
+  // Isolated local ticker: only re-renders RunStatusBar each second, never canvas
+  const [now, setNow] = React.useState(Date.now());
+  React.useEffect(() => {
+    if (!isRunning) return;
+    const interval = setInterval(() => setNow(Date.now()), 1000);
+    return () => clearInterval(interval);
+  }, [isRunning]);
+
+  const elapsed = React.useMemo(() => {
+    if (activeRun?.startedAt) {
+      return Math.max(0, Math.floor((now - activeRun.startedAt) / 1000));
+    }
+    return Math.round(activeRun?.elapsedSec || 0);
+  }, [activeRun?.startedAt, activeRun?.elapsedSec, now]);
+
   const minutes = Math.floor(elapsed / 60);
   const seconds = elapsed % 60;
   const timeStr = `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;

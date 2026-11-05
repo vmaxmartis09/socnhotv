@@ -17,8 +17,8 @@
 | **U-03** | UI tab Template theo chuẩn dự án (Morphicons, theme sáng/tối) | **HOÀN THÀNH** | `components/templates/**`, `data/shared/toolbox/ready/U-03.md` | Build Next.js pass, check:icons pass, ảnh chụp sáng/tối thật |
 | **U-04** | U-D Review sản phẩm: nối `bg-remove` tách nền thật → MP4 9:16 | **HOÀN THÀNH** | `affiliate-compare-v1`, `unboxing-v1`, `data/shared/toolbox/ready/U-04.md` | MP4 thật 540x960 84 frames, contact sheet, status verified |
 | **U-05** | U-C TikTok KOC review: MP4 thật có giọng OmniVoice + subtitle | **HOÀN THÀNH** | `koc-review-v1`, `data/shared/toolbox/ready/U-05.md` | MP4 thật 540x960 108 frames, WER 6.25%, status verified |
-| **U-06** | U-G Video vẽ tay: tool Toolbox `handdraw` + template | ĐANG THỰC HIỆN | MP4 vẽ từng nét | Tiếp tục U-06 |
-| **U-07** | U-F Motion graphics / kinetic text bằng HyperFrames | CHỜ CHẠY | MP4 16:9 + 9:16 | Chờ U-06 |
+| **U-06** | U-G Video vẽ tay: tool Toolbox `handdraw` + template | **HOÀN THÀNH** | `tool/toolbox/tools/handdraw/`, `handdraw-whiteboard-v1`, `data/shared/toolbox/ready/U-06.md` | Tool handdraw + template verified, MP4 72 frames, MIT license |
+| **U-07** | U-F Motion graphics / kinetic text bằng HyperFrames | ĐANG THỰC HIỆN | MP4 16:9 + 9:16 | Tiếp tục U-07 |
 | **U-08** | U-E Thay nhân vật: Tier A overlay-replace + giới hạn trung thực | CHỜ CHẠY | MP4 Tier A, UI minh bạch | Chờ U-07 |
 | **U-09** | U-A/U-B Nối Session F (hoạt hình series Bi / phim ngắn) | CHỜ CHẠY | `blocked_by: F` nếu F chưa có render | Chờ U-08 |
 | **U-10** | Nâng cấp kiểm tra các template phụ (U-I, J, K, L, M, H) | CHỜ CHẠY | Bảng runnable/draft | Chờ U-09 |

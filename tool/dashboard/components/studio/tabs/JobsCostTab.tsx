@@ -78,11 +78,42 @@ export function JobsCostTab() {
   };
 
   useEffect(() => {
-    if (activeProjectId) {
-      fetchJobs();
-      const interval = setInterval(fetchJobs, 3000);
-      return () => clearInterval(interval);
-    }
+    if (!activeProjectId) return;
+    fetchJobs();
+
+    let timeoutId: NodeJS.Timeout | null = null;
+    let cancelled = false;
+    let delay = 3000;
+
+    const tick = async () => {
+      if (cancelled) return;
+      if (typeof document !== "undefined" && document.hidden) {
+        timeoutId = setTimeout(tick, 5000);
+        return;
+      }
+      await fetchJobs();
+      if (cancelled) return;
+
+      const hasActive = jobs.some((j) => j.status === "running" || j.status === "queued");
+      delay = hasActive ? 3000 : Math.min(delay * 1.5, 10000);
+      timeoutId = setTimeout(tick, delay);
+    };
+
+    timeoutId = setTimeout(tick, delay);
+
+    const onVisibilityChange = () => {
+      if (!document.hidden && !cancelled) {
+        delay = 3000;
+        fetchJobs();
+      }
+    };
+    document.addEventListener("visibilitychange", onVisibilityChange);
+
+    return () => {
+      cancelled = true;
+      if (timeoutId) clearTimeout(timeoutId);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+    };
   }, [activeProjectId]);
 
   // Combine store jobs, core render jobs and core runs

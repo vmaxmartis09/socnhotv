@@ -59,3 +59,6 @@ tool/dashboard/.taste-skill/
 scratch/
 tool/scratch/
 graphify-out/
+*.hf-transaction*
+*-lock
+*-lock/
