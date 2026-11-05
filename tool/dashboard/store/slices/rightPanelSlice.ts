@@ -1,6 +1,6 @@
 import type { StateCreator } from "zustand";
 
-export type RightPanelTab = "chat" | "node" | "project" | "publish" | "jobs" | "shortcuts";
+export type RightPanelTab = "chat" | "node" | "project" | "publish" | "jobs" | "shortcuts" | "toolbox";
 export type CharacterProfileSection =
   | "profile"
   | "images"

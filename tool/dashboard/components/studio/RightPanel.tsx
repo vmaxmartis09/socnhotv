@@ -10,6 +10,7 @@ import { ProjectTab } from "./tabs/ProjectTab";
 import { PublishTab } from "./tabs/PublishTab";
 import { JobsCostTab } from "./tabs/JobsCostTab";
 import { ShortcutsView } from "./ShortcutsView";
+import { ToolboxPanel } from "@/components/toolbox/ToolboxPanel";
 import { X, PanelRightClose, PanelRightOpen } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
 
@@ -82,6 +83,8 @@ export function RightPanel() {
         return <PublishTab />;
       case "jobs":
         return <JobsCostTab />;
+      case "toolbox":
+        return <ToolboxPanel />;
       case "shortcuts":
         return <ShortcutsView />;
       default:

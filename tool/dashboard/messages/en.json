@@ -249,6 +249,7 @@
       "publish": "Schedule",
       "jobs": "Jobs",
       "node": "Node",
+      "toolbox": "Toolbox",
       "shortcuts": "Shortcuts"
     }
   },

@@ -12,13 +12,15 @@ import { JobsList } from "@/components/jobs/JobsList";
 import { ProjectHub, type HubTab } from "@/components/project/ProjectHub";
 import { FolderGit2, Users, MessageSquare, Calendar, Activity, Sliders, Keyboard } from "@/components/ui/icons";
 import { ShortcutsView } from "./ShortcutsView";
+import { ToolboxPanel } from "@/components/toolbox/ToolboxPanel";
+import { Wrench } from "@/components/ui/icons";
 import { PreviewPane } from "./PreviewPane";
 import { usePreview } from "@/lib/preview";
 import { useHubScope } from "@/lib/hub";
 import { useConfirmStore } from "@/lib/confirm";
 import { cn } from "@/lib/utils";
 
-type View = "project" | "characters" | "chat" | "publish" | "jobs" | "node" | "shortcuts";
+type View = "project" | "characters" | "chat" | "publish" | "jobs" | "node" | "toolbox" | "shortcuts";
 
 const ICONS: Record<View, React.ComponentType<{ className?: string }>> = {
   project: FolderGit2,
@@ -27,10 +29,11 @@ const ICONS: Record<View, React.ComponentType<{ className?: string }>> = {
   publish: Calendar,
   jobs: Activity,
   node: Sliders,
+  toolbox: Wrench,
   shortcuts: Keyboard,
 };
 
-const ORDER: View[] = ["project", "characters", "chat", "publish", "jobs", "node", "shortcuts"];
+const ORDER: View[] = ["project", "characters", "chat", "publish", "jobs", "node", "toolbox", "shortcuts"];
 
 const NAV_CLOSED = 52;
 const NAV_OPEN = 148;
@@ -168,6 +171,8 @@ export function FloatingPanels() {
             <JobsList compact />
           </div>
         );
+      case "toolbox":
+        return <ToolboxPanel />;
       case "shortcuts":
         return <ShortcutsView />;
     }

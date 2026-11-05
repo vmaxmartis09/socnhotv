@@ -23,7 +23,7 @@
 | **T-11** | Tool tách cảnh `scene-cut` (PySceneDetect + auto-editor) | PLANNED | `tool/toolbox/tools/scene-cut/` | Chờ test user |
 | **T-10** | Tool độ sâu `depth-layers` (Depth Anything V2 Small) | PLANNED | `tool/toolbox/tools/depth-layers/` | Chờ test user |
 | **T-09** | *(Tuỳ chọn)* Tool tăng nét `upscale` | PLANNED | `tool/toolbox/tools/upscale/` | Tuỳ chọn |
-| **T-13** | Giao diện Dashboard Toolbox (Morphicons, theme token) | PLANNED | `tool/dashboard/.../toolbox/` | Sau khi có >=2 tool verified |
+| **T-13** | Giao diện Dashboard Toolbox (Morphicons, theme token) | DONE | `tool/dashboard/components/toolbox/`, `FloatingPanels.tsx` | Đã tích hợp tab Toolbox vào Floating Dock & RightPanel, pass check:icons và tsc |
 | **T-12** | Tổng kết, doctor full, map/TOOLS.md | PLANNED | `ai/map/TOOLS.md`, `status/T.md` | |
 
 ---
