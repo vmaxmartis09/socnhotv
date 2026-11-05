@@ -51,5 +51,5 @@
     "sample_input": "data/projects/soc-nho-tv/characters/soc_nho/soc_nho_01.png",
     "expected_output_kind": "cutout"
   },
-  "status": "installed"
+  "status": "verified"
 }
