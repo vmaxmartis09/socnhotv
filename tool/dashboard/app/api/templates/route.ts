@@ -159,6 +159,13 @@ export async function GET(request: Request) {
           );
         }
 
+        // 4. Kiểm tra phụ thuộc phiên làm việc khác (blocked_by)
+        if (t.blocked_by) {
+          missingRequirements.push(
+            `Đang chờ hoàn thiện Session ${t.blocked_by} (lõi kịch bản và engine 'episode_render')`
+          );
+        }
+
         const isAvailable = missingRequirements.length === 0;
 
         templates.push({

@@ -20,8 +20,8 @@
 | **U-06** | U-G Video vẽ tay: tool Toolbox `handdraw` + template | **HOÀN THÀNH** | `tool/toolbox/tools/handdraw/`, `handdraw-whiteboard-v1`, `data/shared/toolbox/ready/U-06.md` | Tool handdraw + template verified, MP4 72 frames, MIT license |
 | **U-07** | U-F Motion graphics / kinetic text bằng HyperFrames | **HOÀN THÀNH** | `shorts-fact-v1`, `data/shared/toolbox/ready/U-07.md` | MP4 9:16 + 16:9 thật, kinetic text, status verified |
 | **U-08** | U-E Thay nhân vật: Tier A overlay-replace + giới hạn trung thực | **HOÀN THÀNH** | `character-overlay-replace-v1`, `data/shared/toolbox/ready/U-08.md` | MP4 thật 540x960 72 frames, UI minh bạch Tier A, status verified |
-| **U-09** | U-A/U-B Nối Session F (hoạt hình series Bi / phim ngắn) | ĐANG THỰC HIỆN | `blocked_by: F` nếu F chưa có render | Kiểm tra Session F & animatic tier A |
-| **U-10** | Nâng cấp kiểm tra các template phụ (U-I, J, K, L, M, H) | CHỜ CHẠY | Bảng runnable/draft | Chờ U-09 |
+| **U-09** | U-A/U-B Nối Session F (hoạt hình series Bi / phim ngắn) | **HOÀN THÀNH** | `yt-animation-episode-v1`, `data/shared/toolbox/ready/U-09.md` | Đánh dấu trung thực `blocked_by: F` (F chưa có `episode_render`) |
+| **U-10** | Nâng cấp kiểm tra các template phụ (U-I, J, K, L, M, H) | ĐANG THỰC HIỆN | Bảng runnable/draft | Chạy render thật & phân loại |
 | **U-11** | Vòng tự học: Thẻ kỹ thuật + `repo_watch.md` (≥10 repo) | CHỜ CHẠY | File Markdown có số liệu GitHub API thật | Chờ U-10 |
 | **U-12** | Tổng kết Session U, cập nhật `TOOLS.md` & nghiệm thu | CHỜ CHẠY | Báo cáo hoàn chỉnh + catalog template | Chờ U-11 |
 
