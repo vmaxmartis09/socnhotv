@@ -77,6 +77,26 @@ export async function fetchProjectLibraryImages(
   }
 }
 
+export type LibraryKind = "image" | "video" | "audio";
+
+/** Kho tư liệu dự án theo loại (ảnh / video / âm thanh) để chọn làm đầu vào node */
+export async function fetchProjectLibrary(projectId: string, kind: LibraryKind): Promise<LibraryItem[]> {
+  try {
+    const res = await fetch(`${CORE_URL}/data/projects/${projectId}/library`, { cache: "no-store" });
+    if (!res.ok) return [];
+    const data = await res.json();
+    const key = kind === "image" ? "images" : kind === "video" ? "videos" : "audios";
+    const items = Array.isArray(data[key]) ? data[key] : [];
+    return items.map((it: any) => ({
+      name: it.name || `${kind}`,
+      url: it.url.startsWith("http") ? it.url : `${CORE_URL}${it.url}`,
+      uri: it.uri || (it.url ? it.url.replace(/^.*\/files\//, "") : ""),
+    }));
+  } catch {
+    return [];
+  }
+}
+
 /** Chuyển đổi URI tương đối dự án (ví dụ assets/abc.png) thành URL đầy đủ */
 export function resolveNodeFileUrl(
   projectId: string,

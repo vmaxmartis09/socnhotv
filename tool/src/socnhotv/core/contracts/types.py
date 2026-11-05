@@ -107,6 +107,8 @@ class PortDefinition(BaseModel):
     required: bool = True
     # Cổng tuỳ biến: ánh xạ về cổng/tham số của node gốc (vd. cổng thêm "prompt_phu" -> "prompt")
     map_to: Optional[str] = Field(default=None, alias="mapTo")
+    # Giá trị mặc định khi cổng không được nối dây và chưa nhập giá trị
+    default_value: Optional[Any] = Field(default=None, alias="defaultValue")
 
     model_config = ConfigDict(populate_by_name=True)
 

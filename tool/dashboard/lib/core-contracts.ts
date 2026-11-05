@@ -101,6 +101,8 @@ export interface PortDefinition {
   required?: boolean;
   /** Cổng tuỳ biến: ánh xạ về cổng/tham số của node gốc */
   mapTo?: string;
+  /** Giá trị mặc định khi không nối dây và chưa nhập */
+  defaultValue?: any;
 }
 
 export interface NodeDefinition {

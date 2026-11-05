@@ -375,8 +375,23 @@ class GraphRunner:
                             val = [val]
                     resolved[edge.target_port] = val
 
-        # Cổng vào tuỳ biến: ánh xạ về cổng/tham số của node gốc nếu cổng gốc chưa có dữ liệu
         eff_ins, _ = NodeRegistry.effective_ports(node.type, node.params)
+        for p in eff_ins:
+            # Giá trị mặc định khi không nối dây và chưa nhập
+            if p.default_value not in (None, "") and resolved.get(p.name) in (None, "", []):
+                resolved[p.name] = p.default_value
+            # Đầu vào nhập tay (tải lên / chọn từ dự án): đường dẫn tệp -> Artifact cho bộ chạy
+            if p.port_type in (PortType.IMAGE, PortType.IMAGE_LIST, PortType.VIDEO, PortType.AUDIO):
+                val = resolved.get(p.name)
+                if isinstance(val, str) and val:
+                    art = self._literal_artifact(val, p.port_type)
+                    if art is not None:
+                        resolved[p.name] = [art] if p.port_type == PortType.IMAGE_LIST else art
+                elif isinstance(val, list) and val and all(isinstance(v, str) for v in val):
+                    arts = [self._literal_artifact(v, p.port_type) for v in val]
+                    resolved[p.name] = [a for a in arts if a is not None] or val
+
+        # Cổng vào tuỳ biến: ánh xạ về cổng/tham số của node gốc nếu cổng gốc chưa có dữ liệu
         for p in eff_ins:
             if p.map_to and p.name in resolved and p.map_to != p.name and p.map_to not in resolved:
                 resolved[p.map_to] = resolved[p.name]
@@ -392,6 +407,40 @@ class GraphRunner:
                 resolved[port_name] = in_ref
 
         return resolved
+
+    def _literal_artifact(self, uri: str, port_type: PortType) -> Optional[Artifact]:
+        """Dựng Artifact từ tệp trong dự án (đầu vào nhập tay). Trả None nếu không phải tệp cục bộ."""
+        if uri.startswith(("http://", "https://", "data:", "blob:")):
+            return None
+        rel = uri.split("/files/", 1)[-1].lstrip("/")
+        path = (self.store.project_dir / rel).resolve()
+        try:
+            path.relative_to(self.store.project_dir.resolve())
+        except ValueError:
+            return None
+        if not path.is_file():
+            return None
+        import mimetypes
+
+        kind = {
+            PortType.VIDEO: ArtifactKind.VIDEO,
+            PortType.AUDIO: ArtifactKind.AUDIO,
+        }.get(port_type, ArtifactKind.IMAGE)
+        stem = path.stem
+        return Artifact(
+            id=f"art_{stem[:12]}",
+            kind=kind,
+            uri=rel,
+            mime=mimetypes.guess_type(path.name)[0] or "application/octet-stream",
+            size=path.stat().st_size,
+            hash=f"sha256:{stem}" if len(stem) == 64 else "sha256:literal",
+            provenance=ArtifactProvenance(
+                node_id="upload",
+                provider="upload",
+                model="upload",
+                created_at=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+            ),
+        )
 
     def _is_real_provider(self) -> bool:
         pname_fn = getattr(self.provider, "provider_name", None)

@@ -7,6 +7,9 @@ import { FALLBACK_NODE_TYPES, estimateNodeCostUsd } from "@/lib/core-api";
 import { Pin, Check } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
 import { PortsEditor } from "./PortsEditor";
+import { PortValueInput, canTypeIn } from "@/components/canvas/PortValueInput";
+import { applyPortOverride } from "@/lib/node-ports";
+import type { NodeDefinition } from "@/lib/core-contracts";
 import {
   NodeTextInput,
   NodeImageInput,
@@ -17,6 +20,42 @@ import {
   NodeCharacterSelect,
   NodeCaptionsInput,
 } from "@/components/canvas/NodeInputs";
+
+/** Nhập đầu vào trực tiếp (gõ / tải lên / chọn từ dự án) cho các cổng chưa nối dây. */
+function InputValuesSection({
+  nodeId,
+  def,
+  params,
+  isConnected,
+}: {
+  nodeId: string;
+  def: NodeDefinition;
+  params: Record<string, any>;
+  isConnected: (portName: string) => boolean;
+}) {
+  const ports = applyPortOverride(def, params).inputPorts.filter((p) => canTypeIn(p.portType));
+  if (ports.length === 0) return null;
+  return (
+    <section className="space-y-3 border-b border-border pb-3.5">
+      <h4 className="font-semibold text-foreground">Đầu vào</h4>
+      <p className="text-[13px] leading-relaxed text-muted-foreground">
+        Nối dây từ node khác, hoặc nhập trực tiếp / tải lên / chọn từ dự án.
+      </p>
+      {ports.map((port) => (
+        <div key={port.name} className="space-y-1">
+          <div className="flex items-center justify-between">
+            <span className="font-mono text-foreground">{port.name}</span>
+            <span className="text-[13px] text-muted-foreground">
+              {port.portType}
+              {port.required === false ? " · tuỳ chọn" : ""}
+            </span>
+          </div>
+          <PortValueInput nodeId={nodeId} port={port} value={params[port.name]} connected={isConnected(port.name)} />
+        </div>
+      ))}
+    </section>
+  );
+}
 
 export function NodeTab() {
   const t = useTranslations("nodeTab");
@@ -89,6 +128,8 @@ export function NodeTab() {
           </span>
         </div>
       </div>
+
+      <InputValuesSection nodeId={node.id} def={def} params={params} isConnected={isConnected} />
 
       <PortsEditor nodeId={node.id} baseDef={def} params={params} />
 

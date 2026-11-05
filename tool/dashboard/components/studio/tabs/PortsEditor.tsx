@@ -42,20 +42,21 @@ interface RowProps {
 }
 
 function PortRow({ side, p, idx, mapOptions, onChange, onRemove }: RowProps) {
+  const field = "h-8 rounded-md border border-border bg-card px-2 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-brand";
   return (
-    <div className="space-y-1 rounded-md border border-border bg-card p-1.5">
-      <div className="flex items-center gap-1">
+    <div className="space-y-2 rounded-md border border-border p-2">
+      <div className="flex items-center gap-1.5">
         <input
           value={p.name}
           onChange={(e) => onChange(side, idx, { name: e.target.value.trim() })}
           aria-label="Tên cổng"
-          className="h-7 min-w-0 flex-1 rounded border border-border bg-background px-1.5 font-mono text-xs"
+          className={cn(field, "min-w-0 flex-1 font-mono")}
         />
         <select
           value={p.portType}
           onChange={(e) => onChange(side, idx, { portType: e.target.value as PortType })}
           aria-label="Kiểu dữ liệu"
-          className="h-7 w-[92px] shrink-0 rounded border border-border bg-background px-1 text-xs"
+          className={cn(field, "w-[96px] shrink-0 font-mono")}
         >
           {PORT_TYPES.map((t) => (
             <option key={t} value={t}>
@@ -67,28 +68,19 @@ function PortRow({ side, p, idx, mapOptions, onChange, onRemove }: RowProps) {
           type="button"
           onClick={() => onRemove(side, idx)}
           title="Xoá cổng"
-          className="flex h-7 w-7 shrink-0 items-center justify-center rounded text-muted-foreground hover:bg-accent hover:text-destructive"
+          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-destructive"
         >
           <Trash2 className="h-3.5 w-3.5" />
         </button>
       </div>
-      <div className="flex items-center gap-2 text-[12px] text-muted-foreground">
-        {side === "inputs" && (
-          <label className="flex shrink-0 items-center gap-1">
-            <input
-              type="checkbox"
-              checked={p.required !== false}
-              onChange={(e) => onChange(side, idx, { required: e.target.checked })}
-            />
-            Bắt buộc
-          </label>
-        )}
-        <label className="flex min-w-0 flex-1 items-center gap-1">
-          <span className="shrink-0">Ánh xạ</span>
+
+      <div className="grid grid-cols-2 gap-x-2 gap-y-1.5">
+        <label className="block space-y-1">
+          <span className="text-[13px] text-muted-foreground">Ánh xạ về</span>
           <select
             value={p.mapTo || ""}
             onChange={(e) => onChange(side, idx, { mapTo: e.target.value || undefined })}
-            className="h-6 min-w-0 flex-1 truncate rounded border border-border bg-background px-1 text-xs"
+            className={cn(field, "w-full truncate font-mono")}
           >
             <option value="">— không —</option>
             {mapOptions.map((n) => (
@@ -98,6 +90,29 @@ function PortRow({ side, p, idx, mapOptions, onChange, onRemove }: RowProps) {
             ))}
           </select>
         </label>
+        {side === "inputs" && p.portType === "text" ? (
+          <label className="block space-y-1">
+            <span className="text-[13px] text-muted-foreground">Giá trị mặc định</span>
+            <input
+              value={typeof p.defaultValue === "string" ? p.defaultValue : ""}
+              onChange={(e) => onChange(side, idx, { defaultValue: e.target.value || undefined })}
+              placeholder="(trống)"
+              className={cn(field, "w-full")}
+            />
+          </label>
+        ) : (
+          <span />
+        )}
+        {side === "inputs" && (
+          <label className="col-span-2 flex items-center gap-1.5 text-[13px] text-muted-foreground">
+            <input
+              type="checkbox"
+              checked={p.required !== false}
+              onChange={(e) => onChange(side, idx, { required: e.target.checked })}
+            />
+            Bắt buộc có dữ liệu
+          </label>
+        )}
       </div>
     </div>
   );
@@ -263,16 +278,16 @@ export function PortsEditor({
     return (
       <div className="space-y-1.5">
         <div className="flex items-center justify-between">
-          <span className="font-medium text-foreground">{label}</span>
+          <span className="text-muted-foreground">{label}</span>
           <button
             type="button"
             onClick={() => add(side)}
-            className="flex items-center gap-1 rounded border border-border px-1.5 py-0.5 text-[12px] text-foreground hover:bg-accent"
+            className="inline-flex items-center gap-1 rounded border border-border bg-card px-1.5 py-0.5 text-xs text-foreground hover:bg-accent"
           >
             <Plus className="h-3 w-3" /> Thêm
           </button>
         </div>
-        {list.length === 0 && <p className="text-[12px] text-muted-foreground">Chưa có cổng.</p>}
+        {list.length === 0 && <p className="text-[13px] text-muted-foreground">Chưa có cổng.</p>}
         {list.map((p, i) => (
           <PortRow
             key={`${side}:${i}`}
@@ -291,9 +306,8 @@ export function PortsEditor({
   return (
     <section className="space-y-3 border-b border-border pb-3.5">
       <h4 className="font-semibold text-foreground">Cổng vào / ra</h4>
-      <p className="text-[12px] leading-relaxed text-muted-foreground">
-        Thêm, xoá, đổi tên hoặc đổi kiểu cổng. Cổng thêm cần <b>ánh xạ</b> về cổng/tham số của node gốc ({baseDef.typeName}) thì mới
-        có tác dụng khi chạy.
+      <p className="text-[13px] leading-relaxed text-muted-foreground">
+        Cổng thêm cần <b>ánh xạ</b> về cổng/tham số của node gốc ({baseDef.typeName}) mới có tác dụng khi chạy.
       </p>
       <label className="block space-y-1">
         <span className="text-muted-foreground">Tên hiển thị của node này</span>
@@ -301,14 +315,14 @@ export function PortsEditor({
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           placeholder={baseDef.displayName}
-          className="h-8 w-full rounded-md border border-border bg-card px-2 text-xs"
+          className="h-8 w-full rounded-md border border-border bg-card px-2 text-xs focus:outline-none focus:ring-1 focus:ring-brand"
         />
       </label>
       {renderBlock("inputs", "Đầu vào")}
       {renderBlock("outputs", "Đầu ra")}
 
-      {error && <p className="rounded bg-destructive/10 p-1.5 text-[12px] text-destructive">{error}</p>}
-      {info && <p className="rounded bg-muted p-1.5 text-[12px] text-foreground">{info}</p>}
+      {error && <p className="rounded bg-destructive/10 p-1.5 text-[13px] text-destructive">{error}</p>}
+      {info && <p className="rounded bg-muted p-1.5 text-[13px] text-foreground">{info}</p>}
 
       <div className="flex flex-wrap items-center gap-1.5">
         <button
@@ -342,9 +356,9 @@ export function PortsEditor({
             value={newName}
             onChange={(e) => setNewName(e.target.value)}
             placeholder="Tên loại node mới"
-            className="h-8 w-full rounded-md border border-border bg-card px-2 text-xs"
+            className="h-8 w-full rounded-md border border-border bg-card px-2 text-xs focus:outline-none focus:ring-1 focus:ring-brand"
           />
-          <div className="flex items-center gap-3 text-[12px] text-foreground">
+          <div className="flex items-center gap-3 text-[13px] text-foreground">
             <label className="flex items-center gap-1">
               <input type="radio" checked={scope === "project"} onChange={() => setScope("project")} /> Dự án này
             </label>

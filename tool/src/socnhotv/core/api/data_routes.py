@@ -492,6 +492,7 @@ async def get_project_library(project_id: str) -> Dict[str, Any]:
     d = _project_dir(project_id)
     videos: List[Dict[str, Any]] = []
     images: List[Dict[str, Any]] = []
+    audios: List[Dict[str, Any]] = []
 
     # Kho artifact có băm nội dung: assets/<hash>.<ext> kèm <hash>.meta.json
     assets = d / "assets"
@@ -518,6 +519,8 @@ async def get_project_library(project_id: str) -> Dict[str, Any]:
                 videos.append(item)
             elif m.get("kind") == "image":
                 images.append(item)
+            elif m.get("kind") == "audio":
+                audios.append(item)
 
     # Tập phim và kịch bản
     episodes: List[Dict[str, Any]] = []
@@ -558,7 +561,7 @@ async def get_project_library(project_id: str) -> Dict[str, Any]:
                  "scriptCount": len(list(ep.glob("*.md"))), "updatedAt": _iso(ep.stat().st_mtime)}
             )
 
-    return {"videos": videos, "images": images, "scripts": scripts, "episodes": episodes}
+    return {"videos": videos, "images": images, "audios": audios, "scripts": scripts, "episodes": episodes}
 
 
 def _slug(text: str, default: str = "muc") -> str:
@@ -667,8 +670,10 @@ async def upload_library_file(project_id: str, payload: Dict[str, Any] = Body(..
         kind = "image"
     elif ext in VIDEO_EXT:
         kind = "video"
+    elif ext in AUDIO_EXT:
+        kind = "audio"
     else:
-        raise HTTPException(400, "Chỉ nhận ảnh (png/jpg/webp) hoặc video (mp4/webm/mov)")
+        raise HTTPException(400, "Chỉ nhận ảnh (png/jpg/webp), video (mp4/webm/mov) hoặc âm thanh (mp3/wav)")
     raw = _decode(payload)
     digest = hashlib.sha256(raw).hexdigest()
     assets = d / "assets"
@@ -681,7 +686,7 @@ async def upload_library_file(project_id: str, payload: Dict[str, Any] = Body(..
             "id": f"art_{digest[:12]}",
             "kind": kind,
             "uri": f"assets/{target.name}",
-            "mime": "video/mp4" if kind == "video" else f"image/{ext.lstrip('.')}",
+            "mime": "video/mp4" if kind == "video" else ("audio/mpeg" if ext == ".mp3" else "audio/wav") if kind == "audio" else f"image/{ext.lstrip('.')}",
             "size": len(raw),
             "hash": f"sha256:{digest}",
             "meta": {},

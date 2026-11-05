@@ -64,3 +64,9 @@
 - Cổng tuỳ biến có `mapTo`: ánh xạ về cổng/tham số của node gốc (vào) hoặc bí danh cổng ra gốc (ra). Cổng không ánh xạ chỉ để nối dây, không ảnh hưởng kết quả chạy.
 - "Lưu cho node này" = chỉ node đang chọn (gỡ dây nối vào cổng đã xoá). "Lưu thành loại node mới" = tạo `custom:<tên>` (`baseType` = loại gốc), lưu theo dự án (`data/projects/<id>/custom_node_types.json`) hoặc dùng chung (`data/shared/custom_node_types.json`) qua `/custom-node-types`; xuất hiện trong menu thêm node.
 - Backend: `NodeRegistry.effective_ports` dùng ở validator và graph_runner. Hạn chế: bí danh cổng ra chưa áp dụng cho kết quả ghim (pinned generation).
+
+## Đầu vào nhập tay & giá trị mặc định
+- Cổng vào không chỉ nhận dây nối: thanh bên phải → tab Node → mục "Đầu vào" cho phép gõ text, **tải lên** hoặc **chọn từ dự án** (ảnh/video/âm thanh) — component `PortValueInput`. Giá trị lưu ở `params[tên cổng]` (đường dẫn tệp trong dự án).
+- Backend dựng Artifact từ đường dẫn tệp (`_literal_artifact`) nên bộ chạy xử lý như đầu vào nối dây. Upload/kho dự án hỗ trợ thêm âm thanh (mp3/wav).
+- Cổng vào có `defaultValue` (text): dùng khi không nối dây và chưa nhập; validator coi là đã thoả cổng bắt buộc.
+- Form tuỳ biến cổng dùng cùng kiểu điều khiển với phần thông số: ô `h-8 rounded-md border bg-card text-xs`, nhãn `text-[13px] text-muted-foreground`.

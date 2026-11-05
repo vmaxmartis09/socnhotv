@@ -29,3 +29,16 @@ def test_effective_ports_override_and_validate():
     )
     res = validate_graph(g)
     assert res.is_valid, res.errors
+
+
+def test_default_value_satisfies_required_port():
+    NodeRegistry.initialize_defaults()
+    params = {
+        "_ports": {
+            "inputs": [{"name": "prompt", "portType": "text", "required": True, "defaultValue": "mặc định"}],
+            "outputs": [],
+        }
+    }
+    g = Graph(id="g2", project_id="p1", nodes=[NodeInstance(id="b", type="image_gen", params=params)], edges=[])
+    res = validate_graph(g)
+    assert not any("prompt" in w for w in res.warnings), res.warnings

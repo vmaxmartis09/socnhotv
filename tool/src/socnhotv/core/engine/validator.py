@@ -175,7 +175,9 @@ def validate_graph(graph: Graph) -> GraphValidationResult:
                 continue
             is_connected = (node_id, req_port.name) in connected_target_ports
             has_input_literal = req_port.name in node.inputs and node.inputs[req_port.name] is not None
-            has_param_literal = req_port.name in node.params and node.params[req_port.name] is not None
+            has_param_literal = (req_port.name in node.params and node.params[req_port.name] is not None) or (
+                req_port.default_value not in (None, "")
+            )
 
             if not (is_connected or has_input_literal or has_param_literal):
                 warnings.append(
