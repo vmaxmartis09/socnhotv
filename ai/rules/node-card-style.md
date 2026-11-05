@@ -70,3 +70,11 @@
 - Backend dựng Artifact từ đường dẫn tệp (`_literal_artifact`) nên bộ chạy xử lý như đầu vào nối dây. Upload/kho dự án hỗ trợ thêm âm thanh (mp3/wav).
 - Cổng vào có `defaultValue` (text): dùng khi không nối dây và chưa nhập; validator coi là đã thoả cổng bắt buộc.
 - Form tuỳ biến cổng dùng cùng kiểu điều khiển với phần thông số: ô `h-8 rounded-md border bg-card text-xs`, nhãn `text-[13px] text-muted-foreground`.
+
+## Nguồn cho cổng vào (tab Node → "Đầu vào")
+Mỗi cổng vào chọn được nguồn bất kỳ, bằng cùng một khối `PortValueInput`:
+- **Node**: output của node khác (lọc theo kiểu tương thích, không tạo vòng) → tạo dây nối ngay.
+- **Tải lên** / **Dự án**: tệp ảnh/video/âm thanh (cổng media).
+- **Nhân vật**: thuộc tính nhân vật (text: tên, mô tả, prompt lock, mã giọng, chiều cao; ảnh: ảnh chính/tham chiếu; audio: giọng mẫu). Sao chép giá trị vào cổng.
+- **Gõ trực tiếp** cho cổng text.
+- Đang nối dây thì hiện nguồn + nút **Gỡ dây**; có giá trị nhập tay thì có nút bỏ (X). Các panel nguồn mở inline bằng `Reveal`, mỗi lúc chỉ mở một panel.

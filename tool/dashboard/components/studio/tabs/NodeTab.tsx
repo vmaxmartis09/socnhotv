@@ -7,7 +7,7 @@ import { FALLBACK_NODE_TYPES, estimateNodeCostUsd } from "@/lib/core-api";
 import { Pin, Check } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
 import { PortsEditor } from "./PortsEditor";
-import { PortValueInput, canTypeIn } from "@/components/canvas/PortValueInput";
+import { PortValueInput } from "@/components/canvas/PortValueInput";
 import { applyPortOverride } from "@/lib/node-ports";
 import type { NodeDefinition } from "@/lib/core-contracts";
 import {
@@ -26,20 +26,18 @@ function InputValuesSection({
   nodeId,
   def,
   params,
-  isConnected,
 }: {
   nodeId: string;
   def: NodeDefinition;
   params: Record<string, any>;
-  isConnected: (portName: string) => boolean;
 }) {
-  const ports = applyPortOverride(def, params).inputPorts.filter((p) => canTypeIn(p.portType));
+  const ports = applyPortOverride(def, params).inputPorts;
   if (ports.length === 0) return null;
   return (
     <section className="space-y-3 border-b border-border pb-3.5">
       <h4 className="font-semibold text-foreground">Đầu vào</h4>
       <p className="text-[13px] leading-relaxed text-muted-foreground">
-        Nối dây từ node khác, hoặc nhập trực tiếp / tải lên / chọn từ dự án.
+        Mỗi cổng nhận từ: output node khác, tải lên, tệp trong dự án, thuộc tính nhân vật hoặc nhập trực tiếp. Có thể gỡ dây bất cứ lúc nào.
       </p>
       {ports.map((port) => (
         <div key={port.name} className="space-y-1">
@@ -50,7 +48,7 @@ function InputValuesSection({
               {port.required === false ? " · tuỳ chọn" : ""}
             </span>
           </div>
-          <PortValueInput nodeId={nodeId} port={port} value={params[port.name]} connected={isConnected(port.name)} />
+          <PortValueInput nodeId={nodeId} port={port} />
         </div>
       ))}
     </section>
@@ -129,7 +127,7 @@ export function NodeTab() {
         </div>
       </div>
 
-      <InputValuesSection nodeId={node.id} def={def} params={params} isConnected={isConnected} />
+      <InputValuesSection nodeId={node.id} def={def} params={params} />
 
       <PortsEditor nodeId={node.id} baseDef={def} params={params} />
 

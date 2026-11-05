@@ -88,6 +88,7 @@ export const DollarSign = createMorphIcon(lucide.DollarSign, "DollarSign");
 export const Play = createMorphIcon(lucide.Play, "Play");
 export const RotateCcw = createMorphIcon(lucide.RotateCcw, "RotateCcw");
 export const Layers = createMorphIcon(lucide.Layers, "Layers");
+export const Unlink = createMorphIcon(lucide.Unlink, "Unlink");
 export const Sliders = createMorphIcon(lucide.Sliders, "Sliders");
 export const Maximize2 = createMorphIcon(lucide.Maximize2, "Maximize2");
 export const ZoomIn = createMorphIcon(lucide.ZoomIn, "ZoomIn");
