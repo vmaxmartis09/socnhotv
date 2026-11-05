@@ -40,6 +40,27 @@ export {
   Image as ImageNode,
   FileText as FileTextNode,
   CheckCircle2 as CheckCircle2Node,
+  Clock as ClockNode,
+  Zap as ZapNode,
+  Bell as BellNode,
+  Flame as FlameNode,
+  RefreshCw as RefreshCwNode,
+  Tag as TagNode,
+  MoreVertical as MoreVerticalNode,
+  ChevronLeft as ChevronLeftNode,
+  Smartphone as SmartphoneNode,
+  ArrowUpRight as ArrowUpRightNode,
+  AlertCircle as AlertCircleNode,
+  Bookmark as BookmarkNode,
+  Heart as HeartNode,
+  MessageCircle as MessageCircleNode,
+  Share2 as Share2Node,
+  Filter as FilterNode,
+  MoreHorizontal as MoreHorizontalNode,
+  CheckCircle as CheckCircleNode,
+  XCircle as XCircleNode,
+  Grid as GridNode,
+  List as ListNode,
 } from "lucide";
 
 // Universal morphing icon components powered by morphicons.com
@@ -135,3 +156,27 @@ export const VolumeX = createMorphIcon(lucide.VolumeX, "VolumeX");
 export const Eye = createMorphIcon(lucide.Eye, "Eye");
 export const FolderOpen = createMorphIcon(lucide.FolderOpen, "FolderOpen");
 export const FileUp = createMorphIcon(lucide.FileUp, "FileUp");
+
+// Social & Notifications icons
+export const Clock = createMorphIcon(lucide.Clock, "Clock");
+export const Zap = createMorphIcon(lucide.Zap, "Zap");
+export const Bell = createMorphIcon(lucide.Bell, "Bell");
+export const Flame = createMorphIcon(lucide.Flame, "Flame");
+export const RefreshCw = createMorphIcon(lucide.RefreshCw, "RefreshCw");
+export const Tag = createMorphIcon(lucide.Tag, "Tag");
+export const MoreVertical = createMorphIcon(lucide.MoreVertical, "MoreVertical");
+export const ChevronLeft = createMorphIcon(lucide.ChevronLeft, "ChevronLeft");
+export const Smartphone = createMorphIcon(lucide.Smartphone, "Smartphone");
+export const ArrowUpRight = createMorphIcon(lucide.ArrowUpRight, "ArrowUpRight");
+export const AlertCircle = createMorphIcon(lucide.AlertCircle, "AlertCircle");
+export const Bookmark = createMorphIcon(lucide.Bookmark, "Bookmark");
+export const Heart = createMorphIcon(lucide.Heart, "Heart");
+export const MessageCircle = createMorphIcon(lucide.MessageCircle, "MessageCircle");
+export const Share2 = createMorphIcon(lucide.Share2, "Share2");
+export const Filter = createMorphIcon(lucide.Filter, "Filter");
+export const MoreHorizontal = createMorphIcon(lucide.MoreHorizontal, "MoreHorizontal");
+export const CheckCircle = createMorphIcon(lucide.CheckCircle, "CheckCircle");
+export const XCircle = createMorphIcon(lucide.XCircle, "XCircle");
+export const Grid = createMorphIcon(lucide.Grid, "Grid");
+export const List = createMorphIcon(lucide.List, "List");
+

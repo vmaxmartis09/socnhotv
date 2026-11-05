@@ -41,6 +41,7 @@ dist/
 .DS_Store
 .next/
 .next-dev/
+.next-build/
 out/
 
 # Video / Audio heavy binaries

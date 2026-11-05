@@ -243,11 +243,13 @@
     "expand": "Expand right panel (Ctrl+B)",
     "resizeHandle": "Drag to resize right panel (320–560px)",
     "tabs": {
-      "chat": "Chat",
-      "node": "Node",
       "project": "Project",
+      "characters": "Characters",
+      "chat": "Chat",
       "publish": "Schedule",
-      "jobs": "Queue"
+      "jobs": "Jobs",
+      "node": "Node",
+      "shortcuts": "Shortcuts"
     }
   },
   "nodeTab": {

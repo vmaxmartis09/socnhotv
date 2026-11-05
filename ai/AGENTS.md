@@ -64,6 +64,8 @@ Hệ thống phân chia ranh giới triệt để thành 3 phần độc lập:
 2. **`tool/`**: Phần mềm và engine duy nhất dùng chung cho mọi project:
    - Code logic tại `tool/src/socnhotv/` (`core/`, `workspace/`, `video/`, `social/`, `intelligence/`, `adapters/`, `cli/`).
    - Web Dashboard tại `tool/dashboard/` (hỗ trợ chuyển đổi project).
+     - Kiểm production build bằng `NEXT_DIST_DIR=.next-build npx next build`.
+     - KHÔNG BAO GIỜ build vào `.next` khi dev server cổng 3000 đang chạy.
    - Tuyệt đối không chứa dữ liệu cá nhân hay dữ liệu người dùng trong `tool/`.
    - Mọi đường dẫn dữ liệu đi qua module `workspace/` (resolve path theo project, `--project <id>`).
 3. **`data/`**: Toàn bộ dữ liệu độc lập:

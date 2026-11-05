@@ -80,14 +80,7 @@ export function FloatingPanels() {
   const view: View =
     activeRightTab === "project" ? (hubTab === "characters" ? "characters" : "project") : (activeRightTab as View);
 
-  const label = (v: View) =>
-    v === "characters"
-      ? locale === "vi" ? "Nhân vật" : "Characters"
-      : v === "jobs"
-      ? locale === "vi" ? "Công việc" : "Jobs"
-      : v === "shortcuts"
-      ? locale === "vi" ? "Phím tắt" : "Shortcuts"
-      : t(`tabs.${v}` as any);
+  const label = (v: View) => t(`tabs.${v}` as any);
 
   const select = (v: View) => {
     closePreview(); // đổi panel thì tab mở rộng đi kèm phải tắt

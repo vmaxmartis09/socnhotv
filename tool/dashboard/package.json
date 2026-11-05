@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "check:icons": "node ../scripts/check_icon_exports.mjs"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
@@ -18,7 +19,6 @@
     "framer-motion": "^12.4.7",
     "idb": "^8.0.2",
     "lucide": "^1.67.0",
-    "lucide-react": "^1.67.0",
     "morphicons": "^2.0.2",
     "next": "^15.1.7",
     "next-intl": "^3.26.3",

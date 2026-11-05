@@ -9,10 +9,11 @@ import { NodeTab } from "./tabs/NodeTab";
 import { ProjectTab } from "./tabs/ProjectTab";
 import { PublishTab } from "./tabs/PublishTab";
 import { JobsCostTab } from "./tabs/JobsCostTab";
+import { ShortcutsView } from "./ShortcutsView";
 import { X, PanelRightClose, PanelRightOpen } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
 
-const TABS: RightPanelTab[] = ["chat", "node", "project", "publish", "jobs"];
+const TABS: RightPanelTab[] = ["project", "chat", "publish", "jobs", "node", "shortcuts"];
 
 export function RightPanel() {
   const t = useTranslations("rightPanel");
@@ -81,6 +82,8 @@ export function RightPanel() {
         return <PublishTab />;
       case "jobs":
         return <JobsCostTab />;
+      case "shortcuts":
+        return <ShortcutsView />;
       default:
         return <ChatTab />;
     }

@@ -243,11 +243,13 @@
     "expand": "Mở khung phải (Ctrl+B)",
     "resizeHandle": "Kéo để đổi độ rộng khung phải (320–560px)",
     "tabs": {
-      "chat": "Chat",
-      "node": "Node",
       "project": "Dự án",
+      "characters": "Nhân vật",
+      "chat": "Chat",
       "publish": "Lịch đăng",
-      "jobs": "Hàng đợi"
+      "jobs": "Công việc",
+      "node": "Node",
+      "shortcuts": "Phím tắt"
     }
   },
   "nodeTab": {

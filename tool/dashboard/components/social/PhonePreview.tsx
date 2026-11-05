@@ -10,7 +10,7 @@ import {
   Music,
   Share2,
   Video,
-} from "lucide-react";
+} from "@/components/ui/icons";
 
 interface PhonePreviewProps {
   platform: PlatformType;

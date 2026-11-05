@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useMemo } from "react";
-import { Loader2, Square, ArrowUpRight, CheckCircle2, AlertCircle } from "lucide-react";
+import { Loader2, Square, ArrowUpRight, CheckCircle2, AlertCircle } from "@/components/ui/icons";
 
 export interface RunStateInfo {
   runId?: string;
