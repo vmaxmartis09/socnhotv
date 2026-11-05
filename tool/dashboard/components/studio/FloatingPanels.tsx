@@ -12,13 +12,16 @@ import { JobsList } from "@/components/jobs/JobsList";
 import { ProjectHub, type HubTab } from "@/components/project/ProjectHub";
 import { FolderGit2, Users, MessageSquare, Calendar, Activity, Sliders, Keyboard } from "@/components/ui/icons";
 import { ShortcutsView } from "./ShortcutsView";
+import { ToolboxPanel } from "@/components/toolbox/ToolboxPanel";
+import { Wrench, ShieldCheck } from "@/components/ui/icons";
+import { PolicyTab } from "./tabs/PolicyTab";
 import { PreviewPane } from "./PreviewPane";
 import { usePreview } from "@/lib/preview";
 import { useHubScope } from "@/lib/hub";
 import { useConfirmStore } from "@/lib/confirm";
 import { cn } from "@/lib/utils";
 
-type View = "project" | "characters" | "chat" | "publish" | "jobs" | "node" | "shortcuts";
+type View = "project" | "characters" | "chat" | "publish" | "jobs" | "node" | "policy" | "toolbox" | "shortcuts";
 
 const ICONS: Record<View, React.ComponentType<{ className?: string }>> = {
   project: FolderGit2,
@@ -27,10 +30,12 @@ const ICONS: Record<View, React.ComponentType<{ className?: string }>> = {
   publish: Calendar,
   jobs: Activity,
   node: Sliders,
+  policy: ShieldCheck,
+  toolbox: Wrench,
   shortcuts: Keyboard,
 };
 
-const ORDER: View[] = ["project", "characters", "chat", "publish", "jobs", "node", "shortcuts"];
+const ORDER: View[] = ["project", "characters", "chat", "publish", "jobs", "node", "policy", "toolbox", "shortcuts"];
 
 const NAV_CLOSED = 52;
 const NAV_OPEN = 148;
@@ -119,7 +124,7 @@ export function FloatingPanels() {
       if (e.key === "?") {
         e.preventDefault();
         setActiveRightTab("shortcuts");
-      } else if (e.altKey && /^[1-7]$/.test(e.code.replace("Digit", ""))) {
+      } else if (e.altKey && /^[1-9]$/.test(e.code.replace("Digit", ""))) {
         e.preventDefault();
         select(ORDER[Number(e.code.replace("Digit", "")) - 1]);
       }
@@ -168,6 +173,10 @@ export function FloatingPanels() {
             <JobsList compact />
           </div>
         );
+      case "policy":
+        return <PolicyTab />;
+      case "toolbox":
+        return <ToolboxPanel />;
       case "shortcuts":
         return <ShortcutsView />;
     }

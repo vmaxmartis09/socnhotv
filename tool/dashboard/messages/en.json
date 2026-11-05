@@ -250,6 +250,7 @@
       "publish": "Schedule",
       "jobs": "Jobs",
       "node": "Node",
+      "policy": "Policy",
       "toolbox": "Toolbox",
       "shortcuts": "Shortcuts"
     }
