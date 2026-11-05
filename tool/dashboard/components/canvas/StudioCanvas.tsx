@@ -1819,7 +1819,7 @@ function StudioCanvasInner() {
                   addOpen={addMenuOpen}
                   onToggleAdd={() => setAddMenuOpen((v) => !v)}
                   addMenu={
-                <div className="z-40 w-[340px] rounded-lg border border-border bg-popover p-2.5 text-popover-foreground">
+                <div className="z-40 w-[min(340px,calc(100vw-32px))] rounded-lg border border-border bg-popover p-2.5 text-popover-foreground">
                     <div className="relative mb-2">
                       <Search className="pointer-events-none absolute left-2 top-2 h-3.5 w-3.5 text-muted-foreground" />
                       <input

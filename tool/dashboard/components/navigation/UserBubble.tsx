@@ -596,8 +596,8 @@ export function UserBubble({
             transition={{ duration: merged ? 0.24 : 0.16, ease: "easeOut" }}
             className={cn(
               merged
-                ? "w-[316px] max-h-[70dvh] overflow-y-auto scroll-quiet p-2 text-popover-foreground"
-                : "fixed md:absolute z-50 w-[300px] max-h-[82dvh] overflow-y-auto scroll-quiet rounded-[12px] border border-border bg-popover p-2 text-popover-foreground",
+                ? "w-[min(316px,calc(100vw-24px))] max-h-[70dvh] overflow-y-auto scroll-quiet p-2 text-popover-foreground"
+                : "fixed md:absolute z-50 w-[min(300px,calc(100vw-24px))] max-h-[82dvh] overflow-y-auto scroll-quiet rounded-[12px] border border-border bg-popover p-2 text-popover-foreground",
               merged
                 ? ""
                 : placement === "below"
