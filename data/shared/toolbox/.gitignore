@@ -1,3 +1,4 @@
 runs.jsonl
 *.lock
 *.tmp
+inbox/
