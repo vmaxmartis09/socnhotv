@@ -7,8 +7,8 @@
   "description": "Ghép lớp thay thế nhân vật (Overlay-replace Tier A trên CPU): tách nền nhân vật mới bằng bg-remove và tổng hợp ghép chuyển động lên video cảnh gốc qua HyperFrames. LƯU Ý: Đây là giải pháp ghép lớp đồ họa trực quan (Layer Composite), KHÔNG PHẢI AI Video-to-Video Model sinh khuôn mặt sâu (Tier C yêu cầu GPU NVIDIA).",
   "platforms": [
     "tiktok",
-    "youtube_shorts",
-    "facebook_reels"
+    "shorts",
+    "reels"
   ],
   "default_platform": "tiktok",
   "tags": [

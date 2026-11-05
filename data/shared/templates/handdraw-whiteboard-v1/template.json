@@ -7,8 +7,8 @@
   "description": "Video vẽ tay bảng trắng (whiteboard sketch animation), tái hiện từng nét vẽ tay với bút dạ và phụ đề giải thích sinh động.",
   "platforms": [
     "tiktok",
-    "youtube_shorts",
-    "facebook_reels"
+    "shorts",
+    "reels"
   ],
   "default_platform": "tiktok",
   "tags": [

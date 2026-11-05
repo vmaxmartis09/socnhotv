@@ -11,11 +11,13 @@ from socnhotv.video.templates.preview import generate_template_preview
 from socnhotv.video.templates.schema import validate_template_data
 
 
-def test_all_eight_templates_validity():
+def test_all_templates_validity():
     templates = list_templates()
-    assert len(templates) == 8, f"Expected 8 templates, found {len(templates)}"
+    assert len(templates) == 10, f"Expected 10 templates, found {len(templates)}"
 
     expected_ids = {
+        "character-overlay-replace-v1",
+        "handdraw-whiteboard-v1",
         "tiktok-sales-v1",
         "koc-review-v1",
         "affiliate-compare-v1",
