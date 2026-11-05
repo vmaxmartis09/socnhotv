@@ -1,0 +1,2 @@
+# Không có phụ thuộc riêng: tool chỉ dùng thư viện chuẩn.
+# OmniVoice chạy bằng .venv của dự án qua scripts/voice/voice_studio.py.

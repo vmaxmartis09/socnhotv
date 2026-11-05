@@ -1,0 +1,37 @@
+{
+  "id": "voice-clone",
+  "name": "Voice Clone (OmniVoice)",
+  "version": "1.0.0",
+  "category": "audio",
+  "entry": "run.py",
+  "runtime": "python3.11",
+  "install": {
+    "command": "Không cài riêng: dùng .venv của dự án (đã có OmniVoice). Tool chỉ cần stdlib.",
+    "requirements_file": "requirements.txt"
+  },
+  "requires_gpu": false,
+  "requires_ffmpeg": true,
+  "license": {
+    "code": "Apache-2.0 (k2-fsa/OmniVoice)",
+    "weights": "kiểm model card OmniVoice trước khi dùng thương mại",
+    "commercial_ok": false,
+    "source_url": "https://github.com/k2-fsa/OmniVoice",
+    "checked_on": "2026-11-05"
+  },
+  "inputs": [
+    { "name": "sample", "type": "file", "description": "Mẫu giọng sạch 3.5–6s (MP3/WAV/M4A/OGG/FLAC), một người nói", "required": true }
+  ],
+  "outputs": [
+    { "kind": "voice_json", "type": "json", "description": "Hồ sơ giọng trong kho" },
+    { "kind": "voice_sample", "type": "file", "description": "Lát mẫu đã chuẩn hoá" },
+    { "kind": "voice_preview", "type": "file", "description": "Câu đọc thử bằng giọng mới" }
+  ],
+  "writes_to": "data/shared/voice_vault/",
+  "models": [],
+  "smoke_test": {
+    "sample_input": "data/shared/voice_vault/soc-nho/cloned_default_sample.mp3",
+    "expected_output_kind": "voice_json",
+    "note": "Cần params.name (slug chưa tồn tại) và params.consent_note"
+  },
+  "status": "installed"
+}
