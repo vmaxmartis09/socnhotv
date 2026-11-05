@@ -1,0 +1,16 @@
+{
+  "id": "koala-voice",
+  "display_name": "Bác Sĩ Koala",
+  "aliases": [
+    "voice-koala",
+    "koala",
+    "bac-si-koala",
+    "doctor-koala"
+  ],
+  "engine": "omnivoice",
+  "lang": "vi",
+  "sample_paths": [],
+  "loudness": -14.0,
+  "status": "ready",
+  "consent_note": "Giọng nhân vật Bác Sĩ Koala, dự án SocNhoTV."
+}

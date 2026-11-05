@@ -1,0 +1,15 @@
+{
+  "id": "nguoi-lon",
+  "display_name": "Người Lớn (Phụ Huynh)",
+  "aliases": [
+    "voice-nguoi-lon",
+    "phu-huynh",
+    "ba-me"
+  ],
+  "engine": "omnivoice",
+  "lang": "vi",
+  "sample_paths": [],
+  "loudness": -14.0,
+  "status": "todo_clone",
+  "consent_note": "Chờ thu thập mẫu giọng thật được cấp phép (todo_clone)."
+}
