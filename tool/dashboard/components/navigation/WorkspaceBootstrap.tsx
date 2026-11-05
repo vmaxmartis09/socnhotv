@@ -37,6 +37,7 @@ export function WorkspaceBootstrap() {
       setScheduledPosts(posts);
       setCoreHealth({ ...health, checkedAt: new Date().toISOString() });
       setNodeCatalog(catalog.definitions, catalog.fromCore);
+      if (catalog.fromCore) await useStudioStore.getState().refreshCustomNodeTypes(activeProjectId);
     }
     bootstrapWorkspace();
     return () => {

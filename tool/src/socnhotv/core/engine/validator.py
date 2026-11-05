@@ -63,9 +63,11 @@ def validate_graph(graph: Graph) -> GraphValidationResult:
         if not src_def or not tgt_def:
             continue
 
-        # Tìm định nghĩa cổng ra và cổng vào
-        src_port = next((p for p in src_def.output_ports if p.name == edge.source_port), None)
-        tgt_port = next((p for p in tgt_def.input_ports if p.name == edge.target_port), None)
+        # Tìm định nghĩa cổng ra và cổng vào (có tính cổng tuỳ biến của từng node)
+        _, src_outs = NodeRegistry.effective_ports(src_node.type, src_node.params)
+        tgt_ins, _ = NodeRegistry.effective_ports(tgt_node.type, tgt_node.params)
+        src_port = next((p for p in src_outs if p.name == edge.source_port), None)
+        tgt_port = next((p for p in tgt_ins if p.name == edge.target_port), None)
 
         if not src_port:
             errors.append(
@@ -167,7 +169,8 @@ def validate_graph(graph: Graph) -> GraphValidationResult:
                     f"Node '{node_id}' ({node.type}) chưa có ảnh được chọn hoặc tải lên (uri rỗng)."
                 )
 
-        for req_port in node_def.input_ports:
+        eff_ins, _ = NodeRegistry.effective_ports(node.type, node.params)
+        for req_port in eff_ins:
             if not req_port.required:
                 continue
             is_connected = (node_id, req_port.name) in connected_target_ports

@@ -105,6 +105,8 @@ class PortDefinition(BaseModel):
     port_type: PortType = Field(..., alias="portType")
     description: str = ""
     required: bool = True
+    # Cổng tuỳ biến: ánh xạ về cổng/tham số của node gốc (vd. cổng thêm "prompt_phu" -> "prompt")
+    map_to: Optional[str] = Field(default=None, alias="mapTo")
 
     model_config = ConfigDict(populate_by_name=True)
 
@@ -119,6 +121,9 @@ class NodeDefinition(BaseModel):
     output_ports: List[PortDefinition] = Field(default_factory=list, alias="outputPorts")
     default_params: Dict[str, Any] = Field(default_factory=dict, alias="defaultParams")
     mockable: bool = True
+    # Loại node tuỳ biến: biến thể của node gốc (dùng chung bộ chạy)
+    base_type: Optional[str] = Field(default=None, alias="baseType")
+    scope: Optional[str] = None  # "project" | "shared" (chỉ cho loại node tuỳ biến)
 
     model_config = ConfigDict(populate_by_name=True)
 

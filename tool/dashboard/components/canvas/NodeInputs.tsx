@@ -46,6 +46,8 @@ interface TextInputProps {
   connected?: boolean;
   connectedSource?: string;
   isDetailed?: boolean;
+  /** Chế độ chỉnh sửa do card điều khiển (bấm tiêu đề để đổi) */
+  expanded?: boolean;
 }
 
 export function NodeTextInput({
@@ -54,11 +56,26 @@ export function NodeTextInput({
   connected,
   connectedSource,
   isDetailed,
+  expanded,
 }: TextInputProps) {
   const { updateNodeParams } = useStudioStore();
   const [val, setVal] = useState(initialContent || "");
-  const [isExpanded, setIsExpanded] = useState(false);
+  const focused = Boolean(expanded);
+  const taRef = useRef<HTMLTextAreaElement>(null);
   const debounceTimer = useRef<NodeJS.Timeout | null>(null);
+
+  // Tự giãn chiều cao vừa đủ nội dung khi đang focus
+  useEffect(() => {
+    const el = taRef.current;
+    if (!el) return;
+    // Đo chiều cao đích rồi trả về chiều cao cũ để CSS transition chạy mượt
+    const prev = el.offsetHeight;
+    el.style.height = "auto";
+    const target = focused ? el.scrollHeight : Math.min(el.scrollHeight, 88);
+    el.style.height = `${prev}px`;
+    void el.offsetHeight;
+    el.style.height = `${target}px`;
+  }, [val, focused]);
 
   useEffect(() => {
     setVal(initialContent || "");
@@ -100,86 +117,46 @@ export function NodeTextInput({
   }
 
   return (
-    <div className="space-y-1.5">
+    <div className="space-y-1">
       <div className="relative">
         <textarea
-          rows={isDetailed ? 6 : 3}
+          ref={taRef}
+          rows={1}
           value={val}
           onChange={(e) => handleChange(e.target.value)}
+          onFocus={(e) => {
+            // Vào chỉnh sửa: luôn đặt con trỏ ở cuối văn bản
+            const el = e.currentTarget;
+            requestAnimationFrame(() => {
+              const end = el.value.length;
+              el.setSelectionRange(end, end);
+            });
+          }}
           placeholder="Nhập nội dung văn bản hoặc prompt..."
-          className="nodrag nowheel w-full rounded-md border border-border bg-card p-2 text-xs text-foreground placeholder:text-muted-foreground/60 leading-relaxed focus:outline-none focus:ring-1 focus:ring-brand resize-y max-h-48"
+          className={cn(
+            "nodrag nowheel block w-full resize-none rounded-md border p-2 text-xs leading-relaxed text-foreground placeholder:text-muted-foreground/60 transition-[height,background-color,border-color,box-shadow] duration-200 ease-out focus:outline-none",
+            focused
+              ? "overflow-hidden border-border bg-card ring-1 ring-brand"
+              : "cursor-text overflow-hidden border-transparent bg-transparent hover:border-border hover:bg-card"
+          )}
         />
-        <div className="absolute right-1.5 bottom-2 flex items-center gap-1">
+        {focused && (
           <button
             type="button"
+            onMouseDown={(e) => e.preventDefault()}
             onClick={handlePaste}
             title="Dán từ Clipboard"
-            className="nodrag flex h-5 w-5 items-center justify-center rounded bg-muted/80 text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+            className="nodrag absolute right-1.5 top-1.5 flex h-5 w-5 items-center justify-center rounded bg-muted/80 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
           >
             <ClipboardPaste className="h-3 w-3" />
           </button>
-          <button
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              setIsExpanded(true);
-            }}
-            title="Mở rộng trình soạn thảo"
-            className="nodrag flex h-5 w-5 items-center justify-center rounded bg-muted/80 text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
-          >
-            <Maximize2 className="h-3 w-3" />
-          </button>
-        </div>
+        )}
       </div>
 
-      <div className="flex items-center justify-between text-[11px] text-muted-foreground tnum px-0.5">
-        <span>{words} từ · {chars} ký tự</span>
-        <span className="text-[10px] text-muted-foreground/60">Lưu tự động</span>
-      </div>
-
-      {/* Modal Mở rộng soạn thảo */}
-      {isExpanded && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4"
-          onClick={() => setIsExpanded(false)}
-        >
-          <div
-            className="w-full max-w-2xl rounded-xl border border-border bg-card p-4 shadow-2xl space-y-3"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex items-center justify-between border-b border-border pb-2">
-              <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
-                <FileText className="h-4 w-4 text-brand" />
-                Soạn thảo văn bản mở rộng
-              </h3>
-              <button
-                type="button"
-                onClick={() => setIsExpanded(false)}
-                className="rounded-md p-1 hover:bg-muted text-muted-foreground"
-              >
-                <X className="h-4 w-4" />
-              </button>
-            </div>
-            <textarea
-              rows={14}
-              value={val}
-              onChange={(e) => handleChange(e.target.value)}
-              placeholder="Nhập nội dung đầy đủ..."
-              className="nodrag nowheel w-full rounded-lg border border-border bg-background p-3 text-sm text-foreground focus:outline-none focus:ring-1 focus:ring-brand font-sans leading-relaxed"
-            />
-            <div className="flex items-center justify-between pt-1">
-              <span className="text-xs text-muted-foreground tnum">
-                {words} từ · {chars} ký tự
-              </span>
-              <button
-                type="button"
-                onClick={() => setIsExpanded(false)}
-                className="rounded-md bg-brand px-4 py-1.5 text-xs font-medium text-brand-foreground hover:bg-brand/90 transition-colors"
-              >
-                Hoàn tất
-              </button>
-            </div>
-          </div>
+      {focused && (
+        <div className="flex items-center justify-between px-0.5 text-[11px] text-muted-foreground tnum">
+          <span>{words} từ · {chars} ký tự</span>
+          <span className="text-[10px] text-muted-foreground/60">Lưu tự động</span>
         </div>
       )}
     </div>
@@ -197,6 +174,8 @@ interface ImageInputProps {
   nodeType?: string;
   previewUrl?: string;
   compact?: boolean;
+  /** Chế độ chỉnh sửa do card điều khiển */
+  expanded?: boolean;
 }
 
 export function NodeImageInput({
@@ -206,6 +185,7 @@ export function NodeImageInput({
   nodeType = "image",
   previewUrl,
   compact,
+  expanded,
 }: ImageInputProps) {
   const { activeProjectId, updateNodeParams } = useStudioStore();
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -384,7 +364,7 @@ export function NodeImageInput({
       )}
 
       {/* Các lựa chọn phụ: Chọn Thư viện, Dán URL */}
-      {!currentUrl && !isUploading && (
+      {!currentUrl && !isUploading && expanded && (
         <div className="flex items-center justify-between gap-1 text-[11px] pt-0.5">
           <button
             type="button"
@@ -411,7 +391,7 @@ export function NodeImageInput({
       )}
 
       {/* Ô nhập URL trực tiếp */}
-      {showUrlInput && !currentUrl && (
+      {expanded && showUrlInput && !currentUrl && (
         <div className="flex items-center gap-1 pt-1">
           <input
             type="text"

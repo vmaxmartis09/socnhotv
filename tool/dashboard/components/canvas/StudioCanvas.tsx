@@ -26,6 +26,7 @@ import {
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 import { autoLayout, analyzeGraph } from "@/lib/graph-layout";
+import { applyPortOverride } from "@/lib/node-ports";
 import { useStudioStore } from "@/store";
 import {
   PORT_TYPE_COLORS,
@@ -297,9 +298,20 @@ function StudioCanvasInner() {
     edges: Edge[];
   } | null>(null);
 
-  const defMap = useMemo(
+  const baseDefMap = useMemo(
     () => new Map(nodeCatalog.map((d) => [d.typeName, d])),
     [nodeCatalog]
+  );
+  // Tra định nghĩa hiệu lực theo node (có tính cổng ghi đè riêng); gọi: defMap.get(node)
+  const defMap = useMemo(
+    () => ({
+      get: (key: string | { data: { nodeType: string; params?: Record<string, any> } }) => {
+        if (typeof key === "string") return baseDefMap.get(key);
+        const d = baseDefMap.get(key.data.nodeType);
+        return d ? applyPortOverride(d, key.data.params) : undefined;
+      },
+    }),
+    [baseDefMap]
   );
 
   const connectedPorts = useMemo(() => {
@@ -407,7 +419,7 @@ function StudioCanvasInner() {
       if (!params.nodeId || !params.handleId || !params.handleType) return;
       const n = nodes.find((x) => x.id === params.nodeId);
       if (!n) return;
-      const def = defMap.get(n.data.nodeType);
+      const def = defMap.get(n);
       if (!def) return;
       const port =
         params.handleType === "source"
@@ -454,8 +466,8 @@ function StudioCanvasInner() {
       const tgtNode = nodes.find((n) => n.id === conn.target);
       if (!srcNode || !tgtNode) return;
 
-      const srcDef = defMap.get(srcNode.data.nodeType);
-      const tgtDef = defMap.get(tgtNode.data.nodeType);
+      const srcDef = defMap.get(srcNode);
+      const tgtDef = defMap.get(tgtNode);
       const srcPort = srcDef?.outputPorts.find(
         (p) => p.name === conn.sourceHandle
       );
@@ -526,6 +538,8 @@ function StudioCanvasInner() {
       extraParams?: Record<string, any>
     ): Node<StudioNodeData> => {
       const def = defMap.get(typeName) || nodeCatalog[0];
+      // Loại node tuỳ biến: tạo node thuộc loại gốc, kèm cổng + tên riêng
+      const base = def.baseType ? baseDefMap.get(def.baseType) : undefined;
       const defaultPos = pos || {
         x: 240 + (nodes.length % 4) * 80,
         y: 120 + (nodes.length % 3) * 60,
@@ -536,14 +550,25 @@ function StudioCanvasInner() {
         position: defaultPos,
         selected: true,
         data: {
-          nodeType: def.typeName,
+          nodeType: base ? base.typeName : def.typeName,
           status: "idle",
-          params: { ...(def.defaultParams || {}), ...(extraParams || {}) },
+          params: {
+            ...(base?.defaultParams || {}),
+            ...(def.defaultParams || {}),
+            ...(base
+              ? {
+                  _ports: { inputs: def.inputPorts, outputs: def.outputPorts },
+                  _customName: def.displayName,
+                  _customType: def.typeName,
+                }
+              : {}),
+            ...(extraParams || {}),
+          },
           generations: [],
         },
       };
     },
-    [defMap, nodeCatalog, nodes.length]
+    [defMap, baseDefMap, nodeCatalog, nodes.length]
   );
 
   const handlePlaceNewNode = useCallback(
@@ -642,7 +667,7 @@ function StudioCanvasInner() {
         nodes.find((n) => n.id === selectedNodeId) ||
         nodes.find((n) => n.selected);
       if (!sel) return;
-      const def = defMap.get(sel.data.nodeType);
+      const def = defMap.get(sel);
       if (!def) return;
       if (direction === "before" && def.inputPorts.length > 0) {
         const p = def.inputPorts[0];
@@ -838,7 +863,7 @@ function StudioCanvasInner() {
     (mode: RunMode, targetNodeId?: string) => {
       if (mode === "single_node" && targetNodeId) {
         const target = nodes.find((n) => n.id === targetNodeId);
-        const def = target ? defMap.get(target.data.nodeType) : undefined;
+        const def = target ? defMap.get(target) : undefined;
         if (target && def) {
           for (const port of def.inputPorts) {
             if (!port.required) continue;
@@ -1845,7 +1870,7 @@ function StudioCanvasInner() {
 
           <ol className="space-y-2.5">
             {nodes.map((node, index) => {
-              const def = defMap.get(node.data.nodeType);
+              const def = defMap.get(node);
               return (
                 <li
                   key={node.id}

@@ -109,8 +109,8 @@ export function VoiceSelectorWithClone({
       : "");
 
   return (
-    <div className={cn("space-y-1.5", className)}>
-      <div className="flex items-center gap-1.5">
+    <div className={cn("min-w-0 space-y-1.5", className)}>
+      <div className="flex min-w-0 items-center gap-1.5">
         {isCustom ? (
           <div className="flex-1 flex items-center gap-1">
             <input
@@ -133,7 +133,7 @@ export function VoiceSelectorWithClone({
             </button>
           </div>
         ) : (
-          <div className="flex-1 flex items-center gap-1">
+          <div className="flex min-w-0 flex-1 items-center gap-1">
             <select
               disabled={disabled}
               value={value}
@@ -144,7 +144,7 @@ export function VoiceSelectorWithClone({
                   onChange(e.target.value);
                 }
               }}
-              className="h-8 flex-1 rounded-md border border-border bg-card px-2 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-brand"
+              className="h-8 min-w-0 flex-1 truncate rounded-md border border-border bg-card px-2 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-brand"
             >
               <option value="">-- Chọn giọng trong Voice Vault --</option>
               {voices.map((v) => (
@@ -164,22 +164,16 @@ export function VoiceSelectorWithClone({
             title={isPlaying ? "Dừng phát" : "Nghe thử giọng"}
             onClick={togglePlaySample}
             className={cn(
-              "flex h-8 items-center gap-1 rounded-md border px-2 text-xs font-medium transition-colors shrink-0",
+              "flex h-8 w-8 items-center justify-center rounded-md border text-xs font-medium transition-colors shrink-0",
               isPlaying
                 ? "border-emerald-500 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
                 : "border-border bg-accent/40 text-foreground hover:bg-accent"
             )}
           >
             {isPlaying ? (
-              <>
-                <Pause className="h-3.5 w-3.5" />
-                <span className="hidden sm:inline">Dừng</span>
-              </>
+              <Pause className="h-3.5 w-3.5" />
             ) : (
-              <>
-                <Play className="h-3.5 w-3.5" />
-                <span className="hidden sm:inline">Nghe thử</span>
-              </>
+              <Play className="h-3.5 w-3.5" />
             )}
           </button>
         )}

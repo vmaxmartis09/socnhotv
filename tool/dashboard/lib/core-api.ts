@@ -176,7 +176,7 @@ export const FALLBACK_NODE_TYPES: NodeDefinition[] = [
   },
   {
     typeName: "voice_tts",
-    displayName: "Giọng đọc AI (OmniVoice)",
+    displayName: "Văn bản thành giọng nói",
     category: "Audio",
     description: "Đọc lời thoại kịch bản bằng giọng Sóc Nhỏ (soc-nho) chuẩn ngữ điệu cảm xúc",
     inputPorts: [
@@ -373,6 +373,36 @@ export async function fetchNodeTypes(): Promise<{
     // Fallback to FALLBACK_NODE_TYPES
   }
   return { definitions: FALLBACK_NODE_TYPES, fromCore: false };
+}
+
+export async function fetchCustomNodeTypes(projectId: string): Promise<NodeDefinition[]> {
+  try {
+    const res = await fetch(`${CORE_URL}/custom-node-types?projectId=${encodeURIComponent(projectId)}`, { cache: "no-store" });
+    if (!res.ok) return [];
+    const list = (await res.json()) as NodeDefinition[];
+    return Array.isArray(list) ? list : [];
+  } catch {
+    return [];
+  }
+}
+
+export async function saveCustomNodeType(
+  def: NodeDefinition,
+  scope: "project" | "shared",
+  projectId: string
+): Promise<void> {
+  const res = await fetch(
+    `${CORE_URL}/custom-node-types?scope=${scope}&projectId=${encodeURIComponent(projectId)}`,
+    { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(def) }
+  );
+  if (!res.ok) throw new Error((await res.text()) || "Lưu loại node thất bại");
+}
+
+export async function deleteCustomNodeType(typeName: string, scope: "project" | "shared", projectId: string): Promise<void> {
+  await fetch(
+    `${CORE_URL}/custom-node-types/${encodeURIComponent(typeName)}?scope=${scope}&projectId=${encodeURIComponent(projectId)}`,
+    { method: "DELETE" }
+  );
 }
 
 export async function validateGraphWithCore(

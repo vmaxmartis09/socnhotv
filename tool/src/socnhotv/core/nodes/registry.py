@@ -22,6 +22,22 @@ class NodeRegistry:
         return list(cls._definitions.values())
 
     @classmethod
+    def effective_ports(cls, node_type: str, params: Optional[dict]) -> tuple[list, list]:
+        """Cổng hiệu lực của một node: ưu tiên ghi đè riêng trong params['_ports'] (nếu có)."""
+        base = cls.get(node_type)
+        base_in = list(base.input_ports) if base else []
+        base_out = list(base.output_ports) if base else []
+        override = (params or {}).get("_ports")
+        if not isinstance(override, dict):
+            return base_in, base_out
+        try:
+            ins = [PortDefinition.model_validate(p) for p in override.get("inputs", [])] if "inputs" in override else base_in
+            outs = [PortDefinition.model_validate(p) for p in override.get("outputs", [])] if "outputs" in override else base_out
+        except Exception:
+            return base_in, base_out
+        return ins, outs
+
+    @classmethod
     def initialize_defaults(cls) -> None:
         """Đăng ký toàn bộ 13 Node chuẩn theo bảng hợp đồng dữ liệu."""
         cls._definitions.clear()
@@ -218,7 +234,7 @@ class NodeRegistry:
         cls.register(
             NodeDefinition(
                 type_name="voice_tts",
-                display_name="Giọng đọc AI (OmniVoice)",
+                display_name="Văn bản thành giọng nói",
                 category="Audio",
                 description="Đọc lời thoại kịch bản bằng giọng Sóc Nhỏ (soc-nho) chuẩn ngữ điệu cảm xúc",
                 input_ports=[

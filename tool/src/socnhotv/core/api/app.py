@@ -222,6 +222,71 @@ async def list_node_types():
     return NodeRegistry.list_all()
 
 
+def _custom_types_file(scope: str, project_id: Optional[str]) -> Path:
+    root = get_repo_root() / "data"
+    if scope == "shared":
+        return root / "shared" / "custom_node_types.json"
+    if not project_id:
+        raise HTTPException(status_code=400, detail="Thiếu projectId cho loại node theo dự án.")
+    return root / "projects" / project_id / "custom_node_types.json"
+
+
+def _read_custom_types(path: Path) -> List[Dict[str, Any]]:
+    if not path.exists():
+        return []
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+        return data if isinstance(data, list) else []
+    except Exception:
+        return []
+
+
+@app.get("/custom-node-types")
+async def list_custom_node_types(projectId: Optional[str] = Query(default=None)):
+    """Loại node tuỳ biến: gộp dùng chung (shared) + theo dự án."""
+    out: List[Dict[str, Any]] = []
+    for d in _read_custom_types(_custom_types_file("shared", None)):
+        out.append({**d, "scope": "shared"})
+    if projectId:
+        for d in _read_custom_types(_custom_types_file("project", projectId)):
+            out.append({**d, "scope": "project"})
+    return out
+
+
+@app.post("/custom-node-types")
+async def save_custom_node_type(
+    definition: NodeDefinition,
+    scope: str = Query(default="project"),
+    projectId: Optional[str] = Query(default=None),
+):
+    """Lưu (thêm/ghi đè theo typeName) một loại node tuỳ biến — biến thể của node gốc."""
+    if scope not in ("project", "shared"):
+        raise HTTPException(status_code=400, detail="scope phải là 'project' hoặc 'shared'.")
+    if not definition.base_type or NodeRegistry.get(definition.base_type) is None:
+        raise HTTPException(status_code=400, detail="Loại node tuỳ biến phải có baseType hợp lệ.")
+    path = _custom_types_file(scope, projectId)
+    items = [d for d in _read_custom_types(path) if d.get("typeName") != definition.type_name]
+    items.append(definition.model_dump(by_alias=True, mode="json", exclude={"scope"}))
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(items, ensure_ascii=False, indent=2), encoding="utf-8")
+    return {"status": "success", "typeName": definition.type_name, "scope": scope}
+
+
+@app.delete("/custom-node-types/{type_name}")
+async def delete_custom_node_type(
+    type_name: str,
+    scope: str = Query(default="project"),
+    projectId: Optional[str] = Query(default=None),
+):
+    path = _custom_types_file(scope, projectId)
+    items = _read_custom_types(path)
+    kept = [d for d in items if d.get("typeName") != type_name]
+    if len(kept) == len(items):
+        raise HTTPException(status_code=404, detail="Không tìm thấy loại node.")
+    path.write_text(json.dumps(kept, ensure_ascii=False, indent=2), encoding="utf-8")
+    return {"status": "success"}
+
+
 @app.get("/projects")
 async def list_projects():
     """Đọc danh sách các dự án từ data/workspace.json."""

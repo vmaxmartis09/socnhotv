@@ -369,10 +369,17 @@ class GraphRunner:
                     val = src_out[edge.source_port]
                     tgt_def = NodeRegistry.get(node.type)
                     if tgt_def:
-                        tgt_port_def = next((p for p in tgt_def.input_ports if p.name == edge.target_port), None)
+                        eff_ins, _ = NodeRegistry.effective_ports(node.type, node.params)
+                        tgt_port_def = next((p for p in eff_ins if p.name == edge.target_port), None)
                         if tgt_port_def and tgt_port_def.port_type == PortType.IMAGE_LIST and not isinstance(val, list):
                             val = [val]
                     resolved[edge.target_port] = val
+
+        # Cổng vào tuỳ biến: ánh xạ về cổng/tham số của node gốc nếu cổng gốc chưa có dữ liệu
+        eff_ins, _ = NodeRegistry.effective_ports(node.type, node.params)
+        for p in eff_ins:
+            if p.map_to and p.name in resolved and p.map_to != p.name and p.map_to not in resolved:
+                resolved[p.map_to] = resolved[p.name]
 
         for port_name, in_ref in node.inputs.items():
             if isinstance(in_ref, dict) and "nodeId" in in_ref:
@@ -1540,6 +1547,11 @@ class GraphRunner:
                             node, resolved_inputs, run_id, is_mock=req.mock_mode, all_node_outputs=node_outputs
                         )
 
+                        # Cổng ra tuỳ biến: bí danh về cổng ra của node gốc
+                        _, eff_outs = NodeRegistry.effective_ports(node.type, node.params)
+                        for op in eff_outs:
+                            if op.map_to and op.name not in outputs and op.map_to in outputs:
+                                outputs[op.name] = outputs[op.map_to]
                         node_outputs[nid] = outputs
                         total_actual_cost += cost
 

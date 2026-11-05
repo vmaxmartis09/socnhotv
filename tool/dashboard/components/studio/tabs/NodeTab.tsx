@@ -6,6 +6,7 @@ import { useStudioStore } from "@/store";
 import { FALLBACK_NODE_TYPES, estimateNodeCostUsd } from "@/lib/core-api";
 import { Pin, Check } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
+import { PortsEditor } from "./PortsEditor";
 import {
   NodeTextInput,
   NodeImageInput,
@@ -88,6 +89,8 @@ export function NodeTab() {
           </span>
         </div>
       </div>
+
+      <PortsEditor nodeId={node.id} baseDef={def} params={params} />
 
       {/* DÙNG CHUNG CÁC COMPONENT NHẬP LIỆU CỐT LÕI (Unified with canvas card) */}
       <section className="space-y-3 border-b border-border pb-3.5">
