@@ -1,0 +1,27 @@
+{
+  "id": "art_732d024b5c51",
+  "kind": "text",
+  "uri": "assets/732d024b5c5186674214afa40ba59b8733e7a98b258d3666f959feaaca6b9952.txt",
+  "mime": "application/octet-stream",
+  "size": 57,
+  "hash": "sha256:732d024b5c5186674214afa40ba59b8733e7a98b258d3666f959feaaca6b9952",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": null,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "node_input_text",
+    "runId": "run_1793842221_773dd3",
+    "provider": "local",
+    "model": "text",
+    "params": {
+      "content": "Chào mừng các bạn đến với kênh Sóc Nhỏ TV!"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-05T01:30:21Z"
+  }
+}

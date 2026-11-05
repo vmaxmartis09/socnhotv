@@ -1,0 +1,31 @@
+{
+  "id": "art_5542c03df3f5",
+  "kind": "audio",
+  "uri": "assets/5542c03df3f5e5ff0bbb65cecdad8781b0a073a08554d2972a5523da33871374.mp3",
+  "mime": "audio/mp3",
+  "size": 75275,
+  "hash": "sha256:5542c03df3f5e5ff0bbb65cecdad8781b0a073a08554d2972a5523da33871374",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 3.058,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "node_tts",
+    "runId": "run_1793842221_773dd3",
+    "provider": "omnivoice",
+    "model": "omnivoice",
+    "params": {
+      "text": "Chào mừng các bạn đến với kênh Sóc Nhỏ TV!",
+      "voiceId": "soc-nho",
+      "tempo": 1.1,
+      "targetLufs": -14.0,
+      "mastering": "deesser+presence3.2k+comp4:1+loudnorm-14LUFS"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-05T01:30:31Z"
+  }
+}

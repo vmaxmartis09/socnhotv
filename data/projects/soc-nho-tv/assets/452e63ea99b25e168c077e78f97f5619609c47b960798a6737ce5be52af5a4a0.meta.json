@@ -1,0 +1,25 @@
+{
+  "id": "art_452e63ea99b2",
+  "kind": "image",
+  "uri": "assets/452e63ea99b25e168c077e78f97f5619609c47b960798a6737ce5be52af5a4a0.png",
+  "mime": "image/png",
+  "size": 11176,
+  "hash": "sha256:452e63ea99b25e168c077e78f97f5619609c47b960798a6737ce5be52af5a4a0",
+  "meta": {
+    "width": 1080,
+    "height": 1920,
+    "duration": null,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "img_hf",
+    "runId": null,
+    "provider": "test",
+    "model": "test-img",
+    "params": {},
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-05T01:30:37Z"
+  }
+}

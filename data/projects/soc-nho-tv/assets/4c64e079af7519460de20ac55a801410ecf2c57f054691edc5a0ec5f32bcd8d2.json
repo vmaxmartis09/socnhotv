@@ -1,0 +1,21 @@
+{
+  "title": "Cảnh 1: Bữa sáng ngọt ngào",
+  "scenes": [
+    {
+      "sceneNumber": 1,
+      "title": "Cảnh 1: Bữa sáng ngọt ngào",
+      "imagePrompt": "Sóc Bi cầm chiếc kẹo mút",
+      "videoPrompt": "Camera góc trung chuyển động mượt mà, diễn hoạt sinh động theo nội dung Cảnh 1: Bữa sáng ngọt ngào",
+      "dialogue": "Sóc Nhỏ: Chào các bạn, mình là Sóc Bi! Hôm nay mình sẽ ăn thật nhiều kẹo!",
+      "durationSec": 6.9
+    },
+    {
+      "sceneNumber": 2,
+      "title": "Cảnh 2: Lời khuyên của bạn Koala",
+      "imagePrompt": "Cảnh hoạt hình 3D: Bác sĩ Koala: Bi ơi, ăn xong nhớ chải răng nhé!",
+      "videoPrompt": "Camera góc trung chuyển động mượt mà, diễn hoạt sinh động theo nội dung Cảnh 2: Lời khuyên của bạn Koala",
+      "dialogue": "Bác sĩ Koala: Bi ơi, ăn xong nhớ chải răng nhé!\nSóc Nhỏ: Bi nhớ rồi ạ!",
+      "durationSec": 6.9
+    }
+  ]
+}

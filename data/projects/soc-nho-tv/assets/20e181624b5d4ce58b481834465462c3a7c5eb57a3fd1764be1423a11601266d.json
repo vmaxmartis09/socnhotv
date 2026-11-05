@@ -1,0 +1,13 @@
+{
+  "title": "healthy",
+  "scenes": [
+    {
+      "sceneNumber": 1,
+      "title": "Cảnh 1",
+      "imagePrompt": "healthy",
+      "videoPrompt": "Camera góc trung chuyển động mượt mà, diễn hoạt sinh động theo nội dung Cảnh 1",
+      "dialogue": "healthy",
+      "durationSec": 20.0
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "id": "art_3c3d7233f701",
+  "kind": "text",
+  "uri": "assets/3c3d7233f7017f0da2f0413aa45e90d9605653cc3c13f46b3aa2e679efb228b7.txt",
+  "mime": "application/octet-stream",
+  "size": 42,
+  "hash": "sha256:3c3d7233f7017f0da2f0413aa45e90d9605653cc3c13f46b3aa2e679efb228b7",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": null,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "node_script_text",
+    "runId": "run_1793842238_7835ff",
+    "provider": "local",
+    "model": "text",
+    "params": {
+      "content": "Chào các bạn, mình là Sóc Nhỏ Bi!"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-05T01:30:38Z"
+  }
+}

@@ -18,21 +18,27 @@ assets/voice_vault/*/*.wav
 assets/voice_vault/*/*.npy
 assets/voice_vault/*/*.mp3
 
-# Project sensitive & transient data (Accounts, Raw dumps, Shots, Render outputs)
+# Project sensitive & transient data (Accounts, Raw dumps, Shots)
 data/projects/*/accounts/*
 !data/projects/*/accounts/.gitkeep
 data/projects/*/shots/*
 !data/projects/*/shots/.gitkeep
-data/projects/*/output/*
-!data/projects/*/output/.gitkeep
-data/projects/*/assets/*
-!data/projects/*/assets/.gitkeep
 data/projects/*/runs/*
 !data/projects/*/runs/.gitkeep
+data/projects/*/output/*
+!data/projects/*/output/.gitkeep
+
+# Exclude large tool binaries (>25MB)
+data/shared/models/ffmpeg-bin/
+
+# Keep all project data, characters, content, assets, templates
 !data/projects/*/characters/**
-!data/projects/*/content/series/**
-!data/projects/*/content/episodes/**
-output/
+!data/projects/*/content/**
+!data/projects/*/assets/**
+!data/projects/*/publishing/**
+!data/projects/*/analytics/**
+!data/shared/templates/**
+!data/shared/voice_vault/**
 
 # Third-party integrations
 integrations/OmniVoice/

@@ -1,0 +1,31 @@
+{
+  "id": "art_86cfb1514f34",
+  "kind": "image",
+  "uri": "assets/86cfb1514f348c9b05cf2f006f54f8f86540db806eaceb3407ff4bad937e1d70.jpg",
+  "mime": "image/jpg",
+  "size": 222331,
+  "hash": "sha256:86cfb1514f348c9b05cf2f006f54f8f86540db806eaceb3407ff4bad937e1d70",
+  "meta": {
+    "width": 1080,
+    "height": 1920,
+    "duration": null,
+    "fps": null,
+    "aspect": "9:16"
+  },
+  "provenance": {
+    "nodeId": "n_exp",
+    "runId": "run_1793871956_893d22",
+    "provider": "mock",
+    "model": "mock-image-v1",
+    "params": {
+      "prompt": "Generic execution for platform_export",
+      "aspectRatio": "9:16",
+      "resolution": "1080p",
+      "index": 0,
+      "seed": null
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-05T09:45:56Z"
+  }
+}

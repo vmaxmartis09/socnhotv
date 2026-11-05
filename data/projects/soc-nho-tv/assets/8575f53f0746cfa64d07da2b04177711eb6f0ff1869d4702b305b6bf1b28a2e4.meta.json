@@ -1,0 +1,33 @@
+{
+  "id": "art_8575f53f0746",
+  "kind": "video",
+  "uri": "assets/8575f53f0746cfa64d07da2b04177711eb6f0ff1869d4702b305b6bf1b28a2e4.mp4",
+  "mime": "video/mp4",
+  "size": 60,
+  "hash": "sha256:8575f53f0746cfa64d07da2b04177711eb6f0ff1869d4702b305b6bf1b28a2e4",
+  "meta": {
+    "width": 1080,
+    "height": 1920,
+    "duration": 5.0,
+    "fps": 24.0,
+    "aspect": "9:16"
+  },
+  "provenance": {
+    "nodeId": "node_video_gen",
+    "runId": "run_1793842199_1f1664",
+    "provider": "mock",
+    "model": "mock-veo-video-v1",
+    "params": {
+      "prompt": "Camera dolly nhẹ nhàng",
+      "firstFrameUri": "assets/86cfb1514f348c9b05cf2f006f54f8f86540db806eaceb3407ff4bad937e1d70.jpg",
+      "durationSec": 5.0,
+      "aspectRatio": "9:16",
+      "hasAudio": false
+    },
+    "inputHashes": [
+      "assets/86cfb1514f348c9b05cf2f006f54f8f86540db806eaceb3407ff4bad937e1d70.jpg"
+    ],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-05T01:29:59Z"
+  }
+}

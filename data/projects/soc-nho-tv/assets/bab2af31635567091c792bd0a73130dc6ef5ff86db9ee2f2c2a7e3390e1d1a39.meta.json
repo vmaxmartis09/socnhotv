@@ -1,0 +1,27 @@
+{
+  "id": "art_bab2af316355",
+  "kind": "text",
+  "uri": "assets/bab2af31635567091c792bd0a73130dc6ef5ff86db9ee2f2c2a7e3390e1d1a39.txt",
+  "mime": "application/octet-stream",
+  "size": 29,
+  "hash": "sha256:bab2af31635567091c792bd0a73130dc6ef5ff86db9ee2f2c2a7e3390e1d1a39",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": null,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "node_text_in",
+    "runId": "run_1793842266_6814f4",
+    "provider": "local",
+    "model": "text",
+    "params": {
+      "content": "Chuyến phiêu lưu của Bi"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-05T01:31:06Z"
+  }
+}

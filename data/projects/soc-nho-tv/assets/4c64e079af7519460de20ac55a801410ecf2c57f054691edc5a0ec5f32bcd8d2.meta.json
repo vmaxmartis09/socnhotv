@@ -1,0 +1,28 @@
+{
+  "id": "art_4c64e079af75",
+  "kind": "text",
+  "uri": "assets/4c64e079af7519460de20ac55a801410ecf2c57f054691edc5a0ec5f32bcd8d2.json",
+  "mime": "application/json",
+  "size": 1004,
+  "hash": "sha256:4c64e079af7519460de20ac55a801410ecf2c57f054691edc5a0ec5f32bcd8d2",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": null,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "node_script",
+    "runId": "run_1793842246_99c8af",
+    "provider": "local",
+    "model": "script_parser",
+    "params": {
+      "targetSceneCount": 2,
+      "sourceText": "Cảnh 1: Bữa sáng ngọt ngào"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-05T01:30:46Z"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "id": "art_9aef88b9869a",
+  "kind": "text",
+  "uri": "assets/9aef88b9869af53afd5befd160d1cac7fb860fce099637c7cf8cd6f9bcdafd00.json",
+  "mime": "application/json",
+  "size": 2482,
+  "hash": "sha256:9aef88b9869af53afd5befd160d1cac7fb860fce099637c7cf8cd6f9bcdafd00",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": null,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "node_script",
+    "runId": "run_1793784575_3bebfd",
+    "provider": "mock",
+    "model": "script-planner-v1",
+    "params": {
+      "targetSceneCount": 6,
+      "sourceText": "Sóc Nhỏ Bi thức dậy chào buổi sáng vui tươi"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-04T09:29:35Z"
+  }
+}

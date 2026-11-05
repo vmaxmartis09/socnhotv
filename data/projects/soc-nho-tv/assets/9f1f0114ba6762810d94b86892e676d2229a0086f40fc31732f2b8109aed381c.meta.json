@@ -1,0 +1,31 @@
+{
+  "id": "art_9f1f0114ba67",
+  "kind": "image",
+  "uri": "assets/9f1f0114ba6762810d94b86892e676d2229a0086f40fc31732f2b8109aed381c.png",
+  "mime": "image/png",
+  "size": 12,
+  "hash": "sha256:9f1f0114ba6762810d94b86892e676d2229a0086f40fc31732f2b8109aed381c",
+  "meta": {
+    "width": 1080,
+    "height": 1920,
+    "duration": null,
+    "fps": null,
+    "aspect": "9:16"
+  },
+  "provenance": {
+    "nodeId": "unknown",
+    "runId": "run_default",
+    "provider": "google",
+    "model": "gemini-2.5-flash-image",
+    "params": {
+      "prompt": "x",
+      "aspectRatio": "9:16",
+      "resolution": "1080p",
+      "seed": null,
+      "references": []
+    },
+    "inputHashes": [],
+    "costUsd": 0.04,
+    "createdAt": "2026-11-05T01:30:46Z"
+  }
+}
