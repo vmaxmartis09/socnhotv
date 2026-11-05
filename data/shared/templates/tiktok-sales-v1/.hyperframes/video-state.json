@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "historyId": "97f51e6c-c7ca-4a58-b33f-1d040ac82b44",
+  "currentRevision": "ccac2ac8-ef47-48d1-bc54-ee2292268040",
+  "pendingChanges": false,
+  "files": {
+    "assets/audio.mp3": {
+      "hash": "1ac82b3a3f395728533549dfc241c8400ab8da314a4319921f9a8f9284bd03be",
+      "content": "C:\\Users\\dtthoai\\.cache\\hyperframes\\history\\97f51e6c-c7ca-4a58-b33f-1d040ac82b44\\blobs\\1a\\1ac82b3a3f395728533549dfc241c8400ab8da314a4319921f9a8f9284bd03be"
+    },
+    "assets/gsap.min.js": {
+      "hash": "92bb9a96476f983d212a2bc4f54c889039c1696dd4461d40a736860938570fbb",
+      "content": "C:\\Users\\dtthoai\\.cache\\hyperframes\\history\\97f51e6c-c7ca-4a58-b33f-1d040ac82b44\\blobs\\92\\92bb9a96476f983d212a2bc4f54c889039c1696dd4461d40a736860938570fbb"
+    },
+    "assets/product.png": {
+      "hash": "0daf1dc2f3480e4dd203faf4a0a1de1e75ca74b7745e18d6f84751f0284fbf05",
+      "content": "C:\\Users\\dtthoai\\.cache\\hyperframes\\history\\97f51e6c-c7ca-4a58-b33f-1d040ac82b44\\blobs\\0d\\0daf1dc2f3480e4dd203faf4a0a1de1e75ca74b7745e18d6f84751f0284fbf05"
+    },
+    "composition.html.j2": {
+      "hash": "85877da49faccb296888c5a6cab781a249ef7bc85b8fed1fc06c570a4a5f960e",
+      "content": "C:\\Users\\dtthoai\\.cache\\hyperframes\\history\\97f51e6c-c7ca-4a58-b33f-1d040ac82b44\\blobs\\85\\85877da49faccb296888c5a6cab781a249ef7bc85b8fed1fc06c570a4a5f960e"
+    },
+    "index.html": {
+      "hash": "10bf7104507c8e57e5f3daf7fd2920f93e2400c1678f17f95b13683145cd4d67",
+      "content": "C:\\Users\\dtthoai\\.cache\\hyperframes\\history\\97f51e6c-c7ca-4a58-b33f-1d040ac82b44\\blobs\\10\\10bf7104507c8e57e5f3daf7fd2920f93e2400c1678f17f95b13683145cd4d67"
+    },
+    "preview.jpg": {
+      "hash": "e17e0458f3b06ec93086c8652fbbf3690df04ea34129af06c8e72ab6acd005c5",
+      "content": "C:\\Users\\dtthoai\\.cache\\hyperframes\\history\\97f51e6c-c7ca-4a58-b33f-1d040ac82b44\\blobs\\e1\\e17e0458f3b06ec93086c8652fbbf3690df04ea34129af06c8e72ab6acd005c5"
+    },
+    "sample.data.json": {
+      "hash": "6e3e0b9ff9a87d992d392bf958183322690e5051e8085c632188a30e1f0ae292",
+      "content": "C:\\Users\\dtthoai\\.cache\\hyperframes\\history\\97f51e6c-c7ca-4a58-b33f-1d040ac82b44\\blobs\\6e\\6e3e0b9ff9a87d992d392bf958183322690e5051e8085c632188a30e1f0ae292"
+    },
+    "styles.css": {
+      "hash": "14d3ecbc3bbe374ddf8fc9ae1094684b04152d38e084cc8c695baf4f9774c795",
+      "content": "C:\\Users\\dtthoai\\.cache\\hyperframes\\history\\97f51e6c-c7ca-4a58-b33f-1d040ac82b44\\blobs\\14\\14d3ecbc3bbe374ddf8fc9ae1094684b04152d38e084cc8c695baf4f9774c795"
+    },
+    "template.json": {
+      "hash": "625b5bf345d4a11252be361674f77e143d14a7cb28d47b001d7e396be1e937bb",
+      "content": "C:\\Users\\dtthoai\\.cache\\hyperframes\\history\\97f51e6c-c7ca-4a58-b33f-1d040ac82b44\\blobs\\62\\625b5bf345d4a11252be361674f77e143d14a7cb28d47b001d7e396be1e937bb"
+    },
+    "assets/voiceover.mp3": {
+      "hash": "1ac82b3a3f395728533549dfc241c8400ab8da314a4319921f9a8f9284bd03be",
+      "content": "C:\\Users\\dtthoai\\.cache\\hyperframes\\history\\97f51e6c-c7ca-4a58-b33f-1d040ac82b44\\blobs\\1a\\1ac82b3a3f395728533549dfc241c8400ab8da314a4319921f9a8f9284bd03be"
+    }
+  },
+  "revisions": {
+    "ccac2ac8-ef47-48d1-bc54-ee2292268040": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793876028699,
+      "endedAt": 1793876028712,
+      "files": {
+        "assets/voiceover.mp3": {
+          "before": null,
+          "after": "C:\\Users\\dtthoai\\.cache\\hyperframes\\history\\97f51e6c-c7ca-4a58-b33f-1d040ac82b44\\blobs\\1a\\1ac82b3a3f395728533549dfc241c8400ab8da314a4319921f9a8f9284bd03be"
+        }
+      }
+    }
+  },
+  "checks": {
+    "latest": null,
+    "revisions": {},
+    "unversioned": []
+  },
+  "snapshots": {
+    "latest": null,
+    "revisions": {},
+    "unversioned": []
+  },
+  "renders": {
+    "latest": {
+      "id": "416ed725-6845-446c-ac89-4509fd1c219f",
+      "completedAt": 1793876045859,
+      "output": "D:\\socnhotv\\data\\shared\\templates\\tiktok-sales-v1\\preview.mp4",
+      "status": "completed",
+      "revision": "ccac2ac8-ef47-48d1-bc54-ee2292268040"
+    },
+    "retainedRevisions": [
+      "ccac2ac8-ef47-48d1-bc54-ee2292268040"
+    ]
+  },
+  "pendingArtifactCleanup": []
+}

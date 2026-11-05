@@ -4,11 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width={{ width }}, height={{ height }}, initial-scale=1.0" />
     <title>{{ data.story_title }}</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="assets/gsap.min.js"></script>
     <style>
       * { box-sizing: border-box; margin: 0; padding: 0; }
-      body, html { width: {{ width }}px; height: {{ height }}px; overflow: hidden; background: #0f172a; font-family: -apple-system, sans-serif; }
-      #root { position: relative; width: {{ width }}px; height: {{ height }}px; overflow: hidden; }
+      body, html { width: {{ width }}px; height: {{ height }}px; overflow: hidden; background: #0f172a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+      #root { position: relative; width: {{ width }}px; height: {{ height }}px; overflow: hidden; background: linear-gradient(180deg, #1e1b4b 0%, #0f172a 100%); }
       {{ styles_css }}
     </style>
   </head>
@@ -20,33 +20,40 @@
          data-width="{{ width }}"
          data-height="{{ height }}">
 
-      <!-- Header -->
+      <!-- Header Title Banner -->
       <div id="title-banner" class="story-title-banner clip" data-start="0" data-duration="{{ total_duration }}" data-track-index="2">
         📖 {{ data.story_title }}
       </div>
 
+      <!-- Character Bi Illustration -->
+      <div id="character-illustration" class="character-wrapper clip"
+           data-start="0.3"
+           data-duration="{{ total_duration - 0.3 }}"
+           data-track-index="1">
+        <img src="assets/character.png" alt="Sóc Bi" class="character-img" />
+      </div>
+
       <!-- Book Page Reading -->
       <div id="book-page" class="book-page-wrapper clip" data-start="0.5" data-duration="{{ total_duration - 0.5 }}" data-track-index="2">
-        {{ data.book_page_text }}
+        <p class="story-body">{{ data.book_page_text }}</p>
       </div>
 
       <!-- Moral Lesson -->
-      <div id="moral" class="moral-box clip" data-start="2.5" data-duration="{{ total_duration - 2.5 }}" data-track-index="2">
+      <div id="moral" class="moral-box clip" data-start="1.8" data-duration="{{ total_duration - 1.8 }}" data-track-index="2">
         ✨ Bài học: {{ data.moral_lesson }}
       </div>
 
-      <audio id="audio-voiceover" class="clip" src="{{ voiceover_src }}" data-start="0" data-duration="{{ total_duration }}" data-track-index="3"></audio>
-      {% if bgm_src %}
-      <audio id="audio-bgm" class="clip" src="{{ bgm_src }}" data-start="0" data-duration="{{ total_duration }}" data-track-index="4" data-volume="0.14"></audio>
-      {% endif %}
+      <!-- Voiceover Audio -->
+      <audio id="audio-voiceover" class="clip" src="{{ voiceover_src or 'assets/voiceover.mp3' }}" data-start="0" data-duration="{{ total_duration }}" data-track-index="3"></audio>
     </div>
 
     <script>
       window.__timelines = window.__timelines || {};
       const tl = gsap.timeline({ paused: true });
-      tl.fromTo("#title-banner", { y: -40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "back.out(1.6)" }, 0.1);
+      tl.fromTo("#title-banner", { y: -50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "back.out(1.6)" }, 0.1);
+      tl.fromTo("#character-illustration", { scale: 0.8, opacity: 0, y: 30 }, { scale: 1, opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 0.3);
       tl.fromTo("#book-page", { scale: 0.9, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: "power2.out" }, 0.5);
-      tl.fromTo("#moral", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "back.out(1.5)" }, 2.5);
+      tl.fromTo("#moral", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "back.out(1.5)" }, 1.8);
       window.__timelines["main"] = tl;
       tl.seek(0);
     </script>

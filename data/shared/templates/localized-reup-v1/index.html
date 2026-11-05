@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=540, height=960, initial-scale=1.0" />
+    <title>Khoảnh Khắc Bất Ngờ Của Loài Vật</title>
+    <script src="assets/gsap.min.js"></script>
+    <style>
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body, html { width: 540px; height: 960px; overflow: hidden; background: #000; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+      #root { position: relative; width: 540px; height: 960px; overflow: hidden; }
+      .brand-frame {
+  position: absolute;
+  inset: 0;
+  border: 10px solid #0284c7;
+  pointer-events: none;
+  z-index: 15;
+}
+
+.brand-header-pill {
+  position: absolute;
+  top: 90px;
+  left: 20px;
+  background: rgba(2, 132, 199, 0.95);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 9999px;
+  font-size: 20px;
+  font-weight: 800;
+  z-index: 20;
+}
+
+.author-credit {
+  position: absolute;
+  top: 90px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #cbd5e1;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  z-index: 20;
+}
+
+.character-comment-pill {
+  position: absolute;
+  bottom: 160px;
+  left: 20px;
+  right: 20px;
+  background: rgba(15, 23, 42, 0.92);
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  padding: 12px 20px;
+  border-radius: 16px;
+  color: #fef08a;
+  font-size: 22px;
+  font-weight: 800;
+  text-align: center;
+  z-index: 25;
+}
+    </style>
+  </head>
+  <body>
+    <div id="root"
+         data-composition-id="main"
+         data-start="0"
+         data-duration="4.0"
+         data-width="540"
+         data-height="960">
+
+      <!-- Background Source Video -->
+      <video muted class="clip" src="assets/source.mp4" data-start="0" data-duration="4.0" data-track-index="1" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1;"></video>
+
+      <!-- Brand Top Header Pill -->
+      <div id="hdr" class="brand-header-pill clip" data-start="0" data-duration="4.0" data-track-index="2">
+        SÓC NHỎ TV • BẢN ĐỊA HOÁ
+      </div>
+
+      <!-- Author Attribution Credit -->
+      <div id="credit" class="author-credit clip" data-start="0" data-duration="4.0" data-track-index="2">
+        Nguồn: @nature_daily
+      </div>
+
+      <!-- Character commentary -->
+      <div id="comment" class="character-comment-pill clip" data-start="0.8" data-duration="3.2" data-track-index="2">
+        🐿️ Trời ơi các bạn có tin vào mắt mình không!
+      </div>
+
+      <!-- Voiceover Audio -->
+      <audio id="audio-voiceover" class="clip" src="assets/voiceover.mp3" data-start="0" data-duration="4.0" data-track-index="3"></audio>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#hdr", { y: -40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "back.out(1.6)" }, 0.1);
+      tl.fromTo("#credit", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 0.3);
+      tl.fromTo("#comment", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }, 0.8);
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

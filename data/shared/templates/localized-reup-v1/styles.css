@@ -1,48 +1,48 @@
 .brand-frame {
   position: absolute;
   inset: 0;
-  border: 12px solid #0284c7;
+  border: 10px solid #0284c7;
   pointer-events: none;
   z-index: 15;
 }
 
 .brand-header-pill {
   position: absolute;
-  top: {{ safe_zone.top }}px;
-  left: {{ safe_zone.left }}px;
+  top: {{ safe_zone.top or 90 }}px;
+  left: {{ safe_zone.left or 30 }}px;
   background: rgba(2, 132, 199, 0.95);
   color: #fff;
-  padding: 10px 24px;
+  padding: 10px 20px;
   border-radius: 9999px;
-  font-size: 26px;
+  font-size: 20px;
   font-weight: 800;
   z-index: 20;
 }
 
 .author-credit {
   position: absolute;
-  top: {{ safe_zone.top }}px;
-  right: {{ safe_zone.right }}px;
+  top: {{ safe_zone.top or 90 }}px;
+  right: {{ safe_zone.right or 30 }}px;
   background: rgba(0, 0, 0, 0.7);
   color: #cbd5e1;
-  padding: 8px 16px;
+  padding: 6px 14px;
   border-radius: 8px;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 600;
   z-index: 20;
 }
 
 .character-comment-pill {
   position: absolute;
-  bottom: {{ safe_zone.bottom + 40 }}px;
-  left: {{ safe_zone.left }}px;
-  right: {{ safe_zone.right }}px;
-  background: rgba(15, 23, 42, 0.88);
+  bottom: {{ safe_zone.bottom or 140 }}px;
+  left: {{ safe_zone.left or 30 }}px;
+  right: {{ safe_zone.right or 30 }}px;
+  background: rgba(15, 23, 42, 0.92);
   border: 1.5px solid rgba(255, 255, 255, 0.2);
-  padding: 14px 24px;
-  border-radius: 20px;
+  padding: 12px 20px;
+  border-radius: 16px;
   color: #fef08a;
-  font-size: 28px;
+  font-size: 22px;
   font-weight: 800;
   text-align: center;
   z-index: 25;
