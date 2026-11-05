@@ -451,7 +451,7 @@ export const NodeImageInput = React.memo(function NodeImageInput({
                 <div className="grid grid-cols-3 gap-2.5">
                   {libraryItems.map((item, idx) => (
                     <div
-                      key={idx}
+                      key={item.id || item.uri || item.name || idx}
                       onClick={() => {
                         updateNodeParams(nodeId, {
                           uri: item.uri || item.name,
@@ -904,7 +904,7 @@ export const NodeImageGenInput = React.memo(function NodeImageGenInput({
             {referenceImages.map((uri, idx) => {
               const u = resolveNodeFileUrl(activeProjectId, uri);
               return (
-                <div key={idx} className="relative group h-12 w-12 rounded border border-border overflow-hidden bg-muted/40">
+                <div key={`${uri}-${idx}`} className="relative group h-12 w-12 rounded border border-border overflow-hidden bg-muted/40">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img decoding="async" loading="lazy" src={u} alt="" className="h-full w-full object-cover object-top" />
                   <button

@@ -192,7 +192,7 @@ export function OverviewView({ onNavigateView, onOpenPlanWizard }: OverviewViewP
             <div className="space-y-2">
               {expiringTokens.map((item, idx) => (
                 <div
-                  key={idx}
+                  key={(item as any).id || (item as any).account_id || idx}
                   className="flex items-center justify-between p-2.5 rounded-lg bg-amber-500/10 border border-amber-500/20 text-xs"
                 >
                   <div className="flex items-center gap-2">
@@ -241,7 +241,7 @@ export function OverviewView({ onNavigateView, onOpenPlanWizard }: OverviewViewP
                 const acc = accounts.find((a) => a.id === slot.account_id);
                 return (
                   <div
-                    key={idx}
+                    key={`${slot.account_id}-${slot.date}-${slot.start || idx}`}
                     className="flex items-center justify-between p-2 rounded-lg bg-muted/40 border border-border/50 text-xs"
                   >
                     <div className="flex items-center gap-2">

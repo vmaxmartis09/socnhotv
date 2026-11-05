@@ -1012,7 +1012,7 @@ export function CreateVideoModal({ isOpen, onClose }: CreateVideoModalProps) {
                     {lintReport.issues && lintReport.issues.length > 0 && (
                       <ul className="space-y-1 text-[11px] list-disc list-inside pt-1">
                         {lintReport.issues.map((iss: any, idx: number) => (
-                          <li key={idx}>
+                          <li key={iss.code ? `${iss.code}-${idx}` : `${iss.level}-${idx}`}>
                             <strong>[{iss.level.toUpperCase()}]:</strong> {iss.message_vi}
                           </li>
                         ))}

@@ -208,7 +208,7 @@ export function TemplatesView({ onUseTemplate }: TemplatesViewProps) {
         {filteredTemplates.map((t) => (
           <div
             key={t.id}
-            className="flex flex-col justify-between p-4 rounded-xl border border-border bg-card hover:border-border/80 transition-all space-y-3"
+            className="virtual-card flex flex-col justify-between p-4 rounded-xl border border-border bg-card hover:border-border/80 transition-all space-y-3"
           >
             <div>
               <div className="flex items-start justify-between gap-2">
@@ -230,7 +230,7 @@ export function TemplatesView({ onUseTemplate }: TemplatesViewProps) {
                 <div className="flex flex-wrap gap-1 mt-2.5">
                   {t.hashtags.map((h, idx) => (
                     <span
-                      key={idx}
+                      key={`${t.id || 'tpl'}-${h}-${idx}`}
                       className="text-[10px] text-primary bg-primary/10 px-1.5 py-0.2 rounded font-mono"
                     >
                       #{h}

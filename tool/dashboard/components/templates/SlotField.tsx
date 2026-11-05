@@ -108,7 +108,7 @@ export function SlotField({ slot, value, onChange, error, projectId }: SlotField
 
         <div className="flex flex-col gap-1.5">
           {listVal.map((item, idx) => (
-            <div key={idx} className="flex items-center gap-2">
+            <div key={`${slot.key}-${idx}`} className="flex items-center gap-2">
               <input
                 type="text"
                 value={item}

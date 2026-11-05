@@ -299,7 +299,7 @@ export function AccountDetailSheet({
 
             <div className="space-y-1.5">
               {postingWindows.map((pw, idx) => (
-                <div key={idx} className="flex items-center gap-2 rounded-lg border border-border bg-background p-1.5 text-xs">
+                <div key={`${pw.weekday}-${pw.start}-${pw.end}-${idx}`} className="flex items-center gap-2 rounded-lg border border-border bg-background p-1.5 text-xs">
                   <select
                     value={pw.weekday}
                     onChange={(e) => {

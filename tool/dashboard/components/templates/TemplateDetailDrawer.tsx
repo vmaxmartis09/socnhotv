@@ -172,7 +172,7 @@ export function TemplateDetailDrawer({ template, onClose }: TemplateDetailDrawer
           </div>
           <ul className="mt-1.5 list-disc list-inside space-y-0.5 text-[11px] text-destructive/90">
             {template.missing_requirements?.map((m, i) => (
-              <li key={i}>{m}</li>
+              <li key={`${m}-${i}`}>{m}</li>
             ))}
           </ul>
         </div>
@@ -185,7 +185,7 @@ export function TemplateDetailDrawer({ template, onClose }: TemplateDetailDrawer
         </span>
         <div className="flex flex-wrap items-center gap-1.5">
           {template.recipe?.nodes?.map((node, i) => (
-            <React.Fragment key={i}>
+            <React.Fragment key={`${node}-${i}`}>
               <span className="rounded-md border border-border bg-muted/60 px-2 py-1 text-[11px] font-mono text-foreground font-semibold">
                 {node}
               </span>
@@ -210,7 +210,7 @@ export function TemplateDetailDrawer({ template, onClose }: TemplateDetailDrawer
         <div className="grid grid-cols-1 gap-1.5 max-h-40 overflow-y-auto scroll-quiet">
           {template.slots?.map((s, idx) => (
             <div
-              key={idx}
+              key={s.key || idx}
               className="flex items-center justify-between rounded-lg border border-border/70 bg-background/50 px-2.5 py-1.5 text-xs"
             >
               <div className="flex items-center gap-1.5 truncate">
@@ -265,7 +265,7 @@ export function TemplateDetailDrawer({ template, onClose }: TemplateDetailDrawer
             <div className="pt-1 border-t border-border/60">
               <span className="text-muted-foreground block mb-1">Nguồn & Giấy phép:</span>
               {template.sources.map((src, i) => (
-                <div key={i} className="flex items-center justify-between text-[10px] text-muted-foreground">
+                <div key={`${src.name}-${i}`} className="flex items-center justify-between text-[10px] text-muted-foreground">
                   <span className="font-semibold text-foreground">{src.name}</span>
                   <span className="rounded bg-muted px-1.5 py-0.2">{src.license}</span>
                 </div>

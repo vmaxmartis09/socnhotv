@@ -340,7 +340,7 @@ export const NodeBody = React.memo(function NodeBody({
             {lines.length > 0 ? (
               <ul className="space-y-0.5 text-xs text-foreground">
                 {lines.slice(0, 4).map((l, i) => (
-                  <li key={i} className="line-clamp-1">{l}</li>
+                  <li key={`${nodeId}-line-${i}-${l.slice(0, 10)}`} className="line-clamp-1">{l}</li>
                 ))}
               </ul>
             ) : (
@@ -475,7 +475,7 @@ export const NodeBody = React.memo(function NodeBody({
           {lines.length > 0 && (
             <ul className="space-y-0.5 rounded-md border border-border bg-muted/20 p-2 text-xs">
               {lines.slice(0, 4).map((l, i) => (
-                <li key={i} className="truncate text-muted-foreground">
+                <li key={`${nodeId}-cap-${i}-${l.slice(0, 10)}`} className="truncate text-muted-foreground">
                   {l}
                 </li>
               ))}

@@ -314,7 +314,7 @@ export function JobsCostTab() {
               return (
                 <div
                   key={out.id || out.slug}
-                  className="rounded-lg border border-border bg-card/80 p-2.5 flex items-center justify-between gap-3 shadow-xs hover:border-emerald-500/40 transition-colors"
+                  className="virtual-row rounded-lg border border-border bg-card/80 p-2.5 flex items-center justify-between gap-3 shadow-xs hover:border-emerald-500/40 transition-colors"
                 >
                   {/* Thumbnail / Icon */}
                   <div className="relative w-12 h-16 rounded overflow-hidden bg-black/40 border border-border/80 shrink-0 flex items-center justify-center">

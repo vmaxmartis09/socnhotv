@@ -952,7 +952,7 @@ export function ProjectTab() {
               <ul className="space-y-1.5">
                 {(selectedChar.appearances || []).map((ap, i) => (
                   <li
-                    key={i}
+                    key={`${ap.episodeId || ap.episodeTitle}-${i}`}
                     className="rounded border border-border bg-card p-2 space-y-0.5"
                   >
                     <p className="font-medium text-foreground">

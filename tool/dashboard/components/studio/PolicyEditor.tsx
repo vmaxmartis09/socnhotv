@@ -440,7 +440,7 @@ export function PolicyEditor({ projectId: projectIdProp }: { projectId?: string 
                 : `${report.blockCount} chặn · ${report.warnCount} cảnh báo`}
             </p>
             {report.violations.map((v, i) => (
-              <p key={i} className="rounded bg-muted/50 p-1.5 text-[13px] text-foreground">
+              <p key={`${v.term}-${v.category}-${i}`} className="rounded bg-muted/50 p-1.5 text-[13px] text-foreground">
                 <b>{v.term}</b> <span className="text-muted-foreground">· {v.category}</span>
                 <br />
                 <span className="text-muted-foreground">…{v.snippet}…</span>

@@ -184,3 +184,18 @@ table, .tnum, [data-tnum] {
   background-size: 200% 100%;
   animation: ai-shimmer 1.6s linear infinite;
 }
+
+
+/* Virtualization nhẹ cho danh sách dài (CSS content-visibility) */
+.virtual-item {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 48px;
+}
+.virtual-row {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 56px;
+}
+.virtual-card {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 200px;
+}

@@ -865,7 +865,7 @@ export function ToolboxPanel() {
                   const ready = tool.status === "verified" || tool.status === "installed";
                   const expanded = open === tool.id;
                   return (
-                    <div key={tool.id} className={cn("space-y-2.5 rounded-xl border bg-card p-3 transition-colors", expanded ? "border-foreground/25" : "border-border")}>
+                    <div key={tool.id} className={cn("virtual-item space-y-2.5 rounded-xl border bg-card p-3 transition-colors", expanded ? "border-foreground/25" : "border-border")}>
                       <button
                         type="button"
                         onClick={() => setOpen(expanded ? null : tool.id)}
@@ -936,7 +936,7 @@ export function ToolboxPanel() {
                   </div>
                 ) : (
                   vaults.cutouts.map((item) => (
-                    <div key={item.id} className="space-y-2 rounded-xl border border-border bg-card p-3">
+                    <div key={item.id} className="virtual-card space-y-2 rounded-xl border border-border bg-card p-3">
                       <div className="flex items-center justify-between text-[11px]">
                         <span className="font-mono font-medium">#{item.id}</span>
                         <span className="text-muted-foreground">

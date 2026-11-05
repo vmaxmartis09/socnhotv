@@ -469,7 +469,7 @@ export function QueueView({ onRefresh }: QueueViewProps) {
                       key={item.target_id}
                       onClick={() => handleSelectRow(item)}
                       className={cn(
-                        "hover:bg-muted/40 cursor-pointer transition-colors",
+                        "virtual-row hover:bg-muted/40 cursor-pointer transition-colors",
                         isEntityActive && "bg-muted/60",
                         isSelected && "bg-primary/5"
                       )}

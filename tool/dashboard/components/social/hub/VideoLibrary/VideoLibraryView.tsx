@@ -252,7 +252,7 @@ export function VideoLibraryView({ onPlanVideos }: VideoLibraryViewProps) {
                   key={video.id}
                   onClick={() => handleSelectVideo(video)}
                   className={cn(
-                    "group relative flex flex-col rounded-xl border bg-card overflow-hidden cursor-pointer transition-all hover:shadow-md",
+                    "virtual-card group relative flex flex-col rounded-xl border bg-card overflow-hidden cursor-pointer transition-all hover:shadow-md",
                     isEntityActive
                       ? "border-primary ring-1 ring-primary"
                       : "border-border hover:border-border/80",
@@ -360,7 +360,7 @@ export function VideoLibraryView({ onPlanVideos }: VideoLibraryViewProps) {
                       key={video.id}
                       onClick={() => handleSelectVideo(video)}
                       className={cn(
-                        "hover:bg-muted/40 cursor-pointer transition-colors",
+                        "virtual-row hover:bg-muted/40 cursor-pointer transition-colors",
                         isEntityActive && "bg-muted/60",
                         isSelected && "bg-primary/5"
                       )}

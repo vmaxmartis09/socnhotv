@@ -258,7 +258,7 @@ function PostDetailView({
         {post.hashtags && post.hashtags.length > 0 && (
           <div className="flex flex-wrap gap-1 pt-1">
             {post.hashtags.map((h, i) => (
-              <span key={i} className="text-[11px] text-primary bg-primary/10 px-1.5 py-0.5 rounded">
+              <span key={`${h}-${i}`} className="text-[11px] text-primary bg-primary/10 px-1.5 py-0.5 rounded">
                 #{h.replace(/^#/, "")}
               </span>
             ))}
@@ -356,7 +356,7 @@ function AccountDetailView({ account }: { account: SocialAccount }) {
           <span className="text-amber-500 font-semibold block">Khung giờ vàng</span>
           <div className="flex flex-wrap gap-1.5">
             {account.golden_windows.map((w, idx) => (
-              <span key={idx} className="bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded text-[11px] font-mono">
+              <span key={`${w}-${idx}`} className="bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded text-[11px] font-mono">
                 {w}
               </span>
             ))}
