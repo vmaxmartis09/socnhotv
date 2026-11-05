@@ -1,0 +1,39 @@
+{
+  "ok": true,
+  "outputs": [
+    {
+      "path": "D:\\socnhotv\\data\\shared\\assets\\audio\\1ac82b3a\\timings.json",
+      "kind": "word_timings",
+      "sha256": "4e29ee69163f6a1e5a81d61c349deac6ffdf34e8794cf9598c3781267667f45b"
+    },
+    {
+      "path": "D:\\socnhotv\\data\\shared\\assets\\audio\\1ac82b3a\\subtitles.srt",
+      "kind": "subtitles_srt",
+      "sha256": "02991efee645048042b2b2fa8c4cf8d6378a1760f6fe4731b809ffcda84cbd65"
+    }
+  ],
+  "store_records": [
+    {
+      "id": "1ac82b3a",
+      "created_by_tool": "stt-align",
+      "tool_version": "1.0.0",
+      "source": "D:\\socnhotv\\data\\shared\\voice_vault\\soc-nho\\cloned_default_sample.mp3",
+      "license": "Apache-2.0",
+      "created_at": "2026-11-05T15:41:18.674379",
+      "files": {
+        "timings": "D:\\socnhotv\\data\\shared\\assets\\audio\\1ac82b3a\\timings.json",
+        "subtitles": "D:\\socnhotv\\data\\shared\\assets\\audio\\1ac82b3a\\subtitles.srt",
+        "source_json": "D:\\socnhotv\\data\\shared\\assets\\audio\\1ac82b3a\\source.json"
+      },
+      "metadata": {
+        "duration": 4.49,
+        "language": "vi",
+        "text_preview": "Xin ch\u00e0o! M\u00ecnh l\u00e0 s\u00f3p nh\u1ecf TV \u0111\u00e2y n\u00e8! Ch\u00fac c\u1ea3 nh\u00e0 1 ng\u00e0y th\u1eadt vui!",
+        "word_count": 16
+      }
+    }
+  ],
+  "warnings": [],
+  "error": null,
+  "elapsed_s": 5.9156
+}

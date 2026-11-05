@@ -18,7 +18,7 @@
 | **T-04** | Chuẩn hóa `voice_vault`: voice.json, aliases, todo_clone | DONE | `data/shared/voice_vault/`, `tool/toolbox/toolbox_cli/vault_resolver.py` | 8 voice (3 ready, 5 todo_clone), alias voice-koala -> koala-voice chuẩn, file cũ nguyên vẹn |
 | **T-08** | Tool bundle ffmpeg static (CPU) | DONE | `tool/toolbox/tools/ffmpeg-bin/`, `data/shared/models/ffmpeg-bin/` | Tải bản static ffmpeg 9.0.2 CPU, toolbox doctor tự phát hiện, không đụng PATH |
 | **T-05** | Tool tách nền `bg-remove` (rembg CPU) | VERIFIED | `data/shared/toolbox/ready/T-05.md`, `data/shared/assets/cutouts/71185678/` | Đo CPU 4.02s/ảnh, kiểm code alpha min 0 max 255 đạt chuẩn, user đã test và OK |
-| **T-07** | Tool phiên âm `stt-align` (faster-whisper CPU) | PLANNED | `tool/toolbox/tools/stt-align/` | Chờ test user |
+| **T-07** | Tool phiên âm `stt-align` (faster-whisper CPU) | READY_FOR_USER_TEST | `data/shared/toolbox/ready/T-07.md`, `data/shared/assets/audio/1ac82b3a/` | faster-whisper small CPU 6.21s, word timings khớp 16/16 từ độ lệch <50ms |
 | **T-06** | Tool clone giọng `voice-clone` (OmniVoice wrapper) | PLANNED | `tool/toolbox/tools/voice-clone/` | Chờ test user |
 | **T-11** | Tool tách cảnh `scene-cut` (PySceneDetect + auto-editor) | PLANNED | `tool/toolbox/tools/scene-cut/` | Chờ test user |
 | **T-10** | Tool độ sâu `depth-layers` (Depth Anything V2 Small) | PLANNED | `tool/toolbox/tools/depth-layers/` | Chờ test user |

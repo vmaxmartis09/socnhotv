@@ -1,0 +1,12 @@
+{
+  "params": {
+    "model_size": "small",
+    "language": "vi",
+    "compute_type": "int8"
+  },
+  "inputs": [
+    "D:\\socnhotv\\data\\shared\\voice_vault\\soc-nho\\cloned_default_sample.mp3"
+  ],
+  "project": "soc-nho-tv",
+  "dry_run": false
+}
