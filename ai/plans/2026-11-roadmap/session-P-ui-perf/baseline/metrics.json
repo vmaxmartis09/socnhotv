@@ -1,0 +1,315 @@
+{
+  "bundle": {
+    "studioFirstLoadJs": "320 kB",
+    "studioRouteSize": "92.1 kB",
+    "sharedJs": "103 kB",
+    "rootFirstLoadJs": "209 kB"
+  },
+  "layoutIssues": [],
+  "smallButtons": [
+    {
+      "page": "studio",
+      "viewport": "768x1024",
+      "count": 56,
+      "samples": [
+        {
+          "tag": "BUTTON",
+          "aria": "Nối đầu ra",
+          "w": 20,
+          "h": 20
+        },
+        {
+          "tag": "BUTTON",
+          "aria": "Đổi tên node",
+          "w": 24,
+          "h": 24
+        },
+        {
+          "tag": "BUTTON",
+          "aria": "Sửa thông số ở tab Node",
+          "w": 24,
+          "h": 24
+        },
+        {
+          "tag": "BUTTON",
+          "aria": "Chạy node này",
+          "w": 24,
+          "h": 24
+        },
+        {
+          "tag": "BUTTON",
+          "aria": "Nối đầu vào",
+          "w": 20,
+          "h": 20
+        }
+      ]
+    },
+    {
+      "page": "social",
+      "viewport": "768x1024",
+      "count": 56,
+      "samples": [
+        {
+          "tag": "BUTTON",
+          "aria": "Nối đầu ra",
+          "w": 20,
+          "h": 20
+        },
+        {
+          "tag": "BUTTON",
+          "aria": "Đổi tên node",
+          "w": 24,
+          "h": 24
+        },
+        {
+          "tag": "BUTTON",
+          "aria": "Sửa thông số ở tab Node",
+          "w": 24,
+          "h": 24
+        },
+        {
+          "tag": "BUTTON",
+          "aria": "Chạy node này",
+          "w": 24,
+          "h": 24
+        },
+        {
+          "tag": "BUTTON",
+          "aria": "Nối đầu vào",
+          "w": 20,
+          "h": 20
+        }
+      ]
+    },
+    {
+      "page": "studio",
+      "viewport": "1024x768",
+      "count": 58,
+      "samples": [
+        {
+          "tag": "BUTTON",
+          "aria": "Nối đầu ra",
+          "w": 20,
+          "h": 20
+        },
+        {
+          "tag": "BUTTON",
+          "aria": "Đổi tên node",
+          "w": 24,
+          "h": 24
+        },
+        {
+          "tag": "BUTTON",
+          "aria": "Sửa thông số ở tab Node",
+          "w": 24,
+          "h": 24
+        },
+        {
+          "tag": "BUTTON",
+          "aria": "Chạy node này",
+          "w": 24,
+          "h": 24
+        },
+        {
+          "tag": "BUTTON",
+          "aria": "Nối đầu vào",
+          "w": 20,
+          "h": 20
+        }
+      ]
+    },
+    {
+      "page": "social",
+      "viewport": "1024x768",
+      "count": 56,
+      "samples": [
+        {
+          "tag": "BUTTON",
+          "aria": "Nối đầu ra",
+          "w": 20,
+          "h": 20
+        },
+        {
+          "tag": "BUTTON",
+          "aria": "Đổi tên node",
+          "w": 24,
+          "h": 24
+        },
+        {
+          "tag": "BUTTON",
+          "aria": "Sửa thông số ở tab Node",
+          "w": 24,
+          "h": 24
+        },
+        {
+          "tag": "BUTTON",
+          "aria": "Chạy node này",
+          "w": 24,
+          "h": 24
+        },
+        {
+          "tag": "BUTTON",
+          "aria": "Nối đầu vào",
+          "w": 20,
+          "h": 20
+        }
+      ]
+    },
+    {
+      "page": "studio",
+      "viewport": "1440x900",
+      "count": 56,
+      "samples": [
+        {
+          "tag": "BUTTON",
+          "aria": "Nối đầu ra",
+          "w": 20,
+          "h": 20
+        },
+        {
+          "tag": "BUTTON",
+          "aria": "Đổi tên node",
+          "w": 24,
+          "h": 24
+        },
+        {
+          "tag": "BUTTON",
+          "aria": "Sửa thông số ở tab Node",
+          "w": 24,
+          "h": 24
+        },
+        {
+          "tag": "BUTTON",
+          "aria": "Chạy node này",
+          "w": 24,
+          "h": 24
+        },
+        {
+          "tag": "BUTTON",
+          "aria": "Nối đầu vào",
+          "w": 20,
+          "h": 20
+        }
+      ]
+    },
+    {
+      "page": "social",
+      "viewport": "1440x900",
+      "count": 56,
+      "samples": [
+        {
+          "tag": "BUTTON",
+          "aria": "Nối đầu ra",
+          "w": 20,
+          "h": 20
+        },
+        {
+          "tag": "BUTTON",
+          "aria": "Đổi tên node",
+          "w": 24,
+          "h": 24
+        },
+        {
+          "tag": "BUTTON",
+          "aria": "Sửa thông số ở tab Node",
+          "w": 24,
+          "h": 24
+        },
+        {
+          "tag": "BUTTON",
+          "aria": "Chạy node này",
+          "w": 24,
+          "h": 24
+        },
+        {
+          "tag": "BUTTON",
+          "aria": "Nối đầu vào",
+          "w": 20,
+          "h": 20
+        }
+      ]
+    },
+    {
+      "page": "studio",
+      "viewport": "1920x1080",
+      "count": 58,
+      "samples": [
+        {
+          "tag": "BUTTON",
+          "aria": "Nối đầu ra",
+          "w": 20,
+          "h": 20
+        },
+        {
+          "tag": "BUTTON",
+          "aria": "Đổi tên node",
+          "w": 24,
+          "h": 24
+        },
+        {
+          "tag": "BUTTON",
+          "aria": "Sửa thông số ở tab Node",
+          "w": 24,
+          "h": 24
+        },
+        {
+          "tag": "BUTTON",
+          "aria": "Chạy node này",
+          "w": 24,
+          "h": 24
+        },
+        {
+          "tag": "BUTTON",
+          "aria": "Nối đầu vào",
+          "w": 20,
+          "h": 20
+        }
+      ]
+    },
+    {
+      "page": "social",
+      "viewport": "1920x1080",
+      "count": 56,
+      "samples": [
+        {
+          "tag": "BUTTON",
+          "aria": "Nối đầu ra",
+          "w": 20,
+          "h": 20
+        },
+        {
+          "tag": "BUTTON",
+          "aria": "Đổi tên node",
+          "w": 24,
+          "h": 24
+        },
+        {
+          "tag": "BUTTON",
+          "aria": "Sửa thông số ở tab Node",
+          "w": 24,
+          "h": 24
+        },
+        {
+          "tag": "BUTTON",
+          "aria": "Chạy node này",
+          "w": 24,
+          "h": 24
+        },
+        {
+          "tag": "BUTTON",
+          "aria": "Nối đầu vào",
+          "w": 20,
+          "h": 20
+        }
+      ]
+    }
+  ],
+  "interactions": {
+    "clickLatencyMs": 1,
+    "events": []
+  },
+  "canvas": {
+    "nodeCount": 9,
+    "edgeCount": 12
+  }
+}
