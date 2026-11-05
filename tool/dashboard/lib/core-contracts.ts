@@ -13,7 +13,8 @@ export type PortType =
   | "scenes"
   | "character"
   | "captions"
-  | "composition";
+  | "composition"
+  | "policy";
 
 export type ArtifactKind =
   | "image"

@@ -50,6 +50,7 @@ export const PORT_TYPE_COLORS: Record<PortType, string> = {
   video: "#b4531a",
   composition: "#b4531a",
   audio: "#a86f0c",
+  policy: "#9f3a38",
 };
 
 /** Đồ thị mẫu 9 bước giữ nguyên cấu trúc nhưng bỏ nội dung riêng của Sóc Nhỏ khi dùng cho dự án khác. */

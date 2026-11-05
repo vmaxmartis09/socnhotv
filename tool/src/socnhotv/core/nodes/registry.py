@@ -139,18 +139,40 @@ class NodeRegistry:
                 category="Quality",
                 description="Chấm điểm ảnh trước khi tốn tiền tạo video",
                 input_ports=[
-                    PortDefinition(name="media", port_type=PortType.IMAGE, description="Ảnh hoặc video cần thẩm định"),
-                    PortDefinition(name="criteria", port_type=PortType.TEXT, description="Tiêu chí thẩm định (ví dụ: đúng đuôi xù, áo vàng)", required=False)
+                    PortDefinition(name="media", port_type=PortType.IMAGE, description="Ảnh hoặc video cần thẩm định", required=False),
+                    PortDefinition(name="criteria", port_type=PortType.TEXT, description="Tiêu chí thẩm định (ví dụ: đúng đuôi xù, áo vàng)", required=False),
+                    PortDefinition(name="text", port_type=PortType.TEXT, description="Lời nói / kịch bản / prompt cần kiểm chính sách", required=False),
+                    PortDefinition(name="captions", port_type=PortType.CAPTIONS, description="Caption cần kiểm chính sách", required=False),
+                    PortDefinition(name="scenes", port_type=PortType.SCENES, description="Danh sách cảnh (lời thoại + prompt) cần kiểm", required=False),
+                    PortDefinition(name="policy", port_type=PortType.POLICY, description="Chính sách riêng (mặc định: chính sách của dự án)", required=False),
                 ],
                 output_ports=[
                     PortDefinition(name="media", port_type=PortType.IMAGE, description="Media đã qua kiểm duyệt"),
-                    PortDefinition(name="pass_fail", port_type=PortType.TEXT, description="Kết quả đạt/không đạt + điểm")
+                    PortDefinition(name="pass_fail", port_type=PortType.TEXT, description="Kết quả đạt/không đạt + điểm + vi phạm chính sách"),
+                    PortDefinition(name="violations", port_type=PortType.TEXT, description="Danh sách từ ngữ vi phạm chính sách", required=False),
                 ],
                 default_params={
                     "thresholdScore": 0.85,
                     "maxRetries": 2,
+                    "policyAutoScan": True,
                     "criteria": "Nhân vật Sóc Nhỏ 100cm, áo phông vàng, quần short đen, đuôi xù lớn, không chữ lạ",
                 },
+                mockable=True,
+            )
+        )
+
+        # 6b. Chính sách nội dung (xuyên suốt dự án)
+        cls.register(
+            NodeDefinition(
+                type_name="policy",
+                display_name="Chính sách nội dung",
+                category="Quality",
+                description="Chính sách của dự án (từ cấm, mức vi phạm) — nối vào node Kiểm tra chất lượng hoặc để mặc định theo dự án",
+                input_ports=[],
+                output_ports=[
+                    PortDefinition(name="policy", port_type=PortType.POLICY, description="Chính sách nội dung đang áp dụng")
+                ],
+                default_params={"extraTerms": [], "extraSeverity": "block"},
                 mockable=True,
             )
         )

@@ -17,6 +17,7 @@ class PortType(str, enum.Enum):
     CHARACTER = "character"
     CAPTIONS = "captions"
     COMPOSITION = "composition"
+    POLICY = "policy"
 
 
 def is_port_compatible(source_type: PortType, target_type: PortType) -> bool:

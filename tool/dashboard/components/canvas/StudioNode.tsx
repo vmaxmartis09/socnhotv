@@ -39,6 +39,8 @@ import {
   FileText,
   Images,
   Users,
+  Pencil,
+  RefreshCw,
   Layers,
   Sparkles,
   Volume2,
@@ -55,7 +57,7 @@ export type { StudioNodeData };
 /** Card nguồn (không có đầu vào): có 2 chế độ xem / chỉnh sửa. Xem ai/rules/node-card-style.md */
 const SOURCE_TYPES = new Set(["text", "image", "character"]);
 /** Card xử lý có 2 chế độ: xem = kết quả; chỉnh sửa = tham số + cổng đầy đủ. */
-const PROCESS_TYPES = new Set(["script", "image_gen", "video_gen", "voice_tts", "image_edit", "quality_check", "vision_analyze", "captions", "hyperframes_render", "export"]);
+const PROCESS_TYPES = new Set(["script", "image_gen", "video_gen", "voice_tts", "image_edit", "quality_check", "vision_analyze", "captions", "hyperframes_render", "export", "policy"]);
 
 /** Icon thay cho chữ kiểu dữ liệu ở cổng. */
 function portIconOf(portType: string): React.ComponentType<{ className?: string; strokeWidth?: number }> | null {
@@ -65,6 +67,7 @@ function portIconOf(portType: string): React.ComponentType<{ className?: string;
   if (portType === "audio") return Volume2;
   if (portType === "video") return Film;
   if (portType === "scenes") return Layers;
+  if (portType === "policy") return ShieldCheck;
   return null;
 }
 
@@ -208,7 +211,6 @@ export const StudioNode = memo(function StudioNode({
       ? "text-foreground"
       : "text-muted-foreground";
 
-  const hasError = Boolean(data.errorMessage) || issues.length > 0 || data.status === "failed";
 
   // Bố cục 3 vùng: NHẬN (trên) · LÀM (giữa) · TRẢ (dưới). Cổng bám theo hàng của vùng tương ứng.
   const HEADER = 44;
@@ -226,6 +228,19 @@ export const StudioNode = memo(function StudioNode({
   const isSourceNode = SOURCE_TYPES.has(def.typeName);
   const isModeNode = isSourceNode || PROCESS_TYPES.has(def.typeName);
   const [collapsed, setCollapsed] = useState(false);
+  const [charPicker, setCharPicker] = useState(false);
+  const [renaming, setRenaming] = useState(false);
+  // Tên hiển thị: tên tuỳ đặt > (node nhân vật) tên nhân vật > tên loại node
+  const hasCustomName = typeof p._customName === "string" && p._customName.trim() !== "";
+  const nodeTitle = hasCustomName
+    ? def.displayName
+    : def.typeName === "character" && boundChar
+    ? boundChar.name
+    : def.displayName;
+  const { updateNodeParams } = useStudioStore();
+  useEffect(() => {
+    if (!selected) setCharPicker(false);
+  }, [selected]);
   // Card Text có 2 chế độ: xem (mặc định) / chỉnh sửa (mở rộng). Bấm tiêu đề để đổi.
   // Mỗi card tự quản lý trạng thái của mình (không ảnh hưởng card khác, không tự đóng khi bỏ chọn).
   // Cổng vào đang mở khung chọn nguồn (node khác / tải lên / dự án / nhân vật)
@@ -240,6 +255,21 @@ export const StudioNode = memo(function StudioNode({
       (p[pt.name] === undefined || p[pt.name] === "")
   );
   const inputsOk = missingPorts.length === 0;
+
+  // Thông báo lỗi THỐNG NHẤT cho mọi node — luôn hiện ngay dưới card.
+  // Ưu tiên: lỗi chạy thật > lỗi kiểm tra đồ thị > thiếu đầu vào (tính trực tiếp từ dây đang nối).
+  const missingMessage = inputsOk
+    ? null
+    : `Thiếu đầu vào bắt buộc: ${missingPorts
+        .map((pt) => `${pt.name} (${t(`portTypes.${pt.portType}` as any)})`)
+        .join(", ")}. Hãy nối node cấp dữ liệu vào.`;
+  const staleRunError = data.errorMessage && data.status !== "failed" && inputsOk;
+  const errorText =
+    (staleRunError ? null : data.errorMessage) ||
+    issues[0] ||
+    missingMessage ||
+    (data.status === "failed" ? "Node chạy thất bại nhưng không có chi tiết lỗi. Xem log chạy để biết thêm." : null);
+  const hasError = Boolean(errorText);
 
   const [guide, setGuide] = useState<"in" | "out" | null>(null);
   const rootRef = useRef<HTMLDivElement>(null);
@@ -549,13 +579,35 @@ export const StudioNode = memo(function StudioNode({
             setCollapsed((v) => !v);
           }}
         >
-          {def.displayName}
+          {renaming ? (
+            <input
+              autoFocus
+              defaultValue={nodeTitle}
+              onClick={(e) => e.stopPropagation()}
+              onDoubleClick={(e) => e.stopPropagation()}
+              onBlur={(e) => {
+                updateNodeParams(id, { _customName: e.target.value.trim() });
+                setRenaming(false);
+              }}
+              onKeyDown={(e) => {
+                e.stopPropagation();
+                if (e.key === "Enter") (e.target as HTMLInputElement).blur();
+                if (e.key === "Escape") setRenaming(false);
+              }}
+              className="nodrag w-full rounded border border-border bg-card px-1 text-[15px] font-semibold outline-none focus:border-foreground"
+            />
+          ) : (
+            nodeTitle
+          )}
         </span>
         {stateKey !== "ready" && stateKey !== "idle" && (
         <span title={`${stateLabel}${stateKey === "running" && typeof data.progressPct === "number" ? ` ${Math.round(data.progressPct)}%` : ""}`} className={cn("flex h-6 w-6 items-center justify-center", statusColor)}>
           <StatusIcon className={cn("h-3.5 w-3.5", stateKey === "running" && "animate-spin")} />
         </span>
         )}
+        <IconBtn label="Đổi tên node" onClick={() => setRenaming(true)}>
+          <Pencil className="h-3 w-3" />
+        </IconBtn>
         <IconBtn label={t("editInNodeTab")} onClick={() => { setSelectedNodeId(id); onOpenNodeInspector(id); }}>
           <Sliders className="h-3.5 w-3.5" />
         </IconBtn>
@@ -652,21 +704,9 @@ export const StudioNode = memo(function StudioNode({
             character={boundChar}
             compact={collapsed}
             expanded={expanded}
+            onPickCharacter={() => setCharPicker((v) => !v)}
             connectedInputs={def.inputPorts.filter((pt) => connectedPorts.has(`${id}:in:${pt.name}`)).map((pt) => pt.name)}
           />
-          {isCharacter && boundChar && !collapsed && expanded && (
-            <button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                useHubScope.getState().openTab("characters", null, boundChar.id);
-              }}
-              className="nodrag flex w-full items-center justify-center gap-1 rounded-lg border border-border py-1.5 text-xs text-foreground transition-colors hover:bg-accent"
-            >
-              <Users className="h-3.5 w-3.5" />
-              Mở hồ sơ nhân vật
-            </button>
-          )}
         </div>
       </div>
 
@@ -699,16 +739,9 @@ export const StudioNode = memo(function StudioNode({
         </div>
       )}
 
-      {(data.summaryText || hasError) && (
-        <div className="space-y-1 px-2.5 pb-1">
-          {data.summaryText && (
-            <p className="line-clamp-2 rounded border border-border/70 bg-muted/20 px-2 py-1 text-xs text-foreground">{data.summaryText}</p>
-          )}
-          {hasError && (
-            <p className="rounded border border-semantic-danger/40 px-2 py-1 text-xs text-semantic-danger">
-              {data.errorMessage || issues[0]}
-            </p>
-          )}
+      {data.summaryText && (
+        <div className="px-2.5 pb-1">
+          <p className="line-clamp-2 rounded border border-border/70 bg-muted/20 px-2 py-1 text-xs text-foreground">{data.summaryText}</p>
         </div>
       )}
 
@@ -723,6 +756,72 @@ export const StudioNode = memo(function StudioNode({
         </span>
       </div>
       </Reveal>
+
+      {/* Bảng chọn nhân vật: tab card bên cạnh, dạng avatar + tạo mới */}
+      {isCharacter && charPicker && (
+        <div
+          onClick={(e) => e.stopPropagation()}
+          style={{ left: "calc(100% + 8px)", top: 0 }}
+          className="nodrag nowheel absolute z-30 w-[380px] rounded-xl border border-border bg-card p-2 shadow-lg"
+        >
+          <p className="px-1 pb-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Đổi nhân vật</p>
+          <div className="grid max-h-[460px] grid-cols-4 gap-2 overflow-y-auto">
+            {characters.map((c) => {
+              const active = c.id === p.characterId;
+              return (
+                <button
+                  key={c.id}
+                  type="button"
+                  title={`${c.name} · ${c.heightCm}cm`}
+                  onClick={() => {
+                    updateNodeParams(id, { characterId: c.id });
+                    setCharPicker(false);
+                  }}
+                  className={cn(
+                    "flex flex-col items-center gap-1 rounded-lg border p-1.5 text-center transition-colors hover:bg-accent",
+                    active ? "border-foreground bg-accent" : "border-border"
+                  )}
+                >
+                  {c.referenceImages?.[0] ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={c.referenceImages[0]} alt="" className="h-16 w-16 rounded-full border border-border object-cover object-top" />
+                  ) : (
+                    <span className="flex h-16 w-16 items-center justify-center rounded-full bg-muted text-base font-semibold text-muted-foreground">
+                      {c.name.charAt(0)}
+                    </span>
+                  )}
+                  <span className="w-full truncate text-[10px] text-foreground">{c.name}</span>
+                </button>
+              );
+            })}
+            <button
+              type="button"
+              title="Tạo nhân vật mới"
+              aria-label="Tạo nhân vật mới"
+              onClick={() => {
+                setCharPicker(false);
+                useHubScope.getState().openTab("characters", "create-character");
+              }}
+              className="flex flex-col items-center justify-center gap-1 rounded-lg border border-dashed border-border p-1.5 text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+            >
+              <span className="flex h-16 w-16 items-center justify-center rounded-full border border-dashed border-border"><Plus className="h-5 w-5" /></span>
+              <span className="text-[10px]">Tạo mới</span>
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Thông báo lỗi thống nhất: luôn nằm ngay dưới card, mọi loại node */}
+      {errorText && (
+        <div
+          role="alert"
+          data-node-error
+          className="absolute inset-x-0 top-full z-10 mt-1.5 flex items-start gap-1.5 rounded-lg border border-semantic-danger/50 bg-card px-2.5 py-1.5 text-xs leading-snug text-semantic-danger shadow-sm"
+        >
+          <AlertTriangle className="mt-0.5 h-3.5 w-3.5 shrink-0" />
+          <span className="min-w-0 break-words">{errorText}</span>
+        </div>
+      )}
     </motion.div>
   );
 });

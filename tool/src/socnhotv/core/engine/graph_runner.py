@@ -34,6 +34,7 @@ from socnhotv.core.contracts.types import (
     SSEEvent,
     SSEEventType,
 )
+from socnhotv.core.engine import content_policy
 from socnhotv.core.engine.validator import validate_graph
 from socnhotv.core.models_registry.registry import ModelRegistry
 from socnhotv.core.nodes.registry import NodeRegistry
@@ -414,6 +415,63 @@ class GraphRunner:
                 resolved[port_name] = in_ref
 
         return resolved
+
+    def _collect_policy_texts(
+        self,
+        node: NodeInstance,
+        resolved: Dict[str, Any],
+        all_outputs: Dict[str, Dict[str, Any]],
+        policy: Dict[str, Any],
+    ) -> Dict[str, str]:
+        """Gom lời nói / caption / kịch bản / prompt cần kiểm: từ cổng vào, và (mặc định) toàn bộ node đã chạy trong flow."""
+        scopes = policy.get("scopes", {})
+        texts: Dict[str, str] = {}
+
+        def add(source: str, value: Any) -> None:
+            if isinstance(value, str) and value.strip():
+                texts[source] = value
+
+        def add_scenes(prefix: str, scenes: Any) -> None:
+            if not isinstance(scenes, list):
+                return
+            for i, sc in enumerate(scenes, 1):
+                if not isinstance(sc, dict):
+                    continue
+                sid = sc.get("shotId") or f"scene{sc.get('sceneNumber', i)}"
+                if scopes.get("dialogue", True):
+                    add(f"{prefix}{sid}.dialogue", sc.get("dialogue"))
+                if scopes.get("prompt", True):
+                    add(f"{prefix}{sid}.imagePrompt", sc.get("imagePrompt"))
+                    add(f"{prefix}{sid}.videoPrompt", sc.get("videoPrompt"))
+
+        def add_captions(source: str, art: Any) -> None:
+            if not scopes.get("caption", True) or art is None:
+                return
+            try:
+                if isinstance(art, Artifact):
+                    p = self.store.project_dir / art.uri
+                    if p.is_file():
+                        add(source, p.read_text(encoding="utf-8", errors="replace"))
+                elif isinstance(art, str):
+                    add(source, art)
+            except Exception:
+                pass
+
+        if scopes.get("script", True):
+            add("text", resolved.get("text"))
+        add_scenes("", resolved.get("scenes"))
+        add_captions("captions", resolved.get("captions"))
+
+        if node.params.get("policyAutoScan", True):
+            for nid, outs in all_outputs.items():
+                if nid == node.id or not isinstance(outs, dict):
+                    continue
+                for key in ("text", "dialogue", "prompt"):
+                    if scopes.get("script", True) or key != "text":
+                        add(f"{nid}.{key}", outs.get(key))
+                add_scenes(f"{nid}.", outs.get("scenes"))
+                add_captions(f"{nid}.captions", outs.get("captions"))
+        return texts
 
     def _resolve_script_ref(self, ref: Dict[str, Any]) -> Any:
         """Giải tham chiếu kịch bản tập: {"$ref":"script","episode":..,"facet":..,"shot":..}."""
@@ -904,7 +962,13 @@ class GraphRunner:
                     )
                 except Exception as e:
                     logger.warning(f"CaptionAdapter gặp lỗi ({e}), dùng phụ đề văn bản...")
+                    if not is_mock:
+                        raise RuntimeError(f"Không tạo được phụ đề từ audio: {e}") from e
 
+            if art is None and not is_mock:
+                raise ValueError(
+                    f"Node '{node.id}' (captions) thiếu audio đầu vào — hãy nối cổng 'audio' từ node giọng đọc."
+                )
             if art is None:
                 dialogue_text = str(resolved_inputs.get("text") or "Chào các bạn, mình là Sóc Nhỏ Bi nè!")
                 sub_text = f"00:00:00,000 --> 00:00:44,870\n{dialogue_text}\n"
@@ -1322,6 +1386,15 @@ class GraphRunner:
             primary_artifact = export_art
             cost_usd = 0.0
 
+        elif node_type == "policy":
+            pol = content_policy.load_policy(self.store.repo_root, self.store.project_id)
+            pol = content_policy.merge_extra_terms(
+                pol,
+                [str(t) for t in (node.params.get("extraTerms") or [])],
+                str(node.params.get("extraSeverity", "block")),
+            )
+            outputs["policy"] = pol
+
         elif node_type == "quality_check":
             media_in = resolved_inputs.get("media")
             criteria = str(
@@ -1335,7 +1408,25 @@ class GraphRunner:
             score = 0.98
             report_text = f"ĐẠT · 9.8/10 — Khớp tiêu chí: {criteria}"
 
-            if not is_mock and isinstance(media_in, Artifact) and self._is_real_provider():
+            # --- Kiểm định chính sách nội dung (luôn chạy; chính sách dự án, hoặc cổng 'policy' nếu có) ---
+            policy_in = resolved_inputs.get("policy")
+            policy = policy_in if isinstance(policy_in, dict) and policy_in.get("rules") is not None else (
+                content_policy.load_policy(self.store.repo_root, self.store.project_id)
+            )
+            texts = self._collect_policy_texts(node, resolved_inputs, all_node_outputs or {}, policy)
+            policy_report = content_policy.check_texts(texts, policy)
+            policy_text = content_policy.format_report(policy_report)
+
+            has_media = isinstance(media_in, Artifact)
+            if not is_mock and not has_media and not texts:
+                raise ValueError(
+                    f"Node '{node.id}' (quality_check) chưa có gì để kiểm — nối 'media' (ảnh/video) hoặc 'text'/'captions'/'scenes'."
+                )
+            if not is_mock and has_media and not self._is_real_provider():
+                raise RuntimeError(
+                    "quality_check cần provider thật (vision) để chấm điểm; hiện chỉ có mock nên không thể kết luận ĐẠT."
+                )
+            if not is_mock and has_media:
                 vis_fn = self.provider.analyze_vision
                 vis_res = await vis_fn(
                     **_filter_kwargs(
@@ -1364,14 +1455,20 @@ class GraphRunner:
                 report_text = f"{'ĐẠT' if passed else 'KHÔNG ĐẠT'} · {score:.2f} — {fb}"
                 cost_usd = float(vis_res.get("costUsd", 0.01))
 
+            passed = passed and policy_report["passed"]
+            if not has_media:
+                report_text = f"{'ĐẠT' if passed else 'KHÔNG ĐẠT'} — chỉ kiểm chính sách nội dung"
+            report_text = f"{report_text}\n{policy_text}"
             outputs["pass"] = passed
             outputs["score"] = score
             outputs["feedback"] = report_text
             outputs["pass_fail"] = report_text
+            outputs["violations"] = policy_text
+            outputs["policy_report"] = policy_report
             if isinstance(media_in, Artifact):
                 outputs["media"] = media_in
                 primary_artifact = media_in
-            else:
+            elif is_mock:
                 gen_fn = self.provider.generate_images
                 arts = await gen_fn(
                     **_filter_kwargs(

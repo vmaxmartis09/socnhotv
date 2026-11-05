@@ -7,6 +7,7 @@ import { FALLBACK_NODE_TYPES, estimateNodeCostUsd } from "@/lib/core-api";
 import { Pin, Check } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
 import { PortsEditor } from "./PortsEditor";
+import { PolicyEditor } from "@/components/studio/PolicyEditor";
 import { PortValueInput } from "@/components/canvas/PortValueInput";
 import { applyPortOverride } from "@/lib/node-ports";
 import type { NodeDefinition } from "@/lib/core-contracts";
@@ -128,6 +129,13 @@ export function NodeTab() {
       </div>
 
       <InputValuesSection nodeId={node.id} def={def} params={params} />
+
+      {(def.typeName === "quality_check" || def.typeName === "policy") && (
+        <section className="space-y-2.5 border-b border-border pb-3.5">
+          <h4 className="font-semibold text-foreground">Chính sách nội dung của dự án</h4>
+          <PolicyEditor />
+        </section>
+      )}
 
       <PortsEditor nodeId={node.id} baseDef={def} params={params} />
 

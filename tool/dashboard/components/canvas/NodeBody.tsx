@@ -1,6 +1,7 @@
 "use client";
 
 import { Reveal } from "./Reveal";
+import { fetchProjectPolicy, type ContentPolicy } from "@/lib/api/policy";
 import { CORE_URL } from "@/lib/repositories/core";
 import React from "react";
 import type { StudioNodeData } from "@/store/slices/canvasSlice";
@@ -16,6 +17,8 @@ import {
   Images,
 } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
+import { useHubScope } from "@/lib/hub";
+import { RefreshCw } from "@/components/ui/icons";
 import {
   NodeTextInput,
   NodeImageInput,
@@ -38,6 +41,8 @@ interface Props {
   compact?: boolean;
   /** Card Text: chế độ chỉnh sửa (mở rộng) */
   expanded?: boolean;
+  /** Card nhân vật: mở bảng chọn nhân vật bên cạnh */
+  onPickCharacter?: () => void;
 }
 
 const Chip = ({
@@ -109,7 +114,7 @@ function ImagePreview({
 }
 
 /** Thẻ nhân vật gọn: 1 ảnh lớn + tên + chip thông số */
-function CharacterHero({ c, compact, detailed }: { c: Character; compact?: boolean; detailed?: boolean }) {
+function CharacterHero({ c, compact, detailed, onPick }: { c: Character; compact?: boolean; detailed?: boolean; onPick?: () => void }) {
   const gallery = c.referenceImages.slice(1, 5);
   return (
     <div className="space-y-1.5 pt-1">
@@ -127,9 +132,32 @@ function CharacterHero({ c, compact, detailed }: { c: Character; compact?: boole
         <Empty icon={<ShieldCheck className="h-6 w-6" />} text={c.name} tall />
       )}
       <div className="flex flex-wrap items-center gap-1.5">
-        <span className="mr-1 text-sm font-semibold text-foreground">
+        <button
+          type="button"
+          title="Mở hồ sơ nhân vật"
+          aria-label="Mở hồ sơ nhân vật"
+          onClick={(e) => {
+            e.stopPropagation();
+            useHubScope.getState().openTab("characters", null, c.id);
+          }}
+          className="nodrag text-sm font-semibold text-foreground underline-offset-2 hover:underline"
+        >
           {c.name}
-        </span>
+        </button>
+        {onPick && (
+          <button
+            type="button"
+            title="Đổi nhân vật"
+            aria-label="Đổi nhân vật"
+            onClick={(e) => {
+              e.stopPropagation();
+              onPick();
+            }}
+            className="nodrag mr-1 flex h-6 w-6 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+          >
+            <RefreshCw className="h-3.5 w-3.5" />
+          </button>
+        )}
         <Chip title="Chiều cao">{c.heightCm} cm</Chip>
         <Chip title="Giọng">{c.voiceId || "—"}</Chip>
       </div>
@@ -231,6 +259,34 @@ function VoiceHoverSpeaker({
   );
 }
 
+/** Dòng tóm tắt chính sách nội dung của dự án (dùng ở card Chính sách và Kiểm tra chất lượng). */
+function PolicyBadge() {
+  const projectId = useStudioStore((s: any) => s.activeProjectId) as string;
+  const [pol, setPol] = React.useState<ContentPolicy | null | undefined>(undefined);
+  React.useEffect(() => {
+    let alive = true;
+    fetchProjectPolicy(projectId).then((p) => alive && setPol(p));
+    return () => {
+      alive = false;
+    };
+  }, [projectId]);
+  const rules = pol?.rules.filter((r) => r.enabled) || [];
+  const terms = rules.reduce((n, r) => n + r.terms.length, 0);
+  return (
+    <div className="flex items-center gap-2 rounded-md border border-dashed border-border px-2 py-1.5 text-xs">
+      <ShieldCheck className="h-3.5 w-3.5 shrink-0 text-muted-foreground" />
+      <span className="min-w-0 flex-1 truncate text-foreground">
+        {pol === undefined ? "Đang đọc chính sách…" : pol === null ? "Chưa đọc được chính sách" : pol.name}
+      </span>
+      {pol && (
+        <span className="shrink-0 text-[12px] text-muted-foreground">
+          {rules.length} quy tắc · {terms} từ
+        </span>
+      )}
+    </div>
+  );
+}
+
 /** Thân card cho từng loại node: cho phép nhập liệu trực tiếp ngay trên card. */
 export function NodeBody({
   nodeType,
@@ -240,6 +296,7 @@ export function NodeBody({
   connectedInputs,
   compact,
   expanded,
+  onPickCharacter,
 }: Props) {
   const { updateNodeParams } = useStudioStore();
   const p = data.params || {};
@@ -398,15 +455,7 @@ export function NodeBody({
     case "character":
       return (
         <div className="space-y-2">
-          <Reveal show={Boolean(expanded)}>
-            <div className="pb-1">
-              <NodeCharacterSelect
-                nodeId={nodeId}
-                characterId={p.characterId || "soc_nho"}
-              />
-            </div>
-          </Reveal>
-          {character && <CharacterHero c={character} compact={compact} detailed={Boolean(expanded)} />}
+          {character && <CharacterHero c={character} compact={compact} detailed={Boolean(expanded)} onPick={onPickCharacter} />}
         </div>
       );
 
@@ -553,15 +602,40 @@ export function NodeBody({
         </div>
       );
 
+    case "policy":
+      return (
+        <div className="space-y-2">
+          <PolicyBadge />
+          <Reveal show={Boolean(expanded)}>
+            <label className="block space-y-1 pt-1">
+              <span className="text-[13px] text-muted-foreground">Từ khoá bổ sung riêng cho node này (mỗi dòng một mục)</span>
+              <textarea
+                rows={3}
+                value={Array.isArray(p.extraTerms) ? p.extraTerms.join("\n") : ""}
+                onChange={(e) => updateNodeParams(nodeId, { extraTerms: e.target.value.split("\n") })}
+                className="nodrag nowheel w-full resize-y rounded-md border border-border bg-card p-2 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-brand"
+              />
+            </label>
+          </Reveal>
+        </div>
+      );
+
     case "quality_check":
     case "vision_analyze":
+      if (nodeType === "quality_check")
+        return (
+          <div className="space-y-2">
+            {url && data.previewType === "image" && <ImagePreview url={url} alt={nodeType} compact={compact} />}
+            {lines.length === 0 && !(url && data.previewType === "image") && (
+              <Empty icon={<ShieldCheck className="h-5 w-5" />} text="Chưa kiểm tra" />
+            )}
+            <PolicyBadge />
+          </div>
+        );
       if (url && data.previewType === "image")
         return <ImagePreview url={url} alt={nodeType} compact={compact} />;
       return lines.length > 0 ? null : (
-        <Empty
-          icon={<ShieldCheck className="h-5 w-5" />}
-          text={nodeType === "quality_check" ? "Chưa kiểm tra" : "Chưa phân tích"}
-        />
+        <Empty icon={<ShieldCheck className="h-5 w-5" />} text="Chưa phân tích" />
       );
 
     default:

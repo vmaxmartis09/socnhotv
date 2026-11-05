@@ -97,3 +97,10 @@ Mỗi cổng vào chọn được nguồn bất kỳ, bằng cùng một khối 
 
 **Nhân vật**: thuộc tính chọn được theo nhóm — Thông tin (tên, vai trò, mô tả, chiều cao, tỉ lệ), Prompt (prompt lock), Tính cách & bộ nhớ (tính cách, câu cửa miệng, thói quen, sự kiện), Giọng (mã giọng, tốc độ, giọng mẫu, file giọng), Ảnh (chính, tham chiếu, kho hình ảnh theo góc), Clip đã tạo, Xuất hiện theo tập. Giá trị nhân vật được sao chép vào cổng tại thời điểm chọn.
 - Màu dây luôn theo kiểu dữ liệu của cổng ra nguồn (`StudioEdge` tự tính, kể cả dây nạp từ file): text/script/scenes/captions xám, character xám đậm, image xanh lam, video/composition cam, audio vàng.
+
+## Chính sách nội dung (policy) — xuyên suốt dự án
+- Kiểu cổng mới `policy` (màu đỏ nâu `#9f3a38`, icon ShieldCheck) và node `policy` ("Chính sách nội dung", nguồn không đầu vào, ra cổng `policy`; `extraTerms` = từ khoá bổ sung riêng của node).
+- Chính sách của dự án lưu ở `data/projects/<id>/policy.json` (tự có mặc định "Made for Kids"); API `GET/PUT /data/projects/{id}/policy`, `POST .../policy/check`. Sửa ở **Project tab → Chính sách nội dung** hoặc tab Node của card Kiểm tra chất lượng / Chính sách (`PolicyEditor`).
+- Cấu trúc: `mode` (`standard` chỉ chặn mức `block`; `strict` cảnh báo cũng chặn), `scopes` (lời thoại, caption, kịch bản, prompt), `rules[{id,category,label,severity,enabled,terms[],note}]`, `allowlist[]`. Khớp theo ranh giới từ, không phân biệt hoa/thường, GIỮ dấu tiếng Việt (nhập thêm biến thể không dấu nếu cần).
+- Card **Kiểm tra chất lượng** luôn kiểm chính sách: nhận `text`, `captions`, `scenes`, `policy` (tuỳ chọn, mặc định chính sách dự án); mặc định tự quét (`policyAutoScan`) mọi lời thoại/prompt/caption đã sinh ra trong flow; xuất `pass_fail` (kèm vi phạm) và `violations`. Có vi phạm chặn → không đạt. `media` không còn bắt buộc (kiểm chính sách thuần văn bản được).
+- Hạn chế: khớp từ khoá không hiểu ngữ cảnh (vd. "không đánh nhau" vẫn khớp "đánh nhau" — dùng `allowlist` hoặc mức "cảnh báo").

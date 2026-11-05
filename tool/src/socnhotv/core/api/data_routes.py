@@ -690,6 +690,34 @@ async def get_script_data(project_id: str, episode_id: str) -> Dict[str, Any]:
     return {"script": data, "facets": FACETS, "shotFacets": SHOT_FACETS, "shots": shots}
 
 
+@router.get("/projects/{project_id}/policy")
+async def get_project_policy(project_id: str) -> Dict[str, Any]:
+    """Chính sách nội dung xuyên suốt của dự án (tự tạo mặc định nếu chưa có)."""
+    from socnhotv.core.engine import content_policy
+
+    _project_dir(project_id)
+    return content_policy.load_policy(get_repo_root(), project_id)
+
+
+@router.put("/projects/{project_id}/policy")
+async def put_project_policy(project_id: str, payload: Dict[str, Any] = Body(...)) -> Dict[str, Any]:
+    from socnhotv.core.engine import content_policy
+
+    _project_dir(project_id)
+    return content_policy.save_policy(get_repo_root(), project_id, payload)
+
+
+@router.post("/projects/{project_id}/policy/check")
+async def check_project_policy(project_id: str, payload: Dict[str, Any] = Body(...)) -> Dict[str, Any]:
+    """Kiểm nhanh văn bản theo chính sách dự án: {texts: {nguồn: văn bản}} hoặc {text}."""
+    from socnhotv.core.engine import content_policy
+
+    _project_dir(project_id)
+    texts = payload.get("texts") or ({"text": payload.get("text", "")} if payload.get("text") else {})
+    pol = content_policy.load_policy(get_repo_root(), project_id)
+    return content_policy.check_texts({str(k): str(v) for k, v in texts.items()}, pol)
+
+
 @router.post("/projects/{project_id}/library/upload")
 async def upload_library_file(project_id: str, payload: Dict[str, Any] = Body(...)) -> Dict[str, Any]:
     """Tải ảnh/video lên kho (assets/ + meta.json). Body: {name, data(base64)}."""
