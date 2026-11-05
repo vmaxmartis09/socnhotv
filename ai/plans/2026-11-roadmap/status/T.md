@@ -14,7 +14,7 @@
 | **T-00** | Khởi tạo Session T, kiểm tra môi trường, tạo nhánh & status/T.md | DONE | `status/T.md` | Xác nhận môi trường đúng như mục 0 |
 | **T-01** | Dựng khung `tool/toolbox/` + contracts + _template + README | DONE | `tool/toolbox/contracts/`, `tool/toolbox/_template/`, `tool/toolbox/README.md` | JSON schema hợp lệ, echo tool test pass |
 | **T-02** | CLI `toolbox_cli` (list, doctor, run, add) | DONE | `tool/toolbox/toolbox_cli/`, `tool/toolbox/toolbox.cmd` | `toolbox doctor` in báo cáo thật, phát hiện thiếu ffmpeg, không GPU, runs.jsonl hoạt động |
-| **T-03** | Kho dùng chung: atomic write + append lock + stress test | PLANNED | `tool/toolbox/contracts/` & tests | |
+| **T-03** | Kho dùng chung: atomic write + append lock + stress test | DONE | `tool/toolbox/toolbox_cli/store.py`, `tool/toolbox/tests/test_store_concurrency.py` | 2 tiến trình ghi 200 bản ghi song song: 0 hỏng, 0 trùng lặp, lock an toàn |
 | **T-04** | Chuẩn hóa `voice_vault`: voice.json, aliases, todo_clone | PLANNED | `data/shared/voice_vault/` | |
 | **T-08** | Tool bundle ffmpeg static (CPU) | PLANNED | `data/shared/models/ffmpeg-bin/` | |
 | **T-05** | Tool tách nền `bg-remove` (rembg CPU) | PLANNED | `tool/toolbox/tools/bg-remove/` | Chờ test user |
