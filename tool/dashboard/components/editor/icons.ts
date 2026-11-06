@@ -1,0 +1,32 @@
+"use client";
+
+import * as lucide from "lucide";
+import { createMorphIcon } from "@/components/ui/icons";
+
+export const ArrowUp = createMorphIcon(lucide.ArrowUp, "ArrowUp");
+export const ArrowDown = createMorphIcon(lucide.ArrowDown, "ArrowDown");
+export const Eye = createMorphIcon(lucide.Eye, "Eye");
+export const EyeOff = createMorphIcon(lucide.EyeOff, "EyeOff");
+export const Play = createMorphIcon(lucide.Play, "Play");
+export const Pause = createMorphIcon(lucide.Pause, "Pause");
+export const RotateCcw = createMorphIcon(lucide.RotateCcw, "RotateCcw");
+export const Clock = createMorphIcon(lucide.Clock, "Clock");
+export const Film = createMorphIcon(lucide.Film, "Film");
+export const Image = createMorphIcon(lucide.Image, "Image");
+export const Sliders = createMorphIcon(lucide.Sliders, "Sliders");
+export const Check = createMorphIcon(lucide.Check, "Check");
+export const CheckCircle = createMorphIcon(lucide.CheckCircle, "CheckCircle");
+export const Sparkles = createMorphIcon(lucide.Sparkles, "Sparkles");
+export const Volume2 = createMorphIcon(lucide.Volume2, "Volume2");
+export const VolumeX = createMorphIcon(lucide.VolumeX, "VolumeX");
+export const Edit3 = createMorphIcon(lucide.Edit3, "Edit3");
+export const Trash2 = createMorphIcon(lucide.Trash2, "Trash2");
+export const Zap = createMorphIcon(lucide.Zap, "Zap");
+export const RefreshCw = createMorphIcon(lucide.RefreshCw, "RefreshCw");
+export const Layers = createMorphIcon(lucide.Layers, "Layers");
+export const Video = createMorphIcon(lucide.Video, "Video");
+export const FileText = createMorphIcon(lucide.FileText, "FileText");
+export const ChevronLeft = createMorphIcon(lucide.ChevronLeft, "ChevronLeft");
+export const ChevronRight = createMorphIcon(lucide.ChevronRight, "ChevronRight");
+export const Camera = createMorphIcon(lucide.Camera, "Camera");
+export const Filter = createMorphIcon(lucide.Filter, "Filter");
