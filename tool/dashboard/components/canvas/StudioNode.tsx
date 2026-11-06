@@ -2,7 +2,7 @@
 
 import { enterOnce } from "@/lib/motion";
 import React, { memo, useEffect, useMemo, useRef, useState } from "react";
-import { Handle, Position, type NodeProps, type Node } from "@xyflow/react";
+import { Handle, Position, useReactFlow, type NodeProps, type Node } from "@xyflow/react";
 import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import { useStudioStore } from "@/store";
@@ -89,6 +89,7 @@ export const StudioNode = memo(function StudioNode({
   const isFlashing = useStudioStore((s) => s.flashingNodeId === id);
   const setSelectedNodeId = useStudioStore((s) => s.setSelectedNodeId);
   const flashNode = useStudioStore((s) => s.flashNode);
+  const { updateNode } = useReactFlow();
   // Nguồn của từng cổng vào: "Node nào · cổng nào" (rút thành chuỗi để chỉ render lại khi nguồn đổi)
   const incomingKey = useStudioStore((s: any) => {
     const rows: string[] = [];
@@ -271,6 +272,14 @@ export const StudioNode = memo(function StudioNode({
   const [activeInPort, setActiveInPort] = useState<string | null>(null);
   /** Vị trí dọc (px, tính từ đầu thẻ) của ô input đang mở để panel nguồn hiện ngay cạnh */
   const [activeInTop, setActiveInTop] = useState(0);
+  // Panel nguồn mở thì cả node nổi lên trên mọi node khác (nếu không các node vẽ sau sẽ đè lên panel)
+  useEffect(() => {
+    if (activeInPort === null) return;
+    updateNode(id, { zIndex: 1000 });
+    return () => {
+      updateNode(id, { zIndex: 0 });
+    };
+  }, [activeInPort === null, id, updateNode]); // eslint-disable-line react-hooks/exhaustive-deps
   const [expanded, setExpanded] = useState(() => DETAIL_DEFAULT_TYPES.has(def.typeName));
 
   // Kiểm tra đủ input: cổng bắt buộc phải được nối hoặc đã có giá trị
@@ -563,13 +572,13 @@ export const StudioNode = memo(function StudioNode({
         // Ở cấp thẻ (không nằm trong vùng overflow-hidden) để tràn ra ngoài; top khớp hàng input đã bấm
         return (
           <div
-            className="nodrag nowheel absolute left-full z-50 w-[320px] cursor-default space-y-1.5 rounded-xl rounded-tl-none border border-border bg-popover p-3 text-popover-foreground shadow-lg"
-            style={{ top: activeInTop, marginLeft: 12 }}
+            className="nodrag nowheel absolute left-full z-50 w-[320px] cursor-default space-y-1.5 rounded-r-xl border border-l-0 border-border bg-card p-3 text-card-foreground shadow-lg"
+            style={{ top: activeInTop }}
             onClick={(e) => e.stopPropagation()}
             onDoubleClick={(e) => e.stopPropagation()}
           >
-            {/* Cầu nối: hàng input và panel liền một khối */}
-            <span aria-hidden className="absolute -left-3 top-0 h-[22px] w-3 border-y border-border bg-popover" />
+            {/* Phủ lên đường viền phải của thẻ đúng ở hàng đang chọn: hàng input và panel liền một khối, không có vết */}
+            <span aria-hidden className="absolute -left-px top-px h-[20px] w-[2px] bg-card" />
             <div className="flex items-center justify-between text-[11px] text-muted-foreground">
               <span>
                 Nguồn cho <span className="font-mono text-foreground">{ap.name}</span>
@@ -716,7 +725,7 @@ export const StudioNode = memo(function StudioNode({
                 }}
                 className={cn(
                   "nodrag flex cursor-pointer items-center gap-1.5 px-3 text-xs transition-colors hover:bg-accent/60",
-                  activeInPort === port.name && "z-40 bg-popover shadow-[inset_3px_0_0_hsl(var(--foreground))]"
+                  activeInPort === port.name && "bg-card shadow-[inset_3px_0_0_hsl(var(--foreground))]"
                 )}
                 style={{ height: ROW }}
               >
