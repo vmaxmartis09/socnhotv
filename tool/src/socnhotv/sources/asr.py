@@ -84,10 +84,22 @@ def run_asr(
 
     try:
         from faster_whisper import WhisperModel
+        import soundfile as sf
         # Use CPU with INT8 quantization for fast deterministic local execution
         model = WhisperModel(model_name, device="cpu", compute_type="int8")
+        
+        # Load audio data via soundfile to avoid PyAV metadata_errors incompatibility
+        try:
+            audio_data, sr = sf.read(str(audio_path), dtype="float32")
+            if len(audio_data.shape) > 1:
+                audio_data = audio_data.mean(axis=1)
+            transcribe_target = audio_data
+        except Exception as sf_err:
+            logger.warning("soundfile read failed (%s), falling back to file path", sf_err)
+            transcribe_target = str(audio_path)
+
         segments, info = model.transcribe(
-            str(audio_path),
+            transcribe_target,
             language=language if language != "auto" else None,
             word_timestamps=True,
         )

@@ -62,7 +62,7 @@ async def run_localize_pipeline(
     voice_path = await run_revoice(project_id, source_id, voice_id=voice_id, style=style)
 
     # Step 5: Render Request via socnhotv.video.contracts
-    tmpl = template_id or ("localized-reup-v1" if mode == "L" else "remake-v1")
+    tmpl = template_id or ("localized-reup-v1" if mode == "L" else "story-cartoon-v1")
     render_req = RenderRequest(
         project_id=project_id,
         template_id=tmpl,
@@ -70,6 +70,10 @@ async def run_localize_pipeline(
         data={
             "mode": mode,
             "source_id": source_id,
+            "title": source.title or f"Video {source_id}",
+            "source_author": f"@{source.author}" if source.author else "@source",
+            "character_reaction": "Sóc Nhỏ cùng các bạn theo dõi nhé!",
+            "story_title": source.title or f"Video {source_id}",
             "video_path": f"raw/{source_id}/video.mp4" if mode == "L" else None,
             "voice_path": f"raw/{source_id}/voice.vi.mp3",
             "script_path": f"content/scripts/{source_id}.{style}.json",

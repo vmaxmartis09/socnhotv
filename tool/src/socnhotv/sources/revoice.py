@@ -20,15 +20,25 @@ async def synthesize_line_edge_tts(
     text: str,
     out_path: Path,
     voice_name: str = "vi-VN-HoaiMyNeural",
+    retries: int = 3,
 ) -> bool:
-    """Synthesize single sentence to MP3 using edge-tts."""
-    try:
-        comm = edge_tts.Communicate(text=text, voice=voice_name)
-        await comm.save(str(out_path))
-        return out_path.exists() and out_path.stat().st_size > 0
-    except Exception as e:
-        logger.warning("edge-tts error on line '%s': %s", text, e)
-        return False
+    """Synthesize single sentence to MP3 using edge-tts streaming with retries."""
+    for attempt in range(retries):
+        try:
+            comm = edge_tts.Communicate(text=text, voice=voice_name)
+            has_data = False
+            with open(out_path, "wb") as f:
+                async for chunk in comm.stream():
+                    if chunk.get("type") == "audio" and "data" in chunk:
+                        f.write(chunk["data"])
+                        has_data = True
+            if has_data and out_path.exists() and out_path.stat().st_size > 0:
+                return True
+        except Exception as e:
+            logger.warning("edge-tts error (attempt %d/%d) on line '%s': %s", attempt + 1, retries, text, e)
+            if attempt < retries - 1:
+                await asyncio.sleep(0.5 * (attempt + 1))
+    return False
 
 
 def create_silence_mp3(duration_s: float, out_path: Path) -> bool:
