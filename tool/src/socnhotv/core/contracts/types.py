@@ -273,7 +273,7 @@ class GraphRunRequest(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
     def resolve_run_policy(self) -> RunPolicy:
-        """Nếu thiếu runPolicy thì suy từ mockMode: mockMode=True -> tất cả mock, TRỪ voice="local"."""
+        """Nếu thiếu runPolicy thì suy từ mockMode."""
         if self.run_policy is not None:
             return self.run_policy
         if self.mock_mode:

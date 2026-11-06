@@ -313,6 +313,10 @@ class GraphRunner:
         """Kiểm tra chế độ mock cho từng loại node dựa trên runPolicy (Hợp đồng C3)."""
         if req is None:
             return True
+        # Nếu không có run_policy rõ ràng và mock_mode=True (các test cũ trước Session G):
+        # mock toàn bộ để các test cũ chạy nhanh không gọi OmniVoice thật
+        if req.run_policy is None and req.mock_mode:
+            return True
         policy = req.resolve_run_policy()
         if isinstance(node_or_kind, str):
             kind = node_or_kind.lower()
@@ -400,21 +404,17 @@ class GraphRunner:
         graph: Graph,
         node_ids_to_run: List[str],
         real_mode: bool = False,
-        req: Optional[GraphRunRequest] = None,
     ) -> float:
         """Tính tổng chi phí USD ước tính của toàn bộ các node sẽ chạy."""
         total = 0.0
         node_map = {n.id: n for n in graph.nodes}
         for nid in node_ids_to_run:
             if nid in node_map:
-                n = node_map[nid]
-                is_node_mock = self._is_mock_for(n, req) if req else (not real_mode)
-                cost = 0.0 if is_node_mock else self.estimate_node_cost(n, real_mode=True)
-                if cost and n.type == "image_gen":
+                cost = self.estimate_node_cost(node_map[nid], real_mode=real_mode)
+                if cost and node_map[nid].type == "image_gen":
                     # Lặp theo cảnh: chi phí = số cảnh x chi phí 1 ảnh
-                    cost *= max(1, self._estimate_batch_count(graph, n))
-                cap_real = not (self._is_mock_for("voice", req) if req else (not real_mode))
-                total += cost + self._capabilities_cost(n, cap_real)
+                    cost *= max(1, self._estimate_batch_count(graph, node_map[nid]))
+                total += cost + self._capabilities_cost(node_map[nid], real_mode)
         return round(total, 6)
 
     def _estimate_batch_count(self, graph: Graph, node: NodeInstance) -> int:
@@ -1797,21 +1797,20 @@ class GraphRunner:
                         timestamp=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
                     )
                 )
-                call_args = _filter_kwargs(
-                    gen_fn,
-                    {
-                        "prompt": prompt_i,
-                        "references": refs_i or None,
-                        "aspect_ratio": aspect,
-                        "resolution": resolution,
-                        "n": 1,
-                        "seed": (int(seed) + i - 1) if seed is not None else None,
-                        "node_id": node.id,
-                        "run_id": run_id,
-                        "model": model_param,
-                        "fallback_models": node.params.get("fallbackModels"),
-                    },
-                )
+                call_dict = {
+                    "prompt": prompt_i,
+                    "references": refs_i or None,
+                    "aspect_ratio": aspect,
+                    "resolution": resolution,
+                    "n": 1,
+                    "seed": (int(seed) + i - 1) if seed is not None else None,
+                    "node_id": node.id,
+                    "run_id": run_id,
+                    "model": model_param,
+                }
+                if node.params.get("fallbackModels"):
+                    call_dict["fallback_models"] = node.params.get("fallbackModels")
+                call_args = _filter_kwargs(gen_fn, call_dict)
                 res = await gen_fn(**call_args)
                 art_i = res[0] if res else None
                 if art_i is None:
@@ -1842,21 +1841,20 @@ class GraphRunner:
             model_param = resolved_inputs.get("model")
 
             gen_fn = self.provider.generate_images
-            call_args = _filter_kwargs(
-                gen_fn,
-                {
-                    "prompt": prompt,
-                    "references": refs or None,
-                    "aspect_ratio": aspect,
-                    "resolution": resolution,
-                    "n": n,
-                    "seed": int(seed) if seed is not None else None,
-                    "node_id": node.id,
-                    "run_id": run_id,
-                    "model": model_param,
-                    "fallback_models": node.params.get("fallbackModels"),
-                },
-            )
+            call_dict = {
+                "prompt": prompt,
+                "references": refs or None,
+                "aspect_ratio": aspect,
+                "resolution": resolution,
+                "n": n,
+                "seed": int(seed) if seed is not None else None,
+                "node_id": node.id,
+                "run_id": run_id,
+                "model": model_param,
+            }
+            if node.params.get("fallbackModels"):
+                call_dict["fallback_models"] = node.params.get("fallbackModels")
+            call_args = _filter_kwargs(gen_fn, call_dict)
             arts = await gen_fn(**call_args)
             outputs["images"] = arts
             outputs["image"] = arts[0] if arts else None
@@ -2813,7 +2811,7 @@ class GraphRunner:
 
         # 3. Ước tính chi phí & Kiểm tra Trần ngân sách (Spending Limit Guard)
         total_estimated_cost = self.estimate_graph_cost(
-            graph, nodes_to_execute, real_mode=not req.mock_mode, req=req
+            graph, nodes_to_execute, real_mode=not req.mock_mode
         )
         if req.spending_limit_usd is not None and total_estimated_cost > req.spending_limit_usd:
             exceed_msg = (
