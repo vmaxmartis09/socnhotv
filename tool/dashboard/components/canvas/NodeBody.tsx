@@ -527,7 +527,7 @@ function EpisodeOutputPreview({ status, outputFileName }: { status?: string; out
       >
         {thumbUrl && (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={thumbUrl} alt="" className="aspect-video w-full object-cover opacity-90 group-hover:opacity-100" />
+          <img decoding="async" loading="lazy" src={thumbUrl} alt="" className="aspect-video w-full object-cover opacity-90 group-hover:opacity-100" />
         )}
         <span className="absolute inset-0 flex items-center justify-center">
           <span className="flex items-center gap-1 rounded-full bg-black/70 px-3 py-1 text-[11px] font-semibold text-white">

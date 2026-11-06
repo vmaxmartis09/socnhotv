@@ -6,7 +6,8 @@ Tự động đo:
   2. âm lượng  : volumedetect mean_volume > -30 dB, loudness tích phân -14 ± 1 LUFS (ebur128)
   3. keyframe  : ≥ 30 ảnh khác nhau (sha256 nội dung tệp thật), không ảnh nào provenance.provider = "mock"
   4. giọng     : mỗi câu thoại của tập có clip, provenance OmniVoice, đúng voiceId của nhân vật
-                 (đối chiếu characters/studio_characters.json), clip không im lặng
+                 (đối chiếu characters/studio_characters.json), clip không im lặng, và NGHE LẠI bằng
+                 faster-whisper (trên máy): không chèn câu mẫu của giọng, lời giống kịch bản ≥ 0.5
   5. snapshot  : runs/_node_outputs/<graph>/<image_gen>.json có "mock": false
 Báo cáo thêm (không tự chấm ĐẠT được):
   6. contact sheet 12 khung output/<ep>/contact_sheet.jpg (tự tạo nếu chưa có) — CHỜ NGƯỜI DÙNG xác nhận
@@ -239,7 +240,51 @@ def check_keyframes(rep: Report, project_dir: Path, snap_dir: Path, img_nodes: L
     rep.add("5", "snapshot image_gen mock=false", st5, f"{flags}", flags)
 
 
-def check_voices(rep: Report, project_dir: Path, snap_dir: Path, nodes: Dict[str, List[str]], ep: str) -> None:
+# ----------------------------------------------------------------------------- nghe lại nội dung giọng (Whisper)
+class Listener:
+    """Nhận dạng lời bằng faster-whisper chạy trên máy ($0) để bắt lỗi nội dung mà volumedetect không thấy:
+    OmniVoice chèn câu mẫu (reference_transcript) vào đầu câu khi transcript mẫu không khớp lát âm mẫu."""
+
+    def __init__(self, model: str = "small") -> None:
+        self.ok = False
+        self.reason = ""
+        try:
+            from faster_whisper import WhisperModel
+
+            self.m = WhisperModel(model, device="cpu", compute_type="int8", local_files_only=True)
+            self.ok = True
+        except Exception as e:  # thiếu thư viện / chưa tải model
+            self.reason = f"không nghe lại được ({e.__class__.__name__}: {str(e)[:80]})"
+
+    @staticmethod
+    def words(s: str) -> List[str]:
+        return re.sub(r"[^\w\s]", " ", str(s or "").lower()).split()
+
+    def hear(self, path: Path) -> str:
+        import numpy as np
+
+        pcm = subprocess.run([FFMPEG, "-v", "error", "-i", str(path), "-ac", "1", "-ar", "16000", "-f", "f32le", "-"],
+                             capture_output=True, timeout=120).stdout
+        segs, _ = self.m.transcribe(np.frombuffer(pcm, np.float32), language="vi", beam_size=5)
+        return " ".join(x.text.strip() for x in segs)
+
+    def judge(self, text: str, heard: str, ref_text: str) -> Dict[str, Any]:
+        import difflib
+
+        a, b, r = self.words(text), self.words(heard), self.words(ref_text)
+        ratio = difflib.SequenceMatcher(None, a, b).ratio()
+        a3 = {tuple(a[i:i + 3]) for i in range(len(a) - 2)}
+        leak = [" ".join(r[i:i + 3]) for i in range(len(r) - 2)
+                if tuple(r[i:i + 3]) not in a3 and " ".join(r[i:i + 3]) in " ".join(b)]
+        return {"similarity": round(ratio, 2), "leak": leak[:3], "heard": heard[:200]}
+
+
+def voice_ref_text(vid: str) -> str:
+    f = ROOT / "data" / "shared" / "voice_vault" / str(vid) / "reference_transcript.txt"
+    return f.read_text(encoding="utf-8").strip() if f.is_file() else ""
+
+
+def check_voices(rep: Report, project_dir: Path, snap_dir: Path, nodes: Dict[str, List[str]], ep: str, listen: bool = True) -> None:
     want = episode_lines(project_dir, ep)
     voices = studio_voices(project_dir)
     clips: List[Dict[str, Any]] = []
@@ -255,6 +300,7 @@ def check_voices(rep: Report, project_dir: Path, snap_dir: Path, nodes: Dict[str
     for c in clips:
         by_text.setdefault(str(c.get("text") or "").strip(), c)
     rows, bad = [], []
+    ear = Listener() if listen else None
     for ln in want:
         c = by_text.get(ln["text"])
         row = {"shotId": ln["shotId"], "characterId": ln["characterId"], "expectVoice": voices.get(ln["characterId"] or "")}
@@ -277,12 +323,23 @@ def check_voices(rep: Report, project_dir: Path, snap_dir: Path, nodes: Dict[str
             problems.append("thiếu tệp")
         elif row["meanVolumeDb"] is None or row["meanVolumeDb"] < -40:
             problems.append(f"im lặng? {row['meanVolumeDb']} dB")
+        elif ear and ear.ok:
+            j = ear.judge(ln["text"], ear.hear(f), voice_ref_text(row["voiceId"]))
+            row["asr"] = j
+            if j["leak"]:
+                problems.append(f"chèn câu mẫu '{j['leak'][0]}'")
+            elif j["similarity"] < 0.5:
+                problems.append(f"lời khác kịch bản (giống {j['similarity']})")
         row["status"] = "ok" if not problems else "; ".join(problems)
         if problems:
             bad.append(row)
         rows.append(row)
     ok = bool(want) and not bad
     detail = f"{len(want) - len(bad)}/{len(want)} câu đúng (nguồn: {', '.join(src) or 'không có snapshot giọng'})"
+    if ear is not None:
+        sims = [r["asr"]["similarity"] for r in rows if r.get("asr")]
+        detail += (f" · nghe lại Whisper: {len(sims)} câu, giống TB {sum(sims) / len(sims):.2f}" if sims
+                   else f" · {ear.reason or 'chưa nghe lại câu nào'}")
     if bad:
         detail += " · lỗi: " + "; ".join(f"{r['shotId']}({r['status']})" for r in bad[:6]) + (" …" if len(bad) > 6 else "")
     rep.add("4", "giọng OmniVoice đúng voiceId từng câu", PASS if ok else FAIL, detail, rows)
@@ -383,6 +440,7 @@ def main() -> int:
     ap.add_argument("--level", default="A", choices=["A", "B"])
     ap.add_argument("--allow-mock-images", action="store_true", help="mốc M1: mục 3 & 5 chỉ báo, không chấm trượt")
     ap.add_argument("--json", default=None, help="ghi thêm báo cáo JSON ra tệp này")
+    ap.add_argument("--no-listen", action="store_true", help="bỏ bước nghe lại lời thoại bằng Whisper (mục 4)")
     a = ap.parse_args()
 
     ep = a.episode
@@ -402,7 +460,7 @@ def main() -> int:
     same_ep = check_episode_match(rep, project_dir, snap_dir, nodes, ep)
     if same_ep:
         check_keyframes(rep, project_dir, snap_dir, nodes.get("image_gen", []), a.allow_mock_images)
-        check_voices(rep, project_dir, snap_dir, nodes, ep)
+        check_voices(rep, project_dir, snap_dir, nodes, ep, listen=not a.no_listen)
     else:
         for no, name in (("3", "≥30 keyframe khác nhau, không mock"), ("4", "giọng OmniVoice đúng voiceId từng câu"), ("5", "snapshot image_gen mock=false")):
             rep.add(no, name, FAIL, "snapshot flow hiện tại là của tập khác → chạy lại flow cho tập này rồi kiểm")

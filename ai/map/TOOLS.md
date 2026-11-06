@@ -28,8 +28,29 @@ Tài liệu định vị các công cụ, engine và script chính của hệ th
   ```
 
 ## 4. Audio & Voice
-- **OmniVoice Local:** `data/shared/voice_vault/soc-nho/`
-- **Voice Engine:** `tool/src/socnhotv/core/engine/voice.py`
+- **Kho giọng OmniVoice (trên máy, $0):** `data/shared/voice_vault/<voiceId>/` (`reference_clean_slice.wav` + `reference_transcript.txt` + `omnivoice_prompt.pt`). Giọng của nhân vật khai ở `characters/studio_characters.json` (`voiceId`).
+  - **Transcript mẫu PHẢI khớp từng chữ lát âm mẫu**, nếu không OmniVoice chèn câu mẫu vào đầu mỗi câu (đã gặp ở `vn-be-04`, `vn-be-01`, sửa 2026-11-06, bản cũ ở `_backup_2026-11-06_G4/`).
+- **Đọc 1 câu:** `.venv/bin/python scripts/voice/voice_studio.py speak --voice <voiceId> --script "..." --output x.mp3`
+- **Adapter runner:** `tool/src/socnhotv/core/adapters/voice_adapter.py` (OmniVoice + mastering -14 LUFS), giọng từng câu: `core/engine/dialogue_voice.py`, cache `runs/_voice_lines/`.
+- **Dựng sẵn giọng cả tập vào cache runner:**
+  ```bash
+  .venv/bin/python scripts/video/prebuild_episode_voices.py ep01-nui-lua-trong-bung-bi ep02-mun-so-bong-toi
+  # --dry-run: đếm câu đã có cache · --force-voices vn-be-04: đọc lại sau khi sửa giọng
+  ```
+
+## 4b. Nghiệm thu tập (Session G, "Định nghĩa Done")
+- **`scripts/video/verify_episode.py <episodeId>`**: ffprobe 1920×1080 h264+aac 600±15 s · volumedetect + ebur128 (-14±1 LUFS) · ≥30 keyframe khác sha256, không mock · giọng từng câu: OmniVoice, đúng voiceId, **nghe lại bằng faster-whisper** (bắt câu mẫu chèn vào) · snapshot `mock:false` · contact sheet 12 khung (chờ người dùng duyệt qua `output/<ep>/user_confirm.json`) · Range 206 · Mức B (`--level B`). Ghi `output/<ep>/verify_episode.json` + `episodeVerify` trong `video.json`.
+  ```bash
+  .venv/bin/python scripts/video/verify_episode.py ep01-nui-lua-trong-bung-bi            # Mức A
+  .venv/bin/python scripts/video/verify_episode.py ep01-nui-lua-trong-bung-bi --allow-mock-images   # mốc M1
+  ```
+- **Gói shot làm clip tay (C5):** `GET /data/projects/<id>/episodes/<ep>/shot-pack[?shots=S01,S07|all=true]` (nút trên node Kịch bản). Clip làm xong đặt `content/episodes/<ep>/clips/S07.mp4`.
+- **Preset flow tập:** `buildEpisodeAnimationPreset()` trong `tool/dashboard/lib/graph-presets.ts` (chưa có nút trong UI — chờ G2).
+- **Test không đụng dữ liệu thật:** `tool/tests/conftest.py` dựng sandbox clone APFS; `SOCNHOTV_TEST_KEEP_SANDBOX=1` giữ lại, `SOCNHOTV_TEST_REAL_DATA=1` tắt sandbox.
+
+## 4c. Nguồn sinh ảnh / video (Session G — xem `ai/knowledge/free_ai_sources.md`, `status/G1.md`)
+- Provider mới của G1: `core/providers/pollinations_provider.py` (ảnh free, nhận ảnh tham chiếu), `cloudflare_provider.py` (Workers AI free 10k neurons/ngày), `local_image_provider.py` (mflux trên M4). Bảng nhà máy: `core/providers/factories.py`; sổ model: `core/models_registry/models.yaml` (`tier`, `supports_reference`, …).
+- **Thực trạng 2026-11-06:** router (`core/providers/router.py`) **chưa** dùng `factories.py` và **chưa** có `runPolicy` → từ Studio chưa chạy được các nguồn này; chế độ thật mà chọn model lạ thì rơi về mock. Gemini free không sinh ảnh (429 limit 0).
 
 ## 5. Toolbox Tools (`tool/toolbox/tools/`)
 - **Tách nền ảnh (`bg-remove`):** `tool/toolbox/tools/bg-remove/` (rembg CPU, U-2-Net, MIT)

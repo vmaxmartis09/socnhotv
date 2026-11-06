@@ -10,7 +10,7 @@ _synthesize_line) nên khoá cache luôn khớp với lúc chạy flow.
 Dùng:
   .venv/bin/python scripts/video/prebuild_episode_voices.py ep01-nui-lua-trong-bung-bi ep02-mun-so-bong-toi
   .venv/bin/python scripts/video/prebuild_episode_voices.py ep01-nui-lua-trong-bung-bi --dry-run
-  thêm --project <id>, --concurrency 2, --json report.json
+  thêm --project <id>, --concurrency 2, --json report.json, --force-voices vn-be-04,vn-be-01
 """
 from __future__ import annotations
 
@@ -51,7 +51,7 @@ def mean_volume_db(path: Path) -> float | None:
     return None
 
 
-async def prebuild(project: str, episodes: list[str], concurrency: int, dry_run: bool) -> dict:
+async def prebuild(project: str, episodes: list[str], concurrency: int, dry_run: bool, force_voices: set[str] | None = None) -> dict:
     store = ProjectStore(project)
     runner = GraphRunner(store)
     report: dict = {"project": project, "episodes": {}, "startedAt": time.strftime("%Y-%m-%dT%H:%M:%S")}
@@ -80,7 +80,8 @@ async def prebuild(project: str, episodes: list[str], concurrency: int, dry_run:
                 row["status"] = "LỖI: nhân vật chưa có giọng (" + str(info.get("voiceMessage") or "") + ")"
                 rows.append(row)
                 return
-            art = runner._voice_line_cache_get(vid, text, tempo, False)
+            # Giọng vừa sửa trong vault (đổi lát mẫu/transcript): khoá cache không đổi -> phải đọc lại, ghi đè cache
+            art = None if (force_voices and vid in force_voices) else runner._voice_line_cache_get(vid, text, tempo, False)
             if art is not None:
                 row.update(status="cache", uri=art.uri, provider=art.provenance.provider,
                            durationSec=getattr(art.meta, "duration", None) if art.meta else None)
@@ -128,8 +129,10 @@ def main() -> int:
     ap.add_argument("--concurrency", type=int, default=2)
     ap.add_argument("--dry-run", action="store_true", help="Chỉ đếm câu đã có / còn thiếu trong cache")
     ap.add_argument("--json", default=None, help="Ghi báo cáo JSON ra tệp này")
+    ap.add_argument("--force-voices", default="", help="voiceId cách nhau dấu phẩy: đọc lại dù đã có cache (sau khi sửa giọng)")
     a = ap.parse_args()
-    rep = asyncio.run(prebuild(a.project, a.episodes, a.concurrency, a.dry_run))
+    fv = {x.strip() for x in a.force_voices.split(",") if x.strip()}
+    rep = asyncio.run(prebuild(a.project, a.episodes, a.concurrency, a.dry_run, fv))
     bad = 0
     for ep, e in rep["episodes"].items():
         silent = [r for r in e["rows"] if r.get("meanVolumeDb") is not None and r["meanVolumeDb"] < -40]

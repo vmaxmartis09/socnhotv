@@ -186,3 +186,14 @@ def test_shot_pack_zip_has_priority_shots_prompts_and_readme():
     r2 = client.get("/data/projects/soc-nho-tv/episodes/ep01-nui-lua-trong-bung-bi/shot-pack?shots=S02,S03")
     assert sorted(json.loads(zipfile.ZipFile(io.BytesIO(r2.content)).read("manifest.json"))["shots"][0]["shotId"] for _ in [0]) == ["S02"]
     assert client.get("/data/projects/soc-nho-tv/episodes/ep01-nui-lua-trong-bung-bi/shot-pack?shots=../x").status_code == 400
+
+
+def test_verify_listener_flags_reference_transcript_leak():
+    ve = _load_verify()
+    ear = ve.Listener.__new__(ve.Listener)  # không nạp Whisper, chỉ thử phần chấm
+    ref = "Bên là bảo thức năm nay mình tảm tuổi Mình sọt chiến hiểu học đã đi điểm"
+    text = "Anh Bi ơi! Mun mang quả bóng vải sang chơi với anh Bi nè!"
+    bad = ear.judge(text, "Xọc chiến hiểu học đã đi ơi! Mun mang quả bóng vải sang chơi với anh Bi nè!", ref)
+    assert bad["leak"], bad
+    good = ear.judge(text, "Anh Bi ơi, muốn mang quả bóng vải sang chơi với anh Bi nè", ref)
+    assert not good["leak"] and good["similarity"] >= 0.7
