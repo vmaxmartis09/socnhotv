@@ -49,6 +49,16 @@ Chưa làm: chấm điểm ảnh bằng model nhìn khi chạy thật (cần Gem
   - `quality_check` đối chiếu nội dung với tài liệu chính sách bằng model AI ở **chế độ thật** (gửi tài liệu + nội dung, trả đạt/không đạt + mục vi phạm). Chế độ Mock chỉ báo "chưa kiểm theo tài liệu".
 - Chưa làm: màn hình Policy hiện tài liệu/mục; tách tài liệu thành checklist nhỏ để giảm token; kiểm ảnh/thumbnail theo tài liệu.
 
+## 3c. script.json — kịch bản đã biên dịch, đầy đủ thuộc tính, có id nhân vật (ĐÃ LÀM 2026-11-06)
+
+Mỗi tập có `content/episodes/<tập>/script.json` cạnh file `.md`:
+- Chứa **toàn bộ thuộc tính** của kịch bản: tiêu đề, thời lượng, bài học, câu thần chú, prompt khoá bối cảnh, hồ sơ nhân vật trong tập (species, tính cách, giọng, promptLock…), từng cảnh và từng shot (khung hình, camera, hành động, biểu cảm, lời thoại, prompt ảnh/video, sfx, bgm, mốc thời gian).
+- Thêm **id tường minh**: `castIds` (thứ tự xuất hiện), `cast[].id`, `characters[].id`, `shots[].characterIds`, `shots[].speakerId`, `unmatched` (tên chưa ghép được hồ sơ dự án), `source {file, sha}`.
+- Bộ chạy (`_resolve_script_ref`, API `script-data`) **ưu tiên script.json**; node Dàn diễn viên và cổng `lines` dùng id này, chỉ đoán theo tên khi thiếu id.
+- Quy tắc cập nhật: `.md` đổi và chưa khoá → tự biên dịch lại; sửa tay script.json thì đặt `"locked": true` để không bị ghi đè. `POST /data/projects/{id}/script-data/compile-all` biên dịch cả dự án.
+- Đã biên dịch 51 tập: 34 tập 3 nhân vật, 15 tập 2, 1 tập 6; 0 tên chưa ghép. Các tệp này nằm trong `data/` (không lên GitHub).
+- Test: `tests/test_script_json.py`.
+
 ## 4. Chạy lặp qua nhiều kịch bản
 
 Hai cách, đề xuất làm cách A trước:

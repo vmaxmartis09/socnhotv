@@ -257,6 +257,8 @@ def script_to_scenes(data: Dict[str, Any]) -> List[Dict[str, Any]]:
                     "speaker": sh["speaker"],
                     "durationSec": sh["durationSec"],
                     "characters": sh["characters"],
+                    "characterIds": sh.get("characterIds") or [],
+                    "speakerId": sh.get("speakerId"),
                     "shotSize": sh["shotSize"],
                     "camera": sh["camera"],
                     "sfx": sh["sfx"],
@@ -264,6 +266,107 @@ def script_to_scenes(data: Dict[str, Any]) -> List[Dict[str, Any]]:
                 }
             )
     return out
+
+
+# ------------------------------------------------------------------ script.json: kịch bản đã biên dịch
+SCRIPT_JSON = "script.json"
+SCRIPT_SCHEMA_VERSION = 1
+
+
+def _md_sha(md: str) -> str:
+    import hashlib
+
+    return hashlib.sha256(md.encode("utf-8")).hexdigest()[:16]
+
+
+def compile_script(md: str, episode_id: str, profiles: List[Dict[str, Any]], md_file: str = "") -> Dict[str, Any]:
+    """Kịch bản Markdown → script.json đầy đủ thuộc tính, có id nhân vật tường minh.
+
+    Giữ nguyên mọi trường của `parse_episode_markdown` (cảnh, shot, prompt, lời thoại, hồ sơ nhân vật trong tập…)
+    và thêm: `castIds` (thứ tự xuất hiện), `cast[i].id` / `characters[i].id`, `shots[].characterIds` / `speakerId`,
+    `unmatched` (tên chưa ghép được hồ sơ dự án), `source` (tệp + mã băm .md để biết khi nào cần biên dịch lại).
+    """
+    from socnhotv.core.engine.character_profile import match_speaker
+
+    data = parse_episode_markdown(md, episode_id)
+    cache: Dict[str, Optional[str]] = {}
+
+    def cid(name: str) -> Optional[str]:
+        if name not in cache:
+            cache[name] = match_speaker(name, profiles) if (name and profiles) else None
+        return cache[name]
+
+    cast_ids: List[str] = []
+    unmatched: List[str] = []
+
+    def note(name: str, found: Optional[str]) -> None:
+        if found:
+            if found not in cast_ids:
+                cast_ids.append(found)
+        elif name and name not in unmatched:
+            unmatched.append(name)
+
+    for c in data.get("cast", []):
+        c["id"] = cid(c.get("name", ""))
+        note(c.get("name", ""), c["id"])
+    for c in data.get("characters", []):
+        c["id"] = cid(c.get("name", ""))
+        note(c.get("name", ""), c["id"])
+    for sc in data.get("scenes", []):
+        for sh in sc.get("shots", []):
+            ids = [cid(n) for n in sh.get("characters", [])]
+            for n, i in zip(sh.get("characters", []), ids):
+                note(re.sub(r"\s*\([^)]*\)", "", n).strip(), i)
+            sh["characterIds"] = [i for i in ids if i]
+            sp = str(sh.get("speaker") or "").strip()
+            sh["speakerId"] = cid(sp) if sp else None
+            if sp and not sh["speakerId"]:
+                note(re.sub(r"\s*\([^)]*\)", "", sp).strip(), None)
+            elif sh["speakerId"]:
+                note(sp, sh["speakerId"])
+    import time as _time
+
+    data["castIds"] = cast_ids
+    data["unmatched"] = unmatched
+    data["schemaVersion"] = SCRIPT_SCHEMA_VERSION
+    data["locked"] = False
+    data["source"] = {"file": md_file, "sha": _md_sha(md)}
+    data["compiledAt"] = _time.strftime("%Y-%m-%dT%H:%M:%SZ", _time.gmtime())
+    return data
+
+
+def load_script(episode_dir, episode_id: str, profiles: List[Dict[str, Any]]) -> Dict[str, Any]:
+    """Đọc kịch bản của tập: ưu tiên script.json.
+
+    - Có script.json và (locked=true, hoặc .md không đổi so với mã băm đã ghi) → dùng script.json.
+      `locked:true` = bạn đã sửa tay script.json, không tự biên dịch đè.
+    - .md đã đổi mà chưa khoá → biên dịch lại từ .md và ghi đè script.json.
+    - Chưa có script.json → biên dịch từ .md và ghi ra.
+    Raise FileNotFoundError nếu không có cả hai.
+    """
+    import json
+    from pathlib import Path
+
+    d = Path(episode_dir)
+    md_files = sorted(d.glob("KICH*.md"))
+    sj = d / SCRIPT_JSON
+    md = md_files[0].read_text(encoding="utf-8", errors="replace") if md_files else ""
+    if sj.is_file():
+        try:
+            cur = json.loads(sj.read_text(encoding="utf-8"))
+            if isinstance(cur, dict) and cur.get("scenes") is not None:
+                if cur.get("locked") or not md or (cur.get("source") or {}).get("sha") == _md_sha(md):
+                    return cur
+        except Exception:
+            pass
+    if not md_files:
+        raise FileNotFoundError(str(d))
+    data = compile_script(md, episode_id, profiles, md_files[0].name)
+    try:
+        sj.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+    except OSError:
+        pass
+    return data
 
 
 def resolve_facet(data: Dict[str, Any], facet: str, shot: Optional[str] = None, md: str = "") -> Any:

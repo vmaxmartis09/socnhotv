@@ -683,11 +683,42 @@ def _episode_script_file(project_id: str, episode_id: str) -> Path:
 
 def load_episode_script(project_id: str, episode_id: str) -> Dict[str, Any]:
     """Đọc + phân tích kịch bản tập thành dữ liệu có cấu trúc (kiểu `script`)."""
-    from socnhotv.core.engine.episode_script import parse_episode_markdown
+    from socnhotv.core.engine.character_profile import load_profiles
+    from socnhotv.core.engine.episode_script import load_script
 
     f = _episode_script_file(project_id, episode_id)
     md = f.read_text(encoding="utf-8", errors="replace")
-    return {"data": parse_episode_markdown(md, episode_id), "markdown": md, "file": f.name}
+    data = load_script(f.parent, episode_id, load_profiles(_project_dir(project_id) / "characters"))
+    return {"data": data, "markdown": md, "file": f.name}
+
+
+@router.post("/projects/{project_id}/script-data/compile-all")
+async def compile_all_scripts(project_id: str, payload: Dict[str, Any] = Body(default={})) -> Dict[str, Any]:
+    """Biên dịch kịch bản của mọi tập thành script.json (có id nhân vật). force=true: ghi đè cả tập đã khoá."""
+    from socnhotv.core.engine.character_profile import load_profiles
+    from socnhotv.core.engine.episode_script import SCRIPT_JSON, compile_script
+    import json as _json
+
+    root = _project_dir(project_id)
+    profiles = load_profiles(root / "characters")
+    force = bool(payload.get("force"))
+    done: List[Dict[str, Any]] = []
+    for ep in sorted((root / "content" / "episodes").glob("*")):
+        files = sorted(ep.glob("KICH*.md"))
+        if not ep.is_dir() or not files:
+            continue
+        sj = ep / SCRIPT_JSON
+        if sj.is_file() and not force:
+            try:
+                if _json.loads(sj.read_text(encoding="utf-8")).get("locked"):
+                    done.append({"episode": ep.name, "skipped": "locked"})
+                    continue
+            except Exception:
+                pass
+        data = compile_script(files[0].read_text(encoding="utf-8", errors="replace"), ep.name, profiles, files[0].name)
+        sj.write_text(_json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+        done.append({"episode": ep.name, "cast": data["castIds"], "unmatched": data["unmatched"]})
+    return {"compiled": [d for d in done if "cast" in d], "skipped": [d for d in done if "skipped" in d]}
 
 
 @router.get("/projects/{project_id}/script-data/{episode_id}")

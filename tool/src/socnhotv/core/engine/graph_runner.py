@@ -1119,8 +1119,13 @@ class GraphRunner:
                     str(ln.get("speaker") or "") if ln.get("speaker") else "")
         for sc in ri.get("scenes") or []:
             if isinstance(sc, dict):
-                for name in sc.get("characters") or []:
-                    add(match_speaker(str(name), profiles), re.sub(r"\s*\([^)]*\)", "", str(name)).strip())
+                explicit = [str(x) for x in (sc.get("characterIds") or [])]
+                for x in explicit:
+                    add(x)
+                names = sc.get("characters") or []
+                if len(explicit) < len(names):  # còn tên chưa có id tường minh -> đoán như cũ
+                    for name in names:
+                        add(match_speaker(str(name), profiles), re.sub(r"\s*\([^)]*\)", "", str(name)).strip())
         for cid in node.params.get("include") or []:
             add(str(cid))
         excl = {str(x) for x in (node.params.get("exclude") or [])}
@@ -1228,7 +1233,7 @@ class GraphRunner:
                 if not text:
                     continue
                 speaker = str(sh.get("speaker") or "").strip()
-                cid = match(speaker) if speaker else None
+                cid = (sh.get("speakerId") or (match(speaker) if speaker else None))
                 lines.append(
                     {
                         "id": f"{sh.get('id') or f'shot{shot_idx + 1}'}-{len(lines) + 1}",
@@ -1331,15 +1336,15 @@ class GraphRunner:
 
     def _resolve_script_ref(self, ref: Dict[str, Any]) -> Any:
         """Giải tham chiếu kịch bản tập: {"$ref":"script","episode":..,"facet":..,"shot":..}."""
-        from socnhotv.core.engine.episode_script import parse_episode_markdown, resolve_facet
+        from socnhotv.core.engine.character_profile import load_profiles
+        from socnhotv.core.engine.episode_script import load_script, resolve_facet
 
         ep = str(ref.get("episode", ""))
         folder = self.store.project_dir / "content" / "episodes" / ep
         files = sorted(folder.glob("KICH*.md"))
-        if not files:
-            raise FileNotFoundError(ep)
-        md = files[0].read_text(encoding="utf-8", errors="replace")
-        data = parse_episode_markdown(md, ep)
+        # Ưu tiên script.json (kịch bản đã biên dịch, có id nhân vật); chưa có thì biên dịch từ .md
+        data = load_script(folder, ep, load_profiles(self.store.characters_dir))
+        md = files[0].read_text(encoding="utf-8", errors="replace") if files else ""
         return resolve_facet(data, str(ref.get("facet", "fulltext")), ref.get("shot") or None, md)
 
     def _literal_artifact(self, uri: str, port_type: PortType) -> Optional[Artifact]:
