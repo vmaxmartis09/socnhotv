@@ -21,8 +21,9 @@
 
 .author-credit {
   position: absolute;
-  top: {{ safe_zone.top or 90 }}px;
-  right: {{ safe_zone.right or 30 }}px;
+  /* dưới pill thương hiệu (cùng hàng thì đè lên nhau trên khung hẹp 9:16) */
+  top: {{ (safe_zone.top or 90) + 52 }}px;
+  left: {{ safe_zone.left or 30 }}px;
   background: rgba(0, 0, 0, 0.7);
   color: #cbd5e1;
   padding: 6px 14px;

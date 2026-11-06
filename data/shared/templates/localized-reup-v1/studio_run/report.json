@@ -1,0 +1,31 @@
+{
+  "template_id": "localized-reup-v1",
+  "platform": "tiktok",
+  "ok": true,
+  "mp4": "/Volumes/Data/socnhotv/data/shared/templates/localized-reup-v1/studio_run/localized-reup-v1_tiktok.mp4",
+  "contact_sheet": "/Volumes/Data/socnhotv/data/shared/templates/localized-reup-v1/studio_run/localized-reup-v1_tiktok_contact.jpg",
+  "engine": "hyperframes",
+  "width": 1080,
+  "height": 1920,
+  "duration_sec": 2.97,
+  "size_bytes": 595634,
+  "has_audio_stream": true,
+  "render_sec": 4.69,
+  "slots_from_user": [
+    "character_reaction",
+    "source_author",
+    "title"
+  ],
+  "slots_from_sample": [],
+  "audio_source": "voice_audio",
+  "assets_from_user": [
+    "source.mp4"
+  ],
+  "assets_from_template": [
+    "gsap.min.js"
+  ],
+  "warnings": [
+    "hyperframes check: {\"ok\": false, \"details\": {\"ok\": false, \"strict\": false, \"browserSkipped\": true, \"lint\": {\"ok\": false, \"errorCount\": 1, \"warningCount\": 1, \"infoCount\": 0, \"findings\": [{\"code\": \"studio_missing_editable_id\", \"severity\": \"warning\", \"message\": \"<video data-start=\\\"0\\\" data-track-index=\\\"1\\\"> has no id, so Studio cannot use a stable edit target for its timeline and canvas controls.\", \"selector\": \"[data"
+  ],
+  "error": ""
+}

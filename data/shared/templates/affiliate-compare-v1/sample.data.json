@@ -3,5 +3,9 @@
   "item_a": "Bản Thường (199K)",
   "item_b": "Bản Cao Cấp (249K)",
   "criteria": "Hơn nhau 50K nhưng thêm pin gấp đôi",
-  "winner": "CHỐT: Thêm 50K lấy Bản Cao Cấp cực hời!"
+  "winner": "CHỐT: Thêm 50K lấy Bản Cao Cấp cực hời!",
+  "price_a": "199.000đ",
+  "price_b": "249.000đ",
+  "specs_a": "Pin 1 ngày",
+  "specs_b": "Pin gấp đôi"
 }

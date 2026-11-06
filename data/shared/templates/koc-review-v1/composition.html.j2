@@ -44,17 +44,13 @@
         </div>
       </div>
 
-      <!-- Dynamic Synchronized Word Subtitles (Word-level timestamps from stt-align) -->
-      <div id="sub-box" class="subtitles-container clip" data-start="0" data-duration="{{ total_duration }}" data-track-index="3">
-        <span id="w1" class="word-span">Xin</span>
-        <span id="w2" class="word-span">chào!</span>
-        <span id="w3" class="word-span">Mình</span>
-        <span id="w4" class="word-span">là</span>
-        <span id="w5" class="word-span">Sóc</span>
-        <span id="w6" class="word-span">Nhỏ</span>
-        <span id="w7" class="word-span">TV</span>
-        <span id="w8" class="word-span">đây!</span>
+      <!-- Phụ đề karaoke: mỗi cụm hiện đúng lúc giọng đọc (mốc từ do runner căn bằng Whisper, vào data.word_chunks) -->
+      {% for ch in data.word_chunks or [] %}{% set ci = loop.index0 %}
+      <div id="sub{{ ci }}" class="subtitles-container clip" data-start="{{ ch.start }}" data-duration="{{ [ch.end - ch.start + 0.15, 0.2] | max }}" data-track-index="3">
+        {% for wd in ch.words %}<span id="w{{ ci }}_{{ loop.index0 }}" class="word-span">{{ wd.w }}</span>
+        {% endfor %}
       </div>
+      {% endfor %}
 
       <!-- Pros and Cons Review Card -->
       <div id="review-card" class="review-card clip" data-start="2.0" data-duration="{{ total_duration - 2.0 }}" data-track-index="2">
@@ -80,38 +76,12 @@
       tl.fromTo("#prod-stage", { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.45, ease: "back.out(1.6)" }, 0.3);
       tl.fromTo("#review-card", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }, 2.0);
 
-      // Word-level karaoke timing from Whisper stt-align:
-      // "Xin" (0.0 -> 0.32)
-      tl.to("#w1", { className: "word-span active", duration: 0.05 }, 0.05);
-      tl.to("#w1", { className: "word-span", duration: 0.05 }, 0.32);
-
-      // "chào!" (0.32 -> 0.74)
-      tl.to("#w2", { className: "word-span active", duration: 0.05 }, 0.32);
-      tl.to("#w2", { className: "word-span", duration: 0.05 }, 0.74);
-
-      // "Mình" (0.86 -> 1.00)
-      tl.to("#w3", { className: "word-span active", duration: 0.05 }, 0.86);
-      tl.to("#w3", { className: "word-span", duration: 0.05 }, 1.00);
-
-      // "là" (1.00 -> 1.14)
-      tl.to("#w4", { className: "word-span active", duration: 0.05 }, 1.00);
-      tl.to("#w4", { className: "word-span", duration: 0.05 }, 1.14);
-
-      // "Sóc" (1.14 -> 1.38)
-      tl.to("#w5", { className: "word-span active", duration: 0.05 }, 1.14);
-      tl.to("#w5", { className: "word-span", duration: 0.05 }, 1.38);
-
-      // "Nhỏ" (1.38 -> 1.58)
-      tl.to("#w6", { className: "word-span active", duration: 0.05 }, 1.38);
-      tl.to("#w6", { className: "word-span", duration: 0.05 }, 1.58);
-
-      // "TV" (1.58 -> 1.84)
-      tl.to("#w7", { className: "word-span active", duration: 0.05 }, 1.58);
-      tl.to("#w7", { className: "word-span", duration: 0.05 }, 1.84);
-
-      // "đây!" (1.84 -> 2.40)
-      tl.to("#w8", { className: "word-span active", duration: 0.05 }, 1.84);
-      tl.to("#w8", { className: "word-span", duration: 0.05 }, 2.40);
+      // Karaoke: mốc từng từ lấy từ Whisper trên giọng thật (data.word_chunks), không còn mốc đóng gói sẵn.
+      {% for ch in data.word_chunks or [] %}{% set ci = loop.index0 %}
+      {% for wd in ch.words %}
+      tl.set("#w{{ ci }}_{{ loop.index0 }}", { className: "word-span active" }, {{ wd.start }});
+      tl.set("#w{{ ci }}_{{ loop.index0 }}", { className: "word-span" }, {{ wd.end }});
+      {% endfor %}{% endfor %}
 
       window.__timelines["main"] = tl;
       tl.seek(0);

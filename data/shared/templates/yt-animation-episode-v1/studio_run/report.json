@@ -1,0 +1,26 @@
+{
+  "template_id": "yt-animation-episode-v1",
+  "platform": "youtube",
+  "ok": true,
+  "mp4": "/Volumes/Data/socnhotv/data/shared/templates/yt-animation-episode-v1/studio_run/yt-animation-episode-v1_youtube.mp4",
+  "contact_sheet": "/Volumes/Data/socnhotv/data/shared/templates/yt-animation-episode-v1/studio_run/yt-animation-episode-v1_youtube_contact.jpg",
+  "engine": "hyperframes",
+  "width": 1920,
+  "height": 1080,
+  "duration_sec": 6.8,
+  "size_bytes": 973638,
+  "has_audio_stream": true,
+  "render_sec": 6.55,
+  "slots_from_user": [
+    "character_scale_lock",
+    "end_screen_cta",
+    "episode_number",
+    "episode_title"
+  ],
+  "slots_from_sample": [],
+  "audio_source": "voice_audio",
+  "assets_from_user": [],
+  "assets_from_template": [],
+  "warnings": [],
+  "error": ""
+}

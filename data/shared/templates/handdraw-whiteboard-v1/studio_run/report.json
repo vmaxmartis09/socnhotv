@@ -1,0 +1,33 @@
+{
+  "template_id": "handdraw-whiteboard-v1",
+  "platform": "tiktok",
+  "ok": true,
+  "mp4": "/Volumes/Data/socnhotv/data/shared/templates/handdraw-whiteboard-v1/studio_run/handdraw-whiteboard-v1_tiktok.mp4",
+  "contact_sheet": "/Volumes/Data/socnhotv/data/shared/templates/handdraw-whiteboard-v1/studio_run/handdraw-whiteboard-v1_tiktok_contact.jpg",
+  "engine": "hyperframes",
+  "width": 1080,
+  "height": 1920,
+  "duration_sec": 3.9,
+  "size_bytes": 363583,
+  "has_audio_stream": true,
+  "render_sec": 5.12,
+  "slots_from_user": [
+    "caption",
+    "sketch_image",
+    "step_badge",
+    "title"
+  ],
+  "slots_from_sample": [],
+  "audio_source": "voice_audio",
+  "assets_from_user": [
+    "whiteboard.mp4"
+  ],
+  "assets_from_template": [
+    "gsap.min.js",
+    "sketch.png"
+  ],
+  "warnings": [
+    "hyperframes check: {\"ok\": false, \"details\": {\"ok\": false, \"strict\": false, \"browserSkipped\": true, \"lint\": {\"ok\": false, \"errorCount\": 1, \"warningCount\": 2, \"infoCount\": 0, \"findings\": [{\"code\": \"media_missing_data_start\", \"severity\": \"error\", \"message\": \"<video id=\\\"wb-vid\\\"> has src but no data-start. HyperFrames cannot own playback for untimed media, so preview and render behavior can diverge.\", \"selector\": \"#wb-"
+  ],
+  "error": ""
+}

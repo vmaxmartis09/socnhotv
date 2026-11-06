@@ -33,12 +33,10 @@
             <img src="assets/product_a.png" class="product-cutout" alt="Product A" />
           </div>
           <div class="item-title">{{ data.item_a or "Tai Nghe Pro Max" }}</div>
-          <div class="item-price">{{ data.price_a or "1.290.000đ" }}</div>
-          <div class="spec-list">
-            <div class="spec-item">⚡ Pin: 30 Giờ</div>
-            <div class="spec-item">🎧 Âm thanh Hi-Res</div>
-            <div class="spec-item">🛡️ Bảo hành 12T</div>
-          </div>
+          {% if data.price_a %}<div class="item-price">{{ data.price_a }}</div>{% endif %}
+          {% if data.specs_a %}<div class="spec-list">
+            {% for sp in data.specs_a.split("|") %}<div class="spec-item">{{ sp.strip() }}</div>
+            {% endfor %}</div>{% endif %}
         </div>
 
         <!-- Center VS Badge -->
@@ -50,12 +48,10 @@
             <img src="assets/product_b.png" class="product-cutout" alt="Product B" />
           </div>
           <div class="item-title">{{ data.item_b or "Đồng Hồ Ultra GPS" }}</div>
-          <div class="item-price">{{ data.price_b or "1.450.000đ" }}</div>
-          <div class="spec-list">
-            <div class="spec-item">⚡ Pin: 48 Giờ</div>
-            <div class="spec-item">📍 Định vị GPS</div>
-            <div class="spec-item">🌊 Chống nước 5ATM</div>
-          </div>
+          {% if data.price_b %}<div class="item-price">{{ data.price_b }}</div>{% endif %}
+          {% if data.specs_b %}<div class="spec-list">
+            {% for sp in data.specs_b.split("|") %}<div class="spec-item">{{ sp.strip() }}</div>
+            {% endfor %}</div>{% endif %}
         </div>
       </div>
 

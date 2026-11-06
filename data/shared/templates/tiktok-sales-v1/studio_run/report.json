@@ -1,0 +1,34 @@
+{
+  "template_id": "tiktok-sales-v1",
+  "platform": "tiktok",
+  "ok": true,
+  "mp4": "/Volumes/Data/socnhotv/data/shared/templates/tiktok-sales-v1/studio_run/tiktok-sales-v1_tiktok.mp4",
+  "contact_sheet": "/Volumes/Data/socnhotv/data/shared/templates/tiktok-sales-v1/studio_run/tiktok-sales-v1_tiktok_contact.jpg",
+  "engine": "hyperframes",
+  "width": 1080,
+  "height": 1920,
+  "duration_sec": 9.17,
+  "size_bytes": 1590354,
+  "has_audio_stream": true,
+  "render_sec": 6.08,
+  "slots_from_user": [
+    "cta",
+    "discount_badge",
+    "discount_price",
+    "hook_text",
+    "original_price",
+    "product"
+  ],
+  "slots_from_sample": [],
+  "audio_source": "voice_audio",
+  "assets_from_user": [],
+  "assets_from_template": [
+    "gsap.min.js",
+    "product.png",
+    "audio.mp3"
+  ],
+  "warnings": [
+    "hyperframes check: {\"ok\": false, \"details\": {\"ok\": false, \"strict\": false, \"browserSkipped\": false, \"lint\": {\"ok\": true, \"errorCount\": 0, \"warningCount\": 2, \"infoCount\": 0, \"findings\": [{\"code\": \"gsap_infinite_repeat\", \"severity\": \"warning\", \"message\": \"GSAP tween uses `repeat: -1` (infinite), but the composition declares a finite 9.146s window. HyperFrames clips deterministic seeking and export to that explicit dur"
+  ],
+  "error": ""
+}

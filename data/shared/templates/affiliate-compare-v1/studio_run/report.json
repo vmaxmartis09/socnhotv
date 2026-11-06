@@ -1,0 +1,38 @@
+{
+  "template_id": "affiliate-compare-v1",
+  "platform": "tiktok",
+  "ok": true,
+  "mp4": "/Volumes/Data/socnhotv/data/shared/templates/affiliate-compare-v1/studio_run/affiliate-compare-v1_tiktok.mp4",
+  "contact_sheet": "/Volumes/Data/socnhotv/data/shared/templates/affiliate-compare-v1/studio_run/affiliate-compare-v1_tiktok_contact.jpg",
+  "engine": "hyperframes",
+  "width": 1080,
+  "height": 1920,
+  "duration_sec": 10.7,
+  "size_bytes": 637294,
+  "has_audio_stream": true,
+  "render_sec": 8.64,
+  "slots_from_user": [
+    "criteria",
+    "item_a",
+    "item_b",
+    "price_a",
+    "price_b",
+    "specs_a",
+    "specs_b",
+    "title",
+    "winner"
+  ],
+  "slots_from_sample": [],
+  "audio_source": "voice_audio",
+  "assets_from_user": [],
+  "assets_from_template": [
+    "gsap.min.js",
+    "product_a.png",
+    "product_b.png"
+  ],
+  "warnings": [
+    "Asset mẫu đóng gói trong template (không phải của người dùng): product_a.png, product_b.png",
+    "hyperframes check: {\"ok\": false, \"details\": {\"ok\": false, \"strict\": false, \"browserSkipped\": false, \"lint\": {\"ok\": true, \"errorCount\": 0, \"warningCount\": 1, \"infoCount\": 0, \"findings\": [{\"code\": \"nested_structure_needs_subcomposition\", \"severity\": \"warning\", \"message\": \"<div id=\\\"split-box\\\"> is a timeline element that contains nested <div id=\\\"col-a\\\">. The timeline shows one row per top-level element, and the root"
+  ],
+  "error": ""
+}

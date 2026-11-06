@@ -1,0 +1,28 @@
+{
+  "template_id": "story-cartoon-v1",
+  "platform": "tiktok",
+  "ok": true,
+  "mp4": "/Volumes/Data/socnhotv/data/shared/templates/story-cartoon-v1/studio_run/story-cartoon-v1_tiktok.mp4",
+  "contact_sheet": "/Volumes/Data/socnhotv/data/shared/templates/story-cartoon-v1/studio_run/story-cartoon-v1_tiktok_contact.jpg",
+  "engine": "hyperframes",
+  "width": 1080,
+  "height": 1920,
+  "duration_sec": 9.07,
+  "size_bytes": 712386,
+  "has_audio_stream": true,
+  "render_sec": 6.94,
+  "slots_from_user": [
+    "book_page_text",
+    "moral_lesson",
+    "story_title"
+  ],
+  "slots_from_sample": [],
+  "audio_source": "voice_audio",
+  "assets_from_user": [],
+  "assets_from_template": [
+    "gsap.min.js",
+    "character.png"
+  ],
+  "warnings": [],
+  "error": ""
+}

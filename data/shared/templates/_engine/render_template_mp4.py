@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 """
+[CŨ — I4] Chỉ chạy trên Windows (ffmpeg.exe, PATH dấu ;) và dựng từ sample.data.json, không qua Studio.
+Dùng `run_template.py` (chạy thật, đa nền tảng, báo cáo trung thực).
+
 Real MP4 Renderer for SocNhoTV Templates using HyperFrames CLI.
 Replaces mock solid-color previews with real 9:16 / 16:9 MP4 video and JPG posters.
 """

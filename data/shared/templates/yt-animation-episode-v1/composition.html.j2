@@ -1,3 +1,4 @@
+{# design_scale: 1 — template thiết kế trực tiếp trên khung 1920x1080 #}
 <!DOCTYPE html>
 <html lang="vi">
   <head>
@@ -28,7 +29,7 @@
       </div>
 
       <!-- Outro End Screen (Cuối 5s) -->
-      <div id="outro" class="outro-container clip" data-start="{{ [total_duration - 5.0, 0]|max }}" data-duration="5.0" data-track-index="2">
+      <div id="outro" class="outro-container clip" data-start="{{ [total_duration - 5.0, 4.2]|max }}" data-duration="{{ [total_duration - ([total_duration - 5.0, 4.2]|max), 0.5]|max }}" data-track-index="2">
         <div class="outro-text">🔔 {{ data.end_screen_cta or "Đăng ký kênh Sóc Nhỏ TV" }}</div>
         <div class="sub-btn">ĐĂNG KÝ</div>
       </div>
@@ -44,7 +45,7 @@
       const tl = gsap.timeline({ paused: true });
       tl.fromTo("#title-card", { scale: 0.85, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.6, ease: "power2.out" }, 0.2);
       tl.to("#title-card", { opacity: 0, duration: 0.4 }, 3.6);
-      tl.fromTo("#outro", { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" }, {{ [total_duration - 5.0, 0]|max }});
+      tl.fromTo("#outro", { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" }, {{ [total_duration - 5.0, 4.2]|max }});
       window.__timelines["main"] = tl;
       tl.seek(0);
     </script>

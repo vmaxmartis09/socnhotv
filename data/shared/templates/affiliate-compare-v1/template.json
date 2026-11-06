@@ -47,6 +47,26 @@
       "type": "text",
       "label": "Lựa chọn khuyên dùng",
       "default": "CHỐT: Phiên bản Pro Max đáng tiền hơn!"
+    },
+    {
+      "key": "price_a",
+      "type": "text",
+      "label": "Giá sản phẩm A (tuỳ chọn)"
+    },
+    {
+      "key": "price_b",
+      "type": "text",
+      "label": "Giá sản phẩm B (tuỳ chọn)"
+    },
+    {
+      "key": "specs_a",
+      "type": "text",
+      "label": "Thông số A, ngăn cách bằng | (tuỳ chọn)"
+    },
+    {
+      "key": "specs_b",
+      "type": "text",
+      "label": "Thông số B, ngăn cách bằng | (tuỳ chọn)"
     }
   ],
   "voice": {

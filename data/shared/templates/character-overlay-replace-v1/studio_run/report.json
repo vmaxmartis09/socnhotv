@@ -1,0 +1,32 @@
+{
+  "template_id": "character-overlay-replace-v1",
+  "platform": "tiktok",
+  "ok": true,
+  "mp4": "/Volumes/Data/socnhotv/data/shared/templates/character-overlay-replace-v1/studio_run/character-overlay-replace-v1_tiktok.mp4",
+  "contact_sheet": "/Volumes/Data/socnhotv/data/shared/templates/character-overlay-replace-v1/studio_run/character-overlay-replace-v1_tiktok_contact.jpg",
+  "engine": "hyperframes",
+  "width": 1080,
+  "height": 1920,
+  "duration_sec": 3.83,
+  "size_bytes": 830265,
+  "has_audio_stream": true,
+  "render_sec": 4.91,
+  "slots_from_user": [
+    "character_image",
+    "character_name",
+    "disclaimer",
+    "scene_info",
+    "title"
+  ],
+  "slots_from_sample": [],
+  "audio_source": "voice_audio",
+  "assets_from_user": [
+    "scene_bg.mp4"
+  ],
+  "assets_from_template": [
+    "gsap.min.js",
+    "character_cutout.png"
+  ],
+  "warnings": [],
+  "error": ""
+}

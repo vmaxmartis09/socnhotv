@@ -14,6 +14,13 @@ from socnhotv.video.templates.schema import validate_template_data
 logger = logging.getLogger("socnhotv.video.templates.compose")
 
 
+class SafeZoneDesign:
+    """Vùng an toàn theo khung thiết kế của template (cho Jinja: {{ safe_zone.top }})."""
+
+    def __init__(self, top: int, bottom: int, left: int, right: int) -> None:
+        self.top, self.bottom, self.left, self.right = top, bottom, left, right
+
+
 def parse_dur_seconds(dur_str: str | float | int | None, default_sec: float = 3.0) -> float:
     if dur_str is None:
         return default_sec
@@ -126,6 +133,25 @@ def compose_template(
     j2_tmpl = env.from_string(j2_text)
 
     # 6. Render context
+    # styles.css của template dùng biến Jinja ({{ safe_zone.top }} ...): phải render TRƯỚC khi nhúng vào HTML,
+    # nếu không CSS hỏng (check: css_parse_error) và bố cục vỡ (I4: shorts-fact bị dồn lên mép trên).
+    # Các template được thiết kế trên khung 540x960 (9:16) / 960x540 (16:9) = NỬA kích thước preset xuất ra
+    # (preview cũ dựng 540x960). Dựng ở 1080x1920 mà không bù thì chữ nhỏ một nửa và vùng an toàn lệch.
+    # Cách bù: vùng an toàn cho CSS theo khung thiết kế (một nửa) + `zoom` các phần tử con trực tiếp của #root.
+    # Template tự khai khung thiết kế bằng chú thích Jinja `{# design_scale: 1 #}` (mặc định 2: thiết kế 540x960).
+    # yt-animation-episode-v1 thiết kế thẳng trên 1920x1080 nên khai 1.
+    _m = re.search(r"\{#\s*design_scale:\s*([0-9.]+)\s*#\}", j2_text)
+    design_scale = float(_m.group(1)) if _m else 2.0
+    half = SafeZoneDesign(
+        top=round(preset.safe_zone.top / design_scale),
+        bottom=round(preset.safe_zone.bottom / design_scale),
+        left=round(preset.safe_zone.left / design_scale),
+        right=round(preset.safe_zone.right / design_scale),
+    )
+    css_content = env.from_string(css_content).render(
+        safe_zone=half, width=preset.width, height=preset.height, fps=preset.fps
+    )
+    css_content += f"\n#root > * {{ zoom: {design_scale}; }}\n"
     context = {
         "template": template,
         "data": data,

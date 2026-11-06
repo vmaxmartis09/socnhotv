@@ -1,0 +1,31 @@
+{
+  "template_id": "unboxing-v1",
+  "platform": "tiktok",
+  "ok": true,
+  "mp4": "/Volumes/Data/socnhotv/data/shared/templates/unboxing-v1/studio_run/unboxing-v1_tiktok.mp4",
+  "contact_sheet": "/Volumes/Data/socnhotv/data/shared/templates/unboxing-v1/studio_run/unboxing-v1_tiktok_contact.jpg",
+  "engine": "hyperframes",
+  "width": 1080,
+  "height": 1920,
+  "duration_sec": 8.2,
+  "size_bytes": 564711,
+  "has_audio_stream": true,
+  "render_sec": 8.32,
+  "slots_from_user": [
+    "cta",
+    "first_impression",
+    "item_name",
+    "title"
+  ],
+  "slots_from_sample": [],
+  "audio_source": "voice_audio",
+  "assets_from_user": [],
+  "assets_from_template": [
+    "gsap.min.js",
+    "product.png"
+  ],
+  "warnings": [
+    "hyperframes check: {\"ok\": false, \"details\": {\"ok\": false, \"strict\": false, \"browserSkipped\": false, \"lint\": {\"ok\": true, \"errorCount\": 0, \"warningCount\": 3, \"infoCount\": 0, \"findings\": [{\"code\": \"timeline_track_too_dense\", \"severity\": \"warning\", \"message\": \"Track 2 has 4 timed elements in this HTML file. Smaller sub-compositions keep timelines easier to read, iterate on, and diff.\", \"selector\": \"[data-composition-id"
+  ],
+  "error": ""
+}
