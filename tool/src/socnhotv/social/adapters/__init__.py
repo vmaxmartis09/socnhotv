@@ -2,7 +2,12 @@ from __future__ import annotations
 
 from socnhotv.social.adapters.base import Capabilities, Issue, PublishAdapter, PublishResult
 from socnhotv.social.adapters.browser_assisted import BrowserAssistedAdapter
-from socnhotv.social.adapters.manual import ManualAdapter, export_package_zip
+from socnhotv.social.adapters.manual import (
+    ManualAdapter,
+    create_manual_package,
+    export_package_zip,
+    get_manual_package_info,
+)
 from socnhotv.social.adapters.meta import MetaAdapter
 from socnhotv.social.adapters.tiktok import TikTokAdapter
 from socnhotv.social.adapters.youtube import YouTubeAdapter
@@ -39,4 +44,6 @@ __all__ = [
     "BrowserAssistedAdapter",
     "get_adapter",
     "export_package_zip",
+    "create_manual_package",
+    "get_manual_package_info",
 ]

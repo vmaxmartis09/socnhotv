@@ -10,7 +10,12 @@ from fastapi import APIRouter, Body, HTTPException, Query, Request, status
 from fastapi.responses import FileResponse
 
 from socnhotv.social.vault import get_social_vault as get_key_vault
-from socnhotv.social.adapters import export_package_zip, get_adapter
+from socnhotv.social.adapters import (
+    create_manual_package,
+    export_package_zip,
+    get_adapter,
+    get_manual_package_info,
+)
 from socnhotv.social.analytics.collectors.manual import ManualCollector
 from socnhotv.social.analytics.insights import AnalyticsEngine
 from socnhotv.social.automation import SocialAutomationEngine
@@ -1109,22 +1114,35 @@ async def download_package_zip(project_id: str, post_id: str, platform: str):
         )
     except FileNotFoundError:
         # Generate package first if not exists
-        store = SocialStore(project_id)
-        post = store.get_post(post_id)
-        if not post:
-            raise HTTPException(status_code=404, detail="Post not found")
-        target = next((t for t in post.targets if t.platform == platform), None)
-        if not target:
-            target = PostTarget(account_id=f"acc_{platform}", platform=platform, caption=post.title)
-        acc = store.get_account(target.account_id) or SocialAccount(id=target.account_id, platform=platform, handle=platform, display_name=platform)
-        adapter = get_adapter(platform, mode="manual")
-        adapter.publish(account=acc, target=target, media=post.media[0] if post.media else None, project_id=project_id, post_id=post.id)
-        zip_path = export_package_zip(project_id, post_id, platform)
-        return FileResponse(
-            zip_path,
-            filename=f"{platform}_package_{post_id}.zip",
-            media_type="application/zip",
-        )
+        try:
+            info = create_manual_package(project_id, post_id, platform)
+            return FileResponse(
+                info["zip_path"],
+                filename=info["zip_filename"],
+                media_type="application/zip",
+            )
+        except ValueError as e:
+            raise HTTPException(status_code=404, detail=str(e))
+
+
+@router.get("/projects/{project_id}/social/packages/{post_id}/{platform}")
+async def get_package_info_route(project_id: str, post_id: str, platform: str):
+    info = get_manual_package_info(project_id, post_id, platform)
+    if not info:
+        try:
+            info = create_manual_package(project_id, post_id, platform)
+        except ValueError as e:
+            raise HTTPException(status_code=404, detail=str(e))
+    return info
+
+
+@router.post("/projects/{project_id}/social/packages/{post_id}/{platform}/generate")
+async def generate_package_route(project_id: str, post_id: str, platform: str):
+    try:
+        info = create_manual_package(project_id, post_id, platform)
+        return info
+    except ValueError as e:
+        raise HTTPException(status_code=404, detail=str(e))
 
 
 # ==========================================
@@ -1203,6 +1221,19 @@ async def get_analytics_learnings(project_id: str):
     md = engine.generate_learnings_md()
     recs = engine.generate_recommendations_json()
     return {"learnings_md": md, "recommendations": recs}
+
+
+@router.post("/projects/{project_id}/social/analytics/generate-insights")
+async def generate_insights_route(project_id: str):
+    engine = AnalyticsEngine(project_id)
+    daily = engine.export_daily_insights()
+    return {
+        "status": "ok",
+        "date": daily.get("date"),
+        "kpis": daily.get("kpis"),
+        "learnings_md": engine.generate_learnings_md(),
+        "recommendations": engine.generate_recommendations_json(),
+    }
 
 
 @router.post("/projects/{project_id}/social/analytics/collect")

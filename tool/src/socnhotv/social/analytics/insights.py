@@ -456,6 +456,35 @@ class AnalyticsEngine:
 2. Tự động chuyển đổi các kịch bản đạt rating cao sang trạng thái dựng video.
 3. Duy trì nhịp đăng tối thiểu 1 video/ngày cho TikTok và YouTube Shorts.
 """
+        # Build next episode actionable recommendations based on retention and engagement
+        if kpis.avg_retention_pct > 0 and kpis.avg_retention_pct < 50.0:
+            hook_advice = (
+                f"Tỷ lệ giữ chân trung bình hiện tại ({kpis.avg_retention_pct}%) thấp hơn mốc kỳ vọng 50%. "
+                "Tập sau bắt buộc phải có visual hook mạnh trong 3 giây đầu: Bi làm đổ vỡ, Koala nói câu hài hước, "
+                "hoặc đặt câu hỏi thách đố người xem, tuyệt đối không mở đầu bằng lời chào chậm."
+            )
+            pacing_advice = "Cắt ngắn các shot tĩnh, giữ nhịp chuyển cảnh dưới 3.0 giây/shot để giữ người xem không lướt qua."
+        elif kpis.avg_retention_pct >= 50.0:
+            hook_advice = (
+                f"Tỷ lệ giữ chân trung bình rất tốt ({kpis.avg_retention_pct}%). "
+                "Duy trì phong cách mở đầu trực diện, tập trung vào biểu cảm sinh động của Sóc Bi ngay khung hình đầu."
+            )
+            pacing_advice = "Nhịp điệu phân cảnh 3.0–4.0s/shot đang hiệu quả, tiếp tục giữ tỷ lệ này."
+        else:
+            hook_advice = (
+                "Chưa có đủ số liệu giữ chân thực tế. Khuyến nghị tập sau áp dụng công thức Hook 3s chuẩn: "
+                "Hình ảnh động bất ngờ + câu thoại giật mình của Sóc Bi."
+            )
+            pacing_advice = "Thời lượng tối ưu: 30–60 giây cho TikTok/Shorts, nhịp cắt 2.5–3.5s/shot."
+
+        md += f"""
+## 6. Gợi Ý Cụ Thể Cho Tập Kế Tiếp
+- **Chiến lược Hook 3s đầu:** {hook_advice}
+- **Nhịp độ & Thời lượng:** {pacing_advice} Thời lượng tập sau nên giới hạn 30–60 giây.
+- **Tương tác nhân vật:** Khóa cứng tương quan chiều cao Bi (100cm) và Koala (150cm), đẩy mạnh tình huống Koala ngô nghê cứu nguy cho Bi.
+- **Khung giờ phát hành tốt nhất:** {slot_desc}.
+- **Template ưu tiên:** `{top_template}`.
+"""
         self.store.save_learnings_md(md)
         return md
 
@@ -473,12 +502,38 @@ class AnalyticsEngine:
 
         top_bps = [b["blueprint_ref"] for b in creatives["blueprints"] if b["blueprint_ref"] != "none"]
 
+        kpis = self.calculate_kpis("30d")
+        if kpis.avg_retention_pct > 0 and kpis.avg_retention_pct < 50.0:
+            hook_strategy = "aggressive_curiosity"
+            hook_text = "Tập sau cần mở đầu với hook tò mò giật gân trong 3s đầu do retention dưới 50%."
+            pacing_sec = 2.8
+        elif kpis.avg_retention_pct >= 50.0:
+            hook_strategy = "direct_story"
+            hook_text = "Retention đạt >50%, duy trì mở đầu trực diện vào cốt truyện của Bi."
+            pacing_sec = 3.5
+        else:
+            hook_strategy = "standard_action"
+            hook_text = "Chưa có đủ số liệu retention, dùng hook hành động chuẩn của Sóc Bi."
+            pacing_sec = 3.0
+
+        best_slots = golden["top_slots"][:5]
+
         recs = {
             "updated_at": now_iso(),
             "priority_templates_for_session_a": top_templates[:5],
             "priority_blueprints_for_session_b": top_bps[:5],
-            "best_posting_slots": golden["top_slots"][:5],
+            "best_posting_slots": best_slots,
             "recommended_posting_windows": golden["recommended_windows"],
+            "next_episode_suggestions": {
+                "hook_strategy": hook_strategy,
+                "hook_recommendation": hook_text,
+                "target_duration_s": 45,
+                "recommended_shot_pacing_s": pacing_sec,
+                "recommended_template": top_templates[0] if top_templates else "tiktok-sales-v1",
+                "prime_window": best_slots[0] if best_slots else {"weekday": 3, "hour": 19},
+                "character_ratio": "Sóc Bi 100cm / Koala 150cm",
+                "voice_profile": "soc-nho (-14 LUFS, OmniVoice)",
+            },
         }
         self.store.save_recommendations_json(recs)
         return recs

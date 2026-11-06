@@ -773,6 +773,34 @@ export const socialApi = {
   getPackageZipUrl: (projectId: string, postId: string, platform: string) =>
     `${SOCIAL_CORE_URL}/projects/${projectId}/social/packages/${postId}/${platform}.zip`,
 
+  getPackageInfo: (projectId: string, postId: string, platform: string) =>
+    fetchJson<{
+      post_id: string;
+      platform: string;
+      package_dir: string;
+      zip_path: string | null;
+      zip_filename: string | null;
+      has_real_video: boolean;
+      caption: string;
+      hashtags: string;
+      checklist: string;
+    }>(`${SOCIAL_CORE_URL}/projects/${projectId}/social/packages/${postId}/${platform}`),
+
+  generatePackage: (projectId: string, postId: string, platform: string) =>
+    fetchJson<{
+      post_id: string;
+      platform: string;
+      package_dir: string;
+      zip_path: string;
+      zip_filename: string;
+      has_real_video: boolean;
+      caption: string;
+      hashtags: string;
+      checklist: string;
+    }>(`${SOCIAL_CORE_URL}/projects/${projectId}/social/packages/${postId}/${platform}/generate`, {
+      method: "POST",
+    }),
+
   // Analytics & Insights
   getAnalyticsOverview: (
     projectId: string,
@@ -809,6 +837,17 @@ export const socialApi = {
     fetchJson<{ learnings_md: string; recommendations: any }>(
       `${SOCIAL_CORE_URL}/projects/${projectId}/social/analytics/learnings`
     ),
+
+  generateInsights: (projectId: string) =>
+    fetchJson<{
+      status: string;
+      date: string;
+      kpis: KPISummary;
+      learnings_md: string;
+      recommendations: any;
+    }>(`${SOCIAL_CORE_URL}/projects/${projectId}/social/analytics/generate-insights`, {
+      method: "POST",
+    }),
 
   triggerAnalyticsCollect: (projectId: string) =>
     fetchJson<{ status: string; count: number }>(
