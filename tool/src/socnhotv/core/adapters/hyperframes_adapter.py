@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import asyncio
+
 import json
 import logging
 import os
@@ -149,7 +151,10 @@ class HyperFramesAdapter:
         )
 
         # Xây dựng bundle
-        self.build_project_bundle(
+        # Dựng bundle + render là việc nặng, chạy đồng bộ (subprocess): đưa sang thread để KHÔNG chặn
+        # vòng lặp sự kiện của Core (nếu không, trong lúc render Studio không tải được gì và SSE đứng).
+        await asyncio.to_thread(
+            self.build_project_bundle,
             target_dir=hf_project_dir,
             scenes=scenes,
             audio_voiceover_path=voice_path,
@@ -160,7 +165,8 @@ class HyperFramesAdapter:
         )
 
         output_mp4_temp = run_session_dir / f"{node_id}_rendered.mp4"
-        final_mp4 = self.render(
+        final_mp4 = await asyncio.to_thread(
+            self.render,
             project_dir=hf_project_dir,
             output_mp4=output_mp4_temp,
             fps=30,
@@ -170,7 +176,7 @@ class HyperFramesAdapter:
         with open(final_mp4, "rb") as f:
             mp4_bytes = f.read()
 
-        total_dur = self.get_audio_duration(final_mp4)
+        total_dur = await asyncio.to_thread(self.get_audio_duration, final_mp4)
 
         provenance = ArtifactProvenance(
             node_id=node_id,

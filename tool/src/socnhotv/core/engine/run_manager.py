@@ -218,6 +218,24 @@ class RunManager:
             return True
         return False
 
+    def delete_run(self, project_id: str, run_id: str) -> bool:
+        """Xoá hồ sơ một phiên chạy (runs/<run_id>/). Phiên đang chạy sẽ được dừng trước. Không đụng tới file output."""
+        import re
+        import shutil
+        if not re.fullmatch(r"[A-Za-z0-9_\-]+", run_id or ""):
+            return False
+        active = self._active_runs.get(project_id)
+        if active and active.get("runId") == run_id:
+            if active.get("status") == "running":
+                self.cancel_run(project_id)
+            self._active_runs.pop(project_id, None)
+        runs_dir = self._get_project_runs_dir(project_id)
+        target = (runs_dir / run_id).resolve()
+        if runs_dir.resolve() not in target.parents or not target.is_dir():
+            return False
+        shutil.rmtree(target, ignore_errors=True)
+        return True
+
     def get_active_run(self, project_id: str) -> Optional[Dict[str, Any]]:
         """Lấy phiên chạy đang active của project (nếu có)."""
         run = self._active_runs.get(project_id)

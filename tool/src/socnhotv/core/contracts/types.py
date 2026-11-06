@@ -224,6 +224,13 @@ class SSEEvent(BaseModel):
     message: Optional[str] = None
     cost_usd: Optional[float] = Field(None, alias="costUsd")
     timestamp: str
+    # Chi tiết để giao diện hiện "node nào đang làm gì, bằng model nào, nguồn gì, tốn bao nhiêu"
+    model: Optional[str] = None
+    provider: Optional[str] = None
+    detail: Optional[str] = None  # nguồn / việc đang làm (vd. "Kịch bản tập ep01 · 30 cảnh")
+    estimated_cost_usd: Optional[float] = Field(None, alias="estimatedCostUsd")
+    duration_sec: Optional[float] = Field(None, alias="durationSec")
+    node_type: Optional[str] = Field(None, alias="nodeType")
 
     model_config = ConfigDict(populate_by_name=True)
 

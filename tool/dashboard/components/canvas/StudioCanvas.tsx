@@ -1073,12 +1073,24 @@ function StudioCanvasInner() {
         ? nodes.filter((n) => n.id === targetNodeId)
         : nodes;
 
-    const initialRunNodes = targetNodes.map((n) => ({
-      id: n.id,
-      type: n.data.nodeType,
-      state: "pending",
-      progressPct: 0,
-    }));
+    const catalogNow = useStudioStore.getState().nodeCatalog;
+    const initialRunNodes = targetNodes.map((n) => {
+      const base = catalogNow.find((d) => d.typeName === n.data.nodeType);
+      const custom = typeof n.data.params?._customName === "string" ? n.data.params._customName : "";
+      return {
+        id: n.id,
+        type: n.data.nodeType,
+        name: custom || base?.displayName || n.data.nodeType,
+        // Chế độ "chạy cả chuỗi" bỏ qua node đã có kết quả và chưa lỗi thời -> hiện là dùng lại kết quả trước
+        state:
+          mode === "all" && n.data.status === "succeeded" && !n.data.isStale ? "skipped" : "pending",
+        progressPct: 0,
+        detail:
+          mode === "all" && n.data.status === "succeeded" && !n.data.isStale
+            ? "Dùng lại kết quả lần chạy trước (đầu vào không đổi, không tốn phí)"
+            : undefined,
+      };
+    });
 
     setActiveRunState({
       status: "running",
@@ -1115,9 +1127,24 @@ function StudioCanvasInner() {
 
             setActiveRunState((prev) => {
               if (!prev) return prev;
-              const updatedNodes = (prev.nodes || []).map((n) =>
-                n.id === nodeId ? { ...n, state: status, progressPct: progressPct ?? n.progressPct } : n
-              );
+              const updatedNodes = (prev.nodes || []).map((n) => {
+                if (n.id !== nodeId) return n;
+                const logs = [...(n.logs || [])];
+                if (message && logs[logs.length - 1] !== message) logs.push(String(message));
+                return {
+                  ...n,
+                  state: status,
+                  progressPct: progressPct ?? n.progressPct,
+                  model: payload.model ?? n.model,
+                  provider: payload.provider ?? n.provider,
+                  detail: payload.detail ?? n.detail,
+                  estimatedCostUsd: payload.estimatedCostUsd ?? n.estimatedCostUsd,
+                  costUsd: payload.costUsd ?? n.costUsd,
+                  durationSec: payload.durationSec ?? n.durationSec,
+                  startedAt: n.startedAt ?? (status === "running" ? Date.now() : undefined),
+                  logs: logs.slice(-40),
+                };
+              });
               return {
                 ...prev,
                 nodes: updatedNodes,
@@ -1226,7 +1253,9 @@ function StudioCanvasInner() {
 
       const isAllOk = summary ? summary.isSuccess : false;
       setActiveRunState((prev) =>
-        prev
+        prev && prev.status === "cancelled"
+          ? prev
+          : prev
           ? {
               ...prev,
               status: isAllOk ? "completed" : "failed",
@@ -1244,6 +1273,7 @@ function StudioCanvasInner() {
         }
       }
 
+      if (useStudioStore.getState().jobs.find((j) => j.id === jobId)?.status === "cancelled") return;
       updateJob(jobId, {
         status: isAllOk ? "completed" : "failed",
         progress: isAllOk ? 100 : 50,
@@ -1273,12 +1303,17 @@ function StudioCanvasInner() {
     setActiveRunState((prev) =>
       prev ? { ...prev, status: "cancelled", stage: "Đã huỷ theo yêu cầu người dùng" } : null
     );
+    for (const j of useStudioStore.getState().jobs) {
+      if (j.projectId === activeProjectId && (j.status === "running" || j.status === "queued")) {
+        updateJob(j.id, { status: "cancelled", completedAt: new Date().toISOString() });
+      }
+    }
     for (const n of nodes) {
       if (n.data.status === "running" || n.data.status === "queued") {
         updateNodeExecutionState(n.id, { status: "idle", progressPct: 0 });
       }
     }
-  }, [activeProjectId, nodes, setIsRunningGraph, updateNodeExecutionState]);
+  }, [activeProjectId, nodes, setIsRunningGraph, updateNodeExecutionState, updateJob]);
 
   // Drag & Drop Character, Node, hoặc Files trực tiếp từ máy tính lên Canvas
   const handleDragOverCanvas = useCallback((e: React.DragEvent) => {
@@ -1746,6 +1781,7 @@ function StudioCanvasInner() {
             activeRun={activeRunState}
             onCancel={handleStopRun}
             onOpenJobsTab={() => setActiveRightTab("jobs")}
+            onDismiss={() => setActiveRunState(null)}
           />
           {/* Never-Empty Canvas Template Picker when nodes.length === 0 */}
           {nodes.length === 0 ? (

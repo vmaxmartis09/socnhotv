@@ -175,3 +175,47 @@ def test_render_dialogue_mixes_all_characters():
         assert srt.count(" --> ") == 30 and "Dê Mun:" in srt and "Mẹ Sóc:" in srt
 
     asyncio.run(_t())
+
+
+# ------------------------------------------------------------------ cổng kiểm định chặn dựng video (E5)
+def _gate_graph(gid, dialogue, block):
+    return Graph(
+        id=gid,
+        project_id="soc-nho-tv",
+        nodes=[
+            NodeInstance(id="s", type="script", params={"mode": "paste", "rawScript": dialogue, "targetSceneCount": 2}),
+            NodeInstance(id="q", type="quality_check", params={"blockOnFail": block}),
+            NodeInstance(id="r", type="hyperframes_render", params={"aspectRatio": "16:9"}),
+        ],
+        edges=[
+            Edge(id="e1", source_node_id="s", source_port="scenes", target_node_id="q", target_port="scenes"),
+            Edge(id="e2", source_node_id="q", source_port="pass_fail", target_node_id="r", target_port="gate"),
+        ],
+        updated_at=NOW,
+    )
+
+
+def test_quality_gate_blocks_render_on_policy_violation():
+    async def _t():
+        runner = GraphRunner(ProjectStore("soc-nho-tv"))
+        g = _gate_graph(f"test_gate_{uuid.uuid4().hex[:6]}", "Sóc Bi: Mình sẽ đánh nhau và đổ máu!", True)
+        s = await runner.run(g, GraphRunRequest(project_id="soc-nho-tv", mode=RunMode.ALL, mock_mode=True, max_retries=1))
+        assert "q" in s.failed_nodes and "KHÔNG ĐẠT" in s.errors["q"]
+        assert "r" not in s.executed_nodes  # không tốn công dựng video
+
+    asyncio.run(_t())
+
+
+def test_quality_gate_default_does_not_block_and_clean_script_passes():
+    async def _t():
+        runner = GraphRunner(ProjectStore("soc-nho-tv"))
+        # không bật blockOnFail: giữ hành vi cũ (chỉ báo cáo)
+        g = _gate_graph(f"test_gate_{uuid.uuid4().hex[:6]}", "Sóc Bi: Mình sẽ đánh nhau và đổ máu!", False)
+        s = await runner.run(g, GraphRunRequest(project_id="soc-nho-tv", mode=RunMode.ALL, mock_mode=True, max_retries=1))
+        assert "q" in s.executed_nodes
+        # kịch bản sạch + bật chặn: vẫn qua
+        g2 = _gate_graph(f"test_gate_{uuid.uuid4().hex[:6]}", "Sóc Bi: Chào các bạn nhỏ, hôm nay mình xếp tháp gỗ.", True)
+        s2 = await runner.run(g2, GraphRunRequest(project_id="soc-nho-tv", mode=RunMode.ALL, mock_mode=True, max_retries=1))
+        assert "q" in s2.executed_nodes and "q" not in s2.failed_nodes  # kịch bản sạch: cổng mở
+
+    asyncio.run(_t())

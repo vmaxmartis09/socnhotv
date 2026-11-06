@@ -527,6 +527,26 @@ export function validateGraphLocally(
   };
 }
 
+/** Chuẩn hoá đồ thị theo hợp đồng của core trước khi lưu (tránh 422): state "succeeded" -> "completed", bản sinh thiếu nodeId/artifactId. */
+function normalizeGraphForCore(graph: Graph): Graph {
+  return {
+    ...graph,
+    nodes: graph.nodes.map((n: any) => ({
+      ...n,
+      ...(n.state === "succeeded" ? { state: "completed" } : {}),
+      ...(Array.isArray(n.generations)
+        ? {
+            generations: n.generations.map((g: any) => ({
+              ...g,
+              nodeId: g.nodeId ?? n.id,
+              artifactId: g.artifactId ?? g.id,
+            })),
+          }
+        : {}),
+    })),
+  } as Graph;
+}
+
 export async function saveGraphToCore(
   projectId: string,
   graph: Graph
@@ -535,7 +555,7 @@ export async function saveGraphToCore(
     const res = await fetch(`${CORE_URL}/projects/${projectId}/graph`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(graph),
+      body: JSON.stringify(normalizeGraphForCore(graph)),
     });
     return res.ok;
   } catch {
@@ -617,6 +637,15 @@ export async function cancelRunOnCore(projectId: string): Promise<void> {
     });
   } catch {
     // ignore if offline
+  }
+}
+
+export async function deleteRunOnCore(projectId: string, runId: string): Promise<boolean> {
+  try {
+    const res = await fetch(`${CORE_URL}/projects/${projectId}/runs/${encodeURIComponent(runId)}`, { method: "DELETE" });
+    return res.ok;
+  } catch {
+    return false;
   }
 }
 

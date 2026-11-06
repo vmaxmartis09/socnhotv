@@ -932,6 +932,63 @@ class GraphRunner:
         )
         return new_scenes, voice_art, srt_art, timeline
 
+    # ------------------------------------------------------------ mô tả việc node đang làm (cho giao diện)
+    def _describe_node_activity(self, node: NodeInstance, ri: Dict[str, Any]) -> str:
+        t = node.type
+        try:
+            if t == "script":
+                mode = str(ri.get("mode") or node.params.get("mode") or "ai")
+                if mode == "episode":
+                    return f"Đọc kịch bản tập {ri.get('episodeId') or node.params.get('episodeId') or '?'} (tách theo {ri.get('granularity') or node.params.get('granularity') or 'shot'})"
+                return "Dán kịch bản và tách cảnh" if mode == "paste" else "AI tách ý tưởng thành các cảnh"
+            if t == "character":
+                cid = ri.get("characterId") or node.params.get("characterId")
+                extra = " · bật Nói" if NodeRegistry.is_capability_enabled(node.params, "speak") else ""
+                return f"Nạp hồ sơ + ảnh DNA nhân vật {cid}{extra}"
+            if t == "image_gen":
+                scenes = ri.get("scenes")
+                refs = ri.get("references") or []
+                if isinstance(scenes, list) and scenes:
+                    return f"Tạo ảnh cho {len(scenes)} cảnh, mỗi cảnh lọc ảnh tham chiếu theo nhân vật ({len(refs)} ảnh DNA)"
+                return f"Tạo ảnh từ prompt ({len(refs)} ảnh tham chiếu)"
+            if t == "voice_tts":
+                return f"Đọc giọng {self._voice_for_tts(node, ri)} rồi master -14 LUFS"
+            if t == "hyperframes_render":
+                clips = ri.get("voice_clips")
+                scenes = ri.get("scenes") or []
+                n = len(clips) if isinstance(clips, list) else 0
+                size = "16:9 1920×1080" if (node.params.get("aspectRatio") == "16:9" or node.params.get("platform") == "youtube") else "9:16 1080×1920"
+                return f"Ghép {len(scenes)} cảnh" + (f" + {n} câu thoại" if n else "") + f", dựng {size}"
+            if t == "captions":
+                return "Tạo phụ đề từ lời thoại và âm thanh"
+            if t == "export":
+                return "Đóng gói thành phẩm vào thư mục output/"
+            if t == "quality_check":
+                return "Kiểm định chất lượng bằng model nhìn"
+            if t == "policy":
+                return "Nạp chính sách nội dung của dự án"
+        except Exception:
+            pass
+        return f"Đang chạy {node.type}"
+
+    def _describe_node_result(self, node: NodeInstance, out: Dict[str, Any]) -> str:
+        try:
+            if node.type == "script":
+                return f"{len(out.get('scenes') or [])} cảnh · {len(out.get('lines') or [])} câu thoại"
+            if node.type == "image_gen":
+                return f"{len(out.get('images') or [])} ảnh"
+            if node.type == "character":
+                c = out.get("character") or {}
+                v = out.get("voice")
+                extra = f" · {len(v)} câu đã đọc" if isinstance(v, list) else ""
+                return f"{c.get('name', '')} · giọng {c.get('voiceId') or 'chưa có'}{extra}"
+            if node.type == "hyperframes_render":
+                tl = out.get("timeline")
+                return "Đã dựng xong video" + (f" · {len(tl)} câu thoại khớp mốc" if isinstance(tl, list) else "")
+        except Exception:
+            pass
+        return f"Node {node.type} hoàn thành"
+
     def _capabilities_cost(self, node: NodeInstance, real_mode: bool) -> float:
         from socnhotv.core.nodes.capabilities import capability_params, get_runtime
 
@@ -2276,6 +2333,9 @@ class GraphRunner:
             outputs["pass_fail"] = report_text
             outputs["violations"] = policy_text
             outputs["policy_report"] = policy_report
+            if not passed and node.params.get("blockOnFail") is True:
+                # Cổng chặn thật: ném lỗi để mọi node phía sau bị bỏ qua (không tốn tiền dựng video)
+                raise ValueError(f"Kiểm định KHÔNG ĐẠT, dừng trước khi dựng video.\n{report_text}")
             if isinstance(media_in, Artifact):
                 outputs["media"] = media_in
                 primary_artifact = media_in
@@ -2508,6 +2568,33 @@ class GraphRunner:
                 )
 
                 resolved_inputs = self._gather_node_inputs(node, graph, node_outputs)
+                node_started_ts = time.time()
+
+                # Báo giao diện: node làm gì, bằng model nào, nguồn gì, dự kiến tốn bao nhiêu
+                try:
+                    m_key, m_prov = self._effective_model_for_node(node, real_mode=not req.mock_mode)
+                    est = 0.0 if req.mock_mode else self.estimate_node_cost(node, real_mode=True)
+                    if est and node.type == "image_gen":
+                        est *= max(1, self._estimate_batch_count(graph, node))
+                    est += 0.0 if req.mock_mode else self._capabilities_cost(node, True)
+                    self._emit_event(
+                        SSEEvent(
+                            event_type=SSEEventType.NODE_PROGRESS,
+                            run_id=run_id,
+                            node_id=nid,
+                            node_type=node.type,
+                            state=NodeState.RUNNING,
+                            progress=0.12,
+                            message=self._describe_node_activity(node, resolved_inputs),
+                            detail=self._describe_node_activity(node, resolved_inputs),
+                            model=m_key,
+                            provider=m_prov,
+                            estimated_cost_usd=round(est, 6),
+                            timestamp=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                        )
+                    )
+                except Exception:
+                    pass
 
                 success = False
                 attempt_error = ""
@@ -2612,7 +2699,10 @@ class GraphRunner:
                                 node_id=nid,
                                 state=NodeState.COMPLETED,
                                 progress=1.0,
-                                message=f"Node {node.type} hoàn thành xuất sắc.",
+                                message=self._describe_node_result(node, outputs),
+                                detail=self._describe_node_result(node, outputs),
+                                node_type=node.type,
+                                duration_sec=round(time.time() - node_started_ts, 2),
                                 cost_usd=cost,
                                 timestamp=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
                             )

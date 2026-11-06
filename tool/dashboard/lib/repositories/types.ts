@@ -138,7 +138,7 @@ export interface Job {
     | "script_analysis"
     | "render";
   model?: string;
-  status: "pending" | "queued" | "running" | "completed" | "failed";
+  status: "pending" | "queued" | "running" | "completed" | "failed" | "cancelled";
   progress: number;
   estimatedCostUsd: number;
   actualCostUsd: number;

@@ -515,6 +515,14 @@ async def get_active_project_run(project_id: str):
     return active
 
 
+@app.delete("/projects/{project_id}/runs/{run_id}")
+async def delete_project_run(project_id: str, run_id: str):
+    """Xoá một phiên chạy khỏi danh sách job (đang chạy thì dừng trước). Không xoá file output."""
+    if not RunManager.get_instance().delete_run(project_id, run_id):
+        raise HTTPException(status_code=404, detail=f"Không tìm thấy phiên chạy {run_id}")
+    return {"status": "deleted", "runId": run_id}
+
+
 @app.get("/projects/{project_id}/runs/{run_id}")
 async def get_project_run(project_id: str, run_id: str):
     """Chi tiết 1 phiên chạy theo ID."""

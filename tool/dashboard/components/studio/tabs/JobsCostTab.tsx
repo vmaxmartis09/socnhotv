@@ -1,5 +1,5 @@
 "use client";
-import { showAlert } from "@/lib/confirm";
+import { showAlert, confirm } from "@/lib/confirm";
 
 import { useShallow } from "zustand/react/shallow";
 import React, { useState, useEffect } from "react";
@@ -12,6 +12,7 @@ import {
   fetchProjectRuns,
   fetchProjectOutputs,
   cancelRunOnCore,
+  deleteRunOnCore,
 } from "@/lib/core-api";
 import {
   Layers,
@@ -25,6 +26,7 @@ import {
   Film,
   Play,
   ExternalLink,
+  Trash2,
 } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
 
@@ -41,6 +43,7 @@ export function JobsCostTab() {
     setActiveRightTab,
     setSelectedNodeId,
     updateJob,
+    removeJob,
   } = useStudioStore(
     useShallow((s: StudioStore) => ({
       jobs: s.jobs,
@@ -51,6 +54,7 @@ export function JobsCostTab() {
       setActiveRightTab: s.setActiveRightTab,
       setSelectedNodeId: s.setSelectedNodeId,
       updateJob: s.updateJob,
+      removeJob: s.removeJob,
     }))
   );
 
@@ -61,6 +65,26 @@ export function JobsCostTab() {
   const [coreRuns, setCoreRuns] = useState<any[]>([]);
   const [outputsList, setOutputsList] = useState<any[]>([]);
   const [cancellingId, setCancellingId] = useState<string | null>(null);
+  // Job đã xoá: ẩn ngay trên UI (và lưu để các job render cũ không tự hiện lại)
+  const dismissKey = `socnhotv:dismissedJobs:${activeProjectId}`;
+  const [dismissed, setDismissed] = useState<string[]>([]);
+  useEffect(() => {
+    try {
+      setDismissed(JSON.parse(localStorage.getItem(dismissKey) || "[]"));
+    } catch {
+      setDismissed([]);
+    }
+  }, [dismissKey]);
+  const rememberDismissed = (ids: string[]) =>
+    setDismissed((prev) => {
+      const next = Array.from(new Set([...prev, ...ids])).slice(-500);
+      try {
+        localStorage.setItem(dismissKey, JSON.stringify(next));
+      } catch {
+        /* bỏ qua */
+      }
+      return next;
+    });
 
   // Sync with Core's video render jobs, runs & outputs
   const fetchJobs = async () => {
@@ -122,7 +146,7 @@ export function JobsCostTab() {
     const list: Array<{
       id: string;
       model?: string;
-      status: "queued" | "running" | "completed" | "failed";
+      status: "queued" | "running" | "completed" | "failed" | "cancelled";
       stage?: string;
       progress: number;
       actualCostUsd: number;
@@ -138,7 +162,9 @@ export function JobsCostTab() {
       const runStatus =
         r.status === "completed"
           ? "completed"
-          : r.status === "failed" || r.status === "cancelled"
+          : r.status === "cancelled" || r.status === "canceled"
+          ? "cancelled"
+          : r.status === "failed"
           ? "failed"
           : "running";
       const filesObj: Record<string, string> = {};
@@ -193,13 +219,15 @@ export function JobsCostTab() {
       }
     }
 
-    return list.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
-  }, [coreRuns, remoteJobs, jobs]);
+    return list
+      .filter((j) => !dismissed.includes(j.id))
+      .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+  }, [coreRuns, remoteJobs, jobs, dismissed]);
 
   const filteredJobs = combinedJobs.filter((j) => {
     if (filter === "running") return j.status === "running" || j.status === "queued";
     if (filter === "completed") return j.status === "completed";
-    if (filter === "failed") return j.status === "failed";
+    if (filter === "failed") return j.status === "failed" || j.status === "cancelled";
     return true;
   });
 
@@ -212,12 +240,56 @@ export function JobsCostTab() {
         await videoApi.cancelRenderJob(activeProjectId, jobId);
       }
       await fetchJobs();
-      updateJob(jobId, { status: "failed" });
+      updateJob(jobId, { status: "cancelled" });
     } catch (err: any) {
       await showAlert("Huỷ job thất bại", err.message, "danger");
     } finally {
       setCancellingId(null);
     }
+  };
+
+  /** Xoá job: đang chạy thì dừng trước. Chỉ xoá hồ sơ job, không xoá video/file đã xuất. */
+  const handleDelete = async (job: (typeof combinedJobs)[0]) => {
+    const live = job.status === "running" || job.status === "queued";
+    const ok = await confirm({
+      title: live ? "Dừng và xoá job?" : "Xoá job?",
+      message: live
+        ? "Job đang chạy sẽ bị dừng rồi xoá khỏi danh sách. File đã xuất vẫn được giữ."
+        : "Job sẽ bị xoá khỏi danh sách. File đã xuất vẫn được giữ.",
+      tone: "danger",
+      confirmLabel: live ? "Dừng & xoá" : "Xoá",
+    });
+    if (!ok) return;
+    try {
+      if (live) {
+        if (job.id.startsWith("run_")) await cancelRunOnCore(activeProjectId);
+        else await videoApi.cancelRenderJob(activeProjectId, job.id).catch(() => undefined);
+      }
+      if (job.id.startsWith("run_")) await deleteRunOnCore(activeProjectId, job.id);
+      removeJob(job.id);
+      rememberDismissed([job.id]);
+      await fetchJobs();
+    } catch (err: any) {
+      await showAlert("Xoá job thất bại", err?.message, "danger");
+    }
+  };
+
+  const handleClearFinished = async () => {
+    const done = combinedJobs.filter((j) => j.status !== "running" && j.status !== "queued");
+    if (done.length === 0) return;
+    const ok = await confirm({
+      title: `Xoá ${done.length} job đã kết thúc?`,
+      message: "Các job đang chạy được giữ nguyên. File đã xuất vẫn được giữ.",
+      tone: "danger",
+      confirmLabel: "Xoá hết",
+    });
+    if (!ok) return;
+    for (const j of done) {
+      if (j.id.startsWith("run_")) await deleteRunOnCore(activeProjectId, j.id);
+      removeJob(j.id);
+    }
+    rememberDismissed(done.map((j) => j.id));
+    await fetchJobs();
   };
 
   const handleSchedulePost = (job: (typeof combinedJobs)[0]) => {
@@ -388,7 +460,7 @@ export function JobsCostTab() {
           },
           {
             id: "failed",
-            label: `Lỗi (${combinedJobs.filter((j) => j.status === "failed").length})`,
+            label: `Lỗi/Huỷ (${combinedJobs.filter((j) => j.status === "failed" || j.status === "cancelled").length})`,
           },
         ].map((tab) => (
           <button
@@ -406,6 +478,19 @@ export function JobsCostTab() {
         ))}
       </div>
 
+      {combinedJobs.some((j) => j.status !== "running" && j.status !== "queued") && (
+        <div className="flex justify-end">
+          <button
+            type="button"
+            onClick={handleClearFinished}
+            className="flex items-center gap-1 rounded px-2 py-1 text-[11px] text-muted-foreground hover:bg-rose-500/10 hover:text-rose-400"
+          >
+            <Trash2 className="h-3 w-3" />
+            <span>Xoá job đã kết thúc</span>
+          </button>
+        </div>
+      )}
+
       {/* Jobs Queue List */}
       <div className="space-y-2.5">
         {filteredJobs.length === 0 ? (
@@ -417,6 +502,7 @@ export function JobsCostTab() {
             const isDone = j.status === "completed";
             const isRunning = j.status === "running" || j.status === "queued";
             const isFailed = j.status === "failed";
+            const isCancelled = j.status === "cancelled";
             const outputPlatforms = Object.keys(j.outputs || {});
 
             return (
@@ -428,6 +514,8 @@ export function JobsCostTab() {
                     ? "border-primary/50 bg-primary/5 shadow-xs"
                     : isDone
                     ? "border-border bg-card hover:border-border/80"
+                    : isCancelled
+                    ? "border-border bg-muted/30"
                     : "border-rose-500/20 bg-rose-500/5"
                 )}
               >
@@ -444,6 +532,8 @@ export function JobsCostTab() {
                           ? "bg-sky-500/10 text-semantic-info border border-sky-500/20"
                           : isDone
                           ? "bg-emerald-500/10 text-semantic-success border border-emerald-500/20"
+                          : isCancelled
+                          ? "bg-muted text-muted-foreground border border-border"
                           : "bg-rose-500/10 text-semantic-danger border border-rose-500/20"
                       )}
                     >
@@ -545,6 +635,15 @@ export function JobsCostTab() {
                   </div>
 
                   <div className="flex items-center gap-1.5">
+                    <button
+                      type="button"
+                      onClick={() => handleDelete(j)}
+                      title={isRunning ? "Dừng và xoá job" : "Xoá job"}
+                      aria-label={isRunning ? "Dừng và xoá job" : "Xoá job"}
+                      className="flex h-6 w-6 items-center justify-center rounded text-muted-foreground hover:bg-rose-500/10 hover:text-rose-400"
+                    >
+                      <Trash2 className="h-3.5 w-3.5" />
+                    </button>
                     {isRunning && (
                       <button
                         type="button"

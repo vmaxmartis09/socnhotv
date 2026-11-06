@@ -7,7 +7,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useStudioStore } from "@/store";
 import { useRouter } from "@/i18n/routing";
 import type { Job } from "@/lib/repositories/types";
-import { Loader2, CheckCircle2, AlertTriangle, Circle, ExternalLink, Image as ImageIcon, Video, Volume2, ScrollText, Film } from "@/components/ui/icons";
+import { Loader2, CheckCircle2, AlertTriangle, Circle, ExternalLink, Image as ImageIcon, Video, Volume2, ScrollText, Film, Trash2 } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
 
 const TYPE_ICON: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -22,6 +22,7 @@ function StatusIcon({ status }: { status: Job["status"] }) {
   if (status === "running") return <Loader2 className="h-4 w-4 animate-spin text-brand" />;
   if (status === "completed") return <CheckCircle2 className="h-4 w-4 text-semantic-success" />;
   if (status === "failed") return <AlertTriangle className="h-4 w-4 text-semantic-danger" />;
+  if (status === "cancelled") return <Circle className="h-4 w-4 text-muted-foreground/60" />;
   return <Circle className="h-4 w-4 text-muted-foreground" />;
 }
 
@@ -31,17 +32,19 @@ const statusLabel: Record<Job["status"], string> = {
   running: "Đang chạy",
   completed: "Xong",
   failed: "Lỗi",
+  cancelled: "Đã huỷ",
 };
 
 /** Danh sách tiến trình; `compact` dùng ở Sảnh, bản đầy đủ có chi tiết bên phải và nút focus. */
 export function JobsList({ compact = false }: { compact?: boolean }) {
-  const { jobs, projects, switchProject, setSelectedNodeId, flashNode } = useStudioStore(
+  const { jobs, projects, switchProject, setSelectedNodeId, flashNode, removeJob } = useStudioStore(
     useShallow((s) => ({
       jobs: s.jobs,
       projects: s.projects,
       switchProject: s.switchProject,
       setSelectedNodeId: s.setSelectedNodeId,
       flashNode: s.flashNode,
+      removeJob: s.removeJob,
     }))
   );
   const router = useRouter();
@@ -77,7 +80,7 @@ export function JobsList({ compact = false }: { compact?: boolean }) {
     const Icon = TYPE_ICON[j.type] ?? Circle;
     const active = selected?.id === j.id;
     return (
-      <motion.li key={j.id} layout initial={enterOnce(`job:${j.id}`, { opacity: 0, y: 6 })} animate={{ opacity: 1, y: 0 }}>
+      <motion.li key={j.id} layout className="group/job relative" initial={enterOnce(`job:${j.id}`, { opacity: 0, y: 6 })} animate={{ opacity: 1, y: 0 }}>
         <button
           type="button"
           onClick={() => setSelectedId(j.id)}
@@ -99,6 +102,19 @@ export function JobsList({ compact = false }: { compact?: boolean }) {
             )}
           </span>
           <span title={statusLabel[j.status]}><StatusIcon status={j.status} /></span>
+        </button>
+        <button
+          type="button"
+          title="Xoá job"
+          aria-label="Xoá job"
+          onClick={(e) => {
+            e.stopPropagation();
+            removeJob(j.id);
+            if (selectedId === j.id) setSelectedId(null);
+          }}
+          className="absolute right-2 top-2 flex h-6 w-6 items-center justify-center rounded-full bg-background/80 text-muted-foreground opacity-0 transition hover:text-semantic-danger group-hover/job:opacity-100 focus-visible:opacity-100"
+        >
+          <Trash2 className="h-3.5 w-3.5" />
         </button>
       </motion.li>
     );

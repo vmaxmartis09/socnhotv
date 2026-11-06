@@ -391,10 +391,10 @@ export function PortValueInput({ nodeId, port }: Props) {
           type="button"
           onClick={unplug}
           title="Gỡ dây nối"
-          className="nodrag inline-flex h-7 shrink-0 items-center gap-1 rounded-md border border-border bg-card px-2 text-xs text-foreground transition-colors hover:bg-accent"
+          aria-label="Gỡ dây nối"
+          className="nodrag inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md border border-border bg-card text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
         >
           <Unlink className="h-3.5 w-3.5" />
-          Gỡ dây
         </button>
       </div>
     );

@@ -246,6 +246,8 @@ export const StudioNode = memo(function StudioNode({
   // Mỗi card tự quản lý trạng thái của mình (không ảnh hưởng card khác, không tự đóng khi bỏ chọn).
   // Cổng vào đang mở khung chọn nguồn (node khác / tải lên / dự án / nhân vật)
   const [activeInPort, setActiveInPort] = useState<string | null>(null);
+  /** Vị trí dọc (px, tính từ đầu thẻ) của ô input đang mở để panel nguồn hiện ngay cạnh */
+  const [activeInTop, setActiveInTop] = useState(0);
   const [expanded, setExpanded] = useState(() => DETAIL_DEFAULT_TYPES.has(def.typeName));
 
   // Kiểm tra đủ input: cổng bắt buộc phải được nối hoặc đã có giá trị
@@ -514,6 +516,7 @@ export const StudioNode = memo(function StudioNode({
           onRequestRun("single_node", id);
         }
       }}
+      data-node-card=""
       className={cn(
         "group/node relative w-[300px] rounded-[14px] border bg-card text-foreground select-none transition-[border-color,box-shadow,opacity]",
         stateKey === "stale" && "opacity-80",
@@ -643,6 +646,9 @@ export const StudioNode = memo(function StudioNode({
                 title="Chọn nguồn cho đầu vào này"
                 onClick={(e) => {
                   e.stopPropagation();
+                  const row = e.currentTarget as HTMLElement;
+                  const card = row.closest("[data-node-card]") as HTMLElement | null;
+                  if (card) setActiveInTop(row.getBoundingClientRect().top - card.getBoundingClientRect().top);
                   setActiveInPort((cur) => (cur === port.name ? null : port.name));
                 }}
                 className={cn(
@@ -663,21 +669,35 @@ export const StudioNode = memo(function StudioNode({
               </div>
             );
           })}
-          <Reveal show={activeInPort !== null}>
-            <div className="nodrag space-y-1 px-3 pb-2 pt-1">
-              {(() => {
-                const ap = def.inputPorts.find((pt) => pt.name === activeInPort);
-                return ap ? (
-                  <>
-                    <div className="text-[11px] text-muted-foreground">
-                      Nguồn cho <span className="font-mono text-foreground">{ap.name}</span>
-                    </div>
-                    <PortValueInput nodeId={id} port={ap} />
-                  </>
-                ) : null;
-              })()}
-            </div>
-          </Reveal>
+          {activeInPort !== null && (() => {
+            const ap = def.inputPorts.find((pt) => pt.name === activeInPort);
+            if (!ap) return null;
+            // Panel nguồn mở ngay CẠNH PHẢI ô input (không đẩy giãn thẻ)
+            return (
+              <div
+                className="nodrag nowheel absolute left-full z-50 ml-3 w-[320px] space-y-1.5 rounded-xl border border-border bg-popover p-3 text-popover-foreground shadow-lg"
+                style={{ top: Math.max(0, activeInTop - 8) }}
+                onClick={(e) => e.stopPropagation()}
+                onDoubleClick={(e) => e.stopPropagation()}
+              >
+                <div className="flex items-center justify-between text-[11px] text-muted-foreground">
+                  <span>
+                    Nguồn cho <span className="font-mono text-foreground">{ap.name}</span>
+                  </span>
+                  <button
+                    type="button"
+                    aria-label="Đóng"
+                    title="Đóng"
+                    onClick={() => setActiveInPort(null)}
+                    className="flex h-5 w-5 items-center justify-center rounded text-muted-foreground hover:bg-accent hover:text-foreground"
+                  >
+                    ✕
+                  </button>
+                </div>
+                <PortValueInput nodeId={id} port={ap} />
+              </div>
+            );
+          })()}
          </Reveal>
         </div>
       )}
