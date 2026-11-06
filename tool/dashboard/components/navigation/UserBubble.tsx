@@ -119,8 +119,12 @@ export function UserBubble({
       .then((r) => (r.ok ? r.json() : null))
       .then((data) => {
         if (!active || !data?.providers) return;
+        // Core trả mảng [{provider, configured, updatedAt}], không phải map theo id.
+        const list: Array<{ provider: string; configured?: boolean; updatedAt?: string | null }> = Array.isArray(data.providers)
+          ? data.providers
+          : Object.entries(data.providers).map(([provider, v]) => ({ provider, ...(v as object) }));
         for (const p of PROVIDERS) {
-          const info = data.providers[p.id];
+          const info = list.find((x) => x.provider === p.id);
           if (info) {
             setProviderKeyConfigured(
               p.id,
