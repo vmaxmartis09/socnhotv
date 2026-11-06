@@ -48,6 +48,7 @@ export function CreateVideoModal({ isOpen, onClose }: CreateVideoModalProps) {
     activeProjectId,
     nodeCatalog,
     isMockMode,
+    runPolicy,
     createEpisode,
     selectEpisode,
     addJob,
@@ -57,6 +58,7 @@ export function CreateVideoModal({ isOpen, onClose }: CreateVideoModalProps) {
       activeProjectId: s.activeProjectId,
       nodeCatalog: s.nodeCatalog,
       isMockMode: s.isMockMode,
+      runPolicy: s.runPolicy,
       createEpisode: s.createEpisode,
       selectEpisode: s.selectEpisode,
       addJob: s.addJob,
@@ -348,6 +350,7 @@ export function CreateVideoModal({ isOpen, onClose }: CreateVideoModalProps) {
           graph: bundle.coreGraph,
           mode: "all" as any,
           mockMode: isMockMode,
+          runPolicy,
         })
           .then((summary) => {
             if (summary) {

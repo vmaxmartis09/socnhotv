@@ -44,6 +44,7 @@ export function ChatTab() {
     addScheduledPost,
     isMockMode,
     setIsMockMode,
+    runPolicy,
     updateNodeExecutionState,
     projects,
     characters,
@@ -78,6 +79,7 @@ export function ChatTab() {
       addScheduledPost: s.addScheduledPost,
       isMockMode: s.isMockMode,
       setIsMockMode: s.setIsMockMode,
+      runPolicy: s.runPolicy,
       updateNodeExecutionState: s.updateNodeExecutionState,
       projects: s.projects,
       characters: s.characters,
@@ -130,7 +132,7 @@ export function ChatTab() {
 
   const startRunConfirmation = (promptText: string) => {
     const estCost = nodes.reduce(
-      (acc, n) => acc + estimateNodeCostUsd(n.data.nodeType, n.data.params || {}, isMockMode),
+      (acc, n) => acc + estimateNodeCostUsd(n.data.nodeType, n.data.params || {}, isMockMode, runPolicy),
       0
     );
     setPendingConfirmation({
