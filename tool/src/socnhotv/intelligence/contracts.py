@@ -27,6 +27,9 @@ class VideoBlueprint(BaseModel):
     cta: str
     pacing_cuts_per_10s: float = 0.0
     suggested_template_id: Optional[str] = None
+    data_label: str = "DỮ LIỆU THẬT"
+    is_mock: bool = False
+    metadata: Dict[str, Any] = Field(default_factory=dict)
 
 
 class ChannelBlueprint(BaseModel):
@@ -39,6 +42,9 @@ class ChannelBlueprint(BaseModel):
     upload_cadence: str = ""
     top_videos: List[Dict[str, Any]] = Field(default_factory=list)
     best_hooks: List[str] = Field(default_factory=list)
+    data_label: str = "DỮ LIỆU THẬT"
+    is_mock: bool = False
+    metadata: Dict[str, Any] = Field(default_factory=dict)
 
 
 class ContentIdea(BaseModel):

@@ -113,6 +113,14 @@ def generate_ideas_batch(
         created_ideas.append(idea)
         existing_ideas.add(cand_title.lower())
 
+    if len(created_ideas) < count:
+        # If new seeds were already in existing ideas, provide existing ideas up to count
+        all_existing = list_content_ideas(project_id)
+        if all_existing:
+            # Combine created and existing up to count
+            combined = created_ideas + [i for i in all_existing if i not in created_ideas]
+            return combined[:count]
+
     return created_ideas
 
 
@@ -157,19 +165,20 @@ def promote_idea(
         target_product = products[0]
 
     if not target_product:
-        # Fallback draft product if none exist
+        # Fallback draft product if none exist (labeled MẪU)
         from socnhotv.intelligence.products import Product, save_product
         target_product = save_product(
             project_id,
             Product(
                 id=f"prod_{idea.id}",
-                name=idea.title,
+                name=f"[MẪU] {idea.title}",
                 brand="Sóc Nhỏ Lab",
                 category="Đời sống",
                 price=199000,
                 sale_price=159000,
                 usp=["Chất lượng chuẩn mực", "Bảo hành 1 đổi 1"],
                 affiliate_links={"tiktok_shop": "https://shop.tiktok.com"},
+                compliance_notes="[MẪU] Sản phẩm mẫu tự động sinh để phục vụ thử nghiệm kịch bản",
             ),
         )
 

@@ -127,6 +127,8 @@ def generate_channel_strategy(
             "koc_review_affiliate": 40,
         },
         "kpi_30d": {
+            "status": "MẪU",
+            "note": "[MẪU - Mục tiêu kế hoạch tham khảo, không phải số liệu đo thực tế]",
             "target_total_views": 500000,
             "target_subscribers": 15000,
             "target_affiliate_clicks": 3500,

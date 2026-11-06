@@ -38,18 +38,39 @@ def get_channel_dir(project_id: str, channel_id: str) -> Path:
 
 
 def parse_video_item(entry: Dict[str, Any]) -> Dict[str, Any]:
-    """Normalize video entry from yt-dlp."""
-    vid = entry.get("id") or ""
-    title = entry.get("title") or "Untitled"
-    duration = entry.get("duration") or 0.0
-    upload_date = entry.get("upload_date") or ""
-    view_count = int(entry.get("view_count") or 0)
+    """Normalize video entry from yt-dlp or user input."""
+    vid = str(entry.get("id") or "")
+    title = str(entry.get("title") or "Untitled")
+    duration = float(entry.get("duration") or 0.0)
+    raw_views = entry.get("view_count")
+    view_count = int(raw_views) if raw_views is not None else 0
+    view_count_source = "REAL" if raw_views is not None else "UNAVAILABLE"
     like_count = int(entry.get("like_count") or 0)
     comment_count = int(entry.get("comment_count") or 0)
     thumb = entry.get("thumbnail") or (entry.get("thumbnails", [{}])[-1].get("url") if entry.get("thumbnails") else "")
-    url = entry.get("url") or entry.get("webpage_url") or f"https://www.youtube.com/watch?v={vid}"
+    url = entry.get("url") or entry.get("webpage_url") or (f"https://www.youtube.com/watch?v={vid}" if vid else "")
 
-    # Calculate days since upload
+    # Extract timestamp or upload_date
+    upload_hour: Optional[int] = None
+    upload_date = entry.get("upload_date") or ""
+    upload_date_source = "UNAVAILABLE"
+
+    if entry.get("timestamp"):
+        try:
+            ts = float(entry["timestamp"])
+            dt = datetime.fromtimestamp(ts, tz=timezone.utc)
+            upload_date = dt.strftime("%Y%m%d")
+            upload_hour = dt.hour
+            upload_date_source = "REAL_TIMESTAMP"
+        except Exception:
+            pass
+    elif entry.get("upload_hour") is not None:
+        try:
+            upload_hour = int(entry["upload_hour"])
+        except Exception:
+            pass
+
+    # Calculate days since upload (for views_per_day)
     days_age = 1.0
     if upload_date and len(upload_date) == 8:
         try:
@@ -57,17 +78,22 @@ def parse_video_item(entry: Dict[str, Any]) -> Dict[str, Any]:
             now = datetime.now(timezone.utc)
             diff = (now - ud).total_seconds() / 86400.0
             days_age = max(diff, 1.0)
+            if upload_date_source == "UNAVAILABLE":
+                upload_date_source = "REAL_DATE"
         except Exception:
             days_age = 1.0
 
-    views_per_day = round(view_count / days_age, 2)
+    views_per_day = round(view_count / days_age, 2) if view_count > 0 else 0.0
 
     return {
         "id": vid,
         "title": title,
         "duration": float(duration),
         "upload_date": upload_date,
+        "upload_hour": upload_hour,
+        "upload_date_source": upload_date_source,
         "view_count": view_count,
+        "view_count_source": view_count_source,
         "like_count": like_count,
         "comment_count": comment_count,
         "thumbnail": thumb,
@@ -75,6 +101,50 @@ def parse_video_item(entry: Dict[str, Any]) -> Dict[str, Any]:
         "days_age": round(days_age, 1),
         "views_per_day": views_per_day,
     }
+
+
+def ingest_user_channel_data(
+    project_id: str,
+    channel_url: str,
+    channel_name: str,
+    raw_videos: List[Dict[str, Any]],
+) -> Dict[str, Any]:
+    """Ingest real user-provided channel data (e.g. from analytics export or manual list)."""
+    channel_id = generate_channel_id(channel_url)
+    channel_dir = get_channel_dir(project_id, channel_id)
+
+    videos: List[Dict[str, Any]] = []
+    for entry in raw_videos:
+        if not entry:
+            continue
+        v = parse_video_item(entry)
+        if v["id"]:
+            videos.append(v)
+
+    videos.sort(key=lambda x: x["views_per_day"], reverse=True)
+
+    videos_file = channel_dir / "videos.jsonl"
+    with open(videos_file, "w", encoding="utf-8") as f:
+        for v in videos:
+            f.write(json.dumps(v, ensure_ascii=False) + "\n")
+
+    channel_meta = {
+        "id": channel_id,
+        "url": channel_url,
+        "name": channel_name or channel_id,
+        "uploader_id": channel_id,
+        "avatar": videos[0]["thumbnail"] if videos else "",
+        "video_count": len(videos),
+        "top_ingested_sources": [],
+        "data_source": "USER_PROVIDED",
+        "data_label": "DỮ LIỆU THẬT",
+        "updated_at": datetime.now(timezone.utc).isoformat(),
+    }
+
+    with open(channel_dir / "channel.json", "w", encoding="utf-8") as f:
+        json.dump(channel_meta, f, ensure_ascii=False, indent=2)
+
+    return channel_meta
 
 
 def ingest_channel(
@@ -150,6 +220,8 @@ def ingest_channel(
         "avatar": info.get("thumbnail") or (videos[0]["thumbnail"] if videos else ""),
         "video_count": len(videos),
         "top_ingested_sources": top_ingested,
+        "data_source": "PUBLIC_SCRAPE",
+        "data_label": "DỮ LIỆU THẬT",
         "updated_at": datetime.now(timezone.utc).isoformat(),
     }
 

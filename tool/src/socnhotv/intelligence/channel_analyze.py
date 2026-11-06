@@ -149,6 +149,7 @@ def analyze_channel(
     # Days 0 (Mon) to 6 (Sun), Hours 0 to 23
     schedule_heatmap = [[0 for _ in range(24)] for _ in range(7)]
     days_counter = Counter()
+    has_real_hours = False
 
     for v in videos:
         ud = v.get("upload_date")
@@ -157,11 +158,19 @@ def analyze_channel(
                 dt = datetime.strptime(ud, "%Y%m%d")
                 day_of_week = dt.weekday()  # 0=Monday, 6=Sunday
                 days_counter[day_of_week] += 1
-                # Dummy hour spread if not provided in yt-dlp upload_date
-                hour = (hash(v["id"]) % 12) + 10  # spread between 10h - 22h
-                schedule_heatmap[day_of_week][hour] += 1
+                
+                # Check real upload hour if available
+                hour = v.get("upload_hour")
+                if hour is not None and 0 <= hour <= 23:
+                    has_real_hours = True
+                    schedule_heatmap[day_of_week][hour] += 1
+                else:
+                    # Do not invent fake hour without clear marking: place in standard midday bucket (12h)
+                    schedule_heatmap[day_of_week][12] += 1
             except Exception:
                 pass
+
+    heatmap_status = "DỮ LIỆU THẬT" if has_real_hours else "MẪU (Giờ ước tính 12:00 do dữ liệu nguồn chỉ có ngày)"
 
     total_uploads = len(videos)
     upload_cadence = "3-4 video / tuần"
@@ -208,11 +217,15 @@ def analyze_channel(
         else:
             best_hooks.append(f"Xem ngay: {out.get('title', '')}")
 
+    # Infer niche dynamically from pillars or channel name
+    channel_name = channel_meta.get("name", "")
+    inferred_niche = f"Chủ đề: {', '.join([p['name'] for p in pillars[:2]])}" if pillars else "Hoạt hình & Đời sống"
+
     # 7. Construct ChannelBlueprint
     blueprint = ChannelBlueprint(
         id=channel_id,
         channel_url=channel_meta.get("url", f"https://youtube.com/{channel_id}"),
-        niche="Hoạt hình & Đời sống Sóc Nhỏ",
+        niche=inferred_niche,
         pillars=[p["name"] for p in pillars],
         title_patterns=common_title_patterns,
         avg_duration_s=round(avg_duration_s, 1),
@@ -229,6 +242,12 @@ def analyze_channel(
             for v in top_outliers
         ],
         best_hooks=best_hooks[:5],
+        data_label="DỮ LIỆU THẬT",
+        metadata={
+            "schedule_heatmap_status": heatmap_status,
+            "has_real_hours": has_real_hours,
+            "retention_data": "KHÔNG CÓ (Không bịa số liệu giữ chân)",
+        },
     )
 
     save_channel_blueprint(project_id, blueprint)
@@ -237,6 +256,7 @@ def analyze_channel(
     return {
         "blueprint": blueprint.model_dump(),
         "channel_meta": channel_meta,
+        "data_label": "DỮ LIỆU THẬT",
         "stats": {
             "total_videos": len(videos),
             "median_views": median_views,
@@ -248,9 +268,12 @@ def analyze_channel(
             "avg_title_length": round(statistics.mean(title_lengths) if title_lengths else 40, 1),
             "emoji_ratio": round(has_emoji_count / max(len(videos), 1), 2),
             "number_ratio": round(has_num_count / max(len(videos), 1), 2),
+            "retention_rate": None,
+            "retention_note": "KHÔNG CÓ (Không bịa số liệu giữ chân theo luật cứng)",
         },
         "pillars": pillars,
         "schedule_heatmap": schedule_heatmap,
+        "schedule_heatmap_status": heatmap_status,
         "top_outliers": top_outliers[:15],
         "title_patterns": common_title_patterns,
     }

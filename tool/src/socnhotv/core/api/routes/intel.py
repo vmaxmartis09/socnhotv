@@ -8,7 +8,9 @@ from pydantic import BaseModel, Field
 
 from socnhotv.intelligence.analyzer import analyze_video
 from socnhotv.intelligence.channel_analyze import analyze_channel
-from socnhotv.intelligence.channel_ingest import ingest_channel
+from socnhotv.intelligence.channel_ingest import ingest_channel, ingest_user_channel_data
+from socnhotv.intelligence.chat_assistant import handle_intel_chat
+from socnhotv.intelligence.compliance import check_and_clean_script
 from socnhotv.intelligence.contracts import (
     ChannelBlueprint,
     ContentIdea,
@@ -26,6 +28,7 @@ from socnhotv.intelligence.ideas import (
     schedule_idea_to_social,
     update_idea_status,
 )
+from socnhotv.intelligence.node_runner import execute_intel_node
 from socnhotv.intelligence.patterns import aggregate_patterns
 from socnhotv.intelligence.products import (
     Product,
@@ -295,3 +298,78 @@ async def schedule_idea_api(project_id: str, idea_id: str):
         raise HTTPException(status_code=404, detail=str(fnf))
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Lỗi lên lịch ý tưởng: {e}")
+
+
+# --- Studio Integration: Chat Assistant & Node Runner ---
+
+class IntelChatRequest(BaseModel):
+    prompt: str
+    context: Optional[Dict[str, Any]] = None
+
+
+@router.post("/projects/{project_id}/intel/chat")
+async def intel_chat_api(project_id: str, req: IntelChatRequest):
+    """Studio Chat Assistant route for intelligence tasks (research, scripts, compliance, ideas)."""
+    try:
+        return handle_intel_chat(project_id, req.prompt, req.context)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Lỗi trợ lý Intelligence: {e}")
+
+
+class ExecuteIntelNodeRequest(BaseModel):
+    node_type: str
+    params: Optional[Dict[str, Any]] = None
+    inputs: Optional[Dict[str, Any]] = None
+
+
+@router.post("/projects/{project_id}/intel/nodes/execute")
+async def execute_intel_node_api(project_id: str, req: ExecuteIntelNodeRequest):
+    """Direct execution runner for Studio canvas nodes (channel_insight, blueprint_analyze, script_from_blueprint)."""
+    try:
+        return execute_intel_node(
+            project_id=project_id,
+            node_type=req.node_type,
+            params=req.params,
+            inputs=req.inputs,
+        )
+    except ValueError as ve:
+        raise HTTPException(status_code=400, detail=str(ve))
+    except FileNotFoundError as fnf:
+        raise HTTPException(status_code=404, detail=str(fnf))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Lỗi thực thi node {req.node_type}: {e}")
+
+
+class IngestUserDataRequest(BaseModel):
+    channel_url: str
+    channel_name: str = ""
+    videos: List[Dict[str, Any]] = Field(default_factory=list)
+
+
+@router.post("/projects/{project_id}/intel/channels/user-data")
+async def ingest_user_data_api(project_id: str, req: IngestUserDataRequest):
+    """Ingest user-provided channel & video data directly without scraping."""
+    try:
+        meta = ingest_user_channel_data(
+            project_id=project_id,
+            channel_url=req.channel_url,
+            channel_name=req.channel_name,
+            raw_videos=req.videos,
+        )
+        analysis = analyze_channel(project_id, meta["id"])
+        return analysis
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Lỗi nạp dữ liệu người dùng: {e}")
+
+
+class ComplianceCheckRequest(BaseModel):
+    text: str
+    is_affiliate: bool = True
+
+
+@router.post("/projects/{project_id}/intel/compliance/check")
+async def compliance_check_api(project_id: str, req: ComplianceCheckRequest):
+    """Standalone commercial advertising compliance check endpoint."""
+    res = check_and_clean_script(req.text, is_affiliate=req.is_affiliate)
+    return res.model_dump()
+

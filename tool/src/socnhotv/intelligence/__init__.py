@@ -16,6 +16,9 @@ from socnhotv.intelligence.contracts import (
     save_video_blueprint,
 )
 
+from socnhotv.intelligence.chat_assistant import handle_intel_chat
+from socnhotv.intelligence.node_runner import execute_intel_node
+
 __all__ = [
     "Beat",
     "VideoBlueprint",
@@ -30,4 +33,6 @@ __all__ = [
     "save_content_idea",
     "load_content_idea",
     "list_content_ideas",
+    "execute_intel_node",
+    "handle_intel_chat",
 ]

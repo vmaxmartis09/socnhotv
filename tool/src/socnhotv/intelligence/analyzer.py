@@ -161,6 +161,9 @@ def analyze_video(project_id: str, source_id: str) -> VideoBlueprint:
     hook_text = beats[0].summary if beats else "Xem video này ngay!"
     cta_text = beats[-1].summary if len(beats) > 1 else "Bấm theo dõi nhé!"
 
+    is_mock = not bool(scenes_data)
+    data_label = "DỮ LIỆU THẬT" if scenes_data else "MẪU (Ước tính theo thời lượng do chưa có dữ liệu cắt cảnh)"
+
     blueprint = VideoBlueprint(
         id=f"bp_{source_id}",
         source_ref=source_id,
@@ -171,6 +174,12 @@ def analyze_video(project_id: str, source_id: str) -> VideoBlueprint:
         cta=cta_text,
         pacing_cuts_per_10s=pacing,
         suggested_template_id=best_template,
+        data_label=data_label,
+        is_mock=is_mock,
+        metadata={
+            "scenes_detected": len(scenes_data),
+            "transcript_detected": len(transcript_data),
+        },
     )
 
     save_video_blueprint(project_id, blueprint)

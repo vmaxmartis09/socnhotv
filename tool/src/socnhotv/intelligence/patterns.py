@@ -28,6 +28,8 @@ def aggregate_patterns(
     if not blueprints:
         return {
             "total_analyzed": 0,
+            "data_status": "MẪU",
+            "note": "[MẪU] Chưa có blueprint nào trong dự án, số liệu dưới đây là giá trị mẫu tham khảo",
             "avg_pacing_cuts_per_10s": 2.5,
             "median_hook_duration_s": 3.0,
             "common_role_sequences": [["hook", "problem", "demo", "offer", "cta"]],
@@ -51,6 +53,7 @@ def aggregate_patterns(
 
     return {
         "total_analyzed": len(blueprints),
+        "data_status": "DỮ LIỆU THẬT",
         "avg_pacing_cuts_per_10s": round(avg_pacing, 2),
         "median_hook_duration_s": round(median_hook, 2),
         "common_role_sequences": role_seqs[:5],
