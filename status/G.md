@@ -48,7 +48,7 @@
 
 1. **Giọng 2 nhân vật hỏng mà không chỉ số nào cũ bắt được:** `vn-be-04` (Dê Mun, 25 câu) và `vn-be-01` (Dê Bông, 6 câu) đạt âm lượng và provenance nhưng **30/31 câu bị chèn câu mẫu** ở đầu, do `reference_transcript.txt` không khớp lát âm mẫu. G4 đã sửa (sao lưu bản cũ), đọc lại 31 câu, nghe lại bằng Whisper: còn 0 câu chèn. `verify_episode.py` nay nghe lại từng câu.
 2. **Ảnh tham chiếu sai:** runner lấy 4 ảnh PNG đầu theo tên → dính ảnh quay lưng. G4 viết `dna_reference_files()` + `dnaReferences`; cần G3 gọi.
-3. **Test làm bẩn dữ liệu thật:** 643/716 thư mục `run_*` trong `runs/` chỉ chứa 1 `state.json` (rác test cũ), thêm 2 dự án rác `test-scene-batch`, `test-step5`. Đã chặn bằng sandbox; **chưa xoá** (chờ người dùng quyết).
+3. **Test làm bẩn dữ liệu thật:** đã chặn bằng sandbox. Theo đồng ý của người dùng, đã chuyển vào Thùng rác 596 thư mục `run_*` rác (286 rỗng + 310 chắc chắn do test) và 2 dự án `test-scene-batch`, `test-step5`; giữ 20 thư mục còn nghi là lần chạy thật.
 4. **Kịch bản:** `videoPrompt` ghi "8-second" cho shot 20 s; Tập 2 S13 lời thoại dính câu mô tả ("dê mun (85cm)…"). Đã sửa, khoá `locked`.
 5. **Báo cáo cũ nói quá** (Session V "video đầu tiên xuất sắc"): đã đính chính trong `ai/memory/CONTINUITY.md`.
 
@@ -57,8 +57,8 @@
 - **G2 (chặn chính):** `runPolicy` (C3); `router.get_provider` tra `PROVIDER_FACTORIES` và báo lỗi thay vì `return self._mock` ở chế độ thật; ModelPicker; gắn preview video thật cho node; nút preset "Tập hoạt hình (tái dùng)"; tab "Công việc" hiện danh sách thành phẩm.
 - **G3:** `_character_dna` dùng `dna_reference_files()`; export không tạo `output/<ep>-2/` khi chạy lại; `video.json` ghi đúng giọng + `episodeId`/`engine`; chọn shot theo `priority`; BGM.
 - **G4 (khi G2 vào main):** M1 → verify `--allow-mock-images` → M2 → M3 → contact sheet cho người dùng duyệt → M4.
-- **Người dùng:** (a) quyết có xoá 643 thư mục `runs/` rác + 2 dự án rác không; (b) nghe thử giọng Dê Mun / Dê Bông mới (`data/shared/voice_vault/vn-be-04|vn-be-01/`), bản cũ ở `_backup_2026-11-06_G4/`; (c) thả 1 tệp nhạc nền vào `data/shared/music_sfx/` (hoặc giao G1 tìm nhạc free có giấy phép).
+- **Người dùng:** (a) ~~dọn rác runs/~~ đã xong; (b) nghe thử giọng Dê Mun / Dê Bông mới (`data/shared/voice_vault/vn-be-04|vn-be-01/`), bản cũ ở `_backup_2026-11-06_G4/`; (c) thả 1 tệp nhạc nền vào `data/shared/music_sfx/` (hoặc giao G1 tìm nhạc free có giấy phép).
 
 ## 6. Test
 
-`.venv/bin/pytest` toàn bộ (sandbox): **289 passed, 5 failed, 1 skipped**. 5 lỗi có sẵn từ trước Session G (`test_custom_ports` ×2 lỗi thời, `test_craft_index` ×2 do 6 thẻ thiếu front-matter, `test_content_policy` ×1), lỗi y hệt khi chạy trên dữ liệu thật. `runs/` thật 725 → 725.
+`.venv/bin/pytest` toàn bộ (sandbox): **289 passed, 5 failed, 1 skipped**. 5 lỗi có sẵn từ trước Session G (`test_custom_ports` ×2 lỗi thời, `test_craft_index` ×2 do 6 thẻ thiếu front-matter, `test_content_policy` ×1), lỗi y hệt khi chạy trên dữ liệu thật. `runs/` thật 725 → 725 (trước khi dọn rác).
