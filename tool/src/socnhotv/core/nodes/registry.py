@@ -420,6 +420,7 @@ class NodeRegistry:
                     "safeZonePaddingTop": 180,
                     "safeZonePaddingBottom": 320,
                     "duckingLevel": 0.25,
+                    "requireHyperFrames": True,
                 },
                 mockable=True,
             )

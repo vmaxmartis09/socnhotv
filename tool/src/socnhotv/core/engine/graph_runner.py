@@ -2082,6 +2082,11 @@ class GraphRunner:
                     timestamp=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
                 )
             )
+            bgm_art = resolved_inputs.get("bgm")
+            if not isinstance(bgm_art, Artifact):
+                bgm_art = None
+            require_hf = bool(node.params.get("requireHyperFrames", True))
+
             try:
                 art = await hf_adapter.render_from_artifacts(
                     scenes=scenes,
@@ -2092,6 +2097,8 @@ class GraphRunner:
                     run_id=run_id,
                     width=render_size[0],
                     height=render_size[1],
+                    require_hyperframes=require_hf,
+                    bgm_artifact=bgm_art,
                 )
                 self._emit_event(
                     SSEEvent(
@@ -2105,23 +2112,21 @@ class GraphRunner:
                     )
                 )
             except Exception as e:
-                logger.warning(f"HyperFramesAdapter render gặp lỗi ({e}), fallback sang provider...")
-                vid_fn = self.provider.generate_video
-                art = await vid_fn(
-                    **_filter_kwargs(
-                        vid_fn,
-                        {
-                            "prompt": f"Final rendered video composition {aspect}",
-                            "duration_sec": 45.0,
-                            "aspect_ratio": "16:9" if render_size[0] > render_size[1] else "9:16",
-                            "has_audio": True,
-                            "node_id": node.id,
-                            "run_id": run_id,
-                        },
-                    )
-                )
+                tail = getattr(hf_adapter, "last_cli_error", "") or str(e)
+                logger.error(f"HyperFramesAdapter render gặp lỗi ({e}). Log tail: {tail}")
+                raise RuntimeError(
+                    f"HyperFrames render thất bại tại node '{node.id}': {e}\nLog tail: {tail}"
+                ) from e
+
             outputs["video"] = art
             outputs["manifest"] = art
+            current_engine = getattr(hf_adapter, "last_engine", "hyperframes")
+            outputs["engine"] = current_engine
+            if current_engine != "hyperframes":
+                outputs["engineWarning"] = (
+                    "Đã sử dụng FFmpeg dự phòng thay cho HyperFrames CLI. "
+                    f"Chi tiết: {getattr(hf_adapter, 'last_cli_error', 'Không có chi tiết lỗi')}"
+                )
             primary_artifact = art
             cost_usd = 0.0
 
@@ -2145,27 +2150,18 @@ class GraphRunner:
                 scenes = resolved_inputs.get("scenes") or []
                 voice_art = resolved_inputs.get("audio") or resolved_inputs.get("voice")
                 cap_art = resolved_inputs.get("captions")
+                bgm_art = resolved_inputs.get("bgm")
                 art = await hf_adapter.render_from_artifacts(
                     scenes=scenes,
                     voice_artifact=voice_art if isinstance(voice_art, Artifact) else None,
                     captions_artifact=cap_art if isinstance(cap_art, Artifact) else None,
+                    bgm_artifact=bgm_art if isinstance(bgm_art, Artifact) else None,
                     node_id=node.id,
                     run_id=run_id,
                 )
             else:
-                vid_fn = self.provider.generate_video
-                art = await vid_fn(
-                    **_filter_kwargs(
-                        vid_fn,
-                        {
-                            "prompt": "Exported video composition 9:16",
-                            "duration_sec": 12.0,
-                            "aspect_ratio": "9:16",
-                            "has_audio": True,
-                            "node_id": node.id,
-                            "run_id": run_id,
-                        },
-                    )
+                raise ValueError(
+                    f"Node '{node.id}' (export) không có video đầu vào. Hãy nối cổng 'video' từ node dựng."
                 )
 
             # 2. Xác định topic và slug

@@ -16,9 +16,39 @@ import soundfile as sf
 # Audio mastering lazily imported to avoid circular import with adapters package
 from socnhotv.video.fallback_ffmpeg import render_fallback_ffmpeg, get_audio_duration
 from socnhotv.video.platforms import PlatformPreset, get_platform
+from socnhotv.video.craft.camera import parse_camera_move, build_shot_camera_gsap
+from socnhotv.video.craft.transitions import resolve_transition, MotionVector
 
 logger = logging.getLogger("socnhotv.video.engine")
 FFMPEG_EXE = imageio_ffmpeg.get_ffmpeg_exe()
+
+
+def find_hyperframes_bin(repo_root: Optional[Path] = None) -> Optional[str]:
+    """Tìm binary hyperframes cục bộ đã cài (ghim bản 0.9.12) hoặc qua env HYPERFRAMES_BIN."""
+    env_bin = os.environ.get("HYPERFRAMES_BIN")
+    if env_bin and os.path.isfile(env_bin) and os.access(env_bin, os.X_OK):
+        return env_bin
+
+    candidates = []
+    if repo_root:
+        candidates.append(repo_root / "tool" / "dashboard" / "node_modules" / ".bin" / "hyperframes")
+        candidates.append(repo_root / "node_modules" / ".bin" / "hyperframes")
+
+    this_file = Path(__file__).resolve()
+    if len(this_file.parents) >= 5:
+        candidates.append(this_file.parents[4] / "tool" / "dashboard" / "node_modules" / ".bin" / "hyperframes")
+
+    candidates.append(Path.cwd() / "tool" / "dashboard" / "node_modules" / ".bin" / "hyperframes")
+
+    for cand in candidates:
+        if cand.is_file() and os.access(str(cand), os.X_OK):
+            return str(cand.resolve())
+
+    which_bin = shutil.which("hyperframes")
+    if which_bin:
+        return which_bin
+
+    return None
 
 
 class HyperFramesEngine:
@@ -100,14 +130,33 @@ class HyperFramesEngine:
         </div>
       </div>""")
 
-            # GSAP animation timeline
+            # GSAP animation timeline với camera theo kịch bản và transition foresight
             media_elem = f"#vid_{sc_id}" if is_video else f"#img_{sc_id}"
+            cam_str = sc.get("camera") or sc.get("cameraPrompt") or sc.get("shotCamera") or ""
+            cam_preset = parse_camera_move(cam_str)
+            cam_tween = build_shot_camera_gsap(
+                target_selector=media_elem,
+                start_time=current_time,
+                duration_sec=sc_dur,
+                camera_name=cam_preset,
+                is_video=is_video,
+            )
+
+            trans_comment = ""
+            if idx > 0 and sc.get("sceneIndex") is not None and scenes[idx - 1].get("sceneIndex") is not None:
+                if sc.get("sceneIndex") != scenes[idx - 1].get("sceneIndex"):
+                    prev_cam = parse_camera_move(scenes[idx - 1].get("camera") or "")
+                    m_vec = MotionVector(direction=prev_cam, speed=1.0)
+                    trans_dec = resolve_transition(prev_motion=m_vec)
+                    trans_comment = f"// Transition foresight: Scene {scenes[idx - 1].get('sceneIndex')} -> {sc.get('sceneIndex')} ({trans_dec.style})\n      "
+
             gsap_tweens.append(f"""
-      // Tween {sc_id}
-      tl.fromTo("{media_elem}", {{ scale: 1.05, opacity: 0 }}, {{ scale: 1.0, opacity: 1, duration: 0.45, ease: "power2.out" }}, {current_time:.3f});
-      tl.to("{media_elem}", {{ scale: 1.03, duration: {sc_dur - 0.45:.3f}, ease: "none" }}, {current_time + 0.45:.3f});
+      // Shot {sc_id.upper()} ({cam_preset}, {sc_dur:.2f}s)
+      {trans_comment}tl.set("#{sc_id}", {{ opacity: 1, pointerEvents: "auto" }}, {current_time:.3f});
+      {cam_tween}
       tl.fromTo("#sub_{sc_id}", {{ y: 25, opacity: 0 }}, {{ y: 0, opacity: 1, duration: 0.35, ease: "back.out(1.4)" }}, {current_time + 0.1:.3f});
-      tl.to("#sub_{sc_id}", {{ opacity: 0, duration: 0.2 }}, {current_time + sc_dur - 0.2:.3f});""")
+      tl.to("#sub_{sc_id}", {{ opacity: 0, duration: 0.2 }}, {current_time + sc_dur - 0.2:.3f});
+      tl.set("#{sc_id}", {{ opacity: 0, pointerEvents: "none" }}, {current_time + sc_dur:.3f});""")
 
             current_time += sc_dur
 
@@ -171,6 +220,8 @@ class HyperFramesEngine:
         inset: 0;
         width: 100%;
         height: 100%;
+        opacity: 0;
+        pointer-events: none;
       }}
       .media-clip {{
         position: absolute;
@@ -429,9 +480,10 @@ class HyperFramesEngine:
         )
 
     def check(self, bundle_dir: Path) -> Dict[str, Any]:
-        """Chạy `npx hyperframes check` trước khi render; fail -> trả lỗi chi tiết."""
+        """Chạy kiểm tra bundle bằng binary HyperFrames đã ghim (hoặc npx fallback); fail -> trả lỗi chi tiết."""
         bundle_dir = Path(bundle_dir).resolve()
-        cmd = ["npx", "hyperframes", "check", "--json"]
+        hf_bin = find_hyperframes_bin()
+        cmd = [hf_bin, "check", "--json"] if hf_bin else ["npx", "hyperframes", "check", "--json"]
 
         try:
             res = subprocess.run(
@@ -583,8 +635,9 @@ class HyperFramesEngine:
         quality: str = "looks",
         log_file: Optional[Path] = None,
         timeout_sec: int = 900,
+        require_hyperframes: bool = False,
     ) -> Path:
-        """Render video chính thức qua HyperFrames CLI; nếu không có hoặc lỗi, fallback qua FFmpeg."""
+        """Render video chính thức qua HyperFrames CLI; nếu không có hoặc lỗi, fallback qua FFmpeg (trừ khi require_hyperframes=True)."""
         preset = get_platform(platform) if isinstance(platform, str) else platform
         bundle_dir = Path(bundle_dir).resolve()
         out_path = Path(out_path).resolve()
@@ -602,20 +655,35 @@ class HyperFramesEngine:
 
         if use_cli:
             try:
-                # Kiểm tra npx hyperframes
-                cli_cmd = [
-                    "npx",
-                    "-y",
-                    "hyperframes",
-                    "render",
-                    "--quality",
-                    quality,
-                    "--fps",
-                    str(preset.fps),
-                    "--output",
-                    str(out_path),
-                ]
-                logger.info(f"Khởi chạy render HyperFrames CLI: {' '.join(cli_cmd)}")
+                hf_bin = find_hyperframes_bin()
+                hf_version = "0.9.12"
+                if hf_bin:
+                    cli_cmd = [
+                        hf_bin,
+                        "render",
+                        "--skill",
+                        "hyperframes",
+                        "--quality",
+                        quality,
+                        "--fps",
+                        str(preset.fps),
+                        "--output",
+                        str(out_path),
+                    ]
+                else:
+                    cli_cmd = [
+                        "npx",
+                        "-y",
+                        "hyperframes@0.9.12",
+                        "render",
+                        "--quality",
+                        quality,
+                        "--fps",
+                        str(preset.fps),
+                        "--output",
+                        str(out_path),
+                    ]
+                logger.info(f"Khởi chạy render HyperFrames CLI ({hf_bin or 'npx'} v{hf_version}): {' '.join(cli_cmd)}")
                 proc = subprocess.run(
                     cli_cmd,
                     cwd=str(bundle_dir),
@@ -627,7 +695,7 @@ class HyperFramesEngine:
 
                 if log_file:
                     with open(log_file, "a", encoding="utf-8") as lf:
-                        lf.write(f"--- HyperFrames CLI Render (code: {proc.returncode}) ---\n")
+                        lf.write(f"--- HyperFrames CLI Render (code: {proc.returncode}, ver: {hf_version}) ---\n")
                         lf.write(f"STDOUT:\n{proc.stdout}\n")
                         lf.write(f"STDERR:\n{proc.stderr}\n")
 
@@ -647,8 +715,14 @@ class HyperFramesEngine:
                     with open(log_file, "a", encoding="utf-8") as lf:
                         lf.write(f"HyperFrames CLI Exception: {e}\n")
 
+        # Nếu require_hyperframes và CLI không thành công: Không âm thầm fallback, raise lỗi luôn
+        if self.last_engine != "hyperframes" and require_hyperframes:
+            err_msg = f"HyperFrames CLI render thất bại và requireHyperFrames=True. Lỗi: {self.last_cli_error}"
+            logger.error(err_msg)
+            raise RuntimeError(err_msg)
+
         # 2. Fallback FFmpeg khi CLI thất bại hoặc tắt
-        logger.warning(f"Chuyển sang Fallback FFmpeg Compositor cho preset {preset.id}")
+        logger.warning(f"Chuyển sang Fallback FFmpeg Compositor cho preset {preset.id} (Lý do: {self.last_cli_error or 'CLI disabled'})")
         render_fallback_ffmpeg(
             project_dir=bundle_dir,
             output_mp4=out_path,

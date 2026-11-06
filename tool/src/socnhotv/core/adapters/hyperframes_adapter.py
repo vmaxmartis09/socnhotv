@@ -114,6 +114,7 @@ class HyperFramesAdapter:
         quality: str = "looks",
         fps: int = 30,
         platform: str = "tiktok",
+        require_hyperframes: bool = False,
     ) -> Path:
         """Render video thông qua HyperFramesEngine."""
         out = self.engine.render(
@@ -121,6 +122,7 @@ class HyperFramesAdapter:
             out_path=output_mp4,
             platform=platform,
             quality=quality,
+            require_hyperframes=require_hyperframes,
         )
         self.last_engine = self.engine.last_engine
         self.last_cli_error = self.engine.last_cli_error
@@ -136,6 +138,8 @@ class HyperFramesAdapter:
         run_id: str = "run_default",
         width: int = 1080,
         height: int = 1920,
+        require_hyperframes: bool = False,
+        bgm_artifact: Optional[Artifact] = None,
     ) -> Artifact:
         """Đầu vào là Artifacts, trả về Video Artifact MP4. width×height 1920×1080 = YouTube 16:9."""
         platform = "youtube" if (width, height) == (1920, 1080) else "tiktok"
@@ -149,6 +153,11 @@ class HyperFramesAdapter:
             if voice_artifact
             else ""
         )
+        bgm_path = (
+            str(self.store.project_dir / bgm_artifact.uri)
+            if bgm_artifact
+            else None
+        )
 
         # Xây dựng bundle
         # Dựng bundle + render là việc nặng, chạy đồng bộ (subprocess): đưa sang thread để KHÔNG chặn
@@ -159,6 +168,7 @@ class HyperFramesAdapter:
             scenes=scenes,
             audio_voiceover_path=voice_path,
             title_badge=title_badge,
+            bgm_path=bgm_path,
             width=width,
             height=height,
             fps=30,
@@ -171,6 +181,7 @@ class HyperFramesAdapter:
             output_mp4=output_mp4_temp,
             fps=30,
             platform=platform,
+            require_hyperframes=require_hyperframes,
         )
 
         with open(final_mp4, "rb") as f:
@@ -178,19 +189,31 @@ class HyperFramesAdapter:
 
         total_dur = await asyncio.to_thread(self.get_audio_duration, final_mp4)
 
+        current_engine = getattr(self, "last_engine", "hyperframes")
+        is_hf = (current_engine == "hyperframes")
+        prov_provider = "hyperframes" if is_hf else "ffmpeg-fallback"
+        prov_model = "hyperframes-v0.9.12" if is_hf else "ffmpeg-fallback"
+
+        extra_meta: Dict[str, Any] = {"engine": current_engine}
+        if not is_hf:
+            extra_meta["engineWarning"] = (
+                f"Đã sử dụng FFmpeg dự phòng thay vì HyperFrames CLI. Lỗi: {getattr(self, 'last_cli_error', '')}"
+            )
+
         provenance = ArtifactProvenance(
             node_id=node_id,
             run_id=run_id,
-            provider=getattr(self, "last_engine", "hyperframes"),
-            model="hyperframes-v0.9.12" if getattr(self, "last_engine", "") == "hyperframes" else "ffmpeg-compositor",
+            provider=prov_provider,
+            model=prov_model,
             params={
                 "aspectRatio": aspect,
                 "width": width,
                 "height": height,
                 "fps": 30,
                 "sceneCount": len(scenes),
+                "engine": current_engine,
             },
-            input_hashes=[art.hash for art in (voice_artifact, captions_artifact) if art],
+            input_hashes=[art.hash for art in (voice_artifact, captions_artifact, bgm_artifact) if art],
             cost_usd=0.0,
             created_at=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         )
@@ -200,6 +223,7 @@ class HyperFramesAdapter:
             duration=total_dur,
             fps=30.0,
             aspect=aspect,
+            extra=extra_meta,
         )
 
         return self.store.store_bytes(
