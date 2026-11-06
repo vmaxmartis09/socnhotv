@@ -36,7 +36,7 @@ TEXT_MODEL = "gemini-2.5-flash"
 VIDEO_MODEL = "veo-3.1-fast-generate-preview"
 
 IMAGE_COST_USD = float(os.environ.get("SOCNHOTV_IMAGE_COST_USD", "0.04"))
-VIDEO_COST_PER_SEC_USD = float(os.environ.get("SOCNHOTV_VIDEO_COST_PER_SEC_USD", "0.40"))
+VIDEO_COST_PER_SEC_USD = float(os.environ.get("SOCNHOTV_VIDEO_COST_PER_SEC_USD", "0.12"))
 TEXT_COST_USD = float(os.environ.get("SOCNHOTV_TEXT_COST_USD", "0.005"))
 
 
@@ -437,6 +437,7 @@ class GoogleProvider(BaseProvider):
                 )
             vr = await self._get(client, uri, timeout=300.0)
 
+        width, height = (1080, 1920) if aspect_ratio == "9:16" else (1920, 1080)
         input_hashes = [u for u in [first_frame_uri, last_frame_uri, *(references or [])] if u]
         return self.store.store_bytes(
             data=vr.content,
@@ -459,7 +460,7 @@ class GoogleProvider(BaseProvider):
                 cost_usd=cost,
                 created_at=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
             ),
-            meta=ArtifactMeta(duration=duration_sec, aspect=aspect_ratio),
+            meta=ArtifactMeta(width=width, height=height, duration=duration_sec, aspect=aspect_ratio),
         )
 
     # ---- Giọng: OmniVoice local, không tốn tiền ----

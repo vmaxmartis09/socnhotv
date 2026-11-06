@@ -189,23 +189,26 @@ models:
       cost_per_second: 0.15
 
   google-veo-3.1-fast:
-    display_name: "Google Veo 3.1 Fast Preview"
+    display_name: "Google Veo 3.1 Fast (Image-to-Video)"
     provider: "google"
     model_id: "veo-3.1-fast-generate-preview"
     kind: "video"
     tier: "paid"
-    supports_reference: false
-    max_references: 0
-    durations_sec: [4, 6, 8]
-    quota_note: "Có phí $0.40/giây. Hỗ trợ kèm audio tự sinh"
-    speed_note: "~45-90s/clip"
+    supports_reference: true
+    max_references: 1
+    durations_sec: [5, 8]
+    quota_note: "Có phí $0.12/giây (1080p) / $0.10/giây (720p). Bắt buộc bật billing Google Cloud"
+    speed_note: "~45-75s/clip"
     capabilities:
       aspect_ratios: ["16:9", "9:16"]
-      durations_sec: [4, 6, 8]
+      resolutions: ["720p", "1080p"]
+      durations_sec: [5, 8]
       supports_first_frame: true
+      supports_last_frame: true
       has_audio: true
+      official_url: "https://ai.google.dev/pricing"
     pricing:
-      cost_per_second: 0.40
+      cost_per_second: 0.12
 
   # ---- FAL.AI MODELS (Queue API) ----
   fal-flux-schnell:
@@ -279,8 +282,97 @@ models:
       durations_sec: [5, 8, 10]
       supports_first_frame: true
       has_audio: true
+      official_url: "https://fal.ai/models/fal-ai/kling-video/v3/standard/image-to-video"
     pricing:
       cost_per_second: 0.084
+
+  fal-kling-v3-pro:
+    display_name: "fal.ai Kling v3 Pro (Image-to-Video)"
+    provider: "fal"
+    model_id: "fal-ai/kling-video/v3/pro/image-to-video"
+    kind: "video"
+    tier: "paid"
+    supports_reference: true
+    max_references: 1
+    durations_sec: [5, 10]
+    quota_note: "Kling v3 Pro cinematic cao cấp ($0.14/s không audio, $0.168/s có audio). Độ tương đồng nhân vật cao"
+    speed_note: "~60-120s/clip"
+    capabilities:
+      aspect_ratios: ["16:9", "9:16", "1:1"]
+      resolutions: ["720p", "1080p"]
+      durations_sec: [5, 10]
+      supports_first_frame: true
+      supports_last_frame: true
+      has_audio: true
+      official_url: "https://fal.ai/models/fal-ai/kling-video/v3/pro/image-to-video"
+    pricing:
+      cost_per_second: 0.14
+
+  fal-seedance-1.0-pro:
+    display_name: "fal.ai Seedance 1.0 Pro (ByteDance I2V)"
+    provider: "fal"
+    model_id: "fal-ai/bytedance/seedance/v1/pro/image-to-video"
+    kind: "video"
+    tier: "paid"
+    supports_reference: true
+    max_references: 1
+    durations_sec: [5, 8, 10]
+    quota_note: "ByteDance Seedance 1.0 Pro ($0.12/s), chuyển động vật lý mượt mà, camera tracking sống động"
+    speed_note: "~40-90s/clip"
+    capabilities:
+      aspect_ratios: ["16:9", "9:16", "1:1"]
+      resolutions: ["720p", "1080p"]
+      durations_sec: [5, 8, 10]
+      supports_first_frame: true
+      supports_last_frame: true
+      has_audio: true
+      official_url: "https://fal.ai/models/bytedance/seedance-2.0/image-to-video"
+    pricing:
+      cost_per_second: 0.12
+
+  fal-hailuo-02-pro:
+    display_name: "fal.ai Hailuo 02 Pro (MiniMax I2V)"
+    provider: "fal"
+    model_id: "fal-ai/minimax/hailuo-02/pro/image-to-video"
+    kind: "video"
+    tier: "paid"
+    supports_reference: true
+    max_references: 1
+    durations_sec: [6]
+    quota_note: "MiniMax Hailuo 02 Pro ($0.08/s, ~$0.48/clip 6s), biểu cảm khuôn mặt sinh động, đặc biệt hợp hoạt hình 3D"
+    speed_note: "~30-60s/clip"
+    capabilities:
+      aspect_ratios: ["16:9", "9:16"]
+      resolutions: ["720p", "1080p"]
+      durations_sec: [6]
+      supports_first_frame: true
+      supports_last_frame: false
+      has_audio: false
+      official_url: "https://fal.ai/models/fal-ai/minimax/hailuo-02/pro/image-to-video"
+    pricing:
+      cost_per_second: 0.08
+
+  fal-wan-2.2:
+    display_name: "fal.ai Wan 2.2 / 2.6 (Alibaba I2V)"
+    provider: "fal"
+    model_id: "wan/v2.6/image-to-video"
+    kind: "video"
+    tier: "paid"
+    supports_reference: true
+    max_references: 1
+    durations_sec: [5]
+    quota_note: "Alibaba Wan 2.2 / 2.6 ($0.05/s, ~$0.25/clip 5s 720p), giải pháp tiết kiệm nhất cho shot chuyển động"
+    speed_note: "~25-50s/clip"
+    capabilities:
+      aspect_ratios: ["16:9", "9:16"]
+      resolutions: ["720p", "1080p"]
+      durations_sec: [5]
+      supports_first_frame: true
+      supports_last_frame: false
+      has_audio: false
+      official_url: "https://fal.ai/models/fal-ai/wan-i2v"
+    pricing:
+      cost_per_second: 0.05
 
   fal-ltx-video:
     display_name: "fal.ai LTX Video"

@@ -112,14 +112,14 @@ class FalProvider(BaseProvider):
         return {
             "provider": "fal",
             "supportsFirstFrame": True,
-            "supportsLastFrame": False,
+            "supportsLastFrame": True,
             "supportsImageEdit": True,
             "supportsReferences": True,
             "supportsAudioVideo": True,
             "supportsVision": False,
             "supportsStructuredText": False,
             "aspectRatios": ["9:16", "16:9", "1:1", "4:5"],
-            "durationsSec": [5, 8, 10],
+            "durationsSec": [5, 6, 8, 10],
             "models": [m.key for m in ModelRegistry.get_instance().list_by_provider("fal")],
         }
 
@@ -413,14 +413,51 @@ class FalProvider(BaseProvider):
         self.guard.reserve(cost, label, source=self.source)
 
         body: Dict[str, Any] = {"prompt": prompt, "aspect_ratio": aspect_ratio}
-        if "kling" in endpoint:
+        ep_lower = endpoint.lower()
+        first_frame_data_uri = (
+            file_to_data_uri(self._resolve_local_file(first_frame_uri))
+            if first_frame_uri
+            else None
+        )
+        last_frame_data_uri = (
+            file_to_data_uri(self._resolve_local_file(last_frame_uri))
+            if last_frame_uri
+            else None
+        )
+
+        if "kling" in ep_lower:
             body["duration"] = str(int(duration_sec))
             body["generate_audio"] = bool(has_audio)
-            if first_frame_uri:
-                body["start_image_url"] = file_to_data_uri(self._resolve_local_file(first_frame_uri))
+            if first_frame_data_uri:
+                body["start_image_url"] = first_frame_data_uri
+                body["image_url"] = first_frame_data_uri
+            if last_frame_data_uri:
+                body["end_image_url"] = last_frame_data_uri
+                body["tail_image_url"] = last_frame_data_uri
+        elif "minimax" in ep_lower or "hailuo" in ep_lower:
+            body["prompt_optimizer"] = True
+            if first_frame_data_uri:
+                body["image_url"] = first_frame_data_uri
+            if last_frame_data_uri:
+                body["end_image_url"] = last_frame_data_uri
+        elif "seedance" in ep_lower:
+            body["duration"] = str(int(duration_sec))
+            body["generate_audio"] = bool(has_audio)
+            if first_frame_data_uri:
+                body["image_url"] = first_frame_data_uri
+            if last_frame_data_uri:
+                body["end_image_url"] = last_frame_data_uri
+        elif "wan" in ep_lower:
+            body["duration"] = str(int(duration_sec))
+            if first_frame_data_uri:
+                body["image_url"] = first_frame_data_uri
+            if last_frame_data_uri:
+                body["end_image_url"] = last_frame_data_uri
         else:
-            if first_frame_uri:
-                body["image_url"] = file_to_data_uri(self._resolve_local_file(first_frame_uri))
+            if first_frame_data_uri:
+                body["image_url"] = first_frame_data_uri
+            if last_frame_data_uri:
+                body["end_image_url"] = last_frame_data_uri
 
         async with self._client() as client:
             result = await self._submit_and_poll(
@@ -431,8 +468,13 @@ class FalProvider(BaseProvider):
                 reserve_label=label,
                 cancel_event=cancel_event,
             )
-            video_info = result.get("video") or {}
-            video_url = video_info.get("url") if isinstance(video_info, dict) else None
+            video_info = result.get("video")
+            if isinstance(video_info, dict):
+                video_url = video_info.get("url")
+            elif isinstance(video_info, str):
+                video_url = video_info
+            else:
+                video_url = result.get("video_url") or result.get("url")
             if not video_url:
                 raise ProviderError(
                     f"fal.ai không trả URL video: {redact_secrets(str(result)[:240], [self.key])}",
