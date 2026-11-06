@@ -418,6 +418,8 @@ export interface CanvasSlice {
     recordHistory?: boolean
   ) => void;
   pushUndoSnapshot: () => void;
+  /** Thay các node Nhân vật cố định bằng 1 node Dàn diễn viên tự theo kịch bản của tập (nối lại dây). */
+  convertCharactersToCast: () => boolean;
   undoCanvas: () => void;
   redoCanvas: () => void;
   loadCanvasTemplate: (template: "soc_nho_story" | "blank") => void;
@@ -688,6 +690,56 @@ export const createCanvasSlice: StateCreator<
         ),
       };
     }),
+  convertCharactersToCast: () => {
+    const state = get();
+    const chars = state.nodes.filter((n) => n.data.nodeType === "character");
+    if (chars.length === 0 || state.nodes.some((n) => n.data.nodeType === "cast")) return false;
+    const charIds = new Set(chars.map((n) => n.id));
+    const script = state.nodes.find((n) => n.data.nodeType === "script");
+    if (!script) return false;
+    const castDef = state.nodeCatalog.find((d) => d.typeName === "cast");
+    const castId = `node_cast_${Date.now().toString(36)}`;
+    const first = chars[0];
+    const castNode: Node<StudioNodeData> = {
+      id: castId,
+      type: "studioCard",
+      position: { x: first.position.x, y: first.position.y },
+      selected: true,
+      data: {
+        nodeType: "cast",
+        status: "idle",
+        isStale: true,
+        params: { ...(castDef?.defaultParams || { speak: { enabled: true }, include: [], exclude: [], onMissingVoice: "stop" }) },
+        generations: [],
+      },
+    };
+    const mk = (source: string, sh: string, target: string, th: string): Edge => ({
+      id: `edge_${Math.random().toString(36).slice(2, 9)}`,
+      source,
+      sourceHandle: sh,
+      target,
+      targetHandle: th,
+      type: "default",
+    });
+    const kept = state.edges.filter((e) => !charIds.has(e.source) && !charIds.has(e.target));
+    const rewired: Edge[] = [];
+    const seen = new Set<string>();
+    for (const e of state.edges) {
+      if (!charIds.has(e.source) || charIds.has(e.target)) continue;
+      // ảnh DNA và giọng của các nhân vật cũ -> nối từ Dàn diễn viên tới cùng đích
+      if (e.sourceHandle === "reference_images" || e.sourceHandle === "voice") {
+        const k = `${e.sourceHandle}>${e.target}:${e.targetHandle}`;
+        if (!seen.has(k)) {
+          seen.add(k);
+          rewired.push(mk(castId, e.sourceHandle, e.target, e.targetHandle || e.sourceHandle));
+        }
+      }
+    }
+    const nextEdges = [...kept, mk(script.id, "lines", castId, "lines"), mk(script.id, "scenes", castId, "scenes"), ...rewired];
+    const nextNodes = [...state.nodes.filter((n) => !charIds.has(n.id)).map((n) => ({ ...n, selected: false })), castNode];
+    get().setNodesAndEdges(nextNodes, nextEdges, true);
+    return true;
+  },
   pushUndoSnapshot: () =>
     set((state) => ({
       undoStack: [

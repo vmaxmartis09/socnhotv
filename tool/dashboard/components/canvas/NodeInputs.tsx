@@ -544,6 +544,10 @@ function EpisodeScriptPicker({
     };
   }, [projectId, episodeId]);
 
+  const hasFixedCharacters = useStudioStore((s: any) =>
+    s.nodes.some((n: any) => n.data.nodeType === "character") && !s.nodes.some((n: any) => n.data.nodeType === "cast")
+  );
+  const convertToCast = useStudioStore((s: any) => s.convertCharactersToCast) as () => boolean;
   const sceneCount = shots ? new Set(shots.map((s) => s.scene)).size : 0;
   const itemCount = granularity === "scene" ? sceneCount : shots?.length || 0;
   // Lời thoại theo người nói (giống cổng 'lines'): đếm câu, báo người nói chưa ghép được nhân vật
@@ -613,6 +617,18 @@ function EpisodeScriptPicker({
               <span>Chưa ghép được nhân vật: {unmatched.map(([n]) => n).join(", ")}. Thêm tên này vào aliases của nhân vật.</span>
             </div>
           )}
+        </div>
+      )}
+      {hasFixedCharacters && (
+        <div className="rounded-md border border-semantic-warning/50 bg-semantic-warning/5 px-2 py-1.5 text-[11px] leading-snug text-foreground">
+          Flow đang dùng nhân vật <b>cố định</b>: đổi tập thì nhân vật không đổi theo.
+          <button
+            type="button"
+            onClick={() => convertToCast()}
+            className="nodrag mt-1 block w-full rounded border border-border bg-card px-2 py-1 text-center font-medium transition-colors hover:bg-accent"
+          >
+            Chuyển sang Dàn diễn viên (tự theo tập)
+          </button>
         </div>
       )}
       <p className="text-[10px] leading-snug text-muted-foreground">
