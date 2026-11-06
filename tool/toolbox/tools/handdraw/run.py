@@ -17,7 +17,22 @@ import numpy as np
 from PIL import Image, ImageDraw
 
 REPO_ROOT = Path(__file__).resolve().parents[4]
-FFMPEG_BIN = REPO_ROOT / "data" / "shared" / "models" / "ffmpeg-bin" / "ffmpeg.exe"
+
+
+def _find_ffmpeg() -> str:
+    """ffmpeg dùng chung của Toolbox (.exe hoặc không), rồi PATH; không thấy thì báo lỗi rõ."""
+    import shutil
+    base = REPO_ROOT / "data" / "shared" / "models" / "ffmpeg-bin"
+    for name in ("ffmpeg.exe", "ffmpeg"):
+        if (base / name).exists():
+            return str(base / name)
+    found = shutil.which("ffmpeg")
+    if found:
+        return found
+    raise FileNotFoundError("Không thấy ffmpeg (data/shared/models/ffmpeg-bin hoặc PATH)")
+
+
+FFMPEG_BIN = None  # tìm khi chạy
 ANIMATIONS_VAULT_DIR = REPO_ROOT / "data" / "shared" / "assets" / "animations"
 INDEX_PATH = ANIMATIONS_VAULT_DIR / "index.jsonl"
 
@@ -97,7 +112,7 @@ def generate_handdraw_video(
 
     # 2. Pipe frames to FFmpeg
     cmd = [
-        str(FFMPEG_BIN),
+        _find_ffmpeg(),
         "-y",
         "-f", "rawvideo",
         "-pix_fmt", "rgb24",
@@ -239,5 +254,26 @@ def main():
     sys.exit(0)
 
 
+def _safe_main():
+    try:
+        main()
+    except SystemExit:
+        raise
+    except Exception as e:  # noqa: BLE001 - hợp đồng: luôn ghi out.json lỗi thật
+        out = None
+        for i, a in enumerate(sys.argv):
+            if a == "--out" and i + 1 < len(sys.argv):
+                out = Path(sys.argv[i + 1])
+        if out is not None:
+            out.parent.mkdir(parents=True, exist_ok=True)
+            code = 2 if isinstance(e, FileNotFoundError) and "ffmpeg" in str(e) else 1
+            out.write_text(json.dumps({"ok": False, "outputs": [], "store_records": [], "warnings": [],
+                                       "error": {"code": "HANDDRAW_FAILED", "message": f"{type(e).__name__}: {e}"},
+                                       "elapsed_s": 0}, ensure_ascii=False, indent=2), encoding="utf-8")
+            print(str(out.resolve()))
+            sys.exit(code)
+        raise
+
+
 if __name__ == "__main__":
-    main()
+    _safe_main()
