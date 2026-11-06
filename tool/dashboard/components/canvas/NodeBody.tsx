@@ -333,9 +333,11 @@ function PolicyBadge() {
 
 /** Thân card cho từng loại node: cho phép nhập liệu trực tiếp ngay trên card. */
 
-/** Dàn diễn viên: hiện NGAY các nhân vật của tập đang chọn ở node Kịch bản nối vào (đổi tập là đổi theo, không cần chạy). */
+/** Dàn diễn viên: hiện NGAY các nhân vật của tập đang chọn ở node Kịch bản nối vào (đổi tập là đổi theo, không cần chạy).
+ *  Mỗi nhân vật là một thẻ gọn như node Nhân vật: ảnh DNA, tên, chiều cao, giọng, số câu thoại. */
 function CastPreview({ nodeId, data }: { nodeId: string; data: any }) {
   const projectId = useStudioStore((st: any) => st.activeProjectId) as string;
+  const characters = useStudioStore((st: any) => st.characters) as Character[];
   const episodeId = useStudioStore((st: any) => {
     for (const e of st.edges) {
       if (e.target !== nodeId) continue;
@@ -347,6 +349,7 @@ function CastPreview({ nodeId, data }: { nodeId: string; data: any }) {
   const include: string[] = data?.params?.include || [];
   const exclude: string[] = data?.params?.exclude || [];
   const [cast, setCast] = React.useState<{ id: string | null; name: string }[] | null>(null);
+  const [lineCount, setLineCount] = React.useState<Record<string, number>>({});
   const [unmatched, setUnmatched] = React.useState<string[]>([]);
   React.useEffect(() => {
     if (!episodeId) {
@@ -357,9 +360,13 @@ function CastPreview({ nodeId, data }: { nodeId: string; data: any }) {
     fetchScriptData(projectId, episodeId).then((d: any) => {
       if (!alive) return;
       const sc = d?.script;
-      const list = (sc?.cast || []).map((c: any) => ({ id: c.id || null, name: c.name }));
-      setCast(list);
+      setCast((sc?.cast || []).map((c: any) => ({ id: c.id || null, name: c.name })));
       setUnmatched(sc?.unmatched || []);
+      const counts: Record<string, number> = {};
+      for (const sh of d?.shots || []) {
+        if (sh.characterId && sh.dialogue) counts[sh.characterId] = (counts[sh.characterId] || 0) + 1;
+      }
+      setLineCount(counts);
     });
     return () => {
       alive = false;
@@ -372,36 +379,58 @@ function CastPreview({ nodeId, data }: { nodeId: string; data: any }) {
       </p>
     );
   }
-  const shown = (cast || []).filter((c) => !(c.id && exclude.includes(c.id)));
+  const members = [
+    ...(cast || []).filter((c) => !(c.id && exclude.includes(c.id))),
+    ...include.filter((id) => !(cast || []).some((c) => c.id === id)).map((id) => ({ id, name: id })),
+  ];
   return (
     <div className="space-y-1.5">
       <div className="text-[11px] text-muted-foreground">
-        Tập <span className="font-mono text-foreground">{episodeId.replace(/^ep(\d+)-.*/, "$1")}</span> · {shown.length} nhân vật
-        {include.length > 0 && ` (+${include.length} thêm tay)`}
+        Tập <span className="font-mono text-foreground">{episodeId.replace(/^ep(\d+)-.*/, "$1")}</span> · {members.length} nhân vật
       </div>
-      <div className="flex flex-wrap gap-1.5">
-        {cast === null && <span className="text-xs text-muted-foreground">Đang đọc kịch bản…</span>}
-        {shown.map((c) => (
-          <span
-            key={c.name}
-            className={cn(
-              "rounded-full border px-2 py-0.5 text-xs",
-              c.id ? "border-border bg-accent/50 text-foreground" : "border-semantic-warning text-semantic-warning"
-            )}
-            title={c.id ? `id: ${c.id}` : "Chưa ghép được với hồ sơ nhân vật của dự án"}
-          >
-            {c.name}
-          </span>
-        ))}
-        {include.map((id) => (
-          <span key={id} className="rounded-full border border-dashed border-border px-2 py-0.5 text-xs text-muted-foreground" title="Thêm tay (params.include)">
-            + {id}
-          </span>
-        ))}
+      {cast === null && <span className="text-xs text-muted-foreground">Đang đọc kịch bản…</span>}
+      <div className="space-y-1.5">
+        {members.map((m) => {
+          const ch = m.id ? characters.find((c) => c.id === m.id) : undefined;
+          return (
+            <div key={m.id || m.name} className="flex items-center gap-2 rounded-lg border border-border bg-card/60 p-1.5">
+              {ch?.referenceImages?.[0] ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  decoding="async"
+                  loading="lazy"
+                  src={ch.referenceImages[0]}
+                  alt={ch.name}
+                  className="h-14 w-14 shrink-0 rounded-md border border-border bg-muted/20 object-cover object-top"
+                />
+              ) : (
+                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-md border border-dashed border-semantic-warning text-[10px] text-semantic-warning">
+                  chưa có
+                </div>
+              )}
+              <div className="min-w-0 flex-1 space-y-0.5">
+                <button
+                  type="button"
+                  title="Mở hồ sơ nhân vật"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (m.id) useHubScope.getState().openTab("characters", null, m.id);
+                  }}
+                  className="nodrag block max-w-full truncate text-left text-[13px] font-semibold text-foreground underline-offset-2 hover:underline"
+                >
+                  {ch?.name || m.name}
+                </button>
+                <div className="flex flex-wrap items-center gap-1">
+                  {ch && <Chip title="Chiều cao">{ch.heightCm} cm</Chip>}
+                  {ch && <Chip title="Giọng">{ch.voiceId || "—"}</Chip>}
+                  {m.id && lineCount[m.id] ? <Chip title="Số câu thoại">{lineCount[m.id]} câu</Chip> : null}
+                </div>
+              </div>
+            </div>
+          );
+        })}
       </div>
-      {unmatched.length > 0 && (
-        <div className="text-[11px] text-semantic-warning">Chưa ghép được: {unmatched.join(", ")}</div>
-      )}
+      {unmatched.length > 0 && <div className="text-[11px] text-semantic-warning">Chưa ghép được: {unmatched.join(", ")}</div>}
     </div>
   );
 }
