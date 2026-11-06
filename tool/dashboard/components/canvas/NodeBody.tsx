@@ -335,6 +335,8 @@ function PolicyBadge() {
 
 /** Dàn diễn viên: hiện NGAY các nhân vật của tập đang chọn ở node Kịch bản nối vào (đổi tập là đổi theo, không cần chạy).
  *  Mỗi nhân vật là một thẻ gọn như node Nhân vật: ảnh DNA, tên, chiều cao, giọng, số câu thoại. */
+const CAST_CACHE = new Map<string, { cast: { id: string | null; name: string }[]; lineCount: Record<string, number>; unmatched: string[] }>();
+
 function CastPreview({ nodeId, data }: { nodeId: string; data: any }) {
   const projectId = useStudioStore((st: any) => st.activeProjectId) as string;
   const characters = useStudioStore((st: any) => st.characters) as Character[];
@@ -348,30 +350,47 @@ function CastPreview({ nodeId, data }: { nodeId: string; data: any }) {
   });
   const include: string[] = data?.params?.include || [];
   const exclude: string[] = data?.params?.exclude || [];
-  const [cast, setCast] = React.useState<{ id: string | null; name: string }[] | null>(null);
-  const [lineCount, setLineCount] = React.useState<Record<string, number>>({});
-  const [unmatched, setUnmatched] = React.useState<string[]>([]);
+  type CastView = { cast: { id: string | null; name: string }[]; lineCount: Record<string, number>; unmatched: string[] };
+  const key = `${projectId}:${episodeId}`;
+  // Giữ dàn nhân vật cũ (mờ đi) trong lúc tải dàn mới, và nhớ các tập đã xem -> đổi tập là đổi ngay, không nháy trống
+  const [view, setView] = React.useState<CastView | null>(() => CAST_CACHE.get(key) || null);
+  const [loading, setLoading] = React.useState(false);
   React.useEffect(() => {
     if (!episodeId) {
-      setCast(null);
+      setView(null);
+      return;
+    }
+    const hit = CAST_CACHE.get(key);
+    if (hit) {
+      setView(hit);
+      setLoading(false);
       return;
     }
     let alive = true;
+    setLoading(true);
     fetchScriptData(projectId, episodeId).then((d: any) => {
       if (!alive) return;
       const sc = d?.script;
-      setCast((sc?.cast || []).map((c: any) => ({ id: c.id || null, name: c.name })));
-      setUnmatched(sc?.unmatched || []);
       const counts: Record<string, number> = {};
       for (const sh of d?.shots || []) {
         if (sh.characterId && sh.dialogue) counts[sh.characterId] = (counts[sh.characterId] || 0) + 1;
       }
-      setLineCount(counts);
+      const v: CastView = {
+        cast: (sc?.cast || []).map((c: any) => ({ id: c.id || null, name: c.name })),
+        lineCount: counts,
+        unmatched: sc?.unmatched || [],
+      };
+      if (d) CAST_CACHE.set(key, v);
+      setView(v);
+      setLoading(false);
     });
     return () => {
       alive = false;
     };
-  }, [projectId, episodeId]);
+  }, [key, projectId, episodeId]);
+  const cast = view?.cast ?? null;
+  const lineCount = view?.lineCount ?? {};
+  const unmatched = view?.unmatched ?? [];
   if (!episodeId) {
     return (
       <p className="text-xs text-muted-foreground">
@@ -389,7 +408,7 @@ function CastPreview({ nodeId, data }: { nodeId: string; data: any }) {
         Tập <span className="font-mono text-foreground">{episodeId.replace(/^ep(\d+)-.*/, "$1")}</span> · {members.length} nhân vật
       </div>
       {cast === null && <span className="text-xs text-muted-foreground">Đang đọc kịch bản…</span>}
-      <div className="space-y-1.5">
+      <div className={cn("space-y-1.5 transition-opacity duration-200", loading && "opacity-50")}>
         {members.map((m) => {
           const ch = m.id ? characters.find((c) => c.id === m.id) : undefined;
           return (

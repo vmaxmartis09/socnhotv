@@ -280,7 +280,10 @@ export const StudioNode = memo(function StudioNode({
       updateNode(id, { zIndex: 0 });
     };
   }, [activeInPort === null, id, updateNode]); // eslint-disable-line react-hooks/exhaustive-deps
-  const [expanded, setExpanded] = useState(() => DETAIL_DEFAULT_TYPES.has(def.typeName));
+  // Kịch bản và Dàn diễn viên luôn mở (không thu gọn): đây là nơi chọn tập và xem dàn nhân vật
+  const alwaysOpen = def.typeName === "script" || def.typeName === "cast";
+  const [expandedRaw, setExpanded] = useState(() => DETAIL_DEFAULT_TYPES.has(def.typeName));
+  const expanded = alwaysOpen || expandedRaw;
 
   // Kiểm tra đủ input: cổng bắt buộc phải được nối hoặc đã có giá trị
   const requiredPorts = def.inputPorts.filter((pt) => pt.required);
@@ -639,7 +642,7 @@ export const StudioNode = memo(function StudioNode({
         <span
           className="min-w-0 flex-1 cursor-pointer line-clamp-2 break-words text-[15px] font-semibold leading-tight"
           title={isModeNode ? `${def.displayName} · nhấn để ${expanded ? "thu gọn" : "chỉnh sửa"}` : `${def.displayName} · nhấn đúp để ${collapsed ? "mở rộng" : "thu gọn"}`}
-          onClick={isModeNode ? () => setExpanded((v) => !v) : undefined}
+          onClick={isModeNode && !alwaysOpen ? () => setExpanded((v) => !v) : undefined}
           onDoubleClick={(e) => {
             if (isModeNode) return;
             e.stopPropagation();
