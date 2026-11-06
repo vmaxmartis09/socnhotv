@@ -62,6 +62,58 @@ class AudioMastering:
 
         return os.path.abspath(output_audio_path)
 
+    def mix_voice_and_bgm_ducking(
+        self,
+        voice_audio_path: str,
+        bgm_audio_path: str,
+        output_audio_path: str,
+        ducking_ratio: float = 0.18,
+        target_lufs: float = -14.0,
+    ) -> str:
+        """Trộn giọng đọc và nhạc nền BGM với hiệu ứng Ducking (BGM tự động giảm khi có giọng) và chuẩn hóa -14 LUFS."""
+        os.makedirs(os.path.dirname(os.path.abspath(output_audio_path)), exist_ok=True)
+        # Filtergraph: Sidechain compression hoặc volume mix
+        filtergraph = (
+            f"[1:a]volume=0.35[bgm];"
+            f"[bgm][0:a]sidechaincompress=threshold=0.08:ratio=4:attack=80:release=350[ducked_bgm];"
+            f"[0:a][ducked_bgm]amix=inputs=2:duration=first:dropout_transition=2,loudnorm=I={target_lufs}:LRA=8:TP=-1.5[out]"
+        )
+        cmd = [
+            self.ffmpeg,
+            "-y",
+            "-i", str(voice_audio_path),
+            "-i", str(bgm_audio_path),
+            "-filter_complex", filtergraph,
+            "-map", "[out]",
+            "-ar", "44100",
+            "-ac", "2",
+            "-b:a", "192k",
+            str(output_audio_path),
+        ]
+        res = subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE, text=True)
+        if res.returncode != 0:
+            # Fallback đơn giản hơn nếu sidechaincompress không hỗ trợ
+            fallback_filter = (
+                f"[1:a]volume={ducking_ratio}[bgm];"
+                f"[0:a][bgm]amix=inputs=2:duration=first,loudnorm=I={target_lufs}:LRA=8:TP=-1.5"
+            )
+            cmd_fb = [
+                self.ffmpeg,
+                "-y",
+                "-i", str(voice_audio_path),
+                "-i", str(bgm_audio_path),
+                "-filter_complex", fallback_filter,
+                "-ar", "44100",
+                "-ac", "2",
+                "-b:a", "192k",
+                str(output_audio_path),
+            ]
+            res_fb = subprocess.run(cmd_fb, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE, text=True)
+            if res_fb.returncode != 0:
+                return self.master_tiktok(voice_audio_path, output_audio_path, target_lufs=target_lufs)
+
+        return os.path.abspath(output_audio_path)
+
     def _run(self, filters: str, src: str, dst: str, bitrate: str) -> subprocess.CompletedProcess:
         is_mp3 = dst.lower().endswith(".mp3")
         cmd = [

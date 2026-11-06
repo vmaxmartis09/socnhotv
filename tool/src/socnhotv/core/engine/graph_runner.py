@@ -1832,39 +1832,95 @@ class GraphRunner:
             cost_usd = art.provenance.cost_usd
 
         elif node_type == "video_gen":
-            prompt = str(resolved_inputs.get("prompt", "Camera dolly zoom theo bước chân Sóc Nhỏ Bi"))
-            aspect = str(resolved_inputs.get("aspectRatio", "9:16"))
-            duration = float(resolved_inputs.get("durationSec", 8.0))
-            has_audio = bool(resolved_inputs.get("hasAudio", False))
-            model_param = resolved_inputs.get("model")
-            first_frame_art = resolved_inputs.get("first_frame") or resolved_inputs.get("image")
-            first_frame_uri = (
-                first_frame_art.uri
-                if isinstance(first_frame_art, Artifact)
-                else (str(first_frame_art) if first_frame_art else None)
-            )
-            refs = _extract_uris(resolved_inputs.get("references"))
+            scenes = resolved_inputs.get("scenes")
+            per_shot = bool(node.params.get("perShot", True) if scenes else False)
 
-            vid_fn = self.provider.generate_video
-            call_args = _filter_kwargs(
-                vid_fn,
-                {
-                    "prompt": prompt,
-                    "first_frame_uri": first_frame_uri,
-                    "duration_sec": duration,
-                    "aspect_ratio": aspect,
-                    "has_audio": has_audio,
-                    "node_id": node.id,
-                    "run_id": run_id,
-                    "references": refs or None,
-                    "model": model_param,
-                    "cancel_event": self.cancel_event,
-                },
-            )
-            art = await vid_fn(**call_args)
-            outputs["video"] = art
-            primary_artifact = art
-            cost_usd = art.provenance.cost_usd
+            if per_shot and isinstance(scenes, list) and scenes:
+                from socnhotv.core.engine.shot_video import ShotVideoEngine
+                shot_engine = ShotVideoEngine(self.store)
+
+                ep_id = str(
+                    node.params.get("episodeId")
+                    or resolved_inputs.get("episodeId")
+                    or (scenes[0].get("episodeId") if scenes and isinstance(scenes[0], dict) else "")
+                    or ""
+                ).strip() or None
+
+                max_c = int(node.params.get("maxClips", 5))
+                shot_ids = node.params.get("shotIds") or []
+                clip_src = str(node.params.get("clipSource", "auto"))
+                model_param = str(resolved_inputs.get("model") or node.params.get("model") or "mock-video")
+                target_dur = float(node.params.get("durationSec", 6.0))
+
+                def _progress_cb(current_i: int, total_i: int, msg: str):
+                    self._emit_event(
+                        SSEEvent(
+                            event_type=SSEEventType.NODE_PROGRESS,
+                            run_id=run_id,
+                            node_id=node.id,
+                            state=NodeState.RUNNING,
+                            progress=round(current_i / max(1, total_i), 2),
+                            message=msg,
+                            timestamp=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                        )
+                    )
+
+                new_scenes, v_arts = await shot_engine.generate_per_shot_videos(
+                    scenes=scenes,
+                    provider=self.provider,
+                    episode_id=ep_id,
+                    max_clips=max_c,
+                    specified_shot_ids=shot_ids,
+                    clip_source=clip_src,
+                    model=model_param,
+                    target_duration_sec=target_dur,
+                    run_id=run_id,
+                    progress_cb=_progress_cb,
+                    cancel_event=self.cancel_event,
+                )
+
+                outputs["scenes"] = new_scenes
+                if v_arts:
+                    outputs["video"] = v_arts[0]
+                    primary_artifact = v_arts[0]
+                    cost_usd = sum(a.provenance.cost_usd for a in v_arts)
+                else:
+                    primary_artifact = None
+                    cost_usd = 0.0
+            else:
+                prompt = str(resolved_inputs.get("prompt", "Camera dolly zoom theo bước chân Sóc Nhỏ Bi"))
+                aspect = str(resolved_inputs.get("aspectRatio", "9:16"))
+                duration = float(resolved_inputs.get("durationSec", 8.0))
+                has_audio = bool(resolved_inputs.get("hasAudio", False))
+                model_param = resolved_inputs.get("model")
+                first_frame_art = resolved_inputs.get("first_frame") or resolved_inputs.get("image")
+                first_frame_uri = (
+                    first_frame_art.uri
+                    if isinstance(first_frame_art, Artifact)
+                    else (str(first_frame_art) if first_frame_art else None)
+                )
+                refs = _extract_uris(resolved_inputs.get("references"))
+
+                vid_fn = self.provider.generate_video
+                call_args = _filter_kwargs(
+                    vid_fn,
+                    {
+                        "prompt": prompt,
+                        "first_frame_uri": first_frame_uri,
+                        "duration_sec": duration,
+                        "aspect_ratio": aspect,
+                        "has_audio": has_audio,
+                        "node_id": node.id,
+                        "run_id": run_id,
+                        "references": refs or None,
+                        "model": model_param,
+                        "cancel_event": self.cancel_event,
+                    },
+                )
+                art = await vid_fn(**call_args)
+                outputs["video"] = art
+                primary_artifact = art
+                cost_usd = art.provenance.cost_usd
 
         elif node_type == "voice_tts":
             text = str(resolved_inputs.get("text") or node.params.get("text") or "").strip()
@@ -2087,6 +2143,13 @@ class GraphRunner:
                 bgm_art = None
             require_hf = bool(node.params.get("requireHyperFrames", True))
 
+            ep_id = str(
+                node.params.get("episodeId")
+                or resolved_inputs.get("episodeId")
+                or (scenes[0].get("episodeId") if scenes and isinstance(scenes[0], dict) else "")
+                or ""
+            ).strip() or None
+
             try:
                 art = await hf_adapter.render_from_artifacts(
                     scenes=scenes,
@@ -2099,6 +2162,7 @@ class GraphRunner:
                     height=render_size[1],
                     require_hyperframes=require_hf,
                     bgm_artifact=bgm_art,
+                    episode_id=ep_id,
                 )
                 self._emit_event(
                     SSEEvent(
@@ -2132,7 +2196,6 @@ class GraphRunner:
 
         elif node_type == "export":
             vid_in = resolved_inputs.get("video")
-            output_file_name = str(node.params.get("outputFileName", "final_video.mp4"))
             platforms = list(node.params.get("platforms", ["tiktok", "youtube"]))
 
             output_dir = (
@@ -2141,6 +2204,31 @@ class GraphRunner:
                 or (self.store.project_dir / "output")
             )
             output_dir.mkdir(parents=True, exist_ok=True)
+
+            # Xác định episodeId (Hợp đồng C6)
+            ep_id = str(
+                node.params.get("episodeId")
+                or resolved_inputs.get("episodeId")
+                or ""
+            ).strip()
+            if not ep_id and all_node_outputs:
+                for out_map in all_node_outputs.values():
+                    if "episodeId" in out_map and out_map["episodeId"]:
+                        ep_id = str(out_map["episodeId"]).strip()
+                        break
+                    if "scenes" in out_map and isinstance(out_map["scenes"], list) and out_map["scenes"]:
+                        first_sc = out_map["scenes"][0]
+                        if isinstance(first_sc, dict) and first_sc.get("episodeId"):
+                            ep_id = str(first_sc["episodeId"]).strip()
+                            break
+
+            raw_file_name = str(node.params.get("outputFileName") or "").strip()
+            if raw_file_name and raw_file_name != "final_video.mp4":
+                output_file_name = raw_file_name
+            elif ep_id:
+                output_file_name = f"{ep_id}.mp4"
+            else:
+                output_file_name = "final_video.mp4"
 
             # 1. Tìm hoặc render video
             if isinstance(vid_in, Artifact):
@@ -2158,33 +2246,37 @@ class GraphRunner:
                     bgm_artifact=bgm_art if isinstance(bgm_art, Artifact) else None,
                     node_id=node.id,
                     run_id=run_id,
+                    episode_id=ep_id or None,
                 )
             else:
                 raise ValueError(
                     f"Node '{node.id}' (export) không có video đầu vào. Hãy nối cổng 'video' từ node dựng."
                 )
 
-            # 2. Xác định topic và slug
-            raw_title = str(node.params.get("title") or "Vì sao cầu vồng có nhiều màu?")
+            # 2. Xác định topic và slug: nếu có episodeId thì slug chính là episodeId (Hợp đồng C6)
+            raw_title = str(node.params.get("title") or "Tập mới")
             slug = str(node.params.get("outputSlug") or "").strip()
             if not slug:
-                text_content = ""
-                if all_node_outputs:
-                    for out_map in all_node_outputs.values():
-                        if "text" in out_map:
-                            text_content += " " + str(out_map["text"])
-                        if "scenes" in out_map and isinstance(out_map["scenes"], list):
-                            for sc in out_map["scenes"]:
-                                if isinstance(sc, dict):
-                                    text_content += " " + str(sc.get("dialogue") or sc.get("title") or "")
-                if "cầu vồng" in text_content.lower() or "cau-vong" in text_content.lower():
-                    slug = "cau-vong"
-                elif "sâu răng" in text_content.lower() or "sau-rang" in text_content.lower():
-                    slug = "soc-nho-sau-rang"
-                elif "hạt dẻ" in text_content.lower():
-                    slug = "hat-de-than-ky"
+                if ep_id:
+                    slug = ep_id
                 else:
-                    slug = re.sub(r"[^a-zA-Z0-9]+", "-", raw_title.lower()).strip("-") or "video-01"
+                    text_content = ""
+                    if all_node_outputs:
+                        for out_map in all_node_outputs.values():
+                            if "text" in out_map:
+                                text_content += " " + str(out_map["text"])
+                            if "scenes" in out_map and isinstance(out_map["scenes"], list):
+                                for sc in out_map["scenes"]:
+                                    if isinstance(sc, dict):
+                                        text_content += " " + str(sc.get("dialogue") or sc.get("title") or "")
+                    if "cầu vồng" in text_content.lower() or "cau-vong" in text_content.lower():
+                        slug = "cau-vong"
+                    elif "sâu răng" in text_content.lower() or "sau-rang" in text_content.lower():
+                        slug = "soc-nho-sau-rang"
+                    elif "hạt dẻ" in text_content.lower():
+                        slug = "hat-de-than-ky"
+                    else:
+                        slug = re.sub(r"[^a-zA-Z0-9]+", "-", raw_title.lower()).strip("-") or "video-01"
 
             target_slug_dir = output_dir / slug
             if (target_slug_dir / "video.json").exists():
@@ -2201,14 +2293,14 @@ class GraphRunner:
 
             target_slug_dir.mkdir(parents=True, exist_ok=True)
 
-            # 3. Copy final_45s.mp4
+            # 3. Copy video thành phẩm theo Hợp đồng C6
             src_video_path = self.store.project_dir / art.uri.lstrip("/")
-            final_mp4 = target_slug_dir / "final_45s.mp4"
+            final_mp4 = target_slug_dir / output_file_name
             if src_video_path.exists() and src_video_path.is_file():
                 shutil.copy2(src_video_path, final_mp4)
                 if output_file_name != "final_45s.mp4":
-                    shutil.copy2(src_video_path, target_slug_dir / output_file_name)
-                    shutil.copy2(src_video_path, output_dir / output_file_name)
+                    shutil.copy2(src_video_path, target_slug_dir / "final_45s.mp4")
+                shutil.copy2(src_video_path, output_dir / output_file_name)
 
             # 4. Tạo thumb.jpg
             thumb_path = target_slug_dir / "thumb.jpg"
@@ -2321,10 +2413,15 @@ class GraphRunner:
             # 10. Chạy nghiệm thu verify_video
             script_full_text = " ".join(sc.get("dialogue", "") for sc in scenes_data) or raw_title
             contact_sheet_path = target_slug_dir / "contact_sheet.jpg"
+            expected_dur = float(
+                art.meta.duration
+                if (isinstance(art, Artifact) and art.meta and art.meta.duration)
+                else (600.0 if ep_id else 45.0)
+            )
             verify_rep = verify_video(
                 video_path=final_mp4,
-                expect_duration=45.0,
-                tol=3.0,
+                expect_duration=expected_dur,
+                tol=15.0 if expected_dur >= 300.0 else 3.0,
                 script_text=script_full_text,
                 contact_sheet_out=contact_sheet_path,
                 num_contact_frames=12,
@@ -2332,7 +2429,7 @@ class GraphRunner:
             verify_rep_path = target_slug_dir / "verify_report.json"
             verify_rep_path.write_text(_json.dumps(verify_rep.to_dict(), ensure_ascii=False, indent=2), encoding="utf-8")
 
-            # 11. Ghi video.json (manifest chuẩn Mục 2B-C)
+            # 11. Ghi video.json (manifest chuẩn Mục 2B-C và C6)
             manifest_data = {
                 "id": f"vid_{slug}_{int(time.time())}",
                 "title": raw_title,
@@ -2348,8 +2445,9 @@ class GraphRunner:
                 "providers_per_scene": providers_per_scene,
                 "cost_usd": 0.0,
                 "files": {
-                    "video": f"output/{slug}/final_45s.mp4",
+                    "video": f"output/{slug}/{output_file_name}",
                     "thumb": f"output/{slug}/thumb.jpg",
+                    "contact_sheet": f"output/{slug}/contact_sheet.jpg",
                     "script": f"output/{slug}/script.md",
                     "voice": f"output/{slug}/voice.mp3",
                     "captions": f"output/{slug}/captions.srt",

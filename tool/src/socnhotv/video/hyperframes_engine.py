@@ -411,8 +411,12 @@ class HyperFramesEngine:
         target_dir: Optional[Path] = None,
         title_badge: str = "SÓC NHỎ TV",
         bgm_path: Optional[str | Path] = None,
+        episode_id: Optional[str] = None,
+        project_dir: Optional[Path] = None,
     ) -> Path:
-        """Helper xây dựng bundle hoàn chỉnh từ danh sách scenes và audio."""
+        """Helper xây dựng bundle hoàn chỉnh từ danh sách scenes và audio.
+        Hỗ trợ tự động nhận diện clip làm tay từ clips/<shotId>.mp4 (C5).
+        """
         preset = get_platform(platform) if isinstance(platform, str) else platform
         if target_dir is None:
             target_dir = Path(tempfile.mkdtemp(prefix="hf_bundle_"))
@@ -422,6 +426,11 @@ class HyperFramesEngine:
         target_dir.mkdir(parents=True, exist_ok=True)
         assets_dir = target_dir / "assets"
         assets_dir.mkdir(parents=True, exist_ok=True)
+
+        # Tự động nạp clip làm tay (Hợp đồng C5) nếu có
+        if episode_id and project_dir:
+            from socnhotv.core.engine.shot_video import inject_manual_clips
+            scenes = inject_manual_clips(scenes, project_dir, episode_id)
 
         voice_file = Path(audio_voiceover_path).resolve()
         total_duration = self.get_audio_duration(voice_file)

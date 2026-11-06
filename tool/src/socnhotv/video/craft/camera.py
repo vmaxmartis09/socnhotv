@@ -270,10 +270,25 @@ def build_shot_camera_gsap(
     """
     preset = get_camera_preset(camera_name)
     if is_video:
-        return f"""
-      // Video clip camera: {preset.description} (stabilized motion)
+        if duration_sec <= 6.0:
+            return f"""
+      // Video clip camera: {preset.description} (short clip)
       tl.fromTo("{target_selector}", {{ scale: 1.01, opacity: 0 }}, {{ scale: 1.0, opacity: 1, duration: 0.45, ease: "power2.out" }}, {start_time:.3f});
       tl.to("{target_selector}", {{ scale: 1.005, duration: {duration_sec - 0.45:.3f}, ease: "none" }}, {start_time + 0.45:.3f});
+""".strip()
+        # Shot dài (như 20s) nhưng clip AI chỉ 4-8s:
+        # Nhịp 1 (phát clip video 6s): scale ổn định 1.0 để xem chuyển động mượt mà
+        # Nhịp 2 (sau 6s): video dừng ở khung cuối, camera drift chậm 1.0 -> 1.03 để giữ nhịp sống động
+        clip_dur = 6.0
+        drift_dur = round(duration_sec - clip_dur, 3)
+        return f"""
+      // Video clip camera: {preset.description} ({clip_dur}s active clip + {drift_dur}s last-frame drift)
+      tl.fromTo("{target_selector}", {{ scale: 1.0, opacity: 0 }}, {{ scale: 1.0, opacity: 1, duration: 0.45, ease: "power2.out" }}, {start_time:.3f});
+      // Giữ khung cuối và chuyển động camera nhẹ tránh đứng hình
+      tl.to("{target_selector}",
+        {{ scale: 1.03, x: 12.0, y: -8.0, duration: {drift_dur:.3f}, ease: "sine.inOut" }},
+        {start_time + clip_dur:.3f}
+      );
 """.strip()
 
     if duration_sec <= 6.0:

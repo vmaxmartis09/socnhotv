@@ -313,19 +313,25 @@ class NodeRegistry:
                 category="Generation",
                 description="Biến ảnh khung đầu thành video chuyển động 3D qua model Veo / LTX",
                 input_ports=[
+                    PortDefinition(name="scenes", port_type=PortType.SCENES, description="Cấu trúc các phân cảnh từ kịch bản / ảnh", required=False),
                     PortDefinition(name="first_frame", port_type=PortType.IMAGE, description="Ảnh khung đầu (First frame)", required=False),
                     PortDefinition(name="image", port_type=PortType.IMAGE, description="Ảnh khung đầu (alias)", required=False),
                     PortDefinition(name="prompt", port_type=PortType.TEXT, description="Prompt chuyển động camera", required=False),
                     PortDefinition(name="references", port_type=PortType.IMAGE_LIST, description="Ảnh tham chiếu phụ", required=False),
                 ],
                 output_ports=[
-                    PortDefinition(name="video", port_type=PortType.VIDEO, description="Clip video sinh ra")
+                    PortDefinition(name="video", port_type=PortType.VIDEO, description="Clip video sinh ra"),
+                    PortDefinition(name="scenes", port_type=PortType.SCENES, description="Cấu trúc các cảnh đã kèm đường dẫn clip video"),
                 ],
                 default_params={
                     "model": "mock-video",
-                    "durationSec": 8,
-                    "aspectRatio": "9:16",
+                    "durationSec": 6,
+                    "aspectRatio": "16:9",
                     "hasAudio": False,
+                    "perShot": True,
+                    "maxClips": 5,
+                    "shotIds": [],
+                    "clipSource": "auto",
                 },
                 mockable=True,
             )

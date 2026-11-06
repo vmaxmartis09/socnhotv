@@ -79,6 +79,7 @@ class HyperFramesAdapter:
         width: int = 1080,
         height: int = 1920,
         fps: int = 30,
+        episode_id: Optional[str] = None,
     ) -> Path:
         """Đóng gói toàn bộ cấu trúc dự án HyperFrames vào target_dir."""
         platform = "youtube" if width == 1920 and height == 1080 else "tiktok"
@@ -89,6 +90,8 @@ class HyperFramesAdapter:
             target_dir=target_dir,
             title_badge=title_badge,
             bgm_path=bgm_path,
+            episode_id=episode_id,
+            project_dir=self.store.project_dir,
         )
 
     def render_fallback_ffmpeg(
@@ -140,6 +143,7 @@ class HyperFramesAdapter:
         height: int = 1920,
         require_hyperframes: bool = False,
         bgm_artifact: Optional[Artifact] = None,
+        episode_id: Optional[str] = None,
     ) -> Artifact:
         """Đầu vào là Artifacts, trả về Video Artifact MP4. width×height 1920×1080 = YouTube 16:9."""
         platform = "youtube" if (width, height) == (1920, 1080) else "tiktok"
@@ -159,6 +163,24 @@ class HyperFramesAdapter:
             else None
         )
 
+        # Tự động tìm BGM nếu chưa có artifact
+        if not bgm_path:
+            cand_paths = []
+            if episode_id:
+                cand_paths.append(self.store.project_dir / "content" / "episodes" / episode_id / "bgm.mp3")
+            cand_paths.append(self.store.repo_root / "data" / "shared" / "music_sfx" / "bgm.mp3")
+            cand_paths.append(self.store.repo_root / "data" / "shared" / "music_sfx" / "theme_song.mp3")
+            # Tìm bất kỳ mp3 nào trong data/shared/music_sfx/
+            shared_music = self.store.repo_root / "data" / "shared" / "music_sfx"
+            if shared_music.is_dir():
+                cand_paths.extend(list(shared_music.glob("*.mp3")))
+
+            for cand in cand_paths:
+                if cand.is_file() and cand.stat().st_size > 0:
+                    bgm_path = str(cand.resolve())
+                    logger.info(f"Đã tự động nhận nhạc nền BGM: {bgm_path}")
+                    break
+
         # Xây dựng bundle
         # Dựng bundle + render là việc nặng, chạy đồng bộ (subprocess): đưa sang thread để KHÔNG chặn
         # vòng lặp sự kiện của Core (nếu không, trong lúc render Studio không tải được gì và SSE đứng).
@@ -172,6 +194,7 @@ class HyperFramesAdapter:
             width=width,
             height=height,
             fps=30,
+            episode_id=episode_id,
         )
 
         output_mp4_temp = run_session_dir / f"{node_id}_rendered.mp4"
