@@ -675,11 +675,37 @@ export const StudioNode = memo(function StudioNode({
                   setActiveInPort((cur) => (cur === port.name ? null : port.name));
                 }}
                 className={cn(
-                  "nodrag flex cursor-pointer items-center gap-1.5 px-3 text-xs transition-colors hover:bg-accent/60",
-                  activeInPort === port.name && "bg-accent/60"
+                  "nodrag relative flex cursor-pointer items-center gap-1.5 px-3 text-xs transition-colors hover:bg-accent/60",
+                  activeInPort === port.name && "z-40 bg-popover shadow-[inset_3px_0_0_hsl(var(--foreground))]"
                 )}
                 style={{ height: ROW }}
               >
+                {activeInPort === port.name && (
+                  <div
+                    className="nodrag nowheel absolute left-full top-0 z-50 w-[320px] cursor-default space-y-1.5 rounded-xl rounded-tl-none border border-border bg-popover p-3 text-popover-foreground shadow-lg"
+                    style={{ marginLeft: 12 }}
+                    onClick={(e) => e.stopPropagation()}
+                    onDoubleClick={(e) => e.stopPropagation()}
+                  >
+                    {/* Cầu nối: hàng input và panel liền một khối */}
+                    <span aria-hidden className="absolute -left-3 top-0 h-[22px] w-3 border-y border-border bg-popover" />
+                    <div className="flex items-center justify-between text-[11px] text-muted-foreground">
+                      <span>
+                        Nguồn cho <span className="font-mono text-foreground">{port.name}</span>
+                      </span>
+                      <button
+                        type="button"
+                        aria-label="Đóng"
+                        title="Đóng"
+                        onClick={() => setActiveInPort(null)}
+                        className="flex h-5 w-5 items-center justify-center rounded text-muted-foreground hover:bg-accent hover:text-foreground"
+                      >
+                        ✕
+                      </button>
+                    </div>
+                    <PortValueInput nodeId={id} port={port} />
+                  </div>
+                )}
                 {!(portIconOf(port.portType) && port.name === port.portType) && (
                   <span className={cn("truncate", filled ? "text-foreground" : port.required ? "text-semantic-danger" : "text-muted-foreground")}>
                     {port.name}
@@ -712,35 +738,6 @@ export const StudioNode = memo(function StudioNode({
               </div>
             );
           })}
-          {activeInPort !== null && (() => {
-            const ap = def.inputPorts.find((pt) => pt.name === activeInPort);
-            if (!ap) return null;
-            // Panel nguồn mở ngay CẠNH PHẢI ô input (không đẩy giãn thẻ)
-            return (
-              <div
-                className="nodrag nowheel absolute left-full z-50 -ml-px w-[320px] space-y-1.5 rounded-xl rounded-tl-none border border-border bg-popover p-3 text-popover-foreground shadow-lg"
-                style={{ top: Math.max(0, activeInTop) }}
-                onClick={(e) => e.stopPropagation()}
-                onDoubleClick={(e) => e.stopPropagation()}
-              >
-                <div className="flex items-center justify-between text-[11px] text-muted-foreground">
-                  <span>
-                    Nguồn cho <span className="font-mono text-foreground">{ap.name}</span>
-                  </span>
-                  <button
-                    type="button"
-                    aria-label="Đóng"
-                    title="Đóng"
-                    onClick={() => setActiveInPort(null)}
-                    className="flex h-5 w-5 items-center justify-center rounded text-muted-foreground hover:bg-accent hover:text-foreground"
-                  >
-                    ✕
-                  </button>
-                </div>
-                <PortValueInput nodeId={id} port={ap} />
-              </div>
-            );
-          })()}
          </Reveal>
         </div>
       )}
