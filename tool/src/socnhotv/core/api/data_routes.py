@@ -695,10 +695,28 @@ async def get_script_data(project_id: str, episode_id: str) -> Dict[str, Any]:
     """Kịch bản tập có cấu trúc + danh mục các 'mặt cắt' (facet) để chọn làm đầu vào node."""
     from socnhotv.core.engine.episode_script import FACETS, SHOT_FACETS
 
+    from socnhotv.core.engine.character_profile import load_profiles, match_speaker
+
     loaded = load_episode_script(project_id, episode_id)
     data = loaded["data"]
+    # Ghép người nói với nhân vật của dự án (giống cổng 'lines' của node Kịch bản) để giao diện báo câu lạc người nói
+    profiles = load_profiles(_project_dir(project_id) / "characters")
+    matched: Dict[str, Any] = {}
+
+    def _cid(speaker: str):
+        if speaker not in matched:
+            matched[speaker] = match_speaker(speaker, profiles) if (speaker and profiles) else None
+        return matched[speaker]
+
     shots = [
-        {"id": sh["id"], "scene": sc["index"], "sceneTitle": sc["title"], "dialogue": sh["dialogue"][:80], "speaker": sh["speaker"]}
+        {
+            "id": sh["id"],
+            "scene": sc["index"],
+            "sceneTitle": sc["title"],
+            "dialogue": sh["dialogue"][:80],
+            "speaker": sh["speaker"],
+            "characterId": _cid(sh["speaker"]) if sh.get("dialogue") else None,
+        }
         for sc in data["scenes"]
         for sh in sc["shots"]
     ]

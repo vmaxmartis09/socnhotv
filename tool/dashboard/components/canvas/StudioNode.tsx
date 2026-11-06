@@ -37,6 +37,7 @@ import {
   AlertTriangle,
   RotateCcw,
   FileText,
+  MessageSquare,
   Images,
   Users,
   Pencil,
@@ -68,6 +69,7 @@ function portIconOf(portType: string): React.ComponentType<{ className?: string;
   if (portType === "video") return Film;
   if (portType === "scenes") return Layers;
   if (portType === "policy") return ShieldCheck;
+  if (portType === "dialogue") return MessageSquare;
   return null;
 }
 

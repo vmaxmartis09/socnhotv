@@ -78,6 +78,45 @@ def _extract_uris(val: Any) -> List[str]:
     return []
 
 
+def _is_dialogue_list(val: Any) -> bool:
+    return isinstance(val, list) and bool(val) and all(isinstance(x, dict) and "text" in x for x in val)
+
+
+def _dialogue_to_text(lines: Any) -> str:
+    """Lời thoại có cấu trúc -> chuỗi 'Tên: câu' mỗi dòng (cho cổng văn bản của node cũ)."""
+    out: List[str] = []
+    for ln in lines or []:
+        if not isinstance(ln, dict):
+            continue
+        text = str(ln.get("text") or "").strip()
+        if not text:
+            continue
+        speaker = str(ln.get("speaker") or "").strip()
+        out.append(f"{speaker}: {text}" if speaker else text)
+    return "\n".join(out)
+
+
+def _port_signature(val: Any) -> str:
+    """Chữ ký nội dung của 1 cổng ra. Artifact rút về id (theo mã băm nội dung), bỏ provenance/thời gian."""
+    import hashlib
+
+    def _norm(v: Any) -> Any:
+        if isinstance(v, Artifact):
+            return f"art:{v.id}"
+        if isinstance(v, dict):
+            if set(v.keys()) == {"$artifact"} and isinstance(v["$artifact"], dict):
+                return f"art:{v['$artifact'].get('id')}"
+            return {str(k): _norm(x) for k, x in v.items()}
+        if isinstance(v, (list, tuple)):
+            return [_norm(x) for x in v]
+        if v is None or isinstance(v, (str, int, float, bool)):
+            return v
+        return str(v)
+
+    raw = _json.dumps(_norm(val), sort_keys=True, ensure_ascii=False, default=str)
+    return hashlib.sha256(raw.encode("utf-8")).hexdigest()
+
+
 def _name_tokens(name: str) -> Set[str]:
     """Chuẩn hoá tên nhân vật thành tập từ: bỏ '(100cm)', bỏ dấu tiếng Việt, chữ thường."""
     import unicodedata
@@ -290,7 +329,7 @@ class GraphRunner:
                 if cost and node_map[nid].type == "image_gen":
                     # Lặp theo cảnh: chi phí = số cảnh x chi phí 1 ảnh
                     cost *= max(1, self._estimate_batch_count(graph, node_map[nid]))
-                total += cost
+                total += cost + self._capabilities_cost(node_map[nid], real_mode)
         return round(total, 6)
 
     def _estimate_batch_count(self, graph: Graph, node: NodeInstance) -> int:
@@ -395,6 +434,7 @@ class GraphRunner:
                 cost = self.estimate_node_cost(node, real_mode=True)
                 if cost and node.type == "image_gen":
                     cost = round(cost * max(1, self._estimate_batch_count(graph, node)), 6)
+                cost = round(cost + self._capabilities_cost(node, True), 6)
                 total_real_cost += cost
                 estimates.append(
                     NodeCostEstimate(
@@ -456,6 +496,8 @@ class GraphRunner:
                         tgt_port_def = next((p for p in eff_ins if p.name == edge.target_port), None)
                         if tgt_port_def and tgt_port_def.port_type == PortType.IMAGE_LIST and not isinstance(val, list):
                             val = [val]
+                        if tgt_port_def and tgt_port_def.port_type == PortType.TEXT and _is_dialogue_list(val):
+                            val = _dialogue_to_text(val)
                     is_list_port = bool(
                         tgt_port_def and tgt_port_def.port_type in (PortType.IMAGE_LIST, PortType.SCENES)
                     )
@@ -615,6 +657,7 @@ class GraphRunner:
                 "mock": bool(is_mock),
                 "savedAt": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
                 "outputs": self._encode_output(outputs),
+                "portSigs": {str(k): _port_signature(v) for k, v in outputs.items()},
             }
             tmp = path.with_suffix(".json.tmp")
             tmp.write_text(_json.dumps(payload, ensure_ascii=False), encoding="utf-8")
@@ -652,29 +695,334 @@ class GraphRunner:
         except Exception:
             return None
 
+    def _previous_port_signatures(self, graph_id: str, node: NodeInstance) -> Optional[Dict[str, str]]:
+        """Chữ ký từng cổng ra của lần chạy trước (bất kể tham số). None nếu chưa có ảnh chụp."""
+        try:
+            path = self._outputs_snapshot_path(graph_id, node.id)
+            if not path.is_file():
+                return None
+            data = _json.loads(path.read_text(encoding="utf-8"))
+            if data.get("nodeType") != node.type:
+                return None
+            sigs = data.get("portSigs")
+            if isinstance(sigs, dict):
+                return {str(k): str(v) for k, v in sigs.items()}
+            outs = data.get("outputs")
+            if isinstance(outs, dict):
+                return {str(k): _port_signature(v) for k, v in outs.items()}
+        except Exception:
+            return None
+        return None
+
+    @staticmethod
+    def _changed_ports(prev: Optional[Dict[str, str]], outputs: Dict[str, Any]) -> Optional[Set[str]]:
+        """Cổng ra có dữ liệu khác lần trước. None = không biết (chưa có lần trước) -> coi như đổi hết."""
+        if prev is None:
+            return None
+        now = {str(k): _port_signature(v) for k, v in outputs.items()}
+        return {k for k in set(prev) | set(now) if prev.get(k) != now.get(k)}
+
+    def _children_to_mark_stale(
+        self, graph: Graph, node_id: str, changed_ports: Optional[Set[str]], outputs: Dict[str, Any]
+    ) -> Set[str]:
+        """Con trực tiếp cần đánh dấu lỗi thời: chỉ con nối vào cổng ra có dữ liệu thay đổi.
+
+        Dây từ cổng không có trong kết quả (cả lần này lẫn lần trước) vẫn bị đánh dấu cho chắc.
+        """
+        out: Set[str] = set()
+        for e in graph.edges:
+            if e.source_node_id != node_id:
+                continue
+            if changed_ports is None or e.source_port in changed_ports or e.source_port not in outputs:
+                out.add(e.target_node_id)
+        for n in graph.nodes:  # nối qua node.inputs (NodePortInputRef)
+            for ref in (n.inputs or {}).values():
+                if isinstance(ref, dict) and ref.get("nodeId") == node_id:
+                    port = str(ref.get("outputPort", ""))
+                    if changed_ports is None or port in changed_ports or port not in outputs:
+                        out.add(n.id)
+        return out
+
+    # ------------------------------------------------------------ chức năng bật/tắt trong node
+    def _capability_cache_path(self, graph_id: str, node_id: str, cap_name: str):
+        base = self._outputs_snapshot_path(graph_id, node_id)
+        safe = re.sub(r"[^A-Za-z0-9_.-]+", "_", cap_name)[:60]
+        return base.with_name(f"{base.stem}.cap-{safe}.json")
+
+    def _load_capability_cache(self, graph_id: str, node_id: str, cap_name: str, key: str) -> Optional[Dict[str, Any]]:
+        try:
+            path = self._capability_cache_path(graph_id, node_id, cap_name)
+            if not path.is_file():
+                return None
+            data = _json.loads(path.read_text(encoding="utf-8"))
+            if data.get("key") != key:
+                return None
+            outs = self._decode_output(data.get("outputs") or {})
+            if not isinstance(outs, dict):
+                return None
+
+            def _arts(v: Any):
+                if isinstance(v, Artifact):
+                    yield v
+                elif isinstance(v, dict):
+                    for x in v.values():
+                        yield from _arts(x)
+                elif isinstance(v, list):
+                    for x in v:
+                        yield from _arts(x)
+
+            for a in _arts(outs):
+                if not (self.store.project_dir / a.uri).is_file():
+                    return None
+            return outs
+        except Exception:
+            return None
+
+    def _save_capability_cache(
+        self, graph_id: str, node_id: str, cap_name: str, key: str, outputs: Dict[str, Any], cost: float
+    ) -> None:
+        try:
+            path = self._capability_cache_path(graph_id, node_id, cap_name)
+            path.parent.mkdir(parents=True, exist_ok=True)
+            payload = {
+                "nodeId": node_id,
+                "capability": cap_name,
+                "key": key,
+                "costUsd": cost,
+                "savedAt": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                "outputs": self._encode_output(outputs),
+            }
+            tmp = path.with_suffix(".json.tmp")
+            tmp.write_text(_json.dumps(payload, ensure_ascii=False), encoding="utf-8")
+            os.replace(tmp, path)
+        except Exception as e:
+            logger.warning(f"Không lưu được cache chức năng {cap_name} của node {node_id}: {e}")
+
+    async def _run_capabilities(
+        self,
+        graph_id: str,
+        node: NodeInstance,
+        resolved_inputs: Dict[str, Any],
+        core_outputs: Dict[str, Any],
+        run_id: str,
+        is_mock: bool,
+    ) -> Tuple[Dict[str, Any], float]:
+        """Chạy lần lượt các chức năng đang bật của node sau phần lõi.
+
+        Chức năng có khoá cache không đổi -> lấy lại kết quả cũ, không tốn chi phí.
+        """
+        from socnhotv.core.nodes.capabilities import (
+            capability_cache_key,
+            capability_params,
+            get_runtime,
+        )
+
+        merged: Dict[str, Any] = {}
+        total_cost = 0.0
+        for cap in NodeRegistry.enabled_capabilities(node.type, node.params):
+            runtime = get_runtime(node.type, cap.name)
+            if runtime is None or not cap.available:
+                raise ValueError(f"Chức năng '{cap.display_name}' của node '{node.id}' chưa sẵn sàng.")
+            params = capability_params(cap, node.params)
+            key = capability_cache_key(
+                node, cap, params, runtime.cache_inputs(node, resolved_inputs, cap), is_mock
+            )
+            cached = self._load_capability_cache(graph_id, node.id, cap.name, key)
+            if cached is not None:
+                merged.update(cached)
+                self._emit_event(
+                    SSEEvent(
+                        event_type=SSEEventType.NODE_PROGRESS,
+                        run_id=run_id,
+                        node_id=node.id,
+                        state=NodeState.RUNNING,
+                        progress=0.85,
+                        message=f"{cap.display_name}: dùng lại kết quả trước (không đổi)",
+                        timestamp=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                    )
+                )
+                continue
+            outs, cost = await runtime.run(
+                self, node, params, resolved_inputs, {**core_outputs, **merged}, run_id, is_mock
+            )
+            outs = dict(outs or {})
+            self._save_capability_cache(graph_id, node.id, cap.name, key, outs, float(cost or 0.0))
+            merged.update(outs)
+            total_cost += float(cost or 0.0)
+        return merged, total_cost
+
+    def _capabilities_cost(self, node: NodeInstance, real_mode: bool) -> float:
+        from socnhotv.core.nodes.capabilities import capability_params, get_runtime
+
+        total = 0.0
+        for cap in NodeRegistry.enabled_capabilities(node.type, node.params):
+            rt = get_runtime(node.type, cap.name)
+            if rt is None:
+                continue
+            try:
+                total += float(rt.estimate_cost(node, capability_params(cap, node.params), self, real_mode) or 0.0)
+            except Exception:
+                pass
+        return total
+
     def _character_aliases(self, char_id: str) -> List[str]:
         """Các tên gọi của nhân vật để khớp với tên trong kịch bản (vd. 'Sóc Bi', 'Dê Mun', 'Mẹ Sóc')."""
-        names: List[str] = [char_id.replace("_", " ").replace("-", " ")]
-        try:
-            f = self.store.characters_dir / "studio_characters.json"
-            if f.is_file():
-                raw = _json.loads(f.read_text(encoding="utf-8"))
-                items = raw if isinstance(raw, list) else (raw.get("characters") or [])
-                for c in items:
-                    if isinstance(c, dict) and c.get("id") == char_id:
-                        nm = str(c.get("name") or "")
-                        if nm:
-                            names.append(re.sub(r"\s*\([^)]*\)", "", nm).strip())
-                            names.extend(x.strip() for x in re.findall(r"\(([^)]*)\)", nm))
-                        names.extend(str(a) for a in (c.get("aliases") or []) if a)
-        except Exception:
-            pass
-        seen: List[str] = []
-        for n in names:
-            n = n.strip()
-            if n and n not in seen:
-                seen.append(n)
-        return seen
+        from socnhotv.core.engine.character_profile import character_aliases, load_profile
+
+        return character_aliases(char_id, load_profile(self.store.characters_dir, char_id))
+
+    def _voice_vault_dir(self):
+        from socnhotv.core.storage.project_store import get_repo_root
+
+        return get_repo_root() / "data" / "shared" / "voice_vault"
+
+    def _character_info(self, char_id: str) -> Dict[str, Any]:
+        """Hồ sơ nhân vật thật từ studio_characters.json (không còn gán cứng tên/giọng Sóc Nhỏ)."""
+        from socnhotv.core.engine.character_profile import (
+            character_aliases,
+            load_profile,
+            resolve_voice_id,
+        )
+
+        prof = load_profile(self.store.characters_dir, char_id)
+        aliases = character_aliases(char_id, prof)
+        declared_voice = (prof or {}).get("voiceId")
+        voice_id, voice_status, voice_msg = resolve_voice_id(
+            declared_voice, char_id, aliases, self._voice_vault_dir(), self.store.characters_dir
+        )
+        height = (prof or {}).get("heightCm")
+        if height is None and char_id == "soc_nho":
+            height = 100  # khoá tỉ lệ SCALE_LOCK khi dự án chưa có hồ sơ
+        name = (prof or {}).get("name") or ("Sóc Nhỏ (Bi)" if char_id == "soc_nho" else char_id)
+        info: Dict[str, Any] = {
+            "characterId": char_id,
+            "name": name,
+            "heightCm": height,
+            "scaleLock": f"{int(height)}cm" if isinstance(height, (int, float)) else "",
+            "promptLock": (prof or {}).get("promptLock", ""),
+            "voiceId": voice_id,
+            "voiceStatus": voice_status,
+            "defaultVoice": voice_id,
+            "defaultTempo": (prof or {}).get("defaultTempo"),
+            "aliases": aliases,
+            "profileFound": prof is not None,
+        }
+        if voice_msg:
+            info["voiceMessage"] = voice_msg
+        return info
+
+    def _voice_for_tts(self, node: NodeInstance, resolved_inputs: Dict[str, Any]) -> str:
+        """Chọn giọng cho voice_tts.
+
+        - Có nối nhân vật: dùng giọng của nhân vật. Chỉ dùng voiceId nhập tay khi khác giọng mặc định của node
+          ('soc-nho') hoặc params.voiceSource == "manual". Nhân vật không có giọng dùng được -> báo lỗi rõ,
+          không âm thầm đọc bằng giọng Sóc Nhỏ.
+        - Không nối nhân vật: như cũ (voiceId nhập tay, mặc định 'soc-nho').
+        """
+        default_vid = "soc-nho"
+        manual = str(node.params.get("voiceId") or "").strip()
+        char_obj = resolved_inputs.get("character")
+        if isinstance(char_obj, dict) and char_obj.get("characterId"):
+            if node.params.get("voiceSource") == "manual" and manual:
+                return manual
+            if manual and manual != default_vid:
+                return manual
+            if "voiceStatus" not in char_obj:
+                # Hồ sơ cũ (trước khi node nhân vật trả voiceStatus): giữ cách cũ
+                return str(char_obj.get("defaultVoice") or manual or default_vid)
+            vid = char_obj.get("voiceId")
+            if vid:
+                return str(vid)
+            raise ValueError(
+                f"Node '{node.id}' (voice_tts): "
+                + str(char_obj.get("voiceMessage") or f"nhân vật '{char_obj.get('characterId')}' chưa có giọng dùng được.")
+            )
+        return str(resolved_inputs.get("voiceId") or default_vid)
+
+    def _speaker_matcher(self):
+        from socnhotv.core.engine.character_profile import load_profiles, match_speaker
+
+        profiles = load_profiles(self.store.characters_dir)
+        cache: Dict[str, Optional[str]] = {}
+
+        def _m(name: str) -> Optional[str]:
+            if name not in cache:
+                cache[name] = match_speaker(name, profiles) if profiles else None
+            return cache[name]
+
+        return _m
+
+    def _episode_lines(self, episode_id: str, granularity: str = "shot") -> List[Dict[str, Any]]:
+        """Lời thoại có người nói của 1 tập: mỗi shot có thoại -> 1 câu (giữ shot, mốc thời gian, cách đọc)."""
+        data = self._resolve_script_ref({"$ref": "script", "episode": episode_id, "facet": "script"})
+        if not isinstance(data, dict):
+            return []
+        match = self._speaker_matcher()
+        lines: List[Dict[str, Any]] = []
+        shot_idx = -1
+        for sc_i, sc in enumerate(data.get("scenes", []) or []):
+            for sh in sc.get("shots", []) or []:
+                shot_idx += 1
+                text = str(sh.get("dialogue") or "").strip()
+                if not text:
+                    continue
+                speaker = str(sh.get("speaker") or "").strip()
+                cid = match(speaker) if speaker else None
+                lines.append(
+                    {
+                        "id": f"{sh.get('id') or f'shot{shot_idx + 1}'}-{len(lines) + 1}",
+                        "order": len(lines),
+                        "speaker": re.sub(r"\s*\([^)]*\)", "", speaker).strip() or speaker,
+                        "characterId": cid,
+                        "unmatched": bool(speaker) and cid is None,
+                        "text": text,
+                        "shotId": sh.get("id"),
+                        "sceneIndex": sc_i if granularity == "scene" else shot_idx,
+                        "startSec": sh.get("startSec"),
+                        "endSec": sh.get("endSec"),
+                        "delivery": sh.get("voiceDelivery") or sh.get("delivery") or "",
+                    }
+                )
+        return lines
+
+    def _lines_from_scenes(self, scenes: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        """Tách lời thoại 'Tên: câu' trong từng cảnh (chế độ dán / AI). Dòng không có tên -> người dẫn chuyện."""
+        match = self._speaker_matcher()
+        lines: List[Dict[str, Any]] = []
+        pat = re.compile(r"^\s*([^:：\n]{1,40}?)\s*[:：]\s*(.+)$")
+        for i, sc in enumerate(scenes or []):
+            if not isinstance(sc, dict):
+                continue
+            default_speaker = str(sc.get("speaker") or "").strip()
+            for raw in str(sc.get("dialogue") or "").splitlines():
+                raw = raw.strip()
+                if not raw:
+                    continue
+                m = pat.match(raw)
+                if m and len(m.group(1).split()) <= 5:
+                    speaker, text = m.group(1).strip(), m.group(2).strip()
+                else:
+                    speaker, text = default_speaker, raw
+                speaker = speaker.strip("—-– ").strip()
+                if not text:
+                    continue
+                cid = match(speaker) if speaker else None
+                lines.append(
+                    {
+                        "id": f"c{i + 1}-{len(lines) + 1}",
+                        "order": len(lines),
+                        "speaker": re.sub(r"\s*\([^)]*\)", "", speaker).strip() or speaker,
+                        "characterId": cid,
+                        "unmatched": bool(speaker) and cid is None,
+                        "text": text,
+                        "shotId": sc.get("shotId"),
+                        "sceneIndex": i,
+                        "startSec": sc.get("startSec"),
+                        "endSec": sc.get("endSec"),
+                        "delivery": sc.get("voiceDelivery") or "",
+                    }
+                )
+        return lines
 
     def _episode_scenes(self, episode_id: str, granularity: str = "shot") -> Tuple[List[Dict[str, Any]], str]:
         """Đọc kịch bản tập (content/episodes/<id>/KICH*.md) thành danh sách cảnh cho bộ chạy.
@@ -816,12 +1164,7 @@ class GraphRunner:
 
         elif node_type == "character":
             char_id = str(resolved_inputs.get("characterId", "soc_nho"))
-            char_info = {
-                "characterId": char_id,
-                "name": "Sóc Nhỏ (Bi)" if char_id == "soc_nho" else char_id,
-                "scaleLock": "100cm",
-                "defaultVoice": "soc-nho",
-            }
+            char_info = self._character_info(char_id)
             outputs["character"] = char_info
             # Nếu có sẵn ảnh DNA nhân vật trong thư mục dự án, nạp trực tiếp không tốn phí gọi API!
             char_dir = self.store.characters_dir / char_id
@@ -853,7 +1196,7 @@ class GraphRunner:
                     run_id=run_id,
                     n=2,
                 )
-            aliases = self._character_aliases(char_id)
+            aliases = char_info.get("aliases") or self._character_aliases(char_id)
             char_info["aliases"] = aliases
             for ra in ref_arts:
                 try:
@@ -981,6 +1324,7 @@ class GraphRunner:
                                         "imagePrompt": {"type": "STRING"},
                                         "videoPrompt": {"type": "STRING"},
                                         "dialogue": {"type": "STRING"},
+                                        "speaker": {"type": "STRING"},
                                         "durationSec": {"type": "NUMBER"},
                                     },
                                     "required": ["sceneNumber", "imagePrompt", "videoPrompt", "dialogue", "durationSec"],
@@ -1022,6 +1366,13 @@ class GraphRunner:
 
             outputs["scenes"] = scenes
             outputs["prompt"] = scenes[0].get("imagePrompt", "")
+            # Lời thoại có người nói (cổng 'lines'): kịch bản tập lấy thẳng từ shot, chế độ khác tách "Tên: câu"
+            if mode == "episode":
+                outputs["lines"] = self._episode_lines(
+                    episode_id, str(resolved_inputs.get("granularity") or node.params.get("granularity") or "shot")
+                )
+            else:
+                outputs["lines"] = self._lines_from_scenes(scenes)
             all_dialogues = [s.get("dialogue", "").strip() for s in scenes if s.get("dialogue")]
             outputs["dialogue"] = "\n\n".join(all_dialogues) if all_dialogues else scenes[0].get("dialogue", "")
             cost_usd = actual_script_cost
@@ -1227,13 +1578,7 @@ class GraphRunner:
                     f"Node '{node.id}' (voice_tts) thiếu nội dung văn bản cho giọng đọc "
                     "(chưa nối dây cổng 'text' và chưa nhập text)."
                 )
-            char_obj = resolved_inputs.get("character")
-            default_vid = (
-                char_obj.get("defaultVoice", "soc-nho")
-                if isinstance(char_obj, dict)
-                else "soc-nho"
-            )
-            voice_id = str(resolved_inputs.get("voiceId") or default_vid)
+            voice_id = self._voice_for_tts(node, resolved_inputs)
             tempo = float(resolved_inputs.get("tempo", 1.10))
 
             self._emit_event(
@@ -1945,6 +2290,7 @@ class GraphRunner:
         failed_nodes: List[str] = []
         node_errors: Dict[str, str] = {}
         total_actual_cost = 0.0
+        stale_marked: List[str] = []
 
         # Khôi phục node_outputs từ các node đã có sẵn pinned generation
         node_outputs: Dict[str, Dict[str, Any]] = {}
@@ -2069,9 +2415,17 @@ class GraphRunner:
                             )
                         )
 
+                        prev_port_sigs = self._previous_port_signatures(graph.id, node)
                         outputs, primary_art, cost = await self._execute_node_handler(
                             node, resolved_inputs, run_id, is_mock=req.mock_mode, all_node_outputs=node_outputs
                         )
+                        # Chức năng bật/tắt trong node (vd. Nhân vật: Nói, Ảnh theo cảnh)
+                        cap_outputs, cap_cost = await self._run_capabilities(
+                            graph.id, node, resolved_inputs, outputs, run_id, bool(req.mock_mode)
+                        )
+                        if cap_outputs:
+                            outputs = {**outputs, **cap_outputs}
+                            cost += cap_cost
 
                         # Cổng ra tuỳ biến: bí danh về cổng ra của node gốc
                         _, eff_outs = NodeRegistry.effective_ports(node.type, node.params)
@@ -2095,11 +2449,14 @@ class GraphRunner:
                         )
 
                         if node.generations:
-                            direct_children = self._find_direct_children(graph, nid)
-                            for cid in direct_children:
+                            # Lỗi thời theo từng cổng ra: chỉ con nối vào cổng có dữ liệu đổi mới bị đánh dấu
+                            changed = self._changed_ports(prev_port_sigs, outputs)
+                            for cid in self._children_to_mark_stale(graph, nid, changed, outputs):
                                 child_node = node_map.get(cid)
                                 if child_node:
                                     child_node.is_stale = True
+                                    if cid not in stale_marked:
+                                        stale_marked.append(cid)
 
                         for g in node.generations:
                             g.is_pinned = False
@@ -2228,4 +2585,8 @@ class GraphRunner:
             total_cost_usd=round(total_actual_cost, 6),
             is_success=is_overall_success,
             errors=node_errors,
+            stale_nodes=[
+                cid for cid in stale_marked if cid not in executed_nodes and node_map.get(cid) is not None
+                and node_map[cid].is_stale
+            ],
         )

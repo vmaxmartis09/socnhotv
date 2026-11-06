@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { useStudioStore } from "@/store";
 import {
   UploadResult,
@@ -546,6 +546,19 @@ function EpisodeScriptPicker({
 
   const sceneCount = shots ? new Set(shots.map((s) => s.scene)).size : 0;
   const itemCount = granularity === "scene" ? sceneCount : shots?.length || 0;
+  // Lời thoại theo người nói (giống cổng 'lines'): đếm câu, báo người nói chưa ghép được nhân vật
+  const speakerStats = useMemo(() => {
+    const spoken = (shots || []).filter((s) => s.dialogue && s.dialogue.trim());
+    const by = new Map<string, { count: number; matched: boolean }>();
+    for (const s of spoken) {
+      const name = (s.speaker || "").replace(/\s*\([^)]*\)/g, "").trim() || "Người dẫn";
+      const cur = by.get(name) || { count: 0, matched: Boolean(s.characterId) || !s.speaker };
+      cur.count += 1;
+      by.set(name, cur);
+    }
+    return { total: spoken.length, rows: Array.from(by.entries()) };
+  }, [shots]);
+  const unmatched = speakerStats.rows.filter(([, v]) => !v.matched);
 
   return (
     <div className="space-y-1.5">
@@ -585,8 +598,26 @@ function EpisodeScriptPicker({
           </span>
         </div>
       )}
+      {episodeId && shots && speakerStats.total > 0 && (
+        <div className="rounded-md border border-border bg-muted/20 px-2 py-1.5 text-[11px] text-muted-foreground">
+          <span className="font-semibold text-foreground">{speakerStats.total}</span> câu thoại ·{" "}
+          {speakerStats.rows.map(([name, v], i) => (
+            <span key={name} className={cn(!v.matched && "text-semantic-warning")}>
+              {i > 0 && " · "}
+              {name} {v.count}
+            </span>
+          ))}
+          {unmatched.length > 0 && (
+            <div className="mt-1 flex items-start gap-1 text-semantic-warning">
+              <AlertTriangle className="mt-px h-3 w-3 shrink-0" />
+              <span>Chưa ghép được nhân vật: {unmatched.map(([n]) => n).join(", ")}. Thêm tên này vào aliases của nhân vật.</span>
+            </div>
+          )}
+        </div>
+      )}
       <p className="text-[10px] leading-snug text-muted-foreground">
         Nối cổng <span className="font-medium text-foreground">scenes</span> sang node Tạo ảnh để tạo ảnh cho tất cả cảnh trong 1 node.
+        Cổng <span className="font-medium text-foreground">lines</span> là lời thoại kèm người nói.
       </p>
     </div>
   );

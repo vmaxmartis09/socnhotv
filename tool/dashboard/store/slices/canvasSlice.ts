@@ -8,6 +8,7 @@ import type {
 } from "@/lib/core-contracts";
 import type { Episode } from "@/lib/repositories/types";
 import { FALLBACK_NODE_TYPES, fetchGraphFromCore, fetchCustomNodeTypes } from "@/lib/core-api";
+import { outputPortsAffectedByPatch } from "@/lib/node-ports";
 import { autoLayout } from "@/lib/graph-layout";
 
 export interface NodeGenerationRecord {
@@ -51,6 +52,7 @@ export const PORT_TYPE_COLORS: Record<PortType, string> = {
   composition: "#b4531a",
   audio: "#a86f0c",
   policy: "#9f3a38",
+  dialogue: "#a86f0c",
 };
 
 /** Đồ thị mẫu 9 bước giữ nguyên cấu trúc nhưng bỏ nội dung riêng của Sóc Nhỏ khi dùng cho dự án khác. */
@@ -427,12 +429,24 @@ export interface CanvasSlice {
   setValidationResult: (res: GraphValidationResult | null) => void;
 }
 
-function collectDownstreamIds(startNodeId: string, edges: Edge[]): Set<string> {
+function collectDownstreamIds(
+  startNodeId: string,
+  edges: Edge[],
+  /** Chỉ đi theo dây xuất phát từ các cổng này của node đầu (null = mọi cổng) */
+  startPorts: Set<string> | null = null
+): Set<string> {
   const visited = new Set<string>();
   const queue = [startNodeId];
   while (queue.length > 0) {
     const curr = queue.shift()!;
     for (const e of edges) {
+      if (
+        curr === startNodeId &&
+        startPorts &&
+        !startPorts.has(e.sourceHandle || "")
+      ) {
+        continue;
+      }
       if (e.source === curr && !visited.has(e.target)) {
         visited.add(e.target);
         queue.push(e.target);
@@ -765,7 +779,14 @@ export const createCanvasSlice: StateCreator<
     }),
   updateNodeParams: (nodeId, patch) =>
     set((state) => {
-      const downstreamIds = collectDownstreamIds(nodeId, state.edges);
+      // Lỗi thời theo từng cổng ra: sửa tham số của 1 chức năng (vd. "Nói") chỉ làm lỗi thời
+      // các node nối từ cổng ra của chức năng đó; sửa tham số khác -> mọi node phía sau như cũ.
+      const editedNode = state.nodes.find((n) => n.id === nodeId);
+      const editedDef = editedNode
+        ? state.nodeCatalog.find((d) => d.typeName === editedNode.data.nodeType)
+        : undefined;
+      const affectedPorts = outputPortsAffectedByPatch(editedDef, patch);
+      const downstreamIds = collectDownstreamIds(nodeId, state.edges, affectedPorts);
       const nextNodes = state.nodes.map((n) => {
         if (n.id === nodeId) {
           return {

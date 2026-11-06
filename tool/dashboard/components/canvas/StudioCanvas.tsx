@@ -1236,6 +1236,14 @@ function StudioCanvasInner() {
           : null
       );
 
+      // Core báo node con lỗi thời theo từng cổng ra (chỉ con nối cổng có dữ liệu đổi) -> đồng bộ lên thẻ
+      const executedSet = new Set(summary?.executedNodes || []);
+      for (const sid of summary?.staleNodes || []) {
+        if (!executedSet.has(sid)) {
+          updateNodeExecutionState(sid, { isStale: true });
+        }
+      }
+
       updateJob(jobId, {
         status: isAllOk ? "completed" : "failed",
         progress: isAllOk ? 100 : 50,

@@ -14,7 +14,9 @@ export type PortType =
   | "character"
   | "captions"
   | "composition"
-  | "policy";
+  | "policy"
+  /** Lời thoại có người nói: [{id, speaker, characterId, text, shotId, sceneIndex, startSec, endSec, delivery}] */
+  | "dialogue";
 
 export type ArtifactKind =
   | "image"
@@ -118,6 +120,19 @@ export interface NodeDefinition {
   /** Loại node tuỳ biến: biến thể của node gốc (dùng chung bộ chạy) */
   baseType?: string;
   scope?: "project" | "shared";
+  /** Chức năng bật/tắt được trong node (vd. Nhân vật: Nói, Ảnh theo cảnh). Bật bằng params[name].enabled */
+  capabilities?: CapabilityDefinition[];
+}
+
+export interface CapabilityDefinition {
+  name: string;
+  displayName: string;
+  description?: string;
+  inputPorts: PortDefinition[];
+  outputPorts: PortDefinition[];
+  defaultParams: Record<string, any>;
+  /** false = đã khai báo nhưng bộ chạy chưa có, không cho bật */
+  available?: boolean;
 }
 
 export interface NodePortInputRef {
@@ -195,4 +210,6 @@ export interface GraphRunSummary {
   totalCostUsd: number;
   isSuccess: boolean;
   errors: Record<string, string>;
+  /** Node con bị đánh dấu lỗi thời sau lượt chạy (chỉ con nối vào cổng ra có dữ liệu đổi) */
+  staleNodes?: string[];
 }

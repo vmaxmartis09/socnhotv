@@ -17,6 +17,8 @@ export function isPortCompatible(
 ): boolean {
   if (sourceType === targetType) return true;
   if (sourceType === "image" && targetType === "image[]") return true;
+  // Lời thoại có cấu trúc nối được vào cổng văn bản (Core ghép thành "Tên: câu")
+  if (sourceType === "dialogue" && targetType === "text") return true;
   return false;
 }
 
@@ -74,6 +76,7 @@ export const FALLBACK_NODE_TYPES: NodeDefinition[] = [
       { name: "scenes", portType: "scenes", description: "Danh sách phân cảnh cấu trúc", required: true },
       { name: "prompt", portType: "text", description: "Prompt tạo ảnh/video theo cảnh", required: true },
       { name: "dialogue", portType: "text", description: "Lời thoại theo cảnh", required: true },
+      { name: "lines", portType: "dialogue", description: "Lời thoại có người nói: từng câu kèm nhân vật, shot, mốc thời gian", required: true },
     ],
     defaultParams: { targetSceneCount: 6, targetDurationSec: 45 },
     mockable: true,

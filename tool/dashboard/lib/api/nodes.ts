@@ -94,6 +94,8 @@ export interface ScriptShot {
   sceneTitle: string;
   speaker: string;
   dialogue: string;
+  /** Nhân vật của dự án ghép được với người nói (null = chưa ghép được) */
+  characterId?: string | null;
 }
 
 /** Các tập có kịch bản trong dự án (để chọn làm nội dung đầu vào) */

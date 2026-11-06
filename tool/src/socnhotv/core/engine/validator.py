@@ -72,10 +72,12 @@ def validate_graph(graph: Graph) -> GraphValidationResult:
         if not src_port:
             errors.append(
                 f"Node '{src_id}' ({src_node.type}) không có cổng ra tên '{edge.source_port}'."
+                + _disabled_capability_hint(src_node, edge.source_port, output=True)
             )
         if not tgt_port:
             errors.append(
                 f"Node '{tgt_id}' ({tgt_node.type}) không có cổng vào tên '{edge.target_port}'."
+                + _disabled_capability_hint(tgt_node, edge.target_port, output=False)
             )
 
         if src_port and tgt_port:
@@ -174,6 +176,15 @@ def validate_graph(graph: Graph) -> GraphValidationResult:
                     f"Node '{node_id}' ({node.type}) chưa có ảnh được chọn hoặc tải lên (uri rỗng)."
                 )
 
+        # Chức năng bật/tắt: chỉ cho bật chức năng đã có bộ chạy
+        for cap in NodeRegistry.enabled_capabilities(node.type, node.params):
+            from socnhotv.core.nodes.capabilities import get_runtime
+
+            if not cap.available or get_runtime(node.type, cap.name) is None:
+                errors.append(
+                    f"Node '{node_id}' ({node.type}) đang bật chức năng '{cap.display_name}' nhưng chức năng này chưa sẵn sàng."
+                )
+
         eff_ins, _ = NodeRegistry.effective_ports(node.type, node.params)
         for req_port in eff_ins:
             if not req_port.required:
@@ -196,3 +207,12 @@ def validate_graph(graph: Graph) -> GraphValidationResult:
         warnings=warnings,
         topological_order=topological_order,
     )
+
+
+def _disabled_capability_hint(node, port_name: str, output: bool) -> str:
+    """Gợi ý khi dây nối vào cổng của một chức năng đang tắt (dây không bị xoá, chỉ báo rõ)."""
+    for cap in NodeRegistry.capabilities_of(node.type):
+        ports = cap.output_ports if output else cap.input_ports
+        if any(p.name == port_name for p in ports) and not NodeRegistry.is_capability_enabled(node.params, cap.name):
+            return f" Cổng này thuộc chức năng '{cap.display_name}' đang tắt: bật lại chức năng hoặc gỡ dây."
+    return ""

@@ -18,6 +18,8 @@ class PortType(str, enum.Enum):
     CAPTIONS = "captions"
     COMPOSITION = "composition"
     POLICY = "policy"
+    # Lời thoại có cấu trúc: [{id, speaker, characterId, text, shotId, sceneIndex, startSec, endSec, delivery}]
+    DIALOGUE = "dialogue"
 
 
 def is_port_compatible(source_type: PortType, target_type: PortType) -> bool:
@@ -27,6 +29,9 @@ def is_port_compatible(source_type: PortType, target_type: PortType) -> bool:
     if source_type == target_type:
         return True
     if source_type == PortType.IMAGE and target_type == PortType.IMAGE_LIST:
+        return True
+    # Lời thoại có cấu trúc nối được vào cổng văn bản (bộ chạy ghép thành chuỗi "Tên: câu")
+    if source_type == PortType.DIALOGUE and target_type == PortType.TEXT:
         return True
     return False
 
@@ -114,6 +119,24 @@ class PortDefinition(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
 
+class CapabilityDefinition(BaseModel):
+    """Chức năng bật/tắt được gắn trong một node (vd. Nhân vật: Nói, Ảnh theo cảnh).
+
+    Bật bằng params[<name>]["enabled"] = True. Tham số riêng của chức năng nằm trong params[<name>].
+    Khi bật, cổng vào/ra của chức năng được gộp vào cổng của node.
+    """
+    name: str
+    display_name: str = Field(..., alias="displayName")
+    description: str = ""
+    input_ports: List[PortDefinition] = Field(default_factory=list, alias="inputPorts")
+    output_ports: List[PortDefinition] = Field(default_factory=list, alias="outputPorts")
+    default_params: Dict[str, Any] = Field(default_factory=dict, alias="defaultParams")
+    # False = đã khai báo nhưng bộ chạy chưa có -> không cho bật (validator báo lỗi)
+    available: bool = True
+
+    model_config = ConfigDict(populate_by_name=True)
+
+
 class NodeDefinition(BaseModel):
     """Khai báo định nghĩa của một loại Node trong catalog."""
     type_name: str = Field(..., alias="typeName")
@@ -127,6 +150,8 @@ class NodeDefinition(BaseModel):
     # Loại node tuỳ biến: biến thể của node gốc (dùng chung bộ chạy)
     base_type: Optional[str] = Field(default=None, alias="baseType")
     scope: Optional[str] = None  # "project" | "shared" (chỉ cho loại node tuỳ biến)
+    # Chức năng bật/tắt được trong node (xem CapabilityDefinition)
+    capabilities: List[CapabilityDefinition] = Field(default_factory=list)
 
     model_config = ConfigDict(populate_by_name=True)
 
@@ -272,6 +297,8 @@ class GraphRunSummary(BaseModel):
     total_cost_usd: float = Field(0.0, alias="totalCostUsd")
     is_success: bool = Field(..., alias="isSuccess")
     errors: Dict[str, str] = Field(default_factory=dict)
+    # Node con bị đánh dấu lỗi thời sau lượt chạy (chỉ con nối vào cổng ra có dữ liệu thay đổi)
+    stale_nodes: List[str] = Field(default_factory=list, alias="staleNodes")
 
     model_config = ConfigDict(populate_by_name=True)
 

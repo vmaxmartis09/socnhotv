@@ -1,6 +1,7 @@
 # E4 — Nhân vật tự nói theo kịch bản (node "Hội thoại" nhiều giọng)
 
 > Trạng thái (2026-11-06): **Phần A "Lặp theo cảnh" + B2 "Cổng nhiều dây" ĐÃ LÀM** (xem mục 8). Phần Hội thoại (B1, B3–B6) **chưa làm**.
+> **2026-11-06: B4 (node Hội thoại riêng) được đề xuất thay bằng `E5_character_actor_node.md`** (nhân vật tự có chức năng Nói và Ảnh). B1, B3, B5 vẫn dùng, E5 tham chiếu lại.
 > Viết 2026-11-05 sau khi dựng flow Tập 1 (`ep01-nui-lua-trong-bung-bi`).
 > Mục tiêu: nhân vật đã có voice thì chỉ cần nối nhân vật + kịch bản → ra giọng đúng người nói, không phải tạo 1 node giọng cho mỗi nhân vật và trích lời thoại bằng tay. Dùng chung cho hoạt hình (nhiều nhân vật) và KOC (1–2 người nói).
 

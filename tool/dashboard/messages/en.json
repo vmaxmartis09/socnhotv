@@ -189,7 +189,8 @@
       "character": "character",
       "captions": "captions",
       "composition": "bundle",
-      "policy": "policy"
+      "policy": "policy",
+      "dialogue": "dialogue"
     },
     "legend": {
       "text": "Text (#737373)",

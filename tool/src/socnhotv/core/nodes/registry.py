@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Dict, List, Optional
+from typing import Any, Dict, List, Optional
 from socnhotv.core.contracts.types import NodeDefinition, PortDefinition, PortType
 
 
@@ -21,12 +21,57 @@ class NodeRegistry:
     def list_all(cls) -> List[NodeDefinition]:
         return list(cls._definitions.values())
 
+    # ------------------------------------------------------------ chức năng bật/tắt (capability)
+    @classmethod
+    def capabilities_of(cls, node_type: str) -> list:
+        """Chức năng khai báo cho loại node (loại tuỳ biến thừa hưởng của node gốc nếu tự nó không khai báo)."""
+        base = cls.get(node_type)
+        if base is None:
+            return []
+        if base.capabilities:
+            return list(base.capabilities)
+        if base.base_type:
+            parent = cls.get(base.base_type)
+            if parent is not None:
+                return list(parent.capabilities)
+        return []
+
+    @classmethod
+    def add_capability(cls, node_type: str, capability: Any) -> None:
+        base = cls.get(node_type)
+        if base is None:
+            raise KeyError(f"Không có loại node '{node_type}' để gắn chức năng")
+        base.capabilities = [c for c in base.capabilities if c.name != capability.name] + [capability]
+
+    @classmethod
+    def remove_capability(cls, node_type: str, name: str) -> None:
+        base = cls.get(node_type)
+        if base is not None:
+            base.capabilities = [c for c in base.capabilities if c.name != name]
+
+    @staticmethod
+    def is_capability_enabled(params: Optional[dict], name: str) -> bool:
+        own = (params or {}).get(name)
+        return isinstance(own, dict) and bool(own.get("enabled"))
+
+    @classmethod
+    def enabled_capabilities(cls, node_type: str, params: Optional[dict]) -> list:
+        return [c for c in cls.capabilities_of(node_type) if cls.is_capability_enabled(params, c.name)]
+
     @classmethod
     def effective_ports(cls, node_type: str, params: Optional[dict]) -> tuple[list, list]:
-        """Cổng hiệu lực của một node: ưu tiên ghi đè riêng trong params['_ports'] (nếu có)."""
+        """Cổng hiệu lực của một node.
+
+        Thứ tự: cổng gốc + cổng của các chức năng đang bật; ghi đè riêng trong params['_ports'] (nếu có) thắng.
+        """
         base = cls.get(node_type)
         base_in = list(base.input_ports) if base else []
         base_out = list(base.output_ports) if base else []
+        for cap in cls.enabled_capabilities(node_type, params):
+            names_in = {p.name for p in base_in}
+            names_out = {p.name for p in base_out}
+            base_in += [p for p in cap.input_ports if p.name not in names_in]
+            base_out += [p for p in cap.output_ports if p.name not in names_out]
         override = (params or {}).get("_ports")
         if not isinstance(override, dict):
             return base_in, base_out
@@ -105,6 +150,11 @@ class NodeRegistry:
                     PortDefinition(name="scenes", port_type=PortType.SCENES, description="Danh sách phân cảnh cấu trúc"),
                     PortDefinition(name="prompt", port_type=PortType.TEXT, description="Prompt tạo ảnh/video theo cảnh"),
                     PortDefinition(name="dialogue", port_type=PortType.TEXT, description="Lời thoại theo cảnh"),
+                    PortDefinition(
+                        name="lines",
+                        port_type=PortType.DIALOGUE,
+                        description="Lời thoại có người nói: từng câu kèm nhân vật, shot, mốc thời gian",
+                    ),
                 ],
                 default_params={"mode": "ai", "rawScript": "", "targetSceneCount": 6, "targetDurationSec": 45},
                 mockable=True,

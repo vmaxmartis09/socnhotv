@@ -260,9 +260,9 @@ def test_run_mode_downstream():
 
 
 def test_generation_pinning_and_stale_propagation():
-    """Kiểm tra quy tắc Mục 11:
-    Khi node cha chạy lại tạo Generation mới, node con tự động bị đánh dấu isStale=True
-    nhưng KHÔNG tự động kích hoạt chạy lại.
+    """Kiểm tra quy tắc Mục 11 (lỗi thời theo từng cổng ra, E5 bước 1):
+    Node cha chạy lại tạo Generation mới VÀ dữ liệu cổng ra đổi -> node con bị đánh dấu isStale=True
+    nhưng KHÔNG tự động kích hoạt chạy lại. Chạy lại ra kết quả y hệt -> con không bị đánh dấu.
     """
     async def _test():
         store = ProjectStore("soc-nho-tv")
@@ -277,24 +277,30 @@ def test_generation_pinning_and_stale_propagation():
         video_node = next(n for n in graph.nodes if n.id == "node_video_gen")
         assert video_node.is_stale is False
 
-        # Chạy lại node cha node_image_gen bằng SINGLE_NODE
-        await runner.run(
-            graph,
-            GraphRunRequest(
-                project_id="soc-nho-tv",
-                mode=RunMode.SINGLE_NODE,
-                target_node_id="node_image_gen",
-            ),
+        single = GraphRunRequest(
+            project_id="soc-nho-tv",
+            mode=RunMode.SINGLE_NODE,
+            target_node_id="node_image_gen",
         )
-
-        # Kiểm tra node cha có thêm generation mới
+        # Chạy lại node cha với cùng tham số -> ảnh y hệt (mock tất định) -> con KHÔNG lỗi thời
+        await runner.run(graph, single)
         img_node = next(n for n in graph.nodes if n.id == "node_image_gen")
         assert len(img_node.generations) >= 2
-        assert img_node.is_stale is False
+        assert next(n for n in graph.nodes if n.id == "node_video_gen").is_stale is False
 
-        # Kiểm tra node con node_video_gen đã tự động bị đánh dấu isStale = True!
-        video_node_updated = next(n for n in graph.nodes if n.id == "node_video_gen")
-        assert video_node_updated.is_stale is True
+        # Ảnh mock luôn là cùng 1 tệp nên dùng node văn bản để kiểm trường hợp dữ liệu đổi:
+        # đổi nội dung ý tưởng rồi chạy lại -> cổng 'text' đổi -> node kịch bản bị đánh dấu lỗi thời
+        idea = next(n for n in graph.nodes if n.id == "node_idea")
+        idea.params = {**idea.params, "content": str(idea.params.get("content", "")) + " (bản khác)"}
+        await runner.run(
+            graph,
+            GraphRunRequest(project_id="soc-nho-tv", mode=RunMode.SINGLE_NODE, target_node_id="node_idea"),
+        )
+        assert len(idea.generations) >= 2
+        assert idea.is_stale is False
+        assert next(n for n in graph.nodes if n.id == "node_script").is_stale is True
+        # Nhánh ảnh không liên quan vẫn sạch
+        assert next(n for n in graph.nodes if n.id == "node_video_gen").is_stale is False
 
     asyncio.run(_test())
 
