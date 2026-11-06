@@ -17,6 +17,13 @@ import {
 } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
 
+function fmtDuration(sec: number): string {
+  if (!Number.isFinite(sec) || sec <= 0) return "—";
+  const m = Math.floor(sec / 60);
+  const s = Math.round(sec % 60);
+  return `${m}:${String(s).padStart(2, "0")}`;
+}
+
 /** Vùng xem trước mở rộng sang trái của panel: ảnh, video, Markdown, tóm tắt dự án. */
 export function PreviewPane({ item }: { item: PreviewItem }) {
   const { go, close } = usePreview();
@@ -25,7 +32,9 @@ export function PreviewPane({ item }: { item: PreviewItem }) {
   );
   const [text, setText] = useState("");
   const [safeZoneEnabled, setSafeZoneEnabled] = useState(true);
-  const [platformView, setPlatformView] = useState<"tiktok" | "youtube" | "reels">("tiktok");
+  // Khung xem: tự theo tỉ lệ thật của video khi đọc được metadata (16:9 -> YouTube, 9:16 -> TikTok)
+  const [platformView, setPlatformView] = useState<"tiktok" | "youtube" | "reels">("youtube");
+  const [videoInfo, setVideoInfo] = useState<{ w: number; h: number; dur: number } | null>(null);
 
   const url = item.kind === "markdown" ? item.url : undefined;
   useEffect(() => {
@@ -36,6 +45,8 @@ export function PreviewPane({ item }: { item: PreviewItem }) {
 
   const media = item.kind === "image" || item.kind === "video" ? item : null;
   const cur = media?.items[media.index];
+  const curUrl = cur?.url;
+  useEffect(() => setVideoInfo(null), [curUrl]);
 
   return (
     <div className="flex h-full min-w-0 flex-col">
@@ -157,8 +168,16 @@ export function PreviewPane({ item }: { item: PreviewItem }) {
               >
                 <video
                   src={cur.url}
+                  poster={cur.poster}
                   controls
                   autoPlay
+                  preload="metadata"
+                  data-testid="preview-video"
+                  onLoadedMetadata={(e) => {
+                    const v = e.currentTarget;
+                    setVideoInfo({ w: v.videoWidth, h: v.videoHeight, dur: v.duration });
+                    if (v.videoWidth && v.videoHeight) setPlatformView(v.videoWidth >= v.videoHeight ? "youtube" : "tiktok");
+                  }}
                   className="h-full w-full object-contain"
                 />
 
@@ -191,6 +210,15 @@ export function PreviewPane({ item }: { item: PreviewItem }) {
               />
             )}
             <span className="text-xs text-muted-foreground">{cur.name}</span>
+            {media.kind === "video" && (videoInfo || cur.caption) && (
+              <span className="text-[11px] text-muted-foreground tnum" data-testid="preview-video-info">
+                {videoInfo && videoInfo.w > 0
+                  ? `${videoInfo.w}×${videoInfo.h} · ${fmtDuration(videoInfo.dur)}`
+                  : ""}
+                {videoInfo && videoInfo.w > 0 && cur.caption ? " · " : ""}
+                {cur.caption || ""}
+              </span>
+            )}
           </motion.div>
         )}
 

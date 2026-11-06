@@ -66,6 +66,39 @@ def character_aliases(char_id: str, profile: Optional[Dict[str, Any]]) -> List[s
     return seen
 
 
+# ------------------------------------------------------------------ ảnh DNA tham chiếu
+_NOT_REFERENCE = re.compile(r"(dna_sheet|sheet|turnaround|back|_old|cutout)", re.IGNORECASE)
+
+
+def dna_reference_files(characters_dir: Path, char_id: str, profile: Optional[Dict[str, Any]] = None,
+                        limit: int = 3) -> List[Path]:
+    """Ảnh DNA dùng làm tham chiếu khi sinh ảnh (tốt nhất trước).
+
+    1. `dnaReferences` trong hồ sơ (tên tệp trong characters/<id>/, do người/AI đã xem và chọn).
+    2. Không có: mọi *.png trong thư mục nhân vật trừ bảng DNA / quay lưng / cutout, ưu tiên `_02` (chính diện
+       đứng thẳng) rồi `_01`, rồi theo tên. Trước đây bộ chạy lấy 4 ảnh đầu theo tên -> dính ảnh quay lưng `_04`.
+    """
+    d = Path(characters_dir) / char_id
+    if not d.is_dir():
+        return []
+    prof = profile if profile is not None else load_profile(characters_dir, char_id)
+    out: List[Path] = []
+    for name in (prof or {}).get("dnaReferences") or []:
+        p = d / Path(str(name)).name
+        if p.is_file() and p not in out:
+            out.append(p)
+    if not out:
+        pngs = [p for p in sorted(d.glob("*.png")) if not _NOT_REFERENCE.search(p.stem)]
+
+        def rank(p: Path) -> Tuple[int, str]:
+            m = re.search(r"_(\d+)$", p.stem)
+            n = int(m.group(1)) if m else 99
+            return ({2: 0, 1: 1}.get(n, 2), p.name)
+
+        out = sorted(pngs, key=rank)
+    return out[: max(1, limit)]
+
+
 # ------------------------------------------------------------------ giọng
 def _read_voice_meta(d: Path) -> Dict[str, Any]:
     f = d / "voice.json"

@@ -925,3 +925,116 @@ async def get_data_file(project_id: str, file_path: str):
     if target.suffix.lower() not in IMAGE_EXT | {".mp3", ".mp4", ".wav", ".json", ".md"}:
         raise HTTPException(403, "Loại tệp không được phép")
     return FileResponse(target)
+
+
+# ------------------------------------------------------------------ gói shot để làm clip tay (C5, G4)
+_SHOT_ID = re.compile(r"^S\d{1,3}$")
+
+
+def _latest_keyframes(root: Path) -> Dict[str, Path]:
+    """shotId -> ảnh keyframe mới nhất từ snapshot cổng ra của mọi node image_gen trong graph.json."""
+    out: Dict[str, Path] = {}
+    graph = _read_json(root / "graph.json", {})
+    gid = graph.get("id") or f"graph_{root.name}"
+    snap_dir = root / "runs" / "_node_outputs" / gid
+    for n in graph.get("nodes", []):
+        if n.get("type") != "image_gen":
+            continue
+        snap = _read_json(snap_dir / f"{n.get('id')}.json", {})
+        for sc in (snap.get("outputs") or {}).get("scenes") or []:
+            if not isinstance(sc, dict):
+                continue
+            sid, uri = sc.get("shotId"), sc.get("imageUri")
+            if sid and uri and (root / uri).is_file():
+                out[str(sid)] = root / uri
+    return out
+
+
+@router.get("/projects/{project_id}/episodes/{episode_id}/shot-pack")
+async def get_shot_pack(project_id: str, episode_id: str, shots: str = "", all: bool = False):
+    """ZIP để làm clip AI bằng tay trên web có credit miễn phí rồi thả lại vào clips/ (hợp đồng C5).
+
+    Mỗi shot: `S07.png` (keyframe đã sinh, chưa có thì ảnh DNA của nhân vật nói), `S07.txt` (videoPrompt,
+    thời lượng clip, lời thoại, camera), kèm `README.txt` hướng dẫn đặt tên `clips/S07.mp4`.
+    Mặc định lấy các shot `priority = 1`; `shots=S01,S07` chọn tay; `all=true` lấy cả 30 shot.
+    """
+    import io
+    import zipfile
+
+    from fastapi.responses import Response
+
+    from socnhotv.core.engine.character_profile import dna_reference_files, load_profile
+
+    root = _project_dir(project_id)
+    if not re.fullmatch(r"[A-Za-z0-9_-]+", episode_id):
+        raise HTTPException(400, "episode_id không hợp lệ")
+    data = load_episode_script(project_id, episode_id)["data"]
+    all_shots = [sh for sc in data.get("scenes", []) for sh in sc.get("shots", [])]
+    want = [s.strip().upper() for s in shots.split(",") if s.strip()]
+    if any(not _SHOT_ID.match(s) for s in want):
+        raise HTTPException(400, "shots chỉ nhận dạng S01,S07,...")
+    if want:
+        picked = [sh for sh in all_shots if sh["id"] in want]
+    elif all:
+        picked = all_shots
+    else:
+        picked = [sh for sh in all_shots if sh.get("priority") == 1] or all_shots[:5]
+    if not picked:
+        raise HTTPException(404, "Không có shot nào khớp")
+    keyframes = _latest_keyframes(root)
+    chars_dir = root / "characters"
+    clips_dir = f"data/projects/{project_id}/content/episodes/{episode_id}/clips"
+    buf = io.BytesIO()
+    manifest = []
+    with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as z:
+        for sh in picked:
+            sid = sh["id"]
+            img = keyframes.get(sid)
+            img_src = "keyframe"
+            if img is None:
+                cid = sh.get("speakerId") or ((sh.get("characterIds") or [None])[0])
+                refs = dna_reference_files(chars_dir, cid, load_profile(chars_dir, cid)) if cid else []
+                img, img_src = (refs[0], f"dna:{cid}") if refs else (None, "none")
+            if img is not None:
+                z.write(img, f"{sid}{img.suffix.lower()}")
+            clip_sec = sh.get("clipDurationSec") or 5
+            z.writestr(
+                f"{sid}.txt",
+                "\n".join([
+                    f"Shot {sid} · {data.get('title', episode_id)}",
+                    f"Khung giờ trong tập: {sh.get('startSec')}s → {sh.get('endSec')}s (shot {sh.get('durationSec')}s)",
+                    f"Clip cần làm: {clip_sec} giây, 16:9, KHÔNG cần âm thanh (giọng OmniVoice ghép sau)",
+                    f"Ảnh khung đầu: {sid}{img.suffix.lower() if img else ''} ({img_src})",
+                    f"Camera: {sh.get('camera', '')} · cỡ cảnh {sh.get('shotSize', '')}",
+                    "",
+                    "PROMPT (dán vào web làm video):",
+                    sh.get("videoPrompt", ""),
+                    "",
+                    "NEGATIVE:",
+                    sh.get("negativePrompt", ""),
+                    "",
+                    f"Lời thoại (để canh khẩu hình): {sh.get('speaker', '')}: {sh.get('dialogue', '')}",
+                ]),
+            )
+            manifest.append({"shotId": sid, "image": img_src, "clipDurationSec": clip_sec, "priority": sh.get("priority")})
+        z.writestr(
+            "README.txt",
+            "\n".join([
+                f"GÓI SHOT — {data.get('title', episode_id)} ({episode_id})",
+                "",
+                "1. Mở web làm video có credit miễn phí (danh sách: ai/knowledge/free_ai_sources.md).",
+                "2. Với mỗi shot: tải ảnh SXX.png làm khung đầu (image-to-video), dán prompt trong SXX.txt.",
+                "3. Tắt âm thanh của clip nếu web cho chọn (giọng nhân vật do OmniVoice đọc, ghép sau).",
+                "4. Tải clip về, đổi tên ĐÚNG theo shot: S07.mp4 (chữ S hoa, 2 chữ số).",
+                f"5. Thả vào: {clips_dir}/",
+                "6. Chạy lại flow trong Studio: bộ dựng tự dùng clip có sẵn, shot không có clip thì giữ ảnh.",
+                "",
+                "Shot trong gói: " + ", ".join(m["shotId"] for m in manifest),
+            ]),
+        )
+        z.writestr("manifest.json", json.dumps({"episodeId": episode_id, "shots": manifest}, ensure_ascii=False, indent=2))
+    return Response(
+        content=buf.getvalue(),
+        media_type="application/zip",
+        headers={"Content-Disposition": f'attachment; filename="{episode_id}_shot-pack.zip"'},
+    )

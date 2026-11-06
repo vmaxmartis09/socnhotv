@@ -263,6 +263,13 @@ def script_to_scenes(data: Dict[str, Any]) -> List[Dict[str, Any]]:
                     "camera": sh["camera"],
                     "sfx": sh["sfx"],
                     "bgm": sh["bgm"],
+                    # G4: các trường cho bộ chọn shot làm clip (shot_video) và bộ dựng theo mốc kịch bản
+                    "sceneIndex": sh.get("sceneIndex", sc.get("index")),
+                    "startSec": sh.get("startSec"),
+                    "endSec": sh.get("endSec"),
+                    "action": sh.get("action", ""),
+                    "priority": sh.get("priority"),
+                    "clipDurationSec": sh.get("clipDurationSec"),
                 }
             )
     return out

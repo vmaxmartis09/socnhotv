@@ -8,6 +8,7 @@ import { useStudioStore, type StudioStore } from "@/store";
 import { useSocialStore } from "@/store/modules/social";
 import { videoApi, type RenderJob } from "@/lib/api/video";
 import { CORE_URL } from "@/lib/repositories/core";
+import { usePreview } from "@/lib/preview";
 import {
   fetchProjectRuns,
   fetchProjectOutputs,
@@ -381,8 +382,32 @@ export function JobsCostTab() {
               const thumbRel = out.files?.thumb || `output/${out.slug}/thumb.jpg`;
               const videoFullUrl = `${CORE_URL}/projects/${activeProjectId}/${videoRel}`;
               const thumbFullUrl = `${CORE_URL}/projects/${activeProjectId}/${thumbRel}`;
-              const duration = out.duration_s || 45.0;
-              const isPassVerify = out.verify?.pass ?? true;
+              const duration = Number(out.duration_s) || 0;
+              // Chỉ ghi "Đạt chuẩn" khi verify_episode.py đã chấm ĐẠT mục 1–5 (không mặc định là đạt)
+              const epVerify = out.episodeVerify as { verdict?: string; pass1to5?: boolean } | undefined;
+              const verifyLabel = epVerify
+                ? epVerify.pass1to5
+                  ? "✓ verify 1–5 ĐẠT"
+                  : "✗ verify CHƯA ĐẠT"
+                : out.verify?.pass === true
+                  ? "✓ kiểm nhanh đạt"
+                  : null;
+              const verifyOk = epVerify ? Boolean(epVerify.pass1to5) : out.verify?.pass === true;
+              const engine = out.engine || out.render_engine;
+              const caption = [
+                engine ? `engine: ${engine}` : null,
+                out.engineWarning ? `⚠ ${out.engineWarning}` : null,
+                epVerify?.verdict || null,
+              ]
+                .filter(Boolean)
+                .join(" · ");
+              const openInStudio = () =>
+                usePreview.getState().open({
+                  kind: "video",
+                  title: out.title || out.slug,
+                  index: 0,
+                  items: [{ url: videoFullUrl, name: videoRel, poster: thumbFullUrl, caption }],
+                });
 
               return (
                 <div
@@ -408,10 +433,13 @@ export function JobsCostTab() {
                       {out.title || out.slug}
                     </h4>
                     <div className="flex items-center gap-2 text-[10px] text-muted-foreground font-mono">
-                      <span>⏱ {duration.toFixed(1)}s</span>
+                      <span>⏱ {duration > 0 ? `${Math.floor(duration / 60)}:${String(Math.round(duration % 60)).padStart(2, "0")}` : "—"}</span>
                       <span>💾 {out.size_mb || 0} MB</span>
-                      {isPassVerify && (
-                        <span className="text-emerald-400 font-semibold">✓ Đạt chuẩn</span>
+                      {engine && <span title={out.engineWarning || undefined}>{engine === "hyperframes" ? "HF" : engine}</span>}
+                      {verifyLabel && (
+                        <span className={verifyOk ? "text-emerald-400 font-semibold" : "text-semantic-warning font-semibold"}>
+                          {verifyLabel}
+                        </span>
                       )}
                     </div>
                     <p className="text-[10px] text-zinc-500 truncate font-mono">
@@ -421,15 +449,16 @@ export function JobsCostTab() {
 
                   {/* Actions */}
                   <div className="flex flex-col gap-1 shrink-0">
-                    <a
-                      href={videoFullUrl}
-                      target="_blank"
-                      rel="noreferrer"
+                    <button
+                      type="button"
+                      onClick={openInStudio}
+                      title="Xem và tua ngay trong Studio"
+                      data-testid="output-play"
                       className="flex items-center justify-center gap-1 px-2 py-1 rounded bg-accent hover:bg-accent/80 text-[11px] font-medium text-foreground transition-colors"
                     >
                       <Play className="w-3 h-3 text-primary" />
                       <span>Xem</span>
-                    </a>
+                    </button>
                     <button
                       type="button"
                       onClick={() => handleScheduleOutput(out)}

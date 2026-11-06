@@ -4,6 +4,10 @@ import type { ReactNode } from "react";
 export interface PreviewMedia {
   url: string;
   name: string;
+  /** Ảnh poster cho video (vd. output/<tập>/thumb.jpg) */
+  poster?: string;
+  /** Dòng phụ dưới video: thời lượng, engine dựng, cảnh báo… */
+  caption?: string;
 }
 
 export type PreviewItem =
