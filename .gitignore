@@ -8,37 +8,46 @@ __pycache__/
 .env.local
 .env.*.local
 
-# Voice Vault: prompt cache và audio lớn không đưa vào git
-data/shared/voice_vault/*/*.pt
-data/shared/voice_vault/*/*.wav
-data/shared/voice_vault/*/*.npy
-data/shared/voice_vault/*/*.mp3
-assets/voice_vault/*/*.pt
-assets/voice_vault/*/*.wav
-assets/voice_vault/*/*.npy
-assets/voice_vault/*/*.mp3
+# Voice Vault: Mẫu giọng clone là tài sản riêng cá nhân — TUYỆT ĐỐI KHÔNG đưa lên Git repo công khai
+data/shared/voice_vault/*
+!data/shared/voice_vault/.gitkeep
+assets/voice_vault/*
+!assets/voice_vault/.gitkeep
 
-# Project sensitive & transient data (Accounts, Raw dumps, Shots)
+# Project sensitive & transient data (Accounts, Raw dumps, Shots, Runs, Generated Assets, Output)
 data/projects/*/accounts/*
 !data/projects/*/accounts/.gitkeep
 data/projects/*/shots/*
 !data/projects/*/shots/.gitkeep
+data/projects/*/raw/*
+!data/projects/*/raw/.gitkeep
 data/projects/*/runs/*
 !data/projects/*/runs/.gitkeep
+!data/projects/*/runs/spend.json
 data/projects/*/output/*
 !data/projects/*/output/.gitkeep
+data/projects/*/assets/*
+!data/projects/*/assets/.gitkeep
+data/projects/*/publishing/.store.lock
+data/projects/*/publishing/.thumbs/
+data/projects/*/publishing/.video_cache.json
 
 # Exclude large tool binaries (>25MB)
 data/shared/models/ffmpeg-bin/
 
-# Keep all project data, characters, content, assets, templates
+# Whitelist: Dữ liệu chuẩn lưu trên Git (Nhân vật Master DNA, Kịch bản, Templates, Tri thức, Cấu hình)
 !data/projects/*/characters/**
 !data/projects/*/content/**
-!data/projects/*/assets/**
 !data/projects/*/publishing/**
 !data/projects/*/analytics/**
+!data/projects/*/products/**
+!data/projects/*/project.json
+!data/projects/*/graph.json
+!data/projects/*/policy.json
 !data/shared/templates/**
-!data/shared/voice_vault/**
+!data/shared/knowledge/**
+!data/shared/brand_kits/**
+!data/workspace.json
 
 # Third-party integrations
 integrations/OmniVoice/
