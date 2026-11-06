@@ -19,7 +19,7 @@ import {
 import { cn } from "@/lib/utils";
 import { fetchScriptData } from "@/lib/api/nodes";
 import { useHubScope } from "@/lib/hub";
-import { RefreshCw, MorphIcon, Volume2Node, VolumeXNode } from "@/components/ui/icons";
+import { RefreshCw, MorphIcon, Volume2Node, VolumeXNode, UsersNode } from "@/components/ui/icons";
 import {
   NodeTextInput,
   NodeImageInput,
@@ -431,6 +431,21 @@ function CastPreview({ nodeId, data }: { nodeId: string; data: any }) {
         })}
       </div>
       {unmatched.length > 0 && <div className="text-[11px] text-semantic-warning">Chưa ghép được: {unmatched.join(", ")}</div>}
+      {members.some((m) => m.id) && (
+        <button
+          type="button"
+          title="Tách thành từng node Nhân vật để xem và chỉnh riêng (nhân vật cố định theo tập hiện tại). Hoàn tác bằng Ctrl+Z."
+          onClick={(e) => {
+            e.stopPropagation();
+            const ids = members.map((m) => m.id).filter(Boolean) as string[];
+            (useStudioStore.getState() as any).expandCastToCharacters(nodeId, ids);
+          }}
+          className="nodrag flex w-full items-center justify-center gap-1.5 rounded-md border border-border bg-card px-2 py-1 text-[11px] font-medium text-foreground transition-colors hover:bg-accent"
+        >
+          <MorphIcon icon={UsersNode} size={12} />
+          Phân rã thành {members.filter((m) => m.id).length} node nhân vật
+        </button>
+      )}
     </div>
   );
 }

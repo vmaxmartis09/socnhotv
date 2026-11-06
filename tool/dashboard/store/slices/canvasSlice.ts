@@ -420,6 +420,8 @@ export interface CanvasSlice {
   pushUndoSnapshot: () => void;
   /** Thay các node Nhân vật cố định bằng 1 node Dàn diễn viên tự theo kịch bản của tập (nối lại dây). */
   convertCharactersToCast: () => boolean;
+  /** Phân rã node Dàn diễn viên thành từng node Nhân vật (bật Nói) cho các nhân vật đang có trong tập, nối lại dây. */
+  expandCastToCharacters: (castNodeId: string, characterIds: string[]) => boolean;
   undoCanvas: () => void;
   redoCanvas: () => void;
   loadCanvasTemplate: (template: "soc_nho_story" | "blank") => void;
@@ -738,6 +740,51 @@ export const createCanvasSlice: StateCreator<
     const nextEdges = [...kept, mk(script.id, "lines", castId, "lines"), mk(script.id, "scenes", castId, "scenes"), ...rewired];
     const nextNodes = [...state.nodes.filter((n) => !charIds.has(n.id)).map((n) => ({ ...n, selected: false })), castNode];
     get().setNodesAndEdges(nextNodes, nextEdges, true);
+    return true;
+  },
+  expandCastToCharacters: (castNodeId, characterIds) => {
+    const state = get();
+    const cast = state.nodes.find((n) => n.id === castNodeId);
+    if (!cast || characterIds.length === 0) return false;
+    const script = state.edges.find((e) => e.target === castNodeId && e.sourceHandle === "lines");
+    const stamp = Date.now().toString(36);
+    const newNodes: Node<StudioNodeData>[] = characterIds.map((cid, i) => ({
+      id: `node_character_${stamp}_${i}`,
+      type: "studioCard",
+      position: { x: cast.position.x, y: cast.position.y + i * 760 },
+      selected: false,
+      data: {
+        nodeType: "character",
+        status: "idle",
+        isStale: true,
+        params: { characterId: cid, speak: { enabled: true } },
+        generations: [],
+      },
+    }));
+    const mk = (source: string, sh: string, target: string, th: string): Edge => ({
+      id: `edge_${Math.random().toString(36).slice(2, 9)}`,
+      source,
+      sourceHandle: sh,
+      target,
+      targetHandle: th,
+      type: "default",
+    });
+    const kept = state.edges.filter((e) => e.source !== castNodeId && e.target !== castNodeId);
+    const out: Edge[] = [];
+    for (const nn of newNodes) {
+      if (script) out.push(mk(script.source, "lines", nn.id, "lines"));
+      for (const e of state.edges) {
+        if (e.source !== castNodeId) continue;
+        if (e.sourceHandle === "reference_images" || e.sourceHandle === "voice") {
+          out.push(mk(nn.id, e.sourceHandle, e.target, e.targetHandle || e.sourceHandle));
+        }
+      }
+    }
+    get().setNodesAndEdges(
+      [...state.nodes.filter((n) => n.id !== castNodeId).map((n) => ({ ...n, selected: false })), ...newNodes],
+      [...kept, ...out],
+      true
+    );
     return true;
   },
   pushUndoSnapshot: () =>
