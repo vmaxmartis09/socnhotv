@@ -1,8 +1,27 @@
-# G1: Nguồn AI miễn phí (lùng sục, kiểm thật, tích hợp)
+# G1: Nguồn AI ảnh/video (miễn phí trước, trả phí có kiểm soát)
 
 > Thuộc Session G. Đọc trước: `status/THUC_TRANG_2026-11-06.md`, `README.md` (mục 3, 4, 6).
 > Giải quyết **N1**: hiện không có nguồn sinh ảnh/video nào dùng được (key Gemini hỏng, không có fal/replicate).
 > Báo cáo tiến độ: `status/G1.md`.
+
+
+## Cập nhật 2026-11-06 (sau khi kiểm docs chính thức bằng agent-reach)
+
+Sự thật đã xác nhận (link ở `status/THUC_TRANG_2026-11-06.md` và phiên chat):
+- **Gemini API gói Free: KHÔNG có sinh ảnh** (cột Free Tier = "Not available" cho mọi model Nano Banana). Key mới của người dùng hợp lệ nhưng sinh ảnh trả 429. Nguồn: https://ai.google.dev/gemini-api/docs/pricing
+- Giá ảnh trả phí: ~$0.034–0.067/ảnh 1K. 60 ảnh (2 tập) khoảng $2–4.
+- **Model video Google hiện tại là Gemini Omni Flash (`gemini-omni-1.2-flash`)**: clip 3–15 giây, có âm thanh gốc, nhận ảnh tham chiếu, sửa nhiều lượt. Nguồn: https://ai.google.dev/gemini-api/docs/video . Code hiện gọi `veo-3.1-fast-generate-preview`, phải kiểm Veo còn dùng được không và thêm Omni.
+- Google Cloud tặng **$300 credit** khách mới (https://cloud.google.com/free). CHƯA xác nhận credit này trừ được cho Gemini API/Omni gọi bằng key AI Studio hay chỉ Vertex AI.
+- CHƯA biết: độ phân giải clip Omni/Veo, giá video thật, hạn mức. Việc của bạn là đo và ghi lại.
+
+### Thay đổi phạm vi G1
+1. **Thêm một nguồn TRẢ PHÍ được chọn** (mặc định Google: ảnh Nano Banana + video Omni Flash; fal.ai Kling là phương án thay), tích hợp đúng C1/C2 với `tier: paid`.
+   - Bắt buộc qua `SpendGuard`, có `confirmPaidRun` và ước tính chi phí trước khi chạy (đã có sẵn cơ chế, dùng lại, không tạo đường vòng).
+   - Cập nhật `google_provider.py` (bạn sở hữu): thêm model `gemini-omni-1.2-flash` vào `models.yaml` và hàm `generate_video`; sửa `video-gen` ghi đúng độ dài clip hợp lệ của model (3–15 s).
+   - Đo thật: gọi 1 ảnh và 1 clip ngắn nhất (≤$2 tổng, hỏi người dùng trước khi gọi tiền thật). Ghi độ phân giải clip thật, giá thật trên hoá đơn, thời gian.
+2. Việc tìm nguồn miễn phí (B1–B4) vẫn giữ, nhưng là **dự phòng và để thử**, không còn là điều kiện cho Mức A. Mức A có thể chạy bằng nguồn trả phí rẻ ($2–4).
+3. Bảng "Credit/dùng thử" cần tra thêm bằng trang chính thức: fal.ai, Replicate, Kling, Pika. Mỗi dòng ghi link và ngày. Không dùng blog làm bằng chứng duy nhất.
+4. Ghi vào `free_ai_sources.md` mục "Khẩu hình": clip AI có âm thanh gốc nên miệng không khớp giọng OmniVoice. Đặt `has_audio: false` khi sinh clip để dùng giọng OmniVoice, ghi rõ giới hạn này.
 
 ## Mục tiêu đo được
 1. `ai/knowledge/free_ai_sources.md`: bảng các nguồn **đã gọi thử thật** trong phiên làm, ghi ngày kiểm. Nguồn nào chưa gọi thử thì để ở mục "chưa kiểm".

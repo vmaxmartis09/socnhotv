@@ -1,4 +1,6 @@
-# 4 prompt gửi cho 4 AI (Session G)
+# 5 prompt gửi cho 5 AI (Session G)
+
+> Cập nhật 2026-11-06: G1 đã đổi (có nguồn trả phí Google Omni có kiểm soát), thêm G5 (nhân vật). **Các prompt G1 và G5 dán trực tiếp từ mục "Prompt mới" ở cuối tệp này.**
 
 Mỗi prompt dán nguyên khối vào một AI riêng. Các AI cùng làm trên repo `/Volumes/Data/socnhotv`, nhánh `main`.
 Gợi ý chọn AI: **G1** cần duyệt web (Gemini / Antigravity / Claude có web). **G2** mạnh frontend (Cursor / Claude). **G3** mạnh Python (Codex / Claude). **G4** có trình duyệt để test Studio (Claude Code).
@@ -117,4 +119,66 @@ Luật cứng:
 - Commit kèm đường dẫn: git commit -m "..." -- <tệp>. Không git add -A, không commit data/. Chạy git pull --rebase trước khi push.
 - Cuối cùng viết status/G.md, cập nhật ai/map/TOOLS.md và ai/memory/CONTINUITY.md cho đúng sự thật.
 Làm đến khi đạt mục "Done khi" trong plan G4.
+```
+
+
+---
+
+## Prompt mới: G1 Nguồn ảnh/video (thay cho Prompt 1 ở trên)
+
+```text
+Bạn là AI phụ trách luồng G1 của dự án SocNhoTV, repo /Volumes/Data/socnhotv (nhánh main).
+Mục tiêu chung của các AI: Tập 1 và Tập 2 hoạt hình (mỗi tập 10 phút, 30 shot × 20 giây) chạy ra từ flow Studio và xem được trong Studio. Đây là hệ thống dùng lâu dài cho nhiều loại video (YouTube, TikTok KOC), nên làm provider đúng chuẩn, không làm tạm.
+
+Sự thật đã xác nhận từ docs chính thức (đọc lại để chắc):
+- Gemini API gói Free KHÔNG có sinh ảnh (https://ai.google.dev/gemini-api/docs/pricing). Key mới của người dùng trong .env hợp lệ nhưng sinh ảnh trả 429.
+- Model video của Google hiện là Gemini Omni Flash (gemini-omni-1.2-flash): clip 3–15 giây, có âm thanh gốc, nhận ảnh tham chiếu (https://ai.google.dev/gemini-api/docs/video). Code hiện gọi veo-3.1-fast-generate-preview, cần kiểm và cập nhật.
+- Google Cloud tặng $300 credit khách mới (https://cloud.google.com/free), chưa rõ có trừ được cho Gemini API hay chỉ Vertex AI.
+- Chưa biết: độ phân giải clip, giá video thật, hạn mức.
+
+Đọc theo thứ tự:
+1) ai/AGENTS.md
+2) status/THUC_TRANG_2026-11-06.md
+3) ai/plans/2026-11-roadmap/session-G-hai-tap-dau/README.md (mục 3, 4 hợp đồng C1 C2, mục 6)
+4) ai/plans/2026-11-roadmap/session-G-hai-tap-dau/G1_nguon_ai_mien_phi.md (đọc cả mục "Cập nhật 2026-11-06")
+
+Việc của bạn:
+- Tích hợp nguồn TRẢ PHÍ được kiểm soát: Google (ảnh Nano Banana + video Omni Flash), đúng hợp đồng C1/C2, tier "paid", qua SpendGuard + confirmPaidRun. fal.ai Kling là phương án thay.
+- Trước khi gọi bất cứ thứ gì tốn tiền thật, HỎI người dùng và nêu chi phí ước tính (tổng thử ≤ $2). Người dùng tự bật billing; bạn không nhập thông tin thanh toán hay tạo tài khoản thay họ.
+- Đo và ghi lại thật: độ phân giải clip, giá trên hoá đơn, thời gian, số ảnh tham chiếu nhận được. Ghi vào ai/knowledge/free_ai_sources.md kèm LINK trang chính thức và ngày kiểm. Không dùng blog làm bằng chứng duy nhất.
+- Vẫn tìm nguồn miễn phí/dự phòng như plan (API free, model chạy trên máy, web có credit hằng ngày), gọi thử thật.
+- Đặt has_audio=false mặc định khi sinh clip (dùng giọng OmniVoice); ghi vào tài liệu giới hạn khẩu hình không khớp.
+- Ưu tiên số 1: sinh được ảnh thật cho shot S01–S03 của Tập 1 (script.json trong data/projects/soc-nho-tv/content/episodes/ep01-nui-lua-trong-bung-bi/) với ảnh DNA nhân vật làm tham chiếu.
+
+Luật cứng:
+- Chỉ sửa tệp G1 sở hữu (README mục 3). Không sửa router.py, graph_runner.py.
+- Không tạo hàng loạt tài khoản/email ảo cày credit, không vượt CAPTCHA, không xoay vòng key. Không in key ra log hay chat.
+- Commit kèm đường dẫn: git commit -m "..." -- <tệp>. Không git add -A. Chạy git pull --rebase trước khi push.
+- Báo cáo trung thực ở status/G1.md: lệnh đã chạy, số đo, cái gì CHƯA làm được. Ghi "Yêu cầu gửi G2" nếu cần UI/key mới.
+Làm đến khi đạt mục "Done khi" trong plan G1.
+```
+
+---
+
+## Prompt mới: G5 Hồ sơ nhân vật + kiểm tra nhất quán
+
+```text
+Bạn là AI phụ trách luồng G5 của dự án SocNhoTV, repo /Volumes/Data/socnhotv (nhánh main).
+Mục tiêu dài hạn của người dùng: làm video YouTube/TikTok KOC có nhân vật; nhân vật càng chi tiết thì video càng thống nhất về nhân vật. Hiện mỗi nhân vật có 16–55 ảnh nhưng chưa có bộ ảnh chuẩn chọn sẵn, chưa có dữ liệu có cấu trúc (bảng màu, trang phục khoá, điều cấm), và chưa có bước kiểm tra ảnh/clip sinh ra có đúng nhân vật không.
+
+Đọc theo thứ tự:
+1) ai/AGENTS.md
+2) data/projects/soc-nho-tv/characters/SCALE_LOCK.md (tỉ lệ khoá cứng: Bi 100cm, Koala 150cm)
+3) ai/plans/2026-11-roadmap/session-G-hai-tap-dau/README.md (mục 3, 4, 6)
+4) ai/plans/2026-11-roadmap/session-G-hai-tap-dau/G5_ho_so_nhan_vat.md (plan của bạn)
+
+Làm PHA 1 trước (consistency.json cho 5 nhân vật của Tập 1–2: soc_nho, de_mun, me_soc, de_bong, ong_de_rau_bac; hàm chọn ảnh tham chiếu theo shot; khối prompt khoá). Tool gợi ý ảnh, NGƯỜI DÙNG duyệt trước khi khoá: hãy dừng và nhờ người dùng xác nhận bằng contact sheet các ảnh bạn chọn. Sau đó PHA 2: chấm điểm nhất quán (model nhìn dưới SpendGuard, dự phòng bằng bảng màu), vòng sinh lại shot lệch, tab "Nhất quán" ở trang Nhân vật.
+
+Luật cứng:
+- Chỉ sửa tệp G5 sở hữu (README mục 3). Không sửa graph_runner.py, router.py, provider; cần chỗ gọi thì ghi "Yêu cầu gửi G3" kèm ví dụ.
+- Không bịa số đo: độ chính xác của bước chấm điểm phải đo trên ảnh thật (5 đúng, 5 cố tình lệch) rồi ghi trung thực.
+- Không đổi nhận diện nhân vật, không vẽ nhân vật mới (xem ai/AGENTS.md). Icon dùng Morphicons, i18n vi/en.
+- Commit kèm đường dẫn: git commit -m "..." -- <tệp>. Không git add -A. git pull --rebase trước khi push.
+- Báo cáo trung thực ở status/G5.md.
+Làm đến khi đạt mục "Done khi" trong plan G5.
 ```

@@ -13,9 +13,12 @@
 | **G1** | Nguồn AI miễn phí | N1 | Báo cáo nguồn free đã gọi thử thật. ≥1 nguồn ảnh free **có ảnh tham chiếu nhân vật** chạy được. ≥1 đường làm clip video free. Provider mới + sổ model. |
 | **G2** | Chế độ lai + chọn model | N2, N3 | `runPolicy` theo từng loại (giọng luôn thật). `ModelPicker` lấy dữ liệu từ `/models`. Trang Cài đặt có key cho các nguồn mới. |
 | **G3** | Engine dựng theo shot | N4, N5, N6 | Bỏ fallback tốn tiền. `video_gen` lặp theo shot (có trần số clip). Nhập clip làm tay. Camera theo kịch bản. BGM/SFX. |
+| **G5** | Hồ sơ nhân vật + kiểm tra nhất quán | Nhân vật đồng nhất qua ảnh/clip | Bộ ảnh chuẩn nhiều góc, khoá màu/trang phục, ảnh tham chiếu tốt nhất theo shot, bước chấm điểm giống DNA và sinh lại shot lệch. |
 | **G4** | Dữ liệu tập + Studio + nghiệm thu | N7, N8 | Giọng 2 tập dựng sẵn vào cache. Kiểm DNA. Đổi tập bằng 1 tham số. Xem/tua video trong Studio. Test không ghi vào dữ liệu thật. **Chạy nghiệm thu cuối.** |
 
 ---
+
+> **Cập nhật:** G1 nay gồm cả 1 nguồn trả phí được kiểm soát (Google Nano Banana + Gemini Omni Flash). G5 là luồng thứ 5 (xem `G5_ho_so_nhan_vat.md`); G5 tạo `characters/<id>/consistency.json`, G3 và G1 chỉ đọc.
 
 ## 2. Thứ tự (tuần tự theo pha, song song trong pha)
 
@@ -70,6 +73,7 @@ Chỉ **chủ sở hữu** được sửa tệp. Cần thay đổi ở tệp c�
 | Frontend: `components/studio/PreviewPane.tsx`, `components/studio/tabs/JobsCostTab.tsx`, `components/canvas/RunStatusBar.tsx`, `components/canvas/NodeBody.tsx`, `lib/graph-presets.ts`, `lib/preview.ts`, `messages/modules/video.*.json` | G4 |
 | `tool/tests/conftest.py` | G4 |
 | Test: `tool/tests/test_g1_*.py`, `test_g2_*.py`, `test_g3_*.py`, `test_g4_*.py` | luồng có số tương ứng |
+| `tool/src/socnhotv/core/engine/character_consistency.py` (**mới**), `characters/<id>/consistency.json`, `components/characters/**`, `app/[locale]/characters/**`, `scripts/characters/**`, `tool/tests/test_g5_*.py`, `status/G5.md` | G5 |
 | `status/G1.md` … `status/G4.md` | luồng có số tương ứng |
 | `ai/map/TOOLS.md`, `ai/memory/CONTINUITY.md`, báo cáo cuối `status/G.md` | G4 (cuối cùng, gom từ các luồng) |
 
