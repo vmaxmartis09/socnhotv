@@ -422,6 +422,8 @@ export interface CanvasSlice {
   convertCharactersToCast: () => boolean;
   /** Phân rã node Dàn diễn viên thành từng node Nhân vật (bật Nói) cho các nhân vật đang có trong tập, nối lại dây. */
   expandCastToCharacters: (castNodeId: string, characterIds: string[]) => boolean;
+  /** Chọn kịch bản tập → tự vào chế độ Dàn diễn viên: đổi nhân vật cố định thành Dàn diễn viên, hoặc thêm node Dàn diễn viên nếu flow chưa có. */
+  ensureCastForEpisode: (scriptNodeId: string) => boolean;
   undoCanvas: () => void;
   redoCanvas: () => void;
   loadCanvasTemplate: (template: "soc_nho_story" | "blank") => void;
@@ -740,6 +742,38 @@ export const createCanvasSlice: StateCreator<
     const nextEdges = [...kept, mk(script.id, "lines", castId, "lines"), mk(script.id, "scenes", castId, "scenes"), ...rewired];
     const nextNodes = [...state.nodes.filter((n) => !charIds.has(n.id)).map((n) => ({ ...n, selected: false })), castNode];
     get().setNodesAndEdges(nextNodes, nextEdges, true);
+    return true;
+  },
+  ensureCastForEpisode: (scriptNodeId) => {
+    const state = get();
+    if (state.nodes.some((n) => n.data.nodeType === "cast")) return false;
+    if (state.nodes.some((n) => n.data.nodeType === "character")) return get().convertCharactersToCast();
+    const script = state.nodes.find((n) => n.id === scriptNodeId);
+    if (!script) return false;
+    const castDef = state.nodeCatalog.find((d) => d.typeName === "cast");
+    if (!castDef) return false;
+    const castId = `node_cast_${Date.now().toString(36)}`;
+    const castNode: Node<StudioNodeData> = {
+      id: castId,
+      type: "studioCard",
+      position: { x: script.position.x + 380, y: script.position.y },
+      selected: false,
+      data: { nodeType: "cast", status: "idle", isStale: true, params: { ...castDef.defaultParams }, generations: [] },
+    };
+    const mk = (source: string, sh: string, target: string, th: string): Edge => ({
+      id: `edge_${Math.random().toString(36).slice(2, 9)}`,
+      source,
+      sourceHandle: sh,
+      target,
+      targetHandle: th,
+      type: "default",
+    });
+    const edges: Edge[] = [mk(scriptNodeId, "lines", castId, "lines"), mk(scriptNodeId, "scenes", castId, "scenes")];
+    const img = state.nodes.find((n) => n.data.nodeType === "image_gen");
+    const render = state.nodes.find((n) => n.data.nodeType === "hyperframes_render");
+    if (img) edges.push(mk(castId, "reference_images", img.id, "references"));
+    if (render) edges.push(mk(castId, "voice", render.id, "voice_clips"));
+    get().setNodesAndEdges([...state.nodes, castNode], [...state.edges, ...edges], true);
     return true;
   },
   expandCastToCharacters: (castNodeId, characterIds) => {

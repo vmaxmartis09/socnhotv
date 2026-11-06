@@ -548,6 +548,7 @@ function EpisodeScriptPicker({
     s.nodes.some((n: any) => n.data.nodeType === "character") && !s.nodes.some((n: any) => n.data.nodeType === "cast")
   );
   const convertToCast = useStudioStore((s: any) => s.convertCharactersToCast) as () => boolean;
+  const ensureCast = useStudioStore((s: any) => s.ensureCastForEpisode) as (scriptNodeId: string) => boolean;
   const sceneCount = shots ? new Set(shots.map((s) => s.scene)).size : 0;
   const itemCount = granularity === "scene" ? sceneCount : shots?.length || 0;
   // Lời thoại theo người nói (giống cổng 'lines'): đếm câu, báo người nói chưa ghép được nhân vật
@@ -568,7 +569,11 @@ function EpisodeScriptPicker({
     <div className="space-y-1.5">
       <select
         value={episodeId || ""}
-        onChange={(e) => updateNodeParams(nodeId, { episodeId: e.target.value })}
+        onChange={(e) => {
+          updateNodeParams(nodeId, { episodeId: e.target.value });
+          // Chọn kịch bản mới → tự vào chế độ Dàn diễn viên (nhân vật theo tập, không cần thao tác thêm)
+          if (e.target.value) ensureCast(nodeId);
+        }}
         className="nodrag w-full rounded-md border border-border bg-card px-2 py-1.5 text-xs text-foreground"
       >
         <option value="">{episodes === null ? "Đang tải danh sách tập…" : "Chọn kịch bản tập"}</option>
@@ -670,9 +675,12 @@ export const NodeScriptInput = React.memo(function NodeScriptInput({
     setIdea(initialIdea || "");
   }, [initialIdea]);
 
+  const ensureCastForEpisode = useStudioStore((s: any) => s.ensureCastForEpisode) as (scriptNodeId: string) => boolean;
   const handleModeChange = (newMode: ScriptMode) => {
     setMode(newMode);
     updateNodeParams(nodeId, { mode: newMode });
+    // Vào chế độ "Kịch bản tập" (đã có tập) → tự vào chế độ Dàn diễn viên
+    if (newMode === "episode" && episodeId) ensureCastForEpisode(nodeId);
   };
 
   const handleRawChange = (text: string) => {
