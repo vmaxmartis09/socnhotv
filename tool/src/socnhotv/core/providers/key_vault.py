@@ -36,11 +36,18 @@ PROVIDER_SPECS: Dict[str, Dict[str, Any]] = {
         "label": "Pollinations.ai (Pollen Key - Tùy chọn)",
         "env_vars": ["POLLINATIONS_API_KEY", "POLLINATIONS_TOKEN"],
         "min_len": 8,
+        "optional": True,
     },
     "cloudflare": {
         "label": "Cloudflare Workers AI",
         "env_vars": ["CLOUDFLARE_API_TOKEN"],
         "min_len": 16,
+    },
+    "local": {
+        "label": "Local Apple Silicon (Offline $0)",
+        "env_vars": [],
+        "min_len": 0,
+        "optional": True,
     },
 }
 
@@ -75,8 +82,10 @@ def validate_key_format(provider: str, key: str) -> str:
     norm = normalize_provider_key(provider)
     spec = PROVIDER_SPECS[norm]
     cleaned = (key or "").strip().strip('"').strip("'")
+    if spec.get("optional") and not cleaned:
+        return ""
     if not cleaned:
-        env_hint = spec["env_vars"][0]
+        env_hint = spec["env_vars"][0] if spec.get("env_vars") else f"{norm.upper()}_KEY"
         raise MissingApiKey(
             f"Chưa có {env_hint} (biến môi trường, kho khóa máy chủ hoặc tệp .env ở gốc repo).",
             provider=norm,
