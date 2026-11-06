@@ -42,6 +42,7 @@ export const useStudioStore = create<StudioStore>()(
         theme: state.theme,
         locale: state.locale,
         isMockMode: state.isMockMode,
+        runPolicy: state.runPolicy,
         spendingLimitUsd: state.spendingLimitUsd,
         perRunSpendingLimitUsd: state.perRunSpendingLimitUsd,
         dailySpendingLimitUsd: state.dailySpendingLimitUsd,

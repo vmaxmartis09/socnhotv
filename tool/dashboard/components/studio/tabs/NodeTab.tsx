@@ -12,12 +12,14 @@ import { PolicyEditor } from "@/components/studio/PolicyEditor";
 import { PortValueInput } from "@/components/canvas/PortValueInput";
 import { applyPortOverride } from "@/lib/node-ports";
 import type { NodeDefinition } from "@/lib/core-contracts";
+import { ModelPicker } from "@/components/studio/ModelPicker";
 import {
   NodeTextInput,
   NodeImageInput,
   NodeScriptInput,
   NodeVoiceInput,
   NodeImageGenInput,
+  NodeVideoGenInput,
   NodeExportInput,
   NodeCharacterSelect,
   NodeCaptionsInput,
@@ -67,6 +69,7 @@ export function NodeTab() {
     nodeCatalog,
     characters,
     isMockMode,
+    runPolicy,
     updateNodeParams,
     pinNodeGeneration,
     activeProjectId,
@@ -78,6 +81,7 @@ export function NodeTab() {
       nodeCatalog: s.nodeCatalog,
       characters: s.characters,
       isMockMode: s.isMockMode,
+      runPolicy: s.runPolicy,
       updateNodeParams: s.updateNodeParams,
       pinNodeGeneration: s.pinNodeGeneration,
       activeProjectId: s.activeProjectId,
@@ -103,7 +107,7 @@ export function NodeTab() {
     FALLBACK_NODE_TYPES[0];
 
   const params = node.data.params || {};
-  const estCost = estimateNodeCostUsd(def.typeName, params, isMockMode);
+  const estCost = estimateNodeCostUsd(def.typeName, params, isMockMode, runPolicy);
 
   const isConnected = (portName: string) =>
     edges.some((e) => e.target === node.id && e.targetHandle === portName);
@@ -208,7 +212,22 @@ export function NodeTab() {
             referenceImages={params.referenceImages}
             aspectRatio={params.aspectRatio}
             model={params.model}
+            fallbackModels={params.fallbackModels}
             connectedPrompt={isConnected("prompt")}
+          />
+        )}
+
+        {def.typeName === "video_gen" && (
+          <NodeVideoGenInput
+            nodeId={node.id}
+            prompt={params.prompt}
+            model={params.model}
+            fallbackModels={params.fallbackModels}
+            perShot={params.perShot ?? true}
+            maxClips={params.maxClips ?? 5}
+            shotIds={params.shotIds ?? []}
+            clipSource={params.clipSource ?? "auto"}
+            durationSec={params.durationSec ?? 5}
           />
         )}
 
@@ -237,36 +256,22 @@ export function NodeTab() {
         )}
 
         {/* CÁC THÔNG SỐ NÂNG CAO CHO CÁC NODE KHÁC */}
-        {/* Model selector */}
+        {/* Model selector cho các node có param model mà không phải image_gen/image_edit/video_gen */}
         {"model" in (def.defaultParams || {}) &&
           def.typeName !== "image_gen" &&
-          def.typeName !== "image_edit" && (
-            <label className="block space-y-1">
+          def.typeName !== "image_edit" &&
+          def.typeName !== "video_gen" && (
+            <div className="space-y-1">
               <span className="text-muted-foreground">{t("modelLabel")}</span>
-              <select
+              <ModelPicker
+                kind={def.typeName.includes("video") ? "video" : def.typeName.includes("image") ? "image" : "text"}
                 value={params.model || def.defaultParams.model}
-                onChange={(e) =>
-                  updateNodeParams(node.id, { model: e.target.value })
-                }
-                className="h-8 w-full rounded-md border border-border bg-card px-2 font-mono text-xs text-foreground"
-              >
-                {def.typeName === "video_gen" ? (
-                  <>
-                    <option value="google-veo-2">google-veo-2</option>
-                    <option value="fal-ltx-video">fal-ltx-video</option>
-                  </>
-                ) : (
-                  <>
-                    <option value="gemini-2.5-flash-image">
-                      gemini-2.5-flash-image
-                    </option>
-                    <option value="imagen-3.0-generate">
-                      imagen-3.0-generate
-                    </option>
-                  </>
-                )}
-              </select>
-            </label>
+                onChange={(newModel) => updateNodeParams(node.id, { model: newModel })}
+                fallbackModels={params.fallbackModels}
+                onFallbackChange={(fbs) => updateNodeParams(node.id, { fallbackModels: fbs })}
+                compact
+              />
+            </div>
           )}
 
         {/* Quality check threshold & criteria */}

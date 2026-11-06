@@ -184,6 +184,49 @@ export interface SSEEvent {
   timestamp: string;
 }
 
+export interface RunPolicy {
+  image: "mock" | "real";
+  video: "off" | "mock" | "real";
+  text: "mock" | "real";
+  voice: "local" | "mock";
+}
+
+export type RunPresetMode = "quick" | "animatic" | "full" | "custom";
+
+export const RUN_PRESETS: Record<Exclude<RunPresetMode, "custom">, RunPolicy> = {
+  quick: { image: "mock", video: "mock", text: "mock", voice: "mock" },
+  animatic: { image: "real", video: "off", text: "mock", voice: "local" },
+  full: { image: "real", video: "real", text: "real", voice: "local" },
+};
+
+export function getRunPresetMode(policy: RunPolicy): RunPresetMode {
+  if (
+    policy.image === "mock" &&
+    policy.video === "mock" &&
+    policy.text === "mock" &&
+    policy.voice === "mock"
+  ) {
+    return "quick";
+  }
+  if (
+    policy.image === "real" &&
+    policy.video === "off" &&
+    policy.text === "mock" &&
+    policy.voice === "local"
+  ) {
+    return "animatic";
+  }
+  if (
+    policy.image === "real" &&
+    policy.video === "real" &&
+    policy.text === "real" &&
+    policy.voice === "local"
+  ) {
+    return "full";
+  }
+  return "custom";
+}
+
 export interface GraphRunRequest {
   projectId: string;
   graphId?: string;
@@ -191,6 +234,8 @@ export interface GraphRunRequest {
   targetNodeId?: string;
   spendingLimitUsd?: number;
   mockMode?: boolean;
+  runPolicy?: RunPolicy;
+  confirmPaidRun?: boolean;
   maxRetries?: number;
   concurrencyLimit?: number;
 }

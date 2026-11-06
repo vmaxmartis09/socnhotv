@@ -5,7 +5,10 @@ import type {
   NodeStatus,
   GraphValidationResult,
   PortType,
+  RunPolicy,
+  RunPresetMode,
 } from "@/lib/core-contracts";
+import { RUN_PRESETS } from "@/lib/core-contracts";
 import type { Episode } from "@/lib/repositories/types";
 import { FALLBACK_NODE_TYPES, fetchGraphFromCore, fetchCustomNodeTypes } from "@/lib/core-api";
 import { outputPortsAffectedByPatch } from "@/lib/node-ports";
@@ -374,6 +377,9 @@ export interface CanvasSlice {
   aspectRatio: "9:16" | "16:9" | "1:1" | "4:5";
   zoomLevel: number;
   isMockMode: boolean;
+  runPolicy: RunPolicy;
+  setRunPolicy: (policy: Partial<RunPolicy> | RunPolicy) => void;
+  setRunPreset: (preset: RunPresetMode) => void;
   episodes: Episode[];
   activeEpisodeId: string;
   nodeCatalog: NodeDefinition[];
@@ -475,7 +481,8 @@ export const createCanvasSlice: StateCreator<
   selectedNodeId: null,
   aspectRatio: "9:16",
   zoomLevel: 1.0,
-  isMockMode: true,
+  isMockMode: false,
+  runPolicy: RUN_PRESETS.animatic,
   episodes: DEFAULT_EPISODES,
   activeEpisodeId: "ep_01_rang_sau",
   nodeCatalog: FALLBACK_NODE_TYPES,
@@ -600,7 +607,28 @@ export const createCanvasSlice: StateCreator<
       ),
     })),
   setZoomLevel: (zoomLevel) => set({ zoomLevel }),
-  setIsMockMode: (isMockMode) => set({ isMockMode }),
+  setIsMockMode: (isMockMode) =>
+    set(() => {
+      const newPolicy = isMockMode ? RUN_PRESETS.quick : RUN_PRESETS.animatic;
+      return { isMockMode, runPolicy: newPolicy };
+    }),
+  setRunPolicy: (policyPatch) =>
+    set((state) => {
+      const newPolicy = { ...state.runPolicy, ...policyPatch };
+      const isAllMock =
+        newPolicy.image === "mock" &&
+        newPolicy.video === "mock" &&
+        newPolicy.text === "mock" &&
+        newPolicy.voice === "mock";
+      return { runPolicy: newPolicy, isMockMode: isAllMock };
+    }),
+  setRunPreset: (preset) =>
+    set(() => {
+      if (preset === "custom") return {};
+      const newPolicy = RUN_PRESETS[preset];
+      const isAllMock = preset === "quick";
+      return { runPolicy: newPolicy, isMockMode: isAllMock };
+    }),
   setEpisodes: (episodes) => set({ episodes }),
   selectEpisode: (episodeId) =>
     set((state) => {

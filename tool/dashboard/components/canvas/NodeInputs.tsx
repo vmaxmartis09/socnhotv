@@ -16,6 +16,7 @@ import {
   type ScriptShot,
 } from "@/lib/api/nodes";
 import { VoiceSelectorWithClone } from "@/components/voice/VoiceSelectorWithClone";
+import { ModelPicker } from "@/components/studio/ModelPicker";
 import {
   Upload,
   Images,
@@ -973,6 +974,7 @@ interface ImageGenInputProps {
   referenceImages?: string[];
   aspectRatio?: string;
   model?: string;
+  fallbackModels?: string[];
   connectedPrompt?: boolean;
 }
 
@@ -982,6 +984,7 @@ export const NodeImageGenInput = React.memo(function NodeImageGenInput({
   referenceImages = [],
   aspectRatio = "9:16",
   model = "gemini-2.5-flash-image",
+  fallbackModels = [],
   connectedPrompt,
 }: ImageGenInputProps) {
   const activeProjectId = useStudioStore((s) => s.activeProjectId);
@@ -1032,6 +1035,19 @@ export const NodeImageGenInput = React.memo(function NodeImageGenInput({
           }
         }}
       />
+
+      {/* Model & Chuỗi dự phòng fallbackModels */}
+      <div className="space-y-1">
+        <label className="text-[11px] font-medium text-muted-foreground block">Mô hình AI:</label>
+        <ModelPicker
+          kind="image"
+          value={model}
+          onChange={(newModel) => updateNodeParams(nodeId, { model: newModel })}
+          fallbackModels={fallbackModels}
+          onFallbackChange={(fbs) => updateNodeParams(nodeId, { fallbackModels: fbs })}
+          compact
+        />
+      </div>
 
       {/* Prompt */}
       {connectedPrompt ? (
@@ -1100,6 +1116,158 @@ export const NodeImageGenInput = React.memo(function NodeImageGenInput({
           <option value="16:9">16:9 (Ngang)</option>
           <option value="1:1">1:1 (Vuông)</option>
         </select>
+      </div>
+    </div>
+  );
+});
+
+// ============================================================================
+// 5B. VIDEO GEN INPUT CONTROL (ModelPicker, Tham số C4: perShot, maxClips, shotIds, clipSource)
+// ============================================================================
+
+interface VideoGenInputProps {
+  nodeId: string;
+  prompt?: string;
+  model?: string;
+  fallbackModels?: string[];
+  perShot?: boolean;
+  maxClips?: number;
+  shotIds?: string[];
+  clipSource?: "ai" | "manual" | "auto";
+  durationSec?: number;
+}
+
+export const NodeVideoGenInput = React.memo(function NodeVideoGenInput({
+  nodeId,
+  prompt: initialPrompt = "",
+  model = "google-veo-2",
+  fallbackModels = [],
+  perShot = true,
+  maxClips = 5,
+  shotIds = [],
+  clipSource = "auto",
+  durationSec = 5,
+}: VideoGenInputProps) {
+  const updateNodeParams = useStudioStore((s) => s.updateNodeParams);
+  const [promptVal, setPromptVal] = useState(initialPrompt);
+  const [shotIdsStr, setShotIdsStr] = useState(shotIds.join(", "));
+  const debounceTimer = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    setPromptVal(initialPrompt || "");
+  }, [initialPrompt]);
+
+  useEffect(() => {
+    setShotIdsStr(shotIds.join(", "));
+  }, [shotIds]);
+
+  const handlePromptChange = (newVal: string) => {
+    setPromptVal(newVal);
+    if (debounceTimer.current) clearTimeout(debounceTimer.current);
+    debounceTimer.current = setTimeout(() => {
+      updateNodeParams(nodeId, { prompt: newVal });
+    }, 300);
+  };
+
+  const handleShotIdsChange = (newStr: string) => {
+    setShotIdsStr(newStr);
+    if (debounceTimer.current) clearTimeout(debounceTimer.current);
+    debounceTimer.current = setTimeout(() => {
+      const parsed = newStr
+        .split(",")
+        .map((s) => s.trim())
+        .filter(Boolean);
+      updateNodeParams(nodeId, { shotIds: parsed });
+    }, 400);
+  };
+
+  return (
+    <div className="space-y-2.5 text-xs">
+      {/* Model & Chuỗi dự phòng fallbackModels */}
+      <div className="space-y-1">
+        <label className="text-[11px] font-medium text-muted-foreground block">Mô hình Video:</label>
+        <ModelPicker
+          kind="video"
+          value={model}
+          onChange={(newModel) => updateNodeParams(nodeId, { model: newModel })}
+          fallbackModels={fallbackModels}
+          onFallbackChange={(fbs) => updateNodeParams(nodeId, { fallbackModels: fbs })}
+          compact
+        />
+      </div>
+
+      {/* Điều khiển C4: perShot & maxClips */}
+      <div className="rounded-md border border-border bg-card/60 p-2 space-y-2">
+        <div className="flex items-center justify-between">
+          <label className="flex items-center gap-2 cursor-pointer select-none">
+            <input
+              type="checkbox"
+              checked={perShot}
+              onChange={(e) => updateNodeParams(nodeId, { perShot: e.target.checked })}
+              className="nodrag rounded border-border text-brand focus:ring-brand h-3.5 w-3.5"
+            />
+            <span className="font-medium text-foreground">Sinh clip theo từng shot</span>
+          </label>
+          <span className="text-[10px] text-muted-foreground font-mono">Hợp đồng C4</span>
+        </div>
+
+        {perShot && (
+          <div className="space-y-2 pt-1 border-t border-border/50">
+            {/* maxClips */}
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] text-muted-foreground">Số clip tối đa:</span>
+              <input
+                type="number"
+                min={1}
+                max={20}
+                value={maxClips}
+                onChange={(e) => updateNodeParams(nodeId, { maxClips: Number(e.target.value) || 5 })}
+                className="nodrag h-7 w-20 rounded border border-border bg-card px-2 text-xs text-foreground font-mono"
+              />
+            </div>
+
+            {/* clipSource */}
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] text-muted-foreground">Nguồn clip:</span>
+              <select
+                value={clipSource}
+                onChange={(e) => updateNodeParams(nodeId, { clipSource: e.target.value as any })}
+                className="nodrag h-7 rounded border border-border bg-card px-2 text-xs text-foreground"
+              >
+                <option value="auto">Tự động (Ưu tiên clip làm tay → AI)</option>
+                <option value="manual">Chỉ dùng clip làm tay (C5)</option>
+                <option value="ai">Chỉ sinh AI</option>
+              </select>
+            </div>
+
+            {/* shotIds cụ thể */}
+            <div className="space-y-0.5">
+              <div className="flex items-center justify-between text-[11px] text-muted-foreground">
+                <span>Chỉ định Shot IDs (tuỳ chọn):</span>
+                <span className="text-[10px] italic">Để trống = tự chọn</span>
+              </div>
+              <input
+                type="text"
+                value={shotIdsStr}
+                onChange={(e) => handleShotIdsChange(e.target.value)}
+                placeholder="Ví dụ: S01, S03, S07..."
+                className="nodrag w-full rounded border border-border bg-card px-2 py-1 text-xs text-foreground font-mono placeholder:text-muted-foreground/60"
+              />
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Prompt bổ sung nếu không lặp hoặc tinh chỉnh */}
+      <div className="space-y-1">
+        <label className="text-[11px] text-muted-foreground block">Prompt chuyển động (chung):</label>
+        <textarea
+          rows={2}
+          value={promptVal}
+          onChange={(e) => handlePromptChange(e.target.value)}
+          placeholder="Mô tả hướng máy quay, chuyển động..."
+          className="nodrag nowheel w-full rounded-md border border-border bg-card p-1.5 text-xs text-foreground placeholder:text-muted-foreground/60 leading-relaxed resize-y"
+        />
       </div>
     </div>
   );

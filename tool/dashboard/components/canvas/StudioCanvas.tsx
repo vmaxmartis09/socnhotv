@@ -61,6 +61,7 @@ import type {
   RunMode,
 } from "@/lib/core-contracts";
 import { Button } from "@/components/ui/Button";
+import { RunModeMenu } from "@/components/studio/RunModeMenu";
 import {
   Play,
   Square,
@@ -232,6 +233,7 @@ function StudioCanvasInner() {
     updateNodeExecutionState,
     updateNodeParams,
     isMockMode,
+    runPolicy,
     setIsMockMode,
     isRunningGraph,
     setIsRunningGraph,
@@ -262,6 +264,7 @@ function StudioCanvasInner() {
       updateNodeExecutionState: s.updateNodeExecutionState,
       updateNodeParams: s.updateNodeParams,
       isMockMode: s.isMockMode,
+      runPolicy: s.runPolicy,
       setIsMockMode: s.setIsMockMode,
       isRunningGraph: s.isRunningGraph,
       setIsRunningGraph: s.setIsRunningGraph,
@@ -393,11 +396,12 @@ function StudioCanvasInner() {
         estimateNodeCostUsd(
           n.data.nodeType,
           n.data.params || {},
-          isMockMode
+          isMockMode,
+          runPolicy
         ),
       0
     );
-  }, [nodes, isMockMode]);
+  }, [nodes, isMockMode, runPolicy]);
 
   const normalizedEdges = useMemo(
     () => edges.map((e) => (e.type === "smoothstep" || e.type === "step" ? { ...e, type: "default" } : e)),
@@ -970,7 +974,8 @@ function StudioCanvasInner() {
           ? estimateNodeCostUsd(
               nodes.find((n) => n.id === targetNodeId)?.data.nodeType || "text",
               nodes.find((n) => n.id === targetNodeId)?.data.params || {},
-              isMockMode
+              isMockMode,
+              runPolicy
             )
           : totalEstimatedCost;
 
@@ -986,6 +991,7 @@ function StudioCanvasInner() {
       edges,
       defMap,
       isMockMode,
+      runPolicy,
       totalEstimatedCost,
       updateNodeExecutionState,
       showBanner,
@@ -1202,6 +1208,7 @@ function StudioCanvasInner() {
         targetNodeId,
         spendingLimitUsd: perRunSpendingLimitUsd,
         mockMode: isMockMode,
+        runPolicy,
       }).catch((err) => {
         runError = String(err?.message || err);
         setBannerMsg({ tone: "error", text: `Lỗi chạy đồ thị: ${runError}` });
@@ -1296,6 +1303,7 @@ function StudioCanvasInner() {
     nodes,
     edges,
     isMockMode,
+    runPolicy,
     perRunSpendingLimitUsd,
     addJob,
     updateJob,
@@ -1639,20 +1647,8 @@ function StudioCanvasInner() {
             {nodes.filter((n) => n.data.status === "succeeded").length}/{nodes.length}
           </span>
 
-          <button
-            type="button"
-            onClick={() => setIsMockMode(!isMockMode)}
-            title={isMockMode ? `${t("mockMode")} — bấm để chuyển sang API thật` : `${t("liveMode")} — bấm để chuyển sang chạy thử`}
-            aria-label={isMockMode ? t("mockMode") : t("liveMode")}
-            aria-pressed={!isMockMode}
-            className={cn(
-              "flex h-8 items-center gap-1.5 rounded-full px-2.5 text-xs transition-colors active:scale-95",
-              isMockMode ? "bg-muted/50 text-foreground" : "bg-brand/10 text-brand"
-            )}
-          >
-            <span className={cn("h-1.5 w-1.5 rounded-full", isMockMode ? "bg-muted-foreground" : "bg-brand")} />
-            <span className="font-medium">{isMockMode ? "Mock" : "Live"}</span>
-          </button>
+          {/* Menu chế độ chạy lai (Animatic / Thử nhanh / Đầy đủ / Tuỳ chỉnh) */}
+          <RunModeMenu />
 
           <span title={`Chi phí ước tính cả chuỗi: $${totalEstimatedCost.toFixed(2)}${isMockMode ? " (chạy thử: thực tế $0)" : ""}`} className="flex h-8 items-center gap-1 rounded-full bg-muted/50 px-2.5 text-xs tnum text-foreground">
             <DollarSign className="h-3.5 w-3.5 text-muted-foreground" />

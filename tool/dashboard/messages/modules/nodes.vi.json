@@ -40,6 +40,23 @@
       "referenceImages": "Ảnh mẫu tham chiếu",
       "modelNotSupportRef": "Model này không hỗ trợ ảnh mẫu tham chiếu"
     },
+    "videoGen": {
+      "model": "Mô hình video",
+      "perShot": "Sinh clip theo từng shot",
+      "maxClips": "Số clip tối đa",
+      "clipSource": "Nguồn clip",
+      "shotIds": "Chỉ định Shot IDs",
+      "promptPlaceholder": "Mô tả hướng máy quay, chuyển động..."
+    },
+    "modelPicker": {
+      "select": "Chọn model...",
+      "free": "Miễn phí",
+      "local": "Trên máy ($0)",
+      "paid": "Trả phí",
+      "fallback": "Dự phòng khi hết hạn mức (chỉ nguồn $0)",
+      "missingKey": "Thiếu key",
+      "settings": "Cài đặt key"
+    },
     "character": {
       "select": "Chọn nhân vật"
     },

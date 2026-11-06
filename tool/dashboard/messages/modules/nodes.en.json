@@ -40,6 +40,23 @@
       "referenceImages": "Reference images",
       "modelNotSupportRef": "This model does not support reference images"
     },
+    "videoGen": {
+      "model": "Video model",
+      "perShot": "Generate clip per shot",
+      "maxClips": "Max clips",
+      "clipSource": "Clip source",
+      "shotIds": "Specific Shot IDs",
+      "promptPlaceholder": "Describe camera angle, motion..."
+    },
+    "modelPicker": {
+      "select": "Select model...",
+      "free": "Free",
+      "local": "Local ($0)",
+      "paid": "Paid",
+      "fallback": "Fallback on quota error (free only)",
+      "missingKey": "Missing key",
+      "settings": "Key settings"
+    },
     "character": {
       "select": "Select character"
     },
