@@ -17,6 +17,7 @@ import {
   Images,
 } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
+import { fetchScriptData } from "@/lib/api/nodes";
 import { useHubScope } from "@/lib/hub";
 import { RefreshCw, MorphIcon, Volume2Node, VolumeXNode } from "@/components/ui/icons";
 import {
@@ -331,6 +332,80 @@ function PolicyBadge() {
 }
 
 /** Thân card cho từng loại node: cho phép nhập liệu trực tiếp ngay trên card. */
+
+/** Dàn diễn viên: hiện NGAY các nhân vật của tập đang chọn ở node Kịch bản nối vào (đổi tập là đổi theo, không cần chạy). */
+function CastPreview({ nodeId, data }: { nodeId: string; data: any }) {
+  const projectId = useStudioStore((st: any) => st.activeProjectId) as string;
+  const episodeId = useStudioStore((st: any) => {
+    for (const e of st.edges) {
+      if (e.target !== nodeId) continue;
+      const src = st.nodes.find((n: any) => n.id === e.source);
+      if (src?.data?.nodeType === "script" && src.data.params?.mode === "episode") return String(src.data.params.episodeId || "");
+    }
+    return "";
+  });
+  const include: string[] = data?.params?.include || [];
+  const exclude: string[] = data?.params?.exclude || [];
+  const [cast, setCast] = React.useState<{ id: string | null; name: string }[] | null>(null);
+  const [unmatched, setUnmatched] = React.useState<string[]>([]);
+  React.useEffect(() => {
+    if (!episodeId) {
+      setCast(null);
+      return;
+    }
+    let alive = true;
+    fetchScriptData(projectId, episodeId).then((d: any) => {
+      if (!alive) return;
+      const sc = d?.script;
+      const list = (sc?.cast || []).map((c: any) => ({ id: c.id || null, name: c.name }));
+      setCast(list);
+      setUnmatched(sc?.unmatched || []);
+    });
+    return () => {
+      alive = false;
+    };
+  }, [projectId, episodeId]);
+  if (!episodeId) {
+    return (
+      <p className="text-xs text-muted-foreground">
+        Nối cổng <span className="font-medium text-foreground">lines</span> của Kịch bản (chế độ Kịch bản tập) để tự lấy nhân vật theo tập.
+      </p>
+    );
+  }
+  const shown = (cast || []).filter((c) => !(c.id && exclude.includes(c.id)));
+  return (
+    <div className="space-y-1.5">
+      <div className="text-[11px] text-muted-foreground">
+        Tập <span className="font-mono text-foreground">{episodeId.replace(/^ep(\d+)-.*/, "$1")}</span> · {shown.length} nhân vật
+        {include.length > 0 && ` (+${include.length} thêm tay)`}
+      </div>
+      <div className="flex flex-wrap gap-1.5">
+        {cast === null && <span className="text-xs text-muted-foreground">Đang đọc kịch bản…</span>}
+        {shown.map((c) => (
+          <span
+            key={c.name}
+            className={cn(
+              "rounded-full border px-2 py-0.5 text-xs",
+              c.id ? "border-border bg-accent/50 text-foreground" : "border-semantic-warning text-semantic-warning"
+            )}
+            title={c.id ? `id: ${c.id}` : "Chưa ghép được với hồ sơ nhân vật của dự án"}
+          >
+            {c.name}
+          </span>
+        ))}
+        {include.map((id) => (
+          <span key={id} className="rounded-full border border-dashed border-border px-2 py-0.5 text-xs text-muted-foreground" title="Thêm tay (params.include)">
+            + {id}
+          </span>
+        ))}
+      </div>
+      {unmatched.length > 0 && (
+        <div className="text-[11px] text-semantic-warning">Chưa ghép được: {unmatched.join(", ")}</div>
+      )}
+    </div>
+  );
+}
+
 export const NodeBody = React.memo(function NodeBody({
   nodeType,
   nodeId,
@@ -499,6 +574,9 @@ export const NodeBody = React.memo(function NodeBody({
           )}
         </div>
       );
+
+    case "cast":
+      return <CastPreview nodeId={nodeId} data={data} />;
 
     case "character":
       return (
