@@ -557,6 +557,37 @@ export const StudioNode = memo(function StudioNode({
       )}
       style={{ boxShadow: "none" }}
     >
+      {activeInPort !== null && (() => {
+        const ap = def.inputPorts.find((pt) => pt.name === activeInPort);
+        if (!ap) return null;
+        // Ở cấp thẻ (không nằm trong vùng overflow-hidden) để tràn ra ngoài; top khớp hàng input đã bấm
+        return (
+          <div
+            className="nodrag nowheel absolute left-full z-50 w-[320px] cursor-default space-y-1.5 rounded-xl rounded-tl-none border border-border bg-popover p-3 text-popover-foreground shadow-lg"
+            style={{ top: activeInTop, marginLeft: 12 }}
+            onClick={(e) => e.stopPropagation()}
+            onDoubleClick={(e) => e.stopPropagation()}
+          >
+            {/* Cầu nối: hàng input và panel liền một khối */}
+            <span aria-hidden className="absolute -left-3 top-0 h-[22px] w-3 border-y border-border bg-popover" />
+            <div className="flex items-center justify-between text-[11px] text-muted-foreground">
+              <span>
+                Nguồn cho <span className="font-mono text-foreground">{ap.name}</span>
+              </span>
+              <button
+                type="button"
+                aria-label="Đóng"
+                title="Đóng"
+                onClick={() => setActiveInPort(null)}
+                className="flex h-5 w-5 items-center justify-center rounded text-muted-foreground hover:bg-accent hover:text-foreground"
+              >
+                ✕
+              </button>
+            </div>
+            <PortValueInput nodeId={id} port={ap} />
+          </div>
+        );
+      })()}
       {stateKey === "running" && (
         <div className="pointer-events-none absolute inset-x-2 bottom-0 h-0.5 overflow-hidden rounded-full bg-muted">
           {typeof data.progressPct === "number" ? (
@@ -671,41 +702,24 @@ export const StudioNode = memo(function StudioNode({
                   e.stopPropagation();
                   const row = e.currentTarget as HTMLElement;
                   const card = row.closest("[data-node-card]") as HTMLElement | null;
-                  if (card) setActiveInTop(row.getBoundingClientRect().top - card.getBoundingClientRect().top);
+                  if (card) {
+                    // offsetTop không bị ảnh hưởng bởi zoom/transform của canvas (getBoundingClientRect thì có)
+                    let y = 0;
+                    let el: HTMLElement | null = row;
+                    while (el && el !== card) {
+                      y += el.offsetTop;
+                      el = el.offsetParent as HTMLElement | null;
+                    }
+                    setActiveInTop(y);
+                  }
                   setActiveInPort((cur) => (cur === port.name ? null : port.name));
                 }}
                 className={cn(
-                  "nodrag relative flex cursor-pointer items-center gap-1.5 px-3 text-xs transition-colors hover:bg-accent/60",
+                  "nodrag flex cursor-pointer items-center gap-1.5 px-3 text-xs transition-colors hover:bg-accent/60",
                   activeInPort === port.name && "z-40 bg-popover shadow-[inset_3px_0_0_hsl(var(--foreground))]"
                 )}
                 style={{ height: ROW }}
               >
-                {activeInPort === port.name && (
-                  <div
-                    className="nodrag nowheel absolute left-full top-0 z-50 w-[320px] cursor-default space-y-1.5 rounded-xl rounded-tl-none border border-border bg-popover p-3 text-popover-foreground shadow-lg"
-                    style={{ marginLeft: 12 }}
-                    onClick={(e) => e.stopPropagation()}
-                    onDoubleClick={(e) => e.stopPropagation()}
-                  >
-                    {/* Cầu nối: hàng input và panel liền một khối */}
-                    <span aria-hidden className="absolute -left-3 top-0 h-[22px] w-3 border-y border-border bg-popover" />
-                    <div className="flex items-center justify-between text-[11px] text-muted-foreground">
-                      <span>
-                        Nguồn cho <span className="font-mono text-foreground">{port.name}</span>
-                      </span>
-                      <button
-                        type="button"
-                        aria-label="Đóng"
-                        title="Đóng"
-                        onClick={() => setActiveInPort(null)}
-                        className="flex h-5 w-5 items-center justify-center rounded text-muted-foreground hover:bg-accent hover:text-foreground"
-                      >
-                        ✕
-                      </button>
-                    </div>
-                    <PortValueInput nodeId={id} port={port} />
-                  </div>
-                )}
                 {!(portIconOf(port.portType) && port.name === port.portType) && (
                   <span className={cn("truncate", filled ? "text-foreground" : port.required ? "text-semantic-danger" : "text-muted-foreground")}>
                     {port.name}
