@@ -309,16 +309,47 @@ class GraphRunner:
                     parents.add(val["nodeId"])
         return parents
 
+    def _is_mock_for(self, node_or_kind: Union[NodeInstance, str], req: Optional[GraphRunRequest]) -> bool:
+        """Kiểm tra chế độ mock cho từng loại node dựa trên runPolicy (Hợp đồng C3)."""
+        if req is None:
+            return True
+        policy = req.resolve_run_policy()
+        if isinstance(node_or_kind, str):
+            kind = node_or_kind.lower()
+        else:
+            ntype = getattr(node_or_kind, "type", "")
+            if ntype in ("image_gen", "image_edit"):
+                kind = "image"
+            elif ntype == "video_gen":
+                kind = "video"
+            elif ntype == "voice_tts":
+                kind = "voice"
+            elif ntype in ("text", "script", "vision_analyze", "quality_check"):
+                kind = "text"
+            else:
+                kind = "text"
+
+        if kind == "image":
+            return policy.image == "mock"
+        elif kind == "video":
+            return policy.video in ("mock", "off")
+        elif kind == "voice":
+            return policy.voice == "mock"
+        elif kind == "text":
+            return policy.text == "mock"
+        return req.mock_mode
+
     def _effective_model_for_node(self, node: NodeInstance, real_mode: bool = False) -> Tuple[str, str]:
         """Xác định (model_key, provider) thực tế sẽ dùng cho một node."""
         raw_model = str(node.params.get("model", "")).strip()
 
         if node.type in ("image_gen", "image_edit"):
             if not raw_model or (real_mode and raw_model.startswith("mock")):
-                model_key = "gemini-2.5-flash-image" if real_mode else (raw_model or "mock-image")
+                # Ưu tiên local/cloudflare, không đặt Pollinations làm nguồn chính
+                model_key = "local-flux-schnell" if real_mode else (raw_model or "mock-image")
             else:
                 model_key = raw_model
-            prov = resolve_provider_for_model(model_key, default_provider="google" if real_mode else "mock")
+            prov = resolve_provider_for_model(model_key, default_provider="local" if real_mode else "mock")
             return model_key, prov
 
         if node.type == "video_gen":
@@ -369,17 +400,21 @@ class GraphRunner:
         graph: Graph,
         node_ids_to_run: List[str],
         real_mode: bool = False,
+        req: Optional[GraphRunRequest] = None,
     ) -> float:
         """Tính tổng chi phí USD ước tính của toàn bộ các node sẽ chạy."""
         total = 0.0
         node_map = {n.id: n for n in graph.nodes}
         for nid in node_ids_to_run:
             if nid in node_map:
-                cost = self.estimate_node_cost(node_map[nid], real_mode=real_mode)
-                if cost and node_map[nid].type == "image_gen":
+                n = node_map[nid]
+                is_node_mock = self._is_mock_for(n, req) if req else (not real_mode)
+                cost = 0.0 if is_node_mock else self.estimate_node_cost(n, real_mode=True)
+                if cost and n.type == "image_gen":
                     # Lặp theo cảnh: chi phí = số cảnh x chi phí 1 ảnh
-                    cost *= max(1, self._estimate_batch_count(graph, node_map[nid]))
-                total += cost + self._capabilities_cost(node_map[nid], real_mode)
+                    cost *= max(1, self._estimate_batch_count(graph, n))
+                cap_real = not (self._is_mock_for("voice", req) if req else (not real_mode))
+                total += cost + self._capabilities_cost(n, cap_real)
         return round(total, 6)
 
     def _estimate_batch_count(self, graph: Graph, node: NodeInstance) -> int:
@@ -468,7 +503,8 @@ class GraphRunner:
 
         for nid in to_run:
             node = node_map[nid]
-            if req.mock_mode:
+            is_node_mock = self._is_mock_for(node, req)
+            if is_node_mock:
                 model_key, _ = self._effective_model_for_node(node, real_mode=False)
                 estimates.append(
                     NodeCostEstimate(
@@ -484,7 +520,8 @@ class GraphRunner:
                 cost = self.estimate_node_cost(node, real_mode=True)
                 if cost and node.type == "image_gen":
                     cost = round(cost * max(1, self._estimate_batch_count(graph, node)), 6)
-                cost = round(cost + self._capabilities_cost(node, True), 6)
+                cap_real = not self._is_mock_for("voice", req)
+                cost = round(cost + self._capabilities_cost(node, cap_real), 6)
                 total_real_cost += cost
                 estimates.append(
                     NodeCostEstimate(
@@ -495,12 +532,27 @@ class GraphRunner:
                         estimated_cost_usd=cost,
                     )
                 )
-                if prov in ("google", "gemini") and not kv.has_valid_key("gemini"):
-                    missing_providers.add("gemini")
-                elif prov == "fal" and not kv.has_valid_key("fal"):
-                    missing_providers.add("fal")
-                elif prov == "replicate" and not kv.has_valid_key("replicate"):
-                    missing_providers.add("replicate")
+                try:
+                    from socnhotv.core.providers.factories import PROVIDER_META
+                    p_meta = PROVIDER_META.get(prov)
+                    if p_meta and p_meta.get("needs_key"):
+                        vault_name = "gemini" if prov in ("google", "gemini") else prov
+                        if not kv.has_valid_key(vault_name):
+                            missing_providers.add(vault_name)
+                    elif not p_meta:
+                        if prov in ("google", "gemini") and not kv.has_valid_key("gemini"):
+                            missing_providers.add("gemini")
+                        elif prov == "fal" and not kv.has_valid_key("fal"):
+                            missing_providers.add("fal")
+                        elif prov == "replicate" and not kv.has_valid_key("replicate"):
+                            missing_providers.add("replicate")
+                except ImportError:
+                    if prov in ("google", "gemini") and not kv.has_valid_key("gemini"):
+                        missing_providers.add("gemini")
+                    elif prov == "fal" and not kv.has_valid_key("fal"):
+                        missing_providers.add("fal")
+                    elif prov == "replicate" and not kv.has_valid_key("replicate"):
+                        missing_providers.add("replicate")
 
         total_real_cost = round(total_real_cost, 4)
         spend_status = sg.preview(total_real_cost, source=req.source)
@@ -514,10 +566,11 @@ class GraphRunner:
             project_id=req.project_id,
             mode=req.mode,
             mock_mode=req.mock_mode,
+            run_policy=req.resolve_run_policy(),
             nodes_to_execute=estimates,
             skipped_nodes=skipped,
             total_estimated_cost_usd=total_real_cost,
-            requires_confirmation=bool(real_mode and total_real_cost > 0),
+            requires_confirmation=bool(total_real_cost > 0),
             missing_api_keys=sorted(missing_providers),
             spend_status=spend_status,
         )
@@ -661,8 +714,11 @@ class GraphRunner:
         return texts
 
     # ------------------------------------------------------------ ảnh chụp cổng ra của node
-    def _outputs_snapshot_path(self, graph_id: str, node_id: str):
+    def _outputs_snapshot_path(self, graph_id: str, node_id: str, is_mock: Optional[bool] = None):
         safe = lambda x: re.sub(r"[^A-Za-z0-9_.-]+", "_", str(x or "graph"))[:120]
+        if is_mock is not None:
+            tag = "mock" if is_mock else "real"
+            return self.store.runs_dir / "_node_outputs" / safe(graph_id) / f"{safe(node_id)}_{tag}.json"
         return self.store.runs_dir / "_node_outputs" / safe(graph_id) / f"{safe(node_id)}.json"
 
     @staticmethod
@@ -699,7 +755,7 @@ class GraphRunner:
 
     def _save_outputs_snapshot(self, graph_id: str, node: NodeInstance, outputs: Dict[str, Any], is_mock: bool) -> None:
         try:
-            path = self._outputs_snapshot_path(graph_id, node.id)
+            path = self._outputs_snapshot_path(graph_id, node.id, is_mock=is_mock)
             path.parent.mkdir(parents=True, exist_ok=True)
             payload = {
                 "nodeId": node.id,
@@ -713,12 +769,18 @@ class GraphRunner:
             tmp = path.with_suffix(".json.tmp")
             tmp.write_text(_json.dumps(payload, ensure_ascii=False), encoding="utf-8")
             os.replace(tmp, path)
+            legacy_path = self._outputs_snapshot_path(graph_id, node.id)
+            tmp_leg = legacy_path.with_suffix(".json.tmp")
+            tmp_leg.write_text(_json.dumps(payload, ensure_ascii=False), encoding="utf-8")
+            os.replace(tmp_leg, legacy_path)
         except Exception as e:  # không để việc lưu cache làm hỏng lượt chạy
             logger.warning(f"Không lưu được ảnh chụp cổng ra của node {node.id}: {e}")
 
     def _load_outputs_snapshot(self, graph_id: str, node: NodeInstance, is_mock: bool) -> Optional[Dict[str, Any]]:
         try:
-            path = self._outputs_snapshot_path(graph_id, node.id)
+            path = self._outputs_snapshot_path(graph_id, node.id, is_mock=is_mock)
+            if not path.is_file():
+                path = self._outputs_snapshot_path(graph_id, node.id)
             if not path.is_file():
                 return None
             data = _json.loads(path.read_text(encoding="utf-8"))
@@ -857,6 +919,7 @@ class GraphRunner:
         core_outputs: Dict[str, Any],
         run_id: str,
         is_mock: bool,
+        req: Optional[GraphRunRequest] = None,
     ) -> Tuple[Dict[str, Any], float]:
         """Chạy lần lượt các chức năng đang bật của node sau phần lõi.
 
@@ -875,8 +938,20 @@ class GraphRunner:
             if runtime is None or not cap.available:
                 raise ValueError(f"Chức năng '{cap.display_name}' của node '{node.id}' chưa sẵn sàng.")
             params = capability_params(cap, node.params)
+
+            # Xác định chế độ mock riêng cho từng chức năng theo RunPolicy (C3)
+            if req is not None:
+                if cap.name == "speak":
+                    cap_is_mock = self._is_mock_for("voice", req)
+                elif cap.name in ("shot_images", "images"):
+                    cap_is_mock = self._is_mock_for("image", req)
+                else:
+                    cap_is_mock = is_mock
+            else:
+                cap_is_mock = is_mock
+
             key = capability_cache_key(
-                node, cap, params, runtime.cache_inputs(node, resolved_inputs, cap, core_outputs), is_mock
+                node, cap, params, runtime.cache_inputs(node, resolved_inputs, cap, core_outputs), cap_is_mock
             )
             cached = self._load_capability_cache(graph_id, node.id, cap.name, key)
             if cached is not None:
@@ -894,7 +969,7 @@ class GraphRunner:
                 )
                 continue
             outs, cost = await runtime.run(
-                self, node, params, resolved_inputs, {**core_outputs, **merged}, run_id, is_mock
+                self, node, params, resolved_inputs, {**core_outputs, **merged}, run_id, cap_is_mock
             )
             outs = dict(outs or {})
             self._save_capability_cache(graph_id, node.id, cap.name, key, outs, float(cost or 0.0))
@@ -1734,6 +1809,7 @@ class GraphRunner:
                         "node_id": node.id,
                         "run_id": run_id,
                         "model": model_param,
+                        "fallback_models": node.params.get("fallbackModels"),
                     },
                 )
                 res = await gen_fn(**call_args)
@@ -1778,6 +1854,7 @@ class GraphRunner:
                     "node_id": node.id,
                     "run_id": run_id,
                     "model": model_param,
+                    "fallback_models": node.params.get("fallbackModels"),
                 },
             )
             arts = await gen_fn(**call_args)
@@ -2736,7 +2813,7 @@ class GraphRunner:
 
         # 3. Ước tính chi phí & Kiểm tra Trần ngân sách (Spending Limit Guard)
         total_estimated_cost = self.estimate_graph_cost(
-            graph, nodes_to_execute, real_mode=not req.mock_mode
+            graph, nodes_to_execute, real_mode=not req.mock_mode, req=req
         )
         if req.spending_limit_usd is not None and total_estimated_cost > req.spending_limit_usd:
             exceed_msg = (
@@ -2775,7 +2852,7 @@ class GraphRunner:
         for nid, node in node_map.items():
             # Ưu tiên ảnh chụp ĐẦY ĐỦ cổng ra của lần chạy trước (cùng tham số, cùng chế độ mock/thật):
             # giữ được danh sách cảnh, ảnh tham chiếu, phụ đề... thay vì chỉ 1 artifact chính.
-            snap = self._load_outputs_snapshot(graph.id, node, bool(req.mock_mode))
+            snap = self._load_outputs_snapshot(graph.id, node, self._is_mock_for(node, req))
             if snap is not None:
                 node_outputs[nid] = snap
                 continue
@@ -2878,11 +2955,13 @@ class GraphRunner:
 
                 # Báo giao diện: node làm gì, bằng model nào, nguồn gì, dự kiến tốn bao nhiêu
                 try:
-                    m_key, m_prov = self._effective_model_for_node(node, real_mode=not req.mock_mode)
-                    est = 0.0 if req.mock_mode else self.estimate_node_cost(node, real_mode=True)
+                    is_node_mock = self._is_mock_for(node, req)
+                    m_key, m_prov = self._effective_model_for_node(node, real_mode=not is_node_mock)
+                    est = 0.0 if is_node_mock else self.estimate_node_cost(node, real_mode=True)
                     if est and node.type == "image_gen":
                         est *= max(1, self._estimate_batch_count(graph, node))
-                    est += 0.0 if req.mock_mode else self._capabilities_cost(node, True)
+                    cap_real = not self._is_mock_for("voice", req)
+                    est += self._capabilities_cost(node, cap_real)
                     self._emit_event(
                         SSEEvent(
                             event_type=SSEEventType.NODE_PROGRESS,
@@ -2926,11 +3005,11 @@ class GraphRunner:
 
                         prev_port_sigs = self._previous_port_signatures(graph.id, node)
                         outputs, primary_art, cost = await self._execute_node_handler(
-                            node, resolved_inputs, run_id, is_mock=req.mock_mode, all_node_outputs=node_outputs
+                            node, resolved_inputs, run_id, is_mock=self._is_mock_for(node, req), all_node_outputs=node_outputs
                         )
                         # Chức năng bật/tắt trong node (vd. Nhân vật: Nói, Ảnh theo cảnh)
                         cap_outputs, cap_cost = await self._run_capabilities(
-                            graph.id, node, resolved_inputs, outputs, run_id, bool(req.mock_mode)
+                            graph.id, node, resolved_inputs, outputs, run_id, is_mock=self._is_mock_for("voice", req), req=req
                         )
                         if cap_outputs:
                             outputs = {**outputs, **cap_outputs}
@@ -2942,7 +3021,7 @@ class GraphRunner:
                             if op.map_to and op.name not in outputs and op.map_to in outputs:
                                 outputs[op.name] = outputs[op.map_to]
                         node_outputs[nid] = outputs
-                        self._save_outputs_snapshot(graph.id, node, outputs, bool(req.mock_mode))
+                        self._save_outputs_snapshot(graph.id, node, outputs, self._is_mock_for(node, req))
                         total_actual_cost += cost
 
                         art_id = primary_art.id if primary_art else f"art_virtual_{uuid.uuid4().hex[:6]}"
@@ -2978,7 +3057,7 @@ class GraphRunner:
                             prov_used = (
                                 primary_art.provenance.provider
                                 if primary_art
-                                else ("mock" if req.mock_mode else "provider")
+                                else ("mock" if self._is_mock_for(node, req) else "provider")
                             )
                             model_used = (
                                 primary_art.provenance.model

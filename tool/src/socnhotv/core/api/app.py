@@ -27,6 +27,7 @@ from socnhotv.core.contracts.types import (
     NodeInstance,
     NodeState,
     RunMode,
+    RunPolicy,
     SSEEvent,
     SSEEventType,
 )
@@ -100,13 +101,25 @@ def _parse_run_request(project_id: str, graph: Graph, payload: Dict[str, Any]) -
     confirm_paid_run = bool(
         payload.get("confirmPaidRun") or payload.get("confirm_paid_run") or payload.get("confirmed", False)
     )
+    run_policy_raw = payload.get("runPolicy") or payload.get("run_policy")
+    run_policy = None
+    if run_policy_raw:
+        if isinstance(run_policy_raw, dict):
+            run_policy = RunPolicy.model_validate(run_policy_raw)
+        elif isinstance(run_policy_raw, RunPolicy):
+            run_policy = run_policy_raw
+
+    mock_mode_raw = payload.get("mockMode")
+    mock_mode = bool(mock_mode_raw) if mock_mode_raw is not None else True
+
     return GraphRunRequest(
         project_id=project_id,
         graph_id=payload.get("graphId") or graph.id,
         mode=mode,
         target_node_id=target_node_id,
         spending_limit_usd=payload.get("spendingLimitUsd"),
-        mock_mode=bool(payload.get("mockMode", True)),
+        mock_mode=mock_mode,
+        run_policy=run_policy,
         confirm_paid_run=confirm_paid_run,
         source=str(payload.get("source", "api")),
         max_retries=int(payload.get("maxRetries", 3)),
@@ -159,20 +172,51 @@ async def health_check():
     }
 
 
-@app.get("/models", response_model=List[ModelSpec])
+class ModelItemResponse(ModelSpec):
+    available: bool = True
+
+
+@app.get("/models", response_model=List[ModelItemResponse])
 async def list_models(kind: Optional[str] = None, provider: Optional[str] = None):
     registry = ModelRegistry.get_instance()
+    vault = get_key_vault()
     if provider:
         items = registry.list_by_provider(provider)
-        return [m for m in items if m.kind == kind] if kind else items
-    if kind:
-        return registry.list_by_kind(kind)
-    return registry.list_all()
+        items = [m for m in items if m.kind == kind] if kind else items
+    elif kind:
+        items = registry.list_by_kind(kind)
+    else:
+        items = registry.list_all()
+
+    out: List[ModelItemResponse] = []
+    for m in items:
+        pname = m.provider
+        tier = getattr(m, "tier", "paid")
+        is_avail = False
+        if tier in ("free", "local") or pname in ("mock", "local"):
+            is_avail = True
+        elif pname == "pollinations":
+            is_avail = True
+        elif pname in ("google", "gemini"):
+            is_avail = vault.has_valid_key("gemini")
+        elif pname == "fal":
+            is_avail = vault.has_valid_key("fal")
+        elif pname == "replicate":
+            is_avail = vault.has_valid_key("replicate")
+        elif pname == "cloudflare":
+            is_avail = vault.has_valid_key("cloudflare")
+        else:
+            is_avail = vault.has_valid_key(pname)
+
+        d = m.model_dump(by_alias=True)
+        d["available"] = is_avail
+        out.append(ModelItemResponse.model_validate(d))
+    return out
 
 
 @app.get("/providers")
 async def list_providers():
-    """Trả về danh sách Provider adapter, khả năng hỗ trợ và trạng thái cấu hình (không trả khóa)."""
+    """Trả về danh sách Provider adapter, khả năng hỗ trợ, tier, needs_key và trạng thái cấu hình (không trả khóa)."""
     vault = get_key_vault()
     registry = ModelRegistry.get_instance()
     dummy_store = ProjectStore("soc-nho-tv")
@@ -183,38 +227,50 @@ async def list_providers():
     fal_caps = FalProvider(dummy_store, key=dummy_key).capabilities()
     rep_caps = ReplicateProvider(dummy_store, key=dummy_key).capabilities()
 
-    return {
-        "providers": [
-            {
-                "id": "mock",
-                "label": "Mock Provider (Chạy thử miễn phí)",
-                "configured": True,
-                "capabilities": mock_caps,
-                "models": [m.model_id for m in registry.list_by_provider("mock")],
-            },
-            {
-                "id": "google",
-                "label": "Google Gemini & Veo",
-                "configured": vault.has_valid_key("gemini"),
-                "capabilities": google_caps,
-                "models": [m.model_id for m in registry.list_by_provider("google")],
-            },
-            {
-                "id": "fal",
-                "label": "fal.ai (FLUX, Kontext, Kling v3, LTX Video)",
-                "configured": vault.has_valid_key("fal"),
-                "capabilities": fal_caps,
-                "models": [m.model_id for m in registry.list_by_provider("fal")],
-            },
-            {
-                "id": "replicate",
-                "label": "Replicate (Khung mở rộng)",
-                "configured": vault.has_valid_key("replicate"),
-                "capabilities": rep_caps,
-                "models": [m.model_id for m in registry.list_by_provider("replicate")],
-            },
-        ]
+    caps_map = {
+        "mock": mock_caps,
+        "google": google_caps,
+        "fal": fal_caps,
+        "replicate": rep_caps,
+        "pollinations": {"image": True, "video": False, "supports_reference": True},
+        "cloudflare": {"image": True, "video": False, "supports_reference": False},
+        "local": {"image": True, "video": False, "supports_reference": False},
     }
+
+    try:
+        from socnhotv.core.providers.factories import PROVIDER_META
+    except ImportError:
+        PROVIDER_META = {}
+
+    providers_list = []
+    ordered_ids = ["mock", "local", "cloudflare", "pollinations", "google", "fal", "replicate"]
+    for pid in ordered_ids:
+        meta = PROVIDER_META.get(pid, {})
+        tier = meta.get("tier", "paid" if pid in ("google", "fal", "replicate") else "free")
+        needs_key = meta.get("needs_key", pid in ("google", "fal", "replicate", "cloudflare"))
+        label = meta.get("label", pid)
+        quota_note = meta.get("quota_note", "")
+
+        vault_name = "gemini" if pid in ("google", "gemini") else pid
+        if not needs_key:
+            configured = True
+        else:
+            configured = vault.has_valid_key(vault_name)
+
+        models = [m.model_id for m in registry.list_by_provider(pid)]
+
+        providers_list.append({
+            "id": pid,
+            "label": label,
+            "tier": tier,
+            "needs_key": bool(needs_key),
+            "configured": configured,
+            "quota_note": quota_note,
+            "capabilities": caps_map.get(pid, {}),
+            "models": models,
+        })
+
+    return {"providers": providers_list}
 
 
 @app.get("/node-types", response_model=List[NodeDefinition])
@@ -391,44 +447,56 @@ async def run_graph(project_id: str, payload: Dict[str, Any] = Body(...)):
         broadcast_event(project_id, event)
 
     # Kiểm tra trước chi phí & khóa API khi chạy chế độ thật trên đồ thị hợp lệ
-    if not req.mock_mode and validate_graph(graph).is_valid:
+    policy = req.resolve_run_policy()
+    is_all_mock = (
+        policy.image == "mock"
+        and policy.video in ("mock", "off")
+        and policy.text == "mock"
+        and policy.voice == "mock"
+    )
+    if not is_all_mock and validate_graph(graph).is_valid:
         planner = GraphRunner(store=store, model_registry=ModelRegistry())
         try:
             plan = planner.plan_execution(graph, req, vault=vault, guard=guard)
         except GraphExecutionError as ge:
             raise HTTPException(status_code=400, detail=redact_secrets(str(ge)))
 
-        if plan.total_estimated_cost_usd > 0 or plan.missing_api_keys:
-            if plan.missing_api_keys:
-                raise HTTPException(
-                    status_code=400,
-                    detail=f"Thiếu khóa API hợp lệ cho provider: {', '.join(plan.missing_api_keys)}",
-                )
-            if not plan.spend_status.get("canProceed", True):
-                raise HTTPException(
-                    status_code=400,
-                    detail=str(plan.spend_status.get("reason") or "Vượt trần chi tiêu cho phép."),
-                )
-            if not req.confirm_paid_run:
-                return JSONResponse(
-                    status_code=409,
-                    content={
-                        "detail": "Cần xác nhận chi phí trước khi gọi model trả phí (truyền confirmPaidRun=true).",
-                        "estimate": plan.model_dump(by_alias=True),
-                    },
-                )
+        if plan.missing_api_keys:
+            raise HTTPException(
+                status_code=400,
+                detail=f"Thiếu khóa API hợp lệ cho provider: {', '.join(plan.missing_api_keys)}",
+            )
+        if not plan.spend_status.get("canProceed", True):
+            raise HTTPException(
+                status_code=400,
+                detail=str(plan.spend_status.get("reason") or "Vượt trần chi tiêu cho phép."),
+            )
+        if plan.total_estimated_cost_usd > 0 and not req.confirm_paid_run:
+            return JSONResponse(
+                status_code=409,
+                content={
+                    "detail": "Cần xác nhận chi phí trước khi gọi model trả phí (truyền confirmPaidRun=true).",
+                    "estimate": plan.model_dump(by_alias=True),
+                },
+            )
 
     cancel_event = asyncio.Event()
     active_run_cancel_events.setdefault(project_id, []).append(cancel_event)
 
-    provider = ProviderRouter(
-        store=store,
-        guard=guard,
-        vault=vault,
-        mock_mode=req.mock_mode,
-        fallback_to_mock=False,
-        source=req.source,
-    )
+    import inspect
+    router_kwargs: Dict[str, Any] = {
+        "store": store,
+        "guard": guard,
+        "vault": vault,
+        "mock_mode": req.mock_mode,
+        "fallback_to_mock": False,
+        "source": req.source,
+    }
+    sig = inspect.signature(ProviderRouter)
+    if "run_policy" in sig.parameters or any(p.kind == inspect.Parameter.VAR_KEYWORD for p in sig.parameters.values()):
+        router_kwargs["run_policy"] = policy
+
+    provider = ProviderRouter(**router_kwargs)
 
     runner = GraphRunner(
         store=store,
@@ -957,6 +1025,27 @@ async def set_api_key(payload: Dict[str, Any] = Body(...)):
         return status
     except (MissingApiKey, ProviderError) as err:
         raise HTTPException(status_code=400, detail=redact_secrets(str(err)))
+
+
+@app.post("/settings/api-keys/verify")
+async def verify_api_key(payload: Dict[str, Any] = Body(...)):
+    """Kiểm tra trực tiếp khóa API có hoạt động không (gọi endpoint miễn phí $0)."""
+    provider = str(payload.get("provider", "")).strip().lower()
+    api_key = str(payload.get("apiKey", ""))
+    vault = get_key_vault()
+    try:
+        res = await vault.verify_key_live(provider, api_key=api_key if api_key else None)
+        return {"provider": provider, "valid": True, "detail": res}
+    except (MissingApiKey, ProviderError) as err:
+        return JSONResponse(
+            status_code=400,
+            content={"provider": provider, "valid": False, "detail": redact_secrets(str(err))},
+        )
+    except Exception as e:
+        return JSONResponse(
+            status_code=400,
+            content={"provider": provider, "valid": False, "detail": redact_secrets(str(e))},
+        )
 
 
 @app.get("/projects/{project_id}/files/{file_path:path}")

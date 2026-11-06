@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import enum
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Literal, Optional, Union
 from pydantic import BaseModel, ConfigDict, Field
 
 
@@ -246,6 +246,16 @@ class RunMode(str, enum.Enum):
     DOWNSTREAM = "downstream"                # Chạy từ 1 node và toàn bộ các node con cháu (descendants)
 
 
+class RunPolicy(BaseModel):
+    """Chế độ chạy theo từng loại sản phẩm (Hợp đồng C3)."""
+    image: str = Field("mock", description="mock | real")
+    video: str = Field("off", description="off | mock | real")
+    text: str = Field("mock", description="mock | real")
+    voice: str = Field("local", description="local | mock")
+
+    model_config = ConfigDict(populate_by_name=True, extra="allow")
+
+
 class GraphRunRequest(BaseModel):
     """Yêu cầu thực thi đồ thị node từ giao diện hoặc trợ lý AI."""
     project_id: str = Field(..., alias="projectId")
@@ -254,12 +264,25 @@ class GraphRunRequest(BaseModel):
     target_node_id: Optional[str] = Field(None, alias="targetNodeId")
     spending_limit_usd: Optional[float] = Field(None, alias="spendingLimitUsd")
     mock_mode: bool = Field(True, alias="mockMode")
+    run_policy: Optional[RunPolicy] = Field(None, alias="runPolicy")
     confirm_paid_run: bool = Field(False, alias="confirmPaidRun")
     source: str = Field("api", description="Nguồn gọi: ui | api | mcp")
     max_retries: int = Field(3, alias="maxRetries")
     concurrency_limit: int = Field(2, alias="concurrencyLimit")
 
     model_config = ConfigDict(populate_by_name=True)
+
+    def resolve_run_policy(self) -> RunPolicy:
+        """Nếu thiếu runPolicy thì suy từ mockMode: mockMode=True -> tất cả mock, TRỪ voice="local"."""
+        if self.run_policy is not None:
+            return self.run_policy
+        if self.mock_mode:
+            return RunPolicy(image="mock", video="mock", text="mock", voice="local")
+        return RunPolicy(image="real", video="real", text="real", voice="local")
+
+    def effective_run_policy(self) -> RunPolicy:
+        """Bí danh cho resolve_run_policy (hợp đồng C3)."""
+        return self.resolve_run_policy()
 
 
 class NodeCostEstimate(BaseModel):
@@ -278,6 +301,7 @@ class GraphCostEstimateResponse(BaseModel):
     project_id: str = Field(..., alias="projectId")
     mode: RunMode
     mock_mode: bool = Field(..., alias="mockMode")
+    run_policy: Optional[RunPolicy] = Field(None, alias="runPolicy")
     nodes_to_execute: List[NodeCostEstimate] = Field(default_factory=list, alias="nodesToExecute")
     skipped_nodes: List[str] = Field(default_factory=list, alias="skippedNodes")
     total_estimated_cost_usd: float = Field(0.0, alias="totalEstimatedCostUsd")

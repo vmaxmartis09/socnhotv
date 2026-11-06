@@ -71,6 +71,7 @@ class RunManager:
             "projectId": project_id,
             "status": "running",
             "mode": req.mode.value if hasattr(req.mode, "value") else str(req.mode),
+            "runPolicy": req.resolve_run_policy().model_dump(),
             "stage": "Bắt đầu",
             "currentNodeId": None,
             "progress": 0.05,
