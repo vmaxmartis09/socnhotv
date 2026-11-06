@@ -1,13 +1,94 @@
 # Sổ cấu hình Model AI Video Studio
 # Thêm hoặc đổi model chỉ cần sửa sổ này, không cần sửa mã nguồn.
+# Chuẩn C2 (Session G): tier (free|freemium|paid|local), supports_reference, max_references, quota_note, speed_note, durations_sec.
 
 models:
-  # Mock Models (dùng cho phát triển và kiểm thử miễn phí)
+  # ---- NGUỒN ẢNH MIỄN PHÍ MỚI (G1) ----
+  pollinations-flux:
+    display_name: "Pollinations FLUX.1 (Free AI, Hỗ trợ DNA)"
+    provider: "pollinations"
+    model_id: "flux"
+    kind: "image"
+    tier: "free"
+    supports_reference: true
+    max_references: 2
+    quota_note: "Miễn phí 1 ảnh/45s per IP; hỗ trợ ảnh tham chiếu DNA nhân vật; không giới hạn nếu có Pollen key"
+    speed_note: "~6-10s/ảnh"
+    capabilities:
+      aspect_ratios: ["16:9", "9:16", "1:1", "4:5"]
+      resolutions: ["720p", "1080p"]
+      supports_reference: true
+      supports_edit: true
+      max_batch: 1
+    pricing:
+      cost_per_generation: 0.0
+
+  pollinations-sana:
+    display_name: "Pollinations Sana (Free Siêu Nhanh)"
+    provider: "pollinations"
+    model_id: "sana"
+    kind: "image"
+    tier: "free"
+    supports_reference: true
+    max_references: 1
+    quota_note: "Miễn phí 1 ảnh/45s per IP; mô hình Sana cực nhanh"
+    speed_note: "~2-4s/ảnh"
+    capabilities:
+      aspect_ratios: ["16:9", "9:16", "1:1"]
+      resolutions: ["720p", "1080p"]
+      supports_reference: true
+      supports_edit: false
+      max_batch: 1
+    pricing:
+      cost_per_generation: 0.0
+
+  cf-flux-schnell:
+    display_name: "Cloudflare Workers AI (FLUX.1 Schnell)"
+    provider: "cloudflare"
+    model_id: "cf-flux-schnell"
+    kind: "image"
+    tier: "freemium"
+    supports_reference: false
+    max_references: 0
+    quota_note: "10.000 neurons/ngày (~55 ảnh FLUX.1 schnell/ngày free)"
+    speed_note: "~3-5s/ảnh"
+    capabilities:
+      aspect_ratios: ["16:9", "1:1"]
+      resolutions: ["720p"]
+      supports_reference: false
+      max_batch: 1
+    pricing:
+      cost_per_generation: 0.0
+
+  local-flux-schnell:
+    display_name: "Local Apple Silicon (mflux FLUX.1 4-bit)"
+    provider: "local"
+    model_id: "local-flux-schnell"
+    kind: "image"
+    tier: "local"
+    supports_reference: false
+    max_references: 0
+    quota_note: "$0 hoàn toàn offline trên chip Mac M4 16GB"
+    speed_note: "~10-15s/ảnh (4 steps)"
+    capabilities:
+      aspect_ratios: ["16:9", "1:1"]
+      resolutions: ["720p"]
+      supports_reference: false
+      max_batch: 1
+    pricing:
+      cost_per_generation: 0.0
+
+  # ---- MOCK MODELS (Phát triển & Kiểm thử) ----
   mock-image:
     display_name: "Mock Image Generator"
     provider: "mock"
     model_id: "mock-v1"
     kind: "image"
+    tier: "free"
+    supports_reference: true
+    max_references: 4
+    quota_note: "Không giới hạn (Mock)"
+    speed_note: "Tức thì (0s)"
     capabilities:
       aspect_ratios: ["16:9", "9:16", "1:1", "4:5"]
       resolutions: ["720p", "1080p"]
@@ -22,6 +103,12 @@ models:
     provider: "mock"
     model_id: "mock-video-v1"
     kind: "video"
+    tier: "free"
+    supports_reference: false
+    max_references: 0
+    durations_sec: [5, 8]
+    quota_note: "Không giới hạn (Mock)"
+    speed_note: "Tức thì (0s)"
     capabilities:
       aspect_ratios: ["16:9", "9:16"]
       durations_sec: [5, 8]
@@ -35,18 +122,28 @@ models:
     provider: "mock"
     model_id: "mock-voice-v1"
     kind: "audio"
+    tier: "free"
+    supports_reference: false
+    max_references: 0
+    quota_note: "Không giới hạn (Mock)"
+    speed_note: "Tức thì (0s)"
     capabilities:
       voices: ["soc-nho", "voice-koala"]
       max_duration_sec: 120
     pricing:
       cost_per_minute: 0.0
 
-  # Google AI Models (Gemini / Nano Banana / Veo)
+  # ---- GOOGLE AI MODELS (Gemini / Nano Banana / Veo) ----
   gemini-2.5-flash:
     display_name: "Google Gemini 2.5 Flash (Text & Vision)"
     provider: "google"
     model_id: "gemini-2.5-flash"
     kind: "text"
+    tier: "freemium"
+    supports_reference: false
+    max_references: 0
+    quota_note: "Miễn phí 15 RPM / 1.500 RPD cho text & vision prompt"
+    speed_note: "~1-2s/request"
     capabilities:
       supports_vision: true
       supports_json_schema: true
@@ -58,6 +155,11 @@ models:
     provider: "google"
     model_id: "gemini-2.5-flash-image"
     kind: "image"
+    tier: "paid"
+    supports_reference: true
+    max_references: 3
+    quota_note: "Không có free tier (limit 0 rpd). Bắt buộc tài khoản Pay-as-you-go"
+    speed_note: "~4-8s/ảnh"
     capabilities:
       aspect_ratios: ["16:9", "9:16", "1:1", "4:5"]
       resolutions: ["1080p"]
@@ -72,6 +174,12 @@ models:
     provider: "google"
     model_id: "veo-2.0-generate-001"
     kind: "video"
+    tier: "paid"
+    supports_reference: false
+    max_references: 0
+    durations_sec: [5, 8]
+    quota_note: "Có phí $0.15/giây. Yêu cầu bật billing trên Google Cloud"
+    speed_note: "~60-120s/clip"
     capabilities:
       aspect_ratios: ["16:9", "9:16"]
       durations_sec: [5, 8]
@@ -85,6 +193,12 @@ models:
     provider: "google"
     model_id: "veo-3.1-fast-generate-preview"
     kind: "video"
+    tier: "paid"
+    supports_reference: false
+    max_references: 0
+    durations_sec: [4, 6, 8]
+    quota_note: "Có phí $0.40/giây. Hỗ trợ kèm audio tự sinh"
+    speed_note: "~45-90s/clip"
     capabilities:
       aspect_ratios: ["16:9", "9:16"]
       durations_sec: [4, 6, 8]
@@ -93,12 +207,17 @@ models:
     pricing:
       cost_per_second: 0.40
 
-  # fal.ai Models (Queue API)
+  # ---- FAL.AI MODELS (Queue API) ----
   fal-flux-schnell:
     display_name: "fal.ai FLUX.1 [schnell]"
     provider: "fal"
     model_id: "fal-ai/flux/schnell"
     kind: "image"
+    tier: "paid"
+    supports_reference: false
+    max_references: 0
+    quota_note: "Trả phí qua FAL_KEY (~$0.003/ảnh)"
+    speed_note: "~1-3s/ảnh"
     capabilities:
       aspect_ratios: ["16:9", "9:16", "1:1", "4:5"]
       resolutions: ["720p", "1080p"]
@@ -112,6 +231,11 @@ models:
     provider: "fal"
     model_id: "fal-ai/flux-pro/v1.1"
     kind: "image"
+    tier: "paid"
+    supports_reference: true
+    max_references: 2
+    quota_note: "Trả phí qua FAL_KEY (~$0.04/ảnh)"
+    speed_note: "~3-6s/ảnh"
     capabilities:
       aspect_ratios: ["16:9", "9:16", "1:1", "4:5"]
       resolutions: ["1080p"]
@@ -125,6 +249,11 @@ models:
     provider: "fal"
     model_id: "fal-ai/flux-pro/kontext"
     kind: "image"
+    tier: "paid"
+    supports_reference: true
+    max_references: 2
+    quota_note: "Hỗ trợ chỉnh sửa và giữ nhân vật qua tham chiếu"
+    speed_note: "~4-8s/ảnh"
     capabilities:
       aspect_ratios: ["16:9", "9:16", "1:1", "4:5"]
       resolutions: ["1080p"]
@@ -139,6 +268,12 @@ models:
     provider: "fal"
     model_id: "fal-ai/kling-video/v3/standard/image-to-video"
     kind: "video"
+    tier: "paid"
+    supports_reference: true
+    max_references: 1
+    durations_sec: [5, 8, 10]
+    quota_note: "Sinh clip chuyển động theo khung đầu (Image-to-Video)"
+    speed_note: "~90-180s/clip"
     capabilities:
       aspect_ratios: ["16:9", "9:16", "1:1"]
       durations_sec: [5, 8, 10]
@@ -152,6 +287,12 @@ models:
     provider: "fal"
     model_id: "fal-ai/ltx-video"
     kind: "video"
+    tier: "paid"
+    supports_reference: true
+    max_references: 1
+    durations_sec: [5]
+    quota_note: "Sinh video nhanh 5 giây"
+    speed_note: "~10-25s/clip"
     capabilities:
       aspect_ratios: ["16:9", "9:16"]
       durations_sec: [5]
@@ -160,12 +301,17 @@ models:
     pricing:
       cost_per_second: 0.05
 
-  # Replicate Models (Khung mở rộng)
+  # ---- REPLICATE MODELS ----
   replicate-flux-schnell:
     display_name: "Replicate FLUX.1 [schnell]"
     provider: "replicate"
     model_id: "black-forest-labs/flux-schnell"
     kind: "image"
+    tier: "paid"
+    supports_reference: false
+    max_references: 0
+    quota_note: "Trả phí qua REPLICATE_API_TOKEN"
+    speed_note: "~2-5s/ảnh"
     capabilities:
       aspect_ratios: ["16:9", "9:16", "1:1", "4:5"]
       resolutions: ["1080p"]
@@ -174,12 +320,17 @@ models:
     pricing:
       cost_per_generation: 0.003
 
-  # Local Engines (OmniVoice, Whisper, HyperFrames)
+  # ---- LOCAL ENGINES (OmniVoice, Whisper, HyperFrames) ----
   local-omnivoice:
     display_name: "OmniVoice SOTA Voice Cloner"
     provider: "local_tool"
     model_id: "omnivoice-mps"
     kind: "audio"
+    tier: "local"
+    supports_reference: true
+    max_references: 1
+    quota_note: "$0 hoàn toàn offline trên Mac, giọng chuẩn Sóc Bi"
+    speed_note: "~15s/câu thoại"
     capabilities:
       voices: ["soc-nho"]
       mastering: ["tiktok_-14lufs"]
@@ -192,6 +343,11 @@ models:
     provider: "local_tool"
     model_id: "whisper-large-v3"
     kind: "captions"
+    tier: "local"
+    supports_reference: false
+    max_references: 0
+    quota_note: "$0 offline sinh phụ đề tiếng Việt chuẩn mốc thời gian"
+    speed_note: "~2-5s/câu"
     capabilities:
       word_timestamps: true
       languages: ["vi", "en"]
@@ -203,6 +359,11 @@ models:
     provider: "local_tool"
     model_id: "hyperframes-engine"
     kind: "composition"
+    tier: "local"
+    supports_reference: false
+    max_references: 0
+    quota_note: "$0 biên tập tự động deterministic HTML5/GSAP/FFmpeg"
+    speed_note: "~30-60s render MP4"
     capabilities:
       aspect_ratios: ["9:16", "16:9", "1:1", "4:5"]
       safe_zone_tiktok: true

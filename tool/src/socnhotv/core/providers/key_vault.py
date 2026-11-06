@@ -32,6 +32,16 @@ PROVIDER_SPECS: Dict[str, Dict[str, Any]] = {
         "env_vars": ["REPLICATE_API_TOKEN"],
         "min_len": 16,
     },
+    "pollinations": {
+        "label": "Pollinations.ai (Pollen Key - Tùy chọn)",
+        "env_vars": ["POLLINATIONS_API_KEY", "POLLINATIONS_TOKEN"],
+        "min_len": 8,
+    },
+    "cloudflare": {
+        "label": "Cloudflare Workers AI",
+        "env_vars": ["CLOUDFLARE_API_TOKEN"],
+        "min_len": 16,
+    },
 }
 
 _PROVIDER_ALIAS = {
@@ -41,6 +51,9 @@ _PROVIDER_ALIAS = {
     "fal.ai": "fal",
     "openai": "openai",
     "replicate": "replicate",
+    "pollinations": "pollinations",
+    "cloudflare": "cloudflare",
+    "local": "local",
 }
 
 _PLACEHOLDER_MARKERS = ("your_", "your-", "placeholder", "xxxx", "change_me", "insert_", "<", ">")

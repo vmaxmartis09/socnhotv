@@ -21,10 +21,23 @@ class ModelSpec(BaseModel):
     provider: str
     model_id: str = Field(..., alias="model_id")
     kind: str
+    tier: str = "paid"  # "free" | "freemium" | "paid" | "local"
+    supports_reference: bool = Field(False, alias="supports_reference")
+    max_references: int = Field(0, alias="max_references")
+    quota_note: str = Field("", alias="quota_note")
+    speed_note: str = Field("", alias="speed_note")
+    durations_sec: List[int] = Field(default_factory=list, alias="durations_sec")
     capabilities: Dict[str, Any] = Field(default_factory=dict)
     pricing: ModelPricing = Field(default_factory=ModelPricing)
 
     model_config = ConfigDict(populate_by_name=True)
+
+    def model_post_init(self, __context: Any) -> None:
+        # Tự động đồng bộ các trường capabilities cũ sang trường phẳng C2 nếu chưa có
+        if "supports_reference" in self.capabilities and not self.supports_reference:
+            self.supports_reference = bool(self.capabilities.get("supports_reference"))
+        if "durations_sec" in self.capabilities and not self.durations_sec:
+            self.durations_sec = list(self.capabilities.get("durations_sec", []))
 
 
 class ModelRegistry:
