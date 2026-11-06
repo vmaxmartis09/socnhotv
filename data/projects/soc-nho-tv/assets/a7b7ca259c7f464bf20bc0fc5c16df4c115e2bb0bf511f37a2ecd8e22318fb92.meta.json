@@ -1,0 +1,27 @@
+{
+  "id": "art_a7b7ca259c7f",
+  "kind": "text",
+  "uri": "assets/a7b7ca259c7f464bf20bc0fc5c16df4c115e2bb0bf511f37a2ecd8e22318fb92.txt",
+  "mime": "application/octet-stream",
+  "size": 27,
+  "hash": "sha256:a7b7ca259c7f464bf20bc0fc5c16df4c115e2bb0bf511f37a2ecd8e22318fb92",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": null,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "t",
+    "runId": "run_1793860780_993394",
+    "provider": "local",
+    "model": "text",
+    "params": {
+      "content": "Vì sao lá cây màu xanh?"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-05T06:39:40Z"
+  }
+}

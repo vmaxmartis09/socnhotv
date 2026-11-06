@@ -1,0 +1,27 @@
+[
+  {
+    "role": "hook",
+    "duration_s": 3.0,
+    "text": "Ai đang gặp tình trạng da khô nứt nẻ mùa đông thì xem ngay video này nhé!"
+  },
+  {
+    "role": "agitate",
+    "duration_s": 4.0,
+    "text": "Chỉ với một thao tác đơn giản cùng Kem Dưỡng Da Sóc Nhỏ, mọi rắc rối đều được giải quyết gọn gàng."
+  },
+  {
+    "role": "demo",
+    "duration_s": 6.0,
+    "text": "Cận cảnh chi tiết đây ạ: thiết kế thông minh, tích hợp thành phần tự nhiên 100%, thấm nhanh không bết dính."
+  },
+  {
+    "role": "offer",
+    "duration_s": 4.0,
+    "text": "Đặc biệt hôm nay trên livestream giá ưu đãi chỉ 189,000 VND."
+  },
+  {
+    "role": "cta",
+    "duration_s": 4.0,
+    "text": "Nhanh tay nhấn vào giỏ hàng màu vàng góc dưới màn hình để chốt deal ngay hôm nay!"
+  }
+]

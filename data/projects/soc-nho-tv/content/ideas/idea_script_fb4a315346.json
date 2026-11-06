@@ -1,0 +1,14 @@
+{
+  "id": "idea_script_fb4a315346",
+  "project_id": "soc-nho-tv",
+  "title": "Review Kem Dưỡng Da Sóc Nhỏ (tiktok_sales)",
+  "platform_targets": [
+    "tiktok",
+    "reels",
+    "shorts"
+  ],
+  "template_id": "tiktok-sales-v1",
+  "blueprint_ref": null,
+  "priority": 1,
+  "status": "scripted"
+}

@@ -1,0 +1,15 @@
+{
+  "id": "idea_ee24d5953d",
+  "project_id": "soc-nho-tv",
+  "title": "Review Quạt Tích Điện Cầm Tay Mini Pin Trâu 24 Giờ",
+  "platform_targets": [
+    "tiktok",
+    "shorts",
+    "reels",
+    "youtube"
+  ],
+  "template_id": "koc-review-v1",
+  "blueprint_ref": null,
+  "priority": 5,
+  "status": "new"
+}

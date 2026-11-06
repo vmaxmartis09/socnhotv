@@ -1,0 +1,31 @@
+{
+  "id": "art_e6ceda6bbd66",
+  "kind": "audio",
+  "uri": "assets/e6ceda6bbd6688c51ee0c267005b241f94c3160e1db7e91c4e03eab61d644457.mp3",
+  "mime": "audio/mp3",
+  "size": 81545,
+  "hash": "sha256:e6ceda6bbd6688c51ee0c267005b241f94c3160e1db7e91c4e03eab61d644457",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 3.326,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "test_voice_node",
+    "runId": "run_voice_test",
+    "provider": "omnivoice",
+    "model": "omnivoice",
+    "params": {
+      "text": "Xin chào các bạn nhỏ, mình là Sóc Nhỏ Bi TV đây nè!",
+      "voiceId": "soc-nho",
+      "tempo": 1.1,
+      "targetLufs": -14.0,
+      "mastering": "deesser+presence3.2k+comp4:1+loudnorm-14LUFS"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-04T15:14:57Z"
+  }
+}

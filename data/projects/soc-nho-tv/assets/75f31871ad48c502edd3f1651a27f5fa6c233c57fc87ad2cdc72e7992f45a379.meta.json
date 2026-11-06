@@ -1,0 +1,27 @@
+{
+  "id": "art_75f31871ad48",
+  "kind": "text",
+  "uri": "assets/75f31871ad48c502edd3f1651a27f5fa6c233c57fc87ad2cdc72e7992f45a379.txt",
+  "mime": "application/octet-stream",
+  "size": 29,
+  "hash": "sha256:75f31871ad48c502edd3f1651a27f5fa6c233c57fc87ad2cdc72e7992f45a379",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": null,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "n1",
+    "runId": "run_1793803114_9141b1",
+    "provider": "local",
+    "model": "text",
+    "params": {
+      "content": "Chủ đề cho koc-review-v1"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-04T14:38:34Z"
+  }
+}

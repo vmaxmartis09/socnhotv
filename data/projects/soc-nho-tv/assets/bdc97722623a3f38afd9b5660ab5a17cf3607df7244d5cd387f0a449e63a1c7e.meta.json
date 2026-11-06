@@ -1,0 +1,27 @@
+{
+  "id": "art_bdc97722623a",
+  "kind": "text",
+  "uri": "assets/bdc97722623a3f38afd9b5660ab5a17cf3607df7244d5cd387f0a449e63a1c7e.txt",
+  "mime": "application/octet-stream",
+  "size": 32,
+  "hash": "sha256:bdc97722623a3f38afd9b5660ab5a17cf3607df7244d5cd387f0a449e63a1c7e",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": null,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "n1",
+    "runId": "run_1793803114_add0c2",
+    "provider": "local",
+    "model": "text",
+    "params": {
+      "content": "Chủ đề cho story-cartoon-v1"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-04T14:38:34Z"
+  }
+}

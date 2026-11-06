@@ -1,0 +1,15 @@
+{
+  "id": "idea_4393275cbd",
+  "project_id": "soc-nho-tv",
+  "title": "Một Ngày Làm Trợ Lý Cho Bạn Koala",
+  "platform_targets": [
+    "tiktok",
+    "shorts",
+    "reels",
+    "youtube"
+  ],
+  "template_id": "koc-review-v1",
+  "blueprint_ref": null,
+  "priority": 4,
+  "status": "new"
+}

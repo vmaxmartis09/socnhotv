@@ -1,0 +1,15 @@
+{
+  "id": "idea_66de60b476",
+  "project_id": "soc-nho-tv",
+  "title": "Kỳ Nghỉ Hè Bất Ổn Của Đôi Bạn Thân",
+  "platform_targets": [
+    "tiktok",
+    "shorts",
+    "reels",
+    "youtube"
+  ],
+  "template_id": "koc-review-v1",
+  "blueprint_ref": null,
+  "priority": 3,
+  "status": "new"
+}

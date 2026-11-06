@@ -1,0 +1,28 @@
+{
+  "id": "art_f0544c463279",
+  "kind": "text",
+  "uri": "assets/f0544c46327902dd72d9daa5cd620ad84a49fd5723c5c17dbb49f6c8e6d8654a.json",
+  "mime": "application/json",
+  "size": 2463,
+  "hash": "sha256:f0544c46327902dd72d9daa5cd620ad84a49fd5723c5c17dbb49f6c8e6d8654a",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": null,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "n2",
+    "runId": "run_1793803093_d11755",
+    "provider": "mock",
+    "model": "script-planner-v1",
+    "params": {
+      "targetSceneCount": 6,
+      "sourceText": "Chủ đề video review sản phẩm"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-04T14:38:13Z"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "id": "art_3ca431a0aa67",
+  "kind": "text",
+  "uri": "assets/3ca431a0aa6709f3b87ba43a31bea0d14149a5fffc57d530611ec271965dc2e8.txt",
+  "mime": "application/octet-stream",
+  "size": 21,
+  "hash": "sha256:3ca431a0aa6709f3b87ba43a31bea0d14149a5fffc57d530611ec271965dc2e8",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": null,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "node-text",
+    "runId": "run_1793803316_46cc32",
+    "provider": "local",
+    "model": "text",
+    "params": {
+      "content": "Bán hàng Sóc Nhỏ"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-04T14:41:56Z"
+  }
+}

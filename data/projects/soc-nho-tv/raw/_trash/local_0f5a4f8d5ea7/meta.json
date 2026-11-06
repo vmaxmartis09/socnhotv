@@ -1,0 +1,31 @@
+{
+  "id": "local_0f5a4f8d5ea7",
+  "project_id": "soc-nho-tv",
+  "platform": "local",
+  "url": "file://tmpcbbfbre7.mp4",
+  "author": "User",
+  "author_url": "",
+  "title": "test_clip.mp4",
+  "description": "",
+  "duration_s": 0.0,
+  "published_at": "",
+  "stats": {
+    "views": 0,
+    "likes": 0,
+    "comments": 0,
+    "shares": 0
+  },
+  "hashtags": [],
+  "music": "",
+  "rights": "owned",
+  "rights_note": "Tải lên trực tiếp: test_clip.mp4",
+  "files": {
+    "video": "raw/local_0f5a4f8d5ea7/video.mp4",
+    "audio": null,
+    "thumb": null,
+    "subtitle_orig": null
+  },
+  "status": "ready",
+  "error": null,
+  "created_at": "2026-11-04T14:05:37.810294+00:00"
+}

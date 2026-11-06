@@ -1,0 +1,15 @@
+{
+  "id": "idea_0b611803b6",
+  "project_id": "soc-nho-tv",
+  "title": "Trải Nghiệm Đèn Bàn Chống Cận Thị Thông Minh Sóc Nhỏ",
+  "platform_targets": [
+    "tiktok",
+    "shorts",
+    "reels",
+    "youtube"
+  ],
+  "template_id": "koc-review-v1",
+  "blueprint_ref": null,
+  "priority": 5,
+  "status": "new"
+}

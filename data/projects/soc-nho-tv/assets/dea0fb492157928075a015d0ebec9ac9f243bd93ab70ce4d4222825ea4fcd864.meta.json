@@ -1,0 +1,31 @@
+{
+  "id": "art_dea0fb492157",
+  "kind": "audio",
+  "uri": "assets/dea0fb492157928075a015d0ebec9ac9f243bd93ab70ce4d4222825ea4fcd864.mp3",
+  "mime": "audio/mp3",
+  "size": 1176180,
+  "hash": "sha256:dea0fb492157928075a015d0ebec9ac9f243bd93ab70ce4d4222825ea4fcd864",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 48.934,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "node_voice_tts",
+    "runId": "run_1793810083_b8a768",
+    "provider": "omnivoice",
+    "model": "omnivoice",
+    "params": {
+      "text": "Chào các bạn nhỏ! Tớ là Sóc Nhỏ đây. Các bạn có bao giờ tự hỏi vì sao sau cơn mưa lại xuất hiện cầu vồng rực rỡ không?\n\nBí mật nằm ở những giọt nước mưa li ti đấy! Khi cơn mưa vừa tạnh, không khí vẫn còn vô vàn hạt nước nhỏ xíu lơ lửng.\n\nLúc này, ánh sáng mặt trời chiếu xuyên qua từng giọt nước. Các bạn biết không, ánh sáng trắng thực ra chứa rất nhiều màu sắc!\n\nMỗi giọt nước mưa hoạt động hệt như một chiếc lăng kính kỳ diệu, uốn cong và bẻ gãy tia sáng thành bảy sắc cầu vồng.\n\nĐó là đỏ, cam, vàng, lục, lam, chàm và tím. Tia đỏ bị bẻ cong ít nhất, còn tia tím bị bẻ cong nhiều nhất đấy!\n\nTriệu triệu hạt nước cùng phản chiếu ánh sáng ấy về phía mắt chúng ta, tạo nên một dải cầu vồng uốn lượn tuyệt đẹp trên bầu trời.\n\nLần tới thấy cầu vồng, nhớ tìm góc đứng ngược hướng mặt trời để ngắm nhé! Sóc Nhỏ chào tạm biệt các bạn!",
+      "voiceId": "soc-nho",
+      "tempo": 1.18,
+      "targetLufs": -14.0,
+      "mastering": "deesser+presence3.2k+comp4:1+loudnorm-14LUFS"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-04T16:37:23Z"
+  }
+}

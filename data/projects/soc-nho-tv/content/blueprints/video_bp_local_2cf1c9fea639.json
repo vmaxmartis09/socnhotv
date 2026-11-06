@@ -1,0 +1,20 @@
+{
+  "id": "bp_local_2cf1c9fea639",
+  "source_ref": "local_2cf1c9fea639",
+  "duration_s": 5.0,
+  "platform": "local",
+  "hook": "Xin chào các bạn, cùng khám phá nhé.",
+  "beats": [
+    {
+      "t_start": 0.0,
+      "t_end": 3.0,
+      "role": "hook",
+      "summary": "Xin chào các bạn, cùng khám phá nhé.",
+      "visual": "Cảnh hành động 1",
+      "on_screen_text": "Xin chào các bạn, cùng khám ph"
+    }
+  ],
+  "cta": "Bấm theo dõi nhé!",
+  "pacing_cuts_per_10s": 2.0,
+  "suggested_template_id": "affiliate-compare-v1"
+}

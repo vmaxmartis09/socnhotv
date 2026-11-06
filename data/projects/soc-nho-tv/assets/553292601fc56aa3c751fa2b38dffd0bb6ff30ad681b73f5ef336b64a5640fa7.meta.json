@@ -1,0 +1,33 @@
+{
+  "id": "art_553292601fc5",
+  "kind": "video",
+  "uri": "assets/553292601fc56aa3c751fa2b38dffd0bb6ff30ad681b73f5ef336b64a5640fa7.mp4",
+  "mime": "video/mp4",
+  "size": 42963,
+  "hash": "sha256:553292601fc56aa3c751fa2b38dffd0bb6ff30ad681b73f5ef336b64a5640fa7",
+  "meta": {
+    "width": 1080,
+    "height": 1920,
+    "duration": 1.9,
+    "fps": 30.0,
+    "aspect": "9:16"
+  },
+  "provenance": {
+    "nodeId": "node_final_render",
+    "runId": "run_1793722383_1f8d91",
+    "provider": "ffmpeg_fallback",
+    "model": "ffmpeg-compositor",
+    "params": {
+      "aspectRatio": "9:16",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "sceneCount": 1
+    },
+    "inputHashes": [
+      "sha256:75acc3db239e054783203667f0d83557ef33da69e3d87094db1adb8fd1b3e714"
+    ],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-03T16:13:17Z"
+  }
+}

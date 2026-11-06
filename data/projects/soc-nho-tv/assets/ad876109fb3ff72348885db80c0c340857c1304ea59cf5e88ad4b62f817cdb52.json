@@ -1,0 +1,13 @@
+{
+  "title": "Sóc Nhỏ Bi thức dậy chào buổi sáng vui tươi",
+  "scenes": [
+    {
+      "sceneNumber": 1,
+      "title": "Cảnh 1",
+      "imagePrompt": "Sóc Nhỏ Bi thức dậy chào buổi sáng vui tươi",
+      "videoPrompt": "Camera góc trung chuyển động mượt mà, diễn hoạt sinh động theo nội dung Cảnh 1",
+      "dialogue": "",
+      "durationSec": 20.0
+    }
+  ]
+}

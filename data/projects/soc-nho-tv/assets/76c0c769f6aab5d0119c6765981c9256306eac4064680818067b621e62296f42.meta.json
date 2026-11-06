@@ -1,0 +1,31 @@
+{
+  "id": "art_76c0c769f6aa",
+  "kind": "audio",
+  "uri": "assets/76c0c769f6aab5d0119c6765981c9256306eac4064680818067b621e62296f42.mp3",
+  "mime": "audio/mp3",
+  "size": 101607,
+  "hash": "sha256:76c0c769f6aab5d0119c6765981c9256306eac4064680818067b621e62296f42",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 4.163,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "voice_smoke",
+    "runId": "voice_smoke",
+    "provider": "omnivoice",
+    "model": "omnivoice",
+    "params": {
+      "text": "Xin chào các bạn, mình là Sóc Nhỏ! Hôm nay mình đi khám răng nè.",
+      "voiceId": "soc-nho",
+      "tempo": 1.1,
+      "targetLufs": -14.0,
+      "mastering": "deesser+presence3.2k+comp4:1+loudnorm-14LUFS"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-03T16:02:55Z"
+  }
+}

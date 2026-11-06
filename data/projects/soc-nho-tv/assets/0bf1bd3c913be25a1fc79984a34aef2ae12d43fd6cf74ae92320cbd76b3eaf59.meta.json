@@ -1,0 +1,27 @@
+{
+  "id": "art_0bf1bd3c913b",
+  "kind": "text",
+  "uri": "assets/0bf1bd3c913be25a1fc79984a34aef2ae12d43fd6cf74ae92320cbd76b3eaf59.txt",
+  "mime": "application/octet-stream",
+  "size": 31,
+  "hash": "sha256:0bf1bd3c913be25a1fc79984a34aef2ae12d43fd6cf74ae92320cbd76b3eaf59",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": null,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "n1",
+    "runId": "run_1793803114_55dfa6",
+    "provider": "local",
+    "model": "text",
+    "params": {
+      "content": "Chủ đề cho tiktok-sales-v1"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-04T14:38:34Z"
+  }
+}

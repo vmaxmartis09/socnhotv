@@ -1,0 +1,28 @@
+{
+  "id": "art_be5113a4ed1e",
+  "kind": "text",
+  "uri": "assets/be5113a4ed1e47bd20a36a2110dccfbe2075e9dcf2e69c68b60de27725d4ea14.json",
+  "mime": "application/json",
+  "size": 853,
+  "hash": "sha256:be5113a4ed1e47bd20a36a2110dccfbe2075e9dcf2e69c68b60de27725d4ea14",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": null,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "n_script",
+    "runId": "run_1793804125_76f8f2",
+    "provider": "local",
+    "model": "script_parser",
+    "params": {
+      "targetSceneCount": 2,
+      "sourceText": "Cảnh 1: Sóc Nhỏ ăn kẹo hạt dẻ giòn rụm."
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-04T14:55:25Z"
+  }
+}

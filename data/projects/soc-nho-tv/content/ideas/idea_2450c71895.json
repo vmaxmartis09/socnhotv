@@ -1,0 +1,15 @@
+{
+  "id": "idea_2450c71895",
+  "project_id": "soc-nho-tv",
+  "title": "Sóc Nhỏ Học Cách Quản Lý Tiền Tiết Kiệm",
+  "platform_targets": [
+    "tiktok",
+    "shorts",
+    "reels",
+    "youtube"
+  ],
+  "template_id": "koc-review-v1",
+  "blueprint_ref": null,
+  "priority": 5,
+  "status": "new"
+}

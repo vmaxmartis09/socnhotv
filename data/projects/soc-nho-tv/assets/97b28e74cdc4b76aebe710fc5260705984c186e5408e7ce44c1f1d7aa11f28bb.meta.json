@@ -1,0 +1,28 @@
+{
+  "id": "art_97b28e74cdc4",
+  "kind": "text",
+  "uri": "assets/97b28e74cdc4b76aebe710fc5260705984c186e5408e7ce44c1f1d7aa11f28bb.json",
+  "mime": "application/json",
+  "size": 310,
+  "hash": "sha256:97b28e74cdc4b76aebe710fc5260705984c186e5408e7ce44c1f1d7aa11f28bb",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": null,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "node_good_child",
+    "runId": "run_1793807860_70ee7a",
+    "provider": "mock",
+    "model": "script-planner-v1",
+    "params": {
+      "targetSceneCount": 1,
+      "sourceText": "healthy"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-04T15:57:40Z"
+  }
+}

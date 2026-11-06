@@ -1,0 +1,31 @@
+{
+  "id": "art_f87b15bfc89a",
+  "kind": "audio",
+  "uri": "assets/f87b15bfc89a10d1b602acbc37c90ccd38368e974d3d737aaa5d1fde3b46c10f.mp3",
+  "mime": "audio/mp3",
+  "size": 113519,
+  "hash": "sha256:f87b15bfc89a10d1b602acbc37c90ccd38368e974d3d737aaa5d1fde3b46c10f",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 4.654,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "node_voice_out",
+    "runId": "run_1793860953_8db292",
+    "provider": "omnivoice",
+    "model": "omnivoice",
+    "params": {
+      "text": "Sóc Nhỏ: Chào buổi sáng cả nhà!\n\nBi: Hôm nay trời thật trong xanh!",
+      "voiceId": "soc-nho",
+      "tempo": 1.1,
+      "targetLufs": -14.0,
+      "mastering": "deesser+presence3.2k+comp4:1+loudnorm-14LUFS"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-05T06:42:54Z"
+  }
+}

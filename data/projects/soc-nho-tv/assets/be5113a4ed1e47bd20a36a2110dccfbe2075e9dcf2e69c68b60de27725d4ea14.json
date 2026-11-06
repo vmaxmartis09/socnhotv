@@ -1,0 +1,21 @@
+{
+  "title": "Cảnh 1: Sóc Nhỏ ăn kẹo hạt dẻ giòn rụm.",
+  "scenes": [
+    {
+      "sceneNumber": 1,
+      "title": "Cảnh 1: Sóc Nhỏ ăn kẹo hạt dẻ giòn rụm.",
+      "imagePrompt": "---",
+      "videoPrompt": "Camera góc trung chuyển động mượt mà, diễn hoạt sinh động theo nội dung Cảnh 1: Sóc Nhỏ ăn kẹo hạt dẻ giòn rụm.",
+      "dialogue": "",
+      "durationSec": 6.0
+    },
+    {
+      "sceneNumber": 2,
+      "title": "Cảnh 2: Bạn Koala tấm tắc khen ngon.",
+      "imagePrompt": "Phân cảnh hoạt hình 3D cho Cảnh 2: Bạn Koala tấm tắc khen ngon.",
+      "videoPrompt": "Camera góc trung chuyển động mượt mà, diễn hoạt sinh động theo nội dung Cảnh 2: Bạn Koala tấm tắc khen ngon.",
+      "dialogue": "",
+      "durationSec": 6.0
+    }
+  ]
+}

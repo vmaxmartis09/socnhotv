@@ -1,0 +1,15 @@
+{
+  "id": "idea_0f86f1ad2f",
+  "project_id": "soc-nho-tv",
+  "title": "Chiếc Hộp Bí Ẩn Dưới Gốc Cây Dẻ Gai",
+  "platform_targets": [
+    "tiktok",
+    "shorts",
+    "reels",
+    "youtube"
+  ],
+  "template_id": "koc-review-v1",
+  "blueprint_ref": null,
+  "priority": 3,
+  "status": "new"
+}

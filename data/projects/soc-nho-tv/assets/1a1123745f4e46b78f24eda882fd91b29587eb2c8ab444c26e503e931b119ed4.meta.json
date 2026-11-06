@@ -1,0 +1,29 @@
+{
+  "id": "art_1a1123745f4e",
+  "kind": "audio",
+  "uri": "assets/1a1123745f4e46b78f24eda882fd91b29587eb2c8ab444c26e503e931b119ed4.wav",
+  "mime": "audio/wav",
+  "size": 93536,
+  "hash": "sha256:1a1123745f4e46b78f24eda882fd91b29587eb2c8ab444c26e503e931b119ed4",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 2.12,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "node_voice_out",
+    "runId": "run_1793808015_bac33b",
+    "provider": "mock",
+    "model": "mock-omnivoice-v1",
+    "params": {
+      "text": "Sóc Nhỏ: Chào buổi sáng cả nhà!",
+      "voiceId": "soc-nho",
+      "tempo": 1.1
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-04T16:00:15Z"
+  }
+}

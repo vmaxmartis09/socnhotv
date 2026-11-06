@@ -1,0 +1,28 @@
+{
+  "id": "art_57b292755c78",
+  "kind": "text",
+  "uri": "assets/57b292755c78658696802e9ce2d70297069c208a6df1ef5f6403cfa099d00c2d.json",
+  "mime": "application/json",
+  "size": 5687,
+  "hash": "sha256:57b292755c78658696802e9ce2d70297069c208a6df1ef5f6403cfa099d00c2d",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": null,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "node_script",
+    "runId": "run_1793809883_d3bcf5",
+    "provider": "local",
+    "model": "script_parser",
+    "params": {
+      "targetSceneCount": 7,
+      "sourceText": "Cảnh 1: Chào các bạn nhỏ! Tớ là Sóc Nhỏ đây. Các bạn có bao giờ tự hỏi vì sao sau cơn mưa lại xuất hiện cầu vồng rực rỡ "
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-04T16:31:23Z"
+  }
+}

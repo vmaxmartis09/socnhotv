@@ -1,0 +1,15 @@
+{
+  "id": "idea_38fd1abcaa",
+  "project_id": "soc-nho-tv",
+  "title": "Thử Thách Dùng Máy In Nhiệt Cầm Tay In Ảnh Học Tập",
+  "platform_targets": [
+    "tiktok",
+    "shorts",
+    "reels",
+    "youtube"
+  ],
+  "template_id": "koc-review-v1",
+  "blueprint_ref": null,
+  "priority": 4,
+  "status": "new"
+}

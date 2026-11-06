@@ -1,0 +1,27 @@
+{
+  "id": "art_3bc81aee9341",
+  "kind": "text",
+  "uri": "assets/3bc81aee9341ee01dd32ab62ace78d4ecb2325b98cdf32b2004680486938f555.txt",
+  "mime": "application/octet-stream",
+  "size": 198,
+  "hash": "sha256:3bc81aee9341ee01dd32ab62ace78d4ecb2325b98cdf32b2004680486938f555",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": null,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "node_text",
+    "runId": "run_1793805092_2a1201",
+    "provider": "local",
+    "model": "text",
+    "params": {
+      "content": "Tập 1: Sóc Nhỏ (Bi, 100cm) mê ăn kẹo dẻo hạt dẻ trước khi đi ngủ, bị đau răng sâu và được Bác sĩ Koala (150cm) khám răng, hướng dẫn đánh răng đúng cách."
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-04T15:11:32Z"
+  }
+}

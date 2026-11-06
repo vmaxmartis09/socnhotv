@@ -1,0 +1,15 @@
+{
+  "id": "idea_6082a5fe31",
+  "project_id": "soc-nho-tv",
+  "title": "Sóc Nhỏ và Thử Thách Nhịn Ăn Vặt Trong 24 Giờ",
+  "platform_targets": [
+    "tiktok",
+    "shorts",
+    "reels",
+    "youtube"
+  ],
+  "template_id": "koc-review-v1",
+  "blueprint_ref": null,
+  "priority": 5,
+  "status": "new"
+}

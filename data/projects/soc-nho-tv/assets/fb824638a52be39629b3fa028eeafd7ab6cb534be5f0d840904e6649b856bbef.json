@@ -1,0 +1,29 @@
+{
+  "title": "Cảnh 1:",
+  "scenes": [
+    {
+      "sceneNumber": 1,
+      "title": "Cảnh 1:",
+      "imagePrompt": "Cảnh hoạt hình 3D: Sóc Nhỏ: Chào các bạn! Hôm nay mình tìm hiểu vì sao lá cây màu xanh nhé.",
+      "videoPrompt": "Camera góc trung chuyển động mượt mà, diễn hoạt sinh động theo nội dung Cảnh 1:",
+      "dialogue": "Sóc Nhỏ: Chào các bạn! Hôm nay mình tìm hiểu vì sao lá cây màu xanh nhé.",
+      "durationSec": 15.3
+    },
+    {
+      "sceneNumber": 2,
+      "title": "Cảnh 2:",
+      "imagePrompt": "Cảnh hoạt hình 3D: Koala: Lá cây có chất diệp lục, nó hấp thụ ánh sáng đỏ và xanh dương.",
+      "videoPrompt": "Camera góc trung chuyển động mượt mà, diễn hoạt sinh động theo nội dung Cảnh 2:",
+      "dialogue": "Koala: Lá cây có chất diệp lục, nó hấp thụ ánh sáng đỏ và xanh dương.",
+      "durationSec": 14.4
+    },
+    {
+      "sceneNumber": 3,
+      "title": "Cảnh 3:",
+      "imagePrompt": "Cảnh hoạt hình 3D: Sóc Nhỏ: Còn màu xanh lá bị phản lại, nên mắt mình thấy lá màu xanh đó!",
+      "videoPrompt": "Camera góc trung chuyển động mượt mà, diễn hoạt sinh động theo nội dung Cảnh 3:",
+      "dialogue": "Sóc Nhỏ: Còn màu xanh lá bị phản lại, nên mắt mình thấy lá màu xanh đó!",
+      "durationSec": 15.3
+    }
+  ]
+}

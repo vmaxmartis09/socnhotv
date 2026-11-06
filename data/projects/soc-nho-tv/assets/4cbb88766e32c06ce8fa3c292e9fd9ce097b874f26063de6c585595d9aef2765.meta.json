@@ -1,0 +1,29 @@
+{
+  "id": "art_4cbb88766e32",
+  "kind": "audio",
+  "uri": "assets/4cbb88766e32c06ce8fa3c292e9fd9ce097b874f26063de6c585595d9aef2765.wav",
+  "mime": "audio/wav",
+  "size": 133666,
+  "hash": "sha256:4cbb88766e32c06ce8fa3c292e9fd9ce097b874f26063de6c585595d9aef2765",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 3.03,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "n_voice",
+    "runId": "run_1793804201_49f687",
+    "provider": "mock",
+    "model": "mock-omnivoice-v1",
+    "params": {
+      "text": "Sóc Nhỏ: Chào các bạn, kẹo hạt dẻ ngon lắm!",
+      "voiceId": "soc-nho",
+      "tempo": 1.1
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-04T14:56:41Z"
+  }
+}

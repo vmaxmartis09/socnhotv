@@ -1,0 +1,15 @@
+{
+  "id": "idea_73104eef98",
+  "project_id": "soc-nho-tv",
+  "title": "KOC LyLy Thử Bút Luyện Chữ Tự Xoá: Có Đáng Tiền Không?",
+  "platform_targets": [
+    "tiktok",
+    "shorts",
+    "reels",
+    "youtube"
+  ],
+  "template_id": "koc-review-v1",
+  "blueprint_ref": null,
+  "priority": 5,
+  "status": "new"
+}

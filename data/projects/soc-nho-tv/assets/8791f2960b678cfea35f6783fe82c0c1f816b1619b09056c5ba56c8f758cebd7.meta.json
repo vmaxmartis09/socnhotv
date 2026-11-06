@@ -1,0 +1,29 @@
+{
+  "id": "art_8791f2960b67",
+  "kind": "audio",
+  "uri": "assets/8791f2960b678cfea35f6783fe82c0c1f816b1619b09056c5ba56c8f758cebd7.wav",
+  "mime": "audio/wav",
+  "size": 227158,
+  "hash": "sha256:8791f2960b678cfea35f6783fe82c0c1f816b1619b09056c5ba56c8f758cebd7",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 5.15,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "node_voice",
+    "runId": "run_1793808015_655c00",
+    "provider": "mock",
+    "model": "mock-omnivoice-v1",
+    "params": {
+      "text": "Sóc Nhỏ: Chào các bạn, mình là Sóc Bi! Hôm nay mình sẽ ăn thật nhiều kẹo!",
+      "voiceId": "soc-nho",
+      "tempo": 1.1
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-04T16:00:15Z"
+  }
+}

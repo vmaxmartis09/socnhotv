@@ -1,0 +1,28 @@
+{
+  "id": "art_3163eb901b87",
+  "kind": "text",
+  "uri": "assets/3163eb901b8754e48d613950b55dce41508f88e87ba0fa4650b3885ae61281b4.json",
+  "mime": "application/json",
+  "size": 2462,
+  "hash": "sha256:3163eb901b8754e48d613950b55dce41508f88e87ba0fa4650b3885ae61281b4",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": null,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "n2",
+    "runId": "run_1793803114_5bedef",
+    "provider": "mock",
+    "model": "script-planner-v1",
+    "params": {
+      "targetSceneCount": 6,
+      "sourceText": "Chủ đề cho affiliate-compare-v1"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-04T14:38:34Z"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "id": "idea_script_1efda20f63",
+  "project_id": "soc-nho-tv",
+  "title": "Review Sản phẩm test (koc_review)",
+  "platform_targets": [
+    "tiktok",
+    "reels",
+    "shorts"
+  ],
+  "template_id": "koc-review-v1",
+  "blueprint_ref": "bp_local_2cf1c9fea639",
+  "priority": 1,
+  "status": "scripted"
+}

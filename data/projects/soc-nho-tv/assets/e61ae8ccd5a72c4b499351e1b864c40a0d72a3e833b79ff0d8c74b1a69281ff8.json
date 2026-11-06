@@ -1,0 +1,61 @@
+{
+  "title": "Cảnh 1",
+  "scenes": [
+    {
+      "sceneNumber": 1,
+      "title": "Cảnh 1",
+      "imagePrompt": "Chào các bạn nhỏ! Tớ là Sóc Nhỏ đây. Các bạn có bao giờ tự hỏi vì sao sau cơn mưa lại xuất hiện cầu vồng rực rỡ không?",
+      "videoPrompt": "Camera góc trung chuyển động mượt mà, diễn hoạt sinh động theo nội dung Cảnh 1",
+      "dialogue": "Chào các bạn nhỏ! Tớ là Sóc Nhỏ đây. Các bạn có bao giờ tự hỏi vì sao sau cơn mưa lại xuất hiện cầu vồng rực rỡ không?",
+      "durationSec": 7.0
+    },
+    {
+      "sceneNumber": 2,
+      "title": "Cảnh 2",
+      "imagePrompt": "Bí mật nằm ở những giọt nước mưa li ti đấy! Khi cơn mưa vừa tạnh, không khí vẫn còn vô vàn hạt nước nhỏ xíu lơ lửng.",
+      "videoPrompt": "Camera góc trung chuyển động mượt mà, diễn hoạt sinh động theo nội dung Cảnh 2",
+      "dialogue": "Bí mật nằm ở những giọt nước mưa li ti đấy! Khi cơn mưa vừa tạnh, không khí vẫn còn vô vàn hạt nước nhỏ xíu lơ lửng.",
+      "durationSec": 6.7
+    },
+    {
+      "sceneNumber": 3,
+      "title": "Cảnh 3",
+      "imagePrompt": "Lúc này, ánh sáng mặt trời chiếu xuyên qua từng giọt nước. Các bạn biết không, ánh sáng trắng thực ra chứa rất nhiều màu sắc!",
+      "videoPrompt": "Camera góc trung chuyển động mượt mà, diễn hoạt sinh động theo nội dung Cảnh 3",
+      "dialogue": "Lúc này, ánh sáng mặt trời chiếu xuyên qua từng giọt nước. Các bạn biết không, ánh sáng trắng thực ra chứa rất nhiều màu sắc!",
+      "durationSec": 6.3
+    },
+    {
+      "sceneNumber": 4,
+      "title": "Cảnh 4",
+      "imagePrompt": "Mỗi giọt nước mưa hoạt động hệt như một chiếc lăng kính kỳ diệu, uốn cong và bẻ gãy tia sáng thành bảy sắc cầu vồng.",
+      "videoPrompt": "Camera góc trung chuyển động mượt mà, diễn hoạt sinh động theo nội dung Cảnh 4",
+      "dialogue": "Mỗi giọt nước mưa hoạt động hệt như một chiếc lăng kính kỳ diệu, uốn cong và bẻ gãy tia sáng thành bảy sắc cầu vồng.",
+      "durationSec": 6.3
+    },
+    {
+      "sceneNumber": 5,
+      "title": "Cảnh 5",
+      "imagePrompt": "Đó là đỏ, cam, vàng, lục, lam, chàm và tím. Tia đỏ bị bẻ cong ít nhất, còn tia tím bị bẻ cong nhiều nhất đấy!",
+      "videoPrompt": "Camera góc trung chuyển động mượt mà, diễn hoạt sinh động theo nội dung Cảnh 5",
+      "dialogue": "Đó là đỏ, cam, vàng, lục, lam, chàm và tím. Tia đỏ bị bẻ cong ít nhất, còn tia tím bị bẻ cong nhiều nhất đấy!",
+      "durationSec": 6.3
+    },
+    {
+      "sceneNumber": 6,
+      "title": "Cảnh 6",
+      "imagePrompt": "Triệu triệu hạt nước cùng phản chiếu ánh sáng ấy về phía mắt chúng ta, tạo nên một dải cầu vồng uốn lượn tuyệt đẹp trên bầu trời.",
+      "videoPrompt": "Camera góc trung chuyển động mượt mà, diễn hoạt sinh động theo nội dung Cảnh 6",
+      "dialogue": "Triệu triệu hạt nước cùng phản chiếu ánh sáng ấy về phía mắt chúng ta, tạo nên một dải cầu vồng uốn lượn tuyệt đẹp trên bầu trời.",
+      "durationSec": 6.7
+    },
+    {
+      "sceneNumber": 7,
+      "title": "Cảnh 7",
+      "imagePrompt": "Lần tới thấy cầu vồng, nhớ tìm góc đứng ngược hướng mặt trời để ngắm nhé! Sóc Nhỏ chào tạm biệt các bạn!",
+      "videoPrompt": "Camera góc trung chuyển động mượt mà, diễn hoạt sinh động theo nội dung Cảnh 7",
+      "dialogue": "Lần tới thấy cầu vồng, nhớ tìm góc đứng ngược hướng mặt trời để ngắm nhé! Sóc Nhỏ chào tạm biệt các bạn!",
+      "durationSec": 5.7
+    }
+  ]
+}

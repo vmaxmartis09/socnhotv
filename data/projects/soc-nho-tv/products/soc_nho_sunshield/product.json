@@ -1,0 +1,29 @@
+{
+  "id": "soc_nho_sunshield",
+  "name": "Kem Chống Nắng Quang Phổ Rộng Sóc Nhỏ",
+  "brand": "Sóc Nhỏ Lab",
+  "category": "Mỹ phẩm",
+  "price": 350000.0,
+  "sale_price": 289000.0,
+  "currency": "VND",
+  "affiliate_links": {
+    "tiktok_shop": "https://shop.tiktok.com/view/product/123456",
+    "shopee": "",
+    "lazada": "",
+    "other": ""
+  },
+  "usp": [
+    "Kháng nước 80 phút",
+    "Kiềm dầu 12 tiếng",
+    "Không lộ vân kem"
+  ],
+  "pain_points": [
+    "Kem chống nắng thông thường bết dính",
+    "Dễ chảy vệt trắng khi ra mồ hôi"
+  ],
+  "specs": {},
+  "images": [],
+  "videos": [],
+  "target_audience": "Nữ học sinh sinh viên da dầu",
+  "compliance_notes": "Không cam kết trị dứt điểm nám da"
+}

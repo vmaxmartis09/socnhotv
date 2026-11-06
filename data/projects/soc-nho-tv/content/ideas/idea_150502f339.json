@@ -1,0 +1,15 @@
+{
+  "id": "idea_150502f339",
+  "project_id": "soc-nho-tv",
+  "title": "Sự Thật Về Chiếc Bụng Kêu Ục Ục Khi Đói",
+  "platform_targets": [
+    "tiktok",
+    "shorts",
+    "reels",
+    "youtube"
+  ],
+  "template_id": "tiktok-sales-v1",
+  "blueprint_ref": null,
+  "priority": 5,
+  "status": "new"
+}

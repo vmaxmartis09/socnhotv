@@ -1,0 +1,15 @@
+{
+  "id": "idea_8de12edc08",
+  "project_id": "soc-nho-tv",
+  "title": "Vì Sao Nước Biển Lại Mặn Mà Nước Sông Lại Ngọt?",
+  "platform_targets": [
+    "tiktok",
+    "shorts",
+    "reels",
+    "youtube"
+  ],
+  "template_id": "tiktok-sales-v1",
+  "blueprint_ref": null,
+  "priority": 3,
+  "status": "new"
+}

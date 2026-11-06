@@ -1,0 +1,15 @@
+{
+  "id": "idea_15b1a6d966",
+  "project_id": "soc-nho-tv",
+  "title": "Cầu Vồng Thực Chất Có Hình Gì Từ Trên Máy Bay?",
+  "platform_targets": [
+    "tiktok",
+    "shorts",
+    "reels",
+    "youtube"
+  ],
+  "template_id": "tiktok-sales-v1",
+  "blueprint_ref": null,
+  "priority": 4,
+  "status": "new"
+}

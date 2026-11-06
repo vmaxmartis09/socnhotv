@@ -1,0 +1,15 @@
+{
+  "id": "idea_b3711de398",
+  "project_id": "soc-nho-tv",
+  "title": "Bí Kíp Săn Mã Giảm Giá Shopee & TikTok Shop Giảm 50%",
+  "platform_targets": [
+    "tiktok",
+    "shorts",
+    "reels",
+    "youtube"
+  ],
+  "template_id": "affiliate-compare-v1",
+  "blueprint_ref": null,
+  "priority": 4,
+  "status": "new"
+}

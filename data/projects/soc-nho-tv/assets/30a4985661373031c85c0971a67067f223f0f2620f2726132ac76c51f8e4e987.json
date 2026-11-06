@@ -1,0 +1,53 @@
+{
+  "title": "Chủ đề cho koc-review-v1",
+  "scenes": [
+    {
+      "sceneNumber": 1,
+      "title": "Cảnh 1: Kệ kẹo nhà cây",
+      "imagePrompt": "Sóc Bi ở nhà cây, kệ đầy hũ kẹo, mắt sáng rực, 3D Pixar 100cm",
+      "videoPrompt": "Camera dolly chậm vào Sóc Bi đang nhảy lên vui sướng",
+      "dialogue": "Oa, nhiều kẹo quá! Hôm nay Bi sẽ ăn thật nhiều luôn!",
+      "durationSec": 7.0
+    },
+    {
+      "sceneNumber": 2,
+      "title": "Cảnh 2: Quên đánh răng",
+      "imagePrompt": "Bi ăn kẹo liên tục trên sàn gỗ nhà cây, vỏ kẹo chất đống rồi ngủ quên",
+      "videoPrompt": "Camera pan nhẹ qua đống vỏ kẹo, Bi ngáp ngủ",
+      "dialogue": "Bi ăn kẹo cả ngày, tối đến lại quên đánh răng rồi đi ngủ.",
+      "durationSec": 8.0
+    },
+    {
+      "sceneNumber": 3,
+      "title": "Cảnh 3: Sáng dậy đau răng",
+      "imagePrompt": "Bi ôm má nhăn mặt vì đau răng trong nắng sớm nhà cây",
+      "videoPrompt": "Camera push-in cận mặt Bi ôm má mếu máo",
+      "dialogue": "Ôi đau quá! Sáng nay răng của Bi đau lắm!",
+      "durationSec": 7.0
+    },
+    {
+      "sceneNumber": 4,
+      "title": "Cảnh 4: Khám Bác sĩ Koala",
+      "imagePrompt": "Bác sĩ Koala (150cm) khám răng cho Sóc Bi (100cm) tại phòng khám rừng xanh",
+      "videoPrompt": "Bác sĩ Koala cầm gương nha khoa soi nhẹ nhàng và gật đầu",
+      "dialogue": "Bác sĩ Koala bảo Bi bị sâu răng vì ăn quá nhiều kẹo ngọt.",
+      "durationSec": 8.0
+    },
+    {
+      "sceneNumber": 5,
+      "title": "Cảnh 5: Học chải răng đúng cách",
+      "imagePrompt": "Bác sĩ Koala cầm bàn chải lớn hướng dẫn Sóc Bi đánh răng xoay tròn",
+      "videoPrompt": "Bi làm theo bác sĩ Koala, cả hai cùng mỉm cười",
+      "dialogue": "Bác sĩ dạy Bi đánh răng sáng tối, ăn ít kẹo, uống nhiều nước.",
+      "durationSec": 8.0
+    },
+    {
+      "sceneNumber": 6,
+      "title": "Cảnh 6: Răng trắng sáng bóng",
+      "imagePrompt": "Sóc Bi cười tươi răng trắng sáng trước cửa nhà cây, kệ đầy táo và cà rốt",
+      "videoPrompt": "Camera pull-back chậm, Bi vẫy tay chào khán giả",
+      "dialogue": "Cảm ơn bác sĩ! Từ nay Bi sẽ chăm sóc răng thật tốt!",
+      "durationSec": 7.0
+    }
+  ]
+}

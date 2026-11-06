@@ -1,0 +1,15 @@
+{
+  "id": "idea_81da25d861",
+  "project_id": "soc-nho-tv",
+  "title": "Tại Sao Mắt Chúng Ta Lại Chớp Hơn 20.000 Lần Mỗi Ngày?",
+  "platform_targets": [
+    "tiktok",
+    "shorts",
+    "reels",
+    "youtube"
+  ],
+  "template_id": "tiktok-sales-v1",
+  "blueprint_ref": null,
+  "priority": 4,
+  "status": "new"
+}

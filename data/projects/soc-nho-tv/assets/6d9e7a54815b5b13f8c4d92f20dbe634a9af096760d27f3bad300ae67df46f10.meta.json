@@ -1,0 +1,28 @@
+{
+  "id": "art_6d9e7a54815b",
+  "kind": "text",
+  "uri": "assets/6d9e7a54815b5b13f8c4d92f20dbe634a9af096760d27f3bad300ae67df46f10.json",
+  "mime": "application/json",
+  "size": 2447,
+  "hash": "sha256:6d9e7a54815b5b13f8c4d92f20dbe634a9af096760d27f3bad300ae67df46f10",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": null,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "node-script",
+    "runId": "run_1793803316_46cc32",
+    "provider": "mock",
+    "model": "script-planner-v1",
+    "params": {
+      "targetSceneCount": 6,
+      "sourceText": "Bán hàng Sóc Nhỏ"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-04T14:41:56Z"
+  }
+}

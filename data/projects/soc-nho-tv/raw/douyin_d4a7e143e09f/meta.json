@@ -1,0 +1,31 @@
+{
+  "id": "douyin_d4a7e143e09f",
+  "project_id": "soc-nho-tv",
+  "platform": "douyin",
+  "url": "https://v.douyin.com/iREq9Gq/",
+  "author": "",
+  "author_url": "",
+  "title": "",
+  "description": "",
+  "duration_s": 0.0,
+  "published_at": "",
+  "stats": {
+    "views": 0,
+    "likes": 0,
+    "comments": 0,
+    "shares": 0
+  },
+  "hashtags": [],
+  "music": "",
+  "rights": "reference_only",
+  "rights_note": "",
+  "files": {
+    "video": null,
+    "audio": null,
+    "thumb": null,
+    "subtitle_orig": null
+  },
+  "status": "failed",
+  "error": "Nền tảng douyin yêu cầu cookie hoặc xác thực danh tính. Hệ thống tuân thủ chính sách: không cố vượt captcha. Vui lòng cấu hình cookiefile hợp lệ từ trình duyệt cá nhân để tiếp tục.",
+  "created_at": "2026-11-04T13:38:46.154813+00:00"
+}

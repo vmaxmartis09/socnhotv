@@ -1,0 +1,28 @@
+{
+  "id": "art_e4254aa9d8e6",
+  "kind": "text",
+  "uri": "assets/e4254aa9d8e645c8e0c2f20d6fdaba9640280671212e0904051dbfafeb9fa193.json",
+  "mime": "application/json",
+  "size": 2456,
+  "hash": "sha256:e4254aa9d8e645c8e0c2f20d6fdaba9640280671212e0904051dbfafeb9fa193",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": null,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "n2",
+    "runId": "run_1793803114_0d18a6",
+    "provider": "mock",
+    "model": "script-planner-v1",
+    "params": {
+      "targetSceneCount": 6,
+      "sourceText": "Chủ đề cho fact-reveal-v1"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-04T14:38:34Z"
+  }
+}

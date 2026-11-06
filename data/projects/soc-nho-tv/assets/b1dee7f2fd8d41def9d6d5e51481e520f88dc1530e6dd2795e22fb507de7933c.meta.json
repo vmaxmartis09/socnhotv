@@ -1,0 +1,32 @@
+{
+  "id": "art_b1dee7f2fd8d",
+  "kind": "video",
+  "uri": "assets/b1dee7f2fd8d41def9d6d5e51481e520f88dc1530e6dd2795e22fb507de7933c.mp4",
+  "mime": "video/mp4",
+  "size": 454071,
+  "hash": "sha256:b1dee7f2fd8d41def9d6d5e51481e520f88dc1530e6dd2795e22fb507de7933c",
+  "meta": {
+    "width": 1080,
+    "height": 1920,
+    "duration": 13.646349,
+    "fps": null,
+    "aspect": "9:16"
+  },
+  "provenance": {
+    "nodeId": "x",
+    "runId": "run_1793860663_9f5151",
+    "provider": "local",
+    "model": "export_package_v1",
+    "params": {
+      "outputFileName": "probe_la_cay.mp4",
+      "slug": "v-sao-c-u-v-ng-c-nhi-u-m-u",
+      "platforms": [
+        "tiktok",
+        "youtube"
+      ]
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-05T06:38:42Z"
+  }
+}

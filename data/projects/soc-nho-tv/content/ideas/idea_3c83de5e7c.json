@@ -1,0 +1,15 @@
+{
+  "id": "idea_3c83de5e7c",
+  "project_id": "soc-nho-tv",
+  "title": "Giải Mã Hiện Tượng Nấc Cụt và Mẹo Dứt Điểm Trong 10 Giây",
+  "platform_targets": [
+    "tiktok",
+    "shorts",
+    "reels",
+    "youtube"
+  ],
+  "template_id": "tiktok-sales-v1",
+  "blueprint_ref": null,
+  "priority": 4,
+  "status": "new"
+}

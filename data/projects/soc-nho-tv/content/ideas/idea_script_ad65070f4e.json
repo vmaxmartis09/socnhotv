@@ -1,0 +1,13 @@
+{
+  "id": "idea_script_ad65070f4e",
+  "project_id": "soc-nho-tv",
+  "title": "Review Kem Chống Nắng Quang Phổ Rộng Sóc Nhỏ (koc_review)",
+  "platform_targets": [
+    "tiktok",
+    "reels"
+  ],
+  "template_id": "koc-review-v1",
+  "blueprint_ref": "bp_local_2cf1c9fea639",
+  "priority": 1,
+  "status": "scripted"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "art_77eaa42fad7b",
+  "kind": "text",
+  "uri": "assets/77eaa42fad7b730b2ae89fa10406670e0cfbe244013787926ba618728e423896.json",
+  "mime": "application/json",
+  "size": 2459,
+  "hash": "sha256:77eaa42fad7b730b2ae89fa10406670e0cfbe244013787926ba618728e423896",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": null,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "n2",
+    "runId": "run_1793803114_74a1de",
+    "provider": "mock",
+    "model": "script-planner-v1",
+    "params": {
+      "targetSceneCount": 6,
+      "sourceText": "Chủ đề cho localized-reup-v1"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-04T14:38:34Z"
+  }
+}

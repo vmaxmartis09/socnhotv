@@ -1,0 +1,31 @@
+{
+  "id": "local_2cf1c9fea639",
+  "project_id": "soc-nho-tv",
+  "platform": "local",
+  "url": "file://real_test_source.mp4",
+  "author": "User",
+  "author_url": "",
+  "title": "Sample Test Video",
+  "description": "",
+  "duration_s": 3.0,
+  "published_at": "",
+  "stats": {
+    "views": 0,
+    "likes": 0,
+    "comments": 0,
+    "shares": 0
+  },
+  "hashtags": [],
+  "music": "",
+  "rights": "owned",
+  "rights_note": "Tập tin tải lên từ máy cục bộ",
+  "files": {
+    "video": "raw/local_2cf1c9fea639/video.mp4",
+    "audio": "raw/local_2cf1c9fea639/audio.wav",
+    "thumb": "raw/local_2cf1c9fea639/thumb.jpg",
+    "subtitle_orig": null
+  },
+  "status": "ready",
+  "error": null,
+  "created_at": "2026-11-04T13:38:00.237957+00:00"
+}

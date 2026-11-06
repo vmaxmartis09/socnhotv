@@ -1,0 +1,15 @@
+{
+  "id": "idea_64709619a7",
+  "project_id": "soc-nho-tv",
+  "title": "LyLy Review Bình Giữ Nhiệt Báo Nhiệt Độ Cảm Ứng",
+  "platform_targets": [
+    "tiktok",
+    "shorts",
+    "reels",
+    "youtube"
+  ],
+  "template_id": "koc-review-v1",
+  "blueprint_ref": null,
+  "priority": 3,
+  "status": "new"
+}

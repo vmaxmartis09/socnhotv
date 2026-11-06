@@ -1,0 +1,29 @@
+{
+  "id": "art_49e6693ae21b",
+  "kind": "audio",
+  "uri": "assets/49e6693ae21b6e5dbf5a43a34bfa6d8ea8e403538741d14b44f9ad7647f9e0bf.wav",
+  "mime": "audio/wav",
+  "size": 160568,
+  "hash": "sha256:49e6693ae21b6e5dbf5a43a34bfa6d8ea8e403538741d14b44f9ad7647f9e0bf",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 3.64,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "node-voice",
+    "runId": "run_1793803316_46cc32",
+    "provider": "mock",
+    "model": "mock-omnivoice-v1",
+    "params": {
+      "text": "Oa, nhiều kẹo quá! Hôm nay Bi sẽ ăn thật nhiều luôn!",
+      "voiceId": "soc-nho",
+      "tempo": 1.1
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-04T14:41:56Z"
+  }
+}

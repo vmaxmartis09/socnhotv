@@ -1,0 +1,21 @@
+{
+  "title": "Cảnh 1: Mở màn",
+  "scenes": [
+    {
+      "sceneNumber": 1,
+      "title": "Cảnh 1: Mở màn",
+      "imagePrompt": "---",
+      "videoPrompt": "Camera góc trung chuyển động mượt mà, diễn hoạt sinh động theo nội dung Cảnh 1: Mở màn",
+      "dialogue": "Sóc Nhỏ: Chào các bạn, kẹo hạt dẻ ngon lắm!",
+      "durationSec": 11.2
+    },
+    {
+      "sceneNumber": 2,
+      "title": "Cảnh 2: Thử kẹo",
+      "imagePrompt": "Cảnh hoạt hình 3D: Koala: Giòn tan và thơm bùi!",
+      "videoPrompt": "Camera góc trung chuyển động mượt mà, diễn hoạt sinh động theo nội dung Cảnh 2: Thử kẹo",
+      "dialogue": "Koala: Giòn tan và thơm bùi!",
+      "durationSec": 8.8
+    }
+  ]
+}

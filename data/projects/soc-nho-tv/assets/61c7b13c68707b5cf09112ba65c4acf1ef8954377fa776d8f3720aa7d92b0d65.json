@@ -1,0 +1,21 @@
+{
+  "title": "Cảnh 1: Khởi động ngày mới",
+  "scenes": [
+    {
+      "sceneNumber": 1,
+      "title": "Cảnh 1: Khởi động ngày mới",
+      "imagePrompt": "Bi nhảy chân sáo trong nắng mai",
+      "videoPrompt": "Camera góc trung chuyển động mượt mà, diễn hoạt sinh động theo nội dung Cảnh 1: Khởi động ngày mới",
+      "dialogue": "Sóc Nhỏ: Chào các bạn nhỏ, mình là Sóc Bi!",
+      "durationSec": 4.5
+    },
+    {
+      "sceneNumber": 2,
+      "title": "Cảnh 2: Khám phá rừng xanh",
+      "imagePrompt": "Cảnh hoạt hình 3D: Sóc Nhỏ: Hôm nay trời thật đẹp và mát mẻ!",
+      "videoPrompt": "Camera góc trung chuyển động mượt mà, diễn hoạt sinh động theo nội dung Cảnh 2: Khám phá rừng xanh",
+      "dialogue": "Sóc Nhỏ: Hôm nay trời thật đẹp và mát mẻ!",
+      "durationSec": 4.5
+    }
+  ]
+}

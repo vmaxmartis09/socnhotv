@@ -1,0 +1,28 @@
+{
+  "id": "art_dcf72e2e9860",
+  "kind": "text",
+  "uri": "assets/dcf72e2e986016937eedd389ecb56ba56a2da16d2c71bcb827089f849bab6186.json",
+  "mime": "application/json",
+  "size": 2455,
+  "hash": "sha256:dcf72e2e986016937eedd389ecb56ba56a2da16d2c71bcb827089f849bab6186",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": null,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "n2",
+    "runId": "run_1793803114_045560",
+    "provider": "mock",
+    "model": "script-planner-v1",
+    "params": {
+      "targetSceneCount": 6,
+      "sourceText": "Chủ đề cho news-break-v1"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-04T14:38:34Z"
+  }
+}

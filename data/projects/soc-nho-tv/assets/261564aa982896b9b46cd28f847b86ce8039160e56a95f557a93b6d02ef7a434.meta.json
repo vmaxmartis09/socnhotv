@@ -1,0 +1,31 @@
+{
+  "id": "art_261564aa9828",
+  "kind": "audio",
+  "uri": "assets/261564aa982896b9b46cd28f847b86ce8039160e56a95f557a93b6d02ef7a434.mp3",
+  "mime": "audio/mp3",
+  "size": 47063,
+  "hash": "sha256:261564aa982896b9b46cd28f847b86ce8039160e56a95f557a93b6d02ef7a434",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 1.882,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "node_tts_voice",
+    "runId": "run_1793807984_7ddfb3",
+    "provider": "omnivoice",
+    "model": "omnivoice",
+    "params": {
+      "text": "Chào các bạn, mình là Sóc Nhỏ Bi!",
+      "voiceId": "soc-nho",
+      "tempo": 1.1,
+      "targetLufs": -14.0,
+      "mastering": "deesser+presence3.2k+comp4:1+loudnorm-14LUFS"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-04T16:00:08Z"
+  }
+}

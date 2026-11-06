@@ -1,0 +1,15 @@
+{
+  "id": "idea_81c1cde59b",
+  "project_id": "soc-nho-tv",
+  "title": "So Sánh Sạc Dự Phòng Sạc Nhanh 20W và 30W",
+  "platform_targets": [
+    "tiktok",
+    "shorts",
+    "reels",
+    "youtube"
+  ],
+  "template_id": "affiliate-compare-v1",
+  "blueprint_ref": null,
+  "priority": 4,
+  "status": "new"
+}

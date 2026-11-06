@@ -1,0 +1,15 @@
+{
+  "id": "idea_9c57469aa1",
+  "project_id": "soc-nho-tv",
+  "title": "Tại Sao Chúng Ta Lại Quên Giấc Mơ Ngay Sau Khi Thức Dậy?",
+  "platform_targets": [
+    "tiktok",
+    "shorts",
+    "reels",
+    "youtube"
+  ],
+  "template_id": "tiktok-sales-v1",
+  "blueprint_ref": null,
+  "priority": 3,
+  "status": "new"
+}

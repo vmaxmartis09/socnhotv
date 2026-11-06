@@ -1,0 +1,28 @@
+{
+  "id": "art_077614a8a8fd",
+  "kind": "text",
+  "uri": "assets/077614a8a8fd221da76ff94c2070a9c732803823beacbbf5704269460009bc70.json",
+  "mime": "application/json",
+  "size": 372,
+  "hash": "sha256:077614a8a8fd221da76ff94c2070a9c732803823beacbbf5704269460009bc70",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": null,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "node_script",
+    "runId": "run_1793809534_637b08",
+    "provider": "mock",
+    "model": "script-planner-v1",
+    "params": {
+      "targetSceneCount": 1,
+      "sourceText": "Vì sao cầu vồng có nhiều màu?"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-04T16:25:34Z"
+  }
+}

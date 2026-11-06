@@ -1,0 +1,27 @@
+[
+  {
+    "role": "hook",
+    "duration_s": 3.5,
+    "text": "Đừng mua Sản phẩm test nếu mọi người chưa nghe qua trải nghiệm thực tế này của LyLy nha!"
+  },
+  {
+    "role": "problem",
+    "duration_s": 4.0,
+    "text": "Trước đây LyLy cũng rất đau đầu vì tìm kiếm sản phẩm ưng ý, thử qua nhiều loại nhưng không ăn thua."
+  },
+  {
+    "role": "demo",
+    "duration_s": 6.0,
+    "text": "Nhưng từ lúc đổi sang Sản phẩm test của nhà này, điểm ưng ý nhất là chất lượng vượt mong đợi."
+  },
+  {
+    "role": "proof",
+    "duration_s": 5.0,
+    "text": "Tuy nhiên, có một điểm trừ nhỏ là sản phẩm quá hot nên thường xuyên hết màu đẹp. LyLy chấm em này 9/10 nha!"
+  },
+  {
+    "role": "cta",
+    "duration_s": 4.0,
+    "text": "Giá đang được sale chỉ còn 0VND. Link chính hãng LyLy gắn ngay góc trái giỏ hàng nhé!"
+  }
+]

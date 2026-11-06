@@ -1,0 +1,27 @@
+{
+  "id": "art_45672d014db7",
+  "kind": "text",
+  "uri": "assets/45672d014db7784d8ba7fb8b1dc402e290382025ff6938ac0ffdd216acb72664.txt",
+  "mime": "application/octet-stream",
+  "size": 37,
+  "hash": "sha256:45672d014db7784d8ba7fb8b1dc402e290382025ff6938ac0ffdd216acb72664",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": null,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "n1",
+    "runId": "run_1793803093_d11755",
+    "provider": "local",
+    "model": "text",
+    "params": {
+      "content": "Chủ đề video review sản phẩm"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-04T14:38:13Z"
+  }
+}

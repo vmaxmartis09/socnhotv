@@ -1,0 +1,15 @@
+{
+  "id": "idea_9be6d44299",
+  "project_id": "soc-nho-tv",
+  "title": "So Sánh Nồi Chiên Không Dầu Cơ vs Điện Tử Cùng Tầm Giá",
+  "platform_targets": [
+    "tiktok",
+    "shorts",
+    "reels",
+    "youtube"
+  ],
+  "template_id": "affiliate-compare-v1",
+  "blueprint_ref": null,
+  "priority": 4,
+  "status": "new"
+}

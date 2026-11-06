@@ -1,0 +1,28 @@
+{
+  "id": "art_f85c11d6aa39",
+  "kind": "text",
+  "uri": "assets/f85c11d6aa39ad759fda831039a5f9c2861a78fd8aa14ad805efd4ad70b75729.json",
+  "mime": "application/json",
+  "size": 2465,
+  "hash": "sha256:f85c11d6aa39ad759fda831039a5f9c2861a78fd8aa14ad805efd4ad70b75729",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": null,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "n2",
+    "runId": "run_1793803114_96d145",
+    "provider": "mock",
+    "model": "script-planner-v1",
+    "params": {
+      "targetSceneCount": 6,
+      "sourceText": "Chủ đề cho yt-animation-episode-v1"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-04T14:38:34Z"
+  }
+}

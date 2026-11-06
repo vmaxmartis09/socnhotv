@@ -1,0 +1,27 @@
+{
+  "id": "art_c65acd384a42",
+  "kind": "text",
+  "uri": "assets/c65acd384a42049cd300710d27eafe3ebab956ab7491ade0902dcb5e12f6edbc.txt",
+  "mime": "application/octet-stream",
+  "size": 21,
+  "hash": "sha256:c65acd384a42049cd300710d27eafe3ebab956ab7491ade0902dcb5e12f6edbc",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": null,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "n_text",
+    "runId": "run_1793804201_49f687",
+    "provider": "local",
+    "model": "text",
+    "params": {
+      "content": "Bán kẹo hạt dẻ"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-04T14:56:41Z"
+  }
+}

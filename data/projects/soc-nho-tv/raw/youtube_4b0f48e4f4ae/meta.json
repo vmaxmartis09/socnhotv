@@ -1,0 +1,35 @@
+{
+  "id": "youtube_4b0f48e4f4ae",
+  "project_id": "soc-nho-tv",
+  "platform": "youtube",
+  "url": "https://www.youtube.com/watch?v=jNQXAC9IVRw",
+  "author": "jawed",
+  "author_url": "https://www.youtube.com/@jawed",
+  "title": "Me at the zoo",
+  "description": "Microplastics are accumulating in human brains at an alarming rate\nhttps://www.youtube.com/watch?v=0PT5c1z3LL8\n\n“Nanoplastics and Human Health” with Matthew J Campen, PhD, MSPH\nhttps://www.youtube.com/watch?v=RRBN_4L09Mg\n\n00:00 Intro\n00:05 The cool thing\n00:17 End",
+  "duration_s": 19.0,
+  "published_at": "20050424",
+  "stats": {
+    "views": 447741681,
+    "likes": 20127853,
+    "comments": 10000000,
+    "shares": 0
+  },
+  "hashtags": [
+    "me at the zoo",
+    "jawed karim",
+    "first youtube video"
+  ],
+  "music": "",
+  "rights": "reference_only",
+  "rights_note": "",
+  "files": {
+    "video": "raw/youtube_4b0f48e4f4ae/video.mp4",
+    "audio": "raw/youtube_4b0f48e4f4ae/audio.wav",
+    "thumb": "raw/youtube_4b0f48e4f4ae/thumb.jpg",
+    "subtitle_orig": "raw/youtube_4b0f48e4f4ae/video.en.vtt"
+  },
+  "status": "ready",
+  "error": null,
+  "created_at": "2026-11-04T13:38:17.911294+00:00"
+}

@@ -1,0 +1,15 @@
+{
+  "id": "idea_52c5fa8498",
+  "project_id": "soc-nho-tv",
+  "title": "So Sánh 2 Dòng Máy Xay Sinh Tố Cầm Tay Mini",
+  "platform_targets": [
+    "tiktok",
+    "shorts",
+    "reels",
+    "youtube"
+  ],
+  "template_id": "affiliate-compare-v1",
+  "blueprint_ref": null,
+  "priority": 4,
+  "status": "new"
+}

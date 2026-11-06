@@ -1,0 +1,27 @@
+{
+  "id": "art_6db10d86a652",
+  "kind": "text",
+  "uri": "assets/6db10d86a6523c063422f5021a6d6fa821df0b32caea36dff80ca5529929a5b8.txt",
+  "mime": "application/octet-stream",
+  "size": 33,
+  "hash": "sha256:6db10d86a6523c063422f5021a6d6fa821df0b32caea36dff80ca5529929a5b8",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": null,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "n1",
+    "runId": "run_1793803114_74a1de",
+    "provider": "local",
+    "model": "text",
+    "params": {
+      "content": "Chủ đề cho localized-reup-v1"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-04T14:38:34Z"
+  }
+}

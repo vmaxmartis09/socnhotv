@@ -1,0 +1,31 @@
+{
+  "id": "art_71185678d83c",
+  "kind": "image",
+  "uri": "assets/71185678d83cb534675c6e9a7ee746a2e284199e89c8cae92c104b761fbbb046.png",
+  "mime": "image/png",
+  "size": 314318,
+  "hash": "sha256:71185678d83cb534675c6e9a7ee746a2e284199e89c8cae92c104b761fbbb046",
+  "meta": {
+    "width": 1080,
+    "height": 1920,
+    "duration": null,
+    "fps": null,
+    "aspect": "9:16"
+  },
+  "provenance": {
+    "nodeId": "c",
+    "runId": "run_1793860780_993394",
+    "provider": "mock",
+    "model": "mock-image-v1",
+    "params": {
+      "prompt": "Master DNA character panel for soc_nho",
+      "aspectRatio": "9:16",
+      "resolution": "1080p",
+      "index": 1,
+      "seed": null
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-05T06:39:40Z"
+  }
+}

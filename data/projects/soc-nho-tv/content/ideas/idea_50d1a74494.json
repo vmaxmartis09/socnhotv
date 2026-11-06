@@ -1,0 +1,15 @@
+{
+  "id": "idea_50d1a74494",
+  "project_id": "soc-nho-tv",
+  "title": "Đánh Giá Gối Tựa Lưng Công Thái Học Cho Người Ngồi Lâu",
+  "platform_targets": [
+    "tiktok",
+    "shorts",
+    "reels",
+    "youtube"
+  ],
+  "template_id": "koc-review-v1",
+  "blueprint_ref": null,
+  "priority": 4,
+  "status": "new"
+}

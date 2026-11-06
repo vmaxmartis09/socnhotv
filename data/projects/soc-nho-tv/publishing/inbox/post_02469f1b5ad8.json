@@ -1,0 +1,14 @@
+{
+  "post_id": "post_02469f1b5ad8",
+  "project_id": "soc-nho-tv",
+  "media_path": "output/test_autodraft_out/tiktok.mp4",
+  "title": "Auto Draft Video",
+  "caption": "#socnhotv #funny",
+  "platforms": [
+    "tiktok"
+  ],
+  "source_ref": null,
+  "render_job_id": "render_39bdfda964ed",
+  "status": "draft",
+  "created_at": "2026-11-05T12:00:32.945838+00:00"
+}

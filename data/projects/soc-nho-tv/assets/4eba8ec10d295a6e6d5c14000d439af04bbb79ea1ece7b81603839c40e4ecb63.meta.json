@@ -1,0 +1,31 @@
+{
+  "id": "art_4eba8ec10d29",
+  "kind": "audio",
+  "uri": "assets/4eba8ec10d295a6e6d5c14000d439af04bbb79ea1ece7b81603839c40e4ecb63.mp3",
+  "mime": "audio/mp3",
+  "size": 362413,
+  "hash": "sha256:4eba8ec10d295a6e6d5c14000d439af04bbb79ea1ece7b81603839c40e4ecb63",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 15.027,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "v",
+    "runId": "run_1793860663_9f5151",
+    "provider": "omnivoice",
+    "model": "omnivoice",
+    "params": {
+      "text": "Sóc Nhỏ: Chào các bạn! Hôm nay mình tìm hiểu vì sao lá cây màu xanh nhé.\n\nKoala: Lá cây có chất diệp lục, nó hấp thụ ánh sáng đỏ và xanh dương.\n\nSóc Nhỏ: Còn màu xanh lá bị phản lại, nên mắt mình thấy lá màu xanh đó!",
+      "voiceId": "soc-nho",
+      "tempo": 1.1,
+      "targetLufs": -14.0,
+      "mastering": "deesser+presence3.2k+comp4:1+loudnorm-14LUFS"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-05T06:38:25Z"
+  }
+}

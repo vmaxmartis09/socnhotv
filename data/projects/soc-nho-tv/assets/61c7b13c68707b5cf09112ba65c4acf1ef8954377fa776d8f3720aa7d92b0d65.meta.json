@@ -1,0 +1,28 @@
+{
+  "id": "art_61c7b13c6870",
+  "kind": "text",
+  "uri": "assets/61c7b13c68707b5cf09112ba65c4acf1ef8954377fa776d8f3720aa7d92b0d65.json",
+  "mime": "application/json",
+  "size": 922,
+  "hash": "sha256:61c7b13c68707b5cf09112ba65c4acf1ef8954377fa776d8f3720aa7d92b0d65",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": null,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "n_script",
+    "runId": "run_1793805252_83e80a",
+    "provider": "local",
+    "model": "script_parser",
+    "params": {
+      "targetSceneCount": 2,
+      "sourceText": "Cảnh 1: Khởi động ngày mới"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-04T15:14:12Z"
+  }
+}

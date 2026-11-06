@@ -1,0 +1,27 @@
+{
+  "id": "art_fb4aca9cdb37",
+  "kind": "captions",
+  "uri": "assets/fb4aca9cdb370a29c54f7dd711cfe9dc561bea3dae85ccd6bbfd3b044e722e64.srt",
+  "mime": "application/octet-stream",
+  "size": 77,
+  "hash": "sha256:fb4aca9cdb370a29c54f7dd711cfe9dc561bea3dae85ccd6bbfd3b044e722e64",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": null,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "n_captions",
+    "runId": "run_1793804201_49f687",
+    "provider": "mock-whisper",
+    "model": "whisper-large-v3",
+    "params": {},
+    "inputHashes": [
+      "sha256:4cbb88766e32c06ce8fa3c292e9fd9ce097b874f26063de6c585595d9aef2765"
+    ],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-04T14:56:41Z"
+  }
+}

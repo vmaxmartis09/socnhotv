@@ -1,0 +1,27 @@
+{
+  "id": "art_fe3c3646c50c",
+  "kind": "text",
+  "uri": "assets/fe3c3646c50c734345fa06015cd85de85fa13bb0554508774681ab3e6aa0ce50.txt",
+  "mime": "application/octet-stream",
+  "size": 39,
+  "hash": "sha256:fe3c3646c50c734345fa06015cd85de85fa13bb0554508774681ab3e6aa0ce50",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": null,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "n_text",
+    "runId": "run_1793805252_83e80a",
+    "provider": "local",
+    "model": "text",
+    "params": {
+      "content": "Kịch bản Sóc Bi chào buổi sáng"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-04T15:14:12Z"
+  }
+}

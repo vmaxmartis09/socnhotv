@@ -1,0 +1,15 @@
+{
+  "id": "idea_95d8491742",
+  "project_id": "soc-nho-tv",
+  "title": "Test Khả Năng Kháng Nước Của Balo Học Sinh Chống Gù",
+  "platform_targets": [
+    "tiktok",
+    "shorts",
+    "reels",
+    "youtube"
+  ],
+  "template_id": "koc-review-v1",
+  "blueprint_ref": null,
+  "priority": 4,
+  "status": "new"
+}

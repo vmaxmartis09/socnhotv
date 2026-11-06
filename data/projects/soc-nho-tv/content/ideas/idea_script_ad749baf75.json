@@ -1,0 +1,14 @@
+{
+  "id": "idea_script_ad749baf75",
+  "project_id": "soc-nho-tv",
+  "title": "Review Kem Dưỡng Da Sóc Nhỏ (koc_review)",
+  "platform_targets": [
+    "tiktok",
+    "reels",
+    "shorts"
+  ],
+  "template_id": "koc-review-v1",
+  "blueprint_ref": null,
+  "priority": 1,
+  "status": "scripted"
+}
