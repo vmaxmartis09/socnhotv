@@ -338,7 +338,8 @@ export function buildSocNhoStoryTemplate(
     ),
   ];
 
-  return { nodes, edges };
+  // Mặc định xếp gọn trái → phải theo thứ tự chạy, giảm dây chéo
+  return { nodes: autoLayout(nodes, edges), edges };
 }
 
 const DEFAULT_EPISODES: Episode[] = [
@@ -346,32 +347,13 @@ const DEFAULT_EPISODES: Episode[] = [
     id: "ep_01_rang_sau",
     projectId: "soc-nho-tv",
     episodeNumber: 1,
-    title: "Tập 1: Sóc Nhỏ và Chiếc Răng Sâu",
-    status: "ready",
-    nodeCount: 9,
-    updatedAt: "2026-11-03T15:00:00Z",
-  },
-  {
-    id: "ep_02_bac_si_koala",
-    projectId: "soc-nho-tv",
-    episodeNumber: 2,
-    title: "Tập 2: Bác Sĩ Koala Khám Răng",
-    status: "draft",
-    nodeCount: 9,
-    updatedAt: "2026-11-02T10:30:00Z",
-  },
-  {
-    id: "ep_03_danh_rang_dung_cach",
-    projectId: "soc-nho-tv",
-    episodeNumber: 3,
-    title: "Tập 3: Đánh Răng Sáng Tối Cùng Bi",
+    title: "Tập 1: Núi lửa trong bụng Bi",
     status: "draft",
     nodeCount: 0,
-    updatedAt: "2026-11-01T09:15:00Z",
+    updatedAt: "2026-11-05T16:00:00Z",
   },
 ];
 
-const INITIAL_TEMPLATE = buildSocNhoStoryTemplate(FALLBACK_NODE_TYPES);
 
 export interface ProjectWorkspace {
   episodes: Episode[];
@@ -466,7 +448,7 @@ export const createCanvasSlice: StateCreator<
   [],
   CanvasSlice
 > = (set, get) => ({
-  selectedNodeId: "node_image_gen",
+  selectedNodeId: null,
   aspectRatio: "9:16",
   zoomLevel: 1.0,
   isMockMode: true,
@@ -474,12 +456,10 @@ export const createCanvasSlice: StateCreator<
   activeEpisodeId: "ep_01_rang_sau",
   nodeCatalog: FALLBACK_NODE_TYPES,
   nodeCatalogFromCore: false,
-  nodes: INITIAL_TEMPLATE.nodes,
-  edges: INITIAL_TEMPLATE.edges,
+  nodes: [],
+  edges: [],
   graphsByEpisode: {
-    ep_01_rang_sau: INITIAL_TEMPLATE,
-    ep_02_bac_si_koala: buildSocNhoStoryTemplate(FALLBACK_NODE_TYPES),
-    ep_03_danh_rang_dung_cach: { nodes: [], edges: [] },
+    ep_01_rang_sau: { nodes: [], edges: [] },
   },
   undoStack: [],
   redoStack: [],

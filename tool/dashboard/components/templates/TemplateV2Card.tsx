@@ -103,6 +103,7 @@ export function TemplateV2Card({
   onDoubleClick,
 }: TemplateV2CardProps) {
   const [isHovered, setIsHovered] = useState(false);
+  const [imgFailed, setImgFailed] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const isAvailable = template.is_available !== false;
@@ -150,7 +151,7 @@ export function TemplateV2Card({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       className={cn(
-        "group relative flex flex-col rounded-2xl border bg-card p-3 text-left transition-all duration-200 select-none cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-ring",
+        "group relative flex h-full flex-col rounded-2xl border bg-card p-3 text-left transition-all duration-200 select-none cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-ring",
         isSelected
           ? "border-foreground shadow-lg shadow-black/10 ring-1 ring-foreground/20"
           : "border-border hover:border-foreground/30 hover:bg-accent/30",
@@ -160,8 +161,7 @@ export function TemplateV2Card({
       {/* Vùng Media Poster */}
       <div
         className={cn(
-          "relative w-full overflow-hidden rounded-xl bg-muted/60 flex items-center justify-center",
-          isLandscape ? "aspect-[16/9]" : "aspect-[9/16]"
+          "relative aspect-[4/5] w-full shrink-0 overflow-hidden rounded-xl bg-muted/60 flex items-center justify-center"
         )}
       >
         {/* Ảnh thumbnail tĩnh */}
@@ -172,9 +172,7 @@ export function TemplateV2Card({
             "h-full w-full object-cover transition-opacity duration-300",
             isHovered && isAvailable ? "opacity-0" : "opacity-100"
           )}
-          onError={(e) => {
-            e.currentTarget.style.display = "none";
-          }}
+          onError={() => setImgFailed(true)}
         />
 
         {/* Video preview khi hover */}
@@ -193,18 +191,20 @@ export function TemplateV2Card({
         )}
 
         {/* Placeholder nếu ảnh lỗi */}
-        <div className="absolute inset-0 -z-10 flex flex-col items-center justify-center gap-2 p-3 text-center">
-          <Film className="h-8 w-8 text-muted-foreground/40" />
-          <span className="text-[11px] text-muted-foreground/60 line-clamp-2">
-            {template.name}
-          </span>
-        </div>
+        {imgFailed && (
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 p-3 text-center">
+            <Film className="h-8 w-8 text-muted-foreground/40" />
+            <span className="text-[10px] uppercase tracking-wider text-muted-foreground/60">
+              {isLandscape ? "16:9" : "9:16"}
+            </span>
+          </div>
+        )}
 
         {/* Huy hiệu Góc trên: Tier + Kind */}
-        <div className="absolute top-2.5 left-2.5 flex flex-wrap items-center gap-1.5 z-10">
+        <div className="absolute top-2 left-2 z-10">
           <span
             className={cn(
-              "rounded-full border px-2 py-0.5 text-[11px] font-bold uppercase tracking-wider backdrop-blur-md shadow-xs",
+              "rounded-full border px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider backdrop-blur-md whitespace-nowrap",
               tierStyle.bg,
               tierStyle.text,
               tierStyle.border
@@ -217,18 +217,15 @@ export function TemplateV2Card({
                 : "Cần GPU phần cứng"
             }`}
           >
-            Tier {template.tier}
-          </span>
-          <span className="rounded-full bg-background/85 px-2 py-0.5 text-[10px] font-semibold text-foreground/80 backdrop-blur-md border border-border/80">
-            {template.kind}
+            {template.tier}
           </span>
         </div>
 
         {/* Huy hiệu Góc trên phải: Status */}
-        <div className="absolute top-2.5 right-2.5 z-10">
+        <div className="absolute top-2 right-2 z-10">
           <span
             className={cn(
-              "rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider backdrop-blur-md border border-border/60",
+              "rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider backdrop-blur-md border border-border/60 whitespace-nowrap",
               statusBadge.bg,
               statusBadge.text
             )}
@@ -239,7 +236,7 @@ export function TemplateV2Card({
 
         {/* Huy hiệu Cảnh báo nếu thiếu điều kiện */}
         {!isAvailable && (
-          <div className="absolute inset-x-2 bottom-2.5 z-10 flex items-center gap-1.5 rounded-lg bg-destructive/90 px-2.5 py-1 text-[11px] font-medium text-destructive-foreground backdrop-blur-md shadow-sm">
+          <div className="absolute inset-x-2 bottom-2 z-10 flex items-center gap-1.5 rounded-lg bg-destructive/90 px-2.5 py-1 text-[11px] font-medium text-destructive-foreground backdrop-blur-md shadow-sm">
             <AlertTriangle className="h-3.5 w-3.5 shrink-0" />
             <span className="truncate">{missing[0] || "Thiếu điều kiện"}</span>
           </div>
@@ -247,7 +244,7 @@ export function TemplateV2Card({
 
         {/* Huy hiệu Thời lượng góc dưới nếu khả dụng */}
         {isAvailable && (
-          <div className="absolute bottom-2.5 right-2.5 z-10">
+          <div className="absolute bottom-2 right-2 z-10">
             <span className="rounded-md bg-background/85 px-2 py-0.5 text-[11px] font-medium text-foreground backdrop-blur-sm border border-border/80">
               {template.outputs?.duration?.min || 15}s - {template.outputs?.duration?.max || 60}s
             </span>
@@ -258,7 +255,7 @@ export function TemplateV2Card({
       {/* Thông tin Text bên dưới */}
       <div className="mt-2.5 flex flex-col gap-1">
         <div className="flex items-start justify-between gap-1">
-          <h3 className="line-clamp-1 text-[13px] font-bold text-foreground group-hover:text-foreground/80 transition-colors">
+          <h3 className="line-clamp-2 min-h-[2.25rem] text-[13px] font-bold leading-[1.15rem] text-foreground group-hover:text-foreground/80 transition-colors">
             {template.name}
           </h3>
         </div>
@@ -266,11 +263,11 @@ export function TemplateV2Card({
         {/* Chuỗi tóm tắt Recipe & Công cụ */}
         <div className="flex items-center gap-1 text-[11px] text-muted-foreground">
           <span className="truncate">
-            {template.recipe?.nodes ? `${template.recipe.nodes.length} bước đồ thị` : "Dựng tự động"}
+            {template.recipe?.nodes ? `${template.recipe.nodes.length} bước` : "Tự động"}
           </span>
           <span>•</span>
-          <span className="shrink-0 uppercase font-semibold text-[10px]">
-            {template.category}
+          <span className="shrink-0 truncate uppercase font-semibold text-[10px]">
+            {template.kind}
           </span>
         </div>
 

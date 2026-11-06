@@ -21,6 +21,7 @@ export const StudioEdge = React.memo(function StudioEdge({
   style,
   markerEnd,
   source,
+  target,
   sourceHandleId,
   data,
 }: EdgeProps) {
@@ -34,6 +35,13 @@ export const StudioEdge = React.memo(function StudioEdge({
     const def = base ? applyPortOverride(base, n.data.params) : undefined;
     return def?.outputPorts.find((p) => p.name === sourceHandleId)?.portType || ((data as any)?.portType as string | undefined);
   });
+  // Dây "đang truyền dữ liệu": node đích đang chạy
+  const flowing = useStudioStore((st: any) => {
+    const t = st.nodes.find((x: any) => x.id === target);
+    return t?.data?.status === "running";
+  });
+  const reduceMotion =
+    typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
   const color = (portType && PORT_TYPE_COLORS[portType as keyof typeof PORT_TYPE_COLORS]) || (style as any)?.stroke || "#737373";
   const [path, labelX, labelY] = getBezierPath({
     sourceX,
@@ -60,8 +68,19 @@ export const StudioEdge = React.memo(function StudioEdge({
         path={path}
         markerEnd={markerEnd}
         interactionWidth={22}
-        style={{ ...style, stroke: color, strokeWidth: selected ? 1.75 : 1.1 }}
+        className={flowing ? "edge-flowing" : undefined}
+        style={{ ...style, stroke: color, strokeWidth: selected ? 1.75 : flowing ? 1.8 : 1.1 }}
       />
+      {flowing && !reduceMotion && (
+        <g pointerEvents="none">
+          <circle r={5} fill={color} opacity={0.25}>
+            <animateMotion dur="1.2s" repeatCount="indefinite" path={path} />
+          </circle>
+          <circle r={2.5} fill={color}>
+            <animateMotion dur="1.2s" repeatCount="indefinite" path={path} />
+          </circle>
+        </g>
+      )}
       {selected && (
         <EdgeLabelRenderer>
           <button

@@ -145,6 +145,13 @@ table, .tnum, [data-tnum] {
   animation: node-running-pulse 1.4s ease-in-out infinite;
 }
 
+/* Dây nối đang truyền dữ liệu: nét đứt trôi theo chiều chạy */
+@keyframes edge-dash-flow { to { stroke-dashoffset: -18; } }
+.edge-flowing {
+  stroke-dasharray: 6 3;
+  animation: edge-dash-flow 0.7s linear infinite;
+}
+
 /* Thanh tiến trình chạy liên tục không gây layout reflow (GPU Composited) */
 @keyframes node-indeterminate-bar {
   0% { transform: translateX(-100%); }

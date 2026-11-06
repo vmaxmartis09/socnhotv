@@ -278,7 +278,7 @@ export function TemplatesView({ className }: { className?: string }) {
             </Button>
           </div>
         ) : (
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+          <div className="grid items-stretch gap-3 [grid-template-columns:repeat(auto-fill,minmax(176px,1fr))]">
             {filtered.map((t) => (
               <TemplateV2Card
                 key={t.id}
@@ -308,7 +308,7 @@ export function TemplatesView({ className }: { className?: string }) {
               onKeyDown={(e) => {
                 if (e.key === "Enter" || e.key === " ") router.push("/studio");
               }}
-              className="flex aspect-[9/16] flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-border p-4 text-center text-muted-foreground hover:border-foreground/40 hover:bg-accent/20 hover:text-foreground cursor-pointer transition-all active:scale-98"
+              className="flex h-full min-h-[240px] flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-border p-4 text-center text-muted-foreground hover:border-foreground/40 hover:bg-accent/20 hover:text-foreground cursor-pointer transition-all active:scale-98"
             >
               <div className="flex h-10 w-10 items-center justify-center rounded-full border border-dashed border-border bg-muted/60">
                 <Plus className="h-5 w-5" />

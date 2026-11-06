@@ -78,6 +78,7 @@ import {
 } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
 import dynamic from "next/dynamic";
+import { TemplateGroupNode } from "@/components/canvas/TemplateGroupNode";
 
 const CreateVideoModal = dynamic(
   () => import("@/components/studio/CreateVideoModal").then((m) => m.CreateVideoModal),
@@ -86,6 +87,7 @@ const CreateVideoModal = dynamic(
 
 const nodeTypes = {
   studioCard: StudioNode,
+  templateGroup: TemplateGroupNode,
 };
 
 const edgeTypes = {
@@ -109,14 +111,18 @@ export function toCoreGraph(
   nodes: Node<StudioNodeData>[],
   edges: Edge[]
 ): Graph {
+  const byId = new Map(nodes.map((n) => [n.id, n]));
+  const real = nodes.filter((n) => n.type !== "templateGroup");
   return {
     id: `graph_${projectId}`,
     projectId,
     name: `Graph ${projectId}`,
-    nodes: nodes.map((n) => ({
+    nodes: real.map((n) => ({
       id: n.id,
       type: n.data.nodeType,
-      position: n.position,
+      position: n.parentId && byId.get(n.parentId)
+        ? { x: n.position.x + byId.get(n.parentId)!.position.x, y: n.position.y + byId.get(n.parentId)!.position.y }
+        : n.position,
       params: n.data.params || {},
       inputs: (n.data.inputs as any) || {},
       state: (n.data.status || "idle") as any,
@@ -766,6 +772,9 @@ function StudioCanvasInner() {
     );
     const hasSelectedEdges = edges.some((e) => e.selected);
     if (selectedIds.size === 0 && !hasSelectedEdges) return;
+    nodes.forEach((n) => {
+      if (n.parentId && selectedIds.has(n.parentId)) selectedIds.add(n.id);
+    });
     const nextNodes = nodes.filter((n) => !selectedIds.has(n.id));
     const nextEdges = edges.filter(
       (e) =>
@@ -1124,6 +1133,22 @@ function StudioCanvasInner() {
       };
     } catch {
       // ignore if offline
+    }
+
+    // Chờ kênh SSE mở xong rồi mới gửi lệnh chạy, để không mất các sự kiện đầu tiên
+    if (es) {
+      const source = es;
+      await new Promise<void>((resolve) => {
+        const t = setTimeout(resolve, 1500);
+        source.addEventListener("open", () => {
+          clearTimeout(t);
+          resolve();
+        }, { once: true });
+        if (source.readyState === 1) {
+          clearTimeout(t);
+          resolve();
+        }
+      });
     }
 
     try {

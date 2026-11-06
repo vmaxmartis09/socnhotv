@@ -15,6 +15,12 @@ import {
   X,
   Check,
   AlertTriangle,
+  Layers,
+  Film,
+  Pencil,
+  Scissors,
+  AudioLines,
+  Headphones,
 } from "@/components/ui/icons";
 import { AiLoading } from "@/components/ui/AiLoading";
 import { cn } from "@/lib/utils";
@@ -41,6 +47,20 @@ interface RunOut {
   kind: string;
 }
 type SubTab = "tools" | "cutouts" | "audio" | "voices";
+
+const TOOL_ICON: Record<string, React.ReactNode> = {
+  "bg-remove": <ImageIcon className="h-4 w-4" />,
+  "depth-layers": <Layers className="h-4 w-4" />,
+  "ffmpeg-bin": <Film className="h-4 w-4" />,
+  handdraw: <Pencil className="h-4 w-4" />,
+  "scene-cut": <Scissors className="h-4 w-4" />,
+  "stt-align": <AudioLines className="h-4 w-4" />,
+  "voice-clone": <Mic className="h-4 w-4" />,
+};
+const CARD = "rounded-xl border bg-card p-2.5 transition-colors";
+const IconBox = ({ children, tone = "brand" }: { children: React.ReactNode; tone?: "brand" | "muted" }) => (
+  <span className={cn("flex h-8 w-8 shrink-0 items-center justify-center rounded-lg", tone === "brand" ? "bg-brand/10 text-brand" : "bg-muted text-muted-foreground")}>{children}</span>
+);
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const previewUrl = (p: string, download = false) =>
@@ -861,62 +881,62 @@ export function ToolboxPanel() {
                     Chưa có công cụ nào trong <code>tool/toolbox/tools/</code>.
                   </div>
                 )}
-                {tools.map((tool) => {
-                  const ready = tool.status === "verified" || tool.status === "installed";
-                  const expanded = open === tool.id;
-                  return (
-                    <div key={tool.id} className={cn("virtual-item space-y-2.5 rounded-xl border bg-card p-3 transition-colors", expanded ? "border-foreground/25" : "border-border")}>
+                <div className="grid grid-cols-2 gap-2">
+                  {tools.map((tool) => {
+                    const expanded = open === tool.id;
+                    return (
                       <button
+                        key={tool.id}
                         type="button"
                         onClick={() => setOpen(expanded ? null : tool.id)}
-                        className="flex w-full items-start justify-between gap-2 text-left"
                         aria-expanded={expanded}
+                        className={cn(CARD, "flex items-start gap-2 text-left hover:bg-accent/40 active:scale-[0.98]", expanded ? "border-brand ring-1 ring-brand/30" : "border-border")}
                       >
-                        <span className="space-y-0.5">
-                          <span className="flex items-center gap-1.5">
-                            <span className="text-[13px] font-medium">{tool.name}</span>
-                            <span className="rounded bg-muted px-1.5 text-[10px] text-muted-foreground">v{tool.version}</span>
+                        <IconBox>{TOOL_ICON[tool.id] ?? <Wrench className="h-4 w-4" />}</IconBox>
+                        <span className="min-w-0 flex-1 space-y-0.5">
+                          <span className="block truncate text-[12px] font-medium">{tool.name}</span>
+                          <span className="flex items-center gap-1 text-[10px] text-muted-foreground">
+                            <span className="font-mono">v{tool.version}</span>
+                            <span className={cn("rounded-full px-1.5 font-medium", tool.status === "verified" ? "bg-semantic-success/10 text-semantic-success" : tool.status === "installed" ? "bg-brand/10 text-brand" : "bg-muted")}>{tool.status}</span>
                           </span>
-                          <span className="block font-mono text-[11px] text-muted-foreground">{tool.id}</span>
-                        </span>
-                        <span
-                          className={cn(
-                            "shrink-0 rounded-full px-2 py-0.5 text-[10px] font-medium",
-                            tool.status === "verified" ? "bg-semantic-success/10 text-semantic-success" : tool.status === "installed" ? "bg-brand/10 text-brand" : "bg-muted text-muted-foreground"
-                          )}
-                        >
-                          {tool.status.toUpperCase()}
                         </span>
                       </button>
+                    );
+                  })}
+                </div>
+                {tools.filter((t) => t.id === open).map((tool) => {
+                  const ready = tool.status === "verified" || tool.status === "installed";
+                  return (
+                    <div key={tool.id} className="space-y-2.5 rounded-xl border border-foreground/25 bg-card p-3">
+                      <div className="flex items-center gap-2">
+                        <IconBox>{TOOL_ICON[tool.id] ?? <Wrench className="h-4 w-4" />}</IconBox>
+                        <span className="min-w-0 flex-1">
+                          <span className="block text-[13px] font-medium">{tool.name}</span>
+                          <span className="block font-mono text-[11px] text-muted-foreground">{tool.id}</span>
+                        </span>
+                        <button type="button" onClick={() => setOpen(null)} className="rounded p-1 text-muted-foreground hover:bg-accent" aria-label="Đóng"><X className="h-3.5 w-3.5" /></button>
+                      </div>
                       <div className="flex flex-wrap items-center gap-1.5 text-[10px] text-muted-foreground">
                         <span className="rounded bg-muted px-1.5 py-0.5">{tool.requires_gpu ? "Cần GPU" : "Chạy CPU"}</span>
                         {tool.requires_ffmpeg && <span className="rounded bg-muted px-1.5 py-0.5">FFmpeg</span>}
                         {tool.license?.code && <span className="rounded bg-muted px-1.5 py-0.5">{tool.license.code}</span>}
                       </div>
-
-                      {expanded && ready && tool.id === "bg-remove" && <BgRemoveWorkspace targets={targets} onDone={refresh} />}
-                      {expanded && ready && tool.id === "stt-align" && <AudioWorkspace targets={targets} onDone={refresh} />}
-                      {expanded && ready && tool.id === "depth-layers" && <DepthWorkspace targets={targets} onDone={refresh} />}
-                      {expanded && ready && tool.id === "scene-cut" && <SceneWorkspace targets={targets} onDone={refresh} />}
-                      {expanded && ready && tool.id === "voice-clone" && <VoiceCloneWorkspace onDone={refresh} />}
-                      {expanded && ready && tool.id === "ffmpeg-bin" && (
+                      {ready && tool.id === "bg-remove" && <BgRemoveWorkspace targets={targets} onDone={refresh} />}
+                      {ready && tool.id === "stt-align" && <AudioWorkspace targets={targets} onDone={refresh} />}
+                      {ready && tool.id === "depth-layers" && <DepthWorkspace targets={targets} onDone={refresh} />}
+                      {ready && tool.id === "scene-cut" && <SceneWorkspace targets={targets} onDone={refresh} />}
+                      {ready && tool.id === "voice-clone" && <VoiceCloneWorkspace onDone={refresh} />}
+                      {ready && tool.id === "ffmpeg-bin" && (
                         <div className="space-y-2">
                           <p className="text-[11px] text-muted-foreground">Bản ffmpeg dùng chung cho mọi tool (không sửa PATH hệ thống).</p>
-                          <button
-                            type="button"
-                            onClick={checkFfmpeg}
-                            disabled={checking}
-                            className="flex h-8 items-center gap-1.5 rounded-md bg-brand px-3 text-[12px] font-medium text-white transition-all hover:opacity-90 active:scale-95 disabled:opacity-40"
-                          >
+                          <button type="button" onClick={checkFfmpeg} disabled={checking} className="flex h-8 items-center gap-1.5 rounded-md bg-brand px-3 text-[12px] font-medium text-white transition-all hover:opacity-90 active:scale-95 disabled:opacity-40">
                             <Check className="h-3.5 w-3.5" />
                             {checking ? "Đang kiểm tra…" : "Kiểm tra / cài"}
                           </button>
                           {checkMsg && <p className="break-all text-[11px] text-muted-foreground">{checkMsg}</p>}
                         </div>
                       )}
-                      {expanded && !ready && (
-                        <p className="text-[11px] text-muted-foreground">Công cụ chưa sẵn sàng (trạng thái: {tool.status}).</p>
-                      )}
+                      {!ready && <p className="text-[11px] text-muted-foreground">Công cụ chưa sẵn sàng (trạng thái: {tool.status}).</p>}
                     </div>
                   );
                 })}
@@ -925,9 +945,9 @@ export function ToolboxPanel() {
 
             {/* ── KHO TÁCH NỀN ── */}
             {sub === "cutouts" && (
-              <motion.div key="cutouts" {...sectionAnim("tb-cutouts")} className="space-y-3">
+              <motion.div key="cutouts" {...sectionAnim("tb-cutouts")} className="grid grid-cols-2 gap-2">
                 {vaults.cutouts.length === 0 ? (
-                  <div className="space-y-1 rounded-xl border border-dashed border-border p-4">
+                  <div className="col-span-2 space-y-1 rounded-xl border border-dashed border-border p-4">
                     <ImageIcon className="h-5 w-5 text-muted-foreground" />
                     <p className="text-[12px] font-medium">Chưa có ảnh tách nền</p>
                     <button type="button" onClick={() => { setSub("tools"); setOpen("bg-remove"); }} className="text-[11px] text-brand hover:underline">
@@ -936,7 +956,7 @@ export function ToolboxPanel() {
                   </div>
                 ) : (
                   vaults.cutouts.map((item) => (
-                    <div key={item.id} className="virtual-card space-y-2 rounded-xl border border-border bg-card p-3">
+                    <div key={item.id} className={cn(CARD, "virtual-card space-y-2 border-border")}>
                       <div className="flex items-center justify-between text-[11px]">
                         <span className="font-mono font-medium">#{item.id}</span>
                         <span className="text-muted-foreground">
@@ -971,9 +991,9 @@ export function ToolboxPanel() {
 
             {/* ── KHO CANH TỪ ── */}
             {sub === "audio" && (
-              <motion.div key="audio" {...sectionAnim("tb-audio")} className="space-y-3">
+              <motion.div key="audio" {...sectionAnim("tb-audio")} className="grid grid-cols-2 gap-2">
                 {vaults.audios.length === 0 ? (
-                  <div className="space-y-1 rounded-xl border border-dashed border-border p-4">
+                  <div className="col-span-2 space-y-1 rounded-xl border border-dashed border-border p-4">
                     <Mic className="h-5 w-5 text-muted-foreground" />
                     <p className="text-[12px] font-medium">Chưa có bản phiên âm</p>
                     <button type="button" onClick={() => { setSub("tools"); setOpen("stt-align"); }} className="text-[11px] text-brand hover:underline">
@@ -982,7 +1002,7 @@ export function ToolboxPanel() {
                   </div>
                 ) : (
                   vaults.audios.map((item) => (
-                    <div key={item.id} className="space-y-2 rounded-xl border border-border bg-card p-3">
+                    <div key={item.id} className={cn(CARD, "space-y-2 border-border")}>
                       <div className="flex items-center justify-between text-[11px]">
                         <span className="font-mono font-medium">#{item.id}</span>
                         <span className="text-muted-foreground">
@@ -1013,47 +1033,59 @@ export function ToolboxPanel() {
             {/* ── GIỌNG ── */}
             {sub === "voices" && (
               <motion.div key="voices" {...sectionAnim("tb-voices")} className="space-y-3">
-                <div className="space-y-2.5 rounded-xl border border-border bg-card p-3">
+                <p className="px-0.5 text-[11px] font-medium text-muted-foreground">Kho giọng dùng chung ({vaults.voices.length}) — chọn ở bất kỳ đâu cần giọng</p>
+                <div className="grid grid-cols-2 gap-2">
+                  {vaults.voices.map((v) => {
+                    const m = v.metadata || {};
+                    const sample = v.files?.samples?.[0];
+                    const samplePath = sample && targets ? `${targets.sharedDir}/voice_vault/${v.id}/${sample}` : null;
+                    const ready = m.status === "ready";
+                    const gender = m.gender === "female" ? "Nữ" : m.gender === "male" ? "Nam" : m.gender === "child" ? "Bé" : null;
+                    const region = ({ north: "Bắc", south: "Nam", central: "Trung" } as Record<string, string>)[m.dialect] || null;
+                    return (
+                      <div key={v.id} className={cn(CARD, "space-y-1.5 border-border", !ready && "opacity-70")}>
+                        <div className="flex items-start gap-2">
+                          <IconBox tone={ready ? "brand" : "muted"}><Headphones className="h-4 w-4" /></IconBox>
+                          <span className="min-w-0 flex-1">
+                            <span className="block truncate text-[12px] font-medium">{m.display_name || v.id}</span>
+                            <span className="block truncate font-mono text-[10px] text-muted-foreground">{v.id}</span>
+                          </span>
+                        </div>
+                        <div className="flex flex-wrap gap-1 text-[10px]">
+                          <span className={cn("rounded-full px-1.5 py-0.5 font-medium", ready ? "bg-semantic-success/10 text-semantic-success" : "bg-semantic-warning/10 text-semantic-warning")}>
+                            {ready ? "sẵn sàng" : m.status === "todo_clone" ? "chờ clone" : m.status}
+                          </span>
+                          {gender && <span className="rounded-full bg-muted px-1.5 py-0.5 text-muted-foreground">{gender}</span>}
+                          {region && <span className="rounded-full bg-muted px-1.5 py-0.5 text-muted-foreground">{region}</span>}
+                        </div>
+                        {samplePath && ready && <audio controls src={previewUrl(samplePath)} className="h-7 w-full" />}
+                        {saveFor === `v${v.id}` && samplePath ? (
+                          <SaveBar targets={targets} files={[{ label: "Mẫu giọng", path: samplePath }]} />
+                        ) : (
+                          samplePath && ready && (
+                            <button type="button" onClick={() => setSaveFor(`v${v.id}`)} className="flex h-7 items-center gap-1 rounded-md border border-border px-2 text-[11px] font-medium transition-all hover:bg-accent active:scale-95">
+                              <FolderOpen className="h-3.5 w-3.5" />
+                              Dùng / Tải về
+                            </button>
+                          )
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+                <details className="rounded-xl border border-border bg-card p-3">
+                  <summary className="cursor-pointer text-[12px] font-medium">+ Thêm giọng mới (clone / phiên âm)</summary>
+                  <div className="mt-3 space-y-3">
+                <div className="space-y-2.5 border-t border-border pt-3">
                   <p className="text-[12px] font-medium">Mẫu giọng của bạn</p>
                   <AudioWorkspace targets={targets} onDone={refresh} />
                 </div>
-                <div className="space-y-2.5 rounded-xl border border-border bg-card p-3">
+                <div className="space-y-2.5 border-t border-border pt-3">
                   <p className="text-[12px] font-medium">Clone giọng mới</p>
                   <VoiceCloneWorkspace onDone={refresh} />
                 </div>
-                <p className="px-0.5 text-[11px] font-medium text-muted-foreground">Giọng trong kho ({vaults.voices.length})</p>
-                {vaults.voices.map((v) => {
-                  const m = v.metadata || {};
-                  const sample = v.files?.samples?.[0];
-                  const samplePath = sample && targets ? `${targets.sharedDir}\\voice_vault\\${v.id}\\${sample}` : null;
-                  const ready = m.status === "ready";
-                  return (
-                    <div key={v.id} className={cn("space-y-1.5 rounded-xl border border-border bg-card p-2.5", !ready && "opacity-70")}>
-                      <div className="flex items-center justify-between gap-2">
-                        <span className="min-w-0">
-                          <span className="text-[12px] font-medium">{m.display_name || v.id}</span>{" "}
-                          <span className="font-mono text-[10px] text-muted-foreground">({v.id})</span>
-                        </span>
-                        <span className={cn("shrink-0 rounded-full px-2 py-0.5 text-[10px] font-medium", ready ? "bg-semantic-success/10 text-semantic-success" : "bg-semantic-warning/10 text-semantic-warning")}>
-                          {ready ? "sẵn sàng" : m.status === "todo_clone" ? "chờ clone" : m.status}
-                        </span>
-                      </div>
-                      {m.aliases?.length > 0 && <p className="text-[10px] text-muted-foreground">Tên khác: {m.aliases.join(", ")}</p>}
-                      {samplePath && ready && <audio controls src={previewUrl(samplePath)} className="h-8 w-full" />}
-                      {saveFor === `v${v.id}` && samplePath ? (
-                        <SaveBar targets={targets} files={[{ label: "Mẫu giọng", path: samplePath }]} />
-                      ) : (
-                        samplePath &&
-                        ready && (
-                          <button type="button" onClick={() => setSaveFor(`v${v.id}`)} className="flex h-7 items-center gap-1 rounded-md border border-border px-2 text-[11px] font-medium transition-all hover:bg-accent active:scale-95">
-                            <FolderOpen className="h-3.5 w-3.5" />
-                            Tải về / Lưu vào…
-                          </button>
-                        )
-                      )}
-                    </div>
-                  );
-                })}
+                  </div>
+                </details>
               </motion.div>
             )}
           </AnimatePresence>

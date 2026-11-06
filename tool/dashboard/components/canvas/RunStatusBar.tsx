@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useMemo } from "react";
-import { Loader2, Square, ArrowUpRight, CheckCircle2, AlertCircle } from "@/components/ui/icons";
+import { LoaderCircle, CircleCheck, CircleAlert, Square as SquareNode, ArrowUpRight as ArrowUpRightNode } from "lucide";
+import { MorphIcon } from "@/components/ui/icons";
 
 export interface RunStateInfo {
   runId?: string;
@@ -96,115 +97,74 @@ export const RunStatusBar: React.FC<RunStatusBarProps> = ({
   const currentStepNumber = activeStageIndex >= 0 ? activeStageIndex + 1 : Math.min(6, Math.max(1, Math.ceil((progressPct / 100) * 6)));
   const stageName = activeRun?.stage || STAGES[currentStepNumber - 1]?.label || "Đang xử lý";
 
-  return (
-    <div className="absolute top-3 left-4 right-4 z-40 bg-zinc-900/95 border border-zinc-700/80 rounded-xl shadow-2xl backdrop-blur-md p-3.5 text-zinc-100 animate-in fade-in slide-in-from-top duration-300">
-      <div className="flex items-center justify-between gap-4 mb-2.5">
-        {/* Left: Badge & Stage Info */}
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-2 px-2.5 py-1 bg-amber-500/20 border border-amber-500/40 rounded-full text-xs font-medium text-amber-300">
-            {status === "running" ? (
-              <>
-                <Loader2 className="w-3.5 h-3.5 animate-spin text-amber-400" />
-                <span>Đang chạy</span>
-              </>
-            ) : status === "completed" ? (
-              <>
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                <span className="text-emerald-300">Hoàn tất</span>
-              </>
-            ) : status === "failed" ? (
-              <>
-                <AlertCircle className="w-3.5 h-3.5 text-rose-400" />
-                <span className="text-rose-300">Thất bại</span>
-              </>
-            ) : (
-              <span>Chờ</span>
-            )}
-          </div>
+  const stateIcon =
+    status === "completed" ? CircleCheck : status === "failed" ? CircleAlert : LoaderCircle;
+  const stateColor =
+    status === "completed" ? "text-emerald-400" : status === "failed" ? "text-rose-400" : "text-amber-400";
+  const stateText =
+    status === "completed" ? "Hoàn tất" : status === "failed" ? "Thất bại" : `Bước ${currentStepNumber}/6 · ${stageName}`;
 
-          <div className="text-sm font-medium tracking-tight flex items-center gap-2">
-            <span className="text-zinc-400">Bước {currentStepNumber}/6:</span>
-            <span className="text-white font-semibold">{stageName}</span>
-          </div>
+  return (
+    <div
+      role="status"
+      aria-live="polite"
+      className="pointer-events-auto absolute bottom-4 left-1/2 z-40 -translate-x-1/2 max-w-[calc(100%-2rem)] animate-in fade-in slide-in-from-bottom-2 duration-300"
+    >
+      <div className="flex items-center gap-2.5 rounded-full border border-white/10 bg-zinc-900/85 py-1.5 pl-3 pr-1.5 text-zinc-100 shadow-lg shadow-black/20 backdrop-blur-xl">
+        <MorphIcon
+          icon={stateIcon}
+          spring="snappy"
+          size={15}
+          className={`${stateColor} ${status === "running" ? "animate-spin" : ""}`}
+        />
+        <span className="max-w-[200px] truncate text-xs font-medium tracking-tight">{stateText}</span>
+
+        {/* 6 chặng dạng vạch nhỏ */}
+        <div className="flex items-center gap-1" aria-label="Tiến độ các bước">
+          {STAGES.map((stg, idx) => {
+            const st = stageStatuses[idx];
+            return (
+              <span
+                key={stg.key}
+                title={`${idx + 1}. ${stg.label}`}
+                className={`h-1 w-4 rounded-full transition-colors duration-300 ${
+                  st === "completed"
+                    ? "bg-emerald-400"
+                    : st === "running"
+                    ? "animate-pulse bg-amber-400"
+                    : st === "failed"
+                    ? "bg-rose-500"
+                    : "bg-white/15"
+                }`}
+              />
+            );
+          })}
         </div>
 
-        {/* Right: Timer, Actions */}
-        <div className="flex items-center gap-3 text-xs">
-          <div className="flex items-center gap-1.5 px-2 py-1 bg-zinc-800/80 rounded-md border border-zinc-700/60 font-mono text-zinc-300">
-            <span>⏱</span>
-            <span>{timeStr}</span>
-          </div>
+        <span className="font-mono text-[11px] tabular-nums text-zinc-400">{timeStr}</span>
 
+        <div className="flex items-center gap-0.5">
           {onOpenJobsTab && (
             <button
               onClick={onOpenJobsTab}
-              className="px-2.5 py-1 text-xs bg-zinc-800 hover:bg-zinc-700 text-zinc-200 border border-zinc-700 rounded-md flex items-center gap-1 transition"
               title="Xem chi tiết trong tab Jobs"
+              aria-label="Mở tab Jobs"
+              className="flex h-6 w-6 items-center justify-center rounded-full text-zinc-300 transition hover:bg-white/10"
             >
-              <span>Jobs</span>
-              <ArrowUpRight className="w-3.5 h-3.5" />
+              <MorphIcon icon={ArrowUpRightNode} size={13} />
             </button>
           )}
-
           {status === "running" && (
             <button
               onClick={onCancel}
-              className="px-2.5 py-1 text-xs bg-rose-600/90 hover:bg-rose-600 text-white font-medium rounded-md flex items-center gap-1 shadow-sm transition"
+              title="Dừng"
+              aria-label="Dừng chạy"
+              className="flex h-6 w-6 items-center justify-center rounded-full bg-rose-500/90 text-white transition hover:bg-rose-500"
             >
-              <Square className="w-3 h-3 fill-white" />
-              <span>Dừng</span>
+              <MorphIcon icon={SquareNode} size={11} />
             </button>
           )}
         </div>
-      </div>
-
-      {/* Stepper 6 Stages */}
-      <div className="grid grid-cols-6 gap-2 mb-2">
-        {STAGES.map((stg, idx) => {
-          const stgStatus = stageStatuses[idx];
-          return (
-            <div key={stg.key} className="flex flex-col gap-1">
-              <div
-                className={`h-1.5 rounded-full transition-all duration-300 ${
-                  stgStatus === "completed"
-                    ? "bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]"
-                    : stgStatus === "running"
-                    ? "bg-amber-400 animate-pulse shadow-[0_0_10px_rgba(251,191,36,0.6)]"
-                    : stgStatus === "failed"
-                    ? "bg-rose-500"
-                    : "bg-zinc-800"
-                }`}
-              />
-              <div className="flex items-center justify-between text-[11px] px-0.5">
-                <span
-                  className={`truncate ${
-                    stgStatus === "running"
-                      ? "text-amber-300 font-semibold"
-                      : stgStatus === "completed"
-                      ? "text-zinc-300 font-medium"
-                      : "text-zinc-500"
-                  }`}
-                >
-                  {idx + 1}. {stg.label}
-                </span>
-                {stgStatus === "completed" && (
-                  <CheckCircle2 className="w-2.5 h-2.5 text-emerald-400 shrink-0" />
-                )}
-                {stgStatus === "running" && (
-                  <Loader2 className="w-2.5 h-2.5 text-amber-400 animate-spin shrink-0" />
-                )}
-              </div>
-            </div>
-          );
-        })}
-      </div>
-
-      {/* Overall Progress Bar */}
-      <div className="w-full bg-zinc-800/80 rounded-full h-1 overflow-hidden">
-        <div
-          className="bg-gradient-to-r from-amber-500 via-orange-400 to-emerald-400 h-full transition-all duration-300"
-          style={{ width: `${progressPct}%` }}
-        />
       </div>
     </div>
   );

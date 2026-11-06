@@ -9,6 +9,9 @@ export interface StepInfo {
   main: boolean;
 }
 
+const GROUP_TYPE = "templateGroup";
+const GROUP_PAD = 32;
+const GROUP_HEAD = 64;
 const NODE_W = 300;
 const COL_GAP = 110;
 const ROW_GAP = 56;
@@ -19,7 +22,8 @@ function heightOf(n: Node): number {
 }
 
 /** Phân lớp theo đường dài nhất từ nguồn; trả về thứ tự bước và trục chính. */
-export function analyzeGraph(nodes: Node[], edges: Edge[]): Record<string, StepInfo> {
+export function analyzeGraph(allNodes: Node[], edges: Edge[]): Record<string, StepInfo> {
+  const nodes = allNodes.filter((n) => n.type !== GROUP_TYPE);
   const ids = nodes.map((n) => n.id);
   const idSet = new Set(ids);
   const preds = new Map<string, string[]>(ids.map((i) => [i, []]));
@@ -71,7 +75,44 @@ export function analyzeGraph(nodes: Node[], edges: Edge[]): Record<string, StepI
 }
 
 /** Xếp các node thành cột trái → phải theo thứ tự chạy; trục chính nằm giữa. */
-export function autoLayout<N extends Node>(nodes: N[], edges: Edge[]): N[] {
+export function autoLayout<N extends Node>(allNodes: N[], edges: Edge[]): N[] {
+  if (allNodes.length === 0) return allNodes;
+  const groups = allNodes.filter((n) => n.type === GROUP_TYPE);
+  if (groups.length > 0) return layoutWithGroups(allNodes, groups, edges);
+  return layoutFlat(allNodes, edges);
+}
+
+/** Mỗi group tự xếp con bên trong (toạ độ tương đối) và co khung vừa nội dung. */
+function layoutWithGroups<N extends Node>(allNodes: N[], groups: N[], edges: Edge[]): N[] {
+  const out = new Map<string, N>();
+  let cursorY = 40;
+  for (const g of groups) {
+    const kids = allNodes.filter((n) => n.parentId === g.id);
+    const kidIds = new Set(kids.map((k) => k.id));
+    const laid = layoutFlat(kids, edges.filter((e) => kidIds.has(e.source) && kidIds.has(e.target)));
+    let maxX = 0;
+    let maxY = 0;
+    for (const k of laid) {
+      const pos = { x: k.position.x - 40 + GROUP_PAD, y: k.position.y - 40 + GROUP_HEAD };
+      out.set(k.id, { ...k, position: pos });
+      maxX = Math.max(maxX, pos.x + NODE_W);
+      maxY = Math.max(maxY, pos.y + heightOf(k));
+    }
+    const width = maxX + GROUP_PAD;
+    const height = maxY + GROUP_PAD;
+    out.set(g.id, { ...g, position: { x: 40, y: cursorY }, width, height, style: { ...(g.style || {}), width, height } });
+    cursorY += height + 80;
+  }
+  const loose = allNodes.filter((n) => n.type !== GROUP_TYPE && !n.parentId);
+  if (loose.length) {
+    const xs = [...out.values()].filter((n) => n.type === GROUP_TYPE).map((n) => n.position.x + (n.width ?? 0));
+    const offsetX = (xs.length ? Math.max(...xs) : 0) + 120;
+    layoutFlat(loose, edges).forEach((n) => out.set(n.id, { ...n, position: { x: n.position.x + offsetX, y: n.position.y } }));
+  }
+  return allNodes.map((n) => out.get(n.id) ?? n);
+}
+
+function layoutFlat<N extends Node>(nodes: N[], edges: Edge[]): N[] {
   if (nodes.length === 0) return nodes;
   const info = analyzeGraph(nodes, edges);
   const maxLayer = Math.max(...Object.values(info).map((i) => i.layer));

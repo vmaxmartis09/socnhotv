@@ -10,6 +10,10 @@ import {
   fetchProjectLibraryImages,
   resolveNodeFileUrl,
   parseScriptClient,
+  fetchProjectScriptEpisodes,
+  fetchScriptData,
+  type ScriptEpisode,
+  type ScriptShot,
 } from "@/lib/api/nodes";
 import { VoiceSelectorWithClone } from "@/components/voice/VoiceSelectorWithClone";
 import {
@@ -33,6 +37,7 @@ import {
   Film,
   Eye,
   Play,
+  Clapperboard,
 } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
 
@@ -490,14 +495,101 @@ export const NodeImageInput = React.memo(function NodeImageInput({
 // 3. SCRIPT INPUT CONTROL (AI vs Paste mode, Scene Breakdown Preview)
 // ============================================================================
 
+type ScriptMode = "ai" | "paste" | "episode";
+
 interface ScriptInputProps {
   nodeId: string;
-  mode?: "ai" | "paste";
+  mode?: ScriptMode;
+  episodeId?: string;
+  granularity?: "shot" | "scene";
   rawScript?: string;
   ideaText?: string;
   targetSceneCount?: number;
   targetDurationSec?: number;
   connectedText?: boolean;
+}
+
+/** Chọn kịch bản tập (content/episodes/<id>/KICH-BAN-*.md) và độ chia: mỗi shot hay mỗi cảnh là 1 phần tử. */
+function EpisodeScriptPicker({
+  nodeId,
+  episodeId,
+  granularity,
+}: {
+  nodeId: string;
+  episodeId?: string;
+  granularity: "shot" | "scene";
+}) {
+  const updateNodeParams = useStudioStore((s) => s.updateNodeParams);
+  const projectId = useStudioStore((s: any) => s.activeProjectId) as string;
+  const [episodes, setEpisodes] = useState<ScriptEpisode[] | null>(null);
+  const [shots, setShots] = useState<ScriptShot[] | null>(null);
+
+  useEffect(() => {
+    let alive = true;
+    fetchProjectScriptEpisodes(projectId).then((eps) => alive && setEpisodes(eps));
+    return () => {
+      alive = false;
+    };
+  }, [projectId]);
+
+  useEffect(() => {
+    if (!episodeId) {
+      setShots(null);
+      return;
+    }
+    let alive = true;
+    fetchScriptData(projectId, episodeId).then((d) => alive && setShots(d?.shots || []));
+    return () => {
+      alive = false;
+    };
+  }, [projectId, episodeId]);
+
+  const sceneCount = shots ? new Set(shots.map((s) => s.scene)).size : 0;
+  const itemCount = granularity === "scene" ? sceneCount : shots?.length || 0;
+
+  return (
+    <div className="space-y-1.5">
+      <select
+        value={episodeId || ""}
+        onChange={(e) => updateNodeParams(nodeId, { episodeId: e.target.value })}
+        className="nodrag w-full rounded-md border border-border bg-card px-2 py-1.5 text-xs text-foreground"
+      >
+        <option value="">{episodes === null ? "Đang tải danh sách tập…" : "Chọn kịch bản tập"}</option>
+        {(episodes || []).map((ep) => (
+          <option key={ep.id} value={ep.id}>
+            {ep.title}
+          </option>
+        ))}
+      </select>
+      <div className="flex rounded-md border border-border bg-muted/30 p-0.5 text-[11px]">
+        {(["shot", "scene"] as const).map((g) => (
+          <button
+            key={g}
+            type="button"
+            onClick={() => updateNodeParams(nodeId, { granularity: g })}
+            className={cn(
+              "nodrag flex-1 rounded py-0.5 font-medium transition-all",
+              granularity === g ? "bg-card text-foreground shadow-xs" : "text-muted-foreground hover:text-foreground"
+            )}
+          >
+            {g === "shot" ? "Mỗi shot 1 ảnh" : "Mỗi cảnh 1 ảnh"}
+          </button>
+        ))}
+      </div>
+      {episodeId && shots && (
+        <div className="flex items-center gap-1.5 rounded-md border border-border bg-muted/20 px-2 py-1.5 text-[11px] text-muted-foreground">
+          <Check className="h-3.5 w-3.5 text-semantic-success" />
+          <span>
+            <span className="font-semibold text-foreground">{itemCount}</span> {granularity === "scene" ? "cảnh" : "shot"} ·{" "}
+            {sceneCount} cảnh / {shots.length} shot trong kịch bản
+          </span>
+        </div>
+      )}
+      <p className="text-[10px] leading-snug text-muted-foreground">
+        Nối cổng <span className="font-medium text-foreground">scenes</span> sang node Tạo ảnh để tạo ảnh cho tất cả cảnh trong 1 node.
+      </p>
+    </div>
+  );
 }
 
 export const NodeScriptInput = React.memo(function NodeScriptInput({
@@ -508,9 +600,11 @@ export const NodeScriptInput = React.memo(function NodeScriptInput({
   targetSceneCount = 6,
   targetDurationSec = 45,
   connectedText,
+  episodeId,
+  granularity = "shot",
 }: ScriptInputProps) {
   const updateNodeParams = useStudioStore((s) => s.updateNodeParams);
-  const [mode, setMode] = useState<"ai" | "paste">(initialMode);
+  const [mode, setMode] = useState<ScriptMode>(initialMode);
   const [raw, setRaw] = useState(initialRaw);
   const [idea, setIdea] = useState(initialIdea);
   const [showHint, setShowHint] = useState(false);
@@ -529,7 +623,7 @@ export const NodeScriptInput = React.memo(function NodeScriptInput({
     setIdea(initialIdea || "");
   }, [initialIdea]);
 
-  const handleModeChange = (newMode: "ai" | "paste") => {
+  const handleModeChange = (newMode: ScriptMode) => {
     setMode(newMode);
     updateNodeParams(nodeId, { mode: newMode });
   };
@@ -570,7 +664,7 @@ export const NodeScriptInput = React.memo(function NodeScriptInput({
           )}
         >
           <Sparkles className="h-3.5 w-3.5 text-brand" />
-          AI viết từ ý tưởng
+          AI viết
         </button>
         <button
           type="button"
@@ -583,9 +677,27 @@ export const NodeScriptInput = React.memo(function NodeScriptInput({
           )}
         >
           <ScrollText className="h-3.5 w-3.5 text-brand" />
-          Dán kịch bản có sẵn
+          Dán sẵn
+        </button>
+        <button
+          type="button"
+          onClick={() => handleModeChange("episode")}
+          className={cn(
+            "nodrag flex-1 flex items-center justify-center gap-1.5 py-1 rounded-md font-medium transition-all",
+            mode === "episode"
+              ? "bg-card text-foreground shadow-xs font-semibold"
+              : "text-muted-foreground hover:text-foreground"
+          )}
+        >
+          <Clapperboard className="h-3.5 w-3.5 text-brand" />
+          Kịch bản tập
         </button>
       </div>
+
+      {/* CHẾ ĐỘ 3: ĐỌC THẲNG KỊCH BẢN TẬP CỦA DỰ ÁN (không gọi AI) */}
+      {mode === "episode" && (
+        <EpisodeScriptPicker nodeId={nodeId} episodeId={episodeId} granularity={granularity} />
+      )}
 
       {/* CHẾ ĐỘ 1: AI VIẾT TỪ Ý TƯỞNG */}
       {mode === "ai" && (

@@ -138,10 +138,12 @@ export const FALLBACK_NODE_TYPES: NodeDefinition[] = [
     inputPorts: [
       { name: "prompt", portType: "text", description: "Prompt mô tả cảnh", required: true },
       { name: "references", portType: "image[]", description: "Ảnh tham chiếu DNA", required: false },
+      { name: "scenes", portType: "scenes", description: "Lặp theo cảnh: nối danh sách cảnh để tạo mỗi cảnh 1 ảnh", required: false },
     ],
     outputPorts: [
       { name: "images", portType: "image[]", description: "Danh sách ảnh sinh ra", required: true },
       { name: "image", portType: "image", description: "Ảnh đại diện / khung đầu tiên sinh ra", required: true },
+      { name: "scenes", portType: "scenes", description: "Danh sách cảnh đã gắn ảnh (khi lặp theo cảnh)", required: false },
     ],
     defaultParams: {
       model: "gemini-2.5-flash-image",
