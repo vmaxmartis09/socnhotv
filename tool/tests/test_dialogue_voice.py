@@ -219,3 +219,63 @@ def test_quality_gate_default_does_not_block_and_clean_script_passes():
         assert "q" in s2.executed_nodes and "q" not in s2.failed_nodes  # kịch bản sạch: cổng mở
 
     asyncio.run(_t())
+
+
+# ------------------------------------------------------------------ Dàn diễn viên tự theo kịch bản (E6)
+def _cast_graph(gid, episode_id, **cast_params):
+    return Graph(
+        id=gid,
+        project_id="soc-nho-tv",
+        nodes=[
+            NodeInstance(id="s", type="script", params={"mode": "episode", "episodeId": episode_id, "granularity": "shot"}),
+            NodeInstance(id="c", type="cast", params={"speak": {"enabled": True}, **cast_params}),
+        ],
+        edges=[
+            Edge(id="e1", source_node_id="s", source_port="lines", target_node_id="c", target_port="lines"),
+            Edge(id="e2", source_node_id="s", source_port="scenes", target_node_id="c", target_port="scenes"),
+        ],
+        updated_at=NOW,
+    )
+
+
+def test_cast_follows_the_episode_without_changing_the_graph():
+    async def _t():
+        runner = GraphRunner(ProjectStore("soc-nho-tv"))
+        results = {}
+        for ep in ("ep01-nui-lua-trong-bung-bi", "ep02-mun-so-bong-toi", "ep03-chu-tho-bong-cua-mimi-dau-roi"):
+            g = _cast_graph(f"test_cast_{uuid.uuid4().hex[:6]}", ep)
+            s = await runner.run(g, GraphRunRequest(project_id="soc-nho-tv", mode=RunMode.ALL, mock_mode=True, max_retries=1))
+            assert s.is_success, (ep, s.errors)
+            outs = runner._load_outputs_snapshot(g.id, g.nodes[1], True)
+            lines = runner._episode_lines(ep)
+            ids = [c["characterId"] for c in outs["characters"]]
+            results[ep] = ids
+            assert not outs["unmatched"]
+            # mỗi câu thoại được đọc đúng 1 lần, bởi đúng nhân vật của câu đó
+            assert len(outs["voice"]) == len(lines)
+            assert {c["lineId"]: c["characterId"] for c in outs["voice"]} == {l["id"]: l["characterId"] for l in lines}
+            assert len(outs["reference_images"]) >= len(ids)  # có ảnh DNA cho từng nhân vật
+        # số nhân vật khác nhau theo tập, cùng một đồ thị
+        assert results["ep01-nui-lua-trong-bung-bi"] == ["soc_nho", "de_mun", "me_soc"]
+        assert set(results["ep02-mun-so-bong-toi"]) == {"de_mun", "de_bong", "ong_de_rau_bac"}
+        assert len(results["ep03-chu-tho-bong-cua-mimi-dau-roi"]) == 2
+
+    asyncio.run(_t())
+
+
+def test_cast_include_exclude_and_voice_override():
+    async def _t():
+        runner = GraphRunner(ProjectStore("soc-nho-tv"))
+        g = _cast_graph(
+            f"test_cast_{uuid.uuid4().hex[:6]}", "ep01-nui-lua-trong-bung-bi",
+            exclude=["me_soc"], include=["koala"], voiceOverrides={"de_mun": "vn-be-01"},
+        )
+        s = await runner.run(g, GraphRunRequest(project_id="soc-nho-tv", mode=RunMode.ALL, mock_mode=True, max_retries=1))
+        assert s.is_success, s.errors
+        outs = runner._load_outputs_snapshot(g.id, g.nodes[1], True)
+        ids = [c["characterId"] for c in outs["characters"]]
+        assert "me_soc" not in ids and "koala" in ids
+        mun = [c for c in outs["voice"] if c["characterId"] == "de_mun"]
+        assert mun and all(c["voiceId"] == "vn-be-01" for c in mun)
+
+    asyncio.run(_t())

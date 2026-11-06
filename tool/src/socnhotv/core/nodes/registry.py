@@ -136,6 +136,27 @@ class NodeRegistry:
             )
         )
 
+        # 3b. Dàn diễn viên: nhân vật là dữ liệu lấy từ kịch bản (1 node thay cho N node Nhân vật)
+        cls.register(
+            NodeDefinition(
+                type_name="cast",
+                display_name="Dàn diễn viên (tự theo kịch bản)",
+                category="Identity",
+                description="Tự lấy các nhân vật xuất hiện trong kịch bản của tập, nạp ảnh DNA và đọc lời thoại bằng giọng từng nhân vật. Đổi tập thì dàn nhân vật tự đổi theo, không phải sửa flow",
+                input_ports=[
+                    PortDefinition(name="lines", port_type=PortType.DIALOGUE, description="Lời thoại có người nói (cổng lines của Kịch bản)", required=False),
+                    PortDefinition(name="scenes", port_type=PortType.SCENES, description="Các cảnh (để lấy nhân vật có mặt nhưng không có thoại)", required=False),
+                ],
+                output_ports=[
+                    PortDefinition(name="characters", port_type=PortType.CHARACTER, description="Hồ sơ từng nhân vật trong tập"),
+                    PortDefinition(name="reference_images", port_type=PortType.IMAGE_LIST, description="Ảnh DNA của mọi nhân vật trong tập"),
+                    PortDefinition(name="voice", port_type=PortType.VOICE_CLIPS, description="Giọng từng câu của mọi nhân vật"),
+                ],
+                default_params={"speak": {"enabled": True}, "include": [], "exclude": [], "onMissingVoice": "stop"},
+                mockable=True,
+            )
+        )
+
         # 4. Kịch bản
         cls.register(
             NodeDefinition(

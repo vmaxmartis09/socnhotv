@@ -995,6 +995,9 @@ class GraphRunner:
                 cid = ri.get("characterId") or node.params.get("characterId")
                 extra = " · bật Nói" if NodeRegistry.is_capability_enabled(node.params, "speak") else ""
                 return f"Nạp hồ sơ + ảnh DNA nhân vật {cid}{extra}"
+            if t == "cast":
+                ids, _ = self._detect_cast(node, ri)
+                return f"Dàn diễn viên của tập: {len(ids)} nhân vật ({', '.join(ids)}) · đọc lời thoại + nạp ảnh DNA"
             if t == "image_gen":
                 scenes = ri.get("scenes")
                 refs = ri.get("references") or []
@@ -1025,6 +1028,9 @@ class GraphRunner:
         try:
             if node.type == "script":
                 return f"{len(out.get('scenes') or [])} cảnh · {len(out.get('lines') or [])} câu thoại"
+            if node.type == "cast":
+                names = [c.get("name") for c in (out.get("characters") or [])]
+                return f"{len(names)} nhân vật: {', '.join(str(n) for n in names)} · {len(out.get('voice') or [])} câu đã đọc"
             if node.type == "image_gen":
                 return f"{len(out.get('images') or [])} ảnh"
             if node.type == "character":
@@ -1052,6 +1058,73 @@ class GraphRunner:
             except Exception:
                 pass
         return total
+
+    async def _character_dna(
+        self, node_id: str, char_id: str, char_info: Dict[str, Any], run_id: str, is_mock: bool
+    ) -> List[Artifact]:
+        """Ảnh DNA của 1 nhân vật (ảnh thật trong thư mục dự án nếu có; Mock thì ảnh mẫu), gắn characterId + aliases."""
+        char_dir = self.store.characters_dir / char_id
+        local_pngs = sorted(char_dir.glob("*.png")) if char_dir.exists() else []
+        if local_pngs and not is_mock:
+            ref_arts: List[Artifact] = []
+            for p in local_pngs[:4]:
+                prov = ArtifactProvenance(
+                    node_id=node_id,
+                    run_id=run_id,
+                    provider="local",
+                    model="master_dna",
+                    params={"characterId": char_id, "file": p.name},
+                    cost_usd=0.0,
+                    created_at=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                )
+                ref_arts.append(
+                    self.store.store_bytes(
+                        data=p.read_bytes(), ext=p.suffix.lstrip(".") or "png", kind=ArtifactKind.IMAGE, provenance=prov
+                    )
+                )
+        else:
+            ref_arts = await MockProvider(self.store).generate_images(
+                prompt=f"Master DNA character panel for {char_id}", node_id=node_id, run_id=run_id, n=2
+            )
+        aliases = char_info.get("aliases") or self._character_aliases(char_id)
+        char_info["aliases"] = aliases
+        for ra in ref_arts:
+            try:
+                ra.provenance.params = {**(ra.provenance.params or {}), "characterId": char_id, "characterAliases": aliases}
+            except Exception:
+                pass
+        return ref_arts
+
+    def _detect_cast(self, node: NodeInstance, ri: Dict[str, Any]) -> Tuple[List[str], List[str]]:
+        """Dàn nhân vật của tập: theo thứ tự xuất hiện trong lời thoại rồi trong cảnh, ghép tên với hồ sơ dự án.
+
+        Trả (danh sách characterId, danh sách tên chưa ghép được). params.include thêm, params.exclude bỏ.
+        """
+        from socnhotv.core.engine.character_profile import load_profiles, match_speaker
+
+        profiles = load_profiles(self.store.characters_dir)
+        ids: List[str] = []
+        unmatched: List[str] = []
+
+        def add(cid: Optional[str], raw: str = "") -> None:
+            if cid:
+                if cid not in ids:
+                    ids.append(cid)
+            elif raw and raw not in unmatched:
+                unmatched.append(raw)
+
+        for ln in ri.get("lines") or []:
+            if isinstance(ln, dict):
+                add(ln.get("characterId") or (match_speaker(str(ln.get("speaker") or ""), profiles) if ln.get("speaker") else None),
+                    str(ln.get("speaker") or "") if ln.get("speaker") else "")
+        for sc in ri.get("scenes") or []:
+            if isinstance(sc, dict):
+                for name in sc.get("characters") or []:
+                    add(match_speaker(str(name), profiles), re.sub(r"\s*\([^)]*\)", "", str(name)).strip())
+        for cid in node.params.get("include") or []:
+            add(str(cid))
+        excl = {str(x) for x in (node.params.get("exclude") or [])}
+        return [c for c in ids if c not in excl], unmatched
 
     def _character_aliases(self, char_id: str) -> List[str]:
         """Các tên gọi của nhân vật để khớp với tên trong kịch bản (vd. 'Sóc Bi', 'Dê Mun', 'Mẹ Sóc')."""
@@ -1354,49 +1427,78 @@ class GraphRunner:
             char_id = str(resolved_inputs.get("characterId", "soc_nho"))
             char_info = self._character_info(char_id)
             outputs["character"] = char_info
-            # Nếu có sẵn ảnh DNA nhân vật trong thư mục dự án, nạp trực tiếp không tốn phí gọi API!
-            char_dir = self.store.characters_dir / char_id
-            local_pngs = sorted(char_dir.glob("*.png")) if char_dir.exists() else []
-            if local_pngs and not is_mock:
-                ref_arts: List[Artifact] = []
-                for p in local_pngs[:4]:
-                    prov = ArtifactProvenance(
-                        node_id=node.id,
-                        run_id=run_id,
-                        provider="local",
-                        model="master_dna",
-                        params={"characterId": char_id, "file": p.name},
-                        cost_usd=0.0,
-                        created_at=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-                    )
-                    ref_arts.append(
-                        self.store.store_bytes(
-                            data=p.read_bytes(),
-                            ext=p.suffix.lstrip(".") or "png",
-                            kind=ArtifactKind.IMAGE,
-                            provenance=prov,
-                        )
-                    )
-            else:
-                ref_arts = await MockProvider(self.store).generate_images(
-                    prompt=f"Master DNA character panel for {char_id}",
-                    node_id=node.id,
-                    run_id=run_id,
-                    n=2,
-                )
-            aliases = char_info.get("aliases") or self._character_aliases(char_id)
-            char_info["aliases"] = aliases
-            for ra in ref_arts:
-                try:
-                    ra.provenance.params = {
-                        **(ra.provenance.params or {}),
-                        "characterId": char_id,
-                        "characterAliases": aliases,
-                    }
-                except Exception:
-                    pass
+            ref_arts = await self._character_dna(node.id, char_id, char_info, run_id, is_mock)
             outputs["reference_images"] = ref_arts
             primary_artifact = ref_arts[0] if ref_arts else None
+            cost_usd = 0.0
+
+        elif node_type == "cast":
+            # Dàn diễn viên: nhân vật là DỮ LIỆU lấy từ kịch bản, đổi tập thì dàn tự đổi, đồ thị giữ nguyên
+            cast_ids, unmatched = self._detect_cast(node, resolved_inputs)
+            if not cast_ids:
+                raise ValueError(
+                    f"Node '{node.id}' (cast) không tìm thấy nhân vật nào trong kịch bản"
+                    + (f" (chưa ghép được: {', '.join(unmatched)})" if unmatched else "")
+                    + ". Nối cổng 'lines'/'scenes' của Kịch bản, hoặc ghi nhân vật vào params.include."
+                )
+            speak_cfg = node.params.get("speak") if isinstance(node.params.get("speak"), dict) else {"enabled": True}
+            speak_on = bool(speak_cfg.get("enabled", True))
+            on_missing = str(node.params.get("onMissingVoice") or "stop")
+            lines_in = resolved_inputs.get("lines")
+            infos: List[Dict[str, Any]] = []
+            all_refs: List[Artifact] = []
+            all_clips: List[Dict[str, Any]] = []
+            skipped: List[str] = []
+            for i, cid in enumerate(cast_ids):
+                info = self._character_info(cid)
+                if not info.get("profileFound"):
+                    unmatched.append(cid)
+                    continue
+                if speak_on and not info.get("voiceId") and on_missing == "skip":
+                    skipped.append(cid)
+                infos.append(info)
+                all_refs += await self._character_dna(node.id, cid, info, run_id, is_mock)
+                if speak_on and cid not in skipped and isinstance(lines_in, list):
+                    from socnhotv.core.engine.dialogue_voice import SpeakCapability
+
+                    sub = {**node.params, "characterId": cid}
+                    res, _c = await SpeakCapability().run(
+                        self,
+                        node.model_copy(update={"params": sub}),
+                        {**speak_cfg, "voiceId": (node.params.get("voiceOverrides") or {}).get(cid, speak_cfg.get("voiceId", ""))},
+                        {"lines": lines_in},
+                        {"character": info},
+                        run_id,
+                        is_mock,
+                    )
+                    all_clips += res.get("voice") or []
+                self._emit_event(
+                    SSEEvent(
+                        event_type=SSEEventType.NODE_PROGRESS,
+                        run_id=run_id,
+                        node_id=node.id,
+                        state=NodeState.RUNNING,
+                        progress=round(0.2 + 0.7 * (i + 1) / len(cast_ids), 2),
+                        message=f"Nhân vật {i + 1}/{len(cast_ids)}: {info.get('name')}",
+                        timestamp=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                    )
+                )
+            all_clips.sort(key=lambda c: float(c.get("order") if c.get("order") is not None else 1e9))
+            outputs["characters"] = infos
+            outputs["reference_images"] = all_refs
+            outputs["voice"] = all_clips
+            outputs["unmatched"] = unmatched
+            if unmatched:
+                self._emit_event(
+                    SSEEvent(
+                        event_type=SSEEventType.NODE_LOG,
+                        run_id=run_id,
+                        node_id=node.id,
+                        message="Chưa ghép được với hồ sơ nhân vật: " + ", ".join(unmatched),
+                        timestamp=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                    )
+                )
+            primary_artifact = all_refs[0] if all_refs else None
             cost_usd = 0.0
 
         elif node_type in ("image", "character_image"):
