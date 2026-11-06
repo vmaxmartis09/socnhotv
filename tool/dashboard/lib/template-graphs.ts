@@ -2,6 +2,7 @@ import type { Node, Edge } from "@xyflow/react";
 import type { StudioNodeData } from "@/store/slices/canvasSlice";
 import type { TemplateMeta, Platform } from "@/lib/api/video";
 import type { Graph } from "@/lib/core-contracts";
+import { autoLayout } from "@/lib/graph-layout";
 
 export interface TemplateGraphOptions {
   projectId: string;
@@ -195,10 +196,28 @@ export function generateTemplateGraph(opts: TemplateGraphOptions): GeneratedGrap
     },
   ];
 
+  // Đặt template = 1 Group node chứa toàn bộ flow (thay flow cũ)
+  const groupId = `group_${template.id}`;
+  const coreNodes = nodes.map((n) => ({ ...n }));
+  const grouped = autoLayout(
+    [
+      {
+        id: groupId,
+        type: "templateGroup",
+        position: { x: 40, y: 40 },
+        selectable: true,
+        zIndex: -1,
+        data: { nodeType: "group", label: template.name, templateId: template.id, count: nodes.length, status: "idle", params: {}, generations: [] },
+      } as any,
+      ...nodes.map((n) => ({ ...n, parentId: groupId, extent: "parent" as const })),
+    ],
+    edges
+  );
+
   const coreGraph: Graph = {
     id: `graph_${projectId}_${Date.now()}`,
     projectId,
-    nodes: nodes.map((n) => ({
+    nodes: coreNodes.map((n) => ({
       id: n.id,
       type: n.data.nodeType,
       position: n.position,
@@ -218,7 +237,7 @@ export function generateTemplateGraph(opts: TemplateGraphOptions): GeneratedGrap
   };
 
   return {
-    reactFlowGraph: { nodes, edges },
+    reactFlowGraph: { nodes: grouped as any, edges },
     coreGraph,
   };
 }

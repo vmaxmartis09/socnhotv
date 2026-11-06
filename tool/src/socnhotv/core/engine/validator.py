@@ -140,7 +140,12 @@ def validate_graph(graph: Graph) -> GraphValidationResult:
         # Kiểm tra chi tiết cho các node nhập liệu cốt lõi
         if node.type == "script":
             mode = str(node.params.get("mode", "ai"))
-            if mode == "paste":
+            if mode == "episode":
+                if not str(node.params.get("episodeId", "")).strip():
+                    warnings.append(
+                        f"Node '{node_id}' (script) đang ở chế độ 'Kịch bản tập' nhưng chưa chọn tập (episodeId rỗng)."
+                    )
+            elif mode == "paste":
                 raw_s = str(node.params.get("rawScript", "")).strip()
                 if not raw_s:
                     warnings.append(

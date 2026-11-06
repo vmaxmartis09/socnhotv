@@ -320,19 +320,18 @@ function ProjectDetail({
             <button type="submit" title="Tạo flow" aria-label="Tạo flow" disabled={!newFlow.trim()} className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground active:scale-90 disabled:opacity-40"><Check className="h-4 w-4" /></button>
           </form>
         )}
-        <ul className="space-y-1.5">
+        <ul className="grid gap-2 [grid-template-columns:repeat(auto-fill,minmax(150px,1fr))]">
           {flows.map((f) => (
             <li key={f.id}>
               <button
                 type="button"
                 onClick={() => openFlow(f.id)}
                 title={f.steps === 0 ? `${f.title} — flow trống, bấm để mở trong Studio` : `Mở ${f.title} trong Studio`}
-                className={cn("flex w-full items-center gap-3 rounded-xl border px-3 py-2 text-left text-[13px] transition-colors hover:bg-muted/30", f.steps === 0 ? "border-dashed border-border text-muted-foreground" : "border-border text-foreground")}
+                className={cn("flex h-full w-full flex-col gap-2 rounded-xl border bg-card p-2.5 text-left transition-colors hover:bg-accent/30 active:scale-[0.98]", f.steps === 0 ? "border-dashed border-border text-muted-foreground" : "border-border text-foreground")}
               >
-                <Workflow className="h-4 w-4 shrink-0 text-brand" />
-                <span className="min-w-0 flex-1 truncate font-medium">{f.title}</span>
-                <span className="shrink-0 text-xs text-muted-foreground tnum">{f.steps} bước</span>
-                <ChevronRight className="h-3.5 w-3.5 shrink-0 text-muted-foreground" />
+                <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-muted"><Workflow className="h-3.5 w-3.5 text-brand" /></span>
+                <span className="line-clamp-2 min-h-[2.1rem] text-[12px] font-semibold leading-[1.05rem]">{f.title}</span>
+                <span className="text-[11px] text-muted-foreground tnum">{f.steps} bước</span>
               </button>
             </li>
           ))}
@@ -354,18 +353,42 @@ function ProjectDetail({
       )}
 
       {lib && lib.episodes.length > 0 && (
-        <ul className="space-y-1.5">
-          {lib.episodes.map((e) => (
-            <li key={e.id}>
-              <button type="button" title={`Mở ${e.title}`} onClick={() => useHubScope.getState().openTab("episodes", null, e.id)} className="flex w-full items-center gap-2 rounded-xl border border-border px-3 py-2 text-left text-[13px] transition-colors hover:bg-muted/30">
-                <Film className="h-4 w-4 shrink-0 text-brand" />
-                <span className="min-w-0 flex-1 truncate">{e.title}</span>
-                <span className="text-xs text-muted-foreground tnum">{e.videoCount}▶ · {e.imageCount}◼</span>
-                <ChevronRight className="h-3.5 w-3.5 shrink-0 text-muted-foreground" />
+        <section className="space-y-2.5">
+          <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
+            <Clapperboard className="h-4 w-4 text-muted-foreground" />
+            <span>Tập phim</span>
+            <span className="text-xs font-normal text-muted-foreground tnum">{lib.episodes.length}</span>
+            {lib.episodes.length > 8 && (
+              <button type="button" onClick={() => useHubScope.getState().openTab("episodes")} className="ml-auto inline-flex items-center gap-0.5 rounded-full px-2 py-1 text-xs font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground">
+                Xem tất cả <ChevronRight className="h-3 w-3" />
               </button>
-            </li>
-          ))}
-        </ul>
+            )}
+          </div>
+          <ul className="grid gap-2 [grid-template-columns:repeat(auto-fill,minmax(170px,1fr))]">
+            {lib.episodes.slice(0, 8).map((e, idx) => {
+              const m = e.title.match(/^K[ịi]ch [Bb][ảa]n T[ậa]p\s*(\d+)\s*[:\-–]\s*(.*)$/);
+              const num = m ? m[1].padStart(2, "0") : String(idx + 1).padStart(2, "0");
+              const name = m ? m[2] : e.title;
+              return (
+                <li key={e.id} className="min-w-0">
+                  <button
+                    type="button"
+                    title={e.title}
+                    onClick={() => useHubScope.getState().openTab("episodes", null, e.id)}
+                    className="group flex h-full w-full flex-col gap-1.5 rounded-xl border border-border bg-card p-3 text-left transition-colors hover:border-foreground/30 hover:bg-accent/30 active:scale-[0.98]"
+                  >
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-brand">Tập {num}</span>
+                    <span className="line-clamp-2 min-h-[2.1rem] text-[13px] font-semibold leading-[1.05rem] text-foreground">{name}</span>
+                    <span className="mt-auto flex items-center gap-3 pt-1 text-[11px] text-muted-foreground tnum">
+                      <span className="inline-flex items-center gap-1"><Video className="h-3 w-3" />{e.videoCount}</span>
+                      <span className="inline-flex items-center gap-1"><Images className="h-3 w-3" />{e.imageCount}</span>
+                    </span>
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
       )}
 
       {/* Chưa có gì thì gợi ý việc cần làm: mỗi ô mở đúng chức năng tạo tương ứng */}

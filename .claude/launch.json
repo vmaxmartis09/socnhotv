@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "dashboard",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "tool/dashboard", "run", "dev", "--", "-p", "3000"],
+      "port": 3000
+    },
+    {
+      "name": "core-api",
+      "runtimeExecutable": ".venv/bin/uvicorn",
+      "runtimeArgs": ["socnhotv.core.api.app:app", "--host", "127.0.0.1", "--port", "8000", "--reload"],
+      "port": 8000
+    }
+  ]
+}

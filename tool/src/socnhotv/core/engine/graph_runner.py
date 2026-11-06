@@ -3,6 +3,7 @@ from __future__ import annotations
 import asyncio
 import inspect
 import json as _json
+import logging
 import os
 import re
 import shutil
@@ -10,6 +11,8 @@ import subprocess
 import time
 import uuid
 from typing import Any, Callable, Dict, List, Optional, Set, Tuple
+
+logger = logging.getLogger(__name__)
 
 from socnhotv.core.adapters.caption_adapter import CaptionAdapter
 from socnhotv.core.adapters.hyperframes_adapter import HyperFramesAdapter
@@ -73,6 +76,43 @@ def _extract_uris(val: Any) -> List[str]:
                 out.append(item)
         return out
     return []
+
+
+def _name_tokens(name: str) -> Set[str]:
+    """Chuẩn hoá tên nhân vật thành tập từ: bỏ '(100cm)', bỏ dấu tiếng Việt, chữ thường."""
+    import unicodedata
+
+    s = re.sub(r"\([^)]*\)", " ", str(name or "")).replace("đ", "d").replace("Đ", "D")
+    s = unicodedata.normalize("NFD", s)
+    s = "".join(ch for ch in s if unicodedata.category(ch) != "Mn").lower()
+    return {t for t in re.split(r"[^a-z0-9]+", s) if t}
+
+
+def _refs_for_scene(ref_arts: List[Any], characters: Any) -> List[str]:
+    """Chọn ảnh tham chiếu của đúng nhân vật có mặt trong cảnh.
+
+    Trả [] khi không lọc được (cảnh không ghi nhân vật, ảnh không gắn nhân vật, hoặc không khớp ai)
+    để nơi gọi dùng toàn bộ ảnh tham chiếu như cũ.
+    """
+    if not isinstance(characters, list) or not characters or not ref_arts:
+        return []
+    scene_names = [_name_tokens(c) for c in characters if str(c).strip()]
+    scene_names = [t for t in scene_names if t]
+    if not scene_names:
+        return []
+    picked: List[str] = []
+    for art in ref_arts:
+        params = getattr(getattr(art, "provenance", None), "params", None) or {}
+        aliases = params.get("characterAliases") or []
+        if not aliases:
+            return []  # có ảnh chưa gắn nhân vật -> không lọc, tránh bỏ sót
+        alias_tokens = [_name_tokens(a) for a in aliases]
+        alias_tokens = [t for t in alias_tokens if t]
+        if any(a <= sn for a in alias_tokens for sn in scene_names):
+            uri = getattr(art, "uri", None)
+            if uri and uri not in picked:
+                picked.append(uri)
+    return picked
 
 
 def _filter_kwargs(fn: Any, kwargs: Dict[str, Any]) -> Dict[str, Any]:
@@ -246,8 +286,44 @@ class GraphRunner:
         node_map = {n.id: n for n in graph.nodes}
         for nid in node_ids_to_run:
             if nid in node_map:
-                total += self.estimate_node_cost(node_map[nid], real_mode=real_mode)
+                cost = self.estimate_node_cost(node_map[nid], real_mode=real_mode)
+                if cost and node_map[nid].type == "image_gen":
+                    # Lặp theo cảnh: chi phí = số cảnh x chi phí 1 ảnh
+                    cost *= max(1, self._estimate_batch_count(graph, node_map[nid]))
+                total += cost
         return round(total, 6)
+
+    def _estimate_batch_count(self, graph: Graph, node: NodeInstance) -> int:
+        """Số ảnh dự kiến khi node image_gen nối cổng 'scenes' (1 nếu không lặp theo cảnh)."""
+        node_map = {n.id: n for n in graph.nodes}
+        count = 0
+        found = False
+        for e in graph.edges:
+            if e.target_node_id != node.id or e.target_port != "scenes":
+                continue
+            found = True
+            src = node_map.get(e.source_node_id)
+            if src is None:
+                continue
+            if src.type == "script":
+                mode = str(src.params.get("mode", "ai"))
+                if mode == "episode" and src.params.get("episodeId"):
+                    try:
+                        scenes, _ = self._episode_scenes(
+                            str(src.params.get("episodeId")), str(src.params.get("granularity") or "shot")
+                        )
+                        count += len(scenes)
+                        continue
+                    except Exception:
+                        pass
+                count += int(src.params.get("targetSceneCount", 6) or 6)
+            elif src.type in ("scene",):
+                count += 1
+            else:
+                count += 6
+        if not found:
+            return 1
+        return max(1, count)
 
     def select_nodes_to_execute(self, graph: Graph, topo_order: List[str], req: GraphRunRequest) -> List[str]:
         """Xác định chính xác những node sẽ thực sự chạy theo RunMode và quy tắc Mục 11."""
@@ -317,6 +393,8 @@ class GraphRunner:
             else:
                 model_key, prov = self._effective_model_for_node(node, real_mode=True)
                 cost = self.estimate_node_cost(node, real_mode=True)
+                if cost and node.type == "image_gen":
+                    cost = round(cost * max(1, self._estimate_batch_count(graph, node)), 6)
                 total_real_cost += cost
                 estimates.append(
                     NodeCostEstimate(
@@ -362,19 +440,35 @@ class GraphRunner:
     ) -> Dict[str, Any]:
         """Thu thập dữ liệu đầu vào cho node từ params, inputs và kết quả các node cha."""
         resolved: Dict[str, Any] = dict(node.params)
+        # Cổng dạng danh sách (ảnh tham chiếu, danh sách cảnh) nhận NHIỀU dây: gộp theo thứ tự dây
+        # thay vì dây sau ghi đè dây trước. Cổng đơn giữ nguyên hành vi cũ (dây sau thắng).
+        list_ports_filled: set = set()
 
         for edge in graph.edges:
             if edge.target_node_id == node.id:
                 src_out = node_outputs.get(edge.source_node_id, {})
                 if edge.source_port in src_out:
                     val = src_out[edge.source_port]
+                    tgt_port_def = None
                     tgt_def = NodeRegistry.get(node.type)
                     if tgt_def:
                         eff_ins, _ = NodeRegistry.effective_ports(node.type, node.params)
                         tgt_port_def = next((p for p in eff_ins if p.name == edge.target_port), None)
                         if tgt_port_def and tgt_port_def.port_type == PortType.IMAGE_LIST and not isinstance(val, list):
                             val = [val]
-                    resolved[edge.target_port] = val
+                    is_list_port = bool(
+                        tgt_port_def and tgt_port_def.port_type in (PortType.IMAGE_LIST, PortType.SCENES)
+                    )
+                    if is_list_port:
+                        items = val if isinstance(val, list) else ([val] if val is not None else [])
+                        if edge.target_port in list_ports_filled:
+                            prev = resolved.get(edge.target_port) or []
+                            resolved[edge.target_port] = list(prev) + list(items)
+                        else:
+                            resolved[edge.target_port] = list(items)
+                            list_ports_filled.add(edge.target_port)
+                    else:
+                        resolved[edge.target_port] = val
 
         eff_ins, _ = NodeRegistry.effective_ports(node.type, node.params)
         # Tham chiếu dữ liệu chuẩn hoá (vd. {"$ref": "script", episode, facet, shot}) -> giá trị thật
@@ -472,6 +566,159 @@ class GraphRunner:
                 add_scenes(f"{nid}.", outs.get("scenes"))
                 add_captions(f"{nid}.captions", outs.get("captions"))
         return texts
+
+    # ------------------------------------------------------------ ảnh chụp cổng ra của node
+    def _outputs_snapshot_path(self, graph_id: str, node_id: str):
+        safe = lambda x: re.sub(r"[^A-Za-z0-9_.-]+", "_", str(x or "graph"))[:120]
+        return self.store.runs_dir / "_node_outputs" / safe(graph_id) / f"{safe(node_id)}.json"
+
+    @staticmethod
+    def _params_signature(node: NodeInstance) -> str:
+        import hashlib
+
+        try:
+            raw = _json.dumps(node.params or {}, sort_keys=True, ensure_ascii=False, default=str)
+        except Exception:
+            raw = str(node.params)
+        return hashlib.sha256(f"{node.type}|{raw}".encode("utf-8")).hexdigest()
+
+    @staticmethod
+    def _encode_output(val: Any) -> Any:
+        if isinstance(val, Artifact):
+            return {"$artifact": val.model_dump(mode="json", by_alias=True)}
+        if isinstance(val, dict):
+            return {str(k): GraphRunner._encode_output(v) for k, v in val.items()}
+        if isinstance(val, (list, tuple)):
+            return [GraphRunner._encode_output(v) for v in val]
+        if val is None or isinstance(val, (str, int, float, bool)):
+            return val
+        return str(val)
+
+    @staticmethod
+    def _decode_output(val: Any) -> Any:
+        if isinstance(val, dict):
+            if set(val.keys()) == {"$artifact"}:
+                return Artifact.model_validate(val["$artifact"])
+            return {k: GraphRunner._decode_output(v) for k, v in val.items()}
+        if isinstance(val, list):
+            return [GraphRunner._decode_output(v) for v in val]
+        return val
+
+    def _save_outputs_snapshot(self, graph_id: str, node: NodeInstance, outputs: Dict[str, Any], is_mock: bool) -> None:
+        try:
+            path = self._outputs_snapshot_path(graph_id, node.id)
+            path.parent.mkdir(parents=True, exist_ok=True)
+            payload = {
+                "nodeId": node.id,
+                "nodeType": node.type,
+                "paramsSig": self._params_signature(node),
+                "mock": bool(is_mock),
+                "savedAt": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                "outputs": self._encode_output(outputs),
+            }
+            tmp = path.with_suffix(".json.tmp")
+            tmp.write_text(_json.dumps(payload, ensure_ascii=False), encoding="utf-8")
+            os.replace(tmp, path)
+        except Exception as e:  # không để việc lưu cache làm hỏng lượt chạy
+            logger.warning(f"Không lưu được ảnh chụp cổng ra của node {node.id}: {e}")
+
+    def _load_outputs_snapshot(self, graph_id: str, node: NodeInstance, is_mock: bool) -> Optional[Dict[str, Any]]:
+        try:
+            path = self._outputs_snapshot_path(graph_id, node.id)
+            if not path.is_file():
+                return None
+            data = _json.loads(path.read_text(encoding="utf-8"))
+            if data.get("nodeType") != node.type or data.get("paramsSig") != self._params_signature(node):
+                return None
+            if bool(data.get("mock")) != bool(is_mock):
+                return None
+            outs = self._decode_output(data.get("outputs") or {})
+            if not isinstance(outs, dict):
+                return None
+            # Artifact phải còn tệp thật trong dự án, nếu mất thì bỏ ảnh chụp (node sẽ dùng cách khôi phục cũ)
+            def _all_arts(v: Any):
+                if isinstance(v, Artifact):
+                    yield v
+                elif isinstance(v, dict):
+                    for x in v.values():
+                        yield from _all_arts(x)
+                elif isinstance(v, list):
+                    for x in v:
+                        yield from _all_arts(x)
+            for a in _all_arts(outs):
+                if not (self.store.project_dir / a.uri).is_file():
+                    return None
+            return outs
+        except Exception:
+            return None
+
+    def _character_aliases(self, char_id: str) -> List[str]:
+        """Các tên gọi của nhân vật để khớp với tên trong kịch bản (vd. 'Sóc Bi', 'Dê Mun', 'Mẹ Sóc')."""
+        names: List[str] = [char_id.replace("_", " ").replace("-", " ")]
+        try:
+            f = self.store.characters_dir / "studio_characters.json"
+            if f.is_file():
+                raw = _json.loads(f.read_text(encoding="utf-8"))
+                items = raw if isinstance(raw, list) else (raw.get("characters") or [])
+                for c in items:
+                    if isinstance(c, dict) and c.get("id") == char_id:
+                        nm = str(c.get("name") or "")
+                        if nm:
+                            names.append(re.sub(r"\s*\([^)]*\)", "", nm).strip())
+                            names.extend(x.strip() for x in re.findall(r"\(([^)]*)\)", nm))
+                        names.extend(str(a) for a in (c.get("aliases") or []) if a)
+        except Exception:
+            pass
+        seen: List[str] = []
+        for n in names:
+            n = n.strip()
+            if n and n not in seen:
+                seen.append(n)
+        return seen
+
+    def _episode_scenes(self, episode_id: str, granularity: str = "shot") -> Tuple[List[Dict[str, Any]], str]:
+        """Đọc kịch bản tập (content/episodes/<id>/KICH*.md) thành danh sách cảnh cho bộ chạy.
+
+        granularity="shot": mỗi shot là 1 phần tử (đúng nhịp dựng của kịch bản).
+        granularity="scene": gộp các shot của cùng một cảnh thành 1 phần tử.
+        """
+        from socnhotv.core.engine.episode_script import script_to_scenes
+
+        data = self._resolve_script_ref({"$ref": "script", "episode": episode_id, "facet": "script"})
+        if not isinstance(data, dict):
+            return [], ""
+        title = str(data.get("title") or episode_id)
+        if granularity != "scene":
+            return script_to_scenes(data), title
+
+        out: List[Dict[str, Any]] = []
+        for i, sc in enumerate(data.get("scenes", []), 1):
+            shots = sc.get("shots", []) or []
+            chars: List[str] = []
+            for sh in shots:
+                for c in sh.get("characters", []) or []:
+                    if c not in chars:
+                        chars.append(c)
+            lines = [
+                f"{sh.get('speaker') or '—'}: {sh.get('dialogue')}"
+                for sh in shots
+                if sh.get("dialogue")
+            ]
+            first = shots[0] if shots else {}
+            out.append(
+                {
+                    "sceneNumber": i,
+                    "shotId": ",".join(sh.get("id", "") for sh in shots),
+                    "title": f"Cảnh {sc.get('index', i)}: {sc.get('title', '')}",
+                    "imagePrompt": first.get("imagePrompt", ""),
+                    "videoPrompt": first.get("videoPrompt", ""),
+                    "dialogue": "\n".join(lines),
+                    "durationSec": float(sum(float(sh.get("durationSec") or 0) for sh in shots))
+                    or float(max(0, (sc.get("endSec") or 0) - (sc.get("startSec") or 0))),
+                    "characters": chars,
+                }
+            )
+        return out, title
 
     def _resolve_script_ref(self, ref: Dict[str, Any]) -> Any:
         """Giải tham chiếu kịch bản tập: {"$ref":"script","episode":..,"facet":..,"shot":..}."""
@@ -606,6 +853,17 @@ class GraphRunner:
                     run_id=run_id,
                     n=2,
                 )
+            aliases = self._character_aliases(char_id)
+            char_info["aliases"] = aliases
+            for ra in ref_arts:
+                try:
+                    ra.provenance.params = {
+                        **(ra.provenance.params or {}),
+                        "characterId": char_id,
+                        "characterAliases": aliases,
+                    }
+                except Exception:
+                    pass
             outputs["reference_images"] = ref_arts
             primary_artifact = ref_arts[0] if ref_arts else None
             cost_usd = 0.0
@@ -679,7 +937,19 @@ class GraphRunner:
             actual_script_cost = 0.0
             text_in = ""
 
-            if mode == "paste":
+            if mode == "episode":
+                episode_id = str(resolved_inputs.get("episodeId") or node.params.get("episodeId") or "").strip()
+                if not episode_id:
+                    raise ValueError(f"Node '{node.id}' (script) đang ở chế độ 'Kịch bản tập' nhưng chưa chọn tập (episodeId rỗng).")
+                granularity = str(resolved_inputs.get("granularity") or node.params.get("granularity") or "shot")
+                scenes, ep_title = self._episode_scenes(episode_id, granularity)
+                if not scenes:
+                    raise ValueError(f"Node '{node.id}' (script) không tìm thấy cảnh/shot nào trong kịch bản tập '{episode_id}'.")
+                prov_name = "local"
+                model_used = "episode_script"
+                actual_script_cost = 0.0
+                text_in = ep_title or episode_id
+            elif mode == "paste":
                 raw_script = str(resolved_inputs.get("rawScript") or node.params.get("rawScript") or "").strip()
                 if not raw_script:
                     raise ValueError(f"Node '{node.id}' (script) đang ở chế độ dán kịch bản nhưng chưa nhập kịch bản (rawScript rỗng).")
@@ -771,6 +1041,74 @@ class GraphRunner:
                 provenance=provenance,
             )
             outputs["artifact"] = primary_artifact
+
+        elif node_type == "image_gen" and isinstance(resolved_inputs.get("scenes"), list) and resolved_inputs.get("scenes"):
+            # Lặp theo cảnh: 1 node tạo ảnh cho TẤT CẢ cảnh (thay cho N node keyframe + N node cảnh)
+            scene_list = [sc for sc in resolved_inputs["scenes"] if isinstance(sc, dict)]
+            aspect = str(resolved_inputs.get("aspectRatio", "9:16"))
+            resolution = str(resolved_inputs.get("resolution", "1080p"))
+            seed = resolved_inputs.get("seed")
+            model_param = resolved_inputs.get("model")
+            ref_arts = [a for a in (resolved_inputs.get("references") or []) if isinstance(a, Artifact)]
+            all_refs = _extract_uris(resolved_inputs.get("references"))
+            extra_prompt = str(node.params.get("prompt") or "").strip()
+            fallback_prompt = str(resolved_inputs.get("prompt") or "").strip()
+            gen_fn = self.provider.generate_images
+            arts: List[Artifact] = []
+            out_scenes: List[Dict[str, Any]] = []
+            total = len(scene_list)
+            for i, sc in enumerate(scene_list, 1):
+                sc_prompt = str(sc.get("imagePrompt") or sc.get("prompt") or "").strip()
+                if not sc_prompt:
+                    sc_prompt = " ".join(
+                        x for x in (fallback_prompt, str(sc.get("title") or ""), str(sc.get("dialogue") or "")[:200]) if x
+                    ).strip() or f"Phân cảnh {i}"
+                prompt_i = f"{sc_prompt}\n{extra_prompt}" if extra_prompt and extra_prompt not in sc_prompt else sc_prompt
+                refs_i = _refs_for_scene(ref_arts, sc.get("characters")) or all_refs
+                self._emit_event(
+                    SSEEvent(
+                        event_type=SSEEventType.NODE_PROGRESS,
+                        run_id=run_id,
+                        node_id=node.id,
+                        state=NodeState.RUNNING,
+                        progress=round(0.05 + 0.9 * (i - 1) / max(1, total), 3),
+                        message=f"Tạo ảnh cảnh {i}/{total}: {str(sc.get('title') or '')[:60]}",
+                        timestamp=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                    )
+                )
+                call_args = _filter_kwargs(
+                    gen_fn,
+                    {
+                        "prompt": prompt_i,
+                        "references": refs_i or None,
+                        "aspect_ratio": aspect,
+                        "resolution": resolution,
+                        "n": 1,
+                        "seed": (int(seed) + i - 1) if seed is not None else None,
+                        "node_id": node.id,
+                        "run_id": run_id,
+                        "model": model_param,
+                    },
+                )
+                res = await gen_fn(**call_args)
+                art_i = res[0] if res else None
+                if art_i is None:
+                    raise ValueError(f"Node '{node.id}' (image_gen) không tạo được ảnh cho cảnh {i}.")
+                arts.append(art_i)
+                out_scenes.append(
+                    {
+                        **sc,
+                        "image": str(self.store.project_dir / art_i.uri),
+                        "imageUri": art_i.uri,
+                        "imageArtifactId": art_i.id,
+                    }
+                )
+            outputs["images"] = arts
+            outputs["image"] = arts[0] if arts else None
+            outputs["scenes"] = out_scenes
+            primary_artifact = arts[0] if arts else None
+            if arts:
+                cost_usd = round(sum(a.provenance.cost_usd for a in arts), 6)
 
         elif node_type == "image_gen":
             prompt = str(resolved_inputs.get("prompt", "Sóc Nhỏ Bi đang khám phá khu rừng diệu kỳ"))
@@ -995,6 +1333,22 @@ class GraphRunner:
         elif node_type == "hyperframes_render":
             hf_adapter = HyperFramesAdapter(self.store)
             scenes = resolved_inputs.get("scenes") or []
+            # Ảnh/video của cảnh có thể là đường dẫn tương đối trong dự án (vd. node Cảnh trả 'assets/x.png'):
+            # đổi sang đường dẫn tuyệt đối để bộ dựng tìm thấy tệp.
+            norm_scenes: List[Dict[str, Any]] = []
+            for sc in scenes:
+                if not isinstance(sc, dict):
+                    norm_scenes.append(sc)
+                    continue
+                sc2 = dict(sc)
+                for k in ("video", "img", "image", "src"):
+                    v = sc2.get(k)
+                    if isinstance(v, str) and v and not os.path.isabs(v) and not v.startswith(("http://", "https://", "data:")):
+                        cand = self.store.project_dir / v.lstrip("/")
+                        if cand.is_file():
+                            sc2[k] = str(cand)
+                norm_scenes.append(sc2)
+            scenes = norm_scenes
             if not scenes:
                 media_input = (
                     resolved_inputs.get("video")
@@ -1595,6 +1949,12 @@ class GraphRunner:
         # Khôi phục node_outputs từ các node đã có sẵn pinned generation
         node_outputs: Dict[str, Dict[str, Any]] = {}
         for nid, node in node_map.items():
+            # Ưu tiên ảnh chụp ĐẦY ĐỦ cổng ra của lần chạy trước (cùng tham số, cùng chế độ mock/thật):
+            # giữ được danh sách cảnh, ảnh tham chiếu, phụ đề... thay vì chỉ 1 artifact chính.
+            snap = self._load_outputs_snapshot(graph.id, node, bool(req.mock_mode))
+            if snap is not None:
+                node_outputs[nid] = snap
+                continue
             if node.pinned_generation_id:
                 pinned_gen = next((g for g in node.generations if g.id == node.pinned_generation_id), None)
                 if pinned_gen:
@@ -1719,6 +2079,7 @@ class GraphRunner:
                             if op.map_to and op.name not in outputs and op.map_to in outputs:
                                 outputs[op.name] = outputs[op.map_to]
                         node_outputs[nid] = outputs
+                        self._save_outputs_snapshot(graph.id, node, outputs, bool(req.mock_mode))
                         total_actual_cost += cost
 
                         art_id = primary_art.id if primary_art else f"art_virtual_{uuid.uuid4().hex[:6]}"

@@ -155,6 +155,20 @@ def _character_view(d: Path, project: Dict[str, Any], cid: str, c: Dict[str, Any
                         "createdAt": _iso(img.stat().st_mtime),
                     }
                 )
+    # Ảnh nhân vật đã tách nền (PNG trong suốt) ở characters/<id>/cutout/, trùng tên với ảnh DNA gốc
+    cutout_dir = dna / "cutout"
+    cutout_images: List[str] = []
+    if cutout_dir.exists():
+        cut_by_name = {
+            f.name: f"/data/projects/{project['id']}/files/{f.relative_to(d).as_posix()}"
+            for f in sorted(cutout_dir.iterdir())
+            if f.is_file() and f.suffix.lower() == ".png"
+        }
+        cutout_images = list(cut_by_name.values())
+        for ref in ref_library:
+            name = Path(str(ref.get("url", ""))).name
+            if name in cut_by_name:
+                ref["cutoutUrl"] = cut_by_name[name]
     description = (
         sidecar.get("description")
         or profile.get("body", {}).get("build")
@@ -201,6 +215,7 @@ def _character_view(d: Path, project: Dict[str, Any], cid: str, c: Dict[str, Any
         "promptLock": prompt_lock,
         "referenceImages": images,
         "referenceLibrary": ref_library,
+        "cutoutImages": cutout_images,
         "generatedClips": sidecar.get("generatedClips", default_clips),
         "appearances": sidecar.get("appearances", default_appearances),
         "memory": memory,

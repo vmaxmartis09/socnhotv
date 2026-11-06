@@ -92,7 +92,11 @@ def register(registry: Any) -> None:
             ],
             default_params={"generator_type": "koc_review", "voice_id": "soc-nho"},
             mockable=True,
-        ),
+        )
+    )
+
+    # 5. Phân tích Kênh Đối thủ
+    registry.register(
         NodeDefinition(
             type_name="channel_insight",
             display_name="Phân tích Kênh Đối thủ",

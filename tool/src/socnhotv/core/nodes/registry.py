@@ -188,10 +188,17 @@ class NodeRegistry:
                     PortDefinition(name="prompt", port_type=PortType.TEXT, description="Prompt mô tả cảnh", required=False),
                     PortDefinition(name="references", port_type=PortType.IMAGE_LIST, description="Ảnh tham chiếu DNA", required=False),
                     PortDefinition(name="image", port_type=PortType.IMAGE, description="Ảnh mẫu tham chiếu", required=False),
+                    PortDefinition(
+                        name="scenes",
+                        port_type=PortType.SCENES,
+                        description="Lặp theo cảnh: nối danh sách cảnh để tạo mỗi cảnh 1 ảnh",
+                        required=False,
+                    ),
                 ],
                 output_ports=[
                     PortDefinition(name="images", port_type=PortType.IMAGE_LIST, description="Danh sách ảnh sinh ra"),
                     PortDefinition(name="image", port_type=PortType.IMAGE, description="Ảnh đại diện / khung đầu tiên sinh ra"),
+                    PortDefinition(name="scenes", port_type=PortType.SCENES, description="Danh sách cảnh đã gắn ảnh (khi lặp theo cảnh)"),
                 ],
                 default_params={
                     "prompt": "",

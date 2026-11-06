@@ -182,6 +182,8 @@ export function NodeTab() {
             nodeId={node.id}
             mode={params.mode}
             rawScript={params.rawScript}
+            episodeId={params.episodeId}
+            granularity={params.granularity}
             ideaText={params.text || params.content}
             targetSceneCount={params.targetSceneCount}
             targetDurationSec={params.targetDurationSec}
