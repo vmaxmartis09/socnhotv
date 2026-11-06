@@ -535,10 +535,14 @@ class HyperFramesEngine:
 
             # 2. Xử lý mastering chuẩn -14 LUFS
             try:
+                # tempo_factor=1.0: hậu kỳ video chỉ chuẩn hoá âm lượng, KHÔNG đổi tốc độ.
+                # (Mặc định 1.10 của master_tiktok làm track tiếng nhanh 10% -> '-shortest' cắt cụt video
+                # và lệch tiếng với hình; giọng đã chỉnh tốc độ ở bước đọc rồi.)
                 self.audio_mastering.master_tiktok(
                     input_audio_path=str(extracted_wav),
                     output_audio_path=str(mastered_wav),
                     target_lufs=target_lufs,
+                    tempo_factor=1.0,
                 )
             except Exception as e:
                 logger.warning(f"Audio mastering thất bại, giữ âm thanh gốc: {e}")

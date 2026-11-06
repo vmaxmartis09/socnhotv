@@ -16,7 +16,9 @@ export type PortType =
   | "composition"
   | "policy"
   /** Lời thoại có người nói: [{id, speaker, characterId, text, shotId, sceneIndex, startSec, endSec, delivery}] */
-  | "dialogue";
+  | "dialogue"
+  /** Câu thoại đã đọc (từng clip) từ chức năng Nói của nhân vật → cổng voice_clips của bộ dựng */
+  | "voice_clips";
 
 export type ArtifactKind =
   | "image"

@@ -89,7 +89,7 @@ class _ShoutRuntime(CapabilityRuntime):
     def __init__(self):
         self.calls = 0
 
-    def cache_inputs(self, node, resolved_inputs, definition):
+    def cache_inputs(self, node, resolved_inputs, definition, core_outputs=None):
         return {"content": node.params.get("content")}
 
     def estimate_cost(self, node, params, runner, real_mode):

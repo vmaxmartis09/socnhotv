@@ -16,9 +16,16 @@ const NODE_W = 300;
 const COL_GAP = 110;
 const ROW_GAP = 56;
 const FALLBACK_H = 380;
+/** Chiều cao ước lượng khi thẻ chưa được đo (lúc mới tải): thẻ nhân vật có ảnh lớn nên cao hơn hẳn */
+const FALLBACK_H_BY_TYPE: Record<string, number> = {
+  character: 720,
+  image_gen: 480,
+  voice_tts: 340,
+};
 
 function heightOf(n: Node): number {
-  return n.measured?.height ?? n.height ?? FALLBACK_H;
+  const nodeType = (n.data as { nodeType?: string } | undefined)?.nodeType || "";
+  return n.measured?.height ?? n.height ?? FALLBACK_H_BY_TYPE[nodeType] ?? FALLBACK_H;
 }
 
 /** Phân lớp theo đường dài nhất từ nguồn; trả về thứ tự bước và trục chính. */

@@ -499,7 +499,8 @@ class GraphRunner:
                         if tgt_port_def and tgt_port_def.port_type == PortType.TEXT and _is_dialogue_list(val):
                             val = _dialogue_to_text(val)
                     is_list_port = bool(
-                        tgt_port_def and tgt_port_def.port_type in (PortType.IMAGE_LIST, PortType.SCENES)
+                        tgt_port_def
+                        and tgt_port_def.port_type in (PortType.IMAGE_LIST, PortType.SCENES, PortType.VOICE_CLIPS)
                     )
                     if is_list_port:
                         items = val if isinstance(val, list) else ([val] if val is not None else [])
@@ -825,7 +826,7 @@ class GraphRunner:
                 raise ValueError(f"Chức năng '{cap.display_name}' của node '{node.id}' chưa sẵn sàng.")
             params = capability_params(cap, node.params)
             key = capability_cache_key(
-                node, cap, params, runtime.cache_inputs(node, resolved_inputs, cap), is_mock
+                node, cap, params, runtime.cache_inputs(node, resolved_inputs, cap, core_outputs), is_mock
             )
             cached = self._load_capability_cache(graph_id, node.id, cap.name, key)
             if cached is not None:
@@ -850,6 +851,86 @@ class GraphRunner:
             merged.update(outs)
             total_cost += float(cost or 0.0)
         return merged, total_cost
+
+    # ------------------------------------------------------------ giọng từng câu (chức năng Nói)
+    def _voice_line_cache_path(self, key: str):
+        return self.store.runs_dir / "_voice_lines" / f"{key}.json"
+
+    def _voice_line_cache_get(self, voice_id: str, text: str, tempo: float, is_mock: bool) -> Optional[Artifact]:
+        """Câu đã đọc trước đó với cùng giọng/nội dung/tốc độ/chế độ -> dùng lại, không đọc lại."""
+        from socnhotv.core.engine.dialogue_voice import line_cache_key
+
+        try:
+            path = self._voice_line_cache_path(line_cache_key(voice_id, text, tempo, is_mock))
+            if not path.is_file():
+                return None
+            art = Artifact.model_validate(_json.loads(path.read_text(encoding="utf-8")))
+            return art if (self.store.project_dir / art.uri).is_file() else None
+        except Exception:
+            return None
+
+    def _voice_line_cache_put(self, voice_id: str, text: str, tempo: float, is_mock: bool, art: Artifact) -> None:
+        from socnhotv.core.engine.dialogue_voice import line_cache_key
+
+        try:
+            path = self._voice_line_cache_path(line_cache_key(voice_id, text, tempo, is_mock))
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(_json.dumps(art.model_dump(mode="json", by_alias=True), ensure_ascii=False), encoding="utf-8")
+        except Exception as e:
+            logger.warning(f"Không lưu được cache giọng câu: {e}")
+
+    async def _synthesize_line(
+        self, text: str, voice_id: str, tempo: float, node_id: str, run_id: str, is_mock: bool
+    ) -> Artifact:
+        """Đọc 1 câu. Mock: giọng giả (im lặng, độ dài ước theo số chữ) để chạy nhanh.
+        Thật: VoiceAdapter (OmniVoice / Edge-TTS) + mastering -14 LUFS."""
+        if is_mock:
+            return await MockProvider(self.store).speak_voice(
+                text=text, voice_id=voice_id, tempo=tempo, node_id=node_id, run_id=run_id
+            )
+        return await VoiceAdapter(self.store).synthesize(
+            text=text, voice_id=voice_id, tempo=tempo, node_id=node_id, run_id=run_id
+        )
+
+    def _render_dialogue(
+        self,
+        node: NodeInstance,
+        scenes: List[Dict[str, Any]],
+        clips: List[Dict[str, Any]],
+        run_id: str,
+    ) -> Tuple[List[Dict[str, Any]], Artifact, Artifact, List[Dict[str, Any]]]:
+        """Hội thoại nhiều nhân vật: xếp mốc từng câu, trộn 1 track, làm phụ đề SRT từ mốc thật."""
+        from socnhotv.core.adapters.hyperframes_adapter import FFMPEG_EXE
+        from socnhotv.core.engine.dialogue_voice import build_timeline, mix_timeline, timeline_to_srt
+
+        timing = str(node.params.get("timing") or "script")
+        gap = float(node.params.get("gapSec", 0.35) or 0.35)
+        timeline, new_scenes, total = build_timeline(scenes, clips, gap_sec=gap, timing=timing)
+        out_dir = self.store.runs_dir / run_id
+        mixed_path = mix_timeline(timeline, total, self.store.project_dir, out_dir / f"{node.id}_dialogue.mp3", FFMPEG_EXE)
+        now = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+        voice_art = self.store.store_bytes(
+            data=mixed_path.read_bytes(),
+            ext="mp3",
+            kind=ArtifactKind.AUDIO,
+            provenance=ArtifactProvenance(
+                node_id=node.id, run_id=run_id, provider="local", model="dialogue-mix",
+                params={"lines": len(timeline), "timing": timing, "gapSec": gap, "totalSec": total},
+                cost_usd=0.0, created_at=now,
+            ),
+            meta=ArtifactMeta(duration=total),
+        )
+        srt_art = self.store.store_bytes(
+            data=timeline_to_srt(timeline).encode("utf-8"),
+            ext="srt",
+            kind=ArtifactKind.TEXT,
+            provenance=ArtifactProvenance(
+                node_id=node.id, run_id=run_id, provider="local", model="dialogue-timeline",
+                params={"lines": len(timeline)}, cost_usd=0.0, created_at=now,
+            ),
+            mime="application/x-subrip",
+        )
+        return new_scenes, voice_art, srt_art, timeline
 
     def _capabilities_cost(self, node: NodeInstance, real_mode: bool) -> float:
         from socnhotv.core.nodes.capabilities import capability_params, get_runtime
@@ -1722,6 +1803,35 @@ class GraphRunner:
             if not isinstance(cap_art, Artifact):
                 cap_art = None
 
+            # Hội thoại nhiều nhân vật (cổng voice_clips từ chức năng Nói): bộ dựng tự xếp mốc + trộn + phụ đề
+            clips = resolved_inputs.get("voice_clips")
+            if isinstance(clips, list) and any(isinstance(c, dict) and c.get("audio") for c in clips):
+                self._emit_event(
+                    SSEEvent(
+                        event_type=SSEEventType.NODE_PROGRESS,
+                        run_id=run_id,
+                        node_id=node.id,
+                        state=NodeState.RUNNING,
+                        progress=0.2,
+                        message=f"Đang xếp mốc và trộn {len(clips)} câu thoại...",
+                        timestamp=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                    )
+                )
+                scenes, voice_art, srt_art, timeline = await asyncio.to_thread(
+                    self._render_dialogue, node, scenes, clips, run_id
+                )
+                outputs["captions"] = srt_art
+                outputs["timeline"] = timeline
+                if cap_art is None:
+                    cap_art = srt_art
+
+            aspect = str(node.params.get("aspectRatio") or "9:16")
+            platform = str(node.params.get("platform") or "")
+            if aspect == "16:9" or platform == "youtube":
+                render_size = (1920, 1080)
+            else:
+                render_size = (1080, 1920)
+
             title_badge = str(
                 node.params.get("titleBadge")
                 or node.params.get("templateId")
@@ -1757,6 +1867,8 @@ class GraphRunner:
                     title_badge=title_badge,
                     node_id=node.id,
                     run_id=run_id,
+                    width=render_size[0],
+                    height=render_size[1],
                 )
                 self._emit_event(
                     SSEEvent(
@@ -1776,9 +1888,9 @@ class GraphRunner:
                     **_filter_kwargs(
                         vid_fn,
                         {
-                            "prompt": "Final rendered video composition 9:16",
+                            "prompt": f"Final rendered video composition {aspect}",
                             "duration_sec": 45.0,
-                            "aspect_ratio": "9:16",
+                            "aspect_ratio": "16:9" if render_size[0] > render_size[1] else "9:16",
                             "has_audio": True,
                             "node_id": node.id,
                             "run_id": run_id,

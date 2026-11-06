@@ -22,6 +22,7 @@ const PORT_TYPES: PortType[] = [
   "composition",
   "policy",
   "dialogue",
+  "voice_clips",
 ];
 
 const slug = (s: string) =>

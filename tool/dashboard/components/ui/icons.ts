@@ -21,6 +21,7 @@ export {
   Sparkles as SparklesNode,
   Ruler as RulerNode,
   Volume2 as Volume2Node,
+  VolumeX as VolumeXNode,
   Brain as BrainNode,
   Users as UsersNode,
   Check as CheckNode,

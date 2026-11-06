@@ -363,16 +363,29 @@ class NodeRegistry:
                     PortDefinition(name="scenes", port_type=PortType.SCENES, description="Cấu trúc các cảnh", required=False),
                     PortDefinition(name="audio", port_type=PortType.AUDIO, description="Thoại chính voiceover", required=False),
                     PortDefinition(name="voice", port_type=PortType.AUDIO, description="Thoại chính voiceover (alias)", required=False),
+                    PortDefinition(
+                        name="voice_clips",
+                        port_type=PortType.VOICE_CLIPS,
+                        description="Giọng từng câu của các nhân vật (nhận nhiều dây): bộ dựng tự xếp mốc, trộn và làm phụ đề",
+                        required=False,
+                    ),
                     PortDefinition(name="captions", port_type=PortType.CAPTIONS, description="Phụ đề karaoke", required=False),
                     PortDefinition(name="bgm", port_type=PortType.AUDIO, description="Nhạc nền BGM", required=False),
                     PortDefinition(name="video", port_type=PortType.VIDEO, description="Video clip đầu vào", required=False),
                     PortDefinition(name="image", port_type=PortType.IMAGE, description="Ảnh tĩnh đầu vào", required=False),
                 ],
                 output_ports=[
-                    PortDefinition(name="video", port_type=PortType.VIDEO, description="Video thành phẩm MP4")
+                    PortDefinition(name="video", port_type=PortType.VIDEO, description="Video thành phẩm MP4"),
+                    PortDefinition(
+                        name="captions",
+                        port_type=PortType.CAPTIONS,
+                        description="Phụ đề SRT theo mốc thật của từng câu (khi nhận voice_clips)",
+                    ),
                 ],
                 default_params={
                     "aspectRatio": "9:16",
+                    "timing": "script",
+                    "gapSec": 0.35,
                     "template": "default_cartoon",
                     "templateId": "default_cartoon",
                     "platform": "tiktok",
@@ -459,6 +472,10 @@ class NodeRegistry:
 
         from socnhotv.core.nodes.plugins import load_all
         load_all(cls)
+
+        # Chức năng bật/tắt gắn sẵn (E5): Nhân vật -> "Nói"
+        from socnhotv.core.engine.dialogue_voice import register_speak_capability
+        register_speak_capability()
 
 
 # Khởi tạo ngay khi module được nạp

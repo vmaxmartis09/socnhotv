@@ -1,6 +1,6 @@
 # E5 — Node Nhân vật biết nói và tự tạo ảnh theo kịch bản
 
-> Viết 2026-11-06. Trạng thái: **Bước 1–4 ĐÃ LÀM (2026-11-06)**, xem mục 9. Bước 5–8 chưa làm.
+> Viết 2026-11-06. Trạng thái: **Bước 1–6 ĐÃ LÀM (2026-11-06)**, xem mục 9–10. Bước 7 (Ảnh theo cảnh) và 8 (preset KOC, tài liệu còn lại) chưa làm.
 > Thay phần B4 (node "Hội thoại" riêng) của `E4_dialogue_voice.md`. Giữ B1, B3, B5 của E4.
 > Ý tưởng của người dùng: node Nhân vật có sẵn chức năng **nói** (đọc lời thoại của chính nhân vật trong kịch bản) và chức năng **tạo ảnh** (ảnh nhân vật hợp với từng cảnh), nhận text từ kịch bản.
 
@@ -155,3 +155,32 @@ Khả năng mở rộng: mỗi chức năng mới (nhép môi, video chuyển đ
 - Ghép người nói: bí danh phải nằm trọn trong tên VÀ phủ ít nhất nửa số từ ("Sóc Bi" khớp "Bi", "Ông Kẹ Bí Ẩn" không khớp "Bi").
 
 **Test**: mới `tests/test_port_staleness.py` (6), `tests/test_character_capabilities.py` (8).
+
+## 10. Đã làm 2026-11-06 — Bước 5–6
+
+**Bước 5 — Chức năng Nói** (`core/engine/dialogue_voice.py`, đăng ký trong `NodeRegistry.initialize_defaults`)
+- Bật: `character.params.speak = {enabled: true, voiceId?, tempo?, concurrency?}`. Cổng vào thêm `lines` (dialogue), `text`; cổng ra `voice` (kiểu mới `voice_clips`).
+- Lọc câu theo `characterId` (câu chưa ghép thì khớp tên người nói với bí danh, cùng luật nửa số từ). Đọc từng câu, tối đa 2 câu song song, SSE "Sóc Nhỏ (Bi) đọc 7/19".
+- Cache 2 tầng: cả chức năng (khoá gồm câu của nhân vật + voiceId + tempo) và từng câu `runs/_voice_lines/<sha>.json` theo `(voiceId, text, tempo, mock)` → sửa 1 câu chỉ đọc lại 1 câu.
+- Mock: giọng giả (im lặng, độ dài ước theo số chữ) để chạy nhanh. Thật: `VoiceAdapter` (OmniVoice/Edge-TTS + mastering −14 LUFS).
+- Nhân vật không có câu nào: trả danh sách rỗng + báo trên SSE. Không có giọng dùng được: lỗi rõ.
+- Thẻ nhân vật: nút "Nói" (MorphIcon loa ↔ loa tắt); bật mà chưa nối `lines` thì hiện hướng dẫn nối dây.
+- Chưa làm: cổng `audio` gộp riêng từng nhân vật, nghe thử/sửa từng câu trên thẻ, dùng cột `voiceDelivery`.
+
+**Bước 6 — Bộ dựng nhận nhiều giọng**
+- `hyperframes_render` cổng vào `voice_clips` (nhận nhiều dây, gộp như `image[]`/`scenes`), cổng ra mới `captions` (SRT).
+- `build_timeline`: xếp câu theo thứ tự kịch bản, trong cảnh nói nối tiếp cách `gapSec` (0.35), `timing:"script"` giữ độ dài cảnh của kịch bản (thoại dài hơn thì kéo dài cảnh), `timing:"voice"` cảnh vừa đủ thoại (xem nhanh). `mix_timeline` trộn 1 track MP3 192kbps 44.1kHz bằng ffmpeg (`adelay` + `amix`), dài đúng tổng thời lượng. Phụ đề SRT "Tên: câu" theo mốc thật.
+- `aspectRatio:"16:9"` (hoặc `platform:"youtube"`) → dựng 1920×1080 preset youtube. Trước đây luôn 1080×1920.
+- Giới hạn: phụ đề trong video vẫn theo từng cảnh (với `granularity:"shot"` mỗi shot 1 câu nên khớp); chưa có BGM ducking theo timeline.
+
+**Flow Tập 1 còn 7 node**: Kịch bản → (lines) → 3 Nhân vật (bật Nói) → (voice) → Dựng phim; Kịch bản → (scenes) → Ảnh cảnh → Dựng phim → Xuất.
+
+**Test**: `tests/test_dialogue_voice.py` (6): lọc câu, xếp mốc không chồng tiếng + kéo dài cảnh, timing voice + SRT, cổng/validator, Tập 1 mock 3 nhân vật đọc 19/6/5 câu đúng giọng + sửa 1 câu chỉ đọc lại 1 câu, trộn 30 câu (đo độ dài MP3 khớp tổng cảnh).
+
+**Chạy thật flow 7 node (Mock, 2026-11-06)**: Kịch bản + 3 nhân vật + Dựng + Xuất chạy thành công, $0. `output/tap01_nui_lua_trong_bung_bi.mp4` 1920×1080 16:9, 10:00, 30 cảnh, phụ đề SRT 30 câu đúng người nói (Bi 0.3s, Mun 20.3s, Bi 40.3s...). Giọng Mock là tệp im lặng nên video chưa có tiếng thật; ảnh cảnh là ảnh Mock dùng chung.
+
+**Lỗi có sẵn phát hiện & sửa khi kiểm chứng**
+- `HyperFramesEngine.post_process_audio` gọi `master_tiktok` với tốc độ mặc định 1.10 → track tiếng của MỌI video thành phẩm nhanh 10%, rồi `-shortest` cắt video còn ~91% (10:00 → 9:05) và lệch tiếng với hình. Sửa: hậu kỳ dùng `tempo_factor=1.0`. Test `tests/test_render_postprocess.py`.
+- `autoLayout` coi thẻ chưa đo cao 380px → thẻ nhân vật (~700px) đè lên nhau khi mới tải. Sửa: chiều cao ước lượng theo loại node.
+- Còn biết: trong lúc render, Core bị chặn (render HyperFrames chạy đồng bộ trong hàm async) nên Studio không tải được đồ thị cho tới khi render xong. Chưa sửa.
+- Còn biết: node con được đánh dấu lỗi thời nhưng không tự chạy trong cùng lượt (vd. Xuất sau khi Dựng chạy lại) — quy tắc Mục 11 có sẵn; muốn ra file luôn thì chạy "từ node này trở xuống".

@@ -190,7 +190,8 @@
       "captions": "captions",
       "composition": "bundle",
       "policy": "policy",
-      "dialogue": "dialogue"
+      "dialogue": "dialogue",
+      "voice_clips": "voice clips"
     },
     "legend": {
       "text": "Text (#737373)",

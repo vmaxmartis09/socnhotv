@@ -70,6 +70,7 @@ function portIconOf(portType: string): React.ComponentType<{ className?: string;
   if (portType === "scenes") return Layers;
   if (portType === "policy") return ShieldCheck;
   if (portType === "dialogue") return MessageSquare;
+  if (portType === "voice_clips") return Volume2;
   return null;
 }
 

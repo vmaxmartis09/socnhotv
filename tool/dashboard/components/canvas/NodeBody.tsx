@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
 import { useHubScope } from "@/lib/hub";
-import { RefreshCw } from "@/components/ui/icons";
+import { RefreshCw, MorphIcon, Volume2Node, VolumeXNode } from "@/components/ui/icons";
 import {
   NodeTextInput,
   NodeImageInput,
@@ -114,7 +114,20 @@ function ImagePreview({
 }
 
 /** Thẻ nhân vật gọn: 1 ảnh lớn + tên + chip thông số */
-function CharacterHero({ c, compact, detailed, onPick }: { c: Character; compact?: boolean; detailed?: boolean; onPick?: () => void }) {
+function CharacterHero({
+  c,
+  compact,
+  detailed,
+  onPick,
+  speak,
+}: {
+  c: Character;
+  compact?: boolean;
+  detailed?: boolean;
+  onPick?: () => void;
+  /** Chức năng "Nói" của node Nhân vật (chỉ có khi Core khai báo chức năng speak) */
+  speak?: { enabled: boolean; hasLines: boolean; onToggle: () => void };
+}) {
   const gallery = c.referenceImages.slice(1, 5);
   return (
     <div className="space-y-1.5 pt-1">
@@ -160,7 +173,37 @@ function CharacterHero({ c, compact, detailed, onPick }: { c: Character; compact
         )}
         <Chip title="Chiều cao">{c.heightCm} cm</Chip>
         <Chip title="Giọng">{c.voiceId || "—"}</Chip>
+        {speak && (
+          <button
+            type="button"
+            aria-pressed={speak.enabled}
+            title={
+              speak.enabled
+                ? "Đang bật Nói: nhân vật tự đọc câu của mình từ cổng lines của Kịch bản. Bấm để tắt."
+                : "Bật Nói: nhân vật tự đọc lời thoại của mình trong kịch bản (thay cho node Giọng)"
+            }
+            onClick={(e) => {
+              e.stopPropagation();
+              speak.onToggle();
+            }}
+            className={cn(
+              "nodrag inline-flex h-6 items-center gap-1 rounded-full border px-2 text-[11px] font-medium transition-colors",
+              speak.enabled
+                ? "border-foreground/20 bg-foreground text-background"
+                : "border-border text-muted-foreground hover:bg-accent hover:text-foreground"
+            )}
+          >
+            <MorphIcon icon={speak.enabled ? Volume2Node : VolumeXNode} spring="snappy" size={12} />
+            Nói
+          </button>
+        )}
       </div>
+      {speak?.enabled && !speak.hasLines && (
+        <p className="text-[10px] leading-snug text-muted-foreground">
+          Nối cổng <span className="font-medium text-foreground">lines</span> của Kịch bản vào nhân vật, rồi nối cổng{" "}
+          <span className="font-medium text-foreground">voice</span> sang <span className="font-medium text-foreground">voice_clips</span> của Dựng phim.
+        </p>
+      )}
       <Reveal show={!compact && Boolean(detailed)}>
         <div className="space-y-1.5">
           <p className="text-xs text-muted-foreground">
@@ -299,6 +342,9 @@ export const NodeBody = React.memo(function NodeBody({
   onPickCharacter,
 }: Props) {
   const updateNodeParams = useStudioStore((s) => s.updateNodeParams);
+  const hasSpeakCapability = useStudioStore((s) =>
+    Boolean(s.nodeCatalog.find((d) => d.typeName === nodeType)?.capabilities?.some((c) => c.name === "speak"))
+  );
   const p = data.params || {};
   const url = data.previewUrl;
   const done = data.status === "succeeded";
@@ -457,7 +503,24 @@ export const NodeBody = React.memo(function NodeBody({
     case "character":
       return (
         <div className="space-y-2">
-          {character && <CharacterHero c={character} compact={compact} detailed={Boolean(expanded)} onPick={onPickCharacter} />}
+          {character && (
+            <CharacterHero
+              c={character}
+              compact={compact}
+              detailed={Boolean(expanded)}
+              onPick={onPickCharacter}
+              speak={
+                hasSpeakCapability
+                  ? {
+                      enabled: Boolean(p.speak?.enabled),
+                      hasLines: connectedInputs.includes("lines"),
+                      onToggle: () =>
+                        updateNodeParams(nodeId, { speak: { ...(p.speak || {}), enabled: !p.speak?.enabled } }),
+                    }
+                  : undefined
+              }
+            />
+          )}
         </div>
       );
 

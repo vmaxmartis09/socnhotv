@@ -111,12 +111,13 @@ class HyperFramesAdapter:
         output_mp4: Path,
         quality: str = "looks",
         fps: int = 30,
+        platform: str = "tiktok",
     ) -> Path:
         """Render video thông qua HyperFramesEngine."""
         out = self.engine.render(
             bundle_dir=project_dir,
             out_path=output_mp4,
-            platform="tiktok",
+            platform=platform,
             quality=quality,
         )
         self.last_engine = self.engine.last_engine
@@ -131,8 +132,12 @@ class HyperFramesAdapter:
         title_badge: str = "SÓC NHỎ TV • TẬP MỚI",
         node_id: str = "unknown",
         run_id: str = "run_default",
+        width: int = 1080,
+        height: int = 1920,
     ) -> Artifact:
-        """Đầu vào là Artifacts, trả về Video Artifact MP4."""
+        """Đầu vào là Artifacts, trả về Video Artifact MP4. width×height 1920×1080 = YouTube 16:9."""
+        platform = "youtube" if (width, height) == (1920, 1080) else "tiktok"
+        aspect = "16:9" if platform == "youtube" else "9:16"
         run_session_dir = self.store.runs_dir / run_id
         run_session_dir.mkdir(parents=True, exist_ok=True)
         hf_project_dir = run_session_dir / f"hf_composition_{node_id}"
@@ -149,8 +154,8 @@ class HyperFramesAdapter:
             scenes=scenes,
             audio_voiceover_path=voice_path,
             title_badge=title_badge,
-            width=1080,
-            height=1920,
+            width=width,
+            height=height,
             fps=30,
         )
 
@@ -159,6 +164,7 @@ class HyperFramesAdapter:
             project_dir=hf_project_dir,
             output_mp4=output_mp4_temp,
             fps=30,
+            platform=platform,
         )
 
         with open(final_mp4, "rb") as f:
@@ -172,9 +178,9 @@ class HyperFramesAdapter:
             provider=getattr(self, "last_engine", "hyperframes"),
             model="hyperframes-v0.9.12" if getattr(self, "last_engine", "") == "hyperframes" else "ffmpeg-compositor",
             params={
-                "aspectRatio": "9:16",
-                "width": 1080,
-                "height": 1920,
+                "aspectRatio": aspect,
+                "width": width,
+                "height": height,
                 "fps": 30,
                 "sceneCount": len(scenes),
             },
@@ -183,11 +189,11 @@ class HyperFramesAdapter:
             created_at=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         )
         meta = ArtifactMeta(
-            width=1080,
-            height=1920,
+            width=width,
+            height=height,
             duration=total_dur,
             fps=30.0,
-            aspect="9:16",
+            aspect=aspect,
         )
 
         return self.store.store_bytes(

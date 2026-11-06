@@ -26,8 +26,17 @@ if TYPE_CHECKING:  # pragma: no cover
 class CapabilityRuntime:
     """Phần chạy của một chức năng. Lớp con ghi đè `run` (bắt buộc), `estimate_cost`, `cache_inputs` (tuỳ chọn)."""
 
-    def cache_inputs(self, node: NodeInstance, resolved_inputs: Dict[str, Any], definition: CapabilityDefinition) -> Any:
-        """Dữ liệu vào ảnh hưởng tới kết quả. Mặc định: giá trị các cổng vào của chức năng."""
+    def cache_inputs(
+        self,
+        node: NodeInstance,
+        resolved_inputs: Dict[str, Any],
+        definition: CapabilityDefinition,
+        core_outputs: Optional[Dict[str, Any]] = None,
+    ) -> Any:
+        """Dữ liệu vào ảnh hưởng tới kết quả. Mặc định: giá trị các cổng vào của chức năng.
+
+        `core_outputs` = kết quả phần lõi của node (vd. hồ sơ nhân vật có voiceId) để đưa vào khoá cache.
+        """
         return {p.name: resolved_inputs.get(p.name) for p in definition.input_ports}
 
     def estimate_cost(

@@ -20,6 +20,8 @@ class PortType(str, enum.Enum):
     POLICY = "policy"
     # Lời thoại có cấu trúc: [{id, speaker, characterId, text, shotId, sceneIndex, startSec, endSec, delivery}]
     DIALOGUE = "dialogue"
+    # Câu thoại đã đọc (từng clip, chưa đặt mốc): [{lineId, order, characterId, speaker, text, audio, durationSec, sceneIndex}]
+    VOICE_CLIPS = "voice_clips"
 
 
 def is_port_compatible(source_type: PortType, target_type: PortType) -> bool:
