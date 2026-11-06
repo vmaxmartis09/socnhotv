@@ -164,3 +164,34 @@ function layoutFlat<N extends Node>(nodes: N[], edges: Edge[]): N[] {
   });
   return nodes.map((n) => (pos.has(n.id) ? { ...n, position: pos.get(n.id)! } : n));
 }
+
+const MIN_GAP = 28;
+
+/**
+ * Khi một thẻ giãn ra (mở panel, thêm dòng…) thì đẩy các thẻ nằm chồng bên dưới xuống để không đè/cắt nhau.
+ * Chỉ dịch thẻ bị chồng theo chiều dọc, theo thứ tự từ trên xuống; trả lại đúng mảng cũ nếu không có gì chồng.
+ */
+export function resolveOverlaps<N extends Node>(allNodes: N[]): N[] {
+  const items = allNodes
+    .filter((n) => n.type !== GROUP_TYPE && !n.parentId && n.measured?.height)
+    .map((n) => ({ id: n.id, x: n.position.x, y: n.position.y, h: n.measured!.height as number, w: n.measured?.width ?? NODE_W }))
+    .sort((a, b) => a.y - b.y || a.x - b.x);
+  let moved = false;
+  for (let j = 1; j < items.length; j++) {
+    const b = items[j];
+    for (let i = 0; i < j; i++) {
+      const a = items[i];
+      const overlapX = a.x < b.x + b.w && b.x < a.x + a.w;
+      if (overlapX && b.y < a.y + a.h + MIN_GAP && b.y + b.h > a.y) {
+        b.y = a.y + a.h + MIN_GAP;
+        moved = true;
+      }
+    }
+  }
+  if (!moved) return allNodes;
+  const newY = new Map(items.map((it) => [it.id, it.y]));
+  return allNodes.map((n) => {
+    const y = newY.get(n.id);
+    return y !== undefined && Math.abs(y - n.position.y) > 0.5 ? { ...n, position: { ...n.position, y } } : n;
+  });
+}

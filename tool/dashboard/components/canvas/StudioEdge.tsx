@@ -40,6 +40,11 @@ export const StudioEdge = React.memo(function StudioEdge({
     const t = st.nodes.find((x: any) => x.id === target);
     return t?.data?.status === "running";
   });
+  // Thông tin đang truyền trên dây: "cổng ra → cổng vào · dữ liệu" (lấy từ tóm tắt cổng ra của node nguồn)
+  const transfer = useStudioStore((st: any) => {
+    const s = st.nodes.find((x: any) => x.id === source);
+    return s?.data?.outputSummary?.[sourceHandleId || ""] as string | undefined;
+  });
   const reduceMotion =
     typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
   const color = (portType && PORT_TYPE_COLORS[portType as keyof typeof PORT_TYPE_COLORS]) || (style as any)?.stroke || "#737373";
@@ -69,8 +74,29 @@ export const StudioEdge = React.memo(function StudioEdge({
         markerEnd={markerEnd}
         interactionWidth={22}
         className={flowing ? "edge-flowing" : undefined}
-        style={{ ...style, stroke: color, strokeWidth: selected ? 1.75 : flowing ? 1.8 : 1.1 }}
+        style={{
+          ...style,
+          stroke: color,
+          strokeWidth: selected ? 1.75 : flowing ? 2.2 : 1.1,
+          ...(flowing ? { filter: `drop-shadow(0 0 4px ${color}) drop-shadow(0 0 8px ${color}99)` } : {}),
+        }}
       />
+      {flowing && (
+        <EdgeLabelRenderer>
+          <div
+            style={{
+              position: "absolute",
+              transform: `translate(-50%, -50%) translate(${labelX}px, ${labelY}px)`,
+              pointerEvents: "none",
+              borderColor: color,
+            }}
+            className="nodrag nopan rounded-full border bg-card/95 px-2 py-0.5 font-mono text-[10px] text-foreground shadow-sm"
+          >
+            {sourceHandleId}
+            {transfer ? ` · ${transfer}` : ""}
+          </div>
+        </EdgeLabelRenderer>
+      )}
       {flowing && !reduceMotion && (
         <g pointerEvents="none">
           <circle r={5} fill={color} opacity={0.25}>

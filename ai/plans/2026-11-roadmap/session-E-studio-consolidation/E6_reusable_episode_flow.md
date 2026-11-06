@@ -40,6 +40,15 @@ Node `quality_check` đã có từ trước (chấm ảnh + quét chính sách n
 
 Chưa làm: chấm điểm ảnh bằng model nhìn khi chạy thật (cần Gemini, tốn phí), tự sửa câu vi phạm, và hiển thị vi phạm ngay trên thẻ.
 
+## 3b. Chính sách của dự án = 1 tệp, phải tuân thủ (ĐÃ LÀM 2026-11-06)
+
+- Chính sách dự án là **một tệp** `data/projects/<id>/policy.json`. Tệp chính sách văn xuôi (vd. "chính sách youtube.md", 167 KB) nhập qua `POST /data/projects/{id}/policy/import` được nhận diện (`looks_like_prose`) và lưu thành **tài liệu** `policy/<tên>.md` + mục `documents` (id, file, chars, sha, sections) trong `policy.json`. Trước đây tệp này bị tách thành ~2300 "từ cấm" vô nghĩa và sẽ chặn mọi nội dung.
+- Đã nhập chính sách YouTube cho `soc-nho-tv` (60 mục); 8 quy tắc từ cấm cũ giữ nguyên. Bản sao lưu: `policy_before_youtube.json` (scratchpad).
+- **Tuân thủ:**
+  - `hyperframes_render` luôn quét chính sách (từ cấm) trên lời thoại/prompt/phụ đề và **từ chối dựng** khi vi phạm, dù flow có node Kiểm định hay không (`policy.enforce`, mặc định bật).
+  - `quality_check` đối chiếu nội dung với tài liệu chính sách bằng model AI ở **chế độ thật** (gửi tài liệu + nội dung, trả đạt/không đạt + mục vi phạm). Chế độ Mock chỉ báo "chưa kiểm theo tài liệu".
+- Chưa làm: màn hình Policy hiện tài liệu/mục; tách tài liệu thành checklist nhỏ để giảm token; kiểm ảnh/thumbnail theo tài liệu.
+
 ## 4. Chạy lặp qua nhiều kịch bản
 
 Hai cách, đề xuất làm cách A trước:

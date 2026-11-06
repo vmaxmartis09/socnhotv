@@ -29,6 +29,9 @@ export interface StudioNodeData extends Record<string, unknown> {
   isStale?: boolean;
   params: Record<string, any>;
   progressPct?: number;
+  /** Dữ liệu cổng vào nhận được / cổng ra sinh ra ở lượt chạy gần nhất, vd. {lines: "30 câu thoại"} */
+  inputSummary?: Record<string, string>;
+  outputSummary?: Record<string, string>;
   lastLog?: string;
   errorMessage?: string;
   actualCostUsd?: number;

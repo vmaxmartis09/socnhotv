@@ -88,6 +88,29 @@ export const StudioNode = memo(function StudioNode({
   const characters = useStudioStore((s) => s.characters);
   const isFlashing = useStudioStore((s) => s.flashingNodeId === id);
   const setSelectedNodeId = useStudioStore((s) => s.setSelectedNodeId);
+  const flashNode = useStudioStore((s) => s.flashNode);
+  // Nguồn của từng cổng vào: "Node nào · cổng nào" (rút thành chuỗi để chỉ render lại khi nguồn đổi)
+  const incomingKey = useStudioStore((s: any) => {
+    const rows: string[] = [];
+    for (const e of s.edges) {
+      if (e.target !== id) continue;
+      const src = s.nodes.find((n: any) => n.id === e.source);
+      if (!src) continue;
+      const base = s.nodeCatalog.find((d: any) => d.typeName === src.data.nodeType);
+      const custom = typeof src.data.params?._customName === "string" ? src.data.params._customName : "";
+      rows.push([e.targetHandle, e.source, e.sourceHandle, custom || base?.displayName || src.data.nodeType].join("\u0001"));
+    }
+    return rows.join("\u0002");
+  });
+  const incoming = useMemo(() => {
+    const m = new Map<string, { srcId: string; srcPort: string; srcName: string }[]>();
+    if (!incomingKey) return m;
+    for (const row of incomingKey.split("\u0002")) {
+      const [port, srcId, srcPort, srcName] = row.split("\u0001");
+      m.set(port, [...(m.get(port) || []), { srcId, srcPort, srcName }]);
+    }
+    return m;
+  }, [incomingKey]);
   const {
     activeDragPort,
     connectedPorts,
@@ -663,7 +686,27 @@ export const StudioNode = memo(function StudioNode({
                   </span>
                 )}
                 {!portIconOf(port.portType) && <span className="flex items-center text-muted-foreground/70">· {portType(port)}</span>}
-                <span className="ml-auto text-[10px]">
+                {(incoming.get(port.name) || []).map((src) => (
+                  <button
+                    key={`${src.srcId}:${src.srcPort}`}
+                    type="button"
+                    title={`Nguồn: ${src.srcName} · ${src.srcPort} — bấm để làm nổi node nguồn`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedNodeId(src.srcId);
+                      flashNode(src.srcId);
+                    }}
+                    className="nodrag min-w-0 max-w-[110px] truncate rounded bg-accent/70 px-1 font-mono text-[10px] text-muted-foreground transition-colors hover:bg-brand/15 hover:text-foreground"
+                  >
+                    ← {src.srcName}.{src.srcPort}
+                  </button>
+                ))}
+                <span className="ml-auto flex items-center gap-1 text-[10px]">
+                  {data.inputSummary?.[port.name] && (
+                    <span className="max-w-[90px] truncate font-medium text-foreground" title={`Dữ liệu nhận: ${data.inputSummary[port.name]}`}>
+                      {data.inputSummary[port.name]}
+                    </span>
+                  )}
                   {filled ? <CheckCircle2 className="h-3 w-3 text-semantic-success" /> : port.required ? <span className="text-semantic-danger">thiếu</span> : <span className="text-muted-foreground/60">tuỳ chọn</span>}
                 </span>
               </div>
@@ -675,8 +718,8 @@ export const StudioNode = memo(function StudioNode({
             // Panel nguồn mở ngay CẠNH PHẢI ô input (không đẩy giãn thẻ)
             return (
               <div
-                className="nodrag nowheel absolute left-full z-50 ml-3 w-[320px] space-y-1.5 rounded-xl border border-border bg-popover p-3 text-popover-foreground shadow-lg"
-                style={{ top: Math.max(0, activeInTop - 8) }}
+                className="nodrag nowheel absolute left-full z-50 -ml-px w-[320px] space-y-1.5 rounded-xl rounded-tl-none border border-border bg-popover p-3 text-popover-foreground shadow-lg"
+                style={{ top: Math.max(0, activeInTop) }}
                 onClick={(e) => e.stopPropagation()}
                 onDoubleClick={(e) => e.stopPropagation()}
               >
@@ -748,6 +791,11 @@ export const StudioNode = memo(function StudioNode({
             const connected = connectedPorts.has(`${id}:out:${port.name}`);
             return (
               <div key={port.name} className="flex items-center justify-end gap-1.5 px-3 text-xs" style={{ height: ROW }}>
+                {data.outputSummary?.[port.name] && (
+                  <span className="max-w-[120px] truncate text-[10px] font-medium text-foreground" title={`Đã sinh ra: ${data.outputSummary[port.name]}`}>
+                    {data.outputSummary[port.name]}
+                  </span>
+                )}
                 {!portIconOf(port.portType) && <span className="flex items-center text-muted-foreground/70">{portType(port)}</span>}
                 {port.name !== port.portType && (
                   <span className={cn("truncate", connected ? "text-foreground" : "text-muted-foreground")}>{port.name}</span>

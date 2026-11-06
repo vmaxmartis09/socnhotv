@@ -231,6 +231,9 @@ class SSEEvent(BaseModel):
     estimated_cost_usd: Optional[float] = Field(None, alias="estimatedCostUsd")
     duration_sec: Optional[float] = Field(None, alias="durationSec")
     node_type: Optional[str] = Field(None, alias="nodeType")
+    # Tóm tắt dữ liệu: cổng vào nhận gì (khi bắt đầu) / cổng ra sinh ra gì (khi xong) — để giao diện hiện ngay trên thẻ và dây
+    inputs_summary: Optional[Dict[str, str]] = Field(None, alias="inputsSummary")
+    outputs_summary: Optional[Dict[str, str]] = Field(None, alias="outputsSummary")
 
     model_config = ConfigDict(populate_by_name=True)
 

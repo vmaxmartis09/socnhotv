@@ -96,6 +96,56 @@ def _dialogue_to_text(lines: Any) -> str:
     return "\n".join(out)
 
 
+def _summarize_value(val: Any) -> str:
+    """Mô tả ngắn một giá trị cổng cho giao diện: '30 cảnh', '19 ảnh', 'văn bản 120 ký tự', 'audio 4.3s'..."""
+    if val is None:
+        return "trống"
+    if isinstance(val, Artifact):
+        kind = val.kind.value if hasattr(val.kind, "value") else str(val.kind)
+        dur = getattr(getattr(val, "meta", None), "duration", None)
+        label = {"image": "ảnh", "video": "video", "audio": "âm thanh", "text": "tệp"}.get(kind, kind)
+        return f"{label} {dur:.1f}s" if isinstance(dur, (int, float)) and dur else f"1 {label}"
+    if isinstance(val, str):
+        return f"văn bản {len(val)} ký tự" if val else "trống"
+    if isinstance(val, bool):
+        return "đạt" if val else "không đạt"
+    if isinstance(val, (int, float)):
+        return str(val)
+    if isinstance(val, list):
+        if not val:
+            return "danh sách rỗng"
+        first = val[0]
+        if isinstance(first, Artifact):
+            kind = first.kind.value if hasattr(first.kind, "value") else str(first.kind)
+            return f"{len(val)} {({'image': 'ảnh', 'video': 'video', 'audio': 'âm thanh'}).get(kind, kind)}"
+        if isinstance(first, dict):
+            if "audio" in first and "text" in first:
+                return f"{len(val)} câu đã đọc"
+            if "speaker" in first and "text" in first:
+                return f"{len(val)} câu thoại"
+            if "imagePrompt" in first or "sceneNumber" in first or "dialogue" in first:
+                return f"{len(val)} cảnh"
+            return f"{len(val)} mục"
+        return f"{len(val)} mục"
+    if isinstance(val, dict):
+        if val.get("characterId"):
+            return f"hồ sơ {val.get('name') or val['characterId']}"
+        return f"{len(val)} trường"
+    return type(val).__name__
+
+
+def _summarize_ports(values: Dict[str, Any], only: Optional[List[str]] = None, skip: tuple = ("artifact", "manifest", "policy_report", "timeline")) -> Dict[str, str]:
+    out: Dict[str, str] = {}
+    for k, v in (values or {}).items():
+        if k in skip or (only is not None and k not in only):
+            continue
+        try:
+            out[str(k)] = _summarize_value(v)
+        except Exception:
+            pass
+    return out
+
+
 def _port_signature(val: Any) -> str:
     """Chữ ký nội dung của 1 cổng ra. Artifact rút về id (theo mã băm nội dung), bỏ provenance/thời gian."""
     import hashlib
@@ -1814,6 +1864,15 @@ class GraphRunner:
             cost_usd = 0.0
 
         elif node_type == "hyperframes_render":
+            # Tuân thủ chính sách dự án: dù flow có node Kiểm định hay không, KHÔNG dựng video chứa từ/cụm bị chặn
+            _pol = content_policy.load_policy(self.store.repo_root, self.store.project_id)
+            if _pol.get("enforce", True):
+                _texts = self._collect_policy_texts(node, resolved_inputs, all_node_outputs or {}, _pol)
+                _rep = content_policy.check_texts(_texts, _pol)
+                if not _rep["passed"]:
+                    raise ValueError(
+                        "Chính sách nội dung của dự án chặn việc dựng video:\n" + content_policy.format_report(_rep)
+                    )
             hf_adapter = HyperFramesAdapter(self.store)
             scenes = resolved_inputs.get("scenes") or []
             # Ảnh/video của cảnh có thể là đường dẫn tương đối trong dự án (vd. node Cảnh trả 'assets/x.png'):
@@ -2324,6 +2383,52 @@ class GraphRunner:
                 cost_usd = float(vis_res.get("costUsd", 0.01))
 
             passed = passed and policy_report["passed"]
+
+            # Tệp chính sách dạng văn xuôi của dự án (vd. chính sách YouTube): model AI kiểm nội dung theo tài liệu
+            docs = policy.get("documents") or []
+            if docs:
+                doc_names = ", ".join(f"{d.get('name')} ({len(d.get('sections') or [])} mục)" for d in docs)
+                if texts and not is_mock and self._is_real_provider() and hasattr(self.provider, "text_complete"):
+                    doc_text = content_policy.read_documents(self.store.repo_root, self.store.project_id, policy)
+                    body = "\n".join(f"[{k}] {v}" for k, v in list(texts.items())[:80])[:12000]
+                    llm = await self.provider.text_complete(
+                        system=(
+                            "Bạn là chuyên viên kiểm duyệt nội dung. Đối chiếu nội dung với TÀI LIỆU CHÍNH SÁCH của dự án. "
+                            "Chỉ báo vi phạm khi có căn cứ rõ trong tài liệu; trích đúng câu vi phạm và mục tài liệu liên quan."
+                        ),
+                        prompt=f"TÀI LIỆU CHÍNH SÁCH:\n{doc_text}\n\nNỘI DUNG CẦN KIỂM:\n{body}",
+                        schema={
+                            "type": "OBJECT",
+                            "properties": {
+                                "pass": {"type": "BOOLEAN"},
+                                "violations": {
+                                    "type": "ARRAY",
+                                    "items": {
+                                        "type": "OBJECT",
+                                        "properties": {
+                                            "section": {"type": "STRING"},
+                                            "quote": {"type": "STRING"},
+                                            "reason": {"type": "STRING"},
+                                        },
+                                    },
+                                },
+                            },
+                            "required": ["pass"],
+                        },
+                    )
+                    cost_usd = float(cost_usd or 0.0) + float(llm.get("costUsd", 0.0))
+                    doc_ok = bool(llm.get("pass", True))
+                    passed = passed and doc_ok
+                    vio = llm.get("violations") or []
+                    policy_text += (
+                        f"\nTheo tài liệu chính sách {doc_names}: {'ĐẠT' if doc_ok else 'KHÔNG ĐẠT'}"
+                        + "".join(f"\n - [{v.get('section', '')}] {v.get('reason', '')} — “{v.get('quote', '')}”" for v in vio[:10])
+                    )
+                else:
+                    policy_text += (
+                        f"\nTài liệu chính sách của dự án: {doc_names}. "
+                        "Nội dung chỉ được đối chiếu với tài liệu bằng model AI ở chế độ thật (chế độ Mock chưa kiểm)."
+                    )
             if not has_media:
                 report_text = f"{'ĐẠT' if passed else 'KHÔNG ĐẠT'} — chỉ kiểm chính sách nội dung"
             report_text = f"{report_text}\n{policy_text}"
@@ -2590,6 +2695,10 @@ class GraphRunner:
                             model=m_key,
                             provider=m_prov,
                             estimated_cost_usd=round(est, 6),
+                            inputs_summary=_summarize_ports(
+                                resolved_inputs,
+                                only=[e.target_port for e in graph.edges if e.target_node_id == nid],
+                            ),
                             timestamp=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
                         )
                     )
@@ -2701,6 +2810,7 @@ class GraphRunner:
                                 progress=1.0,
                                 message=self._describe_node_result(node, outputs),
                                 detail=self._describe_node_result(node, outputs),
+                                outputs_summary=_summarize_ports(outputs),
                                 node_type=node.type,
                                 duration_sec=round(time.time() - node_started_ts, 2),
                                 cost_usd=cost,

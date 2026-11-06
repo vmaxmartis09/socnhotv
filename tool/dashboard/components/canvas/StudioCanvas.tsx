@@ -26,7 +26,7 @@ import {
   type Node,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
-import { autoLayout, analyzeGraph } from "@/lib/graph-layout";
+import { autoLayout, analyzeGraph, resolveOverlaps } from "@/lib/graph-layout";
 import { applyPortOverride } from "@/lib/node-ports";
 import { StudioEdge } from "./StudioEdge";
 import { useStudioStore, type StudioStore } from "@/store";
@@ -432,7 +432,11 @@ function StudioCanvasInner() {
 
   const onNodesChange: OnNodesChange<Node<StudioNodeData>> = useCallback(
     (changes) => {
-      const updated = applyNodeChanges(changes, nodes) as Node<StudioNodeData>[];
+      let updated = applyNodeChanges(changes, nodes) as Node<StudioNodeData>[];
+      // Thẻ giãn ra (đổi kích thước) -> đẩy thẻ bị chồng bên dưới xuống, không đè/cắt nhau
+      if (changes.some((c) => c.type === "dimensions") && !changes.some((c) => c.type === "position" && (c as any).dragging)) {
+        updated = resolveOverlaps(updated);
+      }
       const sel = updated.find((n) => n.selected);
       if (sel && sel.id !== selectedNodeId) {
         setSelectedNodeId(sel.id);
@@ -1118,6 +1122,8 @@ function StudioCanvasInner() {
             updateNodeExecutionState(nodeId, {
               status,
               progressPct,
+              ...(payload.inputsSummary ? { inputSummary: payload.inputsSummary } : {}),
+              ...(payload.outputsSummary ? { outputSummary: payload.outputsSummary } : {}),
               lastLog: message,
               errorMessage:
                 status === "failed"

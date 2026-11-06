@@ -146,6 +146,11 @@ def save_policy(repo_root: Path, project_id: str, policy: Dict[str, Any]) -> Dic
             for r in policy.get("references", [])
             if isinstance(r, dict) and r.get("url")
         ],
+        "documents": [
+            {k: v for k, v in d.items() if k in ("id", "name", "file", "chars", "sha", "sections", "importedAt")}
+            for d in policy.get("documents", [])
+            if isinstance(d, dict) and d.get("file")
+        ],
         "rules": [],
     }
     for r in policy.get("rules", []):
@@ -352,6 +357,77 @@ def fetch_policy_page(url: str, max_bytes: int = 1_500_000, timeout: float = 12.
         "text": text[:60000],
         "chars": len(text),
     }
+
+
+def looks_like_prose(text: str) -> bool:
+    """Tệp là văn bản chính sách dạng văn xuôi (như trang chính sách YouTube), không phải danh sách từ cấm.
+
+    Danh sách từ: nhiều dòng ngắn. Văn xuôi: dòng dài, nhiều câu. Nhập văn xuôi như danh sách từ sẽ sinh hàng
+    nghìn 'từ cấm' vô nghĩa và chặn mọi nội dung, nên phải tách riêng thành tài liệu."""
+    lines = [l.strip() for l in text.replace("\r\n", "\n").split("\n") if l.strip()]
+    if not lines:
+        return False
+    # Danh sách từ cấm: dòng ngắn (vài từ). Văn xuôi: phần lớn dòng có từ 8 từ trở lên.
+    wordy = sum(1 for l in lines if len(l.split()) >= 8)
+    return len(text) > 4000 and wordy / len(lines) > 0.4
+
+
+def extract_sections(text: str, limit: int = 60) -> List[str]:
+    """Các mục (tiêu đề markdown) của tài liệu chính sách, bỏ ký tự thoát."""
+    out: List[str] = []
+    for raw in text.replace("\r\n", "\n").split("\n"):
+        line = raw.strip().replace("\\", "")
+        m = re.match(r"^(#{1,4})\s+(.+)$", line)
+        if not m:
+            continue
+        title = re.sub(r"[*_`]+", "", m.group(2)).strip(" -=#")
+        if title and title not in out and not title.lower().startswith(("source", "thu thap", "ngay thu")):
+            out.append(title[:120])
+        if len(out) >= limit:
+            break
+    return out
+
+
+def document_dir(repo_root: Path, project_id: str) -> Path:
+    return repo_root / "data" / "projects" / project_id / "policy"
+
+
+def add_document(repo_root: Path, project_id: str, name: str, text: str) -> Dict[str, Any]:
+    """Lưu tệp chính sách văn xuôi vào policy/<tên>.md của dự án và ghi vào policy.json (documents)."""
+    import hashlib
+    import time as _time
+
+    stem = re.sub(r"[^a-z0-9]+", "-", _norm(Path(name).stem)).strip("-") or "chinh-sach"
+    d = document_dir(repo_root, project_id)
+    d.mkdir(parents=True, exist_ok=True)
+    fn = f"{stem}.md"
+    (d / fn).write_text(text, encoding="utf-8")
+    doc = {
+        "id": stem,
+        "name": Path(name).stem,
+        "file": f"policy/{fn}",
+        "chars": len(text),
+        "sha": hashlib.sha256(text.encode("utf-8")).hexdigest()[:16],
+        "sections": extract_sections(text),
+        "importedAt": _time.strftime("%Y-%m-%dT%H:%M:%SZ", _time.gmtime()),
+    }
+    pol = load_policy(repo_root, project_id)
+    docs = [x for x in pol.get("documents", []) if x.get("id") != stem] + [doc]
+    pol["documents"] = docs
+    save_policy(repo_root, project_id, pol)
+    return doc
+
+
+def read_documents(repo_root: Path, project_id: str, policy: Dict[str, Any], max_chars: int = 24000) -> str:
+    """Nội dung các tệp chính sách văn xuôi (cắt gọn) để đưa cho model kiểm định."""
+    parts: List[str] = []
+    for d in policy.get("documents", []):
+        f = repo_root / "data" / "projects" / project_id / str(d.get("file", ""))
+        try:
+            parts.append(f"## {d.get('name')}\n" + f.read_text(encoding="utf-8", errors="replace").replace("\\", ""))
+        except OSError:
+            continue
+    return "\n\n".join(parts)[:max_chars]
 
 
 def add_reference(policy: Dict[str, Any], ref: Dict[str, Any]) -> Dict[str, Any]:

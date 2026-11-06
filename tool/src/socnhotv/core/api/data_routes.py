@@ -768,8 +768,19 @@ async def import_policy_file(project_id: str, payload: Dict[str, Any] = Body(...
 
     _project_dir(project_id)
     name = str(payload.get("name") or "upload.txt")
+    text_in = str(payload.get("text") or "")
+    # Tệp chính sách dạng văn xuôi (vd. chính sách YouTube): lưu thành tài liệu của dự án, KHÔNG tách thành "từ cấm"
+    if not name.lower().endswith(".json") and content_policy.looks_like_prose(text_in):
+        doc = content_policy.add_document(get_repo_root(), project_id, name, text_in)
+        return {
+            "policy": content_policy.load_policy(get_repo_root(), project_id),
+            "document": doc,
+            "added": 0,
+            "terms": 0,
+            "message": f"Đã lưu '{doc['name']}' làm tài liệu chính sách của dự án ({len(doc['sections'])} mục). Mọi video phải qua kiểm định theo tài liệu này.",
+        }
     try:
-        rules = content_policy.parse_policy_text(name, str(payload.get("text") or ""))
+        rules = content_policy.parse_policy_text(name, text_in)
     except Exception as e:  # noqa: BLE001
         raise HTTPException(400, f"Không đọc được tệp: {e}") from e
     if not rules:
