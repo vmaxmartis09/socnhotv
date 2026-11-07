@@ -1,0 +1,22 @@
+{
+  "id": "koc-lyly",
+  "display_name": "Giọng nữ LyLy Studio Mới (Tâm sự, truyền cảm, ngọt ngào)",
+  "aliases": [
+    "voice-fm-lyly"
+  ],
+  "engine": "omnivoice",
+  "lang": "vi",
+  "dialect": "south (Miền Nam ngọt ngào chuẩn Studio)",
+  "gender": "female",
+  "style": "emotional_storytelling_podcast",
+  "description": "Giọng nữ ca sĩ/KOC LyLy bản thu Studio chuẩn, trong trẻo, phương ngữ miền Nam ngọt ngào, ấm áp, sâu lắng, phù hợp podcast, tâm sự, review phong cách sống.",
+  "sample_paths": [
+    "cloned_default_sample.mp3"
+  ],
+  "loudness": -14.0,
+  "status": "ready",
+  "group": "koc-review",
+  "consent_note": "Nhập từ gobi-social/data/_shared/voices/vault/voice-fm-lyly; dùng nội bộ cho KOC review",
+  "transcript": "Ly không biết là mọi người nhận ra mình trưởng thành từ lúc nào.",
+  "created_at": "2026-11-07T00:00:00"
+}

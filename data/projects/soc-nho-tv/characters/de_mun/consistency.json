@@ -1,0 +1,203 @@
+{
+  "schemaVersion": 1,
+  "id": "de_mun",
+  "status": "proposed",
+  "proposedBy": "ai-g5",
+  "proposedAt": "2026-11-06",
+  "approvedBy": null,
+  "approvedAt": null,
+  "identity": {
+    "name": "Dê Mun (Em Út)",
+    "promptName": "De Mun",
+    "aliases": [
+      "Dê Mun",
+      "Mun"
+    ],
+    "species": "Dê đen nhỏ (Little Black Kid Goat)",
+    "speciesEn": "3D Pixar-style toddler black goat",
+    "ageYears": 3.0,
+    "role": "main",
+    "heightCm": 85.0,
+    "scaleRatio": 0.85,
+    "weightKg": 12.0,
+    "headBodyRatio": "1 : 3.6 (Đầu = 23.5cm, Thân & Chân = 61.5cm - Tỉ lệ em bé mầm non)",
+    "headBodyRatioEn": "1:3.6, toddler",
+    "scaleNote": "Nhỏ nhất nhóm (85 cm, 0.85x). Đỉnh đầu Mun chạm đúng mũi Sóc Bi (100 cm) và ngang ngực anh ruột Dê Bông (115 cm).",
+    "relativeHeights": {
+      "bac_voi": 0.47,
+      "cho_lu": 0.81,
+      "co_huou_sao": 0.53,
+      "de_bong": 0.74,
+      "koala": 0.57,
+      "me_soc": 0.59,
+      "meo_mimi": 0.89,
+      "ong_de_rau_bac": 0.55,
+      "soc_nho": 0.85
+    }
+  },
+  "locked": {
+    "palette": {
+      "primary_fur": {
+        "hex": [
+          "#1E1E24"
+        ],
+        "en": "fur",
+        "note": "#1E1E24 (Đen tuyền óng mượt ánh nhung - Velvety Jet Black)"
+      },
+      "forehead_mark": {
+        "hex": [
+          "#FFFFFF"
+        ],
+        "en": "forehead star",
+        "note": "#FFFFFF (ĐỐM NGÔI SAO TRẮNG NHỎ GIỮA TRÁN - Signature White Forehead Star)"
+      },
+      "horns": {
+        "hex": [
+          "#E6CCB2"
+        ],
+        "en": "horns",
+        "note": "#E6CCB2 (Hai mầm sừng tròn xíu như hai hạt đậu màu kem trên đỉnh đầu)"
+      },
+      "eyes": {
+        "hex": [
+          "#3E2723"
+        ],
+        "en": "eyes",
+        "note": "#3E2723 (Đen nâu to tròn chiếm tỉ lệ lớn trên gương mặt bầu bĩnh)"
+      },
+      "shirt": {
+        "hex": [
+          "#E53935",
+          "#FFD700"
+        ],
+        "en": "shirt",
+        "note": "#E53935 (Áo thun đỏ tươi in hình ngôi sao vàng #FFD700 giữa ngực)"
+      },
+      "pants": {
+        "hex": [
+          "#1A365D"
+        ],
+        "en": "pants",
+        "note": "#1A365D (Quần short thun màu xanh navy đậm)"
+      },
+      "boots": {
+        "hex": [
+          "#E53935",
+          "#FFD700"
+        ],
+        "en": "boots",
+        "note": "#E53935 & #FFD700 (Ủng cao su nhỏ màu đỏ tươi viền vàng)"
+      }
+    },
+    "swatches": [
+      "#1E1E24",
+      "#FFFFFF",
+      "#E53935",
+      "#FFD700",
+      "#1A365D"
+    ],
+    "features": [
+      {
+        "vi": "đốm sao trắng nhỏ giữa trán",
+        "en": "small white star marking on center of forehead"
+      },
+      {
+        "vi": "hai mầm sừng tròn tí hon màu kem",
+        "en": "two tiny rounded cream horn buds"
+      },
+      {
+        "vi": "tai cụp mềm, má phúng phính",
+        "en": "soft drooping ears, chubby cheeks"
+      },
+      {
+        "vi": "mắt nâu sẫm to tròn",
+        "en": "huge sparkling dark brown eyes"
+      }
+    ],
+    "defaultOutfit": {
+      "vi": "áo thun đỏ in sao vàng lớn, quần short xanh navy, ủng cao su đỏ viền vàng",
+      "en": "bright red crew-neck t-shirt with big yellow star, dark navy shorts, little red rubber boots with yellow trim"
+    },
+    "promptLock": "3D Pixar-style adorable toddler black goat boy named De Mun, 3 years old, exact height 85cm (0.85x scale, shortest child in group, toddler head-to-body ratio 1:3.6, chubby cheeks), velvety jet-black fur (#1E1E24) with a SIGNATURE SMALL WHITE STAR MARKING ON CENTER FOREHEAD (#FFFFFF), two tiny rounded cream horn buds (#E6CCB2), huge sparkling dark brown eyes (#3E2723), wearing a bright red crew-neck t-shirt (#E53935) with a big yellow star (#FFD700) printed on the chest, dark navy shorts (#1A365D), and cute little red rubber boots with yellow trim, ultra-soft 3D Pixar lighting"
+  },
+  "forbidden": [
+    {
+      "vi": "sừng dài nhọn như dê lớn",
+      "en": "long pointed horns, large adult goat horns"
+    },
+    {
+      "vi": "mất đốm sao trắng trên trán",
+      "en": "no forehead star, forehead mark missing"
+    },
+    {
+      "vi": "cao bằng Bi hoặc Mimi",
+      "en": "tall child, same height as the others"
+    },
+    {
+      "vi": "áo không có sao vàng, màu áo khác đỏ",
+      "en": "shirt without yellow star, non-red shirt"
+    },
+    {
+      "vi": "lông xám hoặc nâu thay vì đen tuyền",
+      "en": "grey fur, brown fur"
+    }
+  ],
+  "references": {
+    "front": {
+      "file": "de_mun_02.png",
+      "note": "đứng chính diện, nền trắng"
+    },
+    "three_quarter": {
+      "file": "de_mun_03.png",
+      "note": "hơi xoay 3/4"
+    },
+    "back": {
+      "file": "de_mun_04.png",
+      "note": "quay lưng, thấy áo đỏ và ủng"
+    },
+    "full_body": {
+      "file": "de_mun_01.png",
+      "note": "toàn thân, vẫy tay"
+    },
+    "closeup": {
+      "file": "de_mun_05.png",
+      "note": "cận mặt, cười, thấy rõ sao trắng và sừng"
+    },
+    "action": {
+      "file": "de_mun_07.png",
+      "note": "chạy lon ton (3/4)"
+    },
+    "expressions": {
+      "happy": {
+        "file": "de_mun_05.png",
+        "note": "cười tươi (cùng ảnh closeup)"
+      },
+      "surprised": {
+        "file": "de_mun_06.png",
+        "note": "ngạc nhiên, miệng chữ O, hai tay giơ"
+      }
+    }
+  },
+  "gaps": [
+    {
+      "role": "profile",
+      "reason": "chưa có ảnh nghiêng 90 độ; shot góc ngang dùng three_quarter làm dự phòng"
+    },
+    {
+      "role": "expression:sad",
+      "reason": "chưa có ảnh buồn/khóc (Tập 2 có 2 shot Mun buồn); dùng closeup + prompt biểu cảm"
+    }
+  ],
+  "excludedFromRefs": [
+    "_dna_sheet.png"
+  ],
+  "voice": {
+    "voiceId": "vn-be-04",
+    "note": "Giọng em bé 3 tuổi non nớt, ngọt ngào, đôi chữ hơi ngọng đáng yêu, hay cười khúc khích.",
+    "defaultTempo": 1.0
+  },
+  "scoring": {
+    "threshold": 0.7,
+    "maxRegenerations": 2
+  }
+}

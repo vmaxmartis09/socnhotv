@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920, initial-scale=1.0" />
+    <title>SÓC NHỎ TV • TẬP MỚI</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        user-select: none;
+      }
+      body, html {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #000000;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      }
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+      }
+      .scene-container {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .media-clip {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+      .vignette-overlay {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at center, transparent 40%, rgba(0, 0, 0, 0.45) 100%),
+                    linear-gradient(180deg, rgba(0,0,0,0.65) 0%, transparent 22%, transparent 75%, rgba(0,0,0,0.85) 100%);
+        pointer-events: none;
+        z-index: 5;
+      }
+      /* Header Safe Zone */
+      .top-badge-wrapper {
+        position: absolute;
+        top: 200px;
+        left: 40px;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+      }
+      .top-badge-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        background: rgba(15, 23, 42, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1.5px solid rgba(255, 255, 255, 0.2);
+        padding: 10px 24px;
+        border-radius: 9999px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      }
+      .badge-dot {
+        width: 14px;
+        height: 14px;
+        background: #ffb400;
+        border-radius: 50%;
+        box-shadow: 0 0 12px #ffb400;
+      }
+      .top-badge-text {
+        color: #ffffff;
+        font-size: 28px;
+        font-weight: 800;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+      /* Subtitle Safe Zone */
+      .subtitle-wrapper {
+        position: absolute;
+        top: 1360px;
+        left: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 40px 120px;
+        z-index: 10;
+      }
+      .subtitle-pill {
+        background: rgba(0, 0, 0, 0.82);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1.5px solid rgba(255, 255, 255, 0.22);
+        border-radius: 26px;
+        padding: 18px 36px;
+        max-width: 920px;
+        text-align: center;
+        box-shadow: 0 12px 35px rgba(0,0,0,0.6);
+      }
+      .sub-text {
+        color: #ffe600;
+        font-size: 44px;
+        font-weight: 800;
+        line-height: 1.35;
+        letter-spacing: -0.01em;
+        text-shadow: 0 3px 12px rgba(0, 0, 0, 0.95);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"
+         data-composition-id="main"
+         data-start="0"
+         data-duration="39.670"
+         data-width="1080"
+         data-height="1920">
+
+      <!-- Header Top Safe Zone -->
+      <div id="top-badge" class="top-badge-wrapper clip"
+           data-start="0"
+           data-duration="39.670"
+           data-track-index="2">
+        <div class="top-badge-pill">
+          <div class="badge-dot"></div>
+          <span class="top-badge-text">SÓC NHỎ TV • TẬP MỚI</span>
+        </div>
+      </div>
+
+      <!-- Vignette Overlay -->
+      <div class="vignette-overlay clip"
+           data-start="0"
+           data-duration="39.670"
+           data-track-index="2"></div>
+
+      <!-- Scene Visuals & Subtitles -->
+      
+      <!-- SCENE_1 -->
+      <div id="scene_1" class="scene-container">
+        
+        <img id="img_scene_1" class="clip media-clip"
+             src="assets/scene_01_86cfb1514f348c9b05cf2f006f54f8f86540db806eaceb3407ff4bad937e1d70.jpg"
+             data-start="0.000"
+             data-duration="20.000"
+             data-track-index="0" />
+        <div id="sub_scene_1" class="subtitle-wrapper clip"
+             data-start="0.000"
+             data-duration="20.000"
+             data-track-index="1">
+          <div class="subtitle-pill">
+            <span class="sub-text">Chào các bạn nhỏ! Sáng nay ở nhà cây, Bi đang xếp một tòa tháp gỗ năm tầng thật cao nè!</span>
+          </div>
+        </div>
+      </div>
+      <!-- SCENE_2 -->
+      <div id="scene_2" class="scene-container">
+        
+        <img id="img_scene_2" class="clip media-clip"
+             src="assets/scene_02_86cfb1514f348c9b05cf2f006f54f8f86540db806eaceb3407ff4bad937e1d70.jpg"
+             data-start="20.000"
+             data-duration="20.000"
+             data-track-index="0" />
+        <div id="sub_scene_2" class="subtitle-wrapper clip"
+             data-start="20.000"
+             data-duration="20.000"
+             data-track-index="1">
+          <div class="subtitle-pill">
+            <span class="sub-text">Anh Bi ơi! Mun mang quả bóng vải sang chơi với anh Bi nè!</span>
+          </div>
+        </div>
+      </div>
+      <!-- SCENE_3 -->
+      <div id="scene_3" class="scene-container">
+        
+        <img id="img_scene_3" class="clip media-clip"
+             src="assets/scene_03_86cfb1514f348c9b05cf2f006f54f8f86540db806eaceb3407ff4bad937e1d70.jpg"
+             data-start="40.000"
+             data-duration="20.000"
+             data-track-index="0" />
+        <div id="sub_scene_3" class="subtitle-wrapper clip"
+             data-start="40.000"
+             data-duration="20.000"
+             data-track-index="1">
+          <div class="subtitle-pill">
+            <span class="sub-text">Ủa, tại sao lúc nãy bụng Bi lại nóng ran như có ngọn núi lửa thế nhỉ? Bạn nhỏ cùng xem chuyện gì đã xảy ra nhé!</span>
+          </div>
+        </div>
+      </div>
+      <!-- SCENE_4 -->
+      <div id="scene_4" class="scene-container">
+        
+        <img id="img_scene_4" class="clip media-clip"
+             src="assets/scene_04_86cfb1514f348c9b05cf2f006f54f8f86540db806eaceb3407ff4bad937e1d70.jpg"
+             data-start="60.000"
+             data-duration="20.000"
+             data-track-index="0" />
+        <div id="sub_scene_4" class="subtitle-wrapper clip"
+             data-start="60.000"
+             data-duration="20.000"
+             data-track-index="1">
+          <div class="subtitle-pill">
+            <span class="sub-text">Mun ngồi bên cạnh xem anh Bi xếp tiếp tầng ba màu vàng và tầng bốn màu xanh lá nhé!</span>
+          </div>
+        </div>
+      </div>
+      <!-- SCENE_5 -->
+      <div id="scene_5" class="scene-container">
+        
+        <img id="img_scene_5" class="clip media-clip"
+             src="assets/scene_05_86cfb1514f348c9b05cf2f006f54f8f86540db806eaceb3407ff4bad937e1d70.jpg"
+             data-start="80.000"
+             data-duration="20.000"
+             data-track-index="0" />
+        <div id="sub_scene_5" class="subtitle-wrapper clip"
+             data-start="80.000"
+             data-duration="20.000"
+             data-track-index="1">
+          <div class="subtitle-pill">
+            <span class="sub-text">Tada! Còn mảnh ghép ngôi sao vàng cuối cùng này, anh Bi đặt lên đỉnh tầng năm nha!</span>
+          </div>
+        </div>
+      </div>
+      <!-- SCENE_6 -->
+      <div id="scene_6" class="scene-container">
+        
+        <img id="img_scene_6" class="clip media-clip"
+             src="assets/scene_06_86cfb1514f348c9b05cf2f006f54f8f86540db806eaceb3407ff4bad937e1d70.jpg"
+             data-start="100.000"
+             data-duration="20.000"
+             data-track-index="0" />
+        <div id="sub_scene_6" class="subtitle-wrapper clip"
+             data-start="100.000"
+             data-duration="20.000"
+             data-track-index="1">
+          <div class="subtitle-pill">
+            <span class="sub-text">Oa, ngôi sao đẹp thích nhắm! Cho Mun lại gần xem ngôi sao với anh Bi ơi!</span>
+          </div>
+        </div>
+      </div>
+      <!-- SCENE_7 -->
+      <div id="scene_7" class="scene-container">
+        
+        <img id="img_scene_7" class="clip media-clip"
+             src="assets/scene_07_86cfb1514f348c9b05cf2f006f54f8f86540db806eaceb3407ff4bad937e1d70.jpg"
+             data-start="120.000"
+             data-duration="20.000"
+             data-track-index="0" />
+        <div id="sub_scene_7" class="subtitle-wrapper clip"
+             data-start="120.000"
+             data-duration="20.000"
+             data-track-index="1">
+          <div class="subtitle-pill">
+            <span class="sub-text">Ấy khoan đã Mun ơi! Coi chừng vấp mép thảm… Ôi thôi, tháp gỗ của Bi!</span>
+          </div>
+        </div>
+      </div>
+      <!-- SCENE_8 -->
+      <div id="scene_8" class="scene-container">
+        
+        <img id="img_scene_8" class="clip media-clip"
+             src="assets/scene_08_86cfb1514f348c9b05cf2f006f54f8f86540db806eaceb3407ff4bad937e1d70.jpg"
+             data-start="140.000"
+             data-duration="20.000"
+             data-track-index="0" />
+        <div id="sub_scene_8" class="subtitle-wrapper clip"
+             data-start="140.000"
+             data-duration="20.000"
+             data-track-index="1">
+          <div class="subtitle-pill">
+            <span class="sub-text">Phù… phù… Bao nhiêu công sức Bi xếp từ sáng tới giờ, đổ tan tành hết cả rồi!</span>
+          </div>
+        </div>
+      </div>
+      <!-- SCENE_9 -->
+      <div id="scene_9" class="scene-container">
+        
+        <img id="img_scene_9" class="clip media-clip"
+             src="assets/scene_09_86cfb1514f348c9b05cf2f006f54f8f86540db806eaceb3407ff4bad937e1d70.jpg"
+             data-start="160.000"
+             data-duration="20.000"
+             data-track-index="0" />
+        <div id="sub_scene_9" class="subtitle-wrapper clip"
+             data-start="160.000"
+             data-duration="20.000"
+             data-track-index="1">
+          <div class="subtitle-pill">
+            <span class="sub-text">Anh Bi ơi… Mun không cố ý đâu… Mun nhặt ngôi sao trả cho anh Bi nè…</span>
+          </div>
+        </div>
+      </div>
+      <!-- SCENE_10 -->
+      <div id="scene_10" class="scene-container">
+        
+        <img id="img_scene_10" class="clip media-clip"
+             src="assets/scene_10_86cfb1514f348c9b05cf2f006f54f8f86540db806eaceb3407ff4bad937e1d70.jpg"
+             data-start="180.000"
+             data-duration="20.000"
+             data-track-index="0" />
+        <div id="sub_scene_10" class="subtitle-wrapper clip"
+             data-start="180.000"
+             data-duration="20.000"
+             data-track-index="1">
+          <div class="subtitle-pill">
+            <span class="sub-text">Bi không cần đâu! Tại Mun chạy ẩu làm hỏng tháp của Bi đấy! Hừ!</span>
+          </div>
+        </div>
+      </div>
+      <!-- SCENE_11 -->
+      <div id="scene_11" class="scene-container">
+        
+        <img id="img_scene_11" class="clip media-clip"
+             src="assets/scene_11_86cfb1514f348c9b05cf2f006f54f8f86540db806eaceb3407ff4bad937e1d70.jpg"
+             data-start="200.000"
+             data-duration="20.000"
+             data-track-index="0" />
+        <div id="sub_scene_11" class="subtitle-wrapper clip"
+             data-start="200.000"
+             data-duration="20.000"
+             data-track-index="1">
+          <div class="subtitle-pill">
+            <span class="sub-text">Ơ… Mun khóc mất rồi… Sao lúc nãy bụng Bi nóng quá làm Bi lỡ quát em thế nhỉ?</span>
+          </div>
+        </div>
+      </div>
+      <!-- SCENE_12 -->
+      <div id="scene_12" class="scene-container">
+        
+        <img id="img_scene_12" class="clip media-clip"
+             src="assets/scene_12_86cfb1514f348c9b05cf2f006f54f8f86540db806eaceb3407ff4bad937e1d70.jpg"
+             data-start="220.000"
+             data-duration="20.000"
+             data-track-index="0" />
+        <div id="sub_scene_12" class="subtitle-wrapper clip"
+             data-start="220.000"
+             data-duration="20.000"
+             data-track-index="1">
+          <div class="subtitle-pill">
+            <span class="sub-text">Mẹ luôn ở đây nghe Bi và Mun nói mà! Có chuyện gì làm hai con buồn thế?</span>
+          </div>
+        </div>
+      </div>
+      <!-- SCENE_13 -->
+      <div id="scene_13" class="scene-container">
+        
+        <img id="img_scene_13" class="clip media-clip"
+             src="assets/scene_13_86cfb1514f348c9b05cf2f006f54f8f86540db806eaceb3407ff4bad937e1d70.jpg"
+             data-start="240.000"
+             data-duration="20.000"
+             data-track-index="0" />
+        <div id="sub_scene_13" class="subtitle-wrapper clip"
+             data-start="240.000"
+             data-duration="20.000"
+             data-track-index="1">
+          <div class="subtitle-pill">
+            <span class="sub-text">Mẹ ơi… Mun làm đổ tháp gỗ của con, tự nhiên bụng con nóng ran lên nên con lỡ mắng em Mun ạ…</span>
+          </div>
+        </div>
+      </div>
+      <!-- SCENE_14 -->
+      <div id="scene_14" class="scene-container">
+        
+        <img id="img_scene_14" class="clip media-clip"
+             src="assets/scene_14_86cfb1514f348c9b05cf2f006f54f8f86540db806eaceb3407ff4bad937e1d70.jpg"
+             data-start="260.000"
+             data-duration="20.000"
+             data-track-index="0" />
+        <div id="sub_scene_14" class="subtitle-wrapper clip"
+             data-start="260.000"
+             data-duration="20.000"
+             data-track-index="1">
+          <div class="subtitle-pill">
+            <span class="sub-text">À, khi đồ chơi bị đổ, trong bụng Bi xuất hiện một 'ngọn núi lửa giận dữ nhỏ' làm mặt nóng và tim đập nhanh đấy con ạ!</span>
+          </div>
+        </div>
+      </div>
+      <!-- SCENE_15 -->
+      <div id="scene_15" class="scene-container">
+        
+        <img id="img_scene_15" class="clip media-clip"
+             src="assets/scene_15_86cfb1514f348c9b05cf2f006f54f8f86540db806eaceb3407ff4bad937e1d70.jpg"
+             data-start="280.000"
+             data-duration="20.000"
+             data-track-index="0" />
+        <div id="sub_scene_15" class="subtitle-wrapper clip"
+             data-start="280.000"
+             data-duration="20.000"
+             data-track-index="1">
+          <div class="subtitle-pill">
+            <span class="sub-text">Thế làm sao để dập tắt ngọn núi lửa nóng trong bụng hả mẹ? Bạn nhỏ ơi, cùng nghe mẹ dạy bí quyết nhé!</span>
+          </div>
+        </div>
+      </div>
+      <!-- SCENE_16 -->
+      <div id="scene_16" class="scene-container">
+        
+        <img id="img_scene_16" class="clip media-clip"
+             src="assets/scene_16_86cfb1514f348c9b05cf2f006f54f8f86540db806eaceb3407ff4bad937e1d70.jpg"
+             data-start="300.000"
+             data-duration="20.000"
+             data-track-index="0" />
+        <div id="sub_scene_16" class="subtitle-wrapper clip"
+             data-start="300.000"
+             data-duration="20.000"
+             data-track-index="1">
+          <div class="subtitle-pill">
+            <span class="sub-text">Bí quyết của mẹ là 'Thở năm ngón tay'! Con xòe bàn tay trái ra, hít vào thơm như ngửi hoa, thở ra êm như thổi chong chóng nhé!</span>
+          </div>
+        </div>
+      </div>
+      <!-- SCENE_17 -->
+      <div id="scene_17" class="scene-container">
+        
+        <img id="img_scene_17" class="clip media-clip"
+             src="assets/scene_17_86cfb1514f348c9b05cf2f006f54f8f86540db806eaceb3407ff4bad937e1d70.jpg"
+             data-start="320.000"
+             data-duration="20.000"
+             data-track-index="0" />
+        <div id="sub_scene_17" class="subtitle-wrapper clip"
+             data-start="320.000"
+             data-duration="20.000"
+             data-track-index="1">
+          <div class="subtitle-pill">
+            <span class="sub-text">Ngón hai, ngón ba, ngón bốn, ngón năm! Hít vào thơm hoa cúc… Thổi ra chong chóng quay tít! Bụng Bi mát dịu lại thật rồi mẹ ơi!</span>
+          </div>
+        </div>
+      </div>
+      <!-- SCENE_18 -->
+      <div id="scene_18" class="scene-container">
+        
+        <img id="img_scene_18" class="clip media-clip"
+             src="assets/scene_18_86cfb1514f348c9b05cf2f006f54f8f86540db806eaceb3407ff4bad937e1d70.jpg"
+             data-start="340.000"
+             data-duration="20.000"
+             data-track-index="0" />
+        <div id="sub_scene_18" class="subtitle-wrapper clip"
+             data-start="340.000"
+             data-duration="20.000"
+             data-track-index="1">
+          <div class="subtitle-pill">
+            <span class="sub-text">Mình nhớ câu thần chú rồi: 'Xòe tay hít sâu, núi lửa nguội mau!' Bạn nhỏ đọc to cùng Bi và Mun nào!</span>
+          </div>
+        </div>
+      </div>
+      <!-- SCENE_19 -->
+      <div id="scene_19" class="scene-container">
+        
+        <img id="img_scene_19" class="clip media-clip"
+             src="assets/scene_19_86cfb1514f348c9b05cf2f006f54f8f86540db806eaceb3407ff4bad937e1d70.jpg"
+             data-start="360.000"
+             data-duration="20.000"
+             data-track-index="0" />
+        <div id="sub_scene_19" class="subtitle-wrapper clip"
+             data-start="360.000"
+             data-duration="20.000"
+             data-track-index="1">
+          <div class="subtitle-pill">
+            <span class="sub-text">🎵 Khi bụng em nóng ran, muốn hét lên thật to. Dừng lại ngay một chút, xòe bàn tay nhỏ ra! 🎵</span>
+          </div>
+        </div>
+      </div>
+      <!-- SCENE_20 -->
+      <div id="scene_20" class="scene-container">
+        
+        <img id="img_scene_20" class="clip media-clip"
+             src="assets/scene_20_86cfb1514f348c9b05cf2f006f54f8f86540db806eaceb3407ff4bad937e1d70.jpg"
+             data-start="380.000"
+             data-duration="20.000"
+             data-track-index="0" />
+        <div id="sub_scene_20" class="subtitle-wrapper clip"
+             data-start="380.000"
+             data-duration="20.000"
+             data-track-index="1">
+          <div class="subtitle-pill">
+            <span class="sub-text">🎵 Hít vào ngửi hoa thơm, thở ra chong chóng quay! 'Xòe tay hít sâu, núi lửa nguội mau!' 🎵</span>
+          </div>
+        </div>
+      </div>
+      <!-- SCENE_21 -->
+      <div id="scene_21" class="scene-container">
+        
+        <img id="img_scene_21" class="clip media-clip"
+             src="assets/scene_21_86cfb1514f348c9b05cf2f006f54f8f86540db806eaceb3407ff4bad937e1d70.jpg"
+             data-start="400.000"
+             data-duration="20.000"
+             data-track-index="0" />
+        <div id="sub_scene_21" class="subtitle-wrapper clip"
+             data-start="400.000"
+             data-duration="20.000"
+             data-track-index="1">
+          <div class="subtitle-pill">
+            <span class="sub-text">Đố bạn nhỏ nhé: Khi đang giận, chúng mình nên quát to hay nên xòe bàn tay năm ngón hít thở sâu nào? … Đúng rồi, xòe tay hít thở sâu nhé!</span>
+          </div>
+        </div>
+      </div>
+      <!-- SCENE_22 -->
+      <div id="scene_22" class="scene-container">
+        
+        <img id="img_scene_22" class="clip media-clip"
+             src="assets/scene_22_86cfb1514f348c9b05cf2f006f54f8f86540db806eaceb3407ff4bad937e1d70.jpg"
+             data-start="420.000"
+             data-duration="20.000"
+             data-track-index="0" />
+        <div id="sub_scene_22" class="subtitle-wrapper clip"
+             data-start="420.000"
+             data-duration="20.000"
+             data-track-index="1">
+          <div class="subtitle-pill">
+            <span class="sub-text">Mun ơi, anh Bi xin lỗi vì lúc nãy đã quát to làm Mun sợ nhé! Anh em mình làm hòa nha!</span>
+          </div>
+        </div>
+      </div>
+      <!-- SCENE_23 -->
+      <div id="scene_23" class="scene-container">
+        
+        <img id="img_scene_23" class="clip media-clip"
+             src="assets/scene_23_86cfb1514f348c9b05cf2f006f54f8f86540db806eaceb3407ff4bad937e1d70.jpg"
+             data-start="440.000"
+             data-duration="20.000"
+             data-track-index="0" />
+        <div id="sub_scene_23" class="subtitle-wrapper clip"
+             data-start="440.000"
+             data-duration="20.000"
+             data-track-index="1">
+          <div class="subtitle-pill">
+            <span class="sub-text">Dạ, Mun cũng xin lỗi anh Bi! Bây giờ Mun phụ anh Bi xếp lại tòa tháp cao hơn nữa nhé!</span>
+          </div>
+        </div>
+      </div>
+      <!-- SCENE_24 -->
+      <div id="scene_24" class="scene-container">
+        
+        <img id="img_scene_24" class="clip media-clip"
+             src="assets/scene_24_86cfb1514f348c9b05cf2f006f54f8f86540db806eaceb3407ff4bad937e1d70.jpg"
+             data-start="460.000"
+             data-duration="20.000"
+             data-track-index="0" />
+        <div id="sub_scene_24" class="subtitle-wrapper clip"
+             data-start="460.000"
+             data-duration="20.000"
+             data-track-index="1">
+          <div class="subtitle-pill">
+            <span class="sub-text">Hoan hô Bi và Mun! Khi bình tĩnh và biết yêu thương nhau, tòa tháp của hai con còn đẹp hơn cả lúc đầu đấy!</span>
+          </div>
+        </div>
+      </div>
+      <!-- SCENE_25 -->
+      <div id="scene_25" class="scene-container">
+        
+        <img id="img_scene_25" class="clip media-clip"
+             src="assets/scene_25_86cfb1514f348c9b05cf2f006f54f8f86540db806eaceb3407ff4bad937e1d70.jpg"
+             data-start="480.000"
+             data-duration="20.000"
+             data-track-index="0" />
+        <div id="sub_scene_25" class="subtitle-wrapper clip"
+             data-start="480.000"
+             data-duration="20.000"
+             data-track-index="1">
+          <div class="subtitle-pill">
+            <span class="sub-text">Cầm chong chóng ra ban công đón gió mát thôi Mun ơi! Nhìn chong chóng của hai anh em mình quay đẹp chưa kìa!</span>
+          </div>
+        </div>
+      </div>
+      <!-- SCENE_26 -->
+      <div id="scene_26" class="scene-container">
+        
+        <img id="img_scene_26" class="clip media-clip"
+             src="assets/scene_26_86cfb1514f348c9b05cf2f006f54f8f86540db806eaceb3407ff4bad937e1d70.jpg"
+             data-start="500.000"
+             data-duration="20.000"
+             data-track-index="0" />
+        <div id="sub_scene_26" class="subtitle-wrapper clip"
+             data-start="500.000"
+             data-duration="20.000"
+             data-track-index="1">
+          <div class="subtitle-pill">
+            <span class="sub-text">Bạn nhỏ nhớ nhé, mỗi khi thấy bụng nóng ran muốn giận dỗi, hãy đọc ngay: 'Xòe tay hít sâu, núi lửa nguội mau!'</span>
+          </div>
+        </div>
+      </div>
+      <!-- SCENE_27 -->
+      <div id="scene_27" class="scene-container">
+        
+        <img id="img_scene_27" class="clip media-clip"
+             src="assets/scene_27_86cfb1514f348c9b05cf2f006f54f8f86540db806eaceb3407ff4bad937e1d70.jpg"
+             data-start="520.000"
+             data-duration="20.000"
+             data-track-index="0" />
+        <div id="sub_scene_27" class="subtitle-wrapper clip"
+             data-start="520.000"
+             data-duration="20.000"
+             data-track-index="1">
+          <div class="subtitle-pill">
+            <span class="sub-text">Mun cũng thuộc bài thở năm ngón tay của Mẹ Sóc dạy rồi! Lần sau Mun sẽ đi đứng cẩn thận hơn ạ!</span>
+          </div>
+        </div>
+      </div>
+      <!-- SCENE_28 -->
+      <div id="scene_28" class="scene-container">
+        
+        <img id="img_scene_28" class="clip media-clip"
+             src="assets/scene_28_86cfb1514f348c9b05cf2f006f54f8f86540db806eaceb3407ff4bad937e1d70.jpg"
+             data-start="540.000"
+             data-duration="20.000"
+             data-track-index="0" />
+        <div id="sub_scene_28" class="subtitle-wrapper clip"
+             data-start="540.000"
+             data-duration="20.000"
+             data-track-index="1">
+          <div class="subtitle-pill">
+            <span class="sub-text">🎵 'Xòe tay hít sâu, núi lửa nguội mau!' — Trái tim êm dịu lại, mình nói lời yêu thương! 🎵</span>
+          </div>
+        </div>
+      </div>
+      <!-- SCENE_29 -->
+      <div id="scene_29" class="scene-container">
+        
+        <img id="img_scene_29" class="clip media-clip"
+             src="assets/scene_29_86cfb1514f348c9b05cf2f006f54f8f86540db806eaceb3407ff4bad937e1d70.jpg"
+             data-start="560.000"
+             data-duration="20.000"
+             data-track-index="0" />
+        <div id="sub_scene_29" class="subtitle-wrapper clip"
+             data-start="560.000"
+             data-duration="20.000"
+             data-track-index="1">
+          <div class="subtitle-pill">
+            <span class="sub-text">Cảm ơn bạn nhỏ đã đến nhà cây chơi với anh em Bi và Mun hôm nay nhé! Chúc bạn nhỏ luôn vui vẻ và ngoan ngoãn!</span>
+          </div>
+        </div>
+      </div>
+      <!-- SCENE_30 -->
+      <div id="scene_30" class="scene-container">
+        
+        <img id="img_scene_30" class="clip media-clip"
+             src="assets/scene_30_86cfb1514f348c9b05cf2f006f54f8f86540db806eaceb3407ff4bad937e1d70.jpg"
+             data-start="580.000"
+             data-duration="20.000"
+             data-track-index="0" />
+        <div id="sub_scene_30" class="subtitle-wrapper clip"
+             data-start="580.000"
+             data-duration="20.000"
+             data-track-index="1">
+          <div class="subtitle-pill">
+            <span class="sub-text">Hẹn gặp lại các bạn nhỏ ở tập tiếp theo của Sóc Nhỏ TV nhé! Tạm biệt các con!</span>
+          </div>
+        </div>
+      </div>
+
+      
+      <audio id="audio-voiceover" class="clip"
+             src="assets/voiceover.mp3"
+             data-start="0"
+             data-duration="39.670"
+             data-track-index="3"></audio>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#top-badge", { y: -40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" }, 0.1);
+      
+      // Tween scene_1
+      tl.fromTo("#img_scene_1", { scale: 1.05, opacity: 0 }, { scale: 1.0, opacity: 1, duration: 0.45, ease: "power2.out" }, 0.000);
+      tl.to("#img_scene_1", { scale: 1.03, duration: 19.550, ease: "none" }, 0.450);
+      tl.fromTo("#sub_scene_1", { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "back.out(1.4)" }, 0.100);
+      tl.to("#sub_scene_1", { opacity: 0, duration: 0.2 }, 19.800);
+      // Tween scene_2
+      tl.fromTo("#img_scene_2", { scale: 1.05, opacity: 0 }, { scale: 1.0, opacity: 1, duration: 0.45, ease: "power2.out" }, 20.000);
+      tl.to("#img_scene_2", { scale: 1.03, duration: 19.550, ease: "none" }, 20.450);
+      tl.fromTo("#sub_scene_2", { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "back.out(1.4)" }, 20.100);
+      tl.to("#sub_scene_2", { opacity: 0, duration: 0.2 }, 39.800);
+      // Tween scene_3
+      tl.fromTo("#img_scene_3", { scale: 1.05, opacity: 0 }, { scale: 1.0, opacity: 1, duration: 0.45, ease: "power2.out" }, 40.000);
+      tl.to("#img_scene_3", { scale: 1.03, duration: 19.550, ease: "none" }, 40.450);
+      tl.fromTo("#sub_scene_3", { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "back.out(1.4)" }, 40.100);
+      tl.to("#sub_scene_3", { opacity: 0, duration: 0.2 }, 59.800);
+      // Tween scene_4
+      tl.fromTo("#img_scene_4", { scale: 1.05, opacity: 0 }, { scale: 1.0, opacity: 1, duration: 0.45, ease: "power2.out" }, 60.000);
+      tl.to("#img_scene_4", { scale: 1.03, duration: 19.550, ease: "none" }, 60.450);
+      tl.fromTo("#sub_scene_4", { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "back.out(1.4)" }, 60.100);
+      tl.to("#sub_scene_4", { opacity: 0, duration: 0.2 }, 79.800);
+      // Tween scene_5
+      tl.fromTo("#img_scene_5", { scale: 1.05, opacity: 0 }, { scale: 1.0, opacity: 1, duration: 0.45, ease: "power2.out" }, 80.000);
+      tl.to("#img_scene_5", { scale: 1.03, duration: 19.550, ease: "none" }, 80.450);
+      tl.fromTo("#sub_scene_5", { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "back.out(1.4)" }, 80.100);
+      tl.to("#sub_scene_5", { opacity: 0, duration: 0.2 }, 99.800);
+      // Tween scene_6
+      tl.fromTo("#img_scene_6", { scale: 1.05, opacity: 0 }, { scale: 1.0, opacity: 1, duration: 0.45, ease: "power2.out" }, 100.000);
+      tl.to("#img_scene_6", { scale: 1.03, duration: 19.550, ease: "none" }, 100.450);
+      tl.fromTo("#sub_scene_6", { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "back.out(1.4)" }, 100.100);
+      tl.to("#sub_scene_6", { opacity: 0, duration: 0.2 }, 119.800);
+      // Tween scene_7
+      tl.fromTo("#img_scene_7", { scale: 1.05, opacity: 0 }, { scale: 1.0, opacity: 1, duration: 0.45, ease: "power2.out" }, 120.000);
+      tl.to("#img_scene_7", { scale: 1.03, duration: 19.550, ease: "none" }, 120.450);
+      tl.fromTo("#sub_scene_7", { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "back.out(1.4)" }, 120.100);
+      tl.to("#sub_scene_7", { opacity: 0, duration: 0.2 }, 139.800);
+      // Tween scene_8
+      tl.fromTo("#img_scene_8", { scale: 1.05, opacity: 0 }, { scale: 1.0, opacity: 1, duration: 0.45, ease: "power2.out" }, 140.000);
+      tl.to("#img_scene_8", { scale: 1.03, duration: 19.550, ease: "none" }, 140.450);
+      tl.fromTo("#sub_scene_8", { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "back.out(1.4)" }, 140.100);
+      tl.to("#sub_scene_8", { opacity: 0, duration: 0.2 }, 159.800);
+      // Tween scene_9
+      tl.fromTo("#img_scene_9", { scale: 1.05, opacity: 0 }, { scale: 1.0, opacity: 1, duration: 0.45, ease: "power2.out" }, 160.000);
+      tl.to("#img_scene_9", { scale: 1.03, duration: 19.550, ease: "none" }, 160.450);
+      tl.fromTo("#sub_scene_9", { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "back.out(1.4)" }, 160.100);
+      tl.to("#sub_scene_9", { opacity: 0, duration: 0.2 }, 179.800);
+      // Tween scene_10
+      tl.fromTo("#img_scene_10", { scale: 1.05, opacity: 0 }, { scale: 1.0, opacity: 1, duration: 0.45, ease: "power2.out" }, 180.000);
+      tl.to("#img_scene_10", { scale: 1.03, duration: 19.550, ease: "none" }, 180.450);
+      tl.fromTo("#sub_scene_10", { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "back.out(1.4)" }, 180.100);
+      tl.to("#sub_scene_10", { opacity: 0, duration: 0.2 }, 199.800);
+      // Tween scene_11
+      tl.fromTo("#img_scene_11", { scale: 1.05, opacity: 0 }, { scale: 1.0, opacity: 1, duration: 0.45, ease: "power2.out" }, 200.000);
+      tl.to("#img_scene_11", { scale: 1.03, duration: 19.550, ease: "none" }, 200.450);
+      tl.fromTo("#sub_scene_11", { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "back.out(1.4)" }, 200.100);
+      tl.to("#sub_scene_11", { opacity: 0, duration: 0.2 }, 219.800);
+      // Tween scene_12
+      tl.fromTo("#img_scene_12", { scale: 1.05, opacity: 0 }, { scale: 1.0, opacity: 1, duration: 0.45, ease: "power2.out" }, 220.000);
+      tl.to("#img_scene_12", { scale: 1.03, duration: 19.550, ease: "none" }, 220.450);
+      tl.fromTo("#sub_scene_12", { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "back.out(1.4)" }, 220.100);
+      tl.to("#sub_scene_12", { opacity: 0, duration: 0.2 }, 239.800);
+      // Tween scene_13
+      tl.fromTo("#img_scene_13", { scale: 1.05, opacity: 0 }, { scale: 1.0, opacity: 1, duration: 0.45, ease: "power2.out" }, 240.000);
+      tl.to("#img_scene_13", { scale: 1.03, duration: 19.550, ease: "none" }, 240.450);
+      tl.fromTo("#sub_scene_13", { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "back.out(1.4)" }, 240.100);
+      tl.to("#sub_scene_13", { opacity: 0, duration: 0.2 }, 259.800);
+      // Tween scene_14
+      tl.fromTo("#img_scene_14", { scale: 1.05, opacity: 0 }, { scale: 1.0, opacity: 1, duration: 0.45, ease: "power2.out" }, 260.000);
+      tl.to("#img_scene_14", { scale: 1.03, duration: 19.550, ease: "none" }, 260.450);
+      tl.fromTo("#sub_scene_14", { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "back.out(1.4)" }, 260.100);
+      tl.to("#sub_scene_14", { opacity: 0, duration: 0.2 }, 279.800);
+      // Tween scene_15
+      tl.fromTo("#img_scene_15", { scale: 1.05, opacity: 0 }, { scale: 1.0, opacity: 1, duration: 0.45, ease: "power2.out" }, 280.000);
+      tl.to("#img_scene_15", { scale: 1.03, duration: 19.550, ease: "none" }, 280.450);
+      tl.fromTo("#sub_scene_15", { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "back.out(1.4)" }, 280.100);
+      tl.to("#sub_scene_15", { opacity: 0, duration: 0.2 }, 299.800);
+      // Tween scene_16
+      tl.fromTo("#img_scene_16", { scale: 1.05, opacity: 0 }, { scale: 1.0, opacity: 1, duration: 0.45, ease: "power2.out" }, 300.000);
+      tl.to("#img_scene_16", { scale: 1.03, duration: 19.550, ease: "none" }, 300.450);
+      tl.fromTo("#sub_scene_16", { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "back.out(1.4)" }, 300.100);
+      tl.to("#sub_scene_16", { opacity: 0, duration: 0.2 }, 319.800);
+      // Tween scene_17
+      tl.fromTo("#img_scene_17", { scale: 1.05, opacity: 0 }, { scale: 1.0, opacity: 1, duration: 0.45, ease: "power2.out" }, 320.000);
+      tl.to("#img_scene_17", { scale: 1.03, duration: 19.550, ease: "none" }, 320.450);
+      tl.fromTo("#sub_scene_17", { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "back.out(1.4)" }, 320.100);
+      tl.to("#sub_scene_17", { opacity: 0, duration: 0.2 }, 339.800);
+      // Tween scene_18
+      tl.fromTo("#img_scene_18", { scale: 1.05, opacity: 0 }, { scale: 1.0, opacity: 1, duration: 0.45, ease: "power2.out" }, 340.000);
+      tl.to("#img_scene_18", { scale: 1.03, duration: 19.550, ease: "none" }, 340.450);
+      tl.fromTo("#sub_scene_18", { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "back.out(1.4)" }, 340.100);
+      tl.to("#sub_scene_18", { opacity: 0, duration: 0.2 }, 359.800);
+      // Tween scene_19
+      tl.fromTo("#img_scene_19", { scale: 1.05, opacity: 0 }, { scale: 1.0, opacity: 1, duration: 0.45, ease: "power2.out" }, 360.000);
+      tl.to("#img_scene_19", { scale: 1.03, duration: 19.550, ease: "none" }, 360.450);
+      tl.fromTo("#sub_scene_19", { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "back.out(1.4)" }, 360.100);
+      tl.to("#sub_scene_19", { opacity: 0, duration: 0.2 }, 379.800);
+      // Tween scene_20
+      tl.fromTo("#img_scene_20", { scale: 1.05, opacity: 0 }, { scale: 1.0, opacity: 1, duration: 0.45, ease: "power2.out" }, 380.000);
+      tl.to("#img_scene_20", { scale: 1.03, duration: 19.550, ease: "none" }, 380.450);
+      tl.fromTo("#sub_scene_20", { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "back.out(1.4)" }, 380.100);
+      tl.to("#sub_scene_20", { opacity: 0, duration: 0.2 }, 399.800);
+      // Tween scene_21
+      tl.fromTo("#img_scene_21", { scale: 1.05, opacity: 0 }, { scale: 1.0, opacity: 1, duration: 0.45, ease: "power2.out" }, 400.000);
+      tl.to("#img_scene_21", { scale: 1.03, duration: 19.550, ease: "none" }, 400.450);
+      tl.fromTo("#sub_scene_21", { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "back.out(1.4)" }, 400.100);
+      tl.to("#sub_scene_21", { opacity: 0, duration: 0.2 }, 419.800);
+      // Tween scene_22
+      tl.fromTo("#img_scene_22", { scale: 1.05, opacity: 0 }, { scale: 1.0, opacity: 1, duration: 0.45, ease: "power2.out" }, 420.000);
+      tl.to("#img_scene_22", { scale: 1.03, duration: 19.550, ease: "none" }, 420.450);
+      tl.fromTo("#sub_scene_22", { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "back.out(1.4)" }, 420.100);
+      tl.to("#sub_scene_22", { opacity: 0, duration: 0.2 }, 439.800);
+      // Tween scene_23
+      tl.fromTo("#img_scene_23", { scale: 1.05, opacity: 0 }, { scale: 1.0, opacity: 1, duration: 0.45, ease: "power2.out" }, 440.000);
+      tl.to("#img_scene_23", { scale: 1.03, duration: 19.550, ease: "none" }, 440.450);
+      tl.fromTo("#sub_scene_23", { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "back.out(1.4)" }, 440.100);
+      tl.to("#sub_scene_23", { opacity: 0, duration: 0.2 }, 459.800);
+      // Tween scene_24
+      tl.fromTo("#img_scene_24", { scale: 1.05, opacity: 0 }, { scale: 1.0, opacity: 1, duration: 0.45, ease: "power2.out" }, 460.000);
+      tl.to("#img_scene_24", { scale: 1.03, duration: 19.550, ease: "none" }, 460.450);
+      tl.fromTo("#sub_scene_24", { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "back.out(1.4)" }, 460.100);
+      tl.to("#sub_scene_24", { opacity: 0, duration: 0.2 }, 479.800);
+      // Tween scene_25
+      tl.fromTo("#img_scene_25", { scale: 1.05, opacity: 0 }, { scale: 1.0, opacity: 1, duration: 0.45, ease: "power2.out" }, 480.000);
+      tl.to("#img_scene_25", { scale: 1.03, duration: 19.550, ease: "none" }, 480.450);
+      tl.fromTo("#sub_scene_25", { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "back.out(1.4)" }, 480.100);
+      tl.to("#sub_scene_25", { opacity: 0, duration: 0.2 }, 499.800);
+      // Tween scene_26
+      tl.fromTo("#img_scene_26", { scale: 1.05, opacity: 0 }, { scale: 1.0, opacity: 1, duration: 0.45, ease: "power2.out" }, 500.000);
+      tl.to("#img_scene_26", { scale: 1.03, duration: 19.550, ease: "none" }, 500.450);
+      tl.fromTo("#sub_scene_26", { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "back.out(1.4)" }, 500.100);
+      tl.to("#sub_scene_26", { opacity: 0, duration: 0.2 }, 519.800);
+      // Tween scene_27
+      tl.fromTo("#img_scene_27", { scale: 1.05, opacity: 0 }, { scale: 1.0, opacity: 1, duration: 0.45, ease: "power2.out" }, 520.000);
+      tl.to("#img_scene_27", { scale: 1.03, duration: 19.550, ease: "none" }, 520.450);
+      tl.fromTo("#sub_scene_27", { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "back.out(1.4)" }, 520.100);
+      tl.to("#sub_scene_27", { opacity: 0, duration: 0.2 }, 539.800);
+      // Tween scene_28
+      tl.fromTo("#img_scene_28", { scale: 1.05, opacity: 0 }, { scale: 1.0, opacity: 1, duration: 0.45, ease: "power2.out" }, 540.000);
+      tl.to("#img_scene_28", { scale: 1.03, duration: 19.550, ease: "none" }, 540.450);
+      tl.fromTo("#sub_scene_28", { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "back.out(1.4)" }, 540.100);
+      tl.to("#sub_scene_28", { opacity: 0, duration: 0.2 }, 559.800);
+      // Tween scene_29
+      tl.fromTo("#img_scene_29", { scale: 1.05, opacity: 0 }, { scale: 1.0, opacity: 1, duration: 0.45, ease: "power2.out" }, 560.000);
+      tl.to("#img_scene_29", { scale: 1.03, duration: 19.550, ease: "none" }, 560.450);
+      tl.fromTo("#sub_scene_29", { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "back.out(1.4)" }, 560.100);
+      tl.to("#sub_scene_29", { opacity: 0, duration: 0.2 }, 579.800);
+      // Tween scene_30
+      tl.fromTo("#img_scene_30", { scale: 1.05, opacity: 0 }, { scale: 1.0, opacity: 1, duration: 0.45, ease: "power2.out" }, 580.000);
+      tl.to("#img_scene_30", { scale: 1.03, duration: 19.550, ease: "none" }, 580.450);
+      tl.fromTo("#sub_scene_30", { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "back.out(1.4)" }, 580.100);
+      tl.to("#sub_scene_30", { opacity: 0, duration: 0.2 }, 599.800);
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

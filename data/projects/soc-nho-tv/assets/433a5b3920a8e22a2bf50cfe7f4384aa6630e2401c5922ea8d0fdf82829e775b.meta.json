@@ -1,0 +1,29 @@
+{
+  "id": "art_433a5b3920a8",
+  "kind": "audio",
+  "uri": "assets/433a5b3920a8e22a2bf50cfe7f4384aa6630e2401c5922ea8d0fdf82829e775b.wav",
+  "mime": "audio/wav",
+  "size": 243034,
+  "hash": "sha256:433a5b3920a8e22a2bf50cfe7f4384aa6630e2401c5922ea8d0fdf82829e775b",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 5.51,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "c_me_soc",
+    "runId": "run_1793959111_39a495",
+    "provider": "mock",
+    "model": "mock-omnivoice-v1",
+    "params": {
+      "text": "Mẹ luôn ở đây nghe Bi và Mun nói mà! Có chuyện gì làm hai con buồn thế?",
+      "voiceId": "vn-nam-nu-01",
+      "tempo": 1.0896
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T09:58:31Z"
+  }
+}

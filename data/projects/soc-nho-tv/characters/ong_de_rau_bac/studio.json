@@ -195,5 +195,15 @@
       "Tập 38: Ông Mặt Trời đi ngủ (ep38-ong-mat-troi-di-ngu)",
       "... cùng 2 tập khác trong tổng số 14/50 tập."
     ]
-  }
+  },
+  "referenceImages": [
+    "/data/projects/soc-nho-tv/files/characters/ong_de_rau_bac/ong_de_rau_bac_01.png",
+    "/data/projects/soc-nho-tv/files/characters/ong_de_rau_bac/ong_de_rau_bac_02.png",
+    "/data/projects/soc-nho-tv/files/characters/ong_de_rau_bac/ong_de_rau_bac_03.png",
+    "/data/projects/soc-nho-tv/files/characters/ong_de_rau_bac/ong_de_rau_bac_04.png",
+    "/data/projects/soc-nho-tv/files/characters/ong_de_rau_bac/ong_de_rau_bac_05.png",
+    "/data/projects/soc-nho-tv/files/characters/ong_de_rau_bac/ong_de_rau_bac_dna_sheet.png"
+  ],
+  "sampleAudioUrl": "/data/voices/vn-nam-nam-02/ong_de_rau_bac_catchphrase.mp3",
+  "sampleText": "Khà khà, cái cây lớn lên cũng cần thời gian, các cháu cũng vậy!"
 }

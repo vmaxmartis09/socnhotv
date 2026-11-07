@@ -1,0 +1,27 @@
+{
+  "id": "art_1ac47b662c3d",
+  "kind": "text",
+  "uri": "assets/1ac47b662c3d4f3c9c18267d273a6c00a6a8240f8736f2211787617c312e9800.txt",
+  "mime": "application/octet-stream",
+  "size": 352,
+  "hash": "sha256:1ac47b662c3d4f3c9c18267d273a6c00a6a8240f8736f2211787617c312e9800",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": null,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "n_text",
+    "runId": "run_1793895623_4b7f54",
+    "provider": "local",
+    "model": "text",
+    "params": {
+      "content": "Tập 1: Núi lửa trong bụng Bi (Mùa 1: Cảm xúc của em). Bài học: nhận biết cơn giận 'núi lửa nóng trong bụng' và làm dịu bằng 'Thở 5 ngón tay'. Thần chú: 'Xòe tay hít sâu, núi lửa nguội mau!' (lặp >= 3 lần). Nguồn: content/episodes/ep01-nui-lua-trong-bung-bi/KICH-BAN-TAP-01-nui-lua-trong-bung-bi.md"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-05T16:20:23Z"
+  }
+}

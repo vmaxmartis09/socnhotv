@@ -1,0 +1,31 @@
+{
+  "id": "art_bfdf9949539e",
+  "kind": "audio",
+  "uri": "assets/bfdf9949539edd635536361f49feaf1873d9d6dfb04c94d3a65d2dc5c80f5944.mp3",
+  "mime": "audio/mp3",
+  "size": 148000,
+  "hash": "sha256:bfdf9949539edd635536361f49feaf1873d9d6dfb04c94d3a65d2dc5c80f5944",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 6.11,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "prebuild_voice",
+    "runId": "prebuild_ep02-mun-so-bong-toi",
+    "provider": "omnivoice",
+    "model": "omnivoice",
+    "params": {
+      "text": "Bây giờ mình bình tĩnh làm lại từng bước một với Dê Bông nhé! Cẩn thận, nhẹ tay thôi nào!",
+      "voiceId": "vn-be-04",
+      "tempo": 1.0,
+      "targetLufs": -14.0,
+      "mastering": "deesser+presence3.2k+comp4:1+loudnorm-14LUFS"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T10:38:28Z"
+  }
+}

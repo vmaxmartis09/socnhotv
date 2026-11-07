@@ -1,0 +1,29 @@
+{
+  "id": "art_3663543eaae9",
+  "kind": "audio",
+  "uri": "assets/3663543eaae977925afc1496c192f5014f7a341ecd0dba0e585003cbe4dc5d7e.wav",
+  "mime": "audio/wav",
+  "size": 749744,
+  "hash": "sha256:3663543eaae977925afc1496c192f5014f7a341ecd0dba0e585003cbe4dc5d7e",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 17.0,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "c",
+    "runId": "run_1793955103_00cd34",
+    "provider": "mock",
+    "model": "mock-omnivoice-v1",
+    "params": {
+      "text": "Các con giỏi lắm! Khi biết cảm xúc buồn khi thất lạc món đồ yêu quý là bình thường; hãy chia sẻ với bạn thân, nhận cái ôm an ủi và bình tĩnh tìm lại từng nơi, mọi chuyện khó khăn đều được giải quyết thật nhẹ nhàng phải không nào?",
+      "voiceId": "vn-be-02",
+      "tempo": 1.0
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T08:51:43Z"
+  }
+}

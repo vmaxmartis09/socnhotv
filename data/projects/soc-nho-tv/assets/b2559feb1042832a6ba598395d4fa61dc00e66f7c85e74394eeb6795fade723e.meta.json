@@ -1,0 +1,29 @@
+{
+  "id": "art_b2559feb1042",
+  "kind": "audio",
+  "uri": "assets/b2559feb1042832a6ba598395d4fa61dc00e66f7c85e74394eeb6795fade723e.wav",
+  "mime": "audio/wav",
+  "size": 261116,
+  "hash": "sha256:b2559feb1042832a6ba598395d4fa61dc00e66f7c85e74394eeb6795fade723e",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 5.92,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "c_me_soc",
+    "runId": "run_1793955808_42cc43",
+    "provider": "mock",
+    "model": "mock-omnivoice-v1",
+    "params": {
+      "text": "Hẹn gặp lại các bạn nhỏ ở tập tiếp theo của Sóc Nhỏ TV nhé! Tạm biệt các con!",
+      "voiceId": "vn-nam-nu-01",
+      "tempo": 1.0706
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T09:03:29Z"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "id": "gobi",
+  "name": "Gobi KOC",
+  "description": "KOC AI thử đồ, review thời trang (nhân vật sao chép từ gobi-social)",
+  "version": "1.0.0",
+  "language": "vi",
+  "target_platforms": [
+    "tiktok",
+    "youtube"
+  ],
+  "default_aspect_ratio": "9:16",
+  "default_character": "gobi",
+  "characters": {
+    "gobi": {
+      "name": "Gobi (KOC thời trang)",
+      "role": "main",
+      "height_cm": 165,
+      "voice_id": "koc-lyly",
+      "dna_dir": "characters/gobi"
+    }
+  },
+  "default_voice_id": "koc-lyly"
+}

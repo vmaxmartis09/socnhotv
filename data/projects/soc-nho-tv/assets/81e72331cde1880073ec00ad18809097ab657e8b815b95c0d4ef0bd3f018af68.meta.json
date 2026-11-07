@@ -1,0 +1,30 @@
+{
+  "id": "art_81e72331cde1",
+  "kind": "audio",
+  "uri": "assets/81e72331cde1880073ec00ad18809097ab657e8b815b95c0d4ef0bd3f018af68.mp3",
+  "mime": "audio/mp3",
+  "size": 5581052,
+  "hash": "sha256:81e72331cde1880073ec00ad18809097ab657e8b815b95c0d4ef0bd3f018af68",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 232.48,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "r",
+    "runId": "run_test_mix",
+    "provider": "local",
+    "model": "dialogue-mix",
+    "params": {
+      "lines": 30,
+      "timing": "voice",
+      "gapSec": 0.35,
+      "totalSec": 232.48
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T09:58:32Z"
+  }
+}

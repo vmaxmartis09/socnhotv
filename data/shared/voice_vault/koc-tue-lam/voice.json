@@ -1,0 +1,22 @@
+{
+  "id": "koc-tue-lam",
+  "display_name": "Giọng nữ Tuệ Lâm (Tư Duy, Sắc Sảo, Bản Lĩnh)",
+  "aliases": [
+    "voice-fm-tue-lam"
+  ],
+  "engine": "omnivoice",
+  "lang": "vi",
+  "dialect": "south",
+  "gender": "female",
+  "style": "inspirational_mindset_business",
+  "description": "",
+  "sample_paths": [
+    "cloned_default_sample.mp3"
+  ],
+  "loudness": -14.0,
+  "status": "ready",
+  "group": "koc-review",
+  "consent_note": "Nhập từ gobi-social/data/_shared/voices/vault/voice-fm-tue-lam; dùng nội bộ cho KOC review",
+  "transcript": "Những người thất bại tư duy mà thấp kém, họ luôn luôn có một cái điểm chung.",
+  "created_at": "2026-11-07T00:00:00"
+}

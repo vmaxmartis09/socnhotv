@@ -1,0 +1,28 @@
+{
+  "id": "art_e6350a263c27",
+  "kind": "text",
+  "uri": "assets/e6350a263c272313d2dfdc83d7f6c70ffd633c8c111cdf72ff10d8eaa0ab2301.json",
+  "mime": "application/json",
+  "size": 458,
+  "hash": "sha256:e6350a263c272313d2dfdc83d7f6c70ffd633c8c111cdf72ff10d8eaa0ab2301",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": null,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "s",
+    "runId": "run_1793959112_f62d39",
+    "provider": "local",
+    "model": "script_parser",
+    "params": {
+      "targetSceneCount": 1,
+      "sourceText": "Cảnh 1"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T09:58:32Z"
+  }
+}

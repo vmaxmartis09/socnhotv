@@ -1,0 +1,21 @@
+{
+  "source": "/private/tmp/claude-501/-Users-vmaxmartis--claude-spares-spare-C7CC1A/f51cf9b9-101f-4bcb-9f1f-ecdd05390f37/scratchpad/repo/data/projects/x/assets/cc9187a5c18bfae80225bd1ee329b8b57e72d215cb2aef111ff0b5105f29843b.png",
+  "size": [
+    1024,
+    572
+  ],
+  "model": "depth-anything/Depth-Anything-V2-Small-hf",
+  "fg_pct": 70.0,
+  "mid_pct": 35.0,
+  "feather": 3.0,
+  "reconstruction_psnr_db": 99.0,
+  "coverage": {
+    "fg": 0.3,
+    "mid_plus_fg": 0.65
+  },
+  "parallax_hint": {
+    "layer_bg": 0.2,
+    "layer_mid": 1.0,
+    "layer_fg": 1.8
+  }
+}

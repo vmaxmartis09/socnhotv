@@ -10,7 +10,7 @@
   "weight_kg": 40.0,
   "head_body_ratio": "1 : 5.2 (Dáng ông nội phúc hậu, hơi khom nhẹ ấm áp)",
   "scale_note": "Cao 155 cm (1.55x). Cháu nội Dê Bông (115 cm) đứng ngang ngực Ông; Dê Mun (85 cm) đứng ngang bụng Ông.",
-  "voice_id": "ong_de_v1",
+  "voice_id": "vn-nam-nam-02",
   "voice_description": "Giọng ông nội trầm ấm, khoan thai, giàu chất kể chuyện cổ tích.",
   "body": {
     "height_cm": 155,
@@ -68,5 +68,12 @@
     "ep38-ong-mat-troi-di-ngu",
     "ep44-nga-roi-dung-day",
     "ep46-banh-chung-ngay-tet"
+  ],
+  "cutout_images": [
+    "characters/ong_de_rau_bac/cutout/ong_de_rau_bac_01.png",
+    "characters/ong_de_rau_bac/cutout/ong_de_rau_bac_02.png",
+    "characters/ong_de_rau_bac/cutout/ong_de_rau_bac_03.png",
+    "characters/ong_de_rau_bac/cutout/ong_de_rau_bac_04.png",
+    "characters/ong_de_rau_bac/cutout/ong_de_rau_bac_05.png"
   ]
 }

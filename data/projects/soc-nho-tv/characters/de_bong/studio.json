@@ -259,5 +259,18 @@
       "Tập 32: Ông hay quên (ep32-ong-hay-quen)",
       "... cùng 9 tập khác trong tổng số 21/50 tập."
     ]
-  }
+  },
+  "referenceImages": [
+    "/data/projects/soc-nho-tv/files/characters/de_bong/de_bong_01.png",
+    "/data/projects/soc-nho-tv/files/characters/de_bong/de_bong_02.png",
+    "/data/projects/soc-nho-tv/files/characters/de_bong/de_bong_03.png",
+    "/data/projects/soc-nho-tv/files/characters/de_bong/de_bong_04.png",
+    "/data/projects/soc-nho-tv/files/characters/de_bong/de_bong_05.png",
+    "/data/projects/soc-nho-tv/files/characters/de_bong/de_bong_06.png",
+    "/data/projects/soc-nho-tv/files/characters/de_bong/de_bong_07.png",
+    "/data/projects/soc-nho-tv/files/characters/de_bong/de_bong_dna_sheet.png"
+  ],
+  "primaryImage": "de_bong_07.png",
+  "sampleAudioUrl": "/data/voices/vn-be-01/de_bong_catchphrase.mp3",
+  "sampleText": "Bình tĩnh nào, để anh Bông xem sổ tay nhé!"
 }

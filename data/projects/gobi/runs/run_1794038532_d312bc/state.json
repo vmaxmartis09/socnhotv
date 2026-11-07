@@ -1,0 +1,94 @@
+{
+  "runId": "run_1794038532_d312bc",
+  "id": "run_1794038532_d312bc",
+  "projectId": "gobi",
+  "status": "failed",
+  "mode": "all",
+  "runPolicy": {
+    "image": "mock",
+    "video": "off",
+    "text": "mock",
+    "voice": "local"
+  },
+  "stage": "Thất bại: n_render: Dựng template 'koc-review-v1' thất bại: ValueError: Dữ liệu template 'koc-review-v1' không hợp lệ: Sản phẩm trong 'product' cần có tên ('title' hoặc 'name').",
+  "currentNodeId": "n_export",
+  "progress": 0.75,
+  "progressPct": 75,
+  "startedAtTs": 1794038532.566265,
+  "createdAt": "2026-11-07T08:02:12Z",
+  "updatedAt": "2026-11-07T08:02:56Z",
+  "elapsedSec": 44.3,
+  "actualCostUsd": 0.0,
+  "costUsd": 0.0,
+  "nodes": [
+    {
+      "id": "n_char",
+      "type": "character",
+      "name": "n_char",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_room",
+      "type": "image",
+      "name": "n_room",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_prod",
+      "type": "image",
+      "name": "n_prod",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_bg",
+      "type": "bg_remove",
+      "name": "n_bg",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_tryon",
+      "type": "image_gen",
+      "name": "n_tryon",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_text",
+      "type": "text",
+      "name": "n_text",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_render",
+      "type": "template_render",
+      "name": "n_render",
+      "state": "failed",
+      "progressPct": 0,
+      "error": "Node dừng lại: Dựng template 'koc-review-v1' thất bại: ValueError: Dữ liệu template 'koc-review-v1' không hợp lệ: Sản phẩm trong 'product' cần có tên ('title' hoặc 'name')."
+    },
+    {
+      "id": "n_export",
+      "type": "platform_export",
+      "name": "n_export",
+      "state": "failed",
+      "progressPct": 0,
+      "error": "Bỏ qua node 'n_export' do node cha ['n_render'] bị lỗi."
+    }
+  ],
+  "totalNodes": 8,
+  "completedNodes": 6,
+  "output": null,
+  "error": "n_render: Dựng template 'koc-review-v1' thất bại: ValueError: Dữ liệu template 'koc-review-v1' không hợp lệ: Sản phẩm trong 'product' cần có tên ('title' hoặc 'name').",
+  "completedAt": "2026-11-07T08:02:56Z"
+}

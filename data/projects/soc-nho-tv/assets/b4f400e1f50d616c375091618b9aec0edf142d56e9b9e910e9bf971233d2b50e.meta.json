@@ -1,0 +1,30 @@
+{
+  "id": "art_b4f400e1f50d",
+  "kind": "captions",
+  "uri": "assets/b4f400e1f50d616c375091618b9aec0edf142d56e9b9e910e9bf971233d2b50e.srt",
+  "mime": "application/octet-stream",
+  "size": 99,
+  "hash": "sha256:b4f400e1f50d616c375091618b9aec0edf142d56e9b9e910e9bf971233d2b50e",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 2.58,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "node_subtitles",
+    "runId": "run_1793955874_6bcc14",
+    "provider": "faster-whisper",
+    "model": "whisper-tiny",
+    "params": {
+      "language": "vi",
+      "segmentCount": 1
+    },
+    "inputHashes": [
+      "sha256:6cfef59194d19ec1c9830de1db1d0359525e0515542f9027370703128d41c7f1"
+    ],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T09:04:47Z"
+  }
+}

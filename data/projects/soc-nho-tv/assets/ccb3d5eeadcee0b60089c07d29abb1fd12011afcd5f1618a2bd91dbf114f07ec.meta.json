@@ -1,0 +1,31 @@
+{
+  "id": "art_ccb3d5eeadce",
+  "kind": "video",
+  "uri": "assets/ccb3d5eeadcee0b60089c07d29abb1fd12011afcd5f1618a2bd91dbf114f07ec.mp4",
+  "mime": "video/mp4",
+  "size": 260147916,
+  "hash": "sha256:ccb3d5eeadcee0b60089c07d29abb1fd12011afcd5f1618a2bd91dbf114f07ec",
+  "meta": {
+    "width": 1920,
+    "height": 1080,
+    "duration": 600.0,
+    "fps": null,
+    "aspect": "9:16"
+  },
+  "provenance": {
+    "nodeId": "n_export",
+    "runId": "run_1793941454_dfe903",
+    "provider": "local",
+    "model": "export_package_v1",
+    "params": {
+      "outputFileName": "tap01_nui_lua_trong_bung_bi.mp4",
+      "slug": "v-sao-c-u-v-ng-c-nhi-u-m-u-15",
+      "platforms": [
+        "youtube"
+      ]
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T05:09:46Z"
+  }
+}

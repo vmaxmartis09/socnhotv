@@ -1,0 +1,31 @@
+{
+  "id": "art_8de590de3e0f",
+  "kind": "audio",
+  "uri": "assets/8de590de3e0f6209415b43a5ea325e2f3db68cc407455bd18780c0340400407c.mp3",
+  "mime": "audio/mp3",
+  "size": 154896,
+  "hash": "sha256:8de590de3e0f6209415b43a5ea325e2f3db68cc407455bd18780c0340400407c",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 6.38,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "prebuild_voice",
+    "runId": "prebuild_ep02-mun-so-bong-toi",
+    "provider": "omnivoice",
+    "model": "omnivoice",
+    "params": {
+      "text": "🎵 'Bóng tối dịu êm, đèn sao sáng thêm!' — Cùng nhau khôn lớn, mỗi ngày thật vui! 🎵",
+      "voiceId": "vn-be-04",
+      "tempo": 1.0,
+      "targetLufs": -14.0,
+      "mastering": "deesser+presence3.2k+comp4:1+loudnorm-14LUFS"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T11:01:00Z"
+  }
+}

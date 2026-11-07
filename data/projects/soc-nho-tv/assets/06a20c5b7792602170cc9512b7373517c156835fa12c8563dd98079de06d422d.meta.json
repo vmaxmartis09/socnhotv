@@ -1,0 +1,29 @@
+{
+  "id": "art_06a20c5b7792",
+  "kind": "audio",
+  "uri": "assets/06a20c5b7792602170cc9512b7373517c156835fa12c8563dd98079de06d422d.wav",
+  "mime": "audio/wav",
+  "size": 1749490,
+  "hash": "sha256:06a20c5b7792602170cc9512b7373517c156835fa12c8563dd98079de06d422d",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 39.67,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "n_voice_me",
+    "runId": "run_1793925675_f96c3a",
+    "provider": "mock",
+    "model": "mock-omnivoice-v1",
+    "params": {
+      "text": "Mẹ luôn ở đây nghe Bi và Mun nói mà! Có chuyện gì làm hai con buồn thế? À, khi đồ chơi bị đổ, trong bụng Bi xuất hiện một 'ngọn núi lửa giận dữ nhỏ' làm mặt nóng và tim đập nhanh đấy con ạ! Bí quyết của mẹ là 'Thở năm ngón tay'! Con xòe bàn tay trái ra, hít vào thơm như ngửi hoa, thở ra êm như thổi chong chóng nhé! Hoan hô Bi và Mun! Khi bình tĩnh và biết yêu thương nhau, tòa tháp của hai con còn đẹp hơn cả lúc đầu đấy! Hẹn gặp lại các bạn nhỏ ở tập tiếp theo của Sóc Nhỏ TV nhé! Tạm biệt các con!",
+      "voiceId": "nguoi-lon",
+      "tempo": 1.0
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T00:41:15Z"
+  }
+}

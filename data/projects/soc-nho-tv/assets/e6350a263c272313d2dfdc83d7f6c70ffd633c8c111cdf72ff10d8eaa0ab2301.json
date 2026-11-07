@@ -1,0 +1,13 @@
+{
+  "title": "Cảnh 1",
+  "scenes": [
+    {
+      "sceneNumber": 1,
+      "title": "Cảnh 1",
+      "imagePrompt": "Cảnh hoạt hình 3D: Sóc Bi: Chào các bạn nhỏ, hôm nay mình xếp tháp gỗ.",
+      "videoPrompt": "Camera góc trung chuyển động mượt mà, diễn hoạt sinh động theo nội dung Cảnh 1",
+      "dialogue": "Sóc Bi: Chào các bạn nhỏ, hôm nay mình xếp tháp gỗ.",
+      "durationSec": 20.0
+    }
+  ]
+}

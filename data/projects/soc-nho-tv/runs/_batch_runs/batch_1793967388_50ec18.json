@@ -1,0 +1,75 @@
+{
+  "batchId": "batch_1793967388_50ec18",
+  "projectId": "soc-nho-tv",
+  "totalEpisodes": 3,
+  "completedCount": 3,
+  "failedCount": 0,
+  "cancelledCount": 0,
+  "totalCostUsd": 0.0,
+  "isSuccess": true,
+  "episodeResults": [
+    {
+      "episodeId": "ep01-nui-lua-trong-bung-bi",
+      "runId": "run_1793967388_2f33da",
+      "isSuccess": true,
+      "status": "completed",
+      "totalCostUsd": 0.0,
+      "executedNodes": [],
+      "skippedNodes": [],
+      "failedNodes": [],
+      "cachedNodes": [
+        "n_script",
+        "n_quality",
+        "n_image",
+        "n_video",
+        "n_export"
+      ],
+      "errors": {},
+      "outputVideoPath": "output/ep01-nui-lua-trong-bung-bi/ep01-nui-lua-trong-bung-bi.mp4",
+      "durationSec": 0.01
+    },
+    {
+      "episodeId": "ep02-mun-so-bong-toi",
+      "runId": "run_1793967388_6dfcbd",
+      "isSuccess": true,
+      "status": "completed",
+      "totalCostUsd": 0.0,
+      "executedNodes": [
+        "n_script",
+        "n_quality",
+        "n_image",
+        "n_video",
+        "n_export"
+      ],
+      "skippedNodes": [],
+      "failedNodes": [],
+      "cachedNodes": [],
+      "errors": {},
+      "outputVideoPath": "output/ep02-mun-so-bong-toi/ep02-mun-so-bong-toi.mp4",
+      "durationSec": 1.71
+    },
+    {
+      "episodeId": "ep03-chu-tho-bong-cua-mimi-dau-roi",
+      "runId": "run_1793967390_3e0e50",
+      "isSuccess": true,
+      "status": "completed",
+      "totalCostUsd": 0.0,
+      "executedNodes": [
+        "n_script",
+        "n_quality",
+        "n_image",
+        "n_video",
+        "n_export"
+      ],
+      "skippedNodes": [],
+      "failedNodes": [],
+      "cachedNodes": [],
+      "errors": {},
+      "outputVideoPath": "output/ep03-chu-tho-bong-cua-mimi-dau-roi/ep03-chu-tho-bong-cua-mimi-dau-roi.mp4",
+      "durationSec": 1.47
+    }
+  ],
+  "startedAt": "2026-11-06T12:16:28Z",
+  "finishedAt": "2026-11-06T12:16:31Z",
+  "durationSec": 3.2
+}

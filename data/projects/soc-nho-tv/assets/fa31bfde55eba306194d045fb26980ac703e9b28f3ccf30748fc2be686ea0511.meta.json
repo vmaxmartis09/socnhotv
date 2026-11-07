@@ -1,0 +1,28 @@
+{
+  "id": "art_fa31bfde55eb",
+  "kind": "text",
+  "uri": "assets/fa31bfde55eba306194d045fb26980ac703e9b28f3ccf30748fc2be686ea0511.json",
+  "mime": "application/json",
+  "size": 125752,
+  "hash": "sha256:fa31bfde55eba306194d045fb26980ac703e9b28f3ccf30748fc2be686ea0511",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": null,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "s",
+    "runId": "run_1793959112_f3a352",
+    "provider": "local",
+    "model": "episode_script",
+    "params": {
+      "targetSceneCount": 30,
+      "sourceText": "Chú thỏ bông của Mimi đâu rồi"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T09:58:32Z"
+  }
+}

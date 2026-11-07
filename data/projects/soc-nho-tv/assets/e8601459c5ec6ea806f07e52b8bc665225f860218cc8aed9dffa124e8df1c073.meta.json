@@ -1,0 +1,28 @@
+{
+  "id": "art_e8601459c5ec",
+  "kind": "image",
+  "uri": "assets/e8601459c5ec6ea806f07e52b8bc665225f860218cc8aed9dffa124e8df1c073.png",
+  "mime": "image/png",
+  "size": 495042,
+  "hash": "sha256:e8601459c5ec6ea806f07e52b8bc665225f860218cc8aed9dffa124e8df1c073",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": null,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "node_cast_mw542014",
+    "runId": "run_1794020349_26c6e1",
+    "provider": "local",
+    "model": "master_dna",
+    "params": {
+      "characterId": "de_mun",
+      "file": "de_mun_01.png"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-07T02:59:09Z"
+  }
+}

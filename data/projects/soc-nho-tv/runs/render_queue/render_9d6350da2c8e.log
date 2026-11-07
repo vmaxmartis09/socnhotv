@@ -1,0 +1,19 @@
+--- HyperFrames CLI Render (code: 1, ver: 0.9.12) ---
+STDOUT:
+
+STDERR:
+node:internal/bootstrap/switches/does_own_process_state:142
+    cachedCwd = rawMethods.cwd();
+                           ^
+
+Error: ENOENT: process.cwd failed with error no such file or directory, the current working directory was likely removed without changing the working directory, uv_cwd
+    at process.wrappedCwd [as cwd] (node:internal/bootstrap/switches/does_own_process_state:142:28)
+    at file:///Volumes/Data/socnhotv/tool/dashboard/node_modules/hyperframes/dist/cli.js:199:29 {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'uv_cwd'
+}
+
+Node.js v26.8.2
+
+FALLBACK_USED: rendered via FFmpeg fallback to /Volumes/Data/socnhotv/data/projects/soc-nho-tv/output/ep_api_test_short_01/shorts.mp4

@@ -1,0 +1,27 @@
+{
+  "id": "art_6615e0859797",
+  "kind": "text",
+  "uri": "assets/6615e0859797411cae29ea3ab06d9ae35dcb82b513f27d407df648231bff3d90.srt",
+  "mime": "application/x-subrip",
+  "size": 4848,
+  "hash": "sha256:6615e0859797411cae29ea3ab06d9ae35dcb82b513f27d407df648231bff3d90",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": null,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "r",
+    "runId": "run_test_mix",
+    "provider": "local",
+    "model": "dialogue-timeline",
+    "params": {
+      "lines": 30
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T09:58:32Z"
+  }
+}

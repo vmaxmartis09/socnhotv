@@ -1,0 +1,31 @@
+{
+  "id": "art_00f8e529fdf1",
+  "kind": "audio",
+  "uri": "assets/00f8e529fdf1e36a9da667e5afcd1cede88e908733e86098e43d331f71c42a91.mp3",
+  "mime": "audio/mp3",
+  "size": 218217,
+  "hash": "sha256:00f8e529fdf1e36a9da667e5afcd1cede88e908733e86098e43d331f71c42a91",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 9.02,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "prebuild_voice",
+    "runId": "prebuild_ep02-mun-so-bong-toi",
+    "provider": "omnivoice",
+    "model": "omnivoice",
+    "params": {
+      "text": "Bạn nhỏ nhớ câu thần chú của chúng mình hôm nay nhé: 'Bóng tối dịu êm, đèn sao sáng thêm!' Ở nhà bạn nhỏ cũng làm giống Dê Mun nha!",
+      "voiceId": "vn-be-04",
+      "tempo": 1.0,
+      "targetLufs": -14.0,
+      "mastering": "deesser+presence3.2k+comp4:1+loudnorm-14LUFS"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T11:00:26Z"
+  }
+}

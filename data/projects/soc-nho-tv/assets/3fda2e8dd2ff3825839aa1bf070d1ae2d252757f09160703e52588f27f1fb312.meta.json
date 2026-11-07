@@ -1,0 +1,32 @@
+{
+  "id": "art_3fda2e8dd2ff",
+  "kind": "video",
+  "uri": "assets/3fda2e8dd2ff3825839aa1bf070d1ae2d252757f09160703e52588f27f1fb312.mp4",
+  "mime": "video/mp4",
+  "size": 460837,
+  "hash": "sha256:3fda2e8dd2ff3825839aa1bf070d1ae2d252757f09160703e52588f27f1fb312",
+  "meta": {
+    "width": 1080,
+    "height": 1920,
+    "duration": 2.67,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "node_template_render",
+    "runId": "run_1794015308_39d2c9",
+    "provider": "local",
+    "model": "template:shorts-fact-v1",
+    "params": {
+      "platform": "shorts",
+      "audioSource": "voice_audio",
+      "slotsFromSample": [],
+      "warnings": [
+        "hyperframes check: {\"ok\": false, \"details\": {\"ok\": false, \"strict\": false, \"browserSkipped\": false, \"lint\": {\"ok\": true, \"errorCount\": 0, \"warningCount\": 3, \"infoCount\": 0, \"findings\": [{\"code\": \"gsap_infinite_repeat\", \"severity\": \"warning\", \"message\": \"GSAP tween uses `repeat: -1` (infinite), but the composition declares a finite 2.636s window. HyperFrames clips deterministic seeking and export to that explicit dur"
+      ]
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-07T01:35:28Z"
+  }
+}

@@ -1,0 +1,211 @@
+{
+  "schemaVersion": 1,
+  "id": "soc_nho",
+  "status": "proposed",
+  "proposedBy": "ai-g5",
+  "proposedAt": "2026-11-06",
+  "approvedBy": null,
+  "approvedAt": null,
+  "identity": {
+    "name": "Sóc Nhỏ (Bi)",
+    "promptName": "Bi",
+    "aliases": [
+      "Sóc Bi",
+      "Bi",
+      "Sóc Nhỏ"
+    ],
+    "species": "Sóc đỏ Bắc Âu (Red Squirrel)",
+    "speciesEn": "3D Pixar-style red squirrel boy",
+    "ageYears": 4.5,
+    "role": "main",
+    "heightCm": 100.0,
+    "scaleRatio": 1.0,
+    "weightKg": 15.0,
+    "headBodyRatio": "1 : 4.0 (Đầu = 25cm, Thân & Chân = 75cm)",
+    "headBodyRatioEn": "1:4, slim, flat tummy",
+    "scaleNote": "Mốc chuẩn 1.0x (100 cm). Cao ngang cằm Dê Bông (115 cm), thấp hơn Cún Lu 5 cm, cao hơn Mèo Mimi 5 cm, đỉnh đầu Dê Mun chạm mũi Bi.",
+    "relativeHeights": {
+      "bac_voi": 0.56,
+      "cho_lu": 0.95,
+      "co_huou_sao": 0.62,
+      "de_bong": 0.87,
+      "de_mun": 1.18,
+      "koala": 0.67,
+      "me_soc": 0.69,
+      "meo_mimi": 1.05,
+      "ong_de_rau_bac": 0.65
+    }
+  },
+  "locked": {
+    "palette": {
+      "primary_fur": {
+        "hex": [
+          "#D96B27"
+        ],
+        "en": "fur",
+        "note": "#D96B27 (Cam nâu đất ấm - Warm Terracotta Orange)"
+      },
+      "secondary_fur": {
+        "hex": [
+          "#F7E1C6"
+        ],
+        "en": "cream fur",
+        "note": "#F7E1C6 (Kem sữa sáng ở má, cằm, bụng - Soft Cream)"
+      },
+      "eyes": {
+        "hex": [
+          "#1A1110"
+        ],
+        "en": "eyes",
+        "note": "#1A1110 (Đen nhánh to tròn có đốm sáng trắng lớn - Glossy Obsidian)"
+      },
+      "nose": {
+        "hex": [
+          "#3D2314"
+        ],
+        "en": "nose",
+        "note": "#3D2314 (Nâu hạt dẻ sẫm hình tam giác nhỏ)"
+      },
+      "shirt": {
+        "hex": [
+          "#FFD43B"
+        ],
+        "en": "shirt",
+        "note": "#FFD43B (Áo thun cổ tròn màu vàng nắng ấm - Sunny Yellow)"
+      },
+      "pants": {
+        "hex": [
+          "#22252A"
+        ],
+        "en": "pants",
+        "note": "#22252A (Quần short vải kaki mềm màu đen than - Charcoal Black)"
+      },
+      "shoes": {
+        "hex": [
+          "#2B2D42",
+          "#FFFFFF"
+        ],
+        "en": "shoes",
+        "note": "#2B2D42 & #FFFFFF (Giày sneaker tối màu, đế cao su trắng dày)"
+      }
+    },
+    "swatches": [
+      "#D96B27",
+      "#F7E1C6",
+      "#FFD43B",
+      "#22252A",
+      "#3D2314"
+    ],
+    "features": [
+      {
+        "vi": "đuôi bông xù lớn cong chữ S, cao bằng lưng",
+        "en": "big fluffy S-curved bushy tail as tall as his back"
+      },
+      {
+        "vi": "tai dựng, chóp lông nhỏ",
+        "en": "upright tufted squirrel ears"
+      },
+      {
+        "vi": "má, cằm, bụng màu kem; hai răng cửa trắng nhỏ khi cười",
+        "en": "soft cream cheeks and chest, two small white front teeth when smiling"
+      },
+      {
+        "vi": "mắt đen to tròn có đốm sáng trắng",
+        "en": "large glossy black eyes with white highlights"
+      },
+      {
+        "vi": "thân thon, bụng phẳng",
+        "en": "slim agile build, flat tummy"
+      }
+    ],
+    "defaultOutfit": {
+      "vi": "áo thun cổ tròn vàng nắng, quần short đen than, giày sneaker tối màu đế trắng",
+      "en": "bright sunny yellow crew-neck t-shirt, charcoal black shorts, dark sneakers with white rubber soles"
+    },
+    "promptLock": "3D Pixar-style cute anthropomorphic red squirrel boy named Bi, 4.5 years old, exact height 100cm (1.0x reference scale, head-to-body ratio 1:4, slim agile build, flat tummy, NO chubby belly), warm terracotta orange-brown fur (#D96B27) with soft cream cheeks and chest (#F7E1C6), large glossy black eyes (#1A1110) with expressive eyebrows, upright tufted squirrel ears, big fluffy S-curved bushy tail as tall as his back, wearing a bright sunny yellow crew-neck t-shirt (#FFD43B), charcoal black shorts (#22252A), and dark sneakers with white rubber soles, ultra-detailed soft fur texture, warm cinematic lighting"
+  },
+  "forbidden": [
+    {
+      "vi": "bụng phệ, béo tròn",
+      "en": "chubby belly, fat round body, potbelly"
+    },
+    {
+      "vi": "lùn tịt như thú nhồi bông biến dạng",
+      "en": "stubby plush-toy proportions, oversized head"
+    },
+    {
+      "vi": "đuôi quá ngắn hoặc mảnh",
+      "en": "short thin tail, tail missing"
+    },
+    {
+      "vi": "đổi trang phục mặc định khi kịch bản không yêu cầu",
+      "en": "different outfit, different t-shirt color"
+    },
+    {
+      "vi": "lông lạc tông (xám, vàng nhạt, nâu sẫm)",
+      "en": "grey fur, pale yellow fur, dark brown fur"
+    }
+  ],
+  "references": {
+    "front": {
+      "file": "soc_nho_11.png",
+      "note": "đứng chính diện, tay chống hông, nền đơn giản"
+    },
+    "three_quarter": {
+      "file": "soc_nho_02.png",
+      "note": "3/4, một tay chống hông, một tay vẫy"
+    },
+    "profile": {
+      "file": "soc_nho_10.png",
+      "note": "thân nghiêng ngang (dáng đi), thấy rõ đuôi và áo"
+    },
+    "back": {
+      "file": "soc_nho_04.png",
+      "note": "quay lưng/3/4 sau, thấy đuôi to"
+    },
+    "full_body": {
+      "file": "soc_nho_01.png",
+      "note": "toàn thân, vẫy tay, nền đơn giản"
+    },
+    "closeup": {
+      "file": "soc_nho_05.png",
+      "note": "cận mặt, cười, thấy rõ mắt/răng/má"
+    },
+    "action": {
+      "file": "soc_nho_07.png",
+      "note": "chạy ngang, dùng cho shot chuyển động"
+    },
+    "expressions": {
+      "happy": {
+        "file": "soc_nho_14.png",
+        "note": "cười tươi, giơ ngón cái"
+      },
+      "surprised": {
+        "file": "soc_nho_06.png",
+        "note": "ngạc nhiên, hai tay áp má"
+      },
+      "sad": {
+        "file": "soc_nho_15.png",
+        "note": "lo lắng/ngại, tay đưa lên miệng; gần nhất với buồn hoặc sợ"
+      }
+    }
+  },
+  "gaps": [
+    {
+      "role": "expression:angry",
+      "reason": "bộ ảnh hiện có không có ảnh giận; shot giận dùng closeup + prompt biểu cảm"
+    }
+  ],
+  "excludedFromRefs": [
+    "_dna_sheet.png"
+  ],
+  "voice": {
+    "voiceId": "soc-nho",
+    "note": "Giọng bé trai 4.5 tuổi, trong trẻo, lanh lợi, giàu năng lượng, đôi khi hơi vội vàng.",
+    "defaultTempo": 1.1
+  },
+  "scoring": {
+    "threshold": 0.7,
+    "maxRegenerations": 2
+  }
+}

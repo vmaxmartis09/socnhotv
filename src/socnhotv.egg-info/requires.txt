@@ -1,0 +1,15 @@
+torch
+torchaudio
+faster-whisper
+imageio-ffmpeg
+edge-tts
+numpy
+soundfile
+fastapi
+uvicorn
+pydantic
+sse-starlette
+pillow
+pyyaml
+pytest
+httpx

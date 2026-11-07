@@ -1,0 +1,31 @@
+{
+  "id": "art_75d6c1bf6437",
+  "kind": "audio",
+  "uri": "assets/75d6c1bf64370a99c8354a5c34ff7edd5711b916b75d2dde9b8ae39cf8017d09.mp3",
+  "mime": "audio/mp3",
+  "size": 117280,
+  "hash": "sha256:75d6c1bf64370a99c8354a5c34ff7edd5711b916b75d2dde9b8ae39cf8017d09",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 4.83,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "prebuild_voice",
+    "runId": "prebuild_ep02-mun-so-bong-toi",
+    "provider": "omnivoice",
+    "model": "omnivoice",
+    "params": {
+      "text": "Á! Ôi thôi… Sao lại bị như thế này rồi?!",
+      "voiceId": "vn-be-04",
+      "tempo": 1.0,
+      "targetLufs": -14.0,
+      "mastering": "deesser+presence3.2k+comp4:1+loudnorm-14LUFS"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T10:32:23Z"
+  }
+}

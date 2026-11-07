@@ -1,0 +1,19 @@
+{
+  "profile_id": "vn-chung-nu-03",
+  "speaker_name": "vn-chung-nu-03",
+  "dialect": "north",
+  "style": "default",
+  "engine": "omnivoice",
+  "duration": 4.97,
+  "transcript": "Khi tìm thấy, chú cần thật lấy mặt về và cất trong khò.",
+  "default_greeting": "Xin chào, mình là Sóc Nhỏ TV đây nè, chúc cả nhà một ngày thật vui!",
+  "created_at": "2026-11-05T15:56:37+00:00",
+  "files": {
+    "prompt": "omnivoice_prompt.pt",
+    "ref_slice": "reference_clean_slice.wav",
+    "transcript": "reference_transcript.txt",
+    "full_clean": "raw_extracted_clean.wav",
+    "source_preview": "source_original_preview.mp3",
+    "cloned_sample": "cloned_default_sample.mp3"
+  }
+}

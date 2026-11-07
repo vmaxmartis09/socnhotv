@@ -1,0 +1,29 @@
+{
+  "id": "art_d3c1925c6c5e",
+  "kind": "audio",
+  "uri": "assets/d3c1925c6c5e8e744c3999ace2f074074459524ac0acefe6b7f171798feb78b1.wav",
+  "mime": "audio/wav",
+  "size": 274786,
+  "hash": "sha256:d3c1925c6c5e8e744c3999ace2f074074459524ac0acefe6b7f171798feb78b1",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 6.23,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "c_de_mun",
+    "runId": "run_1793955808_42cc43",
+    "provider": "mock",
+    "model": "mock-omnivoice-v1",
+    "params": {
+      "text": "🎵 Hít vào ngửi hoa thơm, thở ra chong chóng quay! 'Xòe tay hít sâu, núi lửa nguội mau!' 🎵",
+      "voiceId": "vn-be-04",
+      "tempo": 1.0706
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T09:03:29Z"
+  }
+}

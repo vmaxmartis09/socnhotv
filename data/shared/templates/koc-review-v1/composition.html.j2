@@ -27,11 +27,11 @@
             <img src="assets/koc_avatar.png" class="avatar-img" alt="KOC Avatar" />
           </div>
           <div>
-            <span class="koc-name">Sóc Nhỏ TV</span>
+            <span class="koc-name">{{ data.reviewer_badge or "KOC Review" }}</span>
             <span class="verified-icon"> ✓</span>
           </div>
         </div>
-        <div class="koc-rating-badge">9.8/10 ⭐</div>
+        {% if data.rating_score %}<div class="koc-rating-badge">{{ data.rating_score }}</div>{% endif %}
       </div>
 
       <!-- Center Product Stage -->
@@ -39,8 +39,8 @@
         <div class="product-glow"></div>
         <img id="prod-img" src="assets/product.png" class="product-img" alt="Product" />
         <div class="product-meta">
-          <div class="product-name">{{ data.product.title or "Tai Nghe Gaming Sóc Nhỏ Bass Pro" }}</div>
-          <div class="product-price">490.000đ</div>
+          <div class="product-name">{{ data.product.title or "" }}</div>
+          {% if data.product.price %}<div class="product-price">{{ "{:,}".format(data.product.price | int).replace(",", ".") }}đ</div>{% endif %}
         </div>
       </div>
 
@@ -54,14 +54,14 @@
 
       <!-- Pros and Cons Review Card -->
       <div id="review-card" class="review-card clip" data-start="2.0" data-duration="{{ total_duration - 2.0 }}" data-track-index="2">
-        <div class="pros-box">
+        {% if data.pros_text %}<div class="pros-box">
           <span>✓</span>
-          <span>{{ data.pros_text or "Âm bass chắc khỏe, pin trâu 30 tiếng liên tục" }}</span>
-        </div>
-        <div class="cons-box">
+          <span>{{ data.pros_text }}</span>
+        </div>{% endif %}
+        {% if data.cons_text %}<div class="cons-box">
           <span>✗</span>
-          <span>{{ data.cons_text or "Hộp sạc hơi to một chút khi bỏ túi" }}</span>
-        </div>
+          <span>{{ data.cons_text }}</span>
+        </div>{% endif %}
       </div>
 
       <audio id="audio-voiceover" class="clip" src="{{ voiceover_src or 'assets/voiceover.mp3' }}" data-start="0" data-duration="{{ total_duration }}" data-track-index="4"></audio>

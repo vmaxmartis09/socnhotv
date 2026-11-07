@@ -1,0 +1,17 @@
+{
+  "id": "vn-nam-nam-02",
+  "display_name": "Nam miền Nam 2",
+  "aliases": [],
+  "engine": "omnivoice",
+  "lang": "vi",
+  "dialect": "south",
+  "gender": "male",
+  "sample_paths": [
+    "cloned_default_sample.mp3"
+  ],
+  "loudness": -14.0,
+  "status": "ready",
+  "consent_note": "Mẫu lấy từ YouTube https://www.youtube.com/watch?v=5hRtAax4Sb8 — người dùng quyết định dùng nội bộ cho giọng nhân vật, chưa xin phép chủ giọng.",
+  "source_url": "https://www.youtube.com/watch?v=5hRtAax4Sb8",
+  "created_at": "2026-11-05T22:55:45.594378"
+}

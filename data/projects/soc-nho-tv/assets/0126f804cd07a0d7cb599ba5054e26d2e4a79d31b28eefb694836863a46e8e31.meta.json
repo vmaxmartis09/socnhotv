@@ -1,0 +1,29 @@
+{
+  "id": "art_0126f804cd07",
+  "kind": "audio",
+  "uri": "assets/0126f804cd07a0d7cb599ba5054e26d2e4a79d31b28eefb694836863a46e8e31.wav",
+  "mime": "audio/wav",
+  "size": 388564,
+  "hash": "sha256:0126f804cd07a0d7cb599ba5054e26d2e4a79d31b28eefb694836863a46e8e31",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 8.81,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "c_me_soc",
+    "runId": "run_1793952339_4e35d7",
+    "provider": "mock",
+    "model": "mock-omnivoice-v1",
+    "params": {
+      "text": "Bí quyết của mẹ là 'Thở năm ngón tay'! Con xòe bàn tay trái ra, hít vào thơm như ngửi hoa, thở ra êm như thổi chong chóng nhé!",
+      "voiceId": "vn-nam-nu-01",
+      "tempo": 1.0968
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T08:05:39Z"
+  }
+}

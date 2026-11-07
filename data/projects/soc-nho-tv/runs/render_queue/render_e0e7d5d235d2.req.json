@@ -1,0 +1,24 @@
+{
+  "project_id": "soc-nho-tv",
+  "template_id": "shorts-fact-v1",
+  "platforms": [
+    "shorts",
+    "tiktok",
+    "reels"
+  ],
+  "data": {
+    "fact_question": "BẠN CÓ BIẾT?",
+    "stat_number": "100%",
+    "fact_statement": "Mỗi ngày đánh răng 2 lần giúp các bạn nhỏ có hàm răng chắc khỏe như Sóc Bi!",
+    "follow_cta": "Đăng ký kênh YouTube Sóc Nhỏ TV ngay nhé!",
+    "auto_draft": true,
+    "title": "Shorts 2 - ep_e2e_draft_test"
+  },
+  "voice": {
+    "voice_id": null,
+    "script": null,
+    "audio_path": "/Volumes/Data/socnhotv/data/projects/soc-nho-tv/output/ep_e2e_draft_test/audio/episode_master_voice.mp3"
+  },
+  "source_ref": null,
+  "output_name": "ep_e2e_draft_test_short_02"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "art_279486107985",
+  "kind": "audio",
+  "uri": "assets/2794861079857f1fc063a4227053fe0bc1f43790c821df0ee1624d67ca3691cf.mp3",
+  "mime": "audio/mp3",
+  "size": 119161,
+  "hash": "sha256:2794861079857f1fc063a4227053fe0bc1f43790c821df0ee1624d67ca3691cf",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 4.91,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "prebuild_voice",
+    "runId": "prebuild_ep02-mun-so-bong-toi",
+    "provider": "omnivoice",
+    "model": "omnivoice",
+    "params": {
+      "text": "Làm như vậy chẳng vui chút nào cả… Tim mình đang đập nhanh quá!",
+      "voiceId": "vn-be-04",
+      "tempo": 1.0,
+      "targetLufs": -14.0,
+      "mastering": "deesser+presence3.2k+comp4:1+loudnorm-14LUFS"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T10:57:18Z"
+  }
+}

@@ -6,26 +6,23 @@
   "size": 314318,
   "hash": "sha256:71185678d83cb534675c6e9a7ee746a2e284199e89c8cae92c104b761fbbb046",
   "meta": {
-    "width": 1080,
-    "height": 1920,
+    "width": null,
+    "height": null,
     "duration": null,
     "fps": null,
-    "aspect": "9:16"
+    "aspect": null
   },
   "provenance": {
-    "nodeId": "c",
-    "runId": "run_1793860780_993394",
-    "provider": "mock",
-    "model": "mock-image-v1",
+    "nodeId": "node_cast_mw542014",
+    "runId": "run_1794016061_ac215a",
+    "provider": "local",
+    "model": "master_dna",
     "params": {
-      "prompt": "Master DNA character panel for soc_nho",
-      "aspectRatio": "9:16",
-      "resolution": "1080p",
-      "index": 1,
-      "seed": null
+      "characterId": "soc_nho",
+      "file": "soc_nho_01.png"
     },
     "inputHashes": [],
     "costUsd": 0.0,
-    "createdAt": "2026-11-05T06:39:40Z"
+    "createdAt": "2026-11-07T01:47:41Z"
   }
 }

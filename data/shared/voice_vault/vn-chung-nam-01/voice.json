@@ -1,0 +1,17 @@
+{
+  "id": "vn-chung-nam-01",
+  "display_name": "Nam phổ thông 1",
+  "aliases": [],
+  "engine": "omnivoice",
+  "lang": "vi",
+  "dialect": "unknown",
+  "gender": "male",
+  "sample_paths": [
+    "cloned_default_sample.mp3"
+  ],
+  "loudness": -14.0,
+  "status": "ready",
+  "consent_note": "Mẫu lấy từ YouTube https://www.youtube.com/watch?v=CtJX8Id0yL4 — người dùng quyết định dùng nội bộ cho giọng nhân vật, chưa xin phép chủ giọng.",
+  "source_url": "https://www.youtube.com/watch?v=CtJX8Id0yL4",
+  "created_at": "2026-11-05T22:58:10.221910"
+}

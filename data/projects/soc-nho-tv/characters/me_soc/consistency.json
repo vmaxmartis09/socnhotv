@@ -1,0 +1,179 @@
+{
+  "schemaVersion": 1,
+  "id": "me_soc",
+  "status": "proposed",
+  "proposedBy": "ai-g5",
+  "proposedAt": "2026-11-06",
+  "approvedBy": null,
+  "approvedAt": null,
+  "identity": {
+    "name": "Mẹ Sóc (Mẹ của Bi)",
+    "promptName": "Me Soc",
+    "aliases": [
+      "Mẹ Sóc"
+    ],
+    "species": "Sóc đỏ trưởng thành (Adult Red Squirrel Mother)",
+    "speciesEn": "3D Pixar-style adult mother red squirrel",
+    "ageYears": 32.0,
+    "role": "supporting",
+    "heightCm": 145.0,
+    "scaleRatio": 1.45,
+    "weightKg": 32.0,
+    "headBodyRatio": "1 : 5.2 (Tỉ lệ người lớn hiền hậu)",
+    "headBodyRatioEn": "1:5.2, slender maternal build",
+    "scaleNote": "Cao 145 cm (1.45x). Đỉnh đầu Sóc Bi (100 cm) chạm đúng ngực Mẹ Sóc.",
+    "relativeHeights": {
+      "bac_voi": 0.81,
+      "cho_lu": 1.38,
+      "co_huou_sao": 0.91,
+      "de_bong": 1.26,
+      "de_mun": 1.71,
+      "koala": 0.97,
+      "meo_mimi": 1.53,
+      "ong_de_rau_bac": 0.94,
+      "soc_nho": 1.45
+    }
+  },
+  "locked": {
+    "palette": {
+      "primary_fur": {
+        "hex": [
+          "#C85A32"
+        ],
+        "en": "fur",
+        "note": "#C85A32 (Nâu đỏ quế trầm ấm hơn Bi - Warm Cinnamon Russet)"
+      },
+      "secondary_fur": {
+        "hex": [
+          "#F7E1C6"
+        ],
+        "en": "cream fur",
+        "note": "#F7E1C6 (Kem ấm ở má, cổ và bụng)"
+      },
+      "eyes": {
+        "hex": [
+          "#3E2723"
+        ],
+        "en": "eyes",
+        "note": "#3E2723 (Nâu hạt dẻ dịu dàng, hàng mi cong nhẹ)"
+      },
+      "dress": {
+        "hex": [
+          "#8FBC8F"
+        ],
+        "en": "dress",
+        "note": "#8FBC8F (Váy dài vải lanh màu xanh xô thơm dịu mắt - Sage Green Linen Dress)"
+      },
+      "apron": {
+        "hex": [
+          "#FFFDD0"
+        ],
+        "en": "apron",
+        "note": "#FFFDD0 (Tạp dề vải thô màu kem sữa có thêu hình hạt dẻ nâu ở túi trước)"
+      },
+      "shoes": {
+        "hex": [
+          "#6D4C41"
+        ],
+        "en": "shoes",
+        "note": "#6D4C41 (Giày bệt vải mềm màu nâu đất)"
+      }
+    },
+    "swatches": [
+      "#C85A32",
+      "#F7E1C6",
+      "#8FBC8F",
+      "#FFFDD0",
+      "#6D4C41"
+    ],
+    "features": [
+      {
+        "vi": "đuôi sóc bông xù lớn cong mềm",
+        "en": "large graceful bushy tail"
+      },
+      {
+        "vi": "tai dựng có chóp lông",
+        "en": "tufted upright squirrel ears"
+      },
+      {
+        "vi": "tạp dề kem thêu hạt dẻ ở túi trước",
+        "en": "cream apron with embroidered chestnut on the front pocket"
+      },
+      {
+        "vi": "má và cổ kem, mắt nâu hạt dẻ hiền, mi cong",
+        "en": "cream cheeks and throat, kind chestnut-brown eyes with soft lashes"
+      }
+    ],
+    "defaultOutfit": {
+      "vi": "váy dài lanh xanh xô thơm, tạp dề kem thêu hạt dẻ, giày bệt nâu đất",
+      "en": "long sage-green linen dress, cream apron with chestnut embroidery, earth-brown flat shoes"
+    },
+    "promptLock": "3D Pixar-style gentle anthropomorphic adult mother red squirrel named Me Soc, exact height 145cm (1.45x scale, Bi's head reaches her chest, head-to-body ratio 1:5.2, slender maternal build), warm cinnamon-russet fur (#C85A32) with soft cream cheeks and throat (#F7E1C6), kind chestnut-brown eyes (#3E2723), tufted squirrel ears, large graceful bushy tail, wearing a soft sage-green linen midi dress (#8FBC8F) with rolled sleeves, a cream cotton apron (#FFFDD0) embroidered with a cute brown acorn on the front pocket, and brown flat shoes (#6D4C41), warm cozy home lighting"
+  },
+  "forbidden": [
+    {
+      "vi": "thiếu tạp dề hoặc thiếu hạt dẻ thêu",
+      "en": "no apron, apron without chestnut embroidery"
+    },
+    {
+      "vi": "váy khác màu xanh xô thơm",
+      "en": "red dress, blue dress, non-sage-green dress"
+    },
+    {
+      "vi": "cao ngang hoặc thấp hơn Bi, dáng như trẻ con",
+      "en": "child proportions, same height as a child"
+    },
+    {
+      "vi": "đuôi quá ngắn",
+      "en": "short thin tail"
+    },
+    {
+      "vi": "lông cam sáng như Bi (Mẹ là nâu đỏ quế)",
+      "en": "bright orange fur like a child squirrel"
+    }
+  ],
+  "references": {
+    "front": {
+      "file": "me_soc_02.png",
+      "note": "đứng chính diện, hai tay đan trước tạp dề"
+    },
+    "three_quarter": {
+      "file": "me_soc_03.png",
+      "note": "3/4, đuôi bên trái"
+    },
+    "back": {
+      "file": "me_soc_04.png",
+      "note": "quay lưng, thấy đuôi và nơ tạp dề"
+    },
+    "full_body": {
+      "file": "me_soc_01.png",
+      "note": "toàn thân, vẫy tay"
+    },
+    "closeup": {
+      "file": "me_soc_05.png",
+      "note": "cận mặt, cười nhẹ"
+    }
+  },
+  "gaps": [
+    {
+      "role": "profile",
+      "reason": "chưa có ảnh nghiêng 90 độ; dùng three_quarter làm dự phòng"
+    },
+    {
+      "role": "expressions",
+      "reason": "bộ ảnh chỉ có nụ cười hiền; chưa có buồn/ngạc nhiên/giận"
+    }
+  ],
+  "excludedFromRefs": [
+    "_dna_sheet.png"
+  ],
+  "voice": {
+    "voiceId": "vn-nam-nu-01",
+    "note": "Giọng phụ nữ trẻ ấm áp, dịu dàng, truyền cảm, luôn kiên nhẫn lắng nghe con.",
+    "defaultTempo": 1.0
+  },
+  "scoring": {
+    "threshold": 0.7,
+    "maxRegenerations": 2
+  }
+}

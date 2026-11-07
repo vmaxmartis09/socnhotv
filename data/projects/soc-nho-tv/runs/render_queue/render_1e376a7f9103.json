@@ -1,0 +1,12 @@
+{
+  "job_id": "render_1e376a7f9103",
+  "project_id": "soc-nho-tv",
+  "status": "done",
+  "outputs": {
+    "shorts": "output/ep_e2e_draft_test_short_03/shorts.mp4",
+    "tiktok": "output/ep_e2e_draft_test_short_03/tiktok.mp4",
+    "reels": "output/ep_e2e_draft_test_short_03/reels.mp4"
+  },
+  "error": null,
+  "created_at": "2026-11-04T16:00:18.024848+00:00"
+}

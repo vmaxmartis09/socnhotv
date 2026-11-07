@@ -1,0 +1,203 @@
+{
+  "schemaVersion": 1,
+  "id": "de_bong",
+  "status": "proposed",
+  "proposedBy": "ai-g5",
+  "proposedAt": "2026-11-06",
+  "approvedBy": null,
+  "approvedAt": null,
+  "identity": {
+    "name": "Dê Bông (Anh Cả)",
+    "promptName": "De Bong",
+    "aliases": [
+      "Dê Bông",
+      "Bông"
+    ],
+    "species": "Dê trắng núi (White Mountain Goat)",
+    "speciesEn": "3D Pixar-style 6-year-old white goat boy",
+    "ageYears": 6.0,
+    "role": "main",
+    "heightCm": 115.0,
+    "scaleRatio": 1.15,
+    "weightKg": 20.0,
+    "headBodyRatio": "1 : 4.2 (Đầu = 27cm, Thân & Chân = 88cm)",
+    "headBodyRatioEn": "1:4.2",
+    "scaleNote": "Cao nhất nhóm trẻ (115 cm, 1.15x). Đỉnh đầu Sóc Bi (100 cm) chạm cằm Dê Bông; cao hơn Cún Lu 10 cm, cao hơn em ruột Dê Mun 30 cm.",
+    "relativeHeights": {
+      "bac_voi": 0.64,
+      "cho_lu": 1.1,
+      "co_huou_sao": 0.72,
+      "de_mun": 1.35,
+      "koala": 0.77,
+      "me_soc": 0.79,
+      "meo_mimi": 1.21,
+      "ong_de_rau_bac": 0.74,
+      "soc_nho": 1.15
+    }
+  },
+  "locked": {
+    "palette": {
+      "primary_fur": {
+        "hex": [
+          "#F9FAFB"
+        ],
+        "en": "fur",
+        "note": "#F9FAFB (Trắng bông tuyết xoăn nhẹ như mây - Cloud White Wool)"
+      },
+      "secondary_fur": {
+        "hex": [
+          "#FFE5EC"
+        ],
+        "en": "cream fur",
+        "note": "#FFE5EC (Hồng phấn nhẹ ở lòng tai và má - Soft Blush Pink)"
+      },
+      "horns": {
+        "hex": [
+          "#F3E5AB"
+        ],
+        "en": "horns",
+        "note": "#F3E5AB (Sừng ngắn bo tròn màu kem bơ ấm - Buttercream Horns)"
+      },
+      "eyes": {
+        "hex": [
+          "#5D4037"
+        ],
+        "en": "eyes",
+        "note": "#5D4037 (Nâu hạt dẻ trầm ấm, ánh nhìn điềm tĩnh - Warm Chestnut Brown)"
+      },
+      "shirt": {
+        "hex": [
+          "#FFFFFF",
+          "#1B365D"
+        ],
+        "en": "shirt",
+        "note": "#FFFFFF & #1B365D (Áo thun sọc ngang trắng - xanh navy bên trong)"
+      },
+      "overalls": {
+        "hex": [
+          "#5C9CE6"
+        ],
+        "en": "overalls",
+        "note": "#5C9CE6 (Quần yếm jean màu xanh da trời nhạt có 2 cúc gỗ - Sky Denim Overalls)"
+      },
+      "accessory": {
+        "hex": [
+          "#4CAF50",
+          "#8D6E63"
+        ],
+        "en": "notebook",
+        "note": "#4CAF50 (Sổ tay bìa xanh lá cây cài ở túi ngực yếm) & Sandal da nâu (#8D6E63)"
+      }
+    },
+    "swatches": [
+      "#F9FAFB",
+      "#F3E5AB",
+      "#5C9CE6",
+      "#1B365D",
+      "#4CAF50"
+    ],
+    "features": [
+      {
+        "vi": "lông trắng xoăn bông như mây ở đầu, má và tay",
+        "en": "fluffy curly cloud-white wool"
+      },
+      {
+        "vi": "hai sừng ngắn bo tròn màu kem bơ",
+        "en": "two short rounded buttercream horns"
+      },
+      {
+        "vi": "lòng tai hồng phấn",
+        "en": "soft blush-pink inner ears"
+      },
+      {
+        "vi": "sổ tay bìa xanh lá cài ở túi ngực yếm",
+        "en": "small green notebook in the overalls chest pocket"
+      }
+    ],
+    "defaultOutfit": {
+      "vi": "áo thun sọc ngang trắng-navy, yếm jean xanh da trời có 2 cúc gỗ, sandal da nâu",
+      "en": "navy-and-white striped t-shirt, sky-blue denim overalls with two wooden buttons, brown leather sandals"
+    },
+    "promptLock": "3D Pixar-style cute anthropomorphic white goat boy named De Bong, 6 years old, exact height 115cm (1.15x scale, tallest child in group, head-to-body ratio 1:4.2, sturdy gentle build), fluffy cloud-white curly wool fur (#F9FAFB) with soft pink inner ears (#FFE5EC), short rounded buttercream horns (#F3E5AB), warm chestnut brown eyes (#5D4037), wearing a navy-and-white striped t-shirt under light sky-blue denim overalls (#5C9CE6) with wooden buttons, a small green notebook (#4CAF50) peeking from the chest pocket, and brown leather sandals (#8D6E63), soft 3D fur rendering, warm sunlight"
+  },
+  "forbidden": [
+    {
+      "vi": "thiếu hai sừng ngắn màu kem",
+      "en": "no horns, long curved horns"
+    },
+    {
+      "vi": "lông thẳng thay vì xoăn bông",
+      "en": "straight smooth hair, grey fur"
+    },
+    {
+      "vi": "thấp bằng hoặc thấp hơn Bi và Lu",
+      "en": "short child, same height as the other kids"
+    },
+    {
+      "vi": "yếm khác màu jean xanh nhạt",
+      "en": "dark denim, black overalls, different outfit"
+    },
+    {
+      "vi": "thiếu sổ tay xanh lá",
+      "en": "no green notebook"
+    }
+  ],
+  "references": {
+    "front": {
+      "file": "de_bong_02.png",
+      "note": "đứng gần chính diện, tay buông"
+    },
+    "three_quarter": {
+      "file": "de_bong_01.png",
+      "note": "3/4, vẫy tay"
+    },
+    "back": {
+      "file": "de_bong_03.png",
+      "note": "quay lưng, thấy yếm và sandal"
+    },
+    "full_body": {
+      "file": "de_bong_01.png",
+      "note": "toàn thân (cùng ảnh 3/4)"
+    },
+    "closeup": {
+      "file": "de_bong_04.png",
+      "note": "cận mặt, cười, thấy rõ sừng và len xoăn"
+    },
+    "action": {
+      "file": "de_bong_07.png",
+      "note": "chạy (3/4)"
+    },
+    "expressions": {
+      "surprised": {
+        "file": "de_bong_06.png",
+        "note": "ngạc nhiên, miệng chữ O, hai tay buông"
+      }
+    }
+  },
+  "gaps": [
+    {
+      "role": "profile",
+      "reason": "chưa có ảnh nghiêng 90 độ; dùng three_quarter làm dự phòng"
+    },
+    {
+      "role": "expression:sad",
+      "reason": "chưa có ảnh buồn; dùng closeup + prompt biểu cảm"
+    },
+    {
+      "role": "note",
+      "reason": "script.json Tập 2 nhắc 'chùm râu cằm nhỏ màu trắng' nhưng ảnh DNA không thấy rõ; chưa khoá vào đặc điểm"
+    }
+  ],
+  "excludedFromRefs": [
+    "_dna_sheet.png"
+  ],
+  "voice": {
+    "voiceId": "vn-be-01",
+    "note": "Giọng bé trai 6 tuổi ấm áp, điềm đạm, rõ chữ, chững chạc như anh cả.",
+    "defaultTempo": 1.0
+  },
+  "scoring": {
+    "threshold": 0.7,
+    "maxRegenerations": 2
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "id": "art_d05b562c118c",
+  "kind": "audio",
+  "uri": "assets/d05b562c118c875a9b99fe81466fcdfa9b7b58135a7829bcdf7290c8ac717b73.mp3",
+  "mime": "audio/mp3",
+  "size": 222606,
+  "hash": "sha256:d05b562c118c875a9b99fe81466fcdfa9b7b58135a7829bcdf7290c8ac717b73",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 9.209,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "voice_say",
+    "runId": "say",
+    "provider": "omnivoice",
+    "model": "omnivoice",
+    "params": {
+      "text": "Mình thử chiếc quần short này nhé. Form đứng, chất vải mềm, rất dễ phối. Chi tiết và giá mình để ở giỏ hàng nha.",
+      "voiceId": "koc-lyly",
+      "tempo": 1.05,
+      "targetLufs": -14.0,
+      "mastering": "deesser+presence3.2k+comp4:1+loudnorm-14LUFS"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-07T08:30:52Z"
+  }
+}

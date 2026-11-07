@@ -1,0 +1,27 @@
+{
+  "id": "art_f8e220ab2d14",
+  "kind": "audio",
+  "uri": "assets/f8e220ab2d14cc0866e41fd0810dbedaa191d4c986699e79f90fddc2137d07fc.mp3",
+  "mime": "audio/mp3",
+  "size": 406124,
+  "hash": "sha256:f8e220ab2d14cc0866e41fd0810dbedaa191d4c986699e79f90fddc2137d07fc",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 8.46,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "n_cast",
+    "runId": "run_h1_test",
+    "provider": "local",
+    "model": "omnivoice",
+    "params": {
+      "shotId": "S04"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T12:18:44Z"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "id": "art_c6e0559fb8c0",
+  "kind": "audio",
+  "uri": "assets/c6e0559fb8c055a70a18ce4a64f113e7e38236f35b2b66a34ed598e27a8858c0.wav",
+  "mime": "audio/wav",
+  "size": 279196,
+  "hash": "sha256:c6e0559fb8c055a70a18ce4a64f113e7e38236f35b2b66a34ed598e27a8858c0",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 6.33,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "c_soc_nho",
+    "runId": "run_1793968037_2140cd",
+    "provider": "mock",
+    "model": "mock-omnivoice-v1",
+    "params": {
+      "text": "Ơ… Mun khóc mất rồi… Sao lúc nãy bụng Bi nóng quá làm Bi lỡ quát em thế nhỉ?",
+      "voiceId": "soc-nho",
+      "tempo": 1.0
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T12:27:17Z"
+  }
+}

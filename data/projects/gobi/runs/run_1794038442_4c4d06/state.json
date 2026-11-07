@@ -1,0 +1,94 @@
+{
+  "runId": "run_1794038442_4c4d06",
+  "id": "run_1794038442_4c4d06",
+  "projectId": "gobi",
+  "status": "completed",
+  "mode": "all",
+  "runPolicy": {
+    "image": "mock",
+    "video": "off",
+    "text": "mock",
+    "voice": "local"
+  },
+  "stage": "Hoàn tất xuất sắc",
+  "currentNodeId": null,
+  "progress": 1.0,
+  "progressPct": 100,
+  "startedAtTs": 1794038442.3114529,
+  "createdAt": "2026-11-07T08:00:42Z",
+  "updatedAt": "2026-11-07T08:00:42Z",
+  "elapsedSec": 0.0,
+  "actualCostUsd": 0.0,
+  "costUsd": 0.0,
+  "nodes": [
+    {
+      "id": "n_char",
+      "type": "character",
+      "name": "n_char",
+      "state": "pending",
+      "progressPct": 0,
+      "error": null
+    },
+    {
+      "id": "n_room",
+      "type": "image",
+      "name": "n_room",
+      "state": "pending",
+      "progressPct": 0,
+      "error": null
+    },
+    {
+      "id": "n_prod",
+      "type": "image",
+      "name": "n_prod",
+      "state": "pending",
+      "progressPct": 0,
+      "error": null
+    },
+    {
+      "id": "n_bg",
+      "type": "bg_remove",
+      "name": "n_bg",
+      "state": "pending",
+      "progressPct": 0,
+      "error": null
+    },
+    {
+      "id": "n_tryon",
+      "type": "image_gen",
+      "name": "n_tryon",
+      "state": "pending",
+      "progressPct": 0,
+      "error": null
+    },
+    {
+      "id": "n_text",
+      "type": "text",
+      "name": "n_text",
+      "state": "pending",
+      "progressPct": 0,
+      "error": null
+    },
+    {
+      "id": "n_render",
+      "type": "template_render",
+      "name": "n_render",
+      "state": "pending",
+      "progressPct": 0,
+      "error": null
+    },
+    {
+      "id": "n_export",
+      "type": "platform_export",
+      "name": "n_export",
+      "state": "pending",
+      "progressPct": 0,
+      "error": null
+    }
+  ],
+  "totalNodes": 8,
+  "completedNodes": 0,
+  "output": null,
+  "error": null,
+  "completedAt": "2026-11-07T08:00:42Z"
+}

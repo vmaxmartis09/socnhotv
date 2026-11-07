@@ -1,0 +1,95 @@
+{
+  "version": 1,
+  "historyId": "de3d8280-7d3d-44fb-8c19-396bd9a2f1ac",
+  "currentRevision": "d44a6fa1-20ab-4f76-b9ef-4249baf972df",
+  "pendingChanges": false,
+  "files": {
+    "assets/gsap.min.js": {
+      "hash": "92bb9a96476f983d212a2bc4f54c889039c1696dd4461d40a736860938570fbb",
+      "content": "/Users/vmaxmartis/.cache/hyperframes/history/de3d8280-7d3d-44fb-8c19-396bd9a2f1ac/blobs/92/92bb9a96476f983d212a2bc4f54c889039c1696dd4461d40a736860938570fbb"
+    },
+    "assets/voiceover.mp3": {
+      "hash": "f118eced8243f5c96d03e169f26c02df99d5e19c0f66f48023467b2996aeccd1",
+      "content": "/Users/vmaxmartis/.cache/hyperframes/history/de3d8280-7d3d-44fb-8c19-396bd9a2f1ac/blobs/f1/f118eced8243f5c96d03e169f26c02df99d5e19c0f66f48023467b2996aeccd1"
+    },
+    "hyperframes.json": {
+      "hash": "bf1d99090b3effa8f9638a1c5247d7accb5cdc28484235af79cd829d8c6bdd2e",
+      "content": "/Users/vmaxmartis/.cache/hyperframes/history/de3d8280-7d3d-44fb-8c19-396bd9a2f1ac/blobs/bf/bf1d99090b3effa8f9638a1c5247d7accb5cdc28484235af79cd829d8c6bdd2e"
+    },
+    "index.html": {
+      "hash": "2957611c9769d5ac90ba475f1388779b28c32fa8ad8fe07e5536a7b473cad18c",
+      "content": "/Users/vmaxmartis/.cache/hyperframes/history/de3d8280-7d3d-44fb-8c19-396bd9a2f1ac/blobs/29/2957611c9769d5ac90ba475f1388779b28c32fa8ad8fe07e5536a7b473cad18c"
+    }
+  },
+  "revisions": {
+    "d44a6fa1-20ab-4f76-b9ef-4249baf972df": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794015300910,
+      "endedAt": 1794015300910,
+      "files": {
+        "hyperframes.json": {
+          "before": "/Users/vmaxmartis/.cache/hyperframes/history/de3d8280-7d3d-44fb-8c19-396bd9a2f1ac/blobs/9d/9d582889c8a8f6f96ab2582ae52454f1a31c8804cb36cd000e2ab8388dcdf3b1",
+          "after": "/Users/vmaxmartis/.cache/hyperframes/history/de3d8280-7d3d-44fb-8c19-396bd9a2f1ac/blobs/bf/bf1d99090b3effa8f9638a1c5247d7accb5cdc28484235af79cd829d8c6bdd2e"
+        }
+      }
+    }
+  },
+  "checks": {
+    "latest": {
+      "revision": null,
+      "id": "825f63c9-1e52-4fce-8837-5fb1aba1cc6b"
+    },
+    "revisions": {},
+    "unversioned": [
+      {
+        "id": "825f63c9-1e52-4fce-8837-5fb1aba1cc6b",
+        "scope": "project",
+        "report": "/Volumes/Data/socnhotv/data/projects/soc-nho-tv/runs/run_1794015283_ff5404/node_template_render_template/bundle/.hyperframes/artifacts/checks/825f63c9-1e52-4fce-8837-5fb1aba1cc6b.json",
+        "metadata": {
+          "ok": false,
+          "browserSkipped": false,
+          "options": {
+            "samples": 9,
+            "atTransitions": false,
+            "maxIssues": 80,
+            "collapseStatic": true,
+            "tolerance": 2,
+            "timeout": 45000,
+            "contrast": true,
+            "strict": false,
+            "snapshots": false,
+            "browserGpuMode": "auto"
+          }
+        },
+        "createdAt": 1794015300478,
+        "contentHash": "f2c49e218592bbfa50c0bcb684b1c6a443304daf968026404a6f553def46dd5f",
+        "revision": null,
+        "inputFingerprint": "e011a5b8b9f86acceccb263ea36f3f98dc199ce053e95b7d53eb461ae4e4bf18",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      }
+    ]
+  },
+  "snapshots": {
+    "latest": null,
+    "revisions": {},
+    "unversioned": []
+  },
+  "renders": {
+    "latest": {
+      "id": "4af399fb-8a02-4378-a951-0c18ecfd358e",
+      "completedAt": 1794015304737,
+      "output": "/Volumes/Data/socnhotv/data/projects/soc-nho-tv/runs/run_1794015283_ff5404/node_template_render_template/shorts-fact-v1_shorts.mp4",
+      "status": "completed",
+      "revision": "d44a6fa1-20ab-4f76-b9ef-4249baf972df"
+    },
+    "retainedRevisions": [
+      "d44a6fa1-20ab-4f76-b9ef-4249baf972df"
+    ]
+  },
+  "pendingArtifactCleanup": []
+}

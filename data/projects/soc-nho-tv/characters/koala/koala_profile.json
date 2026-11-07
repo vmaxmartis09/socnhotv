@@ -10,7 +10,7 @@
   "weight_kg": 38.0,
   "head_body_ratio": "1 : 4.8 (Dáng tròn trịa phúc hậu)",
   "scale_note": "Cao 150 cm (1.50x). Đỉnh đầu Sóc Bi (100 cm) chạm ngang ngực Bác sĩ Koala.",
-  "voice_id": "koala_doc_v1",
+  "voice_id": "koala-voice",
   "voice_description": "Giọng nam trung niên trầm ấm, chậm rãi, trấn an, giúp các bé hết sợ khi đi khám.",
   "body": {
     "height_cm": 150,
@@ -57,5 +57,18 @@
     "ep16-ban-sau-rang-tinh-nghich",
     "ep18-nuoc-loc-la-sieu-anh-hung",
     "ep20-di-kham-bac-si-koala"
+  ],
+  "cutout_images": [
+    "characters/koala/cutout/koala_01.png",
+    "characters/koala/cutout/koala_02.png",
+    "characters/koala/cutout/koala_03.png",
+    "characters/koala/cutout/koala_04.png",
+    "characters/koala/cutout/koala_05.png",
+    "characters/koala/cutout/koala_06.png",
+    "characters/koala/cutout/koala_07.png",
+    "characters/koala/cutout/koala_08.png",
+    "characters/koala/cutout/koala_09.png",
+    "characters/koala/cutout/koala_10.png",
+    "characters/koala/cutout/koala_11.png"
   ]
 }

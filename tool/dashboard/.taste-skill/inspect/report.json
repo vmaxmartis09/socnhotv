@@ -1,0 +1,1196 @@
+{
+ "url": "http://localhost:3000/studio",
+ "at": "2026-11-03T15:11:56.521Z",
+ "allow": [],
+ "viewports": [
+  {
+   "width": 1440,
+   "height": 900,
+   "load": "load",
+   "screens": 1,
+   "filled": [
+    0.83
+   ],
+   "motion": {
+    "elements": 20,
+    "css": 0,
+    "transitions": 19,
+    "scripted": 1,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "page": {
+     "height": 900,
+     "screens": 1,
+     "words": 104,
+     "img": 0,
+     "video": 0,
+     "canvas": 0,
+     "svg": 25,
+     "sections": 0,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Sóc Nhỏ TV",
+     "words": 3,
+     "chars": 10,
+     "lines": 1,
+     "size": 14,
+     "vw": 1,
+     "font": "IBM Plex Sans",
+     "weight": 400,
+     "tracking": 0,
+     "leading": 1.43,
+     "top": 14,
+     "tag": "span",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "h1": null,
+    "headings": [],
+    "headingSummary": {
+     "count": 0,
+     "maxLines": 0,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": null,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "IBM Plex Sans",
+       "share": 0.88,
+       "mono": false
+      },
+      {
+       "family": "IBM Plex Mono",
+       "share": 0.12,
+       "mono": true
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      11,
+      12,
+      14
+     ],
+     "sizeCount": 3,
+     "notLoaded": [],
+     "body": null,
+     "measureChars": null,
+     "max": {
+      "size": 14,
+      "vw": 1,
+      "font": "IBM Plex Sans",
+      "text": "AI Video Studio"
+     },
+     "monoShare": 0.12,
+     "monoProseShare": 0.12,
+     "monoFamilies": [
+      "IBM Plex Mono"
+     ],
+     "monoSamples": [
+      "Voice-id: soc-nho",
+      "Veo 8s per clip • 9:16",
+      "MP4 1080x1920 (TikTok)"
+     ],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0.01,
+     "centerShare": 0.11,
+     "smallText": 13
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#14120f",
+     "bodyBgHsl": {
+      "h": 36,
+      "s": 0.14,
+      "l": 0.07
+     },
+     "dark": true,
+     "sectionBgs": [
+      {
+       "color": "#1a1814",
+       "top": 48,
+       "hsl": {
+        "h": 40,
+        "s": 0.13,
+        "l": 0.09
+       }
+      },
+      {
+       "color": "#14120f",
+       "top": 49,
+       "hsl": {
+        "h": 36,
+        "s": 0.14,
+        "l": 0.07
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#a49e94",
+       "share": 0.59
+      },
+      {
+       "color": "#f1f0ee",
+       "share": 0.38
+      },
+      {
+       "color": "#161513",
+       "share": 0.04
+      }
+     ],
+     "button": {
+      "bg": "#2b2822",
+      "hsl": {
+       "h": 40,
+       "s": 0.12,
+       "l": 0.15
+      },
+      "fg": "#f1f0ee"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 3,
+     "inHero": 3,
+     "radius": 6,
+     "height": 28,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Studio",
+      "Reset",
+      "Run full graph"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 1,
+     "scrims": 0,
+     "gradientSamples": [
+      "div.flex-1.relative → radial-gradient(rgb(30, 41, 59) 1px, rgba(0, 0, 0, 0) 1px)"
+     ],
+     "gradientText": 0,
+     "hairlines": 4,
+     "hairlineSamples": [
+      "div.p-3.border-b 1202px",
+      "div.p-3.border-b 254px",
+      "div.p-3.border-b 254px",
+      "div.p-3.border-b 254px"
+     ],
+     "outlinedBoxes": 4,
+     "dashed": 0,
+     "blurred": 2,
+     "roundedBoxes": 4,
+     "boxRadius": 8,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": [
+      {
+       "count": 3,
+       "iconTopped": true,
+       "rounded": true,
+       "top": 429
+      }
+     ]
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 2,
+     "fixed": false,
+     "height": 727,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "ibm plex sans",
+     "ibm plex mono"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "pageH": 900,
+    "margins": {
+     "left": 18,
+     "right": 21
+    },
+    "sections": [],
+    "gaps": [
+     {
+      "top": 548,
+      "height": 276
+     }
+    ],
+    "h1s": [],
+    "edgeText": [],
+    "edges": [],
+    "leftBlocks": 0,
+    "bodySize": 12,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0.29,
+    "voidBox": {
+     "x": 180,
+     "y": 120,
+     "w": 1260,
+     "h": 300
+    }
+   },
+   "app": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "dark": true,
+    "ground": "#14120f",
+    "sidebar": {
+     "w": 228,
+     "tag": "aside",
+     "links": 6,
+     "share": 0.16
+    },
+    "topbar": {
+     "h": 48
+    },
+    "canvas": {
+     "left": 4,
+     "right": 12
+    },
+    "hero": {
+     "text": "Sóc Nhỏ TV",
+     "words": 3,
+     "chars": 10,
+     "lines": 1,
+     "size": 14,
+     "vw": 1,
+     "font": "IBM Plex Sans",
+     "weight": 400,
+     "tracking": 0,
+     "leading": 1.43,
+     "top": 14,
+     "tag": "span",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "charts": 0,
+    "layout": {
+     "panels": 1,
+     "firstScreen": 1,
+     "ragged": [],
+     "voids": []
+    },
+    "tiles": 0,
+    "panels": {
+     "count": 5,
+     "radii": [
+      [
+       8,
+       3
+      ],
+      [
+       16,
+       1
+      ],
+      [
+       0,
+       1
+      ]
+     ],
+     "heavyBorders": 2,
+     "borderSamples": [
+      "#f2eeee on #1a1814 (15.4:1)",
+      "#4cc388 on #1a1814 (7.99:1)"
+     ],
+     "heavyShadows": 0,
+     "softShadows": 0,
+     "shadowSamples": [],
+     "glass": 0
+    },
+    "chips": {
+     "count": 0,
+     "hues": 0,
+     "samples": []
+    },
+    "numbers": {
+     "cells": 0,
+     "leftAligned": 0,
+     "figures": 0,
+     "tabularShare": null,
+     "kpiMax": null
+    },
+    "rows": null,
+    "chartHues": 0,
+    "placeholders": [],
+    "type": {
+     "under13": 0.78,
+     "tiny": 0,
+     "tinySamples": [],
+     "sizes": [
+      11,
+      12,
+      14
+     ]
+    },
+    "title": null,
+    "colourShare": 0
+   },
+   "consoleErrors": []
+  },
+  {
+   "width": 768,
+   "height": 1024,
+   "load": "load",
+   "screens": 1,
+   "filled": [
+    0.74
+   ],
+   "motion": {
+    "elements": 20,
+    "css": 0,
+    "transitions": 19,
+    "scripted": 1,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "page": {
+     "height": 1024,
+     "screens": 1,
+     "words": 104,
+     "img": 0,
+     "video": 0,
+     "canvas": 0,
+     "svg": 25,
+     "sections": 0,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Sóc Nhỏ TV",
+     "words": 3,
+     "chars": 10,
+     "lines": 1,
+     "size": 14,
+     "vw": 1.8,
+     "font": "IBM Plex Sans",
+     "weight": 400,
+     "tracking": 0,
+     "leading": 1.43,
+     "top": 14,
+     "tag": "span",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "h1": null,
+    "headings": [],
+    "headingSummary": {
+     "count": 0,
+     "maxLines": 0,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": null,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "IBM Plex Sans",
+       "share": 0.88,
+       "mono": false
+      },
+      {
+       "family": "IBM Plex Mono",
+       "share": 0.12,
+       "mono": true
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      11,
+      12,
+      14
+     ],
+     "sizeCount": 3,
+     "notLoaded": [],
+     "body": null,
+     "measureChars": null,
+     "max": {
+      "size": 14,
+      "vw": 1.8,
+      "font": "IBM Plex Sans",
+      "text": "AI Video Studio"
+     },
+     "monoShare": 0.12,
+     "monoProseShare": 0.12,
+     "monoFamilies": [
+      "IBM Plex Mono"
+     ],
+     "monoSamples": [
+      "Voice-id: soc-nho",
+      "Veo 8s per clip • 9:16",
+      "MP4 1080x1920 (TikTok)"
+     ],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0.01,
+     "centerShare": 0.11,
+     "smallText": 13
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#14120f",
+     "bodyBgHsl": {
+      "h": 36,
+      "s": 0.14,
+      "l": 0.07
+     },
+     "dark": true,
+     "sectionBgs": [
+      {
+       "color": "#1a1814",
+       "top": 48,
+       "hsl": {
+        "h": 40,
+        "s": 0.13,
+        "l": 0.09
+       }
+      },
+      {
+       "color": "#14120f",
+       "top": 49,
+       "hsl": {
+        "h": 36,
+        "s": 0.14,
+        "l": 0.07
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#a49e94",
+       "share": 0.59
+      },
+      {
+       "color": "#f1f0ee",
+       "share": 0.38
+      },
+      {
+       "color": "#161513",
+       "share": 0.04
+      }
+     ],
+     "button": {
+      "bg": "#2b2822",
+      "hsl": {
+       "h": 40,
+       "s": 0.12,
+       "l": 0.15
+      },
+      "fg": "#f1f0ee"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 3,
+     "inHero": 3,
+     "radius": 6,
+     "height": 28,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Studio",
+      "Reset",
+      "Run full graph"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 1,
+     "scrims": 0,
+     "gradientSamples": [
+      "div.flex-1.relative → radial-gradient(rgb(30, 41, 59) 1px, rgba(0, 0, 0, 0) 1px)"
+     ],
+     "gradientText": 0,
+     "hairlines": 1,
+     "hairlineSamples": [
+      "div.p-3.border-b 530px"
+     ],
+     "outlinedBoxes": 1,
+     "dashed": 0,
+     "blurred": 2,
+     "roundedBoxes": 1,
+     "boxRadius": 16,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 2,
+     "fixed": false,
+     "height": 851,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "ibm plex sans",
+     "ibm plex mono"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "pageH": 1024,
+    "margins": {
+     "left": 18,
+     "right": 34
+    },
+    "sections": [],
+    "gaps": [],
+    "h1s": [],
+    "edgeText": [],
+    "edges": [],
+    "leftBlocks": 0,
+    "bodySize": 12,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "dark": true,
+    "ground": "#14120f",
+    "sidebar": {
+     "w": 228,
+     "tag": "aside",
+     "links": 6,
+     "share": 0.3
+    },
+    "topbar": {
+     "h": 48
+    },
+    "canvas": {
+     "left": 4,
+     "right": 12
+    },
+    "hero": {
+     "text": "Sóc Nhỏ TV",
+     "words": 3,
+     "chars": 10,
+     "lines": 1,
+     "size": 14,
+     "vw": 1.8,
+     "font": "IBM Plex Sans",
+     "weight": 400,
+     "tracking": 0,
+     "leading": 1.43,
+     "top": 14,
+     "tag": "span",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "charts": 0,
+    "layout": {
+     "panels": 1,
+     "firstScreen": 1,
+     "ragged": [],
+     "voids": []
+    },
+    "tiles": 0,
+    "panels": {
+     "count": 2,
+     "radii": [
+      [
+       16,
+       1
+      ],
+      [
+       0,
+       1
+      ]
+     ],
+     "heavyBorders": 0,
+     "borderSamples": [],
+     "heavyShadows": 0,
+     "softShadows": 0,
+     "shadowSamples": [],
+     "glass": 0
+    },
+    "chips": {
+     "count": 0,
+     "hues": 0,
+     "samples": []
+    },
+    "numbers": {
+     "cells": 0,
+     "leftAligned": 0,
+     "figures": 0,
+     "tabularShare": null,
+     "kpiMax": null
+    },
+    "rows": null,
+    "chartHues": 0,
+    "placeholders": [],
+    "type": {
+     "under13": 0.78,
+     "tiny": 0,
+     "tinySamples": [],
+     "sizes": [
+      11,
+      12,
+      14
+     ]
+    },
+    "title": null,
+    "colourShare": 0
+   },
+   "consoleErrors": []
+  },
+  {
+   "width": 390,
+   "height": 844,
+   "load": "load",
+   "screens": 1,
+   "filled": [
+    0.96
+   ],
+   "motion": {
+    "elements": 19,
+    "css": 0,
+    "transitions": 18,
+    "scripted": 1,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "page": {
+     "height": 844,
+     "screens": 1,
+     "words": 79,
+     "img": 0,
+     "video": 0,
+     "canvas": 0,
+     "svg": 25,
+     "sections": 0,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Sóc Nhỏ TV",
+     "words": 3,
+     "chars": 10,
+     "lines": 1,
+     "size": 14,
+     "vw": 3.6,
+     "font": "IBM Plex Sans",
+     "weight": 400,
+     "tracking": 0,
+     "leading": 1.43,
+     "top": 14,
+     "tag": "span",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "h1": null,
+    "headings": [],
+    "headingSummary": {
+     "count": 0,
+     "maxLines": 0,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": null,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "IBM Plex Sans",
+       "share": 0.84,
+       "mono": false
+      },
+      {
+       "family": "IBM Plex Mono",
+       "share": 0.16,
+       "mono": true
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      11,
+      12,
+      14
+     ],
+     "sizeCount": 3,
+     "notLoaded": [],
+     "body": null,
+     "measureChars": null,
+     "max": {
+      "size": 14,
+      "vw": 3.6,
+      "font": "IBM Plex Sans",
+      "text": "Sóc Nhỏ TV"
+     },
+     "monoShare": 0.16,
+     "monoProseShare": 0.16,
+     "monoFamilies": [
+      "IBM Plex Mono"
+     ],
+     "monoSamples": [
+      "Voice-id: soc-nho",
+      "Veo 8s per clip • 9:16",
+      "MP4 1080x1920 (TikTok)"
+     ],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0.01,
+     "centerShare": 0.15,
+     "smallText": 11
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#14120f",
+     "bodyBgHsl": {
+      "h": 36,
+      "s": 0.14,
+      "l": 0.07
+     },
+     "dark": true,
+     "sectionBgs": [
+      {
+       "color": "#1a1814",
+       "top": 48,
+       "hsl": {
+        "h": 40,
+        "s": 0.13,
+        "l": 0.09
+       }
+      },
+      {
+       "color": "#14120f",
+       "top": 48,
+       "hsl": {
+        "h": 36,
+        "s": 0.14,
+        "l": 0.07
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#a49e94",
+       "share": 0.54
+      },
+      {
+       "color": "#f1f0ee",
+       "share": 0.41
+      },
+      {
+       "color": "#161513",
+       "share": 0.05
+      }
+     ],
+     "button": {
+      "bg": "#1a1814",
+      "hsl": {
+       "h": 40,
+       "s": 0.13,
+       "l": 0.09
+      },
+      "fg": "#f1f0ee"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 2,
+     "inHero": 2,
+     "radius": 6,
+     "height": 28,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Reset",
+      "Run full graph"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 1,
+     "scrims": 0,
+     "gradientSamples": [
+      "div.flex-1.relative → radial-gradient(rgb(30, 41, 59) 1px, rgba(0, 0, 0, 0) 1px)"
+     ],
+     "gradientText": 0,
+     "hairlines": 5,
+     "hairlineSamples": [
+      "div.p-3.border-b 390px",
+      "div.p-3.border-b 286px",
+      "div.p-3.border-b 286px",
+      "div.p-3.border-b 286px",
+      "nav.md:hidden.fixed 390px"
+     ],
+     "outlinedBoxes": 3,
+     "dashed": 0,
+     "blurred": 2,
+     "roundedBoxes": 3,
+     "boxRadius": 8,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": [
+      {
+       "count": 3,
+       "iconTopped": true,
+       "rounded": true,
+       "top": 225
+      }
+     ]
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 0,
+     "fixed": false,
+     "height": 0,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "ibm plex sans",
+     "ibm plex mono"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "pageH": 844,
+    "margins": {
+     "left": 15,
+     "right": 25
+    },
+    "sections": [
+     {
+      "sel": "div.rounded-lg.border",
+      "tag": "div",
+      "top": 225,
+      "height": 139,
+      "words": 19,
+      "media": 0,
+      "middle": 0,
+      "heading": null,
+      "left": 64,
+      "right": 73,
+      "textLeft": 64,
+      "textRight": 73,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "div.rounded-lg.border",
+      "tag": "div",
+      "top": 428,
+      "height": 123,
+      "words": 21,
+      "media": 0,
+      "middle": 0,
+      "heading": null,
+      "left": 64,
+      "right": 88,
+      "textLeft": 64,
+      "textRight": 88,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "div.rounded-lg.border",
+      "tag": "div",
+      "top": 615,
+      "height": 139,
+      "words": 16,
+      "media": 0,
+      "middle": 0,
+      "heading": null,
+      "left": 64,
+      "right": 73,
+      "textLeft": 64,
+      "textRight": 73,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [],
+    "edgeText": [],
+    "edges": [],
+    "leftBlocks": 0,
+    "bodySize": 12,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "dark": true,
+    "ground": "#14120f",
+    "sidebar": null,
+    "topbar": {
+     "h": 48
+    },
+    "canvas": {
+     "left": 15,
+     "right": 22
+    },
+    "hero": {
+     "text": "Sóc Nhỏ TV",
+     "words": 3,
+     "chars": 10,
+     "lines": 1,
+     "size": 14,
+     "vw": 3.6,
+     "font": "IBM Plex Sans",
+     "weight": 400,
+     "tracking": 0,
+     "leading": 1.43,
+     "top": 14,
+     "tag": "span",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "charts": 0,
+    "layout": {
+     "panels": 3,
+     "firstScreen": 3,
+     "ragged": [],
+     "voids": []
+    },
+    "tiles": 0,
+    "panels": {
+     "count": 3,
+     "radii": [
+      [
+       8,
+       3
+      ]
+     ],
+     "heavyBorders": 2,
+     "borderSamples": [
+      "#f2eeee on #1a1814 (15.4:1)",
+      "#4cc388 on #1a1814 (7.99:1)"
+     ],
+     "heavyShadows": 0,
+     "softShadows": 0,
+     "shadowSamples": [],
+     "glass": 0
+    },
+    "chips": {
+     "count": 0,
+     "hues": 0,
+     "samples": []
+    },
+    "numbers": {
+     "cells": 0,
+     "leftAligned": 0,
+     "figures": 0,
+     "tabularShare": null,
+     "kpiMax": null
+    },
+    "rows": null,
+    "chartHues": 0,
+    "placeholders": [],
+    "type": {
+     "under13": 0.78,
+     "tiny": 0,
+     "tinySamples": [],
+     "sizes": [
+      11,
+      12,
+      14
+     ]
+    },
+    "title": null,
+    "colourShare": 0.001
+   },
+   "consoleErrors": []
+  }
+ ],
+ "findings": [
+  {
+   "level": "FAIL",
+   "id": "gradient",
+   "width": 1440,
+   "message": "1 gradient fill(s): div.flex-1.relative → radial-gradient(rgb(30, 41, 59) 1px, rgba(0, 0, 0, 0) 1px)",
+   "fix": "Use a flat colour or a real image. The only gradient allowed by default is a neutral scrim over a photo for legibility.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "hero-void",
+   "width": 1440,
+   "message": "29% of the first screen is one empty block (1260×300px at 180,120).",
+   "fix": "Place the void on purpose or fill it: move the picture, the film or one fact into it, grow the headline to meet it, or shrink the screen to its content. A void reads as placed only when something closes it on the far side and it is the screen's one rest."
+  },
+  {
+   "level": "WARN",
+   "id": "tiny-text",
+   "width": 1440,
+   "message": "78% of the text is under 13px.",
+   "fix": "Data and labels read at 13–14px; keep 11–12px for sublines and axis ticks.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "no-title",
+   "width": 1440,
+   "message": "The screen has no h1.",
+   "fix": "Name the screen in an h1 at the top of the canvas (18–28px): \"Overview\", \"Payouts\", the project's name.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  }
+ ],
+ "images": [
+  {
+   "viewport": "desktop",
+   "width": 1440,
+   "fold": "/Volumes/Data/socnhotv/tool/dashboard/.taste-skill/inspect/desktop-fold.jpg",
+   "pages": [
+    "/Volumes/Data/socnhotv/tool/dashboard/.taste-skill/inspect/desktop-page-01.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "tablet",
+   "width": 768,
+   "fold": "/Volumes/Data/socnhotv/tool/dashboard/.taste-skill/inspect/tablet-fold.jpg",
+   "pages": [
+    "/Volumes/Data/socnhotv/tool/dashboard/.taste-skill/inspect/tablet-page-01.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "mobile",
+   "width": 390,
+   "fold": "/Volumes/Data/socnhotv/tool/dashboard/.taste-skill/inspect/mobile-fold.jpg",
+   "pages": [
+    "/Volumes/Data/socnhotv/tool/dashboard/.taste-skill/inspect/mobile-page-01.jpg"
+   ],
+   "film": []
+  }
+ ]
+}

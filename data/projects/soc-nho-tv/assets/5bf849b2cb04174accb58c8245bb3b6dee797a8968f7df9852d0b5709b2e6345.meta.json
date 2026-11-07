@@ -1,0 +1,31 @@
+{
+  "id": "art_5bf849b2cb04",
+  "kind": "audio",
+  "uri": "assets/5bf849b2cb04174accb58c8245bb3b6dee797a8968f7df9852d0b5709b2e6345.mp3",
+  "mime": "audio/mp3",
+  "size": 141104,
+  "hash": "sha256:5bf849b2cb04174accb58c8245bb3b6dee797a8968f7df9852d0b5709b2e6345",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 5.82,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "prebuild_voice",
+    "runId": "prebuild_ep01-nui-lua-trong-bung-bi",
+    "provider": "omnivoice",
+    "model": "omnivoice",
+    "params": {
+      "text": "Dạ, Mun cũng xin lỗi anh Bi! Bây giờ Mun phụ anh Bi xếp lại tòa tháp cao hơn nữa nhé!",
+      "voiceId": "vn-be-04",
+      "tempo": 1.0,
+      "targetLufs": -14.0,
+      "mastering": "deesser+presence3.2k+comp4:1+loudnorm-14LUFS"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T10:27:35Z"
+  }
+}

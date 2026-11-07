@@ -1,0 +1,31 @@
+{
+  "id": "art_3bdb53a4703f",
+  "kind": "audio",
+  "uri": "assets/3bdb53a4703fc5787979a5835ab124265cf0fbeaeb2a454ec3de315a09fe9540.mp3",
+  "mime": "audio/mp3",
+  "size": 133581,
+  "hash": "sha256:3bdb53a4703fc5787979a5835ab124265cf0fbeaeb2a454ec3de315a09fe9540",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 5.49,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "prebuild_voice",
+    "runId": "prebuild_ep01-nui-lua-trong-bung-bi",
+    "provider": "omnivoice",
+    "model": "omnivoice",
+    "params": {
+      "text": "Hẹn gặp lại các bạn nhỏ ở tập tiếp theo của Sóc Nhỏ TV nhé! Tạm biệt các con!",
+      "voiceId": "vn-nam-nu-01",
+      "tempo": 1.0,
+      "targetLufs": -14.0,
+      "mastering": "deesser+presence3.2k+comp4:1+loudnorm-14LUFS"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T10:29:34Z"
+  }
+}

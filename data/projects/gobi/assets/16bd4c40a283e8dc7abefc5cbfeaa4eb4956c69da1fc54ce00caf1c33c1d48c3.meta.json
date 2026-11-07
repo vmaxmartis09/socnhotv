@@ -1,0 +1,27 @@
+{
+  "id": "art_16bd4c40a283",
+  "kind": "image",
+  "uri": "assets/16bd4c40a283e8dc7abefc5cbfeaa4eb4956c69da1fc54ce00caf1c33c1d48c3.jpg",
+  "mime": "image/jpg",
+  "size": 2270246,
+  "hash": "sha256:16bd4c40a283e8dc7abefc5cbfeaa4eb4956c69da1fc54ce00caf1c33c1d48c3",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": null,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "n_room",
+    "runId": "run_1794036690_eb3993",
+    "provider": "local",
+    "model": "upload",
+    "params": {
+      "uri": "characters/gobi/gobi_angle_13_laughing_candid.jpg"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-07T07:31:30Z"
+  }
+}

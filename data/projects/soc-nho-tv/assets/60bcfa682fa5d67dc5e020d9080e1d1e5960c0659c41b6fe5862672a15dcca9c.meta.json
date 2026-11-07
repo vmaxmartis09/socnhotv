@@ -1,0 +1,31 @@
+{
+  "id": "art_60bcfa682fa5",
+  "kind": "audio",
+  "uri": "assets/60bcfa682fa5d67dc5e020d9080e1d1e5960c0659c41b6fe5862672a15dcca9c.mp3",
+  "mime": "audio/mp3",
+  "size": 39540,
+  "hash": "sha256:60bcfa682fa5d67dc5e020d9080e1d1e5960c0659c41b6fe5862672a15dcca9c",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 1.591,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "voice_src",
+    "runId": "run_cap_test",
+    "provider": "omnivoice",
+    "model": "omnivoice",
+    "params": {
+      "text": "Sóc Nhỏ thích ăn hạt dẻ.",
+      "voiceId": "soc-nho",
+      "tempo": 1.1,
+      "targetLufs": -14.0,
+      "mastering": "deesser+presence3.2k+comp4:1+loudnorm-14LUFS"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T09:04:32Z"
+  }
+}

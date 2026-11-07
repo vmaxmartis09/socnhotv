@@ -1,0 +1,31 @@
+{
+  "id": "art_24b799c57b49",
+  "kind": "audio",
+  "uri": "assets/24b799c57b49743ef620ac6ae3c1090616a4083d0971927afd9bd37c08d5b272.mp3",
+  "mime": "audio/mp3",
+  "size": 147373,
+  "hash": "sha256:24b799c57b49743ef620ac6ae3c1090616a4083d0971927afd9bd37c08d5b272",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 6.08,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "prebuild_voice",
+    "runId": "prebuild_ep01-nui-lua-trong-bung-bi",
+    "provider": "omnivoice",
+    "model": "omnivoice",
+    "params": {
+      "text": "Anh Bi ơi… Mun không cố ý đâu… Mun nhặt ngôi sao trả cho anh Bi nè…",
+      "voiceId": "vn-be-04",
+      "tempo": 1.0,
+      "targetLufs": -14.0,
+      "mastering": "deesser+presence3.2k+comp4:1+loudnorm-14LUFS"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T10:22:11Z"
+  }
+}

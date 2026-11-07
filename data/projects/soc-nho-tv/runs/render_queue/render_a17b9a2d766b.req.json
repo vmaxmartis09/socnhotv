@@ -1,0 +1,22 @@
+{
+  "project_id": "soc-nho-tv",
+  "template_id": "tiktok-sales-v1",
+  "platforms": [
+    "tiktok",
+    "shorts",
+    "youtube"
+  ],
+  "data": {
+    "scenes": [
+      {
+        "dialogue": "Scene 1",
+        "image": "",
+        "durationSec": 1.0
+      }
+    ],
+    "title": "Test Multi Platform"
+  },
+  "voice": null,
+  "source_ref": null,
+  "output_name": "test_multi_out"
+}

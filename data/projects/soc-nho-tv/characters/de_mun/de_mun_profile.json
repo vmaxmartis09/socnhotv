@@ -10,7 +10,7 @@
   "weight_kg": 12.0,
   "head_body_ratio": "1 : 3.6 (Đầu = 23.5cm, Thân & Chân = 61.5cm - Tỉ lệ em bé mầm non)",
   "scale_note": "Nhỏ nhất nhóm (85 cm, 0.85x). Đỉnh đầu Mun chạm đúng mũi Sóc Bi (100 cm) và ngang ngực anh ruột Dê Bông (115 cm).",
-  "voice_id": "de_mun_v1",
+  "voice_id": "vn-be-04",
   "voice_description": "Giọng em bé 3 tuổi non nớt, ngọt ngào, đôi chữ hơi ngọng đáng yêu, hay cười khúc khích.",
   "body": {
     "height_cm": 85,
@@ -83,5 +83,14 @@
     "ep48-di-cho-cung-bac-voi",
     "ep49-ngay-dau-den-truong",
     "ep50-le-hoi-rung-xanh"
+  ],
+  "cutout_images": [
+    "characters/de_mun/cutout/de_mun_01.png",
+    "characters/de_mun/cutout/de_mun_02.png",
+    "characters/de_mun/cutout/de_mun_03.png",
+    "characters/de_mun/cutout/de_mun_04.png",
+    "characters/de_mun/cutout/de_mun_05.png",
+    "characters/de_mun/cutout/de_mun_06.png",
+    "characters/de_mun/cutout/de_mun_07.png"
   ]
 }

@@ -1,9 +1,9 @@
 {
   "sha8": "1ac82b3a",
   "full_sha256": "1ac82b3a3f395728533549dfc241c8400ab8da314a4319921f9a8f9284bd03be",
-  "original_file": "D:\\socnhotv\\data\\shared\\voice_vault\\soc-nho\\cloned_default_sample.mp3",
+  "original_file": "/Volumes/Data/socnhotv/data/shared/voice_vault/soc-nho/cloned_default_sample.mp3",
   "original_filename": "cloned_default_sample.mp3",
   "duration": 4.49,
   "model": "small",
-  "processed_at": "2026-11-05T16:42:07.548653"
+  "processed_at": "2026-11-06T19:10:51.523561"
 }

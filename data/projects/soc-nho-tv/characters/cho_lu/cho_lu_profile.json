@@ -10,7 +10,7 @@
   "weight_kg": 16.5,
   "head_body_ratio": "1 : 4.0 (Đầu = 26cm, Thân & Chân = 79cm)",
   "scale_note": "Cao thứ 2 nhóm trẻ (105 cm, 1.05x). Cao hơn Sóc Bi 5 cm, thấp hơn Dê Bông 10 cm, cao hơn Mèo Mimi 10 cm.",
-  "voice_id": "cho_lu_v1",
+  "voice_id": "vn-be-02",
   "voice_description": "Giọng bé trai 5 tuổi hào hứng, khỏe khoắn, nhiệt tình, hay bật cười sảng khoái.",
   "body": {
     "height_cm": 105,
@@ -78,5 +78,14 @@
     "ep45-man-hinh-vua-du",
     "ep49-ngay-dau-den-truong",
     "ep50-le-hoi-rung-xanh"
+  ],
+  "cutout_images": [
+    "characters/cho_lu/cutout/cho_lu_01.png",
+    "characters/cho_lu/cutout/cho_lu_02.png",
+    "characters/cho_lu/cutout/cho_lu_03.png",
+    "characters/cho_lu/cutout/cho_lu_04.png",
+    "characters/cho_lu/cutout/cho_lu_05.png",
+    "characters/cho_lu/cutout/cho_lu_06.png",
+    "characters/cho_lu/cutout/cho_lu_07.png"
   ]
 }

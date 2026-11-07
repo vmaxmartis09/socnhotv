@@ -1,0 +1,37 @@
+{
+  "title": "Tập 1: Núi lửa trong bụng Bi (Mùa 1: Cảm xúc của em). Bài học: nhận biết cơn giận 'núi lửa nóng trong bụng' và làm dịu bằng 'Thở 5 ngón tay'. Thần chú: 'Xòe tay hít sâu, núi lửa nguội mau!' (lặp >= 3 lần). Nguồn: content/episodes/ep01-nui-lua-trong-bung-bi/KICH-BAN-TAP-01-nui-lua-trong-bung-bi.md",
+  "scenes": [
+    {
+      "sceneNumber": 1,
+      "title": "Cảnh 1",
+      "imagePrompt": "Cảnh hoạt hình 3D: Tập 1: Núi lửa trong bụng Bi (Mùa 1: Cảm xúc của em).",
+      "videoPrompt": "Camera góc trung chuyển động mượt mà, diễn hoạt sinh động theo nội dung Cảnh 1",
+      "dialogue": "Tập 1: Núi lửa trong bụng Bi (Mùa 1: Cảm xúc của em).",
+      "durationSec": 20.0
+    },
+    {
+      "sceneNumber": 2,
+      "title": "Cảnh 2",
+      "imagePrompt": "Cảnh hoạt hình 3D: Bài học: nhận biết cơn giận 'núi lửa nóng trong bụng' và làm dịu bằng 'Thở 5 ngón tay'.",
+      "videoPrompt": "Camera góc trung chuyển động mượt mà, diễn hoạt sinh động theo nội dung Cảnh 2",
+      "dialogue": "Bài học: nhận biết cơn giận 'núi lửa nóng trong bụng' và làm dịu bằng 'Thở 5 ngón tay'.",
+      "durationSec": 20.0
+    },
+    {
+      "sceneNumber": 3,
+      "title": "Cảnh 3",
+      "imagePrompt": "Cảnh hoạt hình 3D: Thần chú: 'Xòe tay hít sâu, núi lửa nguội mau!' (lặp >= 3 lần).",
+      "videoPrompt": "Camera góc trung chuyển động mượt mà, diễn hoạt sinh động theo nội dung Cảnh 3",
+      "dialogue": "Thần chú: 'Xòe tay hít sâu, núi lửa nguội mau!' (lặp >= 3 lần).",
+      "durationSec": 20.0
+    },
+    {
+      "sceneNumber": 4,
+      "title": "Cảnh 4",
+      "imagePrompt": "Cảnh hoạt hình 3D: Nguồn: content/episodes/ep01-nui-lua-trong-bung-bi/KICH-BAN-TAP-01-nui-lua-trong-bung-bi.md",
+      "videoPrompt": "Camera góc trung chuyển động mượt mà, diễn hoạt sinh động theo nội dung Cảnh 4",
+      "dialogue": "Nguồn: content/episodes/ep01-nui-lua-trong-bung-bi/KICH-BAN-TAP-01-nui-lua-trong-bung-bi.md",
+      "durationSec": 20.0
+    }
+  ]
+}

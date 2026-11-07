@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Sóc Nhỏ TV - HyperFrames TikTok Episode</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #0d0e12;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      }
+      #root {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+      }
+      .media-wrapper, .media-clip {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 1080px;
+        height: 1920px;
+        object-fit: cover;
+      }
+      .kenburns-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transform-origin: center center;
+      }
+      .vignette-overlay {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at center, rgba(0,0,0,0) 45%, rgba(0,0,0,0.65) 100%);
+        pointer-events: none;
+        z-index: 2;
+      }
+      /* TikTok Top Safe Zone Badge */
+      .top-badge-wrapper {
+        position: absolute;
+        top: 200px;
+        left: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10;
+      }
+      .top-badge-pill {
+        background: rgba(18, 18, 22, 0.82);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border: 1.5px solid rgba(255, 180, 0, 0.85);
+        border-radius: 9999px;
+        padding: 14px 38px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .badge-dot {
+        width: 14px;
+        height: 14px;
+        background: #ffb400;
+        border-radius: 50%;
+        box-shadow: 0 0 12px #ffb400;
+      }
+      .top-badge-text {
+        color: #ffffff;
+        font-size: 32px;
+        font-weight: 800;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+      /* TikTok Subtitle Safe Zone */
+      .subtitle-wrapper {
+        position: absolute;
+        top: 1360px;
+        left: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 50px;
+        z-index: 10;
+      }
+      .subtitle-pill {
+        background: rgba(0, 0, 0, 0.82);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1.5px solid rgba(255, 255, 255, 0.22);
+        border-radius: 26px;
+        padding: 18px 36px;
+        max-width: 980px;
+        text-align: center;
+        box-shadow: 0 12px 35px rgba(0,0,0,0.6);
+      }
+      .sub-text {
+        color: #ffe600;
+        font-size: 46px;
+        font-weight: 800;
+        line-height: 1.35;
+        letter-spacing: -0.01em;
+        text-shadow: 0 3px 12px rgba(0, 0, 0, 0.95);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"
+         data-composition-id="main"
+         data-start="0"
+         data-duration="2.036"
+         data-width="1080"
+         data-height="1920">
+
+      <!-- Header Top Safe Zone -->
+      <div id="top-badge" class="top-badge-wrapper clip"
+           data-start="0"
+           data-duration="2.036"
+           data-track-index="2">
+        <div class="top-badge-pill">
+          <div class="badge-dot"></div>
+          <span class="top-badge-text">SÓC NHỎ TV • TẬP ĐẶC BIỆT</span>
+        </div>
+      </div>
+
+      <!-- Vignette Overlay -->
+      <div class="vignette-overlay clip"
+           data-start="0"
+           data-duration="2.036"
+           data-track-index="2"></div>
+
+      <!-- Scene Visuals & Subtitles -->
+      
+        <div id="sub_wrap_scene_1" class="clip subtitle-wrapper"
+             data-start="0.000"
+             data-duration="6.000"
+             data-track-index="3">
+            <div id="sub_box_scene_1" class="subtitle-pill">
+                <span class="sub-text">Sóc Nhỏ Bi TV</span>
+            </div>
+        </div>
+        <div id="wrapper_scene_1" class="clip media-wrapper"
+             data-start="0.000"
+             data-duration="6.000"
+             data-track-index="1">
+            <img id="img_scene_1" class="kenburns-img" src="" alt="Scene 1" />
+        </div>
+
+      
+    <!-- Voiceover Mastered Track -->
+    <audio id="voiceover-audio"
+           src="assets/voiceover.mp3"
+           data-start="0"
+           data-duration="2.036"
+           data-volume="1.0"
+           data-track-index="4"></audio>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#top-badge", { y: -40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" }, 0.1);
+      tl.fromTo("#img_scene_1", { scale: 1.0, y: 0 }, { scale: 1.12, y: 15, duration: 6.000, ease: "none" }, 0.000);tl.fromTo("#sub_box_scene_1", { opacity: 0, scale: 0.9, y: 15 }, { opacity: 1, scale: 1, y: 0, duration: 0.25, ease: "power2.out" }, 0.000);
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

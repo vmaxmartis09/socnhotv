@@ -1,0 +1,80 @@
+{
+  "runId": "run_1793941048_0daa0e",
+  "id": "run_1793941048_0daa0e",
+  "projectId": "soc-nho-tv",
+  "status": "completed",
+  "mode": "all",
+  "stage": "Hoàn tất xuất sắc",
+  "currentNodeId": "n_render",
+  "progress": 1.0,
+  "progressPct": 100,
+  "startedAtTs": 1793941048.402303,
+  "createdAt": "2026-11-06T04:57:28Z",
+  "updatedAt": "2026-11-06T05:02:35Z",
+  "elapsedSec": 306.7,
+  "actualCostUsd": 0.0,
+  "costUsd": 0.0,
+  "nodes": [
+    {
+      "id": "n_script",
+      "type": "script",
+      "name": "n_script",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_char_bi",
+      "type": "character",
+      "name": "n_char_bi",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_char_mun",
+      "type": "character",
+      "name": "n_char_mun",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_char_me",
+      "type": "character",
+      "name": "n_char_me",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_keyframes",
+      "type": "image_gen",
+      "name": "n_keyframes",
+      "state": "pending",
+      "progressPct": 0,
+      "error": null
+    },
+    {
+      "id": "n_render",
+      "type": "hyperframes_render",
+      "name": "n_render",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_export",
+      "type": "export",
+      "name": "n_export",
+      "state": "pending",
+      "progressPct": 0,
+      "error": null
+    }
+  ],
+  "totalNodes": 7,
+  "completedNodes": 5,
+  "output": null,
+  "error": null,
+  "completedAt": "2026-11-06T05:02:35Z"
+}

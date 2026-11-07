@@ -1,0 +1,31 @@
+{
+  "id": "art_fba770d4e55c",
+  "kind": "audio",
+  "uri": "assets/fba770d4e55c1b09dd6279c7a5f117f7e5c56c6c00471653fbaf9a22f320dd37.mp3",
+  "mime": "audio/mp3",
+  "size": 145492,
+  "hash": "sha256:fba770d4e55c1b09dd6279c7a5f117f7e5c56c6c00471653fbaf9a22f320dd37",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 5.999,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "prebuild_voice",
+    "runId": "prebuild_ep01-nui-lua-trong-bung-bi",
+    "provider": "omnivoice",
+    "model": "omnivoice",
+    "params": {
+      "text": "Ơ… Mun khóc mất rồi… Sao lúc nãy bụng Bi nóng quá làm Bi lỡ quát em thế nhỉ?",
+      "voiceId": "soc-nho",
+      "tempo": 1.1,
+      "targetLufs": -14.0,
+      "mastering": "deesser+presence3.2k+comp4:1+loudnorm-14LUFS"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T10:23:02Z"
+  }
+}

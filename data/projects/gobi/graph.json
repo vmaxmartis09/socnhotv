@@ -1,0 +1,208 @@
+{
+  "id": "graph_gobi",
+  "projectId": "gobi",
+  "name": "Graph gobi",
+  "nodes": [
+    {
+      "id": "n_char",
+      "type": "character",
+      "params": {
+        "characterId": "gobi",
+        "_customName": "Gobi (giọng LyLy)",
+        "speak": {
+          "enabled": true,
+          "text": "Mình thử chiếc quần short này nhé. Form đứng, chất vải mềm, rất dễ phối. Chi tiết và giá mình để ở giỏ hàng nha."
+        }
+      },
+      "inputs": {},
+      "position": {
+        "x": 40.0,
+        "y": 40.0
+      },
+      "ui": {},
+      "state": "idle",
+      "isStale": true,
+      "pinnedGenerationId": null,
+      "generations": []
+    },
+    {
+      "id": "n_room",
+      "type": "image",
+      "params": {
+        "uri": "characters/gobi/room/phong_khach.jpg",
+        "_customName": "Phòng của Gobi"
+      },
+      "inputs": {},
+      "position": {
+        "x": 40.0,
+        "y": 844.0
+      },
+      "ui": {},
+      "state": "idle",
+      "isStale": true,
+      "pinnedGenerationId": null,
+      "generations": []
+    },
+    {
+      "id": "n_prod",
+      "type": "image",
+      "params": {
+        "uri": "",
+        "_customName": "Ảnh sản phẩm"
+      },
+      "inputs": {},
+      "position": {
+        "x": 40.0,
+        "y": 1262.0
+      },
+      "ui": {},
+      "state": "idle",
+      "isStale": true,
+      "pinnedGenerationId": null,
+      "generations": []
+    },
+    {
+      "id": "n_bg",
+      "type": "bg_remove",
+      "params": {
+        "_customName": "Tách nền sản phẩm"
+      },
+      "inputs": {},
+      "position": {
+        "x": 450.0,
+        "y": 646.0
+      },
+      "ui": {},
+      "state": "idle",
+      "isStale": true,
+      "pinnedGenerationId": null,
+      "generations": []
+    },
+    {
+      "id": "n_tryon",
+      "type": "image_gen",
+      "params": {
+        "model": "mock-image",
+        "aspectRatio": "9:16",
+        "prompt": "Full body front and back view of the same woman wearing the item in the product reference, in her living room: white brick wall, large cream sectional sofa with rust-orange cushions, black chandelier, large white art panel, big green plant, warm soft light. Keep face, hair, body identical to the character reference. this exact Vietnamese woman, long straight black hair, natural makeup, photoreal",
+        "_customName": "Gobi mặc đồ trong phòng"
+      },
+      "inputs": {},
+      "position": {
+        "x": 860.0,
+        "y": 596.0
+      },
+      "ui": {},
+      "state": "idle",
+      "isStale": true,
+      "pinnedGenerationId": null,
+      "generations": []
+    },
+    {
+      "id": "n_render",
+      "type": "template_render",
+      "params": {
+        "template_id": "koc-review-v1",
+        "platforms": [
+          "tiktok"
+        ],
+        "slot_mapping": {
+          "product": {
+            "title": "Tên sản phẩm (sửa ở đây)"
+          },
+          "reviewer_badge": "Gobi",
+          "pros_text": "",
+          "cons_text": "",
+          "rating_score": ""
+        },
+        "_customName": "Dựng KOC review"
+      },
+      "inputs": {},
+      "position": {
+        "x": 1270.0,
+        "y": 646.0
+      },
+      "ui": {},
+      "state": "idle",
+      "isStale": true,
+      "pinnedGenerationId": null,
+      "generations": []
+    },
+    {
+      "id": "n_export",
+      "type": "platform_export",
+      "params": {
+        "_customName": "Xuất TikTok"
+      },
+      "inputs": {},
+      "position": {
+        "x": 1680.0,
+        "y": 646.0
+      },
+      "ui": {},
+      "state": "idle",
+      "isStale": true,
+      "pinnedGenerationId": null,
+      "generations": []
+    }
+  ],
+  "edges": [
+    {
+      "id": "e_n_char_reference_images__n_tryon_references",
+      "sourceNodeId": "n_char",
+      "sourcePort": "reference_images",
+      "targetNodeId": "n_tryon",
+      "targetPort": "references"
+    },
+    {
+      "id": "e_n_room_image__n_tryon_references",
+      "sourceNodeId": "n_room",
+      "sourcePort": "image",
+      "targetNodeId": "n_tryon",
+      "targetPort": "references"
+    },
+    {
+      "id": "e_n_prod_image__n_bg_image",
+      "sourceNodeId": "n_prod",
+      "sourcePort": "image",
+      "targetNodeId": "n_bg",
+      "targetPort": "image"
+    },
+    {
+      "id": "e_n_bg_image__n_tryon_references",
+      "sourceNodeId": "n_bg",
+      "sourcePort": "image",
+      "targetNodeId": "n_tryon",
+      "targetPort": "references"
+    },
+    {
+      "id": "e_n_tryon_images__n_render_images",
+      "sourceNodeId": "n_tryon",
+      "sourcePort": "images",
+      "targetNodeId": "n_render",
+      "targetPort": "images"
+    },
+    {
+      "id": "e_n_render_video__n_export_video",
+      "sourceNodeId": "n_render",
+      "sourcePort": "video",
+      "targetNodeId": "n_export",
+      "targetPort": "video"
+    },
+    {
+      "id": "e_n_char_voice__n_render_voice_clips",
+      "sourceNodeId": "n_char",
+      "sourcePort": "voice",
+      "targetNodeId": "n_render",
+      "targetPort": "voice_clips"
+    },
+    {
+      "id": "e_n_char_reference_images__n_render_reference_images",
+      "sourceNodeId": "n_char",
+      "sourcePort": "reference_images",
+      "targetNodeId": "n_render",
+      "targetPort": "reference_images"
+    }
+  ],
+  "updatedAt": "2026-11-07T08:30:54Z"
+}

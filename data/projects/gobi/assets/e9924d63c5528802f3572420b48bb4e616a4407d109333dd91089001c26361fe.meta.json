@@ -1,0 +1,27 @@
+{
+  "id": "art_e9924d63c552",
+  "kind": "text",
+  "uri": "assets/e9924d63c5528802f3572420b48bb4e616a4407d109333dd91089001c26361fe.txt",
+  "mime": "application/octet-stream",
+  "size": 149,
+  "hash": "sha256:e9924d63c5528802f3572420b48bb4e616a4407d109333dd91089001c26361fe",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": null,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "n_text",
+    "runId": "run_1794038637_ea3782",
+    "provider": "local",
+    "model": "text",
+    "params": {
+      "content": "Mình thử chiếc quần short này nhé. Form đứng, chất vải mềm, rất dễ phối. Chi tiết và giá mình để ở giỏ hàng nha."
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-07T08:03:57Z"
+  }
+}

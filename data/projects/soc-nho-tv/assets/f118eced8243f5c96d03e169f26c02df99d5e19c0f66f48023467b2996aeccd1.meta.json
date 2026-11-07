@@ -1,0 +1,31 @@
+{
+  "id": "art_f118eced8243",
+  "kind": "audio",
+  "uri": "assets/f118eced8243f5c96d03e169f26c02df99d5e19c0f66f48023467b2996aeccd1.mp3",
+  "mime": "audio/mp3",
+  "size": 64617,
+  "hash": "sha256:f118eced8243f5c96d03e169f26c02df99d5e19c0f66f48023467b2996aeccd1",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 2.636,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "node_voice",
+    "runId": "run_1794015283_ff5404",
+    "provider": "omnivoice",
+    "model": "omnivoice",
+    "params": {
+      "text": "Vì sao sóc hay giấu hạt dẻ vào mùa thu",
+      "voiceId": "soc-nho",
+      "tempo": 1.1,
+      "targetLufs": -14.0,
+      "mastering": "deesser+presence3.2k+comp4:1+loudnorm-14LUFS"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-07T01:34:58Z"
+  }
+}

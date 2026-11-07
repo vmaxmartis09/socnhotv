@@ -1,0 +1,27 @@
+--- HyperFrames CLI Render (code: 7) ---
+STDOUT:
+
+STDERR:
+/Users/vmaxmartis/.nvm/versions/node/v26.8.2/lib/node_modules/npm/lib/cli/validate-engines.js:25
+    throw err
+    ^
+
+Error: ENOENT: process.cwd failed with error no such file or directory, the current working directory was likely removed without changing the working directory, uv_cwd
+    at process.wrappedCwd (node:internal/bootstrap/switches/does_own_process_state:142:28)
+    at process.cwd (/Users/vmaxmartis/.nvm/versions/node/v26.8.2/lib/node_modules/npm/node_modules/graceful-fs/polyfills.js:10:19)
+    at new Config (/Users/vmaxmartis/.nvm/versions/node/v26.8.2/lib/node_modules/npm/node_modules/@npmcli/config/lib/index.js:80:19)
+    at new Npm (/Users/vmaxmartis/.nvm/versions/node/v26.8.2/lib/node_modules/npm/lib/npm.js:62:19)
+    at module.exports (/Users/vmaxmartis/.nvm/versions/node/v26.8.2/lib/node_modules/npm/lib/cli/entry.js:13:15)
+    at module.exports (/Users/vmaxmartis/.nvm/versions/node/v26.8.2/lib/node_modules/npm/lib/cli/validate-engines.js:33:10)
+    at module.exports (/Users/vmaxmartis/.nvm/versions/node/v26.8.2/lib/node_modules/npm/lib/cli.js:12:31)
+    at Object.<anonymous> (/Users/vmaxmartis/.nvm/versions/node/v26.8.2/lib/node_modules/npm/bin/npx-cli.js:130:1)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14)
+    at Object..js (node:internal/modules/cjs/loader:2074:10) {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'uv_cwd'
+}
+
+Node.js v26.8.2
+
+FALLBACK_USED: rendered via FFmpeg fallback to /Volumes/Data/socnhotv/data/projects/soc-nho-tv/output/loc_douyin_test_mode_r_hook_boost/tiktok.mp4

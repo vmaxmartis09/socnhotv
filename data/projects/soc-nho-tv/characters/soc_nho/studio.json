@@ -264,5 +264,7 @@
     ]
   },
   "defaultTempo": 1,
-  "primaryImage": "soc_nho_01.png"
+  "primaryImage": "soc_nho_01.png",
+  "sampleAudioUrl": "/data/voices/soc-nho/soc_nho_catchphrase.mp3",
+  "sampleText": "Ơ kìa, sao lại thế nhỉ?"
 }

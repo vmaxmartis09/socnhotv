@@ -10,7 +10,7 @@
   "weight_kg": 20.0,
   "head_body_ratio": "1 : 4.2 (Đầu = 27cm, Thân & Chân = 88cm)",
   "scale_note": "Cao nhất nhóm trẻ (115 cm, 1.15x). Đỉnh đầu Sóc Bi (100 cm) chạm cằm Dê Bông; cao hơn Cún Lu 10 cm, cao hơn em ruột Dê Mun 30 cm.",
-  "voice_id": "de_bong_v1",
+  "voice_id": "vn-be-01",
   "voice_description": "Giọng bé trai 6 tuổi ấm áp, điềm đạm, rõ chữ, chững chạc như anh cả.",
   "body": {
     "height_cm": 115,
@@ -83,5 +83,14 @@
     "ep46-banh-chung-ngay-tet",
     "ep48-di-cho-cung-bac-voi",
     "ep50-le-hoi-rung-xanh"
+  ],
+  "cutout_images": [
+    "characters/de_bong/cutout/de_bong_01.png",
+    "characters/de_bong/cutout/de_bong_02.png",
+    "characters/de_bong/cutout/de_bong_03.png",
+    "characters/de_bong/cutout/de_bong_04.png",
+    "characters/de_bong/cutout/de_bong_05.png",
+    "characters/de_bong/cutout/de_bong_06.png",
+    "characters/de_bong/cutout/de_bong_07.png"
   ]
 }

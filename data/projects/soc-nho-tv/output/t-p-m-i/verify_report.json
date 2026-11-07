@@ -1,0 +1,47 @@
+{
+  "video_path": "/Volumes/Data/socnhotv/data/projects/soc-nho-tv/output/t-p-m-i/final_video.mp4",
+  "pass_all": false,
+  "duration_s": 600.0,
+  "width": 1920,
+  "height": 1080,
+  "video_codec": "h264",
+  "audio_codec": "aac",
+  "loudness_lufs": -14.1,
+  "mean_volume_db": -19.7,
+  "max_silence_s": 0.0,
+  "black_detected_s": 0.0,
+  "freeze_detected_s": 2.233333,
+  "scene_count": 4,
+  "scene_differences": [
+    0.031,
+    0.047,
+    0.078,
+    0.016,
+    0.078,
+    0.047,
+    0.016,
+    0.016,
+    0.047,
+    0.062,
+    0.031
+  ],
+  "wer_score": 0.935,
+  "whisper_transcript": "Chào các bạn nhỏ Sánh này ở nhà tay Bây giờ sẽ mục qua tráp gõ nằm tổng cực cao Ai mí ơi Môn măng qua bống tài xanh trời bánh bí ngàn Chào các bạn nhỏ tài xanh trời Môn măng chẳng xanh ăn bí sẽ tiếp từ mà màu vang và từng bố màu xanh lã nhé Ta đá Còn mánh giết ngồi sau vang cuối cùng này, ăn bí đặt lên đến trong năm nhé Chào các bạn nhỏ tài xanh trời Ai hoàn đã mung ơi Côi chừng vất mết thảm Côi thôi, các ngọt của mình Phô, phô Bà như cầm xúc bí sẽ từng xanh trời Gõ tài xanh trời Gõ tài xanh trời Gõ tài xanh trời Gõ tài xanh trời Bí không cầm đau Tài muôn trời ở ủ làm hổng giáp của mình Đấy Gõ tài xanh trời Gõ tài xanh trời Gõ tài xanh trời Gõ tài xanh trời Gõ tài xanh trời Gõ tài xanh trời Gõ tài xanh trời Gõ tài xanh trời Gõ tài xanh trời Gõ tài xanh trời Gõ tài xanh trời Gõ tài xanh trời Gõ tài xanh trời Gõ tài xanh trời Gõ tài xanh trời Gõ tài xanh trời Gõ tài xanh trời Gõ tài xanh trời",
+  "voice_sync_delta_s": 17.66,
+  "contact_sheet_path": "/Volumes/Data/socnhotv/data/projects/soc-nho-tv/output/t-p-m-i/contact_sheet.jpg",
+  "scores": {
+    "voice_clarity": 4.5,
+    "captions_sync": 3.5,
+    "visual_diversity": 3.0,
+    "character_consistency": 5.0,
+    "pacing": 4.5
+  },
+  "errors": [
+    "Kích thước 1920x1080 không khớp 1080x1920"
+  ],
+  "warnings": [
+    "Phát hiện đứng hình 2.23s",
+    "Số cảnh khác biệt ước tính 4 < 6 cảnh chuẩn",
+    "Độ lệch thời lượng giọng và video: 17.66s"
+  ]
+}

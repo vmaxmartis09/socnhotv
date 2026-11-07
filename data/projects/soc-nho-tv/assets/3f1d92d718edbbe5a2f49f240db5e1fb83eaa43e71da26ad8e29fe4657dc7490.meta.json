@@ -1,0 +1,31 @@
+{
+  "id": "art_3f1d92d718ed",
+  "kind": "audio",
+  "uri": "assets/3f1d92d718edbbe5a2f49f240db5e1fb83eaa43e71da26ad8e29fe4657dc7490.mp3",
+  "mime": "audio/mp3",
+  "size": 148000,
+  "hash": "sha256:3f1d92d718edbbe5a2f49f240db5e1fb83eaa43e71da26ad8e29fe4657dc7490",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 6.1,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "prebuild_voice",
+    "runId": "prebuild_ep02-mun-so-bong-toi",
+    "provider": "omnivoice",
+    "model": "omnivoice",
+    "params": {
+      "text": "Chơi cùng nhau thế này vui gấp mười lần luôn! Cảm ơn Ông Dê Râu Bạc và Dê Bông nhiều lắm nhé!",
+      "voiceId": "vn-be-04",
+      "tempo": 1.0,
+      "targetLufs": -14.0,
+      "mastering": "deesser+presence3.2k+comp4:1+loudnorm-14LUFS"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T10:40:35Z"
+  }
+}

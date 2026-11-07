@@ -1,0 +1,31 @@
+{
+  "id": "art_bbaf0d4032ee",
+  "kind": "audio",
+  "uri": "assets/bbaf0d4032ee70b72c21705e82dcbfef7383eecbb8c1c8fe538bcd1c82347c67.mp3",
+  "mime": "audio/mp3",
+  "size": 154896,
+  "hash": "sha256:bbaf0d4032ee70b72c21705e82dcbfef7383eecbb8c1c8fe538bcd1c82347c67",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 6.381,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "prebuild_voice",
+    "runId": "prebuild_ep01-nui-lua-trong-bung-bi",
+    "provider": "omnivoice",
+    "model": "omnivoice",
+    "params": {
+      "text": "Cầm chong chóng ra ban công đón gió mát thôi Mun ơi! Nhìn chong chóng của hai anh em mình quay đẹp chưa kìa!",
+      "voiceId": "soc-nho",
+      "tempo": 1.1,
+      "targetLufs": -14.0,
+      "mastering": "deesser+presence3.2k+comp4:1+loudnorm-14LUFS"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T10:28:18Z"
+  }
+}

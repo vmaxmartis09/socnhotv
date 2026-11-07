@@ -1,0 +1,22 @@
+{
+  "id": "koc-an-nhien",
+  "display_name": "Giọng nữ An Nhiên (Podcast Chữa Lành, Radio Tâm Sự)",
+  "aliases": [
+    "voice-fm-an-nhien"
+  ],
+  "engine": "omnivoice",
+  "lang": "vi",
+  "dialect": "north",
+  "gender": "female",
+  "style": "healing_podcast_meditation",
+  "description": "",
+  "sample_paths": [
+    "cloned_default_sample.mp3"
+  ],
+  "loudness": -14.0,
+  "status": "ready",
+  "group": "koc-review",
+  "consent_note": "Nhập từ gobi-social/data/_shared/voices/vault/voice-fm-an-nhien; dùng nội bộ cho KOC review",
+  "transcript": "Và là lần đầu tiên sau rất lâu, thì mình thấy cuộc đời thật ra cũng không tệ như thế.",
+  "created_at": "2026-11-07T00:00:00"
+}

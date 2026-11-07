@@ -1,0 +1,29 @@
+{
+  "id": "art_a646bd38b172",
+  "kind": "audio",
+  "uri": "assets/a646bd38b172012d8fbbab33586ea89c6060c0e54c05ff4797f344f47e323d53.wav",
+  "mime": "audio/wav",
+  "size": 779290,
+  "hash": "sha256:a646bd38b172012d8fbbab33586ea89c6060c0e54c05ff4797f344f47e323d53",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 17.67,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "c",
+    "runId": "run_1793955103_4fe503",
+    "provider": "mock",
+    "model": "mock-omnivoice-v1",
+    "params": {
+      "text": "Dạ… lúc nãy vì buổi tối tại phòng ngủ nhà nông trại dê, khi vừa tắt đèn lớn, dê mun (85cm) nhìn thấy chiếc bóng dài ngoằng rung rinh trên tường liền tưởng là quái vật nên trùm chăn run cầm cập, nên trong lòng con mới thấy rối bời như vậy ạ…",
+      "voiceId": "vn-be-04",
+      "tempo": 1.0
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T08:51:43Z"
+  }
+}

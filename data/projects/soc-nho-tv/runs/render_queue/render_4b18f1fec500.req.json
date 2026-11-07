@@ -1,0 +1,21 @@
+{
+  "project_id": "soc-nho-tv",
+  "template_id": "tiktok-sales-v1",
+  "platforms": [
+    "tiktok"
+  ],
+  "data": {
+    "scenes": [
+      {
+        "dialogue": "Auto draft",
+        "durationSec": 1.0
+      }
+    ],
+    "auto_draft": true,
+    "title": "Auto Draft Video",
+    "caption": "#socnhotv #funny"
+  },
+  "voice": null,
+  "source_ref": null,
+  "output_name": "test_autodraft_out"
+}

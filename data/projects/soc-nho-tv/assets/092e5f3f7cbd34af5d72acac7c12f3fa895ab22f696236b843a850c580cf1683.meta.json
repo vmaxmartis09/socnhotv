@@ -1,0 +1,31 @@
+{
+  "id": "art_092e5f3f7cbd",
+  "kind": "video",
+  "uri": "assets/092e5f3f7cbd34af5d72acac7c12f3fa895ab22f696236b843a850c580cf1683.mp4",
+  "mime": "video/mp4",
+  "size": 274761535,
+  "hash": "sha256:092e5f3f7cbd34af5d72acac7c12f3fa895ab22f696236b843a850c580cf1683",
+  "meta": {
+    "width": 1920,
+    "height": 1080,
+    "duration": 600.0,
+    "fps": null,
+    "aspect": "9:16"
+  },
+  "provenance": {
+    "nodeId": "n_export",
+    "runId": "run_1794016061_ac215a",
+    "provider": "local",
+    "model": "export_package_v1",
+    "params": {
+      "outputFileName": "final_video.mp4",
+      "slug": "t-p-m-i",
+      "platforms": [
+        "youtube"
+      ]
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-07T01:53:56Z"
+  }
+}

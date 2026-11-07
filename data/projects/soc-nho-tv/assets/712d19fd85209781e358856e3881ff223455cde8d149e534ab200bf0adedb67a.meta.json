@@ -1,0 +1,28 @@
+{
+  "id": "art_712d19fd8520",
+  "kind": "text",
+  "uri": "assets/712d19fd85209781e358856e3881ff223455cde8d149e534ab200bf0adedb67a.json",
+  "mime": "application/json",
+  "size": 326,
+  "hash": "sha256:712d19fd85209781e358856e3881ff223455cde8d149e534ab200bf0adedb67a",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": null,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "s2",
+    "runId": "run_1793959187_e7b7fa",
+    "provider": "mock",
+    "model": "script-planner-v1",
+    "params": {
+      "targetSceneCount": 1,
+      "sourceText": "CHÀO BÉ!"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T09:59:47Z"
+  }
+}

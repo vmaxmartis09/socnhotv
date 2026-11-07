@@ -1,0 +1,10 @@
+{
+  "job_id": "render_f4d608ece5ac",
+  "project_id": "soc-nho-tv",
+  "status": "done",
+  "outputs": {
+    "youtube": "output/ep_e2e_draft_test_main/youtube.mp4"
+  },
+  "error": null,
+  "created_at": "2026-11-06T00:45:41.820921+00:00"
+}

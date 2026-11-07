@@ -98,5 +98,15 @@
       "Tập 43: Heo đất của Lu (ep43-heo-dat-cua-lu)",
       "Tập 48: Đi chợ cùng bác Voi (ep48-di-cho-cung-bac-voi)"
     ]
-  }
+  },
+  "referenceImages": [
+    "/data/projects/soc-nho-tv/files/characters/bac_voi/bac_voi_01.png",
+    "/data/projects/soc-nho-tv/files/characters/bac_voi/bac_voi_02.png",
+    "/data/projects/soc-nho-tv/files/characters/bac_voi/bac_voi_03.png",
+    "/data/projects/soc-nho-tv/files/characters/bac_voi/bac_voi_04.png",
+    "/data/projects/soc-nho-tv/files/characters/bac_voi/bac_voi_05.png",
+    "/data/projects/soc-nho-tv/files/characters/bac_voi/bac_voi_dna_sheet.png"
+  ],
+  "sampleAudioUrl": "/data/voices/vn-chung-nam-02/bac_voi_catchphrase.mp3",
+  "sampleText": "Haha! Chào các bạn nhỏ của Bác Voi nhé!"
 }

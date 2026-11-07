@@ -1,0 +1,31 @@
+{
+  "runId": "run_1793959021_5f06de",
+  "id": "run_1793959021_5f06de",
+  "projectId": "soc-nho-tv",
+  "status": "running",
+  "mode": "all",
+  "stage": "Bắt đầu",
+  "currentNodeId": null,
+  "progress": 0.05,
+  "progressPct": 5,
+  "startedAtTs": 1793959021.141512,
+  "createdAt": "2026-11-06T09:57:01Z",
+  "updatedAt": "2026-11-06T09:57:01Z",
+  "elapsedSec": 0.0,
+  "actualCostUsd": 0.0,
+  "costUsd": 0.0,
+  "nodes": [
+    {
+      "id": "node_heavy_video",
+      "type": "video_gen",
+      "name": "node_heavy_video",
+      "state": "pending",
+      "progressPct": 0,
+      "error": null
+    }
+  ],
+  "totalNodes": 1,
+  "completedNodes": 0,
+  "output": null,
+  "error": null
+}

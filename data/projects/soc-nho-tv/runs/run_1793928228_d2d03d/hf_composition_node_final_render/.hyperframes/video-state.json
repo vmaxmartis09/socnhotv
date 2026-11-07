@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "historyId": "658b0f16-41ff-46ce-86b6-d2e10fbe324e",
+  "currentRevision": null,
+  "pendingChanges": false,
+  "files": {
+    "assets/voiceover.mp3": {
+      "hash": "9940343ac8939a9baac5e04f51bc6836af30fc6dd5f2649d2a176fc96de19e88",
+      "content": "/Users/vmaxmartis/.cache/hyperframes/history/658b0f16-41ff-46ce-86b6-d2e10fbe324e/blobs/99/9940343ac8939a9baac5e04f51bc6836af30fc6dd5f2649d2a176fc96de19e88"
+    },
+    "hyperframes.json": {
+      "hash": "f11c60dbcd3a9004b0bd009fb2b2edbfc53cbb682688e37afd34688603e891f5",
+      "content": "/Users/vmaxmartis/.cache/hyperframes/history/658b0f16-41ff-46ce-86b6-d2e10fbe324e/blobs/f1/f11c60dbcd3a9004b0bd009fb2b2edbfc53cbb682688e37afd34688603e891f5"
+    },
+    "index.html": {
+      "hash": "7aa76f8ce30071ea455cf1e51f943032599c49528f2e1d38633643d83447bb59",
+      "content": "/Users/vmaxmartis/.cache/hyperframes/history/658b0f16-41ff-46ce-86b6-d2e10fbe324e/blobs/7a/7aa76f8ce30071ea455cf1e51f943032599c49528f2e1d38633643d83447bb59"
+    }
+  },
+  "revisions": {},
+  "checks": {
+    "latest": null,
+    "revisions": {},
+    "unversioned": []
+  },
+  "snapshots": {
+    "latest": null,
+    "revisions": {},
+    "unversioned": []
+  },
+  "renders": {
+    "latest": {
+      "id": "1707053f-8171-496c-af82-155ef557eeb1",
+      "completedAt": 1793928247161,
+      "output": "/Volumes/Data/socnhotv/data/projects/soc-nho-tv/runs/run_1793928228_d2d03d/node_final_render_rendered.mp4",
+      "status": "completed",
+      "revision": null
+    },
+    "retainedRevisions": []
+  },
+  "pendingArtifactCleanup": []
+}

@@ -1,0 +1,19 @@
+{
+  "profile_id": "vn-be-03",
+  "speaker_name": "vn-be-03",
+  "dialect": "south",
+  "style": "default",
+  "engine": "omnivoice",
+  "duration": 4.5,
+  "transcript": "Mà miếch tất cả đêm là một chút quân cao",
+  "default_greeting": "Xin chào, mình là Sóc Nhỏ TV đây nè, chúc cả nhà một ngày thật vui!",
+  "created_at": "2026-11-06T00:26:13+00:00",
+  "files": {
+    "prompt": "omnivoice_prompt.pt",
+    "ref_slice": "reference_clean_slice.wav",
+    "transcript": "reference_transcript.txt",
+    "full_clean": "raw_extracted_clean.wav",
+    "source_preview": "source_original_preview.mp3",
+    "cloned_sample": "cloned_default_sample.mp3"
+  }
+}

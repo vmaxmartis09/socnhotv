@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920, initial-scale=1.0" />
+    <title>shorts-fact-v1</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        user-select: none;
+      }
+      body, html {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #000000;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      }
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+      }
+      .scene-container {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .media-clip {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+      .vignette-overlay {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at center, transparent 40%, rgba(0, 0, 0, 0.45) 100%),
+                    linear-gradient(180deg, rgba(0,0,0,0.65) 0%, transparent 22%, transparent 75%, rgba(0,0,0,0.85) 100%);
+        pointer-events: none;
+        z-index: 5;
+      }
+      /* Header Safe Zone */
+      .top-badge-wrapper {
+        position: absolute;
+        top: 200px;
+        left: 40px;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+      }
+      .top-badge-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        background: rgba(15, 23, 42, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1.5px solid rgba(255, 255, 255, 0.2);
+        padding: 10px 24px;
+        border-radius: 9999px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      }
+      .badge-dot {
+        width: 14px;
+        height: 14px;
+        background: #ffb400;
+        border-radius: 50%;
+        box-shadow: 0 0 12px #ffb400;
+      }
+      .top-badge-text {
+        color: #ffffff;
+        font-size: 28px;
+        font-weight: 800;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+      /* Subtitle Safe Zone */
+      .subtitle-wrapper {
+        position: absolute;
+        top: 1360px;
+        left: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 40px 120px;
+        z-index: 10;
+      }
+      .subtitle-pill {
+        background: rgba(0, 0, 0, 0.82);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1.5px solid rgba(255, 255, 255, 0.22);
+        border-radius: 26px;
+        padding: 18px 36px;
+        max-width: 920px;
+        text-align: center;
+        box-shadow: 0 12px 35px rgba(0,0,0,0.6);
+      }
+      .sub-text {
+        color: #ffe600;
+        font-size: 44px;
+        font-weight: 800;
+        line-height: 1.35;
+        letter-spacing: -0.01em;
+        text-shadow: 0 3px 12px rgba(0, 0, 0, 0.95);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"
+         data-composition-id="main"
+         data-start="0"
+         data-duration="48.934"
+         data-width="1080"
+         data-height="1920">
+
+      <!-- Header Top Safe Zone -->
+      <div id="top-badge" class="top-badge-wrapper clip"
+           data-start="0"
+           data-duration="48.934"
+           data-track-index="2">
+        <div class="top-badge-pill">
+          <div class="badge-dot"></div>
+          <span class="top-badge-text">shorts-fact-v1</span>
+        </div>
+      </div>
+
+      <!-- Vignette Overlay -->
+      <div class="vignette-overlay clip"
+           data-start="0"
+           data-duration="48.934"
+           data-track-index="2"></div>
+
+      <!-- Scene Visuals & Subtitles -->
+      
+      <!-- SCENE_1 -->
+      <div id="scene_1" class="scene-container">
+        
+        <img id="img_scene_1" class="clip media-clip"
+             src=""
+             data-start="0.000"
+             data-duration="7.000"
+             data-track-index="0" />
+        <div id="sub_scene_1" class="subtitle-wrapper clip"
+             data-start="0.000"
+             data-duration="7.000"
+             data-track-index="1">
+          <div class="subtitle-pill">
+            <span class="sub-text">Chào các bạn nhỏ! Tớ là Sóc Nhỏ đây. Các bạn có bao giờ tự hỏi vì sao sau cơn mưa lại xuất hiện cầu vồng rực rỡ không?</span>
+          </div>
+        </div>
+      </div>
+      <!-- SCENE_2 -->
+      <div id="scene_2" class="scene-container">
+        
+        <img id="img_scene_2" class="clip media-clip"
+             src=""
+             data-start="7.000"
+             data-duration="6.700"
+             data-track-index="0" />
+        <div id="sub_scene_2" class="subtitle-wrapper clip"
+             data-start="7.000"
+             data-duration="6.700"
+             data-track-index="1">
+          <div class="subtitle-pill">
+            <span class="sub-text">Bí mật nằm ở những giọt nước mưa li ti đấy! Khi cơn mưa vừa tạnh, không khí vẫn còn vô vàn hạt nước nhỏ xíu lơ lửng.</span>
+          </div>
+        </div>
+      </div>
+      <!-- SCENE_3 -->
+      <div id="scene_3" class="scene-container">
+        
+        <img id="img_scene_3" class="clip media-clip"
+             src=""
+             data-start="13.700"
+             data-duration="6.300"
+             data-track-index="0" />
+        <div id="sub_scene_3" class="subtitle-wrapper clip"
+             data-start="13.700"
+             data-duration="6.300"
+             data-track-index="1">
+          <div class="subtitle-pill">
+            <span class="sub-text">Lúc này, ánh sáng mặt trời chiếu xuyên qua từng giọt nước. Các bạn biết không, ánh sáng trắng thực ra chứa rất nhiều màu sắc!</span>
+          </div>
+        </div>
+      </div>
+      <!-- SCENE_4 -->
+      <div id="scene_4" class="scene-container">
+        
+        <img id="img_scene_4" class="clip media-clip"
+             src=""
+             data-start="20.000"
+             data-duration="6.300"
+             data-track-index="0" />
+        <div id="sub_scene_4" class="subtitle-wrapper clip"
+             data-start="20.000"
+             data-duration="6.300"
+             data-track-index="1">
+          <div class="subtitle-pill">
+            <span class="sub-text">Mỗi giọt nước mưa hoạt động hệt như một chiếc lăng kính kỳ diệu, uốn cong và bẻ gãy tia sáng thành bảy sắc cầu vồng.</span>
+          </div>
+        </div>
+      </div>
+      <!-- SCENE_5 -->
+      <div id="scene_5" class="scene-container">
+        
+        <img id="img_scene_5" class="clip media-clip"
+             src=""
+             data-start="26.300"
+             data-duration="6.300"
+             data-track-index="0" />
+        <div id="sub_scene_5" class="subtitle-wrapper clip"
+             data-start="26.300"
+             data-duration="6.300"
+             data-track-index="1">
+          <div class="subtitle-pill">
+            <span class="sub-text">Đó là đỏ, cam, vàng, lục, lam, chàm và tím. Tia đỏ bị bẻ cong ít nhất, còn tia tím bị bẻ cong nhiều nhất đấy!</span>
+          </div>
+        </div>
+      </div>
+      <!-- SCENE_6 -->
+      <div id="scene_6" class="scene-container">
+        
+        <img id="img_scene_6" class="clip media-clip"
+             src=""
+             data-start="32.600"
+             data-duration="6.700"
+             data-track-index="0" />
+        <div id="sub_scene_6" class="subtitle-wrapper clip"
+             data-start="32.600"
+             data-duration="6.700"
+             data-track-index="1">
+          <div class="subtitle-pill">
+            <span class="sub-text">Triệu triệu hạt nước cùng phản chiếu ánh sáng ấy về phía mắt chúng ta, tạo nên một dải cầu vồng uốn lượn tuyệt đẹp trên bầu trời.</span>
+          </div>
+        </div>
+      </div>
+      <!-- SCENE_7 -->
+      <div id="scene_7" class="scene-container">
+        
+        <img id="img_scene_7" class="clip media-clip"
+             src=""
+             data-start="39.300"
+             data-duration="5.700"
+             data-track-index="0" />
+        <div id="sub_scene_7" class="subtitle-wrapper clip"
+             data-start="39.300"
+             data-duration="5.700"
+             data-track-index="1">
+          <div class="subtitle-pill">
+            <span class="sub-text">Lần tới thấy cầu vồng, nhớ tìm góc đứng ngược hướng mặt trời để ngắm nhé! Sóc Nhỏ chào tạm biệt các bạn!</span>
+          </div>
+        </div>
+      </div>
+
+      
+      <audio id="audio-voiceover" class="clip"
+             src="assets/voiceover.mp3"
+             data-start="0"
+             data-duration="48.934"
+             data-track-index="3"></audio>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#top-badge", { y: -40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" }, 0.1);
+      
+      // Tween scene_1
+      tl.fromTo("#img_scene_1", { scale: 1.05, opacity: 0 }, { scale: 1.0, opacity: 1, duration: 0.45, ease: "power2.out" }, 0.000);
+      tl.to("#img_scene_1", { scale: 1.03, duration: 6.550, ease: "none" }, 0.450);
+      tl.fromTo("#sub_scene_1", { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "back.out(1.4)" }, 0.100);
+      tl.to("#sub_scene_1", { opacity: 0, duration: 0.2 }, 6.800);
+      // Tween scene_2
+      tl.fromTo("#img_scene_2", { scale: 1.05, opacity: 0 }, { scale: 1.0, opacity: 1, duration: 0.45, ease: "power2.out" }, 7.000);
+      tl.to("#img_scene_2", { scale: 1.03, duration: 6.250, ease: "none" }, 7.450);
+      tl.fromTo("#sub_scene_2", { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "back.out(1.4)" }, 7.100);
+      tl.to("#sub_scene_2", { opacity: 0, duration: 0.2 }, 13.500);
+      // Tween scene_3
+      tl.fromTo("#img_scene_3", { scale: 1.05, opacity: 0 }, { scale: 1.0, opacity: 1, duration: 0.45, ease: "power2.out" }, 13.700);
+      tl.to("#img_scene_3", { scale: 1.03, duration: 5.850, ease: "none" }, 14.150);
+      tl.fromTo("#sub_scene_3", { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "back.out(1.4)" }, 13.800);
+      tl.to("#sub_scene_3", { opacity: 0, duration: 0.2 }, 19.800);
+      // Tween scene_4
+      tl.fromTo("#img_scene_4", { scale: 1.05, opacity: 0 }, { scale: 1.0, opacity: 1, duration: 0.45, ease: "power2.out" }, 20.000);
+      tl.to("#img_scene_4", { scale: 1.03, duration: 5.850, ease: "none" }, 20.450);
+      tl.fromTo("#sub_scene_4", { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "back.out(1.4)" }, 20.100);
+      tl.to("#sub_scene_4", { opacity: 0, duration: 0.2 }, 26.100);
+      // Tween scene_5
+      tl.fromTo("#img_scene_5", { scale: 1.05, opacity: 0 }, { scale: 1.0, opacity: 1, duration: 0.45, ease: "power2.out" }, 26.300);
+      tl.to("#img_scene_5", { scale: 1.03, duration: 5.850, ease: "none" }, 26.750);
+      tl.fromTo("#sub_scene_5", { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "back.out(1.4)" }, 26.400);
+      tl.to("#sub_scene_5", { opacity: 0, duration: 0.2 }, 32.400);
+      // Tween scene_6
+      tl.fromTo("#img_scene_6", { scale: 1.05, opacity: 0 }, { scale: 1.0, opacity: 1, duration: 0.45, ease: "power2.out" }, 32.600);
+      tl.to("#img_scene_6", { scale: 1.03, duration: 6.250, ease: "none" }, 33.050);
+      tl.fromTo("#sub_scene_6", { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "back.out(1.4)" }, 32.700);
+      tl.to("#sub_scene_6", { opacity: 0, duration: 0.2 }, 39.100);
+      // Tween scene_7
+      tl.fromTo("#img_scene_7", { scale: 1.05, opacity: 0 }, { scale: 1.0, opacity: 1, duration: 0.45, ease: "power2.out" }, 39.300);
+      tl.to("#img_scene_7", { scale: 1.03, duration: 5.250, ease: "none" }, 39.750);
+      tl.fromTo("#sub_scene_7", { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "back.out(1.4)" }, 39.400);
+      tl.to("#sub_scene_7", { opacity: 0, duration: 0.2 }, 44.800);
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

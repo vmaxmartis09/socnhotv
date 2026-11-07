@@ -10,7 +10,7 @@
   "weight_kg": 36.0,
   "head_body_ratio": "1 : 5.5 (Dáng thanh mảnh, cao ráo, duyên dáng)",
   "scale_note": "Cao 160 cm (1.60x). Sóc Bi (100 cm) đứng ngang ngực dưới của Cô giáo Hươu Sao.",
-  "voice_id": "co_huou_v1",
+  "voice_id": "vn-bac-nu-01",
   "voice_description": "Giọng cô giáo mầm non trong trẻo, truyền cảm, phát âm chuẩn mực, giàu nhịp điệu.",
   "body": {
     "height_cm": 160,
@@ -63,5 +63,12 @@
     "ep41-rac-ve-dung-nha",
     "ep49-ngay-dau-den-truong",
     "ep50-le-hoi-rung-xanh"
+  ],
+  "cutout_images": [
+    "characters/co_huou_sao/cutout/co_huou_sao_01.png",
+    "characters/co_huou_sao/cutout/co_huou_sao_02.png",
+    "characters/co_huou_sao/cutout/co_huou_sao_03.png",
+    "characters/co_huou_sao/cutout/co_huou_sao_04.png",
+    "characters/co_huou_sao/cutout/co_huou_sao_05.png"
   ]
 }

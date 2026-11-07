@@ -1,0 +1,29 @@
+{
+  "id": "art_404417206b1f",
+  "kind": "audio",
+  "uri": "assets/404417206b1fc8e82c908e6995afb2a65af7399df81169b948757532c62e77ad.wav",
+  "mime": "audio/wav",
+  "size": 202462,
+  "hash": "sha256:404417206b1fc8e82c908e6995afb2a65af7399df81169b948757532c62e77ad",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 4.59,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "c_de_mun",
+    "runId": "run_test",
+    "provider": "mock",
+    "model": "mock-omnivoice-v1",
+    "params": {
+      "text": "Anh Bi ơi! Mun mang quả bóng vải sang chơi với anh Bi nè! (sửa)",
+      "voiceId": "vn-be-04",
+      "tempo": 1.0896
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T09:58:31Z"
+  }
+}

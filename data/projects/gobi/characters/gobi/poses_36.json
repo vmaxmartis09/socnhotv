@@ -1,0 +1,254 @@
+[
+  {
+    "id": 1,
+    "code": "gobi_angle_01_chinh_dien_toan_than",
+    "title": "Chính diện toàn thân",
+    "pose_ref": "01_chinh_dien_toan_than.jpg",
+    "prompt": "Full body front-facing shot of this exact woman standing in studio. She is standing straight, looking into camera with subtle confident smile, wearing cream silk camisole and tailored beige wide-leg trousers, hands relaxed. Clean studio backdrop, 8k."
+  },
+  {
+    "id": 2,
+    "code": "gobi_angle_02_chinh_dien_trung_canh",
+    "title": "Chính diện trung cảnh",
+    "pose_ref": "02_chinh_dien_trung_canh.jpg",
+    "prompt": "Medium waist-up front-facing shot of this exact woman. Showing delicate collarbone, cream silk camisole and beige knit cardigan, warm direct gaze into camera, 85mm portrait, 8k."
+  },
+  {
+    "id": 3,
+    "code": "gobi_angle_03_can_mat_chinh_dien",
+    "title": "Cận mặt chính diện",
+    "pose_ref": "03_can_mat_chinh_dien.jpg",
+    "prompt": "Front-facing beauty portrait of this exact Vietnamese woman. Crisp focus on facial symmetry, fine pores, natural double eyelids, nose bridge, satin nude lips, cream silk camisole, 8k."
+  },
+  {
+    "id": 4,
+    "code": "gobi_angle_04_goc_3_4_toan_than",
+    "title": "Góc 3/4 toàn thân",
+    "pose_ref": "04_goc_3_4_toan_than.jpg",
+    "prompt": "Full body 3/4 angle shot of this exact woman standing turned 30 degrees to the side, looking at camera. Wearing cream silk camisole and tailored beige pants, elegant proportional posture, 8k."
+  },
+  {
+    "id": 5,
+    "code": "gobi_angle_05_goc_3_4_trung_canh",
+    "title": "Góc 3/4 trung cảnh",
+    "pose_ref": "05_goc_3_4_trung_canh.jpg",
+    "prompt": "Medium waist-up portrait turned 3/4 angle. Draped beige knit cardigan over shoulders, natural engaging smile, direct eye contact with lens, warm studio lighting, 8k."
+  },
+  {
+    "id": 6,
+    "code": "gobi_angle_06_can_mat_3_4",
+    "title": "Cận mặt 3/4",
+    "pose_ref": "06_can_mat_3_4.jpg",
+    "prompt": "Close-up 3/4 beauty portrait of this exact woman turned slightly. Soft cheek contour, smooth jawline, natural dark silky hair, serene gentle expression, 8k."
+  },
+  {
+    "id": 7,
+    "code": "gobi_angle_07_goc_nghieng_toan_than",
+    "title": "Góc nghiêng toàn thân",
+    "pose_ref": "07_goc_nghieng_toan_than.jpg",
+    "prompt": "Full body side profile shot of this exact woman standing in full profile (turned 90 degrees), head slightly turned to camera or in profile, slender silhouette, cream outfit, 8k."
+  },
+  {
+    "id": 8,
+    "code": "gobi_angle_08_can_mat_goc_nghieng",
+    "title": "Cận mặt góc nghiêng",
+    "pose_ref": "08_can_mat_goc_nghieng.jpg",
+    "prompt": "Side profile close-up shot (90-degree lateral view) of this exact woman. Showcasing delicate straight nasal bridge, jawline, earlobe, and smooth neck, 8k."
+  },
+  {
+    "id": 9,
+    "code": "gobi_angle_09_goc_chup_sau_lung",
+    "title": "Góc chụp từ sau lưng",
+    "pose_ref": "09_goc_chup_sau_lung.jpg",
+    "prompt": "Full rear back view of this exact woman standing facing away from camera. Showing long silky black hair falling down her back, clean drape of cardigan and wide-leg trousers, 8k."
+  },
+  {
+    "id": 10,
+    "code": "gobi_angle_10_nhin_lai_qua_vai",
+    "title": "Nhìn lại qua vai",
+    "pose_ref": "10_nhin_lai_qua_vai.jpg",
+    "prompt": "Back-turned portrait with her head looking back over her shoulder directly into the camera. Expressive alluring glance, soft hair framing face, elegant neck, 8k."
+  },
+  {
+    "id": 11,
+    "code": "gobi_angle_11_goc_cao_toan_than",
+    "title": "Góc cao toàn thân",
+    "pose_ref": "11_goc_cao_toan_than.jpg",
+    "prompt": "High camera angle full body shot looking down from above at this exact woman standing in studio, looking up towards the lens, graceful pose, 8k."
+  },
+  {
+    "id": 12,
+    "code": "gobi_angle_12_goc_cao_can_mat",
+    "title": "Góc cao cận mặt",
+    "pose_ref": "12_goc_cao_can_mat.jpg",
+    "prompt": "High angle close-up portrait looking down at her face. Sweet expressive upward glance, radiant natural skin, natural eyelashes prominent, cream camisole, 8k."
+  },
+  {
+    "id": 13,
+    "code": "gobi_angle_13_goc_thap_toan_than",
+    "title": "Góc thấp toàn thân",
+    "pose_ref": "13_goc_thap_toan_than.jpg",
+    "prompt": "Low camera angle full body shot looking up at this exact woman. Confident statuesque stance, hands near pockets, long tailored trousers, high fashion perspective, 8k."
+  },
+  {
+    "id": 14,
+    "code": "gobi_angle_14_goc_thap_can_mat",
+    "title": "Góc thấp cận mặt",
+    "pose_ref": "14_goc_thap_can_mat.jpg",
+    "prompt": "Low angle close-up shot looking slightly up at her face. Sharp defined jawline, confident gentle smile, direct eye contact with lens, 8k."
+  },
+  {
+    "id": 15,
+    "code": "gobi_angle_15_goc_90_do_tren_xuong",
+    "title": "Góc 90 độ từ trên xuống",
+    "pose_ref": "15_goc_90_do_tren_xuong.jpg",
+    "prompt": "Top-down 90-degree aerial bird's eye view of this exact woman lying gracefully on a studio floor surface, hair splayed artistically, serene upward glance, 8k."
+  },
+  {
+    "id": 16,
+    "code": "gobi_angle_16_top_down_trung_canh",
+    "title": "Top-down trung cảnh",
+    "pose_ref": "16_top_down_trung_canh.jpg",
+    "prompt": "Top-down medium shot looking down at her seated casually on studio floor, one knee raised, looking up with engaging charming expression, 8k."
+  },
+  {
+    "id": 17,
+    "code": "gobi_angle_17_top_down_nam_ngua",
+    "title": "Top-down nằm ngửa",
+    "pose_ref": "17_top_down_nam_ngua.jpg",
+    "prompt": "Top-down shot of this exact woman lying comfortably on back, one arm raised above head resting relaxed, dark wavy hair fanned out, peaceful dreamy expression, 8k."
+  },
+  {
+    "id": 18,
+    "code": "gobi_angle_18_top_down_ngoi_bet",
+    "title": "Top-down ngồi bệt",
+    "pose_ref": "18_top_down_ngoi_bet.jpg",
+    "prompt": "Overhead high angle of this exact woman sitting cross-legged on studio floor, hands resting on legs, smiling warmly upwards at camera, 8k."
+  },
+  {
+    "id": 19,
+    "code": "gobi_angle_19_goc_rong_toan_canh",
+    "title": "Góc rộng toàn cảnh",
+    "pose_ref": "19_goc_rong_toan_canh.jpg",
+    "prompt": "Wide angle studio environment shot showing the full cyclorama studio, lighting gear softly visible at edges, this exact woman standing centered in full poise, 8k."
+  },
+  {
+    "id": 20,
+    "code": "gobi_angle_20_can_canh_goc_rong",
+    "title": "Cận cảnh góc rộng",
+    "pose_ref": "20_can_canh_goc_rong.jpg",
+    "prompt": "Wide-angle lens close-up portrait creating dynamic depth and intimacy, her face in sharp authentic focus, soft environmental background, 8k."
+  },
+  {
+    "id": 21,
+    "code": "gobi_angle_21_goc_nghieng_ha_lan",
+    "title": "Góc nghiêng Hà Lan",
+    "pose_ref": "21_goc_nghieng_ha_lan.jpg",
+    "prompt": "Dutch angle (slanted camera frame) medium shot of this exact woman with playful head tilt, charming radiant smile, youthful vibrant creator aesthetic, 8k."
+  },
+  {
+    "id": 22,
+    "code": "gobi_angle_22_goc_ngang_hong",
+    "title": "Góc ngang hông",
+    "pose_ref": "22_goc_ngang_hong.jpg",
+    "prompt": "Waist/hip-level shot of this exact woman standing with one hand resting naturally on her hip, chic effortless poise, draped knit cardigan, 8k."
+  },
+  {
+    "id": 23,
+    "code": "gobi_angle_23_khoanh_tay_truoc_nguc",
+    "title": "Khoanh tay trước ngực",
+    "pose_ref": "23_khoanh_tay_truoc_nguc.jpg",
+    "prompt": "Medium portrait of this exact woman standing with arms folded softly across chest, calm approachable professional creator confidence, friendly smile, 8k."
+  },
+  {
+    "id": 24,
+    "code": "gobi_angle_24_cham_tay_len_co_ao",
+    "title": "Chạm tay lên cổ áo",
+    "pose_ref": "24_cham_tay_len_co_ao.jpg",
+    "prompt": "Close-up beauty portrait with her hand delicately touching her collarbone or camisole strap, showcasing graceful neck and clean manicured fingers, 8k."
+  },
+  {
+    "id": 25,
+    "code": "gobi_angle_25_can_canh_chat_lieu",
+    "title": "Cận cảnh chất liệu",
+    "pose_ref": "25_can_canh_chat_lieu.jpg",
+    "prompt": "Macro detail shot focusing on the delicate cream silk camisole fabric texture, delicate gold chain necklace, and smooth glowing collarbone, soft chin in frame, 8k."
+  },
+  {
+    "id": 26,
+    "code": "gobi_angle_26_buoc_di_tu_nhien",
+    "title": "Bước đi tự nhiên",
+    "pose_ref": "26_buoc_di_tu_nhien.jpg",
+    "prompt": "Full body fashion walk shot of this exact woman walking forward mid-stride towards camera, wide-leg trousers flowing naturally, dynamic lifestyle lookbook, 8k."
+  },
+  {
+    "id": 27,
+    "code": "gobi_angle_27_ngoi_ghe_dau",
+    "title": "Ngồi ghế đẩu",
+    "pose_ref": "27_ngoi_ghe_dau.jpg",
+    "prompt": "Full body shot of this exact woman seated on a minimalist wooden studio tall stool, one foot rested on rung, casual chic pose, looking at camera with warm smile, 8k."
+  },
+  {
+    "id": 28,
+    "code": "gobi_angle_28_dua_tuong_ao",
+    "title": "Dựa tường ảo",
+    "pose_ref": "28_dua_tuong_ao.jpg",
+    "prompt": "Medium shot of this exact woman leaning back comfortably against studio wall, hands in trouser pockets, relaxed trendy creator aesthetic, 8k."
+  },
+  {
+    "id": 29,
+    "code": "gobi_angle_29_nguoc_nhin_len",
+    "title": "Ngước nhìn lên",
+    "pose_ref": "29_nguoc_nhin_len.jpg",
+    "prompt": "Poetic beauty close-up of this exact woman looking upwards towards soft window light, pure serene expression, highlighting delicate nose profile and jawline, 8k."
+  },
+  {
+    "id": 30,
+    "code": "gobi_angle_30_cui_nhin_xuong",
+    "title": "Cúi nhìn xuống",
+    "pose_ref": "30_cui_nhin_xuong.jpg",
+    "prompt": "Gentle beauty shot looking downwards, lowered eyelids showing delicate dark lashes, peaceful meditative mood, soft studio light reflecting on hair, 8k."
+  },
+  {
+    "id": 31,
+    "code": "gobi_angle_31_can_canh_doi_mat",
+    "title": "Cận cảnh đôi mắt",
+    "pose_ref": "31_can_canh_doi_mat.jpg",
+    "prompt": "Extreme macro beauty close-up of her eyes and eyebrow, showing authentic skin texture, amber irises with catchlights, individual fine eyelashes, 8k."
+  },
+  {
+    "id": 32,
+    "code": "gobi_angle_32_anh_sang_bong_do",
+    "title": "Ánh sáng bóng đổ",
+    "pose_ref": "32_anh_sang_bong_do.jpg",
+    "prompt": "Cinematic beauty portrait with artistic shadow patterns (like soft window blinds or leaf shadows) falling across her face, dramatic alluring eyes, 8k."
+  },
+  {
+    "id": 33,
+    "code": "gobi_angle_33_goc_chup_nua_mat",
+    "title": "Góc chụp nửa mặt",
+    "pose_ref": "33_goc_chup_nua_mat.jpg",
+    "prompt": "Editorial half-face close-up framing, cropped to show one eye, cheekbone, and side of lips with impeccable skin clarity, 8k."
+  },
+  {
+    "id": 34,
+    "code": "gobi_angle_34_cui_nguoi_ve_truoc",
+    "title": "Cúi người về trước",
+    "pose_ref": "34_cui_nguoi_ve_truoc.jpg",
+    "prompt": "Engaging creator pose leaning forward towards the camera with friendly warm smile, arms resting lightly, intimate conversational creator framing, 8k."
+  },
+  {
+    "id": 35,
+    "code": "gobi_angle_35_chinh_toc",
+    "title": "Chỉnh tóc",
+    "pose_ref": "35_chinh_toc.jpg",
+    "prompt": "Candid beauty portrait of this exact woman raising one hand to tuck or adjust a lock of hair behind her ear, glancing at camera with sweet charming expression, 8k."
+  },
+  {
+    "id": 36,
+    "code": "gobi_angle_36_tao_dang_nghe_thuat",
+    "title": "Tạo dáng nghệ thuật",
+    "pose_ref": "36_tao_dang_nghe_thuat.jpg",
+    "prompt": "Artistic high-fashion seated pose on floor, legs bent gracefully to the side, leaning on one hand, high-editorial composure and lighting, 8k."
+  }
+]

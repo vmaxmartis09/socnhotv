@@ -1,0 +1,29 @@
+{
+  "id": "art_a495a321eb8d",
+  "kind": "audio",
+  "uri": "assets/a495a321eb8db391dbf2b6df70a7757d75d8ad1b5b62a33fe85a69abdc928cab.wav",
+  "mime": "audio/wav",
+  "size": 214370,
+  "hash": "sha256:a495a321eb8db391dbf2b6df70a7757d75d8ad1b5b62a33fe85a69abdc928cab",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 4.86,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "c_soc_nho",
+    "runId": "run_1793952339_4e35d7",
+    "provider": "mock",
+    "model": "mock-omnivoice-v1",
+    "params": {
+      "text": "Ấy khoan đã Mun ơi! Coi chừng vấp mép thảm… Ôi thôi, tháp gỗ của Bi!",
+      "voiceId": "soc-nho",
+      "tempo": 1.0968
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T08:05:39Z"
+  }
+}

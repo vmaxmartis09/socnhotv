@@ -1,0 +1,25 @@
+{
+  "characters": [
+    {
+      "id": "gobi",
+      "projectId": "gobi",
+      "name": "Gobi (KOC thời trang)",
+      "role": "main",
+      "description": "KOC AI nữ Việt Nam, tóc đen dài thẳng, phong cách thanh lịch tối giản. Ảnh neo gốc từ gobi-social.",
+      "voiceId": "koc-lyly",
+      "voiceNote": "Giọng LyLy (kho giọng KOC review, nhập từ gobi-social)",
+      "defaultTempo": 1.05,
+      "promptLock": "this exact Vietnamese woman, long straight black hair, natural makeup, calm confident look, photoreal, studio lighting",
+      "referenceImages": [
+        "/data/projects/gobi/files/characters/gobi/gobi_01.jpg"
+      ],
+      "dnaReferences": [
+        "gobi_00_anchor.jpg",
+        "gobi_angle_01_front_beauty.jpg",
+        "gobi_angle_02_three_quarter.jpg",
+        "gobi_angle_07_full_body_standing.jpg",
+        "gobi_angle_21_walking_motion.jpg"
+      ]
+    }
+  ]
+}

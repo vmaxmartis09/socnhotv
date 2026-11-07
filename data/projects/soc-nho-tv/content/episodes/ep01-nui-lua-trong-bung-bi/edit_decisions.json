@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "episodeId": "ep01-nui-lua-trong-bung-bi",
+  "baseScriptSha256": "bebb422e3c1220a87ce69164bedf8ea2855f212b792a896df6a6b624d7d95943",
+  "createdAt": "2026-11-06T12:14:07.161091+00:00",
+  "updatedAt": "2026-11-06T12:14:07.162909+00:00",
+  "shotOrder": [],
+  "shots": {
+    "S07": {
+      "durationSec": 15.0
+    },
+    "S10": {
+      "subtitle": "Bi hít một hơi thật sâu, ngửi bông hoa cúc thơm ngát!",
+      "dialogue": "Bi hít một hơi thật sâu, ngửi bông hoa cúc thơm ngát!"
+    }
+  },
+  "history": [
+    {
+      "timestamp": "2026-11-06T12:14:07.161106+00:00",
+      "action": "update_duration",
+      "shotId": "S07",
+      "params": {
+        "durationSec": 15.0
+      }
+    },
+    {
+      "timestamp": "2026-11-06T12:14:07.162909+00:00",
+      "action": "update_subtitle",
+      "shotId": "S10",
+      "params": {
+        "subtitle": "Bi hít một hơi thật sâu, ngửi bông hoa cúc thơm ngát!"
+      }
+    }
+  ]
+}

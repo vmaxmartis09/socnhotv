@@ -175,5 +175,15 @@
       "Tập 35: Bố mẹ mệt rồi (ep35-bo-me-met-roi)",
       "Tập 45: Màn hình vừa đủ (ep45-man-hinh-vua-du)"
     ]
-  }
+  },
+  "referenceImages": [
+    "/data/projects/soc-nho-tv/files/characters/me_soc/me_soc_01.png",
+    "/data/projects/soc-nho-tv/files/characters/me_soc/me_soc_02.png",
+    "/data/projects/soc-nho-tv/files/characters/me_soc/me_soc_03.png",
+    "/data/projects/soc-nho-tv/files/characters/me_soc/me_soc_04.png",
+    "/data/projects/soc-nho-tv/files/characters/me_soc/me_soc_05.png",
+    "/data/projects/soc-nho-tv/files/characters/me_soc/me_soc_dna_sheet.png"
+  ],
+  "sampleAudioUrl": "/data/voices/vn-nam-nu-01/me_soc_catchphrase.mp3",
+  "sampleText": "Mẹ ở đây rồi, con kể cho mẹ nghe nào."
 }

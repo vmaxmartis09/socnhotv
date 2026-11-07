@@ -1,0 +1,145 @@
+{
+  "runId": "run_1793925910_1109e8",
+  "id": "run_1793925910_1109e8",
+  "projectId": "soc-nho-tv",
+  "status": "completed",
+  "mode": "force_all",
+  "stage": "Hoàn tất xuất sắc",
+  "currentNodeId": "node_export_out",
+  "progress": 1.0,
+  "progressPct": 100,
+  "startedAtTs": 1793925910.4167948,
+  "createdAt": "2026-11-06T00:45:10Z",
+  "updatedAt": "2026-11-06T00:45:39Z",
+  "elapsedSec": 29.0,
+  "actualCostUsd": 0.0,
+  "costUsd": 0.0,
+  "nodes": [
+    {
+      "id": "node_text_in",
+      "type": "text",
+      "name": "node_text_in",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "node_script_paste",
+      "type": "script",
+      "name": "node_script_paste",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "node_voice_out",
+      "type": "voice_tts",
+      "name": "node_voice_out",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "node_render_out",
+      "type": "hyperframes_render",
+      "name": "node_render_out",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "node_export_out",
+      "type": "export",
+      "name": "node_export_out",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    }
+  ],
+  "totalNodes": 5,
+  "completedNodes": 5,
+  "output": {
+    "id": "vid_v-sao-c-u-v-ng-c-nhi-u-m-u-9_1793925939",
+    "title": "Vì sao cầu vồng có nhiều màu?",
+    "topic": "v-sao-c-u-v-ng-c-nhi-u-m-u-9",
+    "created_at": "2026-11-06T00:45:39Z",
+    "duration_s": 4.29,
+    "size_mb": 0.23,
+    "platforms": [
+      "tiktok"
+    ],
+    "template_id": "shorts-fact-v1",
+    "graph_ref": "graph.json",
+    "run_id": "run_1793925910_1109e8",
+    "voice_id": "soc-nho",
+    "providers_per_scene": {
+      "1": "local_dna_pixar",
+      "2": "local_dna_pixar"
+    },
+    "cost_usd": 0.0,
+    "files": {
+      "video": "output/v-sao-c-u-v-ng-c-nhi-u-m-u-9/final_45s.mp4",
+      "thumb": "output/v-sao-c-u-v-ng-c-nhi-u-m-u-9/thumb.jpg",
+      "script": "output/v-sao-c-u-v-ng-c-nhi-u-m-u-9/script.md",
+      "voice": "output/v-sao-c-u-v-ng-c-nhi-u-m-u-9/voice.mp3",
+      "captions": "output/v-sao-c-u-v-ng-c-nhi-u-m-u-9/captions.srt",
+      "captions_words": "output/v-sao-c-u-v-ng-c-nhi-u-m-u-9/captions.words.json",
+      "scenes": "output/v-sao-c-u-v-ng-c-nhi-u-m-u-9/scenes",
+      "composition": "output/v-sao-c-u-v-ng-c-nhi-u-m-u-9/composition",
+      "verify_report": "output/v-sao-c-u-v-ng-c-nhi-u-m-u-9/verify_report.json"
+    },
+    "verify": {
+      "pass": false,
+      "scores": {
+        "voice_clarity": 4.5,
+        "captions_sync": 3.5,
+        "visual_diversity": 3.0,
+        "character_consistency": 5.0,
+        "pacing": 3.5
+      }
+    }
+  },
+  "error": null,
+  "completedAt": "2026-11-06T00:45:39Z",
+  "outputs": {
+    "id": "vid_v-sao-c-u-v-ng-c-nhi-u-m-u-9_1793925939",
+    "title": "Vì sao cầu vồng có nhiều màu?",
+    "topic": "v-sao-c-u-v-ng-c-nhi-u-m-u-9",
+    "created_at": "2026-11-06T00:45:39Z",
+    "duration_s": 4.29,
+    "size_mb": 0.23,
+    "platforms": [
+      "tiktok"
+    ],
+    "template_id": "shorts-fact-v1",
+    "graph_ref": "graph.json",
+    "run_id": "run_1793925910_1109e8",
+    "voice_id": "soc-nho",
+    "providers_per_scene": {
+      "1": "local_dna_pixar",
+      "2": "local_dna_pixar"
+    },
+    "cost_usd": 0.0,
+    "files": {
+      "video": "output/v-sao-c-u-v-ng-c-nhi-u-m-u-9/final_45s.mp4",
+      "thumb": "output/v-sao-c-u-v-ng-c-nhi-u-m-u-9/thumb.jpg",
+      "script": "output/v-sao-c-u-v-ng-c-nhi-u-m-u-9/script.md",
+      "voice": "output/v-sao-c-u-v-ng-c-nhi-u-m-u-9/voice.mp3",
+      "captions": "output/v-sao-c-u-v-ng-c-nhi-u-m-u-9/captions.srt",
+      "captions_words": "output/v-sao-c-u-v-ng-c-nhi-u-m-u-9/captions.words.json",
+      "scenes": "output/v-sao-c-u-v-ng-c-nhi-u-m-u-9/scenes",
+      "composition": "output/v-sao-c-u-v-ng-c-nhi-u-m-u-9/composition",
+      "verify_report": "output/v-sao-c-u-v-ng-c-nhi-u-m-u-9/verify_report.json"
+    },
+    "verify": {
+      "pass": false,
+      "scores": {
+        "voice_clarity": 4.5,
+        "captions_sync": 3.5,
+        "visual_diversity": 3.0,
+        "character_consistency": 5.0,
+        "pacing": 3.5
+      }
+    }
+  }
+}

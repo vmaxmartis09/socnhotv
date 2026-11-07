@@ -1,0 +1,31 @@
+{
+  "id": "art_c30187f10491",
+  "kind": "audio",
+  "uri": "assets/c30187f104919d04ee5de66cc9966a225af8e0cecd4f3e085e7380e3ec2ff23c.mp3",
+  "mime": "audio/mp3",
+  "size": 383102,
+  "hash": "sha256:c30187f104919d04ee5de66cc9966a225af8e0cecd4f3e085e7380e3ec2ff23c",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 15.894,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "voice_say",
+    "runId": "say",
+    "provider": "omnivoice",
+    "model": "omnivoice",
+    "params": {
+      "text": "suy ra chưc năng đọc theo text đúng giọng vẫn chưa hoạt động hãy fix nhanh đảm bảo node nhân vật hoạt động đúng , đảm bảo khong có dư bất kì node giọng đọc nào trừ khi muốn tách ta thêm 1 node giọng đọc",
+      "voiceId": "koc-lyly",
+      "tempo": 1.05,
+      "targetLufs": -14.0,
+      "mastering": "deesser+presence3.2k+comp4:1+loudnorm-14LUFS"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-07T08:27:35Z"
+  }
+}

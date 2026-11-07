@@ -1,0 +1,37 @@
+{
+  "batchId": "batch_1793967085_31355e",
+  "projectId": "soc-nho-tv",
+  "totalEpisodes": 1,
+  "completedCount": 0,
+  "failedCount": 1,
+  "cancelledCount": 0,
+  "totalCostUsd": 0.0,
+  "isSuccess": false,
+  "episodeResults": [
+    {
+      "episodeId": "ep01-nui-lua-trong-bung-bi",
+      "runId": "run_1793967085_74d1a9",
+      "isSuccess": false,
+      "status": "failed",
+      "totalCostUsd": 0.0,
+      "executedNodes": [
+        "n_script",
+        "n_quality",
+        "n_image"
+      ],
+      "skippedNodes": [],
+      "failedNodes": [
+        "n_export"
+      ],
+      "cachedNodes": [],
+      "errors": {
+        "n_export": "Node 'n_export' (export) không có video đầu vào. Hãy nối cổng 'video' từ node dựng."
+      },
+      "outputVideoPath": null,
+      "durationSec": 0.85
+    }
+  ],
+  "startedAt": "2026-11-06T12:11:25Z",
+  "finishedAt": "2026-11-06T12:11:26Z",
+  "durationSec": 0.85
+}

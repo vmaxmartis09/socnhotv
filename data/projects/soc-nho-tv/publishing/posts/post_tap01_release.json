@@ -1,0 +1,96 @@
+{
+  "id": "post_tap01_release",
+  "project_id": "soc-nho-tv",
+  "title": "Tập 1: Núi Lửa Trong Bụng Bi",
+  "media": [
+    {
+      "path": "output/tap01_nui_lua_trong_bung_bi.mp4",
+      "platform_variant": null,
+      "kind": "video",
+      "duration_s": 45.0,
+      "thumb": ""
+    }
+  ],
+  "source_ref": null,
+  "render_job_id": null,
+  "idea_id": null,
+  "status": "scheduled",
+  "approval": {
+    "required": true,
+    "by": null,
+    "at": null,
+    "note": null
+  },
+  "targets": [
+    {
+      "id": "tgt_tap01_tt",
+      "account_id": "chan_tt_1",
+      "platform": "tiktok",
+      "scheduled_at": "2026-11-10T20:00:00+07:00",
+      "caption": "Tập 1: Núi Lửa Trong Bụng Bi - Khi Bi ăn quá nhiều kẹo ngọt và bụng sôi sùng sục! Bạn Koala sẽ làm gì để giúp Bi?",
+      "hashtags": [
+        "#SocNhoTV",
+        "#Tap1",
+        "#HoatHinh3D",
+        "#NuiLuaTrongBungBi",
+        "#ThieuNhi"
+      ],
+      "title": "Tập 1: Núi Lửa Trong Bụng Bi",
+      "description": "",
+      "tags": [],
+      "privacy": "public",
+      "made_for_kids": false,
+      "cover_time_s": 0.0,
+      "cover_url": null,
+      "first_comment": "",
+      "product_link": "",
+      "disclosure_ad": false,
+      "ai_generated_label": false,
+      "comment_enabled": true,
+      "duet_enabled": true,
+      "stitch_enabled": true,
+      "category": "22",
+      "status": "published",
+      "external_id": null,
+      "external_url": "https://www.tiktok.com/@socnhotv.official/video/7300000000000000000",
+      "attempts": 0,
+      "last_error": null,
+      "published_at": null
+    },
+    {
+      "id": "tgt_tap01_yt",
+      "account_id": "chan_yt_1",
+      "platform": "youtube",
+      "scheduled_at": "2026-11-10T19:30:00+07:00",
+      "caption": "Tập 1: Núi Lửa Trong Bụng Bi | Hoạt hình 3D Sóc Nhỏ TV",
+      "hashtags": [
+        "#SocNhoTV",
+        "#Tap1",
+        "#HoatHinh3D"
+      ],
+      "title": "Tập 1: Núi Lửa Trong Bụng Bi",
+      "description": "",
+      "tags": [],
+      "privacy": "public",
+      "made_for_kids": false,
+      "cover_time_s": 0.0,
+      "cover_url": null,
+      "first_comment": "",
+      "product_link": "",
+      "disclosure_ad": false,
+      "ai_generated_label": false,
+      "comment_enabled": true,
+      "duet_enabled": true,
+      "stitch_enabled": true,
+      "category": "22",
+      "status": "scheduled",
+      "external_id": null,
+      "external_url": null,
+      "attempts": 0,
+      "last_error": null,
+      "published_at": null
+    }
+  ],
+  "created_at": "2026-11-06T19:14:50.881513+07:00",
+  "updated_at": "2026-11-06T19:15:23.364499+07:00"
+}

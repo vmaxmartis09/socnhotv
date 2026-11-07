@@ -1,0 +1,1334 @@
+{
+  "ok": false,
+  "strict": false,
+  "browserSkipped": false,
+  "lint": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 6,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "css_transition_used",
+        "severity": "warning",
+        "message": "CSS declaration `transition: all 0.1s ease` runs on the browser clock and cannot be seeked deterministically across render workers.",
+        "selector": ".word-span",
+        "dataAttributes": {},
+        "sourceFile": "/Volumes/Data/socnhotv/data/projects/gobi/runs/run_1794038637_ea3782/n_render_template/bundle/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Keep the class or attribute swap for state; put the visual change on the paused GSAP timeline."
+      },
+      {
+        "code": "timeline_track_too_dense",
+        "severity": "warning",
+        "message": "Track 3 has 5 timed elements in this HTML file. Smaller sub-compositions keep timelines easier to read, iterate on, and diff.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "/Volumes/Data/socnhotv/data/projects/gobi/runs/run_1794038637_ea3782/n_render_template/bundle/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move coherent scene groups into separate .html files under compositions/ and mount them from the parent with data-composition-src so the timeline stays easier to inspect, revise, and validate."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"koc-hdr\"> is a timeline element that contains nested <div>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#koc-hdr",
+        "dataAttributes": {},
+        "sourceFile": "/Volumes/Data/socnhotv/data/projects/gobi/runs/run_1794038637_ea3782/n_render_template/bundle/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"koc-hdr\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"prod-stage\"> is a timeline element that contains nested <div>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#prod-stage",
+        "dataAttributes": {},
+        "sourceFile": "/Volumes/Data/socnhotv/data/projects/gobi/runs/run_1794038637_ea3782/n_render_template/bundle/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"prod-stage\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"review-card\"> is a timeline element that contains nested <div>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#review-card",
+        "dataAttributes": {},
+        "sourceFile": "/Volumes/Data/socnhotv/data/projects/gobi/runs/run_1794038637_ea3782/n_render_template/bundle/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"review-card\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "clip_ends_past_root_duration",
+        "severity": "warning",
+        "message": "<div id=\"sub4\"> runs from 7.5s to 9.47s, past the root composition's data-duration of 9.23s, so it is cut off in previews, posters and renders.",
+        "selector": "#sub4",
+        "dataAttributes": {},
+        "sourceFile": "/Volumes/Data/socnhotv/data/projects/gobi/runs/run_1794038637_ea3782/n_render_template/bundle/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Extend the root data-duration to 9.47, or make <div id=\"sub4\"> end at or before 9.23s."
+      }
+    ],
+    "filesScanned": 1
+  },
+  "runtime": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": []
+  },
+  "layout": {
+    "ok": false,
+    "errorCount": 5,
+    "warningCount": 0,
+    "infoCount": 15,
+    "findings": [
+      {
+        "code": "text_occluded",
+        "severity": "error",
+        "time": 7.69,
+        "selector": "#w3_0",
+        "message": "Text is hidden beneath an opaque element.",
+        "rect": {
+          "left": 218.45,
+          "top": 950,
+          "right": 297.16,
+          "bottom": 1006,
+          "width": 78.7,
+          "height": 56
+        },
+        "containerSelector": "#w4_0",
+        "text": "Chi",
+        "fixHint": "Give the text its own zone, raise its stacking order above the covering element, or mark intentional layering with data-layout-allow-occlusion.",
+        "coveredFraction": 1,
+        "lifetime": {
+          "start": 5.878,
+          "end": 7.65
+        },
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 218.45,
+          "y": 950,
+          "width": 78.7,
+          "height": 56
+        },
+        "firstSeen": 7.69,
+        "lastSeen": 8.715,
+        "occurrences": 2,
+        "heldMs": 0,
+        "times": [
+          7.69,
+          8.715
+        ]
+      },
+      {
+        "code": "text_occluded",
+        "severity": "error",
+        "time": 7.69,
+        "selector": "#w3_1",
+        "message": "Text is hidden beneath an opaque element.",
+        "rect": {
+          "left": 357.16,
+          "top": 950,
+          "right": 437.64,
+          "bottom": 1006,
+          "width": 80.48,
+          "height": 56
+        },
+        "containerSelector": "#w4_1",
+        "text": "tiết",
+        "fixHint": "Give the text its own zone, raise its stacking order above the covering element, or mark intentional layering with data-layout-allow-occlusion.",
+        "coveredFraction": 0.89,
+        "lifetime": {
+          "start": 5.878,
+          "end": 7.65
+        },
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 357.16,
+          "y": 950,
+          "width": 80.48,
+          "height": 56
+        },
+        "firstSeen": 7.69,
+        "lastSeen": 8.715,
+        "occurrences": 2,
+        "heldMs": 0,
+        "times": [
+          7.69,
+          8.715
+        ]
+      },
+      {
+        "code": "text_occluded",
+        "severity": "error",
+        "time": 7.69,
+        "selector": "#w3_2",
+        "message": "Text is hidden beneath an opaque element.",
+        "rect": {
+          "left": 494.44,
+          "top": 946.73,
+          "right": 555.72,
+          "bottom": 1009.27,
+          "width": 61.28,
+          "height": 62.54
+        },
+        "containerSelector": "#w4_2",
+        "text": "và",
+        "fixHint": "Give the text its own zone, raise its stacking order above the covering element, or mark intentional layering with data-layout-allow-occlusion.",
+        "coveredFraction": 0.78,
+        "lifetime": {
+          "start": 5.878,
+          "end": 7.65
+        },
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 494.44,
+          "y": 946.73,
+          "width": 61.28,
+          "height": 62.54
+        },
+        "firstSeen": 7.69,
+        "lastSeen": 8.715,
+        "occurrences": 2,
+        "heldMs": 0,
+        "times": [
+          7.69,
+          8.715
+        ]
+      },
+      {
+        "code": "text_occluded",
+        "severity": "error",
+        "time": 7.69,
+        "selector": "#w3_3",
+        "message": "Text is hidden beneath an opaque element.",
+        "rect": {
+          "left": 612.52,
+          "top": 950,
+          "right": 684.36,
+          "bottom": 1006,
+          "width": 71.84,
+          "height": 56
+        },
+        "containerSelector": "#w4_3",
+        "text": "giá",
+        "fixHint": "Give the text its own zone, raise its stacking order above the covering element, or mark intentional layering with data-layout-allow-occlusion.",
+        "coveredFraction": 1,
+        "lifetime": {
+          "start": 5.878,
+          "end": 7.65
+        },
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 612.52,
+          "y": 950,
+          "width": 71.84,
+          "height": 56
+        },
+        "firstSeen": 7.69,
+        "lastSeen": 8.715,
+        "occurrences": 2,
+        "heldMs": 0,
+        "times": [
+          7.69,
+          8.715
+        ]
+      },
+      {
+        "code": "text_occluded",
+        "severity": "error",
+        "time": 7.69,
+        "selector": "#w3_4",
+        "message": "Text is hidden beneath an opaque element.",
+        "rect": {
+          "left": 744.36,
+          "top": 950,
+          "right": 861.53,
+          "bottom": 1006,
+          "width": 117.17,
+          "height": 56
+        },
+        "containerSelector": "#w4_4",
+        "text": "mình",
+        "fixHint": "Give the text its own zone, raise its stacking order above the covering element, or mark intentional layering with data-layout-allow-occlusion.",
+        "coveredFraction": 1,
+        "lifetime": {
+          "start": 5.878,
+          "end": 7.65
+        },
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 744.36,
+          "y": 950,
+          "width": 117.17,
+          "height": 56
+        },
+        "firstSeen": 7.69,
+        "lastSeen": 8.715,
+        "occurrences": 2,
+        "heldMs": 0,
+        "times": [
+          7.69,
+          8.715
+        ]
+      },
+      {
+        "code": "text_occluded",
+        "severity": "info",
+        "time": 2.563,
+        "selector": "#w0_0",
+        "message": "Text is hidden beneath an opaque element.",
+        "rect": {
+          "left": 135.86,
+          "top": 950,
+          "right": 251.77,
+          "bottom": 1006,
+          "width": 115.91,
+          "height": 56
+        },
+        "containerSelector": "#w1_0",
+        "text": "Mình",
+        "fixHint": "Give the text its own zone, raise its stacking order above the covering element, or mark intentional layering with data-layout-allow-occlusion.",
+        "coveredFraction": 1,
+        "lifetime": {
+          "start": 0,
+          "end": 2.278
+        },
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 135.86,
+          "y": 950,
+          "width": 115.91,
+          "height": 56
+        },
+        "firstSeen": 2.563,
+        "lastSeen": 2.563,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          2.563
+        ]
+      },
+      {
+        "code": "text_occluded",
+        "severity": "info",
+        "time": 2.563,
+        "selector": "#w0_1",
+        "message": "Text is hidden beneath an opaque element.",
+        "rect": {
+          "left": 310.57,
+          "top": 949.17,
+          "right": 393.16,
+          "bottom": 1006.83,
+          "width": 82.59,
+          "height": 57.67
+        },
+        "containerSelector": "#w1_1",
+        "text": "thử",
+        "fixHint": "Give the text its own zone, raise its stacking order above the covering element, or mark intentional layering with data-layout-allow-occlusion.",
+        "coveredFraction": 1,
+        "lifetime": {
+          "start": 0,
+          "end": 2.278
+        },
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 310.57,
+          "y": 949.17,
+          "width": 82.59,
+          "height": 57.67
+        },
+        "firstSeen": 2.563,
+        "lastSeen": 2.563,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          2.563
+        ]
+      },
+      {
+        "code": "text_occluded",
+        "severity": "info",
+        "time": 2.563,
+        "selector": "#w0_2",
+        "message": "Text is hidden beneath an opaque element.",
+        "rect": {
+          "left": 451.97,
+          "top": 950,
+          "right": 579.66,
+          "bottom": 1006,
+          "width": 127.69,
+          "height": 56
+        },
+        "containerSelector": "#w1_2",
+        "text": "chiếc",
+        "fixHint": "Give the text its own zone, raise its stacking order above the covering element, or mark intentional layering with data-layout-allow-occlusion.",
+        "coveredFraction": 1,
+        "lifetime": {
+          "start": 0,
+          "end": 2.278
+        },
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 451.97,
+          "y": 950,
+          "width": 127.69,
+          "height": 56
+        },
+        "firstSeen": 2.563,
+        "lastSeen": 2.563,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          2.563
+        ]
+      },
+      {
+        "code": "text_occluded",
+        "severity": "info",
+        "time": 2.563,
+        "selector": "#w0_3",
+        "message": "Text is hidden beneath an opaque element.",
+        "rect": {
+          "left": 639.66,
+          "top": 950,
+          "right": 757.78,
+          "bottom": 1006,
+          "width": 118.13,
+          "height": 56
+        },
+        "containerSelector": "#w1_3",
+        "text": "quần",
+        "fixHint": "Give the text its own zone, raise its stacking order above the covering element, or mark intentional layering with data-layout-allow-occlusion.",
+        "coveredFraction": 1,
+        "lifetime": {
+          "start": 0,
+          "end": 2.278
+        },
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 639.66,
+          "y": 950,
+          "width": 118.13,
+          "height": 56
+        },
+        "firstSeen": 2.563,
+        "lastSeen": 2.563,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          2.563
+        ]
+      },
+      {
+        "code": "text_occluded",
+        "severity": "info",
+        "time": 2.563,
+        "selector": "#w0_4",
+        "message": "Text is hidden beneath an opaque element.",
+        "rect": {
+          "left": 817.78,
+          "top": 950,
+          "right": 944.13,
+          "bottom": 1006,
+          "width": 126.34,
+          "height": 56
+        },
+        "containerSelector": "#w1_4",
+        "text": "short",
+        "fixHint": "Give the text its own zone, raise its stacking order above the covering element, or mark intentional layering with data-layout-allow-occlusion.",
+        "coveredFraction": 1,
+        "lifetime": {
+          "start": 0,
+          "end": 2.278
+        },
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 817.78,
+          "y": 950,
+          "width": 126.34,
+          "height": 56
+        },
+        "firstSeen": 2.563,
+        "lastSeen": 2.563,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          2.563
+        ]
+      },
+      {
+        "code": "text_occluded",
+        "severity": "info",
+        "time": 4.614,
+        "selector": "#w1_0",
+        "message": "Text is hidden beneath an opaque element.",
+        "rect": {
+          "left": 144.94,
+          "top": 950,
+          "right": 230.81,
+          "bottom": 1006,
+          "width": 85.88,
+          "height": 56
+        },
+        "containerSelector": "#w2_0",
+        "text": "này",
+        "fixHint": "Give the text its own zone, raise its stacking order above the covering element, or mark intentional layering with data-layout-allow-occlusion.",
+        "coveredFraction": 0.56,
+        "lifetime": {
+          "start": 2.128,
+          "end": 4.305
+        },
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 144.94,
+          "y": 950,
+          "width": 85.88,
+          "height": 56
+        },
+        "firstSeen": 4.614,
+        "lastSeen": 4.614,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          4.614
+        ]
+      },
+      {
+        "code": "text_occluded",
+        "severity": "info",
+        "time": 4.614,
+        "selector": "#w1_1",
+        "message": "Text is hidden beneath an opaque element.",
+        "rect": {
+          "left": 289.31,
+          "top": 949.17,
+          "right": 394.21,
+          "bottom": 1006.83,
+          "width": 104.9,
+          "height": 57.66
+        },
+        "containerSelector": "#w2_1",
+        "text": "nhé.",
+        "fixHint": "Give the text its own zone, raise its stacking order above the covering element, or mark intentional layering with data-layout-allow-occlusion.",
+        "coveredFraction": 0.78,
+        "lifetime": {
+          "start": 2.128,
+          "end": 4.305
+        },
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 289.31,
+          "y": 949.17,
+          "width": 104.9,
+          "height": 57.66
+        },
+        "firstSeen": 4.614,
+        "lastSeen": 4.614,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          4.614
+        ]
+      },
+      {
+        "code": "text_occluded",
+        "severity": "info",
+        "time": 4.614,
+        "selector": "#w1_2",
+        "message": "Text is hidden beneath an opaque element.",
+        "rect": {
+          "left": 452.7,
+          "top": 950,
+          "right": 573.27,
+          "bottom": 1006,
+          "width": 120.56,
+          "height": 56
+        },
+        "containerSelector": "#w2_1",
+        "text": "Form",
+        "fixHint": "Give the text its own zone, raise its stacking order above the covering element, or mark intentional layering with data-layout-allow-occlusion.",
+        "coveredFraction": 0.89,
+        "lifetime": {
+          "start": 2.128,
+          "end": 4.305
+        },
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 452.7,
+          "y": 950,
+          "width": 120.56,
+          "height": 56
+        },
+        "firstSeen": 4.614,
+        "lastSeen": 4.614,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          4.614
+        ]
+      },
+      {
+        "code": "text_occluded",
+        "severity": "info",
+        "time": 4.614,
+        "selector": "#w1_3",
+        "message": "Text is hidden beneath an opaque element.",
+        "rect": {
+          "left": 633.27,
+          "top": 950,
+          "right": 769.5,
+          "bottom": 1006,
+          "width": 136.23,
+          "height": 56
+        },
+        "containerSelector": "#w2_3",
+        "text": "đứng,",
+        "fixHint": "Give the text its own zone, raise its stacking order above the covering element, or mark intentional layering with data-layout-allow-occlusion.",
+        "coveredFraction": 1,
+        "lifetime": {
+          "start": 2.128,
+          "end": 4.305
+        },
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 633.27,
+          "y": 950,
+          "width": 136.23,
+          "height": 56
+        },
+        "firstSeen": 4.614,
+        "lastSeen": 4.614,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          4.614
+        ]
+      },
+      {
+        "code": "text_occluded",
+        "severity": "info",
+        "time": 4.614,
+        "selector": "#w1_4",
+        "message": "Text is hidden beneath an opaque element.",
+        "rect": {
+          "left": 829.5,
+          "top": 950,
+          "right": 935.06,
+          "bottom": 1006,
+          "width": 105.56,
+          "height": 56
+        },
+        "containerSelector": "#w2_4",
+        "text": "chất",
+        "fixHint": "Give the text its own zone, raise its stacking order above the covering element, or mark intentional layering with data-layout-allow-occlusion.",
+        "coveredFraction": 0.67,
+        "lifetime": {
+          "start": 2.128,
+          "end": 4.305
+        },
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 829.5,
+          "y": 950,
+          "width": 105.56,
+          "height": 56
+        },
+        "firstSeen": 4.614,
+        "lastSeen": 4.614,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          4.614
+        ]
+      },
+      {
+        "code": "text_occluded",
+        "severity": "info",
+        "time": 6.665,
+        "selector": "#w2_0",
+        "message": "Text is hidden beneath an opaque element.",
+        "rect": {
+          "left": 199.52,
+          "top": 950,
+          "right": 267.64,
+          "bottom": 1006,
+          "width": 68.13,
+          "height": 56
+        },
+        "containerSelector": "#w3_0",
+        "text": "vải",
+        "fixHint": "Give the text its own zone, raise its stacking order above the covering element, or mark intentional layering with data-layout-allow-occlusion.",
+        "coveredFraction": 1,
+        "lifetime": {
+          "start": 4.155,
+          "end": 6.0280000000000005
+        },
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 199.52,
+          "y": 950,
+          "width": 68.13,
+          "height": 56
+        },
+        "firstSeen": 6.665,
+        "lastSeen": 6.665,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          6.665
+        ]
+      },
+      {
+        "code": "text_occluded",
+        "severity": "info",
+        "time": 6.665,
+        "selector": "#w2_1",
+        "message": "Text is hidden beneath an opaque element.",
+        "rect": {
+          "left": 325.7,
+          "top": 949.17,
+          "right": 459.87,
+          "bottom": 1006.83,
+          "width": 134.17,
+          "height": 57.66
+        },
+        "containerSelector": "#w3_1",
+        "text": "mềm,",
+        "fixHint": "Give the text its own zone, raise its stacking order above the covering element, or mark intentional layering with data-layout-allow-occlusion.",
+        "coveredFraction": 0.89,
+        "lifetime": {
+          "start": 4.155,
+          "end": 6.0280000000000005
+        },
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 325.7,
+          "y": 949.17,
+          "width": 134.17,
+          "height": 57.66
+        },
+        "firstSeen": 6.665,
+        "lastSeen": 6.665,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          6.665
+        ]
+      },
+      {
+        "code": "text_occluded",
+        "severity": "info",
+        "time": 6.665,
+        "selector": "#w2_2",
+        "message": "Text is hidden beneath an opaque element.",
+        "rect": {
+          "left": 517.94,
+          "top": 950,
+          "right": 584.81,
+          "bottom": 1006,
+          "width": 66.88,
+          "height": 56
+        },
+        "containerSelector": "#w3_2",
+        "text": "rất",
+        "fixHint": "Give the text its own zone, raise its stacking order above the covering element, or mark intentional layering with data-layout-allow-occlusion.",
+        "coveredFraction": 0.78,
+        "lifetime": {
+          "start": 4.155,
+          "end": 6.0280000000000005
+        },
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 517.94,
+          "y": 950,
+          "width": 66.88,
+          "height": 56
+        },
+        "firstSeen": 6.665,
+        "lastSeen": 6.665,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          6.665
+        ]
+      },
+      {
+        "code": "text_occluded",
+        "severity": "info",
+        "time": 6.665,
+        "selector": "#w2_3",
+        "message": "Text is hidden beneath an opaque element.",
+        "rect": {
+          "left": 644.81,
+          "top": 950,
+          "right": 703.81,
+          "bottom": 1006,
+          "width": 59,
+          "height": 56
+        },
+        "containerSelector": "#w3_3",
+        "text": "dễ",
+        "fixHint": "Give the text its own zone, raise its stacking order above the covering element, or mark intentional layering with data-layout-allow-occlusion.",
+        "coveredFraction": 1,
+        "lifetime": {
+          "start": 4.155,
+          "end": 6.0280000000000005
+        },
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 644.81,
+          "y": 950,
+          "width": 59,
+          "height": 56
+        },
+        "firstSeen": 6.665,
+        "lastSeen": 6.665,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          6.665
+        ]
+      },
+      {
+        "code": "text_occluded",
+        "severity": "info",
+        "time": 6.665,
+        "selector": "#w2_4",
+        "message": "Text is hidden beneath an opaque element.",
+        "rect": {
+          "left": 763.81,
+          "top": 950,
+          "right": 880.47,
+          "bottom": 1006,
+          "width": 116.66,
+          "height": 56
+        },
+        "containerSelector": "#w3_4",
+        "text": "phối.",
+        "fixHint": "Give the text its own zone, raise its stacking order above the covering element, or mark intentional layering with data-layout-allow-occlusion.",
+        "coveredFraction": 1,
+        "lifetime": {
+          "start": 4.155,
+          "end": 6.0280000000000005
+        },
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 763.81,
+          "y": 950,
+          "width": 116.66,
+          "height": 56
+        },
+        "firstSeen": 6.665,
+        "lastSeen": 6.665,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          6.665
+        ]
+      }
+    ],
+    "duration": 9.228,
+    "samples": [
+      0.513,
+      1.538,
+      2.563,
+      3.589,
+      4.614,
+      5.639,
+      6.665,
+      7.69,
+      8.715
+    ],
+    "transitionSamples": [],
+    "transitionSamplesDropped": 0,
+    "tolerance": 2,
+    "totalIssueCount": 20,
+    "truncated": false
+  },
+  "motion": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "enabled": false,
+    "samples": 0
+  },
+  "contrast": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "enabled": true,
+    "samples": [
+      0.513,
+      2.563,
+      4.614,
+      6.665,
+      8.715
+    ],
+    "checked": 61,
+    "passed": 61
+  },
+  "craft": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 7,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "first_frame_empty",
+        "severity": "warning",
+        "message": "Frame 0 shows only the background, and the first frame is the thumbnail on social players: have the title or key image already on screen at 0 s instead of entering from nothing; see references/review.md.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0
+      },
+      {
+        "code": "text_below_floor",
+        "severity": "warning",
+        "message": "Type floor is 28 px (2.6% of the 1080 px short side, what a phone can read) and 30 text elements stay under it for 0.5 s or more, the smallest \"⭐⭐⭐⭐⭐ 9.8/10 ĐÁNG MUA\" at 12 px: set reading text to at least 28 px, or put data-layout-ignore on text that is texture rather than reading; see references/look.md.",
+        "text": "⭐⭐⭐⭐⭐ 9.8/10 ĐÁNG MUA",
+        "selector": "div.koc-rating-badge",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 634.22,
+          "y": 207.77,
+          "width": 350.78,
+          "height": 28
+        },
+        "time": 0.249,
+        "times": [
+          0.249,
+          0.249,
+          0.374,
+          0.499,
+          0.499,
+          0.499,
+          0.499,
+          0.499,
+          2.12,
+          2.12,
+          2.743,
+          2.743,
+          2.743,
+          2.743,
+          2.743,
+          4.988,
+          4.988,
+          4.988,
+          4.988,
+          4.988,
+          6.859,
+          6.859,
+          6.859,
+          6.859,
+          6.859,
+          8.23,
+          8.23,
+          8.23,
+          8.23,
+          8.23
+        ],
+        "fontPx": 12,
+        "floorPx": 28,
+        "seconds": 8.979,
+        "elements": [
+          {
+            "selector": "div.koc-rating-badge",
+            "text": "⭐⭐⭐⭐⭐ 9.8/10 ĐÁNG MUA",
+            "fontPx": 12,
+            "time": 0.249,
+            "seconds": 8.979
+          },
+          {
+            "selector": "div.pros-box > span:nth-of-type(2)",
+            "text": "Âm bass chắc, pin trâu 30 tiếng liên tục",
+            "fontPx": 13,
+            "time": 2.12,
+            "seconds": 7.108
+          },
+          {
+            "selector": "div.cons-box > span:nth-of-type(2)",
+            "text": "Hộp sạc hơi to một chút",
+            "fontPx": 13,
+            "time": 2.12,
+            "seconds": 7.108
+          },
+          {
+            "selector": "span.koc-name",
+            "text": "Gobi",
+            "fontPx": 14,
+            "time": 0.249,
+            "seconds": 8.979
+          },
+          {
+            "selector": "div.product-name",
+            "text": "Tên sản phẩm (sửa ở đây)",
+            "fontPx": 16.39,
+            "time": 0.374,
+            "seconds": 8.854
+          },
+          {
+            "selector": "#w0_0",
+            "text": "Mình",
+            "fontPx": 24,
+            "time": 0.499,
+            "seconds": 1.871
+          },
+          {
+            "selector": "#w0_1",
+            "text": "thử",
+            "fontPx": 24,
+            "time": 0.499,
+            "seconds": 1.871
+          },
+          {
+            "selector": "#w0_2",
+            "text": "chiếc",
+            "fontPx": 24,
+            "time": 0.499,
+            "seconds": 1.871
+          },
+          {
+            "selector": "#w0_3",
+            "text": "quần",
+            "fontPx": 24,
+            "time": 0.499,
+            "seconds": 1.871
+          },
+          {
+            "selector": "#w0_4",
+            "text": "short",
+            "fontPx": 24,
+            "time": 0.499,
+            "seconds": 1.871
+          },
+          {
+            "selector": "#w1_0",
+            "text": "này",
+            "fontPx": 24,
+            "time": 2.743,
+            "seconds": 1.622
+          },
+          {
+            "selector": "#w1_1",
+            "text": "nhé.",
+            "fontPx": 24,
+            "time": 2.743,
+            "seconds": 1.622
+          },
+          {
+            "selector": "#w1_2",
+            "text": "Form",
+            "fontPx": 24,
+            "time": 2.743,
+            "seconds": 1.622
+          },
+          {
+            "selector": "#w1_3",
+            "text": "đứng,",
+            "fontPx": 24,
+            "time": 2.743,
+            "seconds": 1.622
+          },
+          {
+            "selector": "#w1_4",
+            "text": "chất",
+            "fontPx": 24,
+            "time": 2.743,
+            "seconds": 1.622
+          },
+          {
+            "selector": "#w2_0",
+            "text": "vải",
+            "fontPx": 24,
+            "time": 4.988,
+            "seconds": 1.123
+          },
+          {
+            "selector": "#w2_1",
+            "text": "mềm,",
+            "fontPx": 24,
+            "time": 4.988,
+            "seconds": 1.123
+          },
+          {
+            "selector": "#w2_2",
+            "text": "rất",
+            "fontPx": 24,
+            "time": 4.988,
+            "seconds": 1.123
+          },
+          {
+            "selector": "#w2_3",
+            "text": "dễ",
+            "fontPx": 24,
+            "time": 4.988,
+            "seconds": 1.123
+          },
+          {
+            "selector": "#w2_4",
+            "text": "phối.",
+            "fontPx": 24,
+            "time": 4.988,
+            "seconds": 1.123
+          },
+          {
+            "selector": "#w3_0",
+            "text": "Chi",
+            "fontPx": 24,
+            "time": 6.859,
+            "seconds": 0.873
+          },
+          {
+            "selector": "#w3_1",
+            "text": "tiết",
+            "fontPx": 24,
+            "time": 6.859,
+            "seconds": 0.873
+          },
+          {
+            "selector": "#w3_2",
+            "text": "và",
+            "fontPx": 24,
+            "time": 6.859,
+            "seconds": 0.873
+          },
+          {
+            "selector": "#w3_3",
+            "text": "giá",
+            "fontPx": 24,
+            "time": 6.859,
+            "seconds": 0.873
+          },
+          {
+            "selector": "#w3_4",
+            "text": "mình",
+            "fontPx": 24,
+            "time": 6.859,
+            "seconds": 0.873
+          },
+          {
+            "selector": "#w4_0",
+            "text": "để",
+            "fontPx": 24,
+            "time": 8.23,
+            "seconds": 0.998
+          },
+          {
+            "selector": "#w4_1",
+            "text": "ở",
+            "fontPx": 24,
+            "time": 8.23,
+            "seconds": 0.998
+          },
+          {
+            "selector": "#w4_3",
+            "text": "hàng",
+            "fontPx": 24,
+            "time": 8.23,
+            "seconds": 0.998
+          },
+          {
+            "selector": "#w4_4",
+            "text": "nha.",
+            "fontPx": 24,
+            "time": 8.23,
+            "seconds": 0.998
+          },
+          {
+            "selector": "#w4_2",
+            "text": "giỏ",
+            "fontPx": 24.26,
+            "time": 8.23,
+            "seconds": 0.998
+          }
+        ]
+      },
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "The film's last line \"để\" (1 word) is on screen 1.12 s (±0.01 s), under the 2.00 s a closing line needs: hold it about 0.5 s + 0.3 s a word and at least 2 s before the film ends; see references/motion.md.",
+        "text": "để",
+        "selector": "#w4_0",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 228.98,
+          "y": 950,
+          "width": 59.72,
+          "height": 56
+        },
+        "time": 8.114,
+        "words": 1,
+        "seconds": 1.118,
+        "floorSeconds": 2
+      },
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "The film's last line \"ở\" (1 word) is on screen 1.12 s (±0.01 s), under the 2.00 s a closing line needs: hold it about 0.5 s + 0.3 s a word and at least 2 s before the film ends; see references/motion.md.",
+        "text": "ở",
+        "selector": "#w4_1",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 348.7,
+          "y": 950,
+          "width": 29.329999999999984,
+          "height": 56
+        },
+        "time": 8.114,
+        "words": 1,
+        "seconds": 1.118,
+        "floorSeconds": 2
+      },
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "The film's last line \"giỏ\" (1 word) is on screen 1.12 s (±0.01 s), under the 2.00 s a closing line needs: hold it about 0.5 s + 0.3 s a word and at least 2 s before the film ends; see references/motion.md.",
+        "text": "giỏ",
+        "selector": "#w4_2",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 436.83,
+          "y": 949.08,
+          "width": 75.39000000000004,
+          "height": 57.84000000000003
+        },
+        "time": 8.114,
+        "words": 1,
+        "seconds": 1.118,
+        "floorSeconds": 2
+      },
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "The film's last line \"hàng\" (1 word) is on screen 1.12 s (±0.01 s), under the 2.00 s a closing line needs: hold it about 0.5 s + 0.3 s a word and at least 2 s before the film ends; see references/motion.md.",
+        "text": "hàng",
+        "selector": "#w4_3",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 571.02,
+          "y": 950,
+          "width": 118.39999999999998,
+          "height": 56
+        },
+        "time": 8.114,
+        "words": 1,
+        "seconds": 1.118,
+        "floorSeconds": 2
+      },
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "The film's last line \"nha.\" (1 word) is on screen 1.12 s (±0.01 s), under the 2.00 s a closing line needs: hold it about 0.5 s + 0.3 s a word and at least 2 s before the film ends; see references/motion.md.",
+        "text": "nha.",
+        "selector": "#w4_4",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 749.42,
+          "y": 950,
+          "width": 101.58000000000004,
+          "height": 56
+        },
+        "time": 8.114,
+        "words": 1,
+        "seconds": 1.118,
+        "floorSeconds": 2
+      }
+    ],
+    "enabled": true,
+    "step": 0.125,
+    "samples": 74
+  },
+  "audio": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": []
+  },
+  "hdr": {
+    "autoPromotion": null,
+    "inspection": "available"
+  },
+  "snapshots": {
+    "enabled": false,
+    "files": [],
+    "times": [],
+    "findingFiles": []
+  }
+}

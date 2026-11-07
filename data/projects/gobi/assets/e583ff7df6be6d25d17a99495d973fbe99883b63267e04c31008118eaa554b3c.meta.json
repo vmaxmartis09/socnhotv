@@ -1,0 +1,31 @@
+{
+  "id": "art_e583ff7df6be",
+  "kind": "audio",
+  "uri": "assets/e583ff7df6be6d25d17a99495d973fbe99883b63267e04c31008118eaa554b3c.mp3",
+  "mime": "audio/mp3",
+  "size": 90322,
+  "hash": "sha256:e583ff7df6be6d25d17a99495d973fbe99883b63267e04c31008118eaa554b3c",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 3.692,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "voice_say",
+    "runId": "say",
+    "provider": "omnivoice",
+    "model": "omnivoice",
+    "params": {
+      "text": "Chào cả nhà, hôm nay Gobi thử một bộ đồ mới nhé.",
+      "voiceId": "koc-lyly",
+      "tempo": 1.05,
+      "targetLufs": -14.0,
+      "mastering": "deesser+presence3.2k+comp4:1+loudnorm-14LUFS"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-07T08:17:35Z"
+  }
+}

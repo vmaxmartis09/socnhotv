@@ -1,0 +1,21 @@
+{
+  "source": "/Volumes/Data/socnhotv/data/projects/soc-nho-tv/characters/soc_nho/soc_nho_01.png",
+  "size": [
+    1024,
+    572
+  ],
+  "model": "depth-anything/Depth-Anything-V2-Small-hf",
+  "fg_pct": 70.0,
+  "mid_pct": 35.0,
+  "feather": 3.0,
+  "reconstruction_psnr_db": 99.0,
+  "coverage": {
+    "fg": 0.3,
+    "mid_plus_fg": 0.651
+  },
+  "parallax_hint": {
+    "layer_bg": 0.2,
+    "layer_mid": 1.0,
+    "layer_fg": 1.8
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "id": "vn-chung-nu-09",
+  "display_name": "Nữ phổ thông 9",
+  "aliases": [],
+  "engine": "omnivoice",
+  "lang": "vi",
+  "dialect": "unknown",
+  "gender": "female",
+  "sample_paths": [
+    "cloned_default_sample.mp3"
+  ],
+  "loudness": -14.0,
+  "status": "ready",
+  "consent_note": "Mẫu lấy từ YouTube https://www.youtube.com/watch?v=re5eT6Ld1FE — người dùng quyết định dùng nội bộ cho giọng nhân vật, chưa xin phép chủ giọng.",
+  "source_url": "https://www.youtube.com/watch?v=re5eT6Ld1FE",
+  "created_at": "2026-11-05T23:05:00.082534"
+}

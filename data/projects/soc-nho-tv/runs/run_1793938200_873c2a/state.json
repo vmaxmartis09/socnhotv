@@ -1,0 +1,112 @@
+{
+  "runId": "run_1793938200_873c2a",
+  "id": "run_1793938200_873c2a",
+  "projectId": "soc-nho-tv",
+  "status": "completed",
+  "mode": "all",
+  "stage": "Hoàn tất xuất sắc",
+  "currentNodeId": null,
+  "progress": 1.0,
+  "progressPct": 100,
+  "startedAtTs": 1793938200.1021912,
+  "createdAt": "2026-11-06T04:10:00Z",
+  "updatedAt": "2026-11-06T04:10:00Z",
+  "elapsedSec": 0.0,
+  "actualCostUsd": 0.0,
+  "costUsd": 0.0,
+  "nodes": [
+    {
+      "id": "n_script",
+      "type": "script",
+      "name": "n_script",
+      "state": "pending",
+      "progressPct": 0,
+      "error": null
+    },
+    {
+      "id": "n_char_bi",
+      "type": "character",
+      "name": "n_char_bi",
+      "state": "pending",
+      "progressPct": 0,
+      "error": null
+    },
+    {
+      "id": "n_char_mun",
+      "type": "character",
+      "name": "n_char_mun",
+      "state": "pending",
+      "progressPct": 0,
+      "error": null
+    },
+    {
+      "id": "n_char_me",
+      "type": "character",
+      "name": "n_char_me",
+      "state": "pending",
+      "progressPct": 0,
+      "error": null
+    },
+    {
+      "id": "n_keyframes",
+      "type": "image_gen",
+      "name": "n_keyframes",
+      "state": "pending",
+      "progressPct": 0,
+      "error": null
+    },
+    {
+      "id": "n_voice_bi",
+      "type": "voice_tts",
+      "name": "n_voice_bi",
+      "state": "pending",
+      "progressPct": 0,
+      "error": null
+    },
+    {
+      "id": "n_voice_mun",
+      "type": "voice_tts",
+      "name": "n_voice_mun",
+      "state": "pending",
+      "progressPct": 0,
+      "error": null
+    },
+    {
+      "id": "n_voice_me",
+      "type": "voice_tts",
+      "name": "n_voice_me",
+      "state": "pending",
+      "progressPct": 0,
+      "error": null
+    },
+    {
+      "id": "n_captions",
+      "type": "captions",
+      "name": "n_captions",
+      "state": "pending",
+      "progressPct": 0,
+      "error": null
+    },
+    {
+      "id": "n_render",
+      "type": "hyperframes_render",
+      "name": "n_render",
+      "state": "pending",
+      "progressPct": 0,
+      "error": null
+    },
+    {
+      "id": "n_export",
+      "type": "export",
+      "name": "n_export",
+      "state": "pending",
+      "progressPct": 0,
+      "error": null
+    }
+  ],
+  "totalNodes": 11,
+  "completedNodes": 0,
+  "output": null,
+  "error": null,
+  "completedAt": "2026-11-06T04:10:00Z"
+}

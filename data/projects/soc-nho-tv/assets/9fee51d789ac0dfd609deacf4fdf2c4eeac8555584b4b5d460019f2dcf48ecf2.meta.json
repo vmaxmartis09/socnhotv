@@ -1,0 +1,29 @@
+{
+  "id": "art_9fee51d789ac",
+  "kind": "audio",
+  "uri": "assets/9fee51d789ac0dfd609deacf4fdf2c4eeac8555584b4b5d460019f2dcf48ecf2.wav",
+  "mime": "audio/wav",
+  "size": 229364,
+  "hash": "sha256:9fee51d789ac0dfd609deacf4fdf2c4eeac8555584b4b5d460019f2dcf48ecf2",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 5.2,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "c_de_mun",
+    "runId": "run_1793959111_39a495",
+    "provider": "mock",
+    "model": "mock-omnivoice-v1",
+    "params": {
+      "text": "Anh Bi ơi… Mun không cố ý đâu… Mun nhặt ngôi sao trả cho anh Bi nè…",
+      "voiceId": "vn-be-04",
+      "tempo": 1.0896
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T09:58:31Z"
+  }
+}

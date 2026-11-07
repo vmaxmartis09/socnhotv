@@ -1,0 +1,36 @@
+{
+  "measured_at": "2026-11-04T21:03:00+07:00",
+  "engine": "HyperFramesEngine (with FFmpeg fallback)",
+  "benchmark_episode_id": "ep_benchmark",
+  "hardware": {
+    "platform": "darwin",
+    "architecture": "arm64 (Apple Silicon)",
+    "parallel_workers": 2
+  },
+  "metrics": {
+    "sample_video_duration_sec": 19.0,
+    "sample_render_elapsed_sec": 12.43,
+    "render_speed_ratio": 1.53,
+    "render_time_per_minute_video_sec": 39.25,
+    "render_fps_average": 45.8,
+    "audio_mastering_chain": "TikTok standard -14 LUFS (192kbps MP3)",
+    "cost_breakdown_usd": {
+      "image_gen_per_scene": 0.015,
+      "estimated_episode_5_scenes": 0.075,
+      "estimated_episode_10_scenes": 0.15,
+      "voice_synthesis_omnivoice": 0.0,
+      "video_rendering_local": 0.0,
+      "total_per_episode_average": 0.075
+    }
+  },
+  "compliance": {
+    "character_scale_lock": "Bi 100cm / Koala 150cm (Enforced in all scene prompts)",
+    "safe_zones_guaranteed": {
+      "tiktok": "Top 180px, Bottom 320px, Right 120px",
+      "reels": "Top 140px, Bottom 260px, Right 100px",
+      "shorts": "Top 120px, Bottom 240px, Right 100px",
+      "youtube": "Top 0px, Bottom 0px, Left 0px, Right 0px (Full 16:9)"
+    },
+    "auto_draft_integration": "Connected to socnhotv.social.contracts.create_draft_post (Session C)"
+  }
+}

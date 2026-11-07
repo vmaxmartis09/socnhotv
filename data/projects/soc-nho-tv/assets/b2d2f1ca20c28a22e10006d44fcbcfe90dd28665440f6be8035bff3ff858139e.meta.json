@@ -1,0 +1,33 @@
+{
+  "id": "art_b2d2f1ca20c2",
+  "kind": "video",
+  "uri": "assets/b2d2f1ca20c28a22e10006d44fcbcfe90dd28665440f6be8035bff3ff858139e.mp4",
+  "mime": "video/mp4",
+  "size": 113155,
+  "hash": "sha256:b2d2f1ca20c28a22e10006d44fcbcfe90dd28665440f6be8035bff3ff858139e",
+  "meta": {
+    "width": 1080,
+    "height": 1920,
+    "duration": 2.17,
+    "fps": 30.0,
+    "aspect": "9:16"
+  },
+  "provenance": {
+    "nodeId": "node_final_render",
+    "runId": "run_1793955550_f6227d",
+    "provider": "hyperframes",
+    "model": "hyperframes-v0.9.12",
+    "params": {
+      "aspectRatio": "9:16",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "sceneCount": 1
+    },
+    "inputHashes": [
+      "sha256:8e1ba8a1c1b081f19bf66358701a918a8d5f3e474ecf537474249a393cf44933"
+    ],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T08:59:27Z"
+  }
+}

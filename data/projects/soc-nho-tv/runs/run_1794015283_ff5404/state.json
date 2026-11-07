@@ -1,0 +1,78 @@
+{
+  "runId": "run_1794015283_ff5404",
+  "id": "run_1794015283_ff5404",
+  "projectId": "soc-nho-tv",
+  "status": "completed",
+  "mode": "all",
+  "runPolicy": {
+    "image": "mock",
+    "video": "off",
+    "text": "mock",
+    "voice": "local"
+  },
+  "stage": "Hoàn tất xuất sắc",
+  "currentNodeId": "node_platform_export",
+  "progress": 1.0,
+  "progressPct": 100,
+  "startedAtTs": 1794015283.8859599,
+  "createdAt": "2026-11-07T01:34:43Z",
+  "updatedAt": "2026-11-07T01:35:05Z",
+  "elapsedSec": 21.2,
+  "actualCostUsd": 0.0,
+  "costUsd": 0.0,
+  "nodes": [
+    {
+      "id": "node_text",
+      "type": "text",
+      "name": "node_text",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "node_character",
+      "type": "character",
+      "name": "node_character",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "node_script",
+      "type": "script",
+      "name": "node_script",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "node_voice",
+      "type": "voice_tts",
+      "name": "node_voice",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "node_template_render",
+      "type": "template_render",
+      "name": "node_template_render",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "node_platform_export",
+      "type": "platform_export",
+      "name": "node_platform_export",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    }
+  ],
+  "totalNodes": 6,
+  "completedNodes": 6,
+  "output": null,
+  "error": null,
+  "completedAt": "2026-11-07T01:35:05Z"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "art_d5ddc8139e6d",
+  "kind": "audio",
+  "uri": "assets/d5ddc8139e6d9ddd430b007d39e11124f38846f6aa34fe37402e09b2b991dded.wav",
+  "mime": "audio/wav",
+  "size": 294190,
+  "hash": "sha256:d5ddc8139e6d9ddd430b007d39e11124f38846f6aa34fe37402e09b2b991dded",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 6.67,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "c_soc_nho",
+    "runId": "run_1793968037_2140cd",
+    "provider": "mock",
+    "model": "mock-omnivoice-v1",
+    "params": {
+      "text": "Mun ngồi bên cạnh xem anh Bi xếp tiếp tầng ba màu vàng và tầng bốn màu xanh lá nhé!",
+      "voiceId": "soc-nho",
+      "tempo": 1.0
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T12:27:17Z"
+  }
+}

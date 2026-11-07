@@ -1,0 +1,29 @@
+{
+  "id": "art_f676c334cb32",
+  "kind": "audio",
+  "uri": "assets/f676c334cb32156e05105c2b34297c82798b1ba4b76f269a54fba4a089a68a81.wav",
+  "mime": "audio/wav",
+  "size": 460888,
+  "hash": "sha256:f676c334cb32156e05105c2b34297c82798b1ba4b76f269a54fba4a089a68a81",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 10.45,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "c_soc_nho",
+    "runId": "run_1793955922_5c467e",
+    "provider": "mock",
+    "model": "mock-omnivoice-v1",
+    "params": {
+      "text": "Đố bạn nhỏ nhé: Khi đang giận, chúng mình nên quát to hay nên xòe bàn tay năm ngón hít thở sâu nào? … Đúng rồi, xòe tay hít thở sâu nhé!",
+      "voiceId": "soc-nho",
+      "tempo": 1.0209
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T09:05:22Z"
+  }
+}

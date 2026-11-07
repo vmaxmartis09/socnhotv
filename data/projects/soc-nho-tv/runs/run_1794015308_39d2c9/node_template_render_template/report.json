@@ -1,0 +1,30 @@
+{
+  "template_id": "shorts-fact-v1",
+  "platform": "shorts",
+  "ok": true,
+  "mp4": "/Volumes/Data/socnhotv/data/projects/soc-nho-tv/runs/run_1794015308_39d2c9/node_template_render_template/shorts-fact-v1_shorts.mp4",
+  "contact_sheet": "/Volumes/Data/socnhotv/data/projects/soc-nho-tv/runs/run_1794015308_39d2c9/node_template_render_template/shorts-fact-v1_shorts_contact.jpg",
+  "engine": "hyperframes",
+  "width": 1080,
+  "height": 1920,
+  "duration_sec": 2.67,
+  "size_bytes": 460837,
+  "has_audio_stream": true,
+  "render_sec": 4.45,
+  "slots_from_user": [
+    "fact_question",
+    "fact_statement",
+    "follow_cta",
+    "stat_number"
+  ],
+  "slots_from_sample": [],
+  "audio_source": "voice_audio",
+  "assets_from_user": [],
+  "assets_from_template": [
+    "gsap.min.js"
+  ],
+  "warnings": [
+    "hyperframes check: {\"ok\": false, \"details\": {\"ok\": false, \"strict\": false, \"browserSkipped\": false, \"lint\": {\"ok\": true, \"errorCount\": 0, \"warningCount\": 3, \"infoCount\": 0, \"findings\": [{\"code\": \"gsap_infinite_repeat\", \"severity\": \"warning\", \"message\": \"GSAP tween uses `repeat: -1` (infinite), but the composition declares a finite 2.636s window. HyperFrames clips deterministic seeking and export to that explicit dur"
+  ],
+  "error": ""
+}

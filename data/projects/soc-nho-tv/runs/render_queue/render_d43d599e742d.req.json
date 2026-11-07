@@ -1,0 +1,18 @@
+{
+  "project_id": "soc-nho-tv",
+  "template_id": "tiktok-sales-v1",
+  "platforms": [
+    "tiktok"
+  ],
+  "data": {
+    "scenes": [
+      {
+        "dialogue": "Cancel me",
+        "durationSec": 1.0
+      }
+    ]
+  },
+  "voice": null,
+  "source_ref": null,
+  "output_name": "test_cancel_out"
+}

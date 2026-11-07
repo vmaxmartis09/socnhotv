@@ -1,0 +1,52 @@
+{
+  "id": "ch_google",
+  "channel_url": "https://www.youtube.com/@Google/videos",
+  "niche": "Chủ đề: Google",
+  "pillars": [
+    "Google"
+  ],
+  "title_patterns": [
+    "What’s New in Google Accessibility | Episode [Số]",
+    "What’s New in Google Accessibility | Episode [Số] | American Sign Language"
+  ],
+  "avg_duration_s": 343.0,
+  "upload_cadence": "1-2 video / tuần",
+  "top_videos": [
+    {
+      "id": "lL7L6DiGeLc",
+      "title": "What’s New in Google Accessibility | Episode 13",
+      "view_count": 41000,
+      "outlier_score": 1.21,
+      "thumbnail": "https://i.ytimg.com/vi/lL7L6DiGeLc/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDKlIRD9vSJKcsJMfaZw-mmC8YWGw",
+      "url": "https://www.youtube.com/watch?v=lL7L6DiGeLc"
+    },
+    {
+      "id": "WMjVP7QQyDI",
+      "title": "Giannis x Google Search: Miami Pickup Hoops",
+      "view_count": 34000,
+      "outlier_score": 1.0,
+      "thumbnail": "https://i.ytimg.com/vi/WMjVP7QQyDI/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA4wahhMZt1KqccQOigsLRguXLi1A",
+      "url": "https://www.youtube.com/watch?v=WMjVP7QQyDI"
+    },
+    {
+      "id": "DDjr6gXqtN8",
+      "title": "What’s New in Google Accessibility | Episode 13 | American Sign Language",
+      "view_count": 12000,
+      "outlier_score": 0.35,
+      "thumbnail": "https://i.ytimg.com/vi/DDjr6gXqtN8/hq720_custom_2.jpg?sqp=CPCLt9cG-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDo8CEACICbopcEZeJoLvFfl3eulw",
+      "url": "https://www.youtube.com/watch?v=DDjr6gXqtN8"
+    }
+  ],
+  "best_hooks": [
+    "Xem ngay: What’s New in Google Accessibility | Episode 13",
+    "Xem ngay: Giannis x Google Search: Miami Pickup Hoops",
+    "Xem ngay: What’s New in Google Accessibility | Episode 13 | American Sign Language"
+  ],
+  "data_label": "DỮ LIỆU THẬT",
+  "is_mock": false,
+  "metadata": {
+    "schedule_heatmap_status": "MẪU (Giờ ước tính 12:00 do dữ liệu nguồn chỉ có ngày)",
+    "has_real_hours": false,
+    "retention_data": "KHÔNG CÓ (Không bịa số liệu giữ chân)"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "id": "art_c95a754fbee6",
+  "kind": "audio",
+  "uri": "assets/c95a754fbee64131cd2e656344dc0b619c5ab905023aa14ce7064199679085ae.mp3",
+  "mime": "audio/mp3",
+  "size": 191259,
+  "hash": "sha256:c95a754fbee64131cd2e656344dc0b619c5ab905023aa14ce7064199679085ae",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 7.91,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "prebuild_voice",
+    "runId": "prebuild_ep02-mun-so-bong-toi",
+    "provider": "omnivoice",
+    "model": "omnivoice",
+    "params": {
+      "text": "🎵 Nào mình cùng nhớ nhé, mỗi ngày một niềm vui! Gặp chuyện khó đừng lo, mình làm theo từng bước! 🎵",
+      "voiceId": "vn-be-04",
+      "tempo": 1.0,
+      "targetLufs": -14.0,
+      "mastering": "deesser+presence3.2k+comp4:1+loudnorm-14LUFS"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T10:58:46Z"
+  }
+}

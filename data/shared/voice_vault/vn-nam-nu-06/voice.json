@@ -1,0 +1,17 @@
+{
+  "id": "vn-nam-nu-06",
+  "display_name": "Nữ miền Nam 6",
+  "aliases": [],
+  "engine": "omnivoice",
+  "lang": "vi",
+  "dialect": "south",
+  "gender": "female",
+  "sample_paths": [
+    "cloned_default_sample.mp3"
+  ],
+  "loudness": -14.0,
+  "status": "ready",
+  "consent_note": "Mẫu lấy từ YouTube https://www.youtube.com/watch?v=na24wAMYdnI — người dùng quyết định dùng nội bộ cho giọng nhân vật, chưa xin phép chủ giọng.",
+  "source_url": "https://www.youtube.com/watch?v=na24wAMYdnI",
+  "created_at": "2026-11-05T23:04:34.904156"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "art_eacd31a524eb",
+  "kind": "audio",
+  "uri": "assets/eacd31a524eb20b98c1d3382de92c415c060c9f3257f87371e159d8c8f880e71.mp3",
+  "mime": "audio/mp3",
+  "size": 134834,
+  "hash": "sha256:eacd31a524eb20b98c1d3382de92c415c060c9f3257f87371e159d8c8f880e71",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 5.56,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "prebuild_voice",
+    "runId": "prebuild_ep02-mun-so-bong-toi",
+    "provider": "omnivoice",
+    "model": "omnivoice",
+    "params": {
+      "text": "Tada! Bạn nhỏ nhìn xem, Dê Mun đã xếp ngay ngắn và đẹp ơi là đẹp chưa nè!",
+      "voiceId": "vn-be-04",
+      "tempo": 1.0,
+      "targetLufs": -14.0,
+      "mastering": "deesser+presence3.2k+comp4:1+loudnorm-14LUFS"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T10:31:38Z"
+  }
+}

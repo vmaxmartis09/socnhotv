@@ -1,0 +1,64 @@
+{
+  "runId": "run_1793967102_034b61",
+  "id": "run_1793967102_034b61",
+  "projectId": "soc-nho-tv",
+  "status": "failed",
+  "mode": "all",
+  "stage": "Thất bại: n_render: HyperFrames render thất bại tại node 'n_render': [Errno 21] Is a directory: '/Volumes/Data/socnhotv'\nLog tail: [Errno 21] Is a directory: '/Volumes/Data/socnhotv'",
+  "currentNodeId": "n_export",
+  "progress": 0.05,
+  "progressPct": 5,
+  "startedAtTs": 1793967102.436451,
+  "createdAt": "2026-11-06T12:11:42Z",
+  "updatedAt": "2026-11-06T12:11:44Z",
+  "elapsedSec": 1.6,
+  "actualCostUsd": 0.0,
+  "costUsd": 0.0,
+  "nodes": [
+    {
+      "id": "n_script",
+      "type": "script",
+      "name": "n_script",
+      "state": "pending",
+      "progressPct": 0,
+      "error": null
+    },
+    {
+      "id": "n_quality",
+      "type": "quality_check",
+      "name": "n_quality",
+      "state": "pending",
+      "progressPct": 0,
+      "error": null
+    },
+    {
+      "id": "n_image",
+      "type": "image_gen",
+      "name": "n_image",
+      "state": "pending",
+      "progressPct": 0,
+      "error": null
+    },
+    {
+      "id": "n_render",
+      "type": "hyperframes_render",
+      "name": "n_render",
+      "state": "failed",
+      "progressPct": 0,
+      "error": "Node dừng lại: HyperFrames render thất bại tại node 'n_render': [Errno 21] Is a directory: '/Volumes/Data/socnhotv'\nLog tail: [Errno 21] Is a directory: '/Volumes/Data/socnhotv'"
+    },
+    {
+      "id": "n_export",
+      "type": "export",
+      "name": "n_export",
+      "state": "failed",
+      "progressPct": 0,
+      "error": "Bỏ qua node 'n_export' do node cha ['n_render'] bị lỗi."
+    }
+  ],
+  "totalNodes": 5,
+  "completedNodes": 0,
+  "output": null,
+  "error": "n_render: HyperFrames render thất bại tại node 'n_render': [Errno 21] Is a directory: '/Volumes/Data/socnhotv'\nLog tail: [Errno 21] Is a directory: '/Volumes/Data/socnhotv'",
+  "completedAt": "2026-11-06T12:11:44Z"
+}

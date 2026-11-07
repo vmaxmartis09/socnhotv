@@ -1,0 +1,48 @@
+{
+  "runId": "run_1793959112_f62d39",
+  "id": "run_1793959112_f62d39",
+  "projectId": "soc-nho-tv",
+  "status": "failed",
+  "mode": "all",
+  "stage": "Thất bại: r: HyperFrames render thất bại tại node 'r': [Errno 21] Is a directory: '/Volumes/Data/socnhotv'\nLog tail: [Errno 21] Is a directory: '/Volumes/Data/socnhotv'",
+  "currentNodeId": "r",
+  "progress": 0.667,
+  "progressPct": 67,
+  "startedAtTs": 1793959112.4757261,
+  "createdAt": "2026-11-06T09:58:32Z",
+  "updatedAt": "2026-11-06T09:58:32Z",
+  "elapsedSec": 0.0,
+  "actualCostUsd": 0.0,
+  "costUsd": 0.0,
+  "nodes": [
+    {
+      "id": "s",
+      "type": "script",
+      "name": "s",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "q",
+      "type": "quality_check",
+      "name": "q",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "r",
+      "type": "hyperframes_render",
+      "name": "r",
+      "state": "failed",
+      "progressPct": 0,
+      "error": "Node dừng lại: HyperFrames render thất bại tại node 'r': [Errno 21] Is a directory: '/Volumes/Data/socnhotv'\nLog tail: [Errno 21] Is a directory: '/Volumes/Data/socnhotv'"
+    }
+  ],
+  "totalNodes": 3,
+  "completedNodes": 2,
+  "output": null,
+  "error": "r: HyperFrames render thất bại tại node 'r': [Errno 21] Is a directory: '/Volumes/Data/socnhotv'\nLog tail: [Errno 21] Is a directory: '/Volumes/Data/socnhotv'",
+  "completedAt": "2026-11-06T09:58:32Z"
+}

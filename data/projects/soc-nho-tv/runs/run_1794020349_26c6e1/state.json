@@ -1,0 +1,78 @@
+{
+  "runId": "run_1794020349_26c6e1",
+  "id": "run_1794020349_26c6e1",
+  "projectId": "soc-nho-tv",
+  "status": "failed",
+  "mode": "all",
+  "runPolicy": {
+    "image": "real",
+    "video": "off",
+    "text": "mock",
+    "voice": "local"
+  },
+  "stage": "Thất bại: n_quality: google HTTP 429 (quota): {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit:; n_keyframes: google HTTP 429 (quota): {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit:",
+  "currentNodeId": "n_export",
+  "progress": 0.333,
+  "progressPct": 33,
+  "startedAtTs": 1794020349.15938,
+  "createdAt": "2026-11-07T02:59:09Z",
+  "updatedAt": "2026-11-07T02:59:10Z",
+  "elapsedSec": 1.3,
+  "actualCostUsd": 0.0,
+  "costUsd": 0.0,
+  "nodes": [
+    {
+      "id": "n_script",
+      "type": "script",
+      "name": "n_script",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_quality",
+      "type": "quality_check",
+      "name": "n_quality",
+      "state": "failed",
+      "progressPct": 0,
+      "error": "Node dừng lại: google HTTP 429 (quota): {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit:"
+    },
+    {
+      "id": "n_keyframes",
+      "type": "image_gen",
+      "name": "n_keyframes",
+      "state": "failed",
+      "progressPct": 0,
+      "error": "Node dừng lại: google HTTP 429 (quota): {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit:"
+    },
+    {
+      "id": "n_render",
+      "type": "hyperframes_render",
+      "name": "n_render",
+      "state": "failed",
+      "progressPct": 0,
+      "error": "Bỏ qua node 'n_render' do node cha ['n_quality', 'n_keyframes'] bị lỗi."
+    },
+    {
+      "id": "n_export",
+      "type": "export",
+      "name": "n_export",
+      "state": "failed",
+      "progressPct": 0,
+      "error": "Bỏ qua node 'n_export' do node cha ['n_render'] bị lỗi."
+    },
+    {
+      "id": "node_cast_mw542014",
+      "type": "cast",
+      "name": "node_cast_mw542014",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    }
+  ],
+  "totalNodes": 6,
+  "completedNodes": 2,
+  "output": null,
+  "error": "n_quality: google HTTP 429 (quota): {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit:; n_keyframes: google HTTP 429 (quota): {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit:",
+  "completedAt": "2026-11-07T02:59:10Z"
+}

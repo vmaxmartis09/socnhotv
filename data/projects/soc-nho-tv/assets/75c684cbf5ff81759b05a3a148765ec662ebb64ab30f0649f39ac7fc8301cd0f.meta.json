@@ -1,0 +1,28 @@
+{
+  "id": "art_75c684cbf5ff",
+  "kind": "text",
+  "uri": "assets/75c684cbf5ff81759b05a3a148765ec662ebb64ab30f0649f39ac7fc8301cd0f.json",
+  "mime": "application/json",
+  "size": 138109,
+  "hash": "sha256:75c684cbf5ff81759b05a3a148765ec662ebb64ab30f0649f39ac7fc8301cd0f",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": null,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "s",
+    "runId": "run_1793955568_64aa0d",
+    "provider": "local",
+    "model": "episode_script",
+    "params": {
+      "targetSceneCount": 30,
+      "sourceText": "Núi lửa trong bụng Bi"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T08:59:29Z"
+  }
+}

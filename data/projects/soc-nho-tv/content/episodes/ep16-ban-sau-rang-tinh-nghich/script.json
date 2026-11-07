@@ -1,0 +1,1052 @@
+{
+  "id": "ep16-ban-sau-rang-tinh-nghich",
+  "episodeNumber": 16,
+  "title": "Bạn sâu răng tinh nghịch",
+  "series": "Bi và Những Người Bạn (Kênh: Sóc Nhỏ TV)",
+  "season": "Mùa 4: Cơ thể khỏe mạnh",
+  "durationSec": 600,
+  "aspect": "16:9 Widescreen",
+  "style": "3D Pixar Stylized Animation",
+  "leadCharacter": "Sóc Bi",
+  "cast": [
+    {
+      "name": "Sóc Bi",
+      "heightCm": 100,
+      "id": "soc_nho"
+    },
+    {
+      "name": "Bác sĩ Koala",
+      "heightCm": 150,
+      "id": "koala"
+    }
+  ],
+  "setting": {
+    "name": "Phòng khám Bác sĩ Koala (koala_clinic)",
+    "code": "koala_clinic",
+    "timeOfDay": "Ban ngày"
+  },
+  "lesson": "Hạn chế ăn đồ ngọt buổi tối và đánh răng đúng cách 2 phút mỗi sáng - tối (chải xoay tròn mặt ngoài, mặt trong, mặt nhai)",
+  "mantra": "Xoay tròn bàn chải, răng trắng sáng ngời!",
+  "summary": "### 1.1. Tóm tắt câu chuyện đời thường\n- **Hoàn cảnh mở đầu**: Câu chuyện diễn ra gần gũi ngay tại **Phòng khám Bác sĩ Koala**, xoay quanh **Sóc Bi (100cm), Bác sĩ Koala (150cm)** (tuyệt đối không nhồi nhét đông nhân vật không cần thiết để bé dễ tập trung theo dõi). Sóc Bi (100cm) mê ăn bánh quy mật ong nhưng tối qua buồn ngủ nên chải răng qua loa vài giây, sáng dậy thấy chiếc răng hàm hơi ê buốt nên đến gặp Bác sĩ Koala (150cm).\n- **Diễn biến tâm lý & Phản ứng của trẻ**: Bi ôm một bên má hồng, rụt rè bước vào phòng khám xanh bạc hà vì sợ bị đau. Đây là phản ứng tâm sinh lý hoàn toàn có thật và rất phổ biến ở trẻ nhỏ từ 3 đến 7 tuổi trong đời sống hàng ngày.\n- **Cách tháo gỡ trực quan & Bài học**: Bác sĩ Koala (150cm) hiền từ đeo gương soi trán kiểm tra nhẹ nhàng không đau chút nào, rồi dùng mô hình hàm răng lớn dạy Bi bài múa bàn chải 'Xoay tròn như bánh xe - Chải từ trên xuống dưới' đủ 2 phút và thưởng cho Bi một sticker ngôi sao vàng. Qua đó, các bé tự mình khắc phục sự cố và ghi nhớ câu thần chú: **\"Xoay tròn bàn chải, răng trắng sáng ngời!\"**.\n\n### 1.2. Cấu trúc 3 Lớp Sư Phạm Mầm Non\n1. **Lớp 1 — Khơi gợi tò mò & Đồng cảm (`00:00 - 03:00`)**: Đặt trẻ vào tình huống sinh hoạt quen thuộc tại **Phòng khám Bác sĩ Koala** với đạo cụ thực tế (*Mô hình hàm răng trắng bóng khổng lồ, bàn chải lông mềm màu xanh và lọ thủy tinh đựng sticker ngôi sao vàng của Bác sĩ Koala*). Khi sự cố xảy ra, kịch bản mô tả trung thực cảm xúc trên khuôn mặt và cơ thể trẻ thay vì trách mắng.\n2. **Lớp 2 — Trải nghiệm trực quan & Hướng dẫn từng bước (`03:00 - 07:00`)**: Nhân vật đồng hành (**Bác sĩ Koala (150cm)**) ngồi xuống ngang tầm mắt trẻ, dùng hình ảnh và đồ vật cụ thể để hướng dẫn bài học: *Hạn chế ăn đồ ngọt buổi tối và đánh răng đúng cách 2 phút mỗi sáng - tối (chải xoay tròn mặt ngoài, mặt trong, mặt nhai)*, kết hợp bài hát đồng dao và câu hỏi tương tác dừng 2–3 giây chờ khán giả nhí trả lời.\n3. **Lớp 3 — Tự tay thực hành & Đúc kết thói quen (`07:00 - 10:00`)**: Nhân vật nhí tự lực áp dụng kỹ năng vừa học để giải quyết trọn vẹn tình huống ban đầu và lặp lại đủ 3 lần câu thần chú **\"Xoay tròn bàn chải, răng trắng sáng ngời!\"**.\n\n---",
+  "environmentPromptLock": "[LOCATION LOCK - KOALA_CLINIC] 3D Pixar-style animated film environment, photoreal-stylized child-friendly woodland clinic belonging to Doctor Koala. The cozy round room features soothing pastel mint-green walls with warm natural wood wainscotting, curved windows looking out onto sunny green fern gardens, and smooth non-slip cork flooring. At the center sits a low, cushioned wooden examination bed (45cm high with a cute 20cm two-step wooden footstool) and a friendly 150cm-tall Doctor Koala desk (72cm high). On a low demonstration table (50cm high) rests an oversized cheerful white tooth model with a giant soft-bristle wooden toothbrush for teaching brushing technique. On the wall hang colorful illustrated posters of healthy vegetables, the 6 handwashing steps, and a wooden height-measuring chart marked clearly from 0cm to 160cm, while a clear glass jar on the counter holds gold star and leaf stickers (strictly stickers, no sugary candy). Lighting (morning): Bright, clean, reassuring morning sunlight streaming through the curved clinic windows, blending with soft warm-white interior lamps for a zero-fear atmosphere.",
+  "characters": [
+    {
+      "name": "Sóc Bi",
+      "heightCm": 100,
+      "species": "Sóc đỏ (red squirrel) nhân hóa",
+      "personality": "tò mò, lém lỉnh, nhanh nhẹn, hay hỏi 'Tại sao?', đôi khi hấp tấp, rất tốt bụng, biết nhận lỗi",
+      "catchphrase": "Ủa, tại sao vậy ta? / Bi hiểu rồi!",
+      "voiceDirection": "Cao độ: cao vừa, sáng trong kiểu bé trai 3-4 tuổi. Tốc độ: linh hoạt (nhanh khi hào hứng đặt câu hỏi, chậm rõ từng chữ khi đọc Câu Thần Chú và '3 điều Bi nhớ'). Chất giọng: lém lỉnh, ấm áp, nhấn giọng ở từ 'Ủa', 'Tại sao' và 'Bi hiểu rồi!'.",
+      "do": "Luôn giữ thân hình THON GỌN, bụng phẳng, tay chân ngắn thon khỏe khoắn ở mọi góc máy; Luôn đính kèm ảnh gốc data/projects/soc-nho-tv/characters/soc_nho/soc_nho_01.png khi sinh ảnh; Vẫy chiếc đuôi xù lớn cong lên sau lưng mỗi khi nảy ra ý tưởng hoặc vui mừng; Nhìn thẳng vào camera với đôi mắt tròn đen lấp lánh ở các khoảnh khắc tương tác với khán giả nhí",
+      "dont": "Không bao giờ vẽ Bi béo tròn, bụng phệ hoặc lùn tịt như thú nhồi bông biến dạng; Không để Bi giảng đạo như người lớn; Bi học bài học thông qua việc tự thử sai và khám phá; Không đổi trang phục mặc định (áo thun vàng cổ tròn, quần short đen, giày thể thao tối màu đế trắng) trừ khi kịch bản yêu cầu rõ",
+      "promptLock": "a slim, agile 3-4 year old boy squirrel named Bi, about 100cm tall, NOT fat, flat belly, short slender limbs, head about 1/4 of body height, reddish orange-brown fur with lighter belly and cheeks, big round glossy black eyes with highlights, light pink cheeks, two front teeth, small pointed ears with tufts, very large bushy tail curving up behind his back and darker red-brown toward the tip, fitted yellow crew-neck t-shirt, black shorts, dark sneakers with white soles",
+      "id": "soc_nho"
+    },
+    {
+      "name": "Bác sĩ Koala",
+      "heightCm": 150,
+      "species": "Gấu túi koala (koala) nhân hóa",
+      "personality": "hiền từ, kiên nhẫn, ấm áp, thông thái",
+      "catchphrase": "Để Bác sĩ Koala kiểm tra xem nào, không đau chút nào đâu nhé!",
+      "voiceDirection": "Giọng nam trung niên/lớn tuổi trầm ấm, từ tốn, truyền cảm giác an tâm tuyệt đối cho trẻ nhỏ.",
+      "do": "Luôn giữ chiều cao 150 cm (1.5x Bi; Bi đứng ngang ngực bác sĩ Koala); Luôn dùng câu khóa tỉ lệ: 'Bi is two-thirds the height of the koala doctor, his head reaches the doctor's chest'; Thưởng sticker ngôi sao/hình dán khích lệ, tuyệt đối không thưởng kẹo ngọt",
+      "dont": "Không cầm kim tiêm to hay dụng cụ y tế gây sợ hãi cho trẻ mầm non; Không giải thích bằng thuật ngữ y khoa phức tạp",
+      "promptLock": "a gentle elderly koala doctor, about 150cm tall (1.5x the height of Bi the squirrel), soft gray fur, large round black nose, fluffy round ears, kind small eyes behind round gold glasses, wearing a clean white doctor coat with a green cross badge, a head mirror on his forehead, a stethoscope around his neck, 3D Pixar-style soft render, soft studio lighting, plain light gray background",
+      "id": "koala"
+    }
+  ],
+  "scenes": [
+    {
+      "index": 1,
+      "title": "Mở đầu gây tò mò & Giới thiệu không gian Phòng khám Bác sĩ Koala",
+      "startSec": 0,
+      "endSec": 60,
+      "location": "Phòng khám Bác sĩ Koala — Khu vực trung tâm (Mô hình hàm răng trắng và bàn chải lớn dạy đánh răng)",
+      "purpose": "Giới thiệu bối cảnh thực tế tại Phòng khám Bác sĩ Koala và chỉ 2 nhân vật xuất hiện trong tập (Sóc Bi (100cm), Bác sĩ Koala (150cm)), khơi gợi sự tò mò của khán giả nhí.",
+      "shots": [
+        {
+          "id": "S01",
+          "sceneIndex": 1,
+          "sceneTitle": "Mở đầu gây tò mò & Giới thiệu không gian Phòng khám Bác sĩ Koala",
+          "startSec": 0,
+          "endSec": 20,
+          "durationSec": 20.0,
+          "shotSize": "WS",
+          "camera": "eye-level, 28mm, push-in",
+          "characters": [
+            "Sóc Bi (100cm)"
+          ],
+          "action": "[0-7s] Máy quay đẩy nhẹ vào không gian Phòng khám Bác sĩ Koala bình yên, giới thiệu Mô hình hàm răng trắng bóng khổng lồ, bàn chải lông mềm màu xanh và lọ thủy tinh đựng sticker ngôi sao vàng của Bác sĩ Koala. [7-14s] Sóc Bi (100cm) bước ra giữa khung hình, hào hứng sắp xếp đồ vật. [14-20s] Sóc Bi vẫy tay chào các bạn nhỏ trước màn hình.",
+          "expression": "Sóc Bi (vui): Miệng cười rộng khoe 2 chiếc răng cửa trắng nhỏ, đôi mắt đen tròn cong hình trăng khuyết lấp lánh, hai má hồng nâng cao, hai tai sóc dựng thẳng, đuôi xù lớn vẫy cao phía sau lưng.",
+          "actingNotes": "Sóc Bi: Bước đi linh hoạt, cử chỉ tự nhiên đúng lứa tuổi mầm non, tay nâng niu món đồ chơi/đạo cụ, ánh mắt nhìn thẳng ống kính thân thiện.",
+          "speaker": "Sóc Bi (100cm)",
+          "dialogue": "Chào các bạn nhỏ! Hôm nay ở Phòng khám Bác sĩ Koala, Sóc Bi có một món đồ rất vui nè, các bạn nhìn xem là gì đây?",
+          "voiceDelivery": "Giọng trong trẻo, hào hứng, nhấn nhẹ ở cuối câu để gợi mở sự tò mò",
+          "sfx": "Tiếng chim hót buổi sớm và tiếng động tự nhiên tại Phòng khám Bác sĩ Koala",
+          "bgm": "Nhạc dạo đầu bằng đàn marimba và guitar gỗ mộc mạc, nhịp 104 BPM tươi sáng",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] WS, eye-level angle, 28mm lens. [CHARACTERS] a slim, agile 3-4 year old boy squirrel named Bi, about 100cm tall, NOT fat, flat belly, short slender limbs, head about 1/4 of body height, reddish orange-brown fur with lighter belly and cheeks, big round glossy black eyes with highlights, light pink cheeks, two front teeth, small pointed ears with tufts, very large bushy tail curving up behind his back and darker red-brown toward the tip, fitted yellow crew-neck t-shirt, black shorts, dark sneakers with white soles, wide open cheerful smile showing two cute front teeth, crescent-shaped sparkling black eyes, rosy pink cheeks lifted high, ears perked straight up, large bushy tail wagging high behind his back, bouncing lightly on his toes with both hands raised happily. [ACTION] Wide establishing shot of Phòng khám Bác sĩ Koala as Sóc Bi happily prepares props and waves warmly at the camera. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized child-friendly woodland clinic belonging to Doctor Koala. The cozy round room features soothing pastel mint-green walls with warm natural wood wainscotting, curved windows looking out onto sunny green fern gardens, and smooth non-slip cork flooring. At the center sits a low, cushioned wooden examination bed (45cm high with a cute 20cm two-step wooden footstool) and a friendly 150cm-tall Doctor Koala desk (72cm high). On a low demonstration table (50cm high) rests an oversized cheerful white tooth model with a giant soft-bristle wooden toothbrush for teaching brushing technique. On the wall hang colorful illustrated posters of healthy vegetables, the 6 handwashing steps, and a wooden height-measuring chart marked clearly from 0cm to 160cm, while a clear glass jar on the counter holds gold star and leaf stickers (strictly stickers, no sugary candy). Time of day: morning. [DEPTH] foreground: soft foreground foliage and wooden prop bokeh, soft bokeh; midground: Sóc Bi (100cm) interacting with Mô hình hàm răng trắng bóng khổng lồ, bàn chải lông mềm màu xanh và lọ thủy tinh đựng sticker ngôi sao vàng của Bác sĩ Koala in sharp focus, razor-sharp focus; background: cozy background of Phòng khám Bác sĩ Koala, creamy atmospheric falloff. [LIGHT] Bright, clean, reassuring morning sunlight streaming through the curved clinic windows, blending with soft warm-white interior lamps for a zero-fear atmosphere..",
+          "videoPrompt": "8-second 3D Pixar-style animated clip (S01, 00:00-00:20): Wide establishing shot of Phòng khám Bác sĩ Koala as Sóc Bi happily prepares props and waves warmly at the camera. Camera movement: smooth push-in. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Sóc Bi), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "soc_nho"
+          ],
+          "speakerId": "soc_nho"
+        },
+        {
+          "id": "S02",
+          "sceneIndex": 1,
+          "sceneTitle": "Mở đầu gây tò mò & Giới thiệu không gian Phòng khám Bác sĩ Koala",
+          "startSec": 20,
+          "endSec": 40,
+          "durationSec": 20.0,
+          "shotSize": "MS",
+          "camera": "eye-level, 35mm, static",
+          "characters": [
+            "Sóc Bi (100cm)",
+            "Bác sĩ Koala (150cm)"
+          ],
+          "action": "[0-7s] Bác sĩ Koala (150cm) bước vào khung hình đứng cạnh Sóc Bi (100cm) (khóa cứng tỉ lệ chiều cao: Bác sĩ Koala (150 cm) > Sóc Bi (100 cm)). [7-14s] Bác sĩ Koala nghiêng đầu quan sát Mô hình hàm răng trắng bóng khổng lồ, bàn chải lông mềm màu xanh và lọ thủy tinh đựng sticker ngôi sao vàng của Bác sĩ Koala. [14-20s] Hai nhân vật mỉm cười trò chuyện gần gũi.",
+          "expression": "Sóc Bi (vui): Miệng cười rộng khoe 2 chiếc răng cửa trắng nhỏ, đôi mắt đen tròn cong hình trăng khuyết lấp lánh, hai má hồng nâng cao, hai tai sóc dựng thẳng, đuôi xù lớn vẫy cao phía sau lưng. | Bác sĩ Koala (tò mò): Nghiêng đầu nhìn qua kính vàng tròn, cầm chiếc gương soi hoặc kính lúp gỗ kiểm tra nhẹ nhàng.",
+          "actingNotes": "Bác sĩ Koala: Hơi nghiêng đầu tò mò, ánh mắt chăm chú nhìn vào món đồ trên tay Sóc Bi. Sóc Bi: Nhiệt tình giới thiệu cho người bạn/người thân của mình.",
+          "speaker": "Bác sĩ Koala (150cm)",
+          "dialogue": "Oa, thích quá Sóc Bi ơi! Hôm nay hai đứa mình sẽ cùng chơi và khám phá ở Phòng khám Bác sĩ Koala nhé!",
+          "voiceDelivery": "Giọng tự nhiên, ấm áp, tràn đầy niềm vui đời thường",
+          "sfx": "Tiếng bước chân nhẹ nhàng và tiếng đồ vật gỗ chạm nhau lách cách",
+          "bgm": "Tiết tấu pizzicato dây đàn vui nhộn nối tiếp",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] MS, eye-level angle, 35mm lens. [CHARACTERS] a slim, agile 3-4 year old boy squirrel named Bi, about 100cm tall, NOT fat, flat belly, short slender limbs, head about 1/4 of body height, reddish orange-brown fur with lighter belly and cheeks, big round glossy black eyes with highlights, light pink cheeks, two front teeth, small pointed ears with tufts, very large bushy tail curving up behind his back and darker red-brown toward the tip, fitted yellow crew-neck t-shirt, black shorts, dark sneakers with white soles, wide open cheerful smile showing two cute front teeth, crescent-shaped sparkling black eyes, rosy pink cheeks lifted high, ears perked straight up, large bushy tail wagging high behind his back, bouncing lightly on his toes with both hands raised happily; a gentle elderly koala doctor, about 150cm tall (1.5x the height of Bi the squirrel), soft gray fur, large round black nose, fluffy round ears, kind small eyes behind round gold glasses, wearing a clean white doctor coat with a green cross badge, a head mirror on his forehead, a stethoscope around his neck, 3D Pixar-style soft render, soft studio lighting, plain light gray background, tilting his head, peering kindly through his round gold glasses while holding a wooden magnifying glass. [SCALE] Height order from tallest: Bác sĩ Koala (150cm) > Sóc Bi (100cm); Doctor Koala is 150cm tall (children reach his chest). [ACTION] Medium two-shot of Sóc Bi and Bác sĩ Koala examining the props together with natural preschool chemistry. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized child-friendly woodland clinic belonging to Doctor Koala. The cozy round room features soothing pastel mint-green walls with warm natural wood wainscotting, curved windows looking out onto sunny green fern gardens, and smooth non-slip cork flooring. At the center sits a low, cushioned wooden examination bed (45cm high with a cute 20cm two-step wooden footstool) and a friendly 150cm-tall Doctor Koala desk (72cm high). On a low demonstration table (50cm high) rests an oversized cheerful white tooth model with a giant soft-bristle wooden toothbrush for teaching brushing technique. On the wall hang colorful illustrated posters of healthy vegetables, the 6 handwashing steps, and a wooden height-measuring chart marked clearly from 0cm to 160cm, while a clear glass jar on the counter holds gold star and leaf stickers (strictly stickers, no sugary candy). Time of day: morning. [DEPTH] foreground: foreground tabletop details in soft bokeh, soft bokeh; midground: Sóc Bi (100cm) and Bác sĩ Koala (150cm) standing together in exact height scale, razor-sharp focus; background: warm interior/courtyard background, creamy atmospheric falloff. [LIGHT] Bright, clean, reassuring morning sunlight streaming through the curved clinic windows, blending with soft warm-white interior lamps for a zero-fear atmosphere..",
+          "videoPrompt": "8-second 3D Pixar-style animated clip (S02, 00:20-00:40): Medium two-shot of Sóc Bi and Bác sĩ Koala examining the props together with natural preschool chemistry. Camera movement: smooth static. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Height order from tallest: Bác sĩ Koala (150cm) > Sóc Bi (100cm); Doctor Koala is 150cm tall (children reach his chest).), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "soc_nho",
+            "koala"
+          ],
+          "speakerId": "koala"
+        },
+        {
+          "id": "S03",
+          "sceneIndex": 1,
+          "sceneTitle": "Mở đầu gây tò mò & Giới thiệu không gian Phòng khám Bác sĩ Koala",
+          "startSec": 40,
+          "endSec": 60,
+          "durationSec": 20.0,
+          "shotSize": "MCU",
+          "camera": "eye-level, 50mm, push-in",
+          "characters": [
+            "Sóc Bi (100cm)"
+          ],
+          "action": "[0-7s] Sóc Bi quay sang nhìn thẳng vào ống kính (tương tác trực tiếp với bé đang xem). [7-14s] Sóc Bi đặt ngón trỏ lên má suy nghĩ rồi mở bàn tay đặt câu hỏi. [14-20s] Dừng 2 giây mỉm cười chờ khán giả nhí trả lời.",
+          "expression": "Sóc Bi (tò mò): Đầu nghiêng 15 độ sang phải, một bên mày nhướng cao, đôi mắt đen to tròn chăm chú, ngón trỏ chạm nhẹ lên cằm suy nghĩ.",
+          "actingNotes": "Sóc Bi: Một bên chân mày nhướng nhẹ lém lỉnh, ánh mắt ấm áp nhìn thẳng vào mắt bé như người bạn thân thiết ngoài đời thực.",
+          "speaker": "Sóc Bi (100cm)",
+          "dialogue": "Bạn nhỏ ơi, hôm nay câu chuyện 'Bạn sâu răng tinh nghịch' sẽ bắt đầu ngay bây giờ! Bạn nhỏ đã sẵn sàng cùng Sóc Bi chưa nào?",
+          "voiceDelivery": "Thân mật, rõ chữ, dừng 2 giây cuối câu chờ bé đáp lại",
+          "sfx": "Tiếng chuông lấp lánh 'ting-ting' mở màn câu chuyện",
+          "bgm": "Hợp âm chuyển cảnh tươi sáng sang Màn 1",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] MCU, eye-level angle, 50mm lens. [CHARACTERS] a slim, agile 3-4 year old boy squirrel named Bi, about 100cm tall, NOT fat, flat belly, short slender limbs, head about 1/4 of body height, reddish orange-brown fur with lighter belly and cheeks, big round glossy black eyes with highlights, light pink cheeks, two front teeth, small pointed ears with tufts, very large bushy tail curving up behind his back and darker red-brown toward the tip, fitted yellow crew-neck t-shirt, black shorts, dark sneakers with white soles, head tilted 15 degrees to the right, one eyebrow raised higher than the other, big glossy black eyes leaning forward in intense fascination, right index finger touching his chin thoughtfully, bushy tail swaying slowly in a question-mark curve. [ACTION] Medium close-up of Sóc Bi breaking the fourth wall, asking the young viewer a question and pausing for 2 seconds. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized child-friendly woodland clinic belonging to Doctor Koala. The cozy round room features soothing pastel mint-green walls with warm natural wood wainscotting, curved windows looking out onto sunny green fern gardens, and smooth non-slip cork flooring. At the center sits a low, cushioned wooden examination bed (45cm high with a cute 20cm two-step wooden footstool) and a friendly 150cm-tall Doctor Koala desk (72cm high). On a low demonstration table (50cm high) rests an oversized cheerful white tooth model with a giant soft-bristle wooden toothbrush for teaching brushing technique. On the wall hang colorful illustrated posters of healthy vegetables, the 6 handwashing steps, and a wooden height-measuring chart marked clearly from 0cm to 160cm, while a clear glass jar on the counter holds gold star and leaf stickers (strictly stickers, no sugary candy). Time of day: morning. [DEPTH] foreground: warm sunlit bokeh particles, soft bokeh; midground: medium close-up of Sóc Bi looking directly at the lens with a curious tilt of the head, razor-sharp focus; background: creamy blurred background, creamy atmospheric falloff. [LIGHT] Bright, clean, reassuring morning sunlight streaming through the curved clinic windows, blending with soft warm-white interior lamps for a zero-fear atmosphere..",
+          "videoPrompt": "8-second 3D Pixar-style animated clip (S03, 00:40-01:00): Medium close-up of Sóc Bi breaking the fourth wall, asking the young viewer a question and pausing for 2 seconds. Camera movement: smooth push-in. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Sóc Bi), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "soc_nho"
+          ],
+          "speakerId": "soc_nho"
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Sinh hoạt đời thường tại Phòng khám Bác sĩ Koala",
+      "startSec": 60,
+      "endSec": 120,
+      "location": "Phòng khám Bác sĩ Koala — Góc hoạt động chính",
+      "purpose": "Xây dựng tình huống sinh hoạt tự nhiên, gần gũi với trẻ 3–7 tuổi trước khi sự cố xảy ra.",
+      "shots": [
+        {
+          "id": "S04",
+          "sceneIndex": 2,
+          "sceneTitle": "Sinh hoạt đời thường tại Phòng khám Bác sĩ Koala",
+          "startSec": 60,
+          "endSec": 80,
+          "durationSec": 20.0,
+          "shotSize": "MS",
+          "camera": "eye-level, 35mm, lateral-pan",
+          "characters": [
+            "Sóc Bi (100cm)",
+            "Bác sĩ Koala (150cm)"
+          ],
+          "action": "[0-7s] Máy lia nhẹ theo đôi tay của Sóc Bi đang tỉ mỉ chuẩn bị Mô hình hàm răng trắng bóng khổng lồ, bàn chải lông mềm màu xanh và lọ thủy tinh đựng sticker ngôi sao vàng của Bác sĩ Koala. [7-14s] Bác sĩ Koala đứng bên cạnh quan sát và phụ giúp từng việc nhỏ. [14-20s] Cả hai gật đầu hài lòng với công việc đang làm.",
+          "expression": "Sóc Bi (vui): Miệng cười rộng khoe 2 chiếc răng cửa trắng nhỏ, đôi mắt đen tròn cong hình trăng khuyết lấp lánh, hai má hồng nâng cao, hai tai sóc dựng thẳng, đuôi xù lớn vẫy cao phía sau lưng. | Bác sĩ Koala (vui): Nụ cười hiền từ như ông ngoại, đôi mắt nhỏ ánh lên niềm vui sau cặp kính vàng tròn, đôi tai tròn lông xám mềm đung đưa nhẹ.",
+          "actingNotes": "Tập trung diễn tả sự tỉ mỉ của trẻ nhỏ khi chơi hoặc làm việc: mắt nhìn theo tay, đầu hơi nghiêng nhẹ, miệng mỉm cười chăm chú.",
+          "speaker": "Sóc Bi (100cm)",
+          "dialogue": "Mình làm từ từ từng bước một nhé! Sắp hoàn thành xong phần đầu tiên rồi đây!",
+          "voiceDelivery": "Chăm chú, chậm rãi, vui tươi",
+          "sfx": "Tiếng sột soạt nhẹ nhàng của đạo cụ",
+          "bgm": "Nhạc nền acoustic guitar êm dịu 100 BPM",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] MS, eye-level angle, 35mm lens. [CHARACTERS] a slim, agile 3-4 year old boy squirrel named Bi, about 100cm tall, NOT fat, flat belly, short slender limbs, head about 1/4 of body height, reddish orange-brown fur with lighter belly and cheeks, big round glossy black eyes with highlights, light pink cheeks, two front teeth, small pointed ears with tufts, very large bushy tail curving up behind his back and darker red-brown toward the tip, fitted yellow crew-neck t-shirt, black shorts, dark sneakers with white soles, wide open cheerful smile showing two cute front teeth, crescent-shaped sparkling black eyes, rosy pink cheeks lifted high, ears perked straight up, large bushy tail wagging high behind his back, bouncing lightly on his toes with both hands raised happily; a gentle elderly koala doctor, about 150cm tall (1.5x the height of Bi the squirrel), soft gray fur, large round black nose, fluffy round ears, kind small eyes behind round gold glasses, wearing a clean white doctor coat with a green cross badge, a head mirror on his forehead, a stethoscope around his neck, 3D Pixar-style soft render, soft studio lighting, plain light gray background, warm grandfatherly smile, kind eyes crinkling happily behind round gold glasses, fluffy round ears perked. [SCALE] Height order from tallest: Bác sĩ Koala (150cm) > Sóc Bi (100cm); Doctor Koala is 150cm tall (children reach his chest). [ACTION] Lateral pan showing Sóc Bi and Bác sĩ Koala carefully working with their props at Phòng khám Bác sĩ Koala. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized child-friendly woodland clinic belonging to Doctor Koala. The cozy round room features soothing pastel mint-green walls with warm natural wood wainscotting, curved windows looking out onto sunny green fern gardens, and smooth non-slip cork flooring. At the center sits a low, cushioned wooden examination bed (45cm high with a cute 20cm two-step wooden footstool) and a friendly 150cm-tall Doctor Koala desk (72cm high). On a low demonstration table (50cm high) rests an oversized cheerful white tooth model with a giant soft-bristle wooden toothbrush for teaching brushing technique. On the wall hang colorful illustrated posters of healthy vegetables, the 6 handwashing steps, and a wooden height-measuring chart marked clearly from 0cm to 160cm, while a clear glass jar on the counter holds gold star and leaf stickers (strictly stickers, no sugary candy). Time of day: morning. [DEPTH] foreground: foreground props in soft focus, soft bokeh; midground: Sóc Bi and Bác sĩ Koala happily engaged in their everyday activity, razor-sharp focus; background: detailed Phòng khám Bác sĩ Koala environment, creamy atmospheric falloff. [LIGHT] Bright, clean, reassuring morning sunlight streaming through the curved clinic windows, blending with soft warm-white interior lamps for a zero-fear atmosphere..",
+          "videoPrompt": "8-second 3D Pixar-style animated clip (S04, 01:00-01:20): Lateral pan showing Sóc Bi and Bác sĩ Koala carefully working with their props at Phòng khám Bác sĩ Koala. Camera movement: smooth lateral-pan. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Height order from tallest: Bác sĩ Koala (150cm) > Sóc Bi (100cm); Doctor Koala is 150cm tall (children reach his chest).), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "soc_nho",
+            "koala"
+          ],
+          "speakerId": "soc_nho"
+        },
+        {
+          "id": "S05",
+          "sceneIndex": 2,
+          "sceneTitle": "Sinh hoạt đời thường tại Phòng khám Bác sĩ Koala",
+          "startSec": 80,
+          "endSec": 100,
+          "durationSec": 20.0,
+          "shotSize": "CU",
+          "camera": "high, 50mm, push-in",
+          "characters": [
+            "Sóc Bi (100cm)"
+          ],
+          "action": "[0-7s] Cận cảnh đôi bàn tay nhỏ của Sóc Bi đặt mảnh ghép/món đồ quan trọng vào đúng vị trí. [7-14s] Đôi mắt của Sóc Bi sáng lấp lánh khi thấy mọi thứ đẹp đẽ. [14-20s] Sóc Bi thở phào vui sướng.",
+          "expression": "Sóc Bi (tự hào): Ngực ưỡn nhẹ tự tin (bụng phẳng thon gọn), nụ cười tươi khoe 2 răng cửa, một tay giơ ngón cái, đuôi xù uốn cong đẹp mắt.",
+          "actingNotes": "Sóc Bi: Hơi nín thở một nhịp khi căn chỉnh món đồ rồi nở nụ cười rạng rỡ tự hào khi hoàn tất.",
+          "speaker": "Sóc Bi (100cm)",
+          "dialogue": "Tada! Bạn nhỏ nhìn xem, Sóc Bi đã xếp ngay ngắn và đẹp ơi là đẹp chưa nè!",
+          "voiceDelivery": "Reo vui tự hào, giọng sáng rõ",
+          "sfx": "Tiếng 'tách' nhẹ khi đặt đồ vật vừa khít",
+          "bgm": "Tiếng đàn glockenspiel trong trẻo điểm xuyết",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] CU, high angle, 50mm lens. [CHARACTERS] a slim, agile 3-4 year old boy squirrel named Bi, about 100cm tall, NOT fat, flat belly, short slender limbs, head about 1/4 of body height, reddish orange-brown fur with lighter belly and cheeks, big round glossy black eyes with highlights, light pink cheeks, two front teeth, small pointed ears with tufts, very large bushy tail curving up behind his back and darker red-brown toward the tip, fitted yellow crew-neck t-shirt, black shorts, dark sneakers with white soles, chest puffed slightly while keeping a flat belly, confident bright grin showing two front teeth, chin tilted slightly up, one hand giving a crisp thumbs-up and the other on his hip, bushy tail arching gracefully high behind his back. [ACTION] Close-up of Sóc Bi's hands carefully placing the item and beaming with pride. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized child-friendly woodland clinic belonging to Doctor Koala. The cozy round room features soothing pastel mint-green walls with warm natural wood wainscotting, curved windows looking out onto sunny green fern gardens, and smooth non-slip cork flooring. At the center sits a low, cushioned wooden examination bed (45cm high with a cute 20cm two-step wooden footstool) and a friendly 150cm-tall Doctor Koala desk (72cm high). On a low demonstration table (50cm high) rests an oversized cheerful white tooth model with a giant soft-bristle wooden toothbrush for teaching brushing technique. On the wall hang colorful illustrated posters of healthy vegetables, the 6 handwashing steps, and a wooden height-measuring chart marked clearly from 0cm to 160cm, while a clear glass jar on the counter holds gold star and leaf stickers (strictly stickers, no sugary candy). Time of day: morning. [DEPTH] foreground: close-up details of the wooden/fabric props, soft bokeh; midground: Sóc Bi's expressive face and small hands working carefully, razor-sharp focus; background: warm wooden surface texture, creamy atmospheric falloff. [LIGHT] Bright, clean, reassuring morning sunlight streaming through the curved clinic windows, blending with soft warm-white interior lamps for a zero-fear atmosphere..",
+          "videoPrompt": "8-second 3D Pixar-style animated clip (S05, 01:20-01:40): Close-up of Sóc Bi's hands carefully placing the item and beaming with pride. Camera movement: smooth push-in. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Sóc Bi), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "soc_nho"
+          ],
+          "speakerId": "soc_nho"
+        },
+        {
+          "id": "S06",
+          "sceneIndex": 2,
+          "sceneTitle": "Sinh hoạt đời thường tại Phòng khám Bác sĩ Koala",
+          "startSec": 100,
+          "endSec": 120,
+          "durationSec": 20.0,
+          "shotSize": "MS",
+          "camera": "eye-level, 35mm, static",
+          "characters": [
+            "Bác sĩ Koala (150cm)",
+            "Sóc Bi (100cm)"
+          ],
+          "action": "[0-7s] Bác sĩ Koala (150cm) hào hứng chạy lon ton lại gần để cùng xem và tham gia. [7-14s] Vì quá háo hức nên Bác sĩ Koala chưa chú ý quan sát kỹ xung quanh. [14-20s] Một chi tiết bất ngờ bắt đầu xuất hiện.",
+          "expression": "Bác sĩ Koala (vui): Nụ cười hiền từ như ông ngoại, đôi mắt nhỏ ánh lên niềm vui sau cặp kính vàng tròn, đôi tai tròn lông xám mềm đung đưa nhẹ. | Sóc Bi (vui): Miệng cười rộng khoe 2 chiếc răng cửa trắng nhỏ, đôi mắt đen tròn cong hình trăng khuyết lấp lánh, hai má hồng nâng cao, hai tai sóc dựng thẳng, đuôi xù lớn vẫy cao phía sau lưng.",
+          "actingNotes": "Bác sĩ Koala: Biểu cảm háo hức hồn nhiên, bước chân hơi nhanh tạo tiền đề tự nhiên cho tình huống phát sinh.",
+          "speaker": "Bác sĩ Koala (150cm)",
+          "dialogue": "Đẹp quá đi mất! Cho Bác sĩ Koala lại gần xem thử cùng với nhé!",
+          "voiceDelivery": "Hào hứng, nhịp nói hơi nhanh",
+          "sfx": "Tiếng bước chân chạy lon ton trên sàn",
+          "bgm": "Nhạc nền tăng nhẹ nhịp độ báo hiệu tình huống",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] MS, eye-level angle, 35mm lens. [CHARACTERS] a gentle elderly koala doctor, about 150cm tall (1.5x the height of Bi the squirrel), soft gray fur, large round black nose, fluffy round ears, kind small eyes behind round gold glasses, wearing a clean white doctor coat with a green cross badge, a head mirror on his forehead, a stethoscope around his neck, 3D Pixar-style soft render, soft studio lighting, plain light gray background, warm grandfatherly smile, kind eyes crinkling happily behind round gold glasses, fluffy round ears perked; a slim, agile 3-4 year old boy squirrel named Bi, about 100cm tall, NOT fat, flat belly, short slender limbs, head about 1/4 of body height, reddish orange-brown fur with lighter belly and cheeks, big round glossy black eyes with highlights, light pink cheeks, two front teeth, small pointed ears with tufts, very large bushy tail curving up behind his back and darker red-brown toward the tip, fitted yellow crew-neck t-shirt, black shorts, dark sneakers with white soles, wide open cheerful smile showing two cute front teeth, crescent-shaped sparkling black eyes, rosy pink cheeks lifted high, ears perked straight up, large bushy tail wagging high behind his back, bouncing lightly on his toes with both hands raised happily. [SCALE] Height order from tallest: Bác sĩ Koala (150cm) > Sóc Bi (100cm); Doctor Koala is 150cm tall (children reach his chest). [ACTION] Medium shot as Bác sĩ Koala approaches eagerly, setting up the everyday turning point. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized child-friendly woodland clinic belonging to Doctor Koala. The cozy round room features soothing pastel mint-green walls with warm natural wood wainscotting, curved windows looking out onto sunny green fern gardens, and smooth non-slip cork flooring. At the center sits a low, cushioned wooden examination bed (45cm high with a cute 20cm two-step wooden footstool) and a friendly 150cm-tall Doctor Koala desk (72cm high). On a low demonstration table (50cm high) rests an oversized cheerful white tooth model with a giant soft-bristle wooden toothbrush for teaching brushing technique. On the wall hang colorful illustrated posters of healthy vegetables, the 6 handwashing steps, and a wooden height-measuring chart marked clearly from 0cm to 160cm, while a clear glass jar on the counter holds gold star and leaf stickers (strictly stickers, no sugary candy). Time of day: morning. [DEPTH] foreground: warm sunbeams in foreground, soft bokeh; midground: Bác sĩ Koala stepping closer to Sóc Bi with excitement, razor-sharp focus; background: background of Phòng khám Bác sĩ Koala, creamy atmospheric falloff. [LIGHT] Bright, clean, reassuring morning sunlight streaming through the curved clinic windows, blending with soft warm-white interior lamps for a zero-fear atmosphere..",
+          "videoPrompt": "8-second 3D Pixar-style animated clip (S06, 01:40-02:00): Medium shot as Bác sĩ Koala approaches eagerly, setting up the everyday turning point. Camera movement: smooth static. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Height order from tallest: Bác sĩ Koala (150cm) > Sóc Bi (100cm); Doctor Koala is 150cm tall (children reach his chest).), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "koala",
+            "soc_nho"
+          ],
+          "speakerId": "koala"
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Tình huống bất ngờ xảy ra (Lớp Sư Phạm 1 - Khơi gợi)",
+      "startSec": 120,
+      "endSec": 180,
+      "location": "Phòng khám Bác sĩ Koala — Ngay tại vị trí Mô hình hàm răng trắng và bàn chải lớn dạy đánh răng",
+      "purpose": "Tái hiện chân thực tình huống cốt lõi: Sóc Bi (100cm) mê ăn bánh quy mật ong nhưng tối qua buồn ngủ nên chải răng qua loa vài giây, sáng dậy thấy chiếc răng hàm hơi ê buốt nên đến gặp Bác sĩ Koala (150cm).",
+      "shots": [
+        {
+          "id": "S07",
+          "sceneIndex": 3,
+          "sceneTitle": "Tình huống bất ngờ xảy ra (Lớp Sư Phạm 1 - Khơi gợi)",
+          "startSec": 120,
+          "endSec": 140,
+          "durationSec": 20.0,
+          "shotSize": "MS",
+          "camera": "low, 35mm, dutch-angle",
+          "characters": [
+            "Sóc Bi (100cm)",
+            "Bác sĩ Koala (150cm)"
+          ],
+          "action": "[0-7s] Tình huống bất ngờ diễn ra: Sóc Bi (100cm) mê ăn bánh quy mật ong nhưng tối qua buồn ngủ nên chải răng qua loa vài giây, sáng dậy thấy chiếc răng hàm hơi ê buốt nên đến gặp Bác sĩ Koala (150cm). [7-14s] Cả Sóc Bi và Bác sĩ Koala đều giật mình sững lại nhìn hiện trường. [14-20s] Mọi thứ dừng lại trong một khoảng lặng bất ngờ.",
+          "expression": "Sóc Bi (ngạc nhiên): Lông mày nhướng cao, mắt đen mở to lấp lánh ánh sao, miệng chữ O lộ 2 răng cửa, hai tay chạm lên má hồng, chiếc đuôi xù dựng đứng. | Bác sĩ Koala (ngạc nhiên): Chân mày nâng cao trên gọng kính vàng tròn, miệng chữ O vui vẻ khi làm ảo thuật khám bệnh cho bé.",
+          "actingNotes": "Cả hai nhân vật mở to mắt, miệng chữ O nhỏ vì bất ngờ; động tác dừng khựng lại rất rõ nét để trẻ nhỏ hiểu chuyện gì vừa xảy ra.",
+          "speaker": "Sóc Bi (100cm)",
+          "dialogue": "Á! Ôi thôi… Sao lại bị như thế này rồi?!",
+          "voiceDelivery": "Thốt lên bất ngờ, giọng cao nhẹ rồi chùng xuống",
+          "sfx": "Tiếng đồ vật đổ/va chạm 'lạch cạch, bụp' rõ ràng nhưng an toàn",
+          "bgm": "Nhạc trượt xuống một quãng rồi tạm ngưng tạo kịch tính",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] MS, low angle, 35mm lens. [CHARACTERS] a slim, agile 3-4 year old boy squirrel named Bi, about 100cm tall, NOT fat, flat belly, short slender limbs, head about 1/4 of body height, reddish orange-brown fur with lighter belly and cheeks, big round glossy black eyes with highlights, light pink cheeks, two front teeth, small pointed ears with tufts, very large bushy tail curving up behind his back and darker red-brown toward the tip, fitted yellow crew-neck t-shirt, black shorts, dark sneakers with white soles, eyebrows raised high, big round black eyes opened wide with bright star-like specular highlights, mouth open in an amazed 'O' showing two front teeth, ears standing tall, both hands touching his light pink cheeks as his bushy tail perks straight up like an exclamation mark; a gentle elderly koala doctor, about 150cm tall (1.5x the height of Bi the squirrel), soft gray fur, large round black nose, fluffy round ears, kind small eyes behind round gold glasses, wearing a clean white doctor coat with a green cross badge, a head mirror on his forehead, a stethoscope around his neck, 3D Pixar-style soft render, soft studio lighting, plain light gray background, eyebrows lifted above his round gold glasses, mouth in a warm amused 'oh!', stethoscope swaying. [SCALE] Height order from tallest: Bác sĩ Koala (150cm) > Sóc Bi (100cm); Doctor Koala is 150cm tall (children reach his chest). [ACTION] Medium low-angle shot capturing the exact moment the preschool incident occurs, with both characters gasping in surprise. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized child-friendly woodland clinic belonging to Doctor Koala. The cozy round room features soothing pastel mint-green walls with warm natural wood wainscotting, curved windows looking out onto sunny green fern gardens, and smooth non-slip cork flooring. At the center sits a low, cushioned wooden examination bed (45cm high with a cute 20cm two-step wooden footstool) and a friendly 150cm-tall Doctor Koala desk (72cm high). On a low demonstration table (50cm high) rests an oversized cheerful white tooth model with a giant soft-bristle wooden toothbrush for teaching brushing technique. On the wall hang colorful illustrated posters of healthy vegetables, the 6 handwashing steps, and a wooden height-measuring chart marked clearly from 0cm to 160cm, while a clear glass jar on the counter holds gold star and leaf stickers (strictly stickers, no sugary candy). Time of day: morning. [DEPTH] foreground: tilted/scattered props in foreground, soft bokeh; midground: Sóc Bi and Bác sĩ Koala reacting in surprise as the incident happens, razor-sharp focus; background: Phòng khám Bác sĩ Koala background, creamy atmospheric falloff. [LIGHT] Bright, clean, reassuring morning sunlight streaming through the curved clinic windows, blending with soft warm-white interior lamps for a zero-fear atmosphere..",
+          "videoPrompt": "8-second 3D Pixar-style animated clip (S07, 02:00-02:20): Medium low-angle shot capturing the exact moment the preschool incident occurs, with both characters gasping in surprise. Camera movement: smooth dutch-angle. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Height order from tallest: Bác sĩ Koala (150cm) > Sóc Bi (100cm); Doctor Koala is 150cm tall (children reach his chest).), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "soc_nho",
+            "koala"
+          ],
+          "speakerId": "soc_nho"
+        },
+        {
+          "id": "S08",
+          "sceneIndex": 3,
+          "sceneTitle": "Tình huống bất ngờ xảy ra (Lớp Sư Phạm 1 - Khơi gợi)",
+          "startSec": 140,
+          "endSec": 160,
+          "durationSec": 20.0,
+          "shotSize": "CU",
+          "camera": "high, 50mm, static",
+          "characters": [
+            "Sóc Bi (100cm)"
+          ],
+          "action": "[0-7s] Máy quay đặc tả hiện trạng của Mô hình hàm răng trắng bóng khổng lồ, bàn chải lông mềm màu xanh và lọ thủy tinh đựng sticker ngôi sao vàng của Bác sĩ Koala sau sự cố. [7-14s] Phản ứng tâm lý tự nhiên xuất hiện: Bi ôm một bên má hồng, rụt rè bước vào phòng khám xanh bạc hà vì sợ bị đau. [14-20s] Hơi thở của Sóc Bi thay đổi rõ rệt.",
+          "expression": "Sóc Bi (buồn): Hai tai sóc cụp xuống, đôi mắt đen to tròn long lanh ngấn nước ở khóe mắt, môi dưới hơi run nhẹ, hai vai rủ xuống, chiếc đuôi xù lớn hạ thấp ôm quanh cổ chân.",
+          "actingNotes": "Diễn tả thật chi tiết phản ứng tâm sinh lý của trẻ nhỏ: nhịp thở nhanh hơn, vai hơi căng hoặc rủ xuống, bàn tay nắm nhẹ.",
+          "speaker": "Sóc Bi (100cm)",
+          "dialogue": "Huhuhu… Bao nhiêu công sức của mình từ nãy đến giờ, thế là hỏng mất rồi!",
+          "voiceDelivery": "Giọng run nhẹ, đầy tiếc nuối hoặc dỗi hờn trẻ thơ",
+          "sfx": "Tiếng thở dài hoặc nhịp tim đập 'thình thịch' nhẹ",
+          "bgm": "Tiếng đàn dây trầm lắng đi vào cảm xúc nhân vật",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] CU, high angle, 50mm lens. [CHARACTERS] a slim, agile 3-4 year old boy squirrel named Bi, about 100cm tall, NOT fat, flat belly, short slender limbs, head about 1/4 of body height, reddish orange-brown fur with lighter belly and cheeks, big round glossy black eyes with highlights, light pink cheeks, two front teeth, small pointed ears with tufts, very large bushy tail curving up behind his back and darker red-brown toward the tip, fitted yellow crew-neck t-shirt, black shorts, dark sneakers with white soles, drooping pointed ears, big glossy black eyes glistening with tiny tear droplets at the corners, quivering lower lip, shoulders slumped forward, large bushy tail hanging low and curled around his ankles, hands clasped loosely in front of his yellow t-shirt. [ACTION] Close-up focusing on Sóc Bi's immediate emotional and physical reaction to the problem. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized child-friendly woodland clinic belonging to Doctor Koala. The cozy round room features soothing pastel mint-green walls with warm natural wood wainscotting, curved windows looking out onto sunny green fern gardens, and smooth non-slip cork flooring. At the center sits a low, cushioned wooden examination bed (45cm high with a cute 20cm two-step wooden footstool) and a friendly 150cm-tall Doctor Koala desk (72cm high). On a low demonstration table (50cm high) rests an oversized cheerful white tooth model with a giant soft-bristle wooden toothbrush for teaching brushing technique. On the wall hang colorful illustrated posters of healthy vegetables, the 6 handwashing steps, and a wooden height-measuring chart marked clearly from 0cm to 160cm, while a clear glass jar on the counter holds gold star and leaf stickers (strictly stickers, no sugary candy). Time of day: morning. [DEPTH] foreground: close-up of the affected prop in foreground, soft bokeh; midground: close-up of Sóc Bi reacting emotionally, razor-sharp focus; background: softly blurred floor texture, creamy atmospheric falloff. [LIGHT] Bright, clean, reassuring morning sunlight streaming through the curved clinic windows, blending with soft warm-white interior lamps for a zero-fear atmosphere..",
+          "videoPrompt": "8-second 3D Pixar-style animated clip (S08, 02:20-02:40): Close-up focusing on Sóc Bi's immediate emotional and physical reaction to the problem. Camera movement: smooth static. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Sóc Bi), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "soc_nho"
+          ],
+          "speakerId": "soc_nho"
+        },
+        {
+          "id": "S09",
+          "sceneIndex": 3,
+          "sceneTitle": "Tình huống bất ngờ xảy ra (Lớp Sư Phạm 1 - Khơi gợi)",
+          "startSec": 160,
+          "endSec": 180,
+          "durationSec": 20.0,
+          "shotSize": "MCU",
+          "camera": "eye-level, 50mm, push-in",
+          "characters": [
+            "Bác sĩ Koala (150cm)"
+          ],
+          "action": "[0-7s] Bác sĩ Koala (150cm) đứng bên cạnh nhìn Sóc Bi với ánh mắt bối rối. [7-14s] Bác sĩ Koala muốn giúp hoặc xin lỗi nhưng chưa biết phải làm thế nào cho đúng. [14-20s] Hai bàn tay đan vào nhau lúng túng.",
+          "expression": "Bác sĩ Koala (tò mò): Nghiêng đầu nhìn qua kính vàng tròn, cầm chiếc gương soi hoặc kính lúp gỗ kiểm tra nhẹ nhàng.",
+          "actingNotes": "Bác sĩ Koala: Đôi mắt mở to long lanh, tai hơi cụp xuống, thể hiện sự lúng túng rất thật của trẻ nhỏ khi gặp rắc rối.",
+          "speaker": "Bác sĩ Koala (150cm)",
+          "dialogue": "Sóc Bi ơi… Bây giờ chúng mình phải làm sao đây?",
+          "voiceDelivery": "Nhỏ nhẹ, rụt rè, chân thành",
+          "sfx": "Tiếng sột soạt nhẹ của quần áo",
+          "bgm": "Tiếng piano đơn âm nhẹ nhàng",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] MCU, eye-level angle, 50mm lens. [CHARACTERS] a gentle elderly koala doctor, about 150cm tall (1.5x the height of Bi the squirrel), soft gray fur, large round black nose, fluffy round ears, kind small eyes behind round gold glasses, wearing a clean white doctor coat with a green cross badge, a head mirror on his forehead, a stethoscope around his neck, 3D Pixar-style soft render, soft studio lighting, plain light gray background, tilting his head, peering kindly through his round gold glasses while holding a wooden magnifying glass. [ACTION] Medium close-up of Bác sĩ Koala clasping hands nervously, wanting to help make things right. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized child-friendly woodland clinic belonging to Doctor Koala. The cozy round room features soothing pastel mint-green walls with warm natural wood wainscotting, curved windows looking out onto sunny green fern gardens, and smooth non-slip cork flooring. At the center sits a low, cushioned wooden examination bed (45cm high with a cute 20cm two-step wooden footstool) and a friendly 150cm-tall Doctor Koala desk (72cm high). On a low demonstration table (50cm high) rests an oversized cheerful white tooth model with a giant soft-bristle wooden toothbrush for teaching brushing technique. On the wall hang colorful illustrated posters of healthy vegetables, the 6 handwashing steps, and a wooden height-measuring chart marked clearly from 0cm to 160cm, while a clear glass jar on the counter holds gold star and leaf stickers (strictly stickers, no sugary candy). Time of day: morning. [DEPTH] foreground: soft foreground bokeh, soft bokeh; midground: medium close-up of Bác sĩ Koala looking concerned and unsure what to do, razor-sharp focus; background: blurred Phòng khám Bác sĩ Koala wall, creamy atmospheric falloff. [LIGHT] Bright, clean, reassuring morning sunlight streaming through the curved clinic windows, blending with soft warm-white interior lamps for a zero-fear atmosphere..",
+          "videoPrompt": "8-second 3D Pixar-style animated clip (S09, 02:40-03:00): Medium close-up of Bác sĩ Koala clasping hands nervously, wanting to help make things right. Camera movement: smooth push-in. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Bác sĩ Koala), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "koala"
+          ],
+          "speakerId": "koala"
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Cảm xúc dâng trào & Phản ứng lúng túng ban đầu",
+      "startSec": 180,
+      "endSec": 240,
+      "location": "Phòng khám Bác sĩ Koala — Góc phòng/sân",
+      "purpose": "Khắc họa rõ nét khó khăn khi trẻ chưa biết kỹ năng xử lý đúng cách, giúp khán giả nhí thấy chính mình trong đó.",
+      "shots": [
+        {
+          "id": "S10",
+          "sceneIndex": 4,
+          "sceneTitle": "Cảm xúc dâng trào & Phản ứng lúng túng ban đầu",
+          "startSec": 180,
+          "endSec": 200,
+          "durationSec": 20.0,
+          "shotSize": "MS",
+          "camera": "eye-level, 35mm, static",
+          "characters": [
+            "Sóc Bi (100cm)",
+            "Bác sĩ Koala (150cm)"
+          ],
+          "action": "[0-7s] Do chưa bình tĩnh và chưa biết cách giải quyết, Sóc Bi thử làm vội vàng theo ý mình. [7-14s] Càng vội thì mọi việc lại càng rối hơn: Bi ôm một bên má hồng, rụt rè bước vào phòng khám xanh bạc hà vì sợ bị đau. [14-20s] Sóc Bi phồng má hoặc ngồi thụp xuống thở dài.",
+          "expression": "Sóc Bi (buồn): Hai tai sóc cụp xuống, đôi mắt đen to tròn long lanh ngấn nước ở khóe mắt, môi dưới hơi run nhẹ, hai vai rủ xuống, chiếc đuôi xù lớn hạ thấp ôm quanh cổ chân. | Bác sĩ Koala (buồn): Chân mày hơi chùng xuống đầy cảm thông, cúi người vỗ nhẹ lên vai bạn nhỏ cho bé hết lo lắng.",
+          "actingNotes": "Sóc Bi: Động tác tay vội vã, thiếu kiên nhẫn, chân mày nhíu lại, thể hiện rõ việc làm khi đang mất bình tĩnh sẽ không hiệu quả.",
+          "speaker": "Sóc Bi (100cm)",
+          "dialogue": "Sao làm hoài vẫn không được thế này! Khó quá đi mất thôi!",
+          "voiceDelivery": "Gấp gáp, hơi nản lòng",
+          "sfx": "Tiếng đồ vật trượt lạch cạch",
+          "bgm": "Nhạc nền pizzicato hơi rối nhịp mô tả sự luống cuống",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] MS, eye-level angle, 35mm lens. [CHARACTERS] a slim, agile 3-4 year old boy squirrel named Bi, about 100cm tall, NOT fat, flat belly, short slender limbs, head about 1/4 of body height, reddish orange-brown fur with lighter belly and cheeks, big round glossy black eyes with highlights, light pink cheeks, two front teeth, small pointed ears with tufts, very large bushy tail curving up behind his back and darker red-brown toward the tip, fitted yellow crew-neck t-shirt, black shorts, dark sneakers with white soles, drooping pointed ears, big glossy black eyes glistening with tiny tear droplets at the corners, quivering lower lip, shoulders slumped forward, large bushy tail hanging low and curled around his ankles, hands clasped loosely in front of his yellow t-shirt; a gentle elderly koala doctor, about 150cm tall (1.5x the height of Bi the squirrel), soft gray fur, large round black nose, fluffy round ears, kind small eyes behind round gold glasses, wearing a clean white doctor coat with a green cross badge, a head mirror on his forehead, a stethoscope around his neck, 3D Pixar-style soft render, soft studio lighting, plain light gray background, empathetic gentle frown, eyebrows angled softly in concern behind round gold glasses, leaning down to comfort a child. [SCALE] Height order from tallest: Bác sĩ Koala (150cm) > Sóc Bi (100cm); Doctor Koala is 150cm tall (children reach his chest). [ACTION] Medium shot showing Sóc Bi trying to fix things hastily while upset, only making it more tangled. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized child-friendly woodland clinic belonging to Doctor Koala. The cozy round room features soothing pastel mint-green walls with warm natural wood wainscotting, curved windows looking out onto sunny green fern gardens, and smooth non-slip cork flooring. At the center sits a low, cushioned wooden examination bed (45cm high with a cute 20cm two-step wooden footstool) and a friendly 150cm-tall Doctor Koala desk (72cm high). On a low demonstration table (50cm high) rests an oversized cheerful white tooth model with a giant soft-bristle wooden toothbrush for teaching brushing technique. On the wall hang colorful illustrated posters of healthy vegetables, the 6 handwashing steps, and a wooden height-measuring chart marked clearly from 0cm to 160cm, while a clear glass jar on the counter holds gold star and leaf stickers (strictly stickers, no sugary candy). Time of day: morning. [DEPTH] foreground: scattered props in foreground, soft bokeh; midground: Sóc Bi struggling with the problem while Bác sĩ Koala watches sadly, razor-sharp focus; background: Phòng khám Bác sĩ Koala interior, creamy atmospheric falloff. [LIGHT] Bright, clean, reassuring morning sunlight streaming through the curved clinic windows, blending with soft warm-white interior lamps for a zero-fear atmosphere..",
+          "videoPrompt": "8-second 3D Pixar-style animated clip (S10, 03:00-03:20): Medium shot showing Sóc Bi trying to fix things hastily while upset, only making it more tangled. Camera movement: smooth static. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Height order from tallest: Bác sĩ Koala (150cm) > Sóc Bi (100cm); Doctor Koala is 150cm tall (children reach his chest).), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "soc_nho",
+            "koala"
+          ],
+          "speakerId": "soc_nho"
+        },
+        {
+          "id": "S11",
+          "sceneIndex": 4,
+          "sceneTitle": "Cảm xúc dâng trào & Phản ứng lúng túng ban đầu",
+          "startSec": 200,
+          "endSec": 220,
+          "durationSec": 20.0,
+          "shotSize": "CU",
+          "camera": "eye-level, 50mm, push-in",
+          "characters": [
+            "Sóc Bi (100cm)"
+          ],
+          "action": "[0-7s] Máy đẩy sát vào gương mặt của Sóc Bi. [7-14s] Đôi tai hơi cụp xuống, đôi mắt to tròn chớp nhẹ nhận ra cách làm vừa rồi chưa ổn. [14-20s] Sóc Bi đặt tay lên ngực/bụng lắng nghe cảm xúc của mình.",
+          "expression": "Sóc Bi (buồn): Hai tai sóc cụp xuống, đôi mắt đen to tròn long lanh ngấn nước ở khóe mắt, môi dưới hơi run nhẹ, hai vai rủ xuống, chiếc đuôi xù lớn hạ thấp ôm quanh cổ chân.",
+          "actingNotes": "Biểu cảm chuyển biến tinh tế từ căng thẳng sang lắng lại; đôi mắt long lanh rất truyền cảm.",
+          "speaker": "Sóc Bi (100cm)",
+          "dialogue": "Làm như vậy chẳng vui chút nào cả… Tim mình đang đập nhanh quá!",
+          "voiceDelivery": "Chậm lại, nhỏ nhẹ, tự nhận thức cảm xúc",
+          "sfx": "Tiếng thở sâu nhẹ nhàng",
+          "bgm": "Tiếng sáo trúc hoặc clarinet ấm áp vang lên",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] CU, eye-level angle, 50mm lens. [CHARACTERS] a slim, agile 3-4 year old boy squirrel named Bi, about 100cm tall, NOT fat, flat belly, short slender limbs, head about 1/4 of body height, reddish orange-brown fur with lighter belly and cheeks, big round glossy black eyes with highlights, light pink cheeks, two front teeth, small pointed ears with tufts, very large bushy tail curving up behind his back and darker red-brown toward the tip, fitted yellow crew-neck t-shirt, black shorts, dark sneakers with white soles, drooping pointed ears, big glossy black eyes glistening with tiny tear droplets at the corners, quivering lower lip, shoulders slumped forward, large bushy tail hanging low and curled around his ankles, hands clasped loosely in front of his yellow t-shirt. [ACTION] Close-up of Sóc Bi pausing, drooping ears slightly, and placing a hand on the chest. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized child-friendly woodland clinic belonging to Doctor Koala. The cozy round room features soothing pastel mint-green walls with warm natural wood wainscotting, curved windows looking out onto sunny green fern gardens, and smooth non-slip cork flooring. At the center sits a low, cushioned wooden examination bed (45cm high with a cute 20cm two-step wooden footstool) and a friendly 150cm-tall Doctor Koala desk (72cm high). On a low demonstration table (50cm high) rests an oversized cheerful white tooth model with a giant soft-bristle wooden toothbrush for teaching brushing technique. On the wall hang colorful illustrated posters of healthy vegetables, the 6 handwashing steps, and a wooden height-measuring chart marked clearly from 0cm to 160cm, while a clear glass jar on the counter holds gold star and leaf stickers (strictly stickers, no sugary candy). Time of day: morning. [DEPTH] foreground: soft window light bokeh, soft bokeh; midground: close-up of Sóc Bi's face showing vulnerable preschool emotion, razor-sharp focus; background: warm blurred background, creamy atmospheric falloff. [LIGHT] Bright, clean, reassuring morning sunlight streaming through the curved clinic windows, blending with soft warm-white interior lamps for a zero-fear atmosphere..",
+          "videoPrompt": "8-second 3D Pixar-style animated clip (S11, 03:20-03:40): Close-up of Sóc Bi pausing, drooping ears slightly, and placing a hand on the chest. Camera movement: smooth push-in. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Sóc Bi), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "soc_nho"
+          ],
+          "speakerId": "soc_nho"
+        },
+        {
+          "id": "S12",
+          "sceneIndex": 4,
+          "sceneTitle": "Cảm xúc dâng trào & Phản ứng lúng túng ban đầu",
+          "startSec": 220,
+          "endSec": 240,
+          "durationSec": 20.0,
+          "shotSize": "MS",
+          "camera": "eye-level, 35mm, lateral-pan",
+          "characters": [
+            "Sóc Bi (100cm)",
+            "Bác sĩ Koala (150cm)"
+          ],
+          "action": "[0-7s] Đúng lúc đó, Bác sĩ Koala (150cm) bước tới với ánh mắt hiền từ, hoàn toàn không la mắng. [7-14s] Bác sĩ Koala ngồi xuống ngang tầm mắt của Sóc Bi (100cm). [14-20s] Bác sĩ Koala mở vòng tay hoặc đặt tay nhẹ lên vai khích lệ.",
+          "expression": "Sóc Bi (tò mò): Đầu nghiêng 15 độ sang phải, một bên mày nhướng cao, đôi mắt đen to tròn chăm chú, ngón trỏ chạm nhẹ lên cằm suy nghĩ. | Bác sĩ Koala (tò mò): Nghiêng đầu nhìn qua kính vàng tròn, cầm chiếc gương soi hoặc kính lúp gỗ kiểm tra nhẹ nhàng.",
+          "actingNotes": "Bác sĩ Koala: Luôn hạ thấp người ngang tầm mắt trẻ, nụ cười bao dung, ánh mắt truyền sự an tâm tuyệt đối.",
+          "speaker": "Bác sĩ Koala (150cm)",
+          "dialogue": "Có chuyện gì thế các con? Cứ bình tĩnh kể cho Bác sĩ Koala nghe nào, không sao đâu nhé!",
+          "voiceDelivery": "Trầm ấm, dịu dàng, vỗ về",
+          "sfx": "Tiếng bước chân êm ái",
+          "bgm": "Nhạc nền chuyển sang giai điệu ấm áp, nâng đỡ tâm lý",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] MS, eye-level angle, 35mm lens. [CHARACTERS] a slim, agile 3-4 year old boy squirrel named Bi, about 100cm tall, NOT fat, flat belly, short slender limbs, head about 1/4 of body height, reddish orange-brown fur with lighter belly and cheeks, big round glossy black eyes with highlights, light pink cheeks, two front teeth, small pointed ears with tufts, very large bushy tail curving up behind his back and darker red-brown toward the tip, fitted yellow crew-neck t-shirt, black shorts, dark sneakers with white soles, head tilted 15 degrees to the right, one eyebrow raised higher than the other, big glossy black eyes leaning forward in intense fascination, right index finger touching his chin thoughtfully, bushy tail swaying slowly in a question-mark curve; a gentle elderly koala doctor, about 150cm tall (1.5x the height of Bi the squirrel), soft gray fur, large round black nose, fluffy round ears, kind small eyes behind round gold glasses, wearing a clean white doctor coat with a green cross badge, a head mirror on his forehead, a stethoscope around his neck, 3D Pixar-style soft render, soft studio lighting, plain light gray background, tilting his head, peering kindly through his round gold glasses while holding a wooden magnifying glass. [SCALE] Height order from tallest: Bác sĩ Koala (150cm) > Sóc Bi (100cm); Doctor Koala is 150cm tall (children reach his chest). [ACTION] Medium shot as Bác sĩ Koala arrives calmly and kneels down to eye level with Sóc Bi. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized child-friendly woodland clinic belonging to Doctor Koala. The cozy round room features soothing pastel mint-green walls with warm natural wood wainscotting, curved windows looking out onto sunny green fern gardens, and smooth non-slip cork flooring. At the center sits a low, cushioned wooden examination bed (45cm high with a cute 20cm two-step wooden footstool) and a friendly 150cm-tall Doctor Koala desk (72cm high). On a low demonstration table (50cm high) rests an oversized cheerful white tooth model with a giant soft-bristle wooden toothbrush for teaching brushing technique. On the wall hang colorful illustrated posters of healthy vegetables, the 6 handwashing steps, and a wooden height-measuring chart marked clearly from 0cm to 160cm, while a clear glass jar on the counter holds gold star and leaf stickers (strictly stickers, no sugary candy). Time of day: morning. [DEPTH] foreground: doorframe or garden arch in foreground bokeh, soft bokeh; midground: Bác sĩ Koala (150cm) joining gently in exact height ratio, razor-sharp focus; background: Phòng khám Bác sĩ Koala background, creamy atmospheric falloff. [LIGHT] Bright, clean, reassuring morning sunlight streaming through the curved clinic windows, blending with soft warm-white interior lamps for a zero-fear atmosphere..",
+          "videoPrompt": "8-second 3D Pixar-style animated clip (S12, 03:40-04:00): Medium shot as Bác sĩ Koala arrives calmly and kneels down to eye level with Sóc Bi. Camera movement: smooth lateral-pan. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Height order from tallest: Bác sĩ Koala (150cm) > Sóc Bi (100cm); Doctor Koala is 150cm tall (children reach his chest).), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "soc_nho",
+            "koala"
+          ],
+          "speakerId": "koala"
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "title": "Lắng nghe, Thấu cảm & Gọi tên vấn đề (Lớp Sư Phạm 2A)",
+      "startSec": 240,
+      "endSec": 300,
+      "location": "Phòng khám Bác sĩ Koala — Góc trò chuyện thân mật",
+      "purpose": "Giúp trẻ gọi tên đúng cảm xúc/nguyên nhân của sự việc thay vì phán xét hay trách phạt.",
+      "shots": [
+        {
+          "id": "S13",
+          "sceneIndex": 5,
+          "sceneTitle": "Lắng nghe, Thấu cảm & Gọi tên vấn đề (Lớp Sư Phạm 2A)",
+          "startSec": 240,
+          "endSec": 260,
+          "durationSec": 20.0,
+          "shotSize": "MCU",
+          "camera": "eye-level, 50mm, static",
+          "characters": [
+            "Sóc Bi (100cm)",
+            "Bác sĩ Koala (150cm)"
+          ],
+          "action": "[0-7s] Trong vòng tay ấm áp của Bác sĩ Koala, Sóc Bi chỉ tay vào Mô hình hàm răng trắng bóng khổng lồ, bàn chải lông mềm màu xanh và lọ thủy tinh đựng sticker ngôi sao vàng của Bác sĩ Koala và thật thà kể lại chuyện vừa xảy ra. [7-14s] Bác sĩ Koala gật đầu lắng nghe từng lời. [14-20s] Bác sĩ Koala xoa nhẹ lưng/đầu giúp Sóc Bi dịu lại.",
+          "expression": "Sóc Bi (buồn): Hai tai sóc cụp xuống, đôi mắt đen to tròn long lanh ngấn nước ở khóe mắt, môi dưới hơi run nhẹ, hai vai rủ xuống, chiếc đuôi xù lớn hạ thấp ôm quanh cổ chân. | Bác sĩ Koala (vui): Nụ cười hiền từ như ông ngoại, đôi mắt nhỏ ánh lên niềm vui sau cặp kính vàng tròn, đôi tai tròn lông xám mềm đung đưa nhẹ.",
+          "actingNotes": "Sóc Bi: Vừa nói vừa dùng cử chỉ tay miêu tả lại, gương mặt dần giãn ra khi được lắng nghe. Bác sĩ Koala: Ánh mắt chăm chú, trìu mến.",
+          "speaker": "Sóc Bi (100cm)",
+          "dialogue": "Dạ… lúc nãy vì sóc bi (100cm) mê ăn bánh quy mật ong nhưng tối qua buồn ngủ nên chải răng qua loa vài giây, sáng dậy thấy chiếc răng hàm hơi ê buốt nên đến gặp bác sĩ koala (150cm), nên trong lòng con mới thấy rối bời như vậy ạ…",
+          "voiceDelivery": "Chân thật, lễ phép, cảm xúc dịu dần",
+          "sfx": "Tiếng gió thổi nhẹ qua khung cửa",
+          "bgm": "Tiếng đàn guitar gỗ và cello ấm áp 96 BPM",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] MCU, eye-level angle, 50mm lens. [CHARACTERS] a slim, agile 3-4 year old boy squirrel named Bi, about 100cm tall, NOT fat, flat belly, short slender limbs, head about 1/4 of body height, reddish orange-brown fur with lighter belly and cheeks, big round glossy black eyes with highlights, light pink cheeks, two front teeth, small pointed ears with tufts, very large bushy tail curving up behind his back and darker red-brown toward the tip, fitted yellow crew-neck t-shirt, black shorts, dark sneakers with white soles, drooping pointed ears, big glossy black eyes glistening with tiny tear droplets at the corners, quivering lower lip, shoulders slumped forward, large bushy tail hanging low and curled around his ankles, hands clasped loosely in front of his yellow t-shirt; a gentle elderly koala doctor, about 150cm tall (1.5x the height of Bi the squirrel), soft gray fur, large round black nose, fluffy round ears, kind small eyes behind round gold glasses, wearing a clean white doctor coat with a green cross badge, a head mirror on his forehead, a stethoscope around his neck, 3D Pixar-style soft render, soft studio lighting, plain light gray background, warm grandfatherly smile, kind eyes crinkling happily behind round gold glasses, fluffy round ears perked. [SCALE] Height order from tallest: Bác sĩ Koala (150cm) > Sóc Bi (100cm); Doctor Koala is 150cm tall (children reach his chest). [ACTION] Medium close-up two-shot as Sóc Bi shares what happened and Bác sĩ Koala nods empathetically. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized child-friendly woodland clinic belonging to Doctor Koala. The cozy round room features soothing pastel mint-green walls with warm natural wood wainscotting, curved windows looking out onto sunny green fern gardens, and smooth non-slip cork flooring. At the center sits a low, cushioned wooden examination bed (45cm high with a cute 20cm two-step wooden footstool) and a friendly 150cm-tall Doctor Koala desk (72cm high). On a low demonstration table (50cm high) rests an oversized cheerful white tooth model with a giant soft-bristle wooden toothbrush for teaching brushing technique. On the wall hang colorful illustrated posters of healthy vegetables, the 6 handwashing steps, and a wooden height-measuring chart marked clearly from 0cm to 160cm, while a clear glass jar on the counter holds gold star and leaf stickers (strictly stickers, no sugary candy). Time of day: morning. [DEPTH] foreground: warm ambient foreground bokeh, soft bokeh; midground: Sóc Bi explaining feelings honestly while Bác sĩ Koala listens attentively, razor-sharp focus; background: cozy Phòng khám Bác sĩ Koala background, creamy atmospheric falloff. [LIGHT] Bright, clean, reassuring morning sunlight streaming through the curved clinic windows, blending with soft warm-white interior lamps for a zero-fear atmosphere..",
+          "videoPrompt": "8-second 3D Pixar-style animated clip (S13, 04:00-04:20): Medium close-up two-shot as Sóc Bi shares what happened and Bác sĩ Koala nods empathetically. Camera movement: smooth static. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Height order from tallest: Bác sĩ Koala (150cm) > Sóc Bi (100cm); Doctor Koala is 150cm tall (children reach his chest).), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "soc_nho",
+            "koala"
+          ],
+          "speakerId": "soc_nho"
+        },
+        {
+          "id": "S14",
+          "sceneIndex": 5,
+          "sceneTitle": "Lắng nghe, Thấu cảm & Gọi tên vấn đề (Lớp Sư Phạm 2A)",
+          "startSec": 260,
+          "endSec": 280,
+          "durationSec": 20.0,
+          "shotSize": "MCU",
+          "camera": "eye-level, 50mm, push-in",
+          "characters": [
+            "Bác sĩ Koala (150cm)"
+          ],
+          "action": "[0-7s] Bác sĩ Koala (150cm) cầm Mô hình hàm răng trắng bóng khổng lồ, bàn chải lông mềm màu xanh và lọ thủy tinh đựng sticker ngôi sao vàng của Bác sĩ Koala lên làm ví dụ trực quan ngay trước mắt trẻ. [7-14s] Giải thích ngắn gọn, sinh động về bài học: Hạn chế ăn đồ ngọt buổi tối và đánh răng đúng cách 2 phút mỗi sáng - tối (chải xoay tròn mặt ngoài, mặt trong, mặt nhai). [14-20s] Cả Sóc Bi và Bác sĩ Koala đều tròn mắt gật đầu hiểu ra.",
+          "expression": "Bác sĩ Koala (tò mò): Nghiêng đầu nhìn qua kính vàng tròn, cầm chiếc gương soi hoặc kính lúp gỗ kiểm tra nhẹ nhàng.",
+          "actingNotes": "Bác sĩ Koala: Không nói lý thuyết dài dòng mà vừa nói vừa làm mẫu bằng tay thật rõ ràng, chậm rãi.",
+          "speaker": "Bác sĩ Koala (150cm)",
+          "dialogue": "À, ra là thế! Cảm giác đó hoàn toàn bình thường thôi. Bây giờ Bác sĩ Koala có một bí quyết cực hay giúp mình xử lý việc này nhé!",
+          "voiceDelivery": "Truyền cảm, khích lệ, nhấn vào cụm 'bí quyết cực hay'",
+          "sfx": "Tiếng chuông nhỏ 'ting' báo hiệu ý tưởng mới",
+          "bgm": "Nhạc nền chuyển sang gam trưởng tươi sáng, giàu hy vọng",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] MCU, eye-level angle, 50mm lens. [CHARACTERS] a gentle elderly koala doctor, about 150cm tall (1.5x the height of Bi the squirrel), soft gray fur, large round black nose, fluffy round ears, kind small eyes behind round gold glasses, wearing a clean white doctor coat with a green cross badge, a head mirror on his forehead, a stethoscope around his neck, 3D Pixar-style soft render, soft studio lighting, plain light gray background, tilting his head, peering kindly through his round gold glasses while holding a wooden magnifying glass. [ACTION] Bác sĩ Koala uses a hands-on visual demonstration with the prop to explain Hạn chế ăn đồ ngọt buổi tối và đánh răng đúng cách 2 phút mỗi sáng - tối (chải xoay tròn mặt ngoài, mặt trong, mặt nhai). [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized child-friendly woodland clinic belonging to Doctor Koala. The cozy round room features soothing pastel mint-green walls with warm natural wood wainscotting, curved windows looking out onto sunny green fern gardens, and smooth non-slip cork flooring. At the center sits a low, cushioned wooden examination bed (45cm high with a cute 20cm two-step wooden footstool) and a friendly 150cm-tall Doctor Koala desk (72cm high). On a low demonstration table (50cm high) rests an oversized cheerful white tooth model with a giant soft-bristle wooden toothbrush for teaching brushing technique. On the wall hang colorful illustrated posters of healthy vegetables, the 6 handwashing steps, and a wooden height-measuring chart marked clearly from 0cm to 160cm, while a clear glass jar on the counter holds gold star and leaf stickers (strictly stickers, no sugary candy). Time of day: morning. [DEPTH] foreground: soft foreground prop bokeh, soft bokeh; midground: Bác sĩ Koala explaining the core lesson visually to the children, razor-sharp focus; background: warm background, creamy atmospheric falloff. [LIGHT] Bright, clean, reassuring morning sunlight streaming through the curved clinic windows, blending with soft warm-white interior lamps for a zero-fear atmosphere..",
+          "videoPrompt": "8-second 3D Pixar-style animated clip (S14, 04:20-04:40): Bác sĩ Koala uses a hands-on visual demonstration with the prop to explain Hạn chế ăn đồ ngọt buổi tối và đánh răng đúng cách 2 phút mỗi sáng - tối (chải xoay tròn mặt ngoài, mặt trong, mặt nhai). Camera movement: smooth push-in. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Bác sĩ Koala), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "koala"
+          ],
+          "speakerId": "koala"
+        },
+        {
+          "id": "S15",
+          "sceneIndex": 5,
+          "sceneTitle": "Lắng nghe, Thấu cảm & Gọi tên vấn đề (Lớp Sư Phạm 2A)",
+          "startSec": 280,
+          "endSec": 300,
+          "durationSec": 20.0,
+          "shotSize": "CU",
+          "camera": "eye-level, 50mm, zoom-in",
+          "characters": [
+            "Sóc Bi (100cm)"
+          ],
+          "action": "[0-7s] Nghe tới bí quyết mới, đôi tai của Sóc Bi dựng thẳng lên. [7-14s] Đôi mắt to tròn sáng rực như có ánh sao. [14-20s] Sóc Bi quay sang ống kính rủ các bạn nhỏ cùng học bí quyết.",
+          "expression": "Sóc Bi (ngạc nhiên): Lông mày nhướng cao, mắt đen mở to lấp lánh ánh sao, miệng chữ O lộ 2 răng cửa, hai tay chạm lên má hồng, chiếc đuôi xù dựng đứng.",
+          "actingNotes": "Sóc Bi: Biểu cảm 'ngạc nhiên + tò mò' chuẩn Pixar: lông mày nhướng cao, miệng chữ O nhỏ lộ niềm thích thú.",
+          "speaker": "Sóc Bi (100cm)",
+          "dialogue": "Oa, bí quyết gì thế ạ? Bạn nhỏ ơi, chúng mình cùng xem và làm thử ngay bây giờ nhé!",
+          "voiceDelivery": "Hào hứng, tươi tỉnh trở lại",
+          "sfx": "Tiếng 'boing' nhẹ vui tai khi đôi tai dựng lên",
+          "bgm": "Nhạc marimba rộn ràng bắt đầu nhịp thực hành",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] CU, eye-level angle, 50mm lens. [CHARACTERS] a slim, agile 3-4 year old boy squirrel named Bi, about 100cm tall, NOT fat, flat belly, short slender limbs, head about 1/4 of body height, reddish orange-brown fur with lighter belly and cheeks, big round glossy black eyes with highlights, light pink cheeks, two front teeth, small pointed ears with tufts, very large bushy tail curving up behind his back and darker red-brown toward the tip, fitted yellow crew-neck t-shirt, black shorts, dark sneakers with white soles, eyebrows raised high, big round black eyes opened wide with bright star-like specular highlights, mouth open in an amazed 'O' showing two front teeth, ears standing tall, both hands touching his light pink cheeks as his bushy tail perks straight up like an exclamation mark. [ACTION] Close-up of Sóc Bi's ears perking up and eyes sparkling with excitement, inviting the viewer to watch. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized child-friendly woodland clinic belonging to Doctor Koala. The cozy round room features soothing pastel mint-green walls with warm natural wood wainscotting, curved windows looking out onto sunny green fern gardens, and smooth non-slip cork flooring. At the center sits a low, cushioned wooden examination bed (45cm high with a cute 20cm two-step wooden footstool) and a friendly 150cm-tall Doctor Koala desk (72cm high). On a low demonstration table (50cm high) rests an oversized cheerful white tooth model with a giant soft-bristle wooden toothbrush for teaching brushing technique. On the wall hang colorful illustrated posters of healthy vegetables, the 6 handwashing steps, and a wooden height-measuring chart marked clearly from 0cm to 160cm, while a clear glass jar on the counter holds gold star and leaf stickers (strictly stickers, no sugary candy). Time of day: morning. [DEPTH] foreground: sparkling light bokeh, soft bokeh; midground: close-up of Sóc Bi with wide sparkling eyes and perked ears, razor-sharp focus; background: softly blurred background, creamy atmospheric falloff. [LIGHT] Bright, clean, reassuring morning sunlight streaming through the curved clinic windows, blending with soft warm-white interior lamps for a zero-fear atmosphere..",
+          "videoPrompt": "8-second 3D Pixar-style animated clip (S15, 04:40-05:00): Close-up of Sóc Bi's ears perking up and eyes sparkling with excitement, inviting the viewer to watch. Camera movement: smooth zoom-in. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Sóc Bi), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "soc_nho"
+          ],
+          "speakerId": "soc_nho"
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "title": "Hướng dẫn trực quan từng bước & Câu Thần Chú (Lớp Sư Phạm 2B)",
+      "startSec": 300,
+      "endSec": 360,
+      "location": "Phòng khám Bác sĩ Koala — Bàn/Thảm thực hành",
+      "purpose": "Dạy trẻ quy trình hành động cụ thể (Bác sĩ Koala (150cm) hiền từ đeo gương soi trán kiểm tra nhẹ nhàng không đau chút nào, rồi dùng mô hình hàm răng lớn dạy Bi bài múa bàn chải 'Xoay tròn như bánh xe - Chải từ trên xuống dưới' đủ 2 phút và thưởng cho Bi một sticker ngôi sao vàng) và đọc Câu thần chú 'Xoay tròn bàn chải, răng trắng sáng ngời!' lần 1.",
+      "shots": [
+        {
+          "id": "S16",
+          "sceneIndex": 6,
+          "sceneTitle": "Hướng dẫn trực quan từng bước & Câu Thần Chú (Lớp Sư Phạm 2B)",
+          "startSec": 300,
+          "endSec": 320,
+          "durationSec": 20.0,
+          "shotSize": "MS",
+          "camera": "eye-level, 35mm, static",
+          "characters": [
+            "Sóc Bi (100cm)",
+            "Bác sĩ Koala (150cm)"
+          ],
+          "action": "[0-7s] Bác sĩ Koala (150cm) hiền từ đeo gương soi trán kiểm tra nhẹ nhàng không đau chút nào, rồi dùng mô hình hàm răng lớn dạy Bi bài múa bàn chải 'Xoay tròn như bánh xe - Chải từ trên xuống dưới' đủ 2 phút và thưởng cho Bi một sticker ngôi sao vàng. [7-14s] Bác sĩ Koala làm mẫu Bước 1 và Bước 2 thật chậm rãi để Sóc Bi làm theo. [14-20s] Cả nhóm cùng mỉm cười khi thấy bước đầu tiên thật dễ làm.",
+          "expression": "Sóc Bi (tò mò): Đầu nghiêng 15 độ sang phải, một bên mày nhướng cao, đôi mắt đen to tròn chăm chú, ngón trỏ chạm nhẹ lên cằm suy nghĩ. | Bác sĩ Koala (tò mò): Nghiêng đầu nhìn qua kính vàng tròn, cầm chiếc gương soi hoặc kính lúp gỗ kiểm tra nhẹ nhàng.",
+          "actingNotes": "Động tác tay chân rõ ràng, dứt khoát theo từng nhịp đếm 1 - 2 để trẻ mầm non nhìn vào là bắt chước làm theo được ngay.",
+          "speaker": "Bác sĩ Koala (150cm)",
+          "dialogue": "Đầu tiên là Bước một: Mình dừng lại hít sâu nhé! Tiếp theo là Bước hai: Quan sát thật kỹ nào!",
+          "voiceDelivery": "Rõ ràng từng bước, nhịp điệu chậm rãi dễ nhớ",
+          "sfx": "Tiếng chuông gỗ đếm nhịp 'Một — Hai'",
+          "bgm": "Nhạc nền nhịp 4/4 đều đặn hỗ trợ ghi nhớ kỹ năng",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] MS, eye-level angle, 35mm lens. [CHARACTERS] a slim, agile 3-4 year old boy squirrel named Bi, about 100cm tall, NOT fat, flat belly, short slender limbs, head about 1/4 of body height, reddish orange-brown fur with lighter belly and cheeks, big round glossy black eyes with highlights, light pink cheeks, two front teeth, small pointed ears with tufts, very large bushy tail curving up behind his back and darker red-brown toward the tip, fitted yellow crew-neck t-shirt, black shorts, dark sneakers with white soles, head tilted 15 degrees to the right, one eyebrow raised higher than the other, big glossy black eyes leaning forward in intense fascination, right index finger touching his chin thoughtfully, bushy tail swaying slowly in a question-mark curve; a gentle elderly koala doctor, about 150cm tall (1.5x the height of Bi the squirrel), soft gray fur, large round black nose, fluffy round ears, kind small eyes behind round gold glasses, wearing a clean white doctor coat with a green cross badge, a head mirror on his forehead, a stethoscope around his neck, 3D Pixar-style soft render, soft studio lighting, plain light gray background, tilting his head, peering kindly through his round gold glasses while holding a wooden magnifying glass. [SCALE] Height order from tallest: Bác sĩ Koala (150cm) > Sóc Bi (100cm); Doctor Koala is 150cm tall (children reach his chest). [ACTION] Medium shot showing Bác sĩ Koala demonstrating the first steps slowly while Sóc Bi follows along. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized child-friendly woodland clinic belonging to Doctor Koala. The cozy round room features soothing pastel mint-green walls with warm natural wood wainscotting, curved windows looking out onto sunny green fern gardens, and smooth non-slip cork flooring. At the center sits a low, cushioned wooden examination bed (45cm high with a cute 20cm two-step wooden footstool) and a friendly 150cm-tall Doctor Koala desk (72cm high). On a low demonstration table (50cm high) rests an oversized cheerful white tooth model with a giant soft-bristle wooden toothbrush for teaching brushing technique. On the wall hang colorful illustrated posters of healthy vegetables, the 6 handwashing steps, and a wooden height-measuring chart marked clearly from 0cm to 160cm, while a clear glass jar on the counter holds gold star and leaf stickers (strictly stickers, no sugary candy). Time of day: morning. [DEPTH] foreground: clear view of the practice props in foreground, soft bokeh; midground: Sóc Bi, Bác sĩ Koala practicing step 1 and step 2 together in exact height order, razor-sharp focus; background: Phòng khám Bác sĩ Koala background, creamy atmospheric falloff. [LIGHT] Bright, clean, reassuring morning sunlight streaming through the curved clinic windows, blending with soft warm-white interior lamps for a zero-fear atmosphere..",
+          "videoPrompt": "8-second 3D Pixar-style animated clip (S16, 05:00-05:20): Medium shot showing Bác sĩ Koala demonstrating the first steps slowly while Sóc Bi follows along. Camera movement: smooth static. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Height order from tallest: Bác sĩ Koala (150cm) > Sóc Bi (100cm); Doctor Koala is 150cm tall (children reach his chest).), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "soc_nho",
+            "koala"
+          ],
+          "speakerId": "koala"
+        },
+        {
+          "id": "S17",
+          "sceneIndex": 6,
+          "sceneTitle": "Hướng dẫn trực quan từng bước & Câu Thần Chú (Lớp Sư Phạm 2B)",
+          "startSec": 320,
+          "endSec": 340,
+          "durationSec": 20.0,
+          "shotSize": "CU",
+          "camera": "eye-level, 50mm, push-in",
+          "characters": [
+            "Sóc Bi (100cm)",
+            "Bác sĩ Koala (150cm)"
+          ],
+          "action": "[0-7s] Sóc Bi và Bác sĩ Koala tự tay thực hiện tiếp Bước 3 của bài học (Hạn chế ăn đồ ngọt buổi tối và đánh răng đúng cách 2 phút mỗi sáng - tối (chải xoay tròn mặt ngoài, mặt trong, mặt nhai)). [7-14s] Gương mặt của Sóc Bi giãn ra hoàn toàn, hai má hồng tươi tắn. [14-20s] Hai bạn đập tay 'High-five' vui vẻ.",
+          "expression": "Sóc Bi (vui): Miệng cười rộng khoe 2 chiếc răng cửa trắng nhỏ, đôi mắt đen tròn cong hình trăng khuyết lấp lánh, hai má hồng nâng cao, hai tai sóc dựng thẳng, đuôi xù lớn vẫy cao phía sau lưng. | Bác sĩ Koala (vui): Nụ cười hiền từ như ông ngoại, đôi mắt nhỏ ánh lên niềm vui sau cặp kính vàng tròn, đôi tai tròn lông xám mềm đung đưa nhẹ.",
+          "actingNotes": "Sóc Bi & Bác sĩ Koala: Ánh mắt sáng lên vì cảm giác 'Mình tự làm được rồi!', nụ cười tự nhiên khoe răng trắng.",
+          "speaker": "Sóc Bi (100cm)",
+          "dialogue": "Và Bước ba: Tự tay thực hiện thật khéo léo! Oa, dễ ơi là dễ luôn nè Bác sĩ Koala ơi!",
+          "voiceDelivery": "Phấn khởi, tự tin",
+          "sfx": "Tiếng đập tay 'bốp' vui nhộn và tiếng chuông hoàn thành",
+          "bgm": "Giai điệu xylophone đi lên tươi sáng",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] CU, eye-level angle, 50mm lens. [CHARACTERS] a slim, agile 3-4 year old boy squirrel named Bi, about 100cm tall, NOT fat, flat belly, short slender limbs, head about 1/4 of body height, reddish orange-brown fur with lighter belly and cheeks, big round glossy black eyes with highlights, light pink cheeks, two front teeth, small pointed ears with tufts, very large bushy tail curving up behind his back and darker red-brown toward the tip, fitted yellow crew-neck t-shirt, black shorts, dark sneakers with white soles, wide open cheerful smile showing two cute front teeth, crescent-shaped sparkling black eyes, rosy pink cheeks lifted high, ears perked straight up, large bushy tail wagging high behind his back, bouncing lightly on his toes with both hands raised happily; a gentle elderly koala doctor, about 150cm tall (1.5x the height of Bi the squirrel), soft gray fur, large round black nose, fluffy round ears, kind small eyes behind round gold glasses, wearing a clean white doctor coat with a green cross badge, a head mirror on his forehead, a stethoscope around his neck, 3D Pixar-style soft render, soft studio lighting, plain light gray background, warm grandfatherly smile, kind eyes crinkling happily behind round gold glasses, fluffy round ears perked. [SCALE] Height order from tallest: Bác sĩ Koala (150cm) > Sóc Bi (100cm); Doctor Koala is 150cm tall (children reach his chest). [ACTION] Close-up of Sóc Bi and Bác sĩ Koala successfully performing step 3 and giving each other a cheerful high-five. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized child-friendly woodland clinic belonging to Doctor Koala. The cozy round room features soothing pastel mint-green walls with warm natural wood wainscotting, curved windows looking out onto sunny green fern gardens, and smooth non-slip cork flooring. At the center sits a low, cushioned wooden examination bed (45cm high with a cute 20cm two-step wooden footstool) and a friendly 150cm-tall Doctor Koala desk (72cm high). On a low demonstration table (50cm high) rests an oversized cheerful white tooth model with a giant soft-bristle wooden toothbrush for teaching brushing technique. On the wall hang colorful illustrated posters of healthy vegetables, the 6 handwashing steps, and a wooden height-measuring chart marked clearly from 0cm to 160cm, while a clear glass jar on the counter holds gold star and leaf stickers (strictly stickers, no sugary candy). Time of day: morning. [DEPTH] foreground: close-up of hands interacting with the prop, soft bokeh; midground: Sóc Bi and Bác sĩ Koala completing the third step with bright smiles, razor-sharp focus; background: warm blurred background, creamy atmospheric falloff. [LIGHT] Bright, clean, reassuring morning sunlight streaming through the curved clinic windows, blending with soft warm-white interior lamps for a zero-fear atmosphere..",
+          "videoPrompt": "8-second 3D Pixar-style animated clip (S17, 05:20-05:40): Close-up of Sóc Bi and Bác sĩ Koala successfully performing step 3 and giving each other a cheerful high-five. Camera movement: smooth push-in. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Height order from tallest: Bác sĩ Koala (150cm) > Sóc Bi (100cm); Doctor Koala is 150cm tall (children reach his chest).), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "soc_nho",
+            "koala"
+          ],
+          "speakerId": "soc_nho"
+        },
+        {
+          "id": "S18",
+          "sceneIndex": 6,
+          "sceneTitle": "Hướng dẫn trực quan từng bước & Câu Thần Chú (Lớp Sư Phạm 2B)",
+          "startSec": 340,
+          "endSec": 360,
+          "durationSec": 20.0,
+          "shotSize": "MCU",
+          "camera": "low, 35mm, zoom-in",
+          "characters": [
+            "Sóc Bi (100cm)",
+            "Bác sĩ Koala (150cm)"
+          ],
+          "action": "[0-7s] Các nhân vật đứng thẳng đúng chuẩn tỉ lệ chiều cao (Bác sĩ Koala (150 cm) > Sóc Bi (100 cm)). [7-14s] Cùng giơ tay làm động tác biểu tượng và đọc to Câu thần chú lần 1. [14-20s] Dừng 2 giây mời khán giả nhí đọc theo.",
+          "expression": "Sóc Bi (tự hào): Ngực ưỡn nhẹ tự tin (bụng phẳng thon gọn), nụ cười tươi khoe 2 răng cửa, một tay giơ ngón cái, đuôi xù uốn cong đẹp mắt. | Bác sĩ Koala (tự hào): Cười rạng rỡ, một tay cầm tờ sticker ngôi sao vàng, tay kia giơ ngón cái khen bé ngoan.",
+          "actingNotes": "Ngực ưỡn nhẹ tự hào, nhịp tay vẫy đều theo từng chữ của câu thần chú để khắc sâu vào trí nhớ trẻ.",
+          "speaker": "Sóc Bi (100cm)",
+          "dialogue": "Chúng mình cùng đọc to câu thần chú nhé: 'Xoay tròn bàn chải, răng trắng sáng ngời!' Bạn nhỏ đọc lại cùng Sóc Bi nào!",
+          "voiceDelivery": "Đọc vang theo nhịp vè thiếu nhi, dừng 2 giây cuối chờ bé đọc theo",
+          "sfx": "Tiếng vỗ tay theo nhịp phách và tiếng chuông sao lấp lánh",
+          "bgm": "Hợp âm điểm nhấn rộn ràng",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] MCU, low angle, 35mm lens. [CHARACTERS] a slim, agile 3-4 year old boy squirrel named Bi, about 100cm tall, NOT fat, flat belly, short slender limbs, head about 1/4 of body height, reddish orange-brown fur with lighter belly and cheeks, big round glossy black eyes with highlights, light pink cheeks, two front teeth, small pointed ears with tufts, very large bushy tail curving up behind his back and darker red-brown toward the tip, fitted yellow crew-neck t-shirt, black shorts, dark sneakers with white soles, chest puffed slightly while keeping a flat belly, confident bright grin showing two front teeth, chin tilted slightly up, one hand giving a crisp thumbs-up and the other on his hip, bushy tail arching gracefully high behind his back; a gentle elderly koala doctor, about 150cm tall (1.5x the height of Bi the squirrel), soft gray fur, large round black nose, fluffy round ears, kind small eyes behind round gold glasses, wearing a clean white doctor coat with a green cross badge, a head mirror on his forehead, a stethoscope around his neck, 3D Pixar-style soft render, soft studio lighting, plain light gray background, beaming warmly, holding out a gold star sticker sheet and giving a gentle thumbs-up. [SCALE] Height order from tallest: Bác sĩ Koala (150cm) > Sóc Bi (100cm); Doctor Koala is 150cm tall (children reach his chest). [ACTION] Medium close-up of the characters standing in exact height order and chanting the magic phrase with hand gestures. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized child-friendly woodland clinic belonging to Doctor Koala. The cozy round room features soothing pastel mint-green walls with warm natural wood wainscotting, curved windows looking out onto sunny green fern gardens, and smooth non-slip cork flooring. At the center sits a low, cushioned wooden examination bed (45cm high with a cute 20cm two-step wooden footstool) and a friendly 150cm-tall Doctor Koala desk (72cm high). On a low demonstration table (50cm high) rests an oversized cheerful white tooth model with a giant soft-bristle wooden toothbrush for teaching brushing technique. On the wall hang colorful illustrated posters of healthy vegetables, the 6 handwashing steps, and a wooden height-measuring chart marked clearly from 0cm to 160cm, while a clear glass jar on the counter holds gold star and leaf stickers (strictly stickers, no sugary candy). Time of day: morning. [DEPTH] foreground: golden light bokeh, soft bokeh; midground: Sóc Bi, Bác sĩ Koala chanting the episode mantra together with proud postures, razor-sharp focus; background: Phòng khám Bác sĩ Koala background, creamy atmospheric falloff. [LIGHT] Bright, clean, reassuring morning sunlight streaming through the curved clinic windows, blending with soft warm-white interior lamps for a zero-fear atmosphere..",
+          "videoPrompt": "8-second 3D Pixar-style animated clip (S18, 05:40-06:00): Medium close-up of the characters standing in exact height order and chanting the magic phrase with hand gestures. Camera movement: smooth zoom-in. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Height order from tallest: Bác sĩ Koala (150cm) > Sóc Bi (100cm); Doctor Koala is 150cm tall (children reach his chest).), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "soc_nho",
+            "koala"
+          ],
+          "speakerId": "soc_nho"
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "title": "Khúc ca đồng dao & Tương tác cùng khán giả nhí",
+      "startSec": 360,
+      "endSec": 420,
+      "location": "Phòng khám Bác sĩ Koala — Khoảng sân/phòng ngập nắng",
+      "purpose": "Củng cố bài học qua bài hát đồng dao ngắn vui nhộn và mời bé trước màn hình cùng vận động tay chân.",
+      "shots": [
+        {
+          "id": "S19",
+          "sceneIndex": 7,
+          "sceneTitle": "Khúc ca đồng dao & Tương tác cùng khán giả nhí",
+          "startSec": 360,
+          "endSec": 380,
+          "durationSec": 20.0,
+          "shotSize": "WS",
+          "camera": "eye-level, 28mm, lateral-pan",
+          "characters": [
+            "Sóc Bi (100cm)",
+            "Bác sĩ Koala (150cm)"
+          ],
+          "action": "[0-7s] Tiếng nhạc đồng dao vang lên, Sóc Bi, Bác sĩ Koala đứng thành hàng ngang đúng tỉ lệ chiều cao nhún nhảy. [7-14s] Thực hiện động tác múa minh họa cho 'Bạn sâu răng tinh nghịch'. [14-20s] Đuôi và tai đung đưa theo nhịp 4/4.",
+          "expression": "Sóc Bi (vui): Miệng cười rộng khoe 2 chiếc răng cửa trắng nhỏ, đôi mắt đen tròn cong hình trăng khuyết lấp lánh, hai má hồng nâng cao, hai tai sóc dựng thẳng, đuôi xù lớn vẫy cao phía sau lưng. | Bác sĩ Koala (vui): Nụ cười hiền từ như ông ngoại, đôi mắt nhỏ ánh lên niềm vui sau cặp kính vàng tròn, đôi tai tròn lông xám mềm đung đưa nhẹ.",
+          "actingNotes": "Động tác nhún đầu gối, vẫy tay đơn giản, tươi vui, đồng đều như một tiết mục vận động mầm non.",
+          "speaker": "Sóc Bi (100cm)",
+          "dialogue": "🎵 Nào mình cùng nhớ nhé, mỗi ngày một niềm vui! Gặp chuyện khó đừng lo, mình làm theo từng bước! 🎵",
+          "voiceDelivery": "Hát giai điệu đồng dao tươi sáng, nhịp 108 BPM",
+          "sfx": "Tiếng phách tre và lục lạc gỗ gõ nhịp",
+          "bgm": "Bài hát đồng dao của tập phim — Đoạn 1 (Ukulele, đàn t'rưng, marimba)",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] WS, eye-level angle, 28mm lens. [CHARACTERS] a slim, agile 3-4 year old boy squirrel named Bi, about 100cm tall, NOT fat, flat belly, short slender limbs, head about 1/4 of body height, reddish orange-brown fur with lighter belly and cheeks, big round glossy black eyes with highlights, light pink cheeks, two front teeth, small pointed ears with tufts, very large bushy tail curving up behind his back and darker red-brown toward the tip, fitted yellow crew-neck t-shirt, black shorts, dark sneakers with white soles, wide open cheerful smile showing two cute front teeth, crescent-shaped sparkling black eyes, rosy pink cheeks lifted high, ears perked straight up, large bushy tail wagging high behind his back, bouncing lightly on his toes with both hands raised happily; a gentle elderly koala doctor, about 150cm tall (1.5x the height of Bi the squirrel), soft gray fur, large round black nose, fluffy round ears, kind small eyes behind round gold glasses, wearing a clean white doctor coat with a green cross badge, a head mirror on his forehead, a stethoscope around his neck, 3D Pixar-style soft render, soft studio lighting, plain light gray background, warm grandfatherly smile, kind eyes crinkling happily behind round gold glasses, fluffy round ears perked. [SCALE] Height order from tallest: Bác sĩ Koala (150cm) > Sóc Bi (100cm); Doctor Koala is 150cm tall (children reach his chest). [ACTION] Wide shot of the characters singing and performing simple preschool dance moves in exact height order. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized child-friendly woodland clinic belonging to Doctor Koala. The cozy round room features soothing pastel mint-green walls with warm natural wood wainscotting, curved windows looking out onto sunny green fern gardens, and smooth non-slip cork flooring. At the center sits a low, cushioned wooden examination bed (45cm high with a cute 20cm two-step wooden footstool) and a friendly 150cm-tall Doctor Koala desk (72cm high). On a low demonstration table (50cm high) rests an oversized cheerful white tooth model with a giant soft-bristle wooden toothbrush for teaching brushing technique. On the wall hang colorful illustrated posters of healthy vegetables, the 6 handwashing steps, and a wooden height-measuring chart marked clearly from 0cm to 160cm, while a clear glass jar on the counter holds gold star and leaf stickers (strictly stickers, no sugary candy). Time of day: morning. [DEPTH] foreground: foreground leaves and petals swaying in bokeh, soft bokeh; midground: Sóc Bi, Bác sĩ Koala dancing rhythmically in strict height scale, razor-sharp focus; background: bright Phòng khám Bác sĩ Koala scenery, creamy atmospheric falloff. [LIGHT] Bright, clean, reassuring morning sunlight streaming through the curved clinic windows, blending with soft warm-white interior lamps for a zero-fear atmosphere..",
+          "videoPrompt": "8-second 3D Pixar-style animated clip (S19, 06:00-06:20): Wide shot of the characters singing and performing simple preschool dance moves in exact height order. Camera movement: smooth lateral-pan. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Height order from tallest: Bác sĩ Koala (150cm) > Sóc Bi (100cm); Doctor Koala is 150cm tall (children reach his chest).), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "soc_nho",
+            "koala"
+          ],
+          "speakerId": "soc_nho"
+        },
+        {
+          "id": "S20",
+          "sceneIndex": 7,
+          "sceneTitle": "Khúc ca đồng dao & Tương tác cùng khán giả nhí",
+          "startSec": 380,
+          "endSec": 400,
+          "durationSec": 20.0,
+          "shotSize": "MS",
+          "camera": "eye-level, 35mm, push-in",
+          "characters": [
+            "Sóc Bi (100cm)",
+            "Bác sĩ Koala (150cm)"
+          ],
+          "action": "[0-7s] Sóc Bi và Bác sĩ Koala quay mặt vào nhau làm động tác minh họa bài học 'Hạn chế ăn đồ ngọt buổi tối và đánh răng đúng cách 2 phút mỗi sáng - tối (chải xoay tròn mặt ngoài, mặt trong, mặt nhai)'. [7-14s] Cùng giơ ngón cái khen nhau làm đúng. [14-20s] Cả hai quay ra phía camera cười rạng rỡ.",
+          "expression": "Sóc Bi (vui): Miệng cười rộng khoe 2 chiếc răng cửa trắng nhỏ, đôi mắt đen tròn cong hình trăng khuyết lấp lánh, hai má hồng nâng cao, hai tai sóc dựng thẳng, đuôi xù lớn vẫy cao phía sau lưng. | Bác sĩ Koala (tự hào): Cười rạng rỡ, một tay cầm tờ sticker ngôi sao vàng, tay kia giơ ngón cái khen bé ngoan.",
+          "actingNotes": "Biểu cảm gương mặt rạng rỡ, mắt cong hình trăng khuyết, phối hợp ăn ý với nhau.",
+          "speaker": "Bác sĩ Koala (150cm)",
+          "dialogue": "🎵 'Xoay tròn bàn chải, răng trắng sáng ngời!' — Làm đúng ngay từ đầu, ai cũng khen bé ngoan! 🎵",
+          "voiceDelivery": "Hát vang câu thần chú trong điệp khúc (Lần 2)",
+          "sfx": "Tiếng vỗ tay nhịp nhàng",
+          "bgm": "Bài hát đồng dao của tập phim — Điệp khúc rộn rã",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] MS, eye-level angle, 35mm lens. [CHARACTERS] a slim, agile 3-4 year old boy squirrel named Bi, about 100cm tall, NOT fat, flat belly, short slender limbs, head about 1/4 of body height, reddish orange-brown fur with lighter belly and cheeks, big round glossy black eyes with highlights, light pink cheeks, two front teeth, small pointed ears with tufts, very large bushy tail curving up behind his back and darker red-brown toward the tip, fitted yellow crew-neck t-shirt, black shorts, dark sneakers with white soles, wide open cheerful smile showing two cute front teeth, crescent-shaped sparkling black eyes, rosy pink cheeks lifted high, ears perked straight up, large bushy tail wagging high behind his back, bouncing lightly on his toes with both hands raised happily; a gentle elderly koala doctor, about 150cm tall (1.5x the height of Bi the squirrel), soft gray fur, large round black nose, fluffy round ears, kind small eyes behind round gold glasses, wearing a clean white doctor coat with a green cross badge, a head mirror on his forehead, a stethoscope around his neck, 3D Pixar-style soft render, soft studio lighting, plain light gray background, beaming warmly, holding out a gold star sticker sheet and giving a gentle thumbs-up. [SCALE] Height order from tallest: Bác sĩ Koala (150cm) > Sóc Bi (100cm); Doctor Koala is 150cm tall (children reach his chest). [ACTION] Medium shot of Sóc Bi and Bác sĩ Koala acting out the song lyrics and giving thumbs-up to the camera. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized child-friendly woodland clinic belonging to Doctor Koala. The cozy round room features soothing pastel mint-green walls with warm natural wood wainscotting, curved windows looking out onto sunny green fern gardens, and smooth non-slip cork flooring. At the center sits a low, cushioned wooden examination bed (45cm high with a cute 20cm two-step wooden footstool) and a friendly 150cm-tall Doctor Koala desk (72cm high). On a low demonstration table (50cm high) rests an oversized cheerful white tooth model with a giant soft-bristle wooden toothbrush for teaching brushing technique. On the wall hang colorful illustrated posters of healthy vegetables, the 6 handwashing steps, and a wooden height-measuring chart marked clearly from 0cm to 160cm, while a clear glass jar on the counter holds gold star and leaf stickers (strictly stickers, no sugary candy). Time of day: morning. [DEPTH] foreground: prop detail in corner bokeh, soft bokeh; midground: Sóc Bi and Bác sĩ Koala singing the second verse with hand motions, razor-sharp focus; background: Phòng khám Bác sĩ Koala background, creamy atmospheric falloff. [LIGHT] Bright, clean, reassuring morning sunlight streaming through the curved clinic windows, blending with soft warm-white interior lamps for a zero-fear atmosphere..",
+          "videoPrompt": "8-second 3D Pixar-style animated clip (S20, 06:20-06:40): Medium shot of Sóc Bi and Bác sĩ Koala acting out the song lyrics and giving thumbs-up to the camera. Camera movement: smooth push-in. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Height order from tallest: Bác sĩ Koala (150cm) > Sóc Bi (100cm); Doctor Koala is 150cm tall (children reach his chest).), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "soc_nho",
+            "koala"
+          ],
+          "speakerId": "koala"
+        },
+        {
+          "id": "S21",
+          "sceneIndex": 7,
+          "sceneTitle": "Khúc ca đồng dao & Tương tác cùng khán giả nhí",
+          "startSec": 400,
+          "endSec": 420,
+          "durationSec": 20.0,
+          "shotSize": "MCU",
+          "camera": "eye-level, 50mm, static",
+          "characters": [
+            "Sóc Bi (100cm)"
+          ],
+          "action": "[0-7s] Sóc Bi bước lên gần ống kính, giơ Mô hình hàm răng trắng bóng khổng lồ, bàn chải lông mềm màu xanh và lọ thủy tinh đựng sticker ngôi sao vàng của Bác sĩ Koala lên đố các bạn nhỏ. [7-14s] Nghiêng đầu lắng nghe câu trả lời của bé (nghỉ 3 giây). [14-20s] Bật nhảy vỗ tay khen bé trả lời đúng.",
+          "expression": "Sóc Bi (tò mò): Đầu nghiêng 15 độ sang phải, một bên mày nhướng cao, đôi mắt đen to tròn chăm chú, ngón trỏ chạm nhẹ lên cằm suy nghĩ.",
+          "actingNotes": "Sóc Bi: Đặt tay lên vành tai lắng nghe thật sự trong 3 giây nghỉ, sau đó gật đầu lia lịa khen ngợi khán giả.",
+          "speaker": "Sóc Bi (100cm)",
+          "dialogue": "Đố bạn nhỏ nhé: Khi gặp tình huống như vừa rồi, chúng mình nên làm gì đầu tiên nào? … Đúng rồi, bạn nhỏ giỏi quá!",
+          "voiceDelivery": "Lém lỉnh, dừng 3 giây ở dấu ba chấm chờ bé trả lời rồi reo vui khen bé",
+          "sfx": "Tiếng tích tắc đồng hồ đố vui 3 giây + tiếng chuông 'Đinh đong' chiến thắng",
+          "bgm": "Nhạc dừng nhịp đố vui rồi bung mở tươi vui",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] MCU, eye-level angle, 50mm lens. [CHARACTERS] a slim, agile 3-4 year old boy squirrel named Bi, about 100cm tall, NOT fat, flat belly, short slender limbs, head about 1/4 of body height, reddish orange-brown fur with lighter belly and cheeks, big round glossy black eyes with highlights, light pink cheeks, two front teeth, small pointed ears with tufts, very large bushy tail curving up behind his back and darker red-brown toward the tip, fitted yellow crew-neck t-shirt, black shorts, dark sneakers with white soles, head tilted 15 degrees to the right, one eyebrow raised higher than the other, big glossy black eyes leaning forward in intense fascination, right index finger touching his chin thoughtfully, bushy tail swaying slowly in a question-mark curve. [ACTION] Sóc Bi holds up the prop to quiz the child viewer, pauses 3 seconds to listen, then claps in praise. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized child-friendly woodland clinic belonging to Doctor Koala. The cozy round room features soothing pastel mint-green walls with warm natural wood wainscotting, curved windows looking out onto sunny green fern gardens, and smooth non-slip cork flooring. At the center sits a low, cushioned wooden examination bed (45cm high with a cute 20cm two-step wooden footstool) and a friendly 150cm-tall Doctor Koala desk (72cm high). On a low demonstration table (50cm high) rests an oversized cheerful white tooth model with a giant soft-bristle wooden toothbrush for teaching brushing technique. On the wall hang colorful illustrated posters of healthy vegetables, the 6 handwashing steps, and a wooden height-measuring chart marked clearly from 0cm to 160cm, while a clear glass jar on the counter holds gold star and leaf stickers (strictly stickers, no sugary candy). Time of day: morning. [DEPTH] foreground: warm bokeh frame, soft bokeh; midground: medium close-up of Sóc Bi asking an interactive question to the viewer, razor-sharp focus; background: blurred Phòng khám Bác sĩ Koala, creamy atmospheric falloff. [LIGHT] Bright, clean, reassuring morning sunlight streaming through the curved clinic windows, blending with soft warm-white interior lamps for a zero-fear atmosphere..",
+          "videoPrompt": "8-second 3D Pixar-style animated clip (S21, 06:40-07:00): Sóc Bi holds up the prop to quiz the child viewer, pauses 3 seconds to listen, then claps in praise. Camera movement: smooth static. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Sóc Bi), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "soc_nho"
+          ],
+          "speakerId": "soc_nho"
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "title": "Tự tay khắc phục sự cố & Hoàn thành thử thách (Lớp Sư Phạm 3A)",
+      "startSec": 420,
+      "endSec": 480,
+      "location": "Phòng khám Bác sĩ Koala — Khu vực Mô hình hàm răng trắng và bàn chải lớn dạy đánh răng",
+      "purpose": "Trẻ tự mình áp dụng bài học vào thực tế để giải quyết trọn vẹn vấn đề ban đầu mà không cần người lớn làm hộ.",
+      "shots": [
+        {
+          "id": "S22",
+          "sceneIndex": 8,
+          "sceneTitle": "Tự tay khắc phục sự cố & Hoàn thành thử thách (Lớp Sư Phạm 3A)",
+          "startSec": 420,
+          "endSec": 440,
+          "durationSec": 20.0,
+          "shotSize": "MS",
+          "camera": "eye-level, 35mm, static",
+          "characters": [
+            "Sóc Bi (100cm)",
+            "Bác sĩ Koala (150cm)"
+          ],
+          "action": "[0-7s] Quay trở lại hiện trường lúc nãy, Sóc Bi và Bác sĩ Koala không còn cuống quýt nữa mà bình tĩnh phối hợp cùng nhau. [7-14s] Người giữ người xếp/thực hiện đúng theo từng bước đã học. [14-20s] Công việc tiến triển nhanh chóng và gọn gàng.",
+          "expression": "Sóc Bi (vui): Miệng cười rộng khoe 2 chiếc răng cửa trắng nhỏ, đôi mắt đen tròn cong hình trăng khuyết lấp lánh, hai má hồng nâng cao, hai tai sóc dựng thẳng, đuôi xù lớn vẫy cao phía sau lưng. | Bác sĩ Koala (vui): Nụ cười hiền từ như ông ngoại, đôi mắt nhỏ ánh lên niềm vui sau cặp kính vàng tròn, đôi tai tròn lông xám mềm đung đưa nhẹ.",
+          "actingNotes": "Thái độ điềm tĩnh, cẩn thận, biết nhường nhịn và hỗ trợ nhau từng động tác nhỏ.",
+          "speaker": "Sóc Bi (100cm)",
+          "dialogue": "Bây giờ mình bình tĩnh làm lại từng bước một với Bác sĩ Koala nhé! Cẩn thận, nhẹ tay thôi nào!",
+          "voiceDelivery": "Điềm đạm, ấm áp, chững chạc hơn hẳn đầu phim",
+          "sfx": "Tiếng sắp xếp đạo cụ gọn gàng, nhịp nhàng",
+          "bgm": "Nhạc nền guitar và sáo trúc tươi vui, nhịp 106 BPM",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] MS, eye-level angle, 35mm lens. [CHARACTERS] a slim, agile 3-4 year old boy squirrel named Bi, about 100cm tall, NOT fat, flat belly, short slender limbs, head about 1/4 of body height, reddish orange-brown fur with lighter belly and cheeks, big round glossy black eyes with highlights, light pink cheeks, two front teeth, small pointed ears with tufts, very large bushy tail curving up behind his back and darker red-brown toward the tip, fitted yellow crew-neck t-shirt, black shorts, dark sneakers with white soles, wide open cheerful smile showing two cute front teeth, crescent-shaped sparkling black eyes, rosy pink cheeks lifted high, ears perked straight up, large bushy tail wagging high behind his back, bouncing lightly on his toes with both hands raised happily; a gentle elderly koala doctor, about 150cm tall (1.5x the height of Bi the squirrel), soft gray fur, large round black nose, fluffy round ears, kind small eyes behind round gold glasses, wearing a clean white doctor coat with a green cross badge, a head mirror on his forehead, a stethoscope around his neck, 3D Pixar-style soft render, soft studio lighting, plain light gray background, warm grandfatherly smile, kind eyes crinkling happily behind round gold glasses, fluffy round ears perked. [SCALE] Height order from tallest: Bác sĩ Koala (150cm) > Sóc Bi (100cm); Doctor Koala is 150cm tall (children reach his chest). [ACTION] Medium shot of Sóc Bi and Bác sĩ Koala calmly applying the lesson together to solve the problem. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized child-friendly woodland clinic belonging to Doctor Koala. The cozy round room features soothing pastel mint-green walls with warm natural wood wainscotting, curved windows looking out onto sunny green fern gardens, and smooth non-slip cork flooring. At the center sits a low, cushioned wooden examination bed (45cm high with a cute 20cm two-step wooden footstool) and a friendly 150cm-tall Doctor Koala desk (72cm high). On a low demonstration table (50cm high) rests an oversized cheerful white tooth model with a giant soft-bristle wooden toothbrush for teaching brushing technique. On the wall hang colorful illustrated posters of healthy vegetables, the 6 handwashing steps, and a wooden height-measuring chart marked clearly from 0cm to 160cm, while a clear glass jar on the counter holds gold star and leaf stickers (strictly stickers, no sugary candy). Time of day: morning. [DEPTH] foreground: foreground prop elements, soft bokeh; midground: Sóc Bi and Bác sĩ Koala working together calmly and skillfully, razor-sharp focus; background: Bác sĩ Koala watching proudly in background, creamy atmospheric falloff. [LIGHT] Bright, clean, reassuring morning sunlight streaming through the curved clinic windows, blending with soft warm-white interior lamps for a zero-fear atmosphere..",
+          "videoPrompt": "8-second 3D Pixar-style animated clip (S22, 07:00-07:20): Medium shot of Sóc Bi and Bác sĩ Koala calmly applying the lesson together to solve the problem. Camera movement: smooth static. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Height order from tallest: Bác sĩ Koala (150cm) > Sóc Bi (100cm); Doctor Koala is 150cm tall (children reach his chest).), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "soc_nho",
+            "koala"
+          ],
+          "speakerId": "soc_nho"
+        },
+        {
+          "id": "S23",
+          "sceneIndex": 8,
+          "sceneTitle": "Tự tay khắc phục sự cố & Hoàn thành thử thách (Lớp Sư Phạm 3A)",
+          "startSec": 440,
+          "endSec": 460,
+          "durationSec": 20.0,
+          "shotSize": "CU",
+          "camera": "low, 50mm, push-in",
+          "characters": [
+            "Sóc Bi (100cm)",
+            "Bác sĩ Koala (150cm)"
+          ],
+          "action": "[0-7s] Cận cảnh bước hoàn thiện cuối cùng trên Mô hình hàm răng trắng bóng khổng lồ, bàn chải lông mềm màu xanh và lọ thủy tinh đựng sticker ngôi sao vàng của Bác sĩ Koala. [7-14s] Thành quả hiện ra ngay ngắn, sạch đẹp và trọn vẹn. [14-20s] Sóc Bi và Bác sĩ Koala nhìn nhau cười sung sướng.",
+          "expression": "Sóc Bi (tự hào): Ngực ưỡn nhẹ tự tin (bụng phẳng thon gọn), nụ cười tươi khoe 2 răng cửa, một tay giơ ngón cái, đuôi xù uốn cong đẹp mắt. | Bác sĩ Koala (tự hào): Cười rạng rỡ, một tay cầm tờ sticker ngôi sao vàng, tay kia giơ ngón cái khen bé ngoan.",
+          "actingNotes": "Đôi mắt sáng lấp lánh, nụ cười rộng mở ngập tràn niềm hạnh phúc khi tự lực hoàn thành công việc.",
+          "speaker": "Bác sĩ Koala (150cm)",
+          "dialogue": "Hoan hô! Xong rồi Sóc Bi ơi! Lần này tụi mình làm còn đẹp và chắc chắn hơn cả lúc nãy nữa!",
+          "voiceDelivery": "Reo vang sung sướng, tràn đầy tự hào",
+          "sfx": "Tiếng chuông ngân vang 'Ting-ling-ling!' báo hiệu hoàn thành",
+          "bgm": "Hợp âm dàn dây và glockenspiel dâng cao rực rỡ",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] CU, low angle, 50mm lens. [CHARACTERS] a slim, agile 3-4 year old boy squirrel named Bi, about 100cm tall, NOT fat, flat belly, short slender limbs, head about 1/4 of body height, reddish orange-brown fur with lighter belly and cheeks, big round glossy black eyes with highlights, light pink cheeks, two front teeth, small pointed ears with tufts, very large bushy tail curving up behind his back and darker red-brown toward the tip, fitted yellow crew-neck t-shirt, black shorts, dark sneakers with white soles, chest puffed slightly while keeping a flat belly, confident bright grin showing two front teeth, chin tilted slightly up, one hand giving a crisp thumbs-up and the other on his hip, bushy tail arching gracefully high behind his back; a gentle elderly koala doctor, about 150cm tall (1.5x the height of Bi the squirrel), soft gray fur, large round black nose, fluffy round ears, kind small eyes behind round gold glasses, wearing a clean white doctor coat with a green cross badge, a head mirror on his forehead, a stethoscope around his neck, 3D Pixar-style soft render, soft studio lighting, plain light gray background, beaming warmly, holding out a gold star sticker sheet and giving a gentle thumbs-up. [SCALE] Height order from tallest: Bác sĩ Koala (150cm) > Sóc Bi (100cm); Doctor Koala is 150cm tall (children reach his chest). [ACTION] Close-up as the final piece falls into place, completing the task beautifully. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized child-friendly woodland clinic belonging to Doctor Koala. The cozy round room features soothing pastel mint-green walls with warm natural wood wainscotting, curved windows looking out onto sunny green fern gardens, and smooth non-slip cork flooring. At the center sits a low, cushioned wooden examination bed (45cm high with a cute 20cm two-step wooden footstool) and a friendly 150cm-tall Doctor Koala desk (72cm high). On a low demonstration table (50cm high) rests an oversized cheerful white tooth model with a giant soft-bristle wooden toothbrush for teaching brushing technique. On the wall hang colorful illustrated posters of healthy vegetables, the 6 handwashing steps, and a wooden height-measuring chart marked clearly from 0cm to 160cm, while a clear glass jar on the counter holds gold star and leaf stickers (strictly stickers, no sugary candy). Time of day: morning. [DEPTH] foreground: sparkling highlight on the completed prop, soft bokeh; midground: the completed Mô hình hàm răng trắng bóng khổng lồ, bàn chải lông mềm màu xanh và lọ thủy tinh đựng sticker ngôi sao vàng của Bác sĩ Koala in razor-sharp focus, razor-sharp focus; background: proud smiling faces of Sóc Bi and Bác sĩ Koala, creamy atmospheric falloff. [LIGHT] Bright, clean, reassuring morning sunlight streaming through the curved clinic windows, blending with soft warm-white interior lamps for a zero-fear atmosphere..",
+          "videoPrompt": "8-second 3D Pixar-style animated clip (S23, 07:20-07:40): Close-up as the final piece falls into place, completing the task beautifully. Camera movement: smooth push-in. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Height order from tallest: Bác sĩ Koala (150cm) > Sóc Bi (100cm); Doctor Koala is 150cm tall (children reach his chest).), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "soc_nho",
+            "koala"
+          ],
+          "speakerId": "koala"
+        },
+        {
+          "id": "S24",
+          "sceneIndex": 8,
+          "sceneTitle": "Tự tay khắc phục sự cố & Hoàn thành thử thách (Lớp Sư Phạm 3A)",
+          "startSec": 460,
+          "endSec": 480,
+          "durationSec": 20.0,
+          "shotSize": "MS",
+          "camera": "eye-level, 35mm, static",
+          "characters": [
+            "Sóc Bi (100cm)",
+            "Bác sĩ Koala (150cm)"
+          ],
+          "action": "[0-7s] Bác sĩ Koala (150cm) bước lại gần, cúi xuống xoa đầu và trao cái ôm ấm áp cho Sóc Bi cùng Bác sĩ Koala. [7-14s] Cả nhóm cùng ngắm nhìn thành quả. [14-20s] Cùng gật đầu khẳng định giá trị bài học.",
+          "expression": "Sóc Bi (tự hào): Ngực ưỡn nhẹ tự tin (bụng phẳng thon gọn), nụ cười tươi khoe 2 răng cửa, một tay giơ ngón cái, đuôi xù uốn cong đẹp mắt. | Bác sĩ Koala (tự hào): Cười rạng rỡ, một tay cầm tờ sticker ngôi sao vàng, tay kia giơ ngón cái khen bé ngoan.",
+          "actingNotes": "Bác sĩ Koala: Nụ cười hiền hậu, ánh mắt tự hào. Sóc Bi & Bác sĩ Koala: Đứng thẳng tự tin nhưng lễ phép.",
+          "speaker": "Bác sĩ Koala (150cm)",
+          "dialogue": "Các con giỏi lắm! Khi biết hạn chế ăn đồ ngọt buổi tối và đánh răng đúng cách 2 phút mỗi sáng - tối (chải xoay tròn mặt ngoài, mặt trong, mặt nhai), mọi chuyện khó khăn đều được giải quyết thật nhẹ nhàng phải không nào?",
+          "voiceDelivery": "Trầm ấm, ngợi khen chân thành",
+          "sfx": "Tiếng vỗ tay ấm áp",
+          "bgm": "Giai điệu êm đềm, hạnh phúc",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] MS, eye-level angle, 35mm lens. [CHARACTERS] a slim, agile 3-4 year old boy squirrel named Bi, about 100cm tall, NOT fat, flat belly, short slender limbs, head about 1/4 of body height, reddish orange-brown fur with lighter belly and cheeks, big round glossy black eyes with highlights, light pink cheeks, two front teeth, small pointed ears with tufts, very large bushy tail curving up behind his back and darker red-brown toward the tip, fitted yellow crew-neck t-shirt, black shorts, dark sneakers with white soles, chest puffed slightly while keeping a flat belly, confident bright grin showing two front teeth, chin tilted slightly up, one hand giving a crisp thumbs-up and the other on his hip, bushy tail arching gracefully high behind his back; a gentle elderly koala doctor, about 150cm tall (1.5x the height of Bi the squirrel), soft gray fur, large round black nose, fluffy round ears, kind small eyes behind round gold glasses, wearing a clean white doctor coat with a green cross badge, a head mirror on his forehead, a stethoscope around his neck, 3D Pixar-style soft render, soft studio lighting, plain light gray background, beaming warmly, holding out a gold star sticker sheet and giving a gentle thumbs-up. [SCALE] Height order from tallest: Bác sĩ Koala (150cm) > Sóc Bi (100cm); Doctor Koala is 150cm tall (children reach his chest). [ACTION] Bác sĩ Koala congratulates Sóc Bi and Bác sĩ Koala with a warm hug and proud smile. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized child-friendly woodland clinic belonging to Doctor Koala. The cozy round room features soothing pastel mint-green walls with warm natural wood wainscotting, curved windows looking out onto sunny green fern gardens, and smooth non-slip cork flooring. At the center sits a low, cushioned wooden examination bed (45cm high with a cute 20cm two-step wooden footstool) and a friendly 150cm-tall Doctor Koala desk (72cm high). On a low demonstration table (50cm high) rests an oversized cheerful white tooth model with a giant soft-bristle wooden toothbrush for teaching brushing technique. On the wall hang colorful illustrated posters of healthy vegetables, the 6 handwashing steps, and a wooden height-measuring chart marked clearly from 0cm to 160cm, while a clear glass jar on the counter holds gold star and leaf stickers (strictly stickers, no sugary candy). Time of day: morning. [DEPTH] foreground: completed prop in foreground, soft bokeh; midground: Bác sĩ Koala praising the children warmly in exact height scale, razor-sharp focus; background: sunny Phòng khám Bác sĩ Koala background, creamy atmospheric falloff. [LIGHT] Bright, clean, reassuring morning sunlight streaming through the curved clinic windows, blending with soft warm-white interior lamps for a zero-fear atmosphere..",
+          "videoPrompt": "8-second 3D Pixar-style animated clip (S24, 07:40-08:00): Bác sĩ Koala congratulates Sóc Bi and Bác sĩ Koala with a warm hug and proud smile. Camera movement: smooth static. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Height order from tallest: Bác sĩ Koala (150cm) > Sóc Bi (100cm); Doctor Koala is 150cm tall (children reach his chest).), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "soc_nho",
+            "koala"
+          ],
+          "speakerId": "koala"
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "title": "Niềm vui gắn kết & Đúc kết bài học thực tế (Lớp Sư Phạm 3B)",
+      "startSec": 480,
+      "endSec": 540,
+      "location": "Phòng khám Bác sĩ Koala — Hiên nhà / Sân nắng ấm",
+      "purpose": "Khắc sâu sự trưởng thành của nhân vật và lặp lại Câu thần chú lần 3 để trẻ mang bài học vào đời sống hàng ngày.",
+      "shots": [
+        {
+          "id": "S25",
+          "sceneIndex": 9,
+          "sceneTitle": "Niềm vui gắn kết & Đúc kết bài học thực tế (Lớp Sư Phạm 3B)",
+          "startSec": 480,
+          "endSec": 500,
+          "durationSec": 20.0,
+          "shotSize": "MS",
+          "camera": "eye-level, 35mm, lateral-pan",
+          "characters": [
+            "Sóc Bi (100cm)",
+            "Bác sĩ Koala (150cm)"
+          ],
+          "action": "[0-7s] Sau khi mọi việc đã được giải quyết êm đẹp, Sóc Bi và Bác sĩ Koala cùng nhau chia sẻ niềm vui bên Mô hình hàm răng trắng bóng khổng lồ, bàn chải lông mềm màu xanh và lọ thủy tinh đựng sticker ngôi sao vàng của Bác sĩ Koala. [7-14s] Tiếng cười trong trẻo vang lên khắp Phòng khám Bác sĩ Koala. [14-20s] Tình cảm anh em/bạn bè/gia đình càng thêm gắn bó.",
+          "expression": "Sóc Bi (vui): Miệng cười rộng khoe 2 chiếc răng cửa trắng nhỏ, đôi mắt đen tròn cong hình trăng khuyết lấp lánh, hai má hồng nâng cao, hai tai sóc dựng thẳng, đuôi xù lớn vẫy cao phía sau lưng. | Bác sĩ Koala (vui): Nụ cười hiền từ như ông ngoại, đôi mắt nhỏ ánh lên niềm vui sau cặp kính vàng tròn, đôi tai tròn lông xám mềm đung đưa nhẹ.",
+          "actingNotes": "Cử chỉ quan tâm, nhường nhịn nhau tự nhiên; ánh mắt nhìn nhau ấm áp, tràn ngập yêu thương.",
+          "speaker": "Sóc Bi (100cm)",
+          "dialogue": "Chơi cùng nhau thế này vui gấp mười lần luôn! Cảm ơn Bác sĩ Koala và Bác sĩ Koala nhiều lắm nhé!",
+          "voiceDelivery": "Trong trẻo, rạng rỡ niềm vui",
+          "sfx": "Tiếng cười khúc khích trẻ thơ",
+          "bgm": "Nhạc nền acoustic tươi sáng, bình yên",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] MS, eye-level angle, 35mm lens. [CHARACTERS] a slim, agile 3-4 year old boy squirrel named Bi, about 100cm tall, NOT fat, flat belly, short slender limbs, head about 1/4 of body height, reddish orange-brown fur with lighter belly and cheeks, big round glossy black eyes with highlights, light pink cheeks, two front teeth, small pointed ears with tufts, very large bushy tail curving up behind his back and darker red-brown toward the tip, fitted yellow crew-neck t-shirt, black shorts, dark sneakers with white soles, wide open cheerful smile showing two cute front teeth, crescent-shaped sparkling black eyes, rosy pink cheeks lifted high, ears perked straight up, large bushy tail wagging high behind his back, bouncing lightly on his toes with both hands raised happily; a gentle elderly koala doctor, about 150cm tall (1.5x the height of Bi the squirrel), soft gray fur, large round black nose, fluffy round ears, kind small eyes behind round gold glasses, wearing a clean white doctor coat with a green cross badge, a head mirror on his forehead, a stethoscope around his neck, 3D Pixar-style soft render, soft studio lighting, plain light gray background, warm grandfatherly smile, kind eyes crinkling happily behind round gold glasses, fluffy round ears perked. [SCALE] Height order from tallest: Bác sĩ Koala (150cm) > Sóc Bi (100cm); Doctor Koala is 150cm tall (children reach his chest). [ACTION] Lateral pan showing Sóc Bi and Bác sĩ Koala sharing a joyful moment together after solving the challenge. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized child-friendly woodland clinic belonging to Doctor Koala. The cozy round room features soothing pastel mint-green walls with warm natural wood wainscotting, curved windows looking out onto sunny green fern gardens, and smooth non-slip cork flooring. At the center sits a low, cushioned wooden examination bed (45cm high with a cute 20cm two-step wooden footstool) and a friendly 150cm-tall Doctor Koala desk (72cm high). On a low demonstration table (50cm high) rests an oversized cheerful white tooth model with a giant soft-bristle wooden toothbrush for teaching brushing technique. On the wall hang colorful illustrated posters of healthy vegetables, the 6 handwashing steps, and a wooden height-measuring chart marked clearly from 0cm to 160cm, while a clear glass jar on the counter holds gold star and leaf stickers (strictly stickers, no sugary candy). Time of day: morning. [DEPTH] foreground: colorful flowers in foreground bokeh, soft bokeh; midground: Sóc Bi and Bác sĩ Koala playing/sharing happily together, razor-sharp focus; background: warm Phòng khám Bác sĩ Koala background, creamy atmospheric falloff. [LIGHT] Bright, clean, reassuring morning sunlight streaming through the curved clinic windows, blending with soft warm-white interior lamps for a zero-fear atmosphere..",
+          "videoPrompt": "8-second 3D Pixar-style animated clip (S25, 08:00-08:20): Lateral pan showing Sóc Bi and Bác sĩ Koala sharing a joyful moment together after solving the challenge. Camera movement: smooth lateral-pan. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Height order from tallest: Bác sĩ Koala (150cm) > Sóc Bi (100cm); Doctor Koala is 150cm tall (children reach his chest).), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "soc_nho",
+            "koala"
+          ],
+          "speakerId": "soc_nho"
+        },
+        {
+          "id": "S26",
+          "sceneIndex": 9,
+          "sceneTitle": "Niềm vui gắn kết & Đúc kết bài học thực tế (Lớp Sư Phạm 3B)",
+          "startSec": 500,
+          "endSec": 520,
+          "durationSec": 20.0,
+          "shotSize": "MCU",
+          "camera": "eye-level, 50mm, push-in",
+          "characters": [
+            "Sóc Bi (100cm)"
+          ],
+          "action": "[0-7s] Sóc Bi quay sang nhìn thẳng ống kính, đặt một tay lên ngực tự hào. [7-14s] Nhắc lại bài học cốt lõi của tập phim và đọc vang Câu thần chú (Lần 3). [14-20s] Giơ ngón cái khích lệ các bạn nhỏ ở nhà làm theo.",
+          "expression": "Sóc Bi (tự hào): Ngực ưỡn nhẹ tự tin (bụng phẳng thon gọn), nụ cười tươi khoe 2 răng cửa, một tay giơ ngón cái, đuôi xù uốn cong đẹp mắt.",
+          "actingNotes": "Sóc Bi: Phong thái tự tin, đĩnh đạc, giọng nói rõ ràng truyền cảm hứng cho các bạn nhỏ.",
+          "speaker": "Sóc Bi (100cm)",
+          "dialogue": "Bạn nhỏ nhớ câu thần chú của chúng mình hôm nay nhé: 'Xoay tròn bàn chải, răng trắng sáng ngời!' Ở nhà bạn nhỏ cũng làm giống Sóc Bi nha!",
+          "voiceDelivery": "Rõ từng chữ, nhấn mạnh câu thần chú lần 3",
+          "sfx": "Tiếng chuông sao lấp lánh",
+          "bgm": "Giai điệu chủ đề của tập phim ngân vang ấm áp",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] MCU, eye-level angle, 50mm lens. [CHARACTERS] a slim, agile 3-4 year old boy squirrel named Bi, about 100cm tall, NOT fat, flat belly, short slender limbs, head about 1/4 of body height, reddish orange-brown fur with lighter belly and cheeks, big round glossy black eyes with highlights, light pink cheeks, two front teeth, small pointed ears with tufts, very large bushy tail curving up behind his back and darker red-brown toward the tip, fitted yellow crew-neck t-shirt, black shorts, dark sneakers with white soles, chest puffed slightly while keeping a flat belly, confident bright grin showing two front teeth, chin tilted slightly up, one hand giving a crisp thumbs-up and the other on his hip, bushy tail arching gracefully high behind his back. [ACTION] Medium close-up of Sóc Bi speaking directly to the young viewer, repeating the mantra for the third time. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized child-friendly woodland clinic belonging to Doctor Koala. The cozy round room features soothing pastel mint-green walls with warm natural wood wainscotting, curved windows looking out onto sunny green fern gardens, and smooth non-slip cork flooring. At the center sits a low, cushioned wooden examination bed (45cm high with a cute 20cm two-step wooden footstool) and a friendly 150cm-tall Doctor Koala desk (72cm high). On a low demonstration table (50cm high) rests an oversized cheerful white tooth model with a giant soft-bristle wooden toothbrush for teaching brushing technique. On the wall hang colorful illustrated posters of healthy vegetables, the 6 handwashing steps, and a wooden height-measuring chart marked clearly from 0cm to 160cm, while a clear glass jar on the counter holds gold star and leaf stickers (strictly stickers, no sugary candy). Time of day: morning. [DEPTH] foreground: soft golden sunlight bokeh, soft bokeh; midground: medium close-up of Sóc Bi summarizing the core lesson to the camera, razor-sharp focus; background: warm blurred background, creamy atmospheric falloff. [LIGHT] Bright, clean, reassuring morning sunlight streaming through the curved clinic windows, blending with soft warm-white interior lamps for a zero-fear atmosphere..",
+          "videoPrompt": "8-second 3D Pixar-style animated clip (S26, 08:20-08:40): Medium close-up of Sóc Bi speaking directly to the young viewer, repeating the mantra for the third time. Camera movement: smooth push-in. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Sóc Bi), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "soc_nho"
+          ],
+          "speakerId": "soc_nho"
+        },
+        {
+          "id": "S27",
+          "sceneIndex": 9,
+          "sceneTitle": "Niềm vui gắn kết & Đúc kết bài học thực tế (Lớp Sư Phạm 3B)",
+          "startSec": 520,
+          "endSec": 540,
+          "durationSec": 20.0,
+          "shotSize": "WS",
+          "camera": "eye-level, 28mm, dolly-out",
+          "characters": [
+            "Sóc Bi (100cm)",
+            "Bác sĩ Koala (150cm)"
+          ],
+          "action": "[0-7s] Máy quay lùi nhẹ mở rộng khung hình tại Phòng khám Bác sĩ Koala. [7-14s] Sóc Bi (100cm), Bác sĩ Koala (150cm) đứng cạnh nhau đúng chuẩn tỉ lệ chiều cao khóa cứng. [14-20s] Cả nhóm cùng nắm tay nhau đung đưa vui vẻ.",
+          "expression": "Sóc Bi (vui): Miệng cười rộng khoe 2 chiếc răng cửa trắng nhỏ, đôi mắt đen tròn cong hình trăng khuyết lấp lánh, hai má hồng nâng cao, hai tai sóc dựng thẳng, đuôi xù lớn vẫy cao phía sau lưng. | Bác sĩ Koala (vui): Nụ cười hiền từ như ông ngoại, đôi mắt nhỏ ánh lên niềm vui sau cặp kính vàng tròn, đôi tai tròn lông xám mềm đung đưa nhẹ.",
+          "actingNotes": "Tất cả nhân vật trong tập đều nở nụ cười rạng rỡ nhất, thể hiện cái kết trọn vẹn, ấm áp.",
+          "speaker": "Bác sĩ Koala (150cm)",
+          "dialogue": "Mỗi ngày học thêm một điều hay, chúng mình ai cũng lớn khôn và ngoan ngoãn hơn!",
+          "voiceDelivery": "Vui tươi, ấm áp",
+          "sfx": "Tiếng chim hót líu lo và tiếng gió nhẹ",
+          "bgm": "Nhạc nền chuyển dần sang khúc vĩ thanh (Outro)",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] WS, eye-level angle, 28mm lens. [CHARACTERS] a slim, agile 3-4 year old boy squirrel named Bi, about 100cm tall, NOT fat, flat belly, short slender limbs, head about 1/4 of body height, reddish orange-brown fur with lighter belly and cheeks, big round glossy black eyes with highlights, light pink cheeks, two front teeth, small pointed ears with tufts, very large bushy tail curving up behind his back and darker red-brown toward the tip, fitted yellow crew-neck t-shirt, black shorts, dark sneakers with white soles, wide open cheerful smile showing two cute front teeth, crescent-shaped sparkling black eyes, rosy pink cheeks lifted high, ears perked straight up, large bushy tail wagging high behind his back, bouncing lightly on his toes with both hands raised happily; a gentle elderly koala doctor, about 150cm tall (1.5x the height of Bi the squirrel), soft gray fur, large round black nose, fluffy round ears, kind small eyes behind round gold glasses, wearing a clean white doctor coat with a green cross badge, a head mirror on his forehead, a stethoscope around his neck, 3D Pixar-style soft render, soft studio lighting, plain light gray background, warm grandfatherly smile, kind eyes crinkling happily behind round gold glasses, fluffy round ears perked. [SCALE] Height order from tallest: Bác sĩ Koala (150cm) > Sóc Bi (100cm); Doctor Koala is 150cm tall (children reach his chest). [ACTION] Wide dolly-out shot of the episode cast standing side by side in strict height order at Phòng khám Bác sĩ Koala. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized child-friendly woodland clinic belonging to Doctor Koala. The cozy round room features soothing pastel mint-green walls with warm natural wood wainscotting, curved windows looking out onto sunny green fern gardens, and smooth non-slip cork flooring. At the center sits a low, cushioned wooden examination bed (45cm high with a cute 20cm two-step wooden footstool) and a friendly 150cm-tall Doctor Koala desk (72cm high). On a low demonstration table (50cm high) rests an oversized cheerful white tooth model with a giant soft-bristle wooden toothbrush for teaching brushing technique. On the wall hang colorful illustrated posters of healthy vegetables, the 6 handwashing steps, and a wooden height-measuring chart marked clearly from 0cm to 160cm, while a clear glass jar on the counter holds gold star and leaf stickers (strictly stickers, no sugary candy). Time of day: morning. [DEPTH] foreground: foreground leaves and wildflowers bokeh, soft bokeh; midground: Sóc Bi, Bác sĩ Koala standing together in exact height order, razor-sharp focus; background: scenic wide view of Phòng khám Bác sĩ Koala, creamy atmospheric falloff. [LIGHT] Bright, clean, reassuring morning sunlight streaming through the curved clinic windows, blending with soft warm-white interior lamps for a zero-fear atmosphere..",
+          "videoPrompt": "8-second 3D Pixar-style animated clip (S27, 08:40-09:00): Wide dolly-out shot of the episode cast standing side by side in strict height order at Phòng khám Bác sĩ Koala. Camera movement: smooth dolly-out. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Height order from tallest: Bác sĩ Koala (150cm) > Sóc Bi (100cm); Doctor Koala is 150cm tall (children reach his chest).), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "soc_nho",
+            "koala"
+          ],
+          "speakerId": "koala"
+        }
+      ]
+    },
+    {
+      "index": 10,
+      "title": "Khúc kết & Chào tạm biệt khán giả (End Screen chuẩn Made for Kids)",
+      "startSec": 540,
+      "endSec": 600,
+      "location": "Phòng khám Bác sĩ Koala — Toàn cảnh khép lại tập phim",
+      "purpose": "Khép lại tập phim trọn vẹn đúng mốc 10:00, ôn lại điệp khúc và vẫy tay chào tạm biệt các bạn nhỏ.",
+      "shots": [
+        {
+          "id": "S28",
+          "sceneIndex": 10,
+          "sceneTitle": "Khúc kết & Chào tạm biệt khán giả (End Screen chuẩn Made for Kids)",
+          "startSec": 540,
+          "endSec": 560,
+          "durationSec": 20.0,
+          "shotSize": "MS",
+          "camera": "eye-level, 35mm, static",
+          "characters": [
+            "Sóc Bi (100cm)",
+            "Bác sĩ Koala (150cm)"
+          ],
+          "action": "[0-7s] Các nhân vật cùng vỗ tay theo nhịp nhạc kết bài. [7-14s] Cùng hát vang câu điệp khúc của tập phim 'Bạn sâu răng tinh nghịch'. [14-20s] Nghiêng người chào nhau đầy yêu thương.",
+          "expression": "Sóc Bi (vui): Miệng cười rộng khoe 2 chiếc răng cửa trắng nhỏ, đôi mắt đen tròn cong hình trăng khuyết lấp lánh, hai má hồng nâng cao, hai tai sóc dựng thẳng, đuôi xù lớn vẫy cao phía sau lưng. | Bác sĩ Koala (vui): Nụ cười hiền từ như ông ngoại, đôi mắt nhỏ ánh lên niềm vui sau cặp kính vàng tròn, đôi tai tròn lông xám mềm đung đưa nhẹ.",
+          "actingNotes": "Vỗ tay đều theo nhịp, gương mặt tươi tắn, tràn đầy năng lượng tích cực.",
+          "speaker": "Sóc Bi (100cm)",
+          "dialogue": "🎵 'Xoay tròn bàn chải, răng trắng sáng ngời!' — Cùng nhau khôn lớn, mỗi ngày thật vui! 🎵",
+          "voiceDelivery": "Hát đồng ca trong trẻo, nhịp nhàng",
+          "sfx": "Tiếng vỗ tay theo nhịp",
+          "bgm": "Nhạc kết đồng dao rộn ràng 108 BPM",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] MS, eye-level angle, 35mm lens. [CHARACTERS] a slim, agile 3-4 year old boy squirrel named Bi, about 100cm tall, NOT fat, flat belly, short slender limbs, head about 1/4 of body height, reddish orange-brown fur with lighter belly and cheeks, big round glossy black eyes with highlights, light pink cheeks, two front teeth, small pointed ears with tufts, very large bushy tail curving up behind his back and darker red-brown toward the tip, fitted yellow crew-neck t-shirt, black shorts, dark sneakers with white soles, wide open cheerful smile showing two cute front teeth, crescent-shaped sparkling black eyes, rosy pink cheeks lifted high, ears perked straight up, large bushy tail wagging high behind his back, bouncing lightly on his toes with both hands raised happily; a gentle elderly koala doctor, about 150cm tall (1.5x the height of Bi the squirrel), soft gray fur, large round black nose, fluffy round ears, kind small eyes behind round gold glasses, wearing a clean white doctor coat with a green cross badge, a head mirror on his forehead, a stethoscope around his neck, 3D Pixar-style soft render, soft studio lighting, plain light gray background, warm grandfatherly smile, kind eyes crinkling happily behind round gold glasses, fluffy round ears perked. [SCALE] Height order from tallest: Bác sĩ Koala (150cm) > Sóc Bi (100cm); Doctor Koala is 150cm tall (children reach his chest). [ACTION] Medium shot of the characters clapping in rhythm and singing the joyful closing chorus. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized child-friendly woodland clinic belonging to Doctor Koala. The cozy round room features soothing pastel mint-green walls with warm natural wood wainscotting, curved windows looking out onto sunny green fern gardens, and smooth non-slip cork flooring. At the center sits a low, cushioned wooden examination bed (45cm high with a cute 20cm two-step wooden footstool) and a friendly 150cm-tall Doctor Koala desk (72cm high). On a low demonstration table (50cm high) rests an oversized cheerful white tooth model with a giant soft-bristle wooden toothbrush for teaching brushing technique. On the wall hang colorful illustrated posters of healthy vegetables, the 6 handwashing steps, and a wooden height-measuring chart marked clearly from 0cm to 160cm, while a clear glass jar on the counter holds gold star and leaf stickers (strictly stickers, no sugary candy). Time of day: morning. [DEPTH] foreground: warm sunlit bokeh, soft bokeh; midground: Sóc Bi, Bác sĩ Koala clapping and singing the closing verse together, razor-sharp focus; background: Phòng khám Bác sĩ Koala background, creamy atmospheric falloff. [LIGHT] Bright, clean, reassuring morning sunlight streaming through the curved clinic windows, blending with soft warm-white interior lamps for a zero-fear atmosphere..",
+          "videoPrompt": "8-second 3D Pixar-style animated clip (S28, 09:00-09:20): Medium shot of the characters clapping in rhythm and singing the joyful closing chorus. Camera movement: smooth static. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Height order from tallest: Bác sĩ Koala (150cm) > Sóc Bi (100cm); Doctor Koala is 150cm tall (children reach his chest).), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "soc_nho",
+            "koala"
+          ],
+          "speakerId": "soc_nho"
+        },
+        {
+          "id": "S29",
+          "sceneIndex": 10,
+          "sceneTitle": "Khúc kết & Chào tạm biệt khán giả (End Screen chuẩn Made for Kids)",
+          "startSec": 560,
+          "endSec": 580,
+          "durationSec": 20.0,
+          "shotSize": "MCU",
+          "camera": "eye-level, 50mm, push-in",
+          "characters": [
+            "Sóc Bi (100cm)",
+            "Bác sĩ Koala (150cm)"
+          ],
+          "action": "[0-7s] Sóc Bi và Bác sĩ Koala bước lại gần ống kính, vẫy cao cả hai bàn tay nhỏ. [7-14s] Gửi lời chúc ngoan ngoãn tới các bạn nhỏ đang xem. [14-20s] Nháy mắt tinh nghịch hẹn gặp lại ở tập tiếp theo.",
+          "expression": "Sóc Bi (vui): Miệng cười rộng khoe 2 chiếc răng cửa trắng nhỏ, đôi mắt đen tròn cong hình trăng khuyết lấp lánh, hai má hồng nâng cao, hai tai sóc dựng thẳng, đuôi xù lớn vẫy cao phía sau lưng. | Bác sĩ Koala (vui): Nụ cười hiền từ như ông ngoại, đôi mắt nhỏ ánh lên niềm vui sau cặp kính vàng tròn, đôi tai tròn lông xám mềm đung đưa nhẹ.",
+          "actingNotes": "Ánh mắt lưu luyến, nụ cười ngọt ngào, vẫy tay chậm rãi thân thương.",
+          "speaker": "Sóc Bi (100cm)",
+          "dialogue": "Cảm ơn bạn nhỏ đã cùng chơi với tụi mình trong tập 'Bạn sâu răng tinh nghịch' hôm nay nhé! Chúc bạn nhỏ luôn chăm ngoan!",
+          "voiceDelivery": "Tình cảm, ấm áp, rõ chữ",
+          "sfx": "Tiếng chuông gió ngân nhẹ",
+          "bgm": "Nhạc nền dịu dần chuẩn bị vào màn hình kết thúc",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] MCU, eye-level angle, 50mm lens. [CHARACTERS] a slim, agile 3-4 year old boy squirrel named Bi, about 100cm tall, NOT fat, flat belly, short slender limbs, head about 1/4 of body height, reddish orange-brown fur with lighter belly and cheeks, big round glossy black eyes with highlights, light pink cheeks, two front teeth, small pointed ears with tufts, very large bushy tail curving up behind his back and darker red-brown toward the tip, fitted yellow crew-neck t-shirt, black shorts, dark sneakers with white soles, wide open cheerful smile showing two cute front teeth, crescent-shaped sparkling black eyes, rosy pink cheeks lifted high, ears perked straight up, large bushy tail wagging high behind his back, bouncing lightly on his toes with both hands raised happily; a gentle elderly koala doctor, about 150cm tall (1.5x the height of Bi the squirrel), soft gray fur, large round black nose, fluffy round ears, kind small eyes behind round gold glasses, wearing a clean white doctor coat with a green cross badge, a head mirror on his forehead, a stethoscope around his neck, 3D Pixar-style soft render, soft studio lighting, plain light gray background, warm grandfatherly smile, kind eyes crinkling happily behind round gold glasses, fluffy round ears perked. [SCALE] Height order from tallest: Bác sĩ Koala (150cm) > Sóc Bi (100cm); Doctor Koala is 150cm tall (children reach his chest). [ACTION] Medium close-up of Sóc Bi and Bác sĩ Koala waving both hands affectionately at the camera. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized child-friendly woodland clinic belonging to Doctor Koala. The cozy round room features soothing pastel mint-green walls with warm natural wood wainscotting, curved windows looking out onto sunny green fern gardens, and smooth non-slip cork flooring. At the center sits a low, cushioned wooden examination bed (45cm high with a cute 20cm two-step wooden footstool) and a friendly 150cm-tall Doctor Koala desk (72cm high). On a low demonstration table (50cm high) rests an oversized cheerful white tooth model with a giant soft-bristle wooden toothbrush for teaching brushing technique. On the wall hang colorful illustrated posters of healthy vegetables, the 6 handwashing steps, and a wooden height-measuring chart marked clearly from 0cm to 160cm, while a clear glass jar on the counter holds gold star and leaf stickers (strictly stickers, no sugary candy). Time of day: morning. [DEPTH] foreground: soft floral bokeh, soft bokeh; midground: Sóc Bi and Bác sĩ Koala waving both hands warmly at the camera, razor-sharp focus; background: warm Phòng khám Bác sĩ Koala backdrop, creamy atmospheric falloff. [LIGHT] Bright, clean, reassuring morning sunlight streaming through the curved clinic windows, blending with soft warm-white interior lamps for a zero-fear atmosphere..",
+          "videoPrompt": "8-second 3D Pixar-style animated clip (S29, 09:20-09:40): Medium close-up of Sóc Bi and Bác sĩ Koala waving both hands affectionately at the camera. Camera movement: smooth push-in. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Height order from tallest: Bác sĩ Koala (150cm) > Sóc Bi (100cm); Doctor Koala is 150cm tall (children reach his chest).), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "soc_nho",
+            "koala"
+          ],
+          "speakerId": "soc_nho"
+        },
+        {
+          "id": "S30",
+          "sceneIndex": 10,
+          "sceneTitle": "Khúc kết & Chào tạm biệt khán giả (End Screen chuẩn Made for Kids)",
+          "startSec": 580,
+          "endSec": 600,
+          "durationSec": 20.0,
+          "shotSize": "WS",
+          "camera": "eye-level, 28mm, dolly-out",
+          "characters": [
+            "Sóc Bi (100cm)",
+            "Bác sĩ Koala (150cm)"
+          ],
+          "action": "[0-7s] Bố cục khung hình chuẩn End Screen 20 giây cuối: các nhân vật đứng ở nửa trái khung hình vẫy tay chào. [7-14s] Nửa phải khung hình thoáng đãng hiển thị ô Tập tiếp theo. [14-20s] Nhạc nền hạ nhẹ về -18 LUFS và khép lại mượt mà ở 10:00.",
+          "expression": "Sóc Bi (vui): Miệng cười rộng khoe 2 chiếc răng cửa trắng nhỏ, đôi mắt đen tròn cong hình trăng khuyết lấp lánh, hai má hồng nâng cao, hai tai sóc dựng thẳng, đuôi xù lớn vẫy cao phía sau lưng. | Bác sĩ Koala (vui): Nụ cười hiền từ như ông ngoại, đôi mắt nhỏ ánh lên niềm vui sau cặp kính vàng tròn, đôi tai tròn lông xám mềm đung đưa nhẹ.",
+          "actingNotes": "Vẫy tay nhịp nhàng trên nền nhạc không lời êm dịu, tuyệt đối tuân thủ chuẩn YouTube Made for Kids.",
+          "speaker": "Bác sĩ Koala (150cm)",
+          "dialogue": "Hẹn gặp lại các bạn nhỏ ở tập tiếp theo của Sóc Nhỏ TV nhé! Tạm biệt!",
+          "voiceDelivery": "Nhẹ nhàng, ngân ấm, khép lại tập phim trọn vẹn",
+          "sfx": "Tiếng chuông kết phim trong trẻo",
+          "bgm": "Nhạc Outro đàn t'rưng và guitar gỗ fade-out mượt mà ở 10:00 (-18 LUFS)",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] WS, eye-level angle, 28mm lens. [CHARACTERS] a slim, agile 3-4 year old boy squirrel named Bi, about 100cm tall, NOT fat, flat belly, short slender limbs, head about 1/4 of body height, reddish orange-brown fur with lighter belly and cheeks, big round glossy black eyes with highlights, light pink cheeks, two front teeth, small pointed ears with tufts, very large bushy tail curving up behind his back and darker red-brown toward the tip, fitted yellow crew-neck t-shirt, black shorts, dark sneakers with white soles, wide open cheerful smile showing two cute front teeth, crescent-shaped sparkling black eyes, rosy pink cheeks lifted high, ears perked straight up, large bushy tail wagging high behind his back, bouncing lightly on his toes with both hands raised happily; a gentle elderly koala doctor, about 150cm tall (1.5x the height of Bi the squirrel), soft gray fur, large round black nose, fluffy round ears, kind small eyes behind round gold glasses, wearing a clean white doctor coat with a green cross badge, a head mirror on his forehead, a stethoscope around his neck, 3D Pixar-style soft render, soft studio lighting, plain light gray background, warm grandfatherly smile, kind eyes crinkling happily behind round gold glasses, fluffy round ears perked. [SCALE] Height order from tallest: Bác sĩ Koala (150cm) > Sóc Bi (100cm); Doctor Koala is 150cm tall (children reach his chest). [ACTION] Wide End Screen shot with characters waving in the lower-left frame while the music gently fades out at 10:00. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized child-friendly woodland clinic belonging to Doctor Koala. The cozy round room features soothing pastel mint-green walls with warm natural wood wainscotting, curved windows looking out onto sunny green fern gardens, and smooth non-slip cork flooring. At the center sits a low, cushioned wooden examination bed (45cm high with a cute 20cm two-step wooden footstool) and a friendly 150cm-tall Doctor Koala desk (72cm high). On a low demonstration table (50cm high) rests an oversized cheerful white tooth model with a giant soft-bristle wooden toothbrush for teaching brushing technique. On the wall hang colorful illustrated posters of healthy vegetables, the 6 handwashing steps, and a wooden height-measuring chart marked clearly from 0cm to 160cm, while a clear glass jar on the counter holds gold star and leaf stickers (strictly stickers, no sugary candy). Time of day: morning. [DEPTH] foreground: soft foliage bokeh framing the left side, leaving clean right-side space for End Screen cards, soft bokeh; midground: Sóc Bi, Bác sĩ Koala in bottom-left midground waving goodbye in exact height scale, razor-sharp focus; background: peaceful wide view of Phòng khám Bác sĩ Koala, creamy atmospheric falloff. [LIGHT] Bright, clean, reassuring morning sunlight streaming through the curved clinic windows, blending with soft warm-white interior lamps for a zero-fear atmosphere..",
+          "videoPrompt": "8-second 3D Pixar-style animated clip (S30, 09:40-10:00): Wide End Screen shot with characters waving in the lower-left frame while the music gently fades out at 10:00. Camera movement: smooth dolly-out. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Height order from tallest: Bác sĩ Koala (150cm) > Sóc Bi (100cm); Doctor Koala is 150cm tall (children reach his chest).), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "soc_nho",
+            "koala"
+          ],
+          "speakerId": "koala"
+        }
+      ]
+    }
+  ],
+  "castIds": [
+    "soc_nho",
+    "koala"
+  ],
+  "unmatched": [],
+  "schemaVersion": 1,
+  "locked": false,
+  "source": {
+    "file": "KICH-BAN-TAP-16-ban-sau-rang-tinh-nghich.md",
+    "sha": "bea4d24e2b49840e"
+  },
+  "compiledAt": "2026-11-06T09:03:39Z"
+}

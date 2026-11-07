@@ -1,0 +1,27 @@
+{
+  "id": "art_94967306d64c",
+  "kind": "image",
+  "uri": "assets/94967306d64c562172e7f7c76233476937cfd68b75090faf7430c9e58f6641a9.jpg",
+  "mime": "image/jpg",
+  "size": 58045,
+  "hash": "sha256:94967306d64c562172e7f7c76233476937cfd68b75090faf7430c9e58f6641a9",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": null,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "n_prod",
+    "runId": "run_1794039506_bf46ed",
+    "provider": "local",
+    "model": "upload",
+    "params": {
+      "uri": "library/images/products/1737777058633123730.jpg"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-07T08:18:26Z"
+  }
+}

@@ -1,0 +1,362 @@
+{
+  "ok": false,
+  "strict": false,
+  "browserSkipped": false,
+  "lint": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 3,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "gsap_infinite_repeat",
+        "severity": "warning",
+        "message": "GSAP tween uses `repeat: -1` (infinite), but the composition declares a finite 2.636s window. HyperFrames clips deterministic seeking and export to that explicit duration.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "/Volumes/Data/socnhotv/data/projects/soc-nho-tv/runs/run_1794015283_ff5404/node_template_render_template/bundle/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Keep the explicit finite composition `data-duration`. Use a finite repeat count only when the loop itself must end before the composition does."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"stat-box\"> is a timeline element that contains nested <div id=\"stat-num\">. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#stat-box",
+        "dataAttributes": {},
+        "sourceFile": "/Volumes/Data/socnhotv/data/projects/soc-nho-tv/runs/run_1794015283_ff5404/node_template_render_template/bundle/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"stat-box\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"statement\"> is a timeline element that contains nested <div>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#statement",
+        "dataAttributes": {},
+        "sourceFile": "/Volumes/Data/socnhotv/data/projects/soc-nho-tv/runs/run_1794015283_ff5404/node_template_render_template/bundle/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"statement\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      }
+    ],
+    "filesScanned": 1
+  },
+  "runtime": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": []
+  },
+  "layout": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "duration": 2.636,
+    "samples": [
+      0.146,
+      0.439,
+      0.732,
+      1.025,
+      1.318,
+      1.611,
+      1.904,
+      2.197,
+      2.49
+    ],
+    "transitionSamples": [],
+    "transitionSamplesDropped": 0,
+    "tolerance": 2,
+    "totalIssueCount": 0,
+    "truncated": false
+  },
+  "motion": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "enabled": false,
+    "samples": 0
+  },
+  "contrast": {
+    "ok": false,
+    "errorCount": 2,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "contrast_aa_failure",
+        "severity": "error",
+        "message": "Contrast is 4.36:1; WCAG AA requires 4.5:1.",
+        "text": "💡 BẠN CÓ BIẾT?",
+        "fg": "rgb(255,255,255)",
+        "bg": "rgb(130,93,244)",
+        "ratio": 4.36,
+        "requiredRatio": 4.5,
+        "suggestedColor": "rgb(11,11,11)",
+        "large": false,
+        "selector": "#fact-hook",
+        "dataAttributes": {
+          "data-start": "0",
+          "data-duration": "2.636",
+          "data-track-index": "2"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 48,
+          "y": 160,
+          "width": 984,
+          "height": 87
+        },
+        "time": 0.732,
+        "times": [
+          0.732,
+          1.318,
+          1.904,
+          2.49
+        ]
+      },
+      {
+        "code": "contrast_aa_failure",
+        "severity": "error",
+        "message": "Contrast is 1.73:1; WCAG AA requires 3:1.",
+        "text": "99%",
+        "fg": "rgb(0,0,0)",
+        "bg": "rgb(21,53,102)",
+        "ratio": 1.73,
+        "requiredRatio": 3,
+        "suggestedColor": "rgb(127,127,127)",
+        "large": true,
+        "selector": "#stat-num",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 363.921875,
+          "y": 300,
+          "width": 352.140625,
+          "height": 160
+        },
+        "time": 1.318,
+        "times": [
+          0.732,
+          1.318,
+          1.904,
+          2.49
+        ]
+      }
+    ],
+    "enabled": true,
+    "samples": [
+      0.146,
+      0.732,
+      1.318,
+      1.904,
+      2.49
+    ],
+    "checked": 18,
+    "passed": 10
+  },
+  "craft": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 6,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "first_frame_empty",
+        "severity": "warning",
+        "message": "Frame 0 shows only the background, and the first frame is the thumbnail on social players: have the title or key image already on screen at 0 s instead of entering from nothing; see references/review.md.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0
+      },
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "The film's last line \"HẠT DẺ MỖI MÙA THU\" (5 words) is on screen 1.84 s (±0.01 s), under the 2.00 s a closing line needs: hold it about 0.5 s + 0.3 s a word and at least 2 s before the film ends; see references/motion.md.",
+        "text": "HẠT DẺ MỖI MÙA THU",
+        "selector": "#unit",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 308.37,
+          "y": 477.75,
+          "width": 462.1,
+          "height": 46.73000000000002
+        },
+        "time": 0.801,
+        "words": 5,
+        "seconds": 1.838,
+        "floorSeconds": 2
+      },
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "The film's last line \"Loài sóc có thể tìm lại hơn 10.000 hạt dẻ chúng đã chôn g...\" (15 words) is on screen 0.93 s (±0.01 s), under the 3.75 s a closing line needs: hold it about 0.5 s + 0.3 s a word and at least 2 s before the film ends; see references/motion.md.",
+        "text": "Loài sóc có thể tìm lại hơn 10.000 hạt dẻ chúng đã chôn giấu!",
+        "selector": "div.statement-text",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 83,
+          "y": 1444.17,
+          "width": 852.38,
+          "height": 84.3900000000001
+        },
+        "time": 1.707,
+        "words": 15,
+        "seconds": 0.933,
+        "floorSeconds": 3.75
+      },
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "The film's last line \"❤️\" (1 word) is on screen 0.93 s (±0.01 s), under the 2.00 s a closing line needs: hold it about 0.5 s + 0.3 s a word and at least 2 s before the film ends; see references/motion.md.",
+        "text": "❤️",
+        "selector": "div.cta-text > span:nth-of-type(1)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 83,
+          "y": 1549.95,
+          "width": 26,
+          "height": 30
+        },
+        "time": 1.707,
+        "words": 1,
+        "seconds": 0.933,
+        "floorSeconds": 2
+      },
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "The film's last line \"Thả tim và follow để biết thêm nhiều điều kỳ thú nhé!\" (12 words) is on screen 0.93 s (±0.01 s), under the 3.07 s a closing line needs: hold it about 0.5 s + 0.3 s a word and at least 2 s before the film ends; see references/motion.md.",
+        "text": "Thả tim và follow để biết thêm nhiều điều kỳ thú nhé!",
+        "selector": "div.cta-text > span:nth-of-type(2)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 121,
+          "y": 1550.95,
+          "width": 691.59,
+          "height": 30
+        },
+        "time": 1.707,
+        "words": 12,
+        "seconds": 0.933,
+        "floorSeconds": 3.075
+      },
+      {
+        "code": "text_below_floor",
+        "severity": "warning",
+        "message": "Type floor is 28 px (2.6% of the 1080 px short side, what a phone can read) and 5 text elements stay under it for 0.5 s or more, the smallest \"❤️\" at 13 px: set reading text to at least 28 px, or put data-layout-ignore on text that is texture rather than reading; see references/look.md.",
+        "text": "❤️",
+        "selector": "div.cta-text > span:nth-of-type(1)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 83,
+          "y": 1549.95,
+          "width": 26,
+          "height": 30
+        },
+        "time": 1.797,
+        "times": [
+          0.24,
+          0.839,
+          1.797,
+          1.797,
+          1.797
+        ],
+        "fontPx": 13,
+        "floorPx": 28,
+        "seconds": 0.839,
+        "elements": [
+          {
+            "selector": "div.cta-text > span:nth-of-type(1)",
+            "text": "❤️",
+            "fontPx": 13,
+            "time": 1.797,
+            "seconds": 0.839
+          },
+          {
+            "selector": "div.cta-text > span:nth-of-type(2)",
+            "text": "Thả tim và follow để biết thêm nhiều điều kỳ thú nhé!",
+            "fontPx": 13,
+            "time": 1.797,
+            "seconds": 0.839
+          },
+          {
+            "selector": "div.statement-text",
+            "text": "Loài sóc có thể tìm lại hơn 10.000 hạt dẻ chúng đã chôn giấu!",
+            "fontPx": 16,
+            "time": 1.797,
+            "seconds": 0.839
+          },
+          {
+            "selector": "#fact-hook",
+            "text": "💡 BẠN CÓ BIẾT?",
+            "fontPx": 18,
+            "time": 0.24,
+            "seconds": 2.396
+          },
+          {
+            "selector": "#unit",
+            "text": "HẠT DẺ MỖI MÙA THU",
+            "fontPx": 18,
+            "time": 0.839,
+            "seconds": 1.797
+          }
+        ]
+      }
+    ],
+    "enabled": true,
+    "step": 0.12,
+    "samples": 22
+  },
+  "audio": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": []
+  },
+  "hdr": {
+    "autoPromotion": null,
+    "inspection": "available"
+  },
+  "snapshots": {
+    "enabled": false,
+    "files": [],
+    "times": [],
+    "findingFiles": []
+  }
+}

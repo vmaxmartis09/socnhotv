@@ -1,0 +1,31 @@
+{
+  "id": "art_4d0c41c71305",
+  "kind": "audio",
+  "uri": "assets/4d0c41c71305b0cda8755eaefc4cf402d94f186de0631b8548b2c13a3c98e565.mp3",
+  "mime": "audio/mp3",
+  "size": 38913,
+  "hash": "sha256:4d0c41c71305b0cda8755eaefc4cf402d94f186de0631b8548b2c13a3c98e565",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 1.545,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "voice_hf",
+    "runId": "run_hf_test",
+    "provider": "omnivoice",
+    "model": "omnivoice",
+    "params": {
+      "text": "Sóc Nhỏ chào cả nhà!",
+      "voiceId": "soc-nho",
+      "tempo": 1.1,
+      "targetLufs": -14.0,
+      "mastering": "deesser+presence3.2k+comp4:1+loudnorm-14LUFS"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T00:44:11Z"
+  }
+}

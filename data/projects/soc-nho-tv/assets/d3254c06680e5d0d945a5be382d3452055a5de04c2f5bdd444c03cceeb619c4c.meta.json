@@ -1,0 +1,28 @@
+{
+  "id": "art_d3254c06680e",
+  "kind": "image",
+  "uri": "assets/d3254c06680e5d0d945a5be382d3452055a5de04c2f5bdd444c03cceeb619c4c.png",
+  "mime": "image/png",
+  "size": 434059,
+  "hash": "sha256:d3254c06680e5d0d945a5be382d3452055a5de04c2f5bdd444c03cceeb619c4c",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": null,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "node_cast_mw542014",
+    "runId": "run_1794020349_26c6e1",
+    "provider": "local",
+    "model": "master_dna",
+    "params": {
+      "characterId": "de_bong",
+      "file": "de_bong_03.png"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-07T02:59:09Z"
+  }
+}

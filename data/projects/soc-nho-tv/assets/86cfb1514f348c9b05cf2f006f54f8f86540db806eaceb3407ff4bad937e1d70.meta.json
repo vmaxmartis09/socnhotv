@@ -6,26 +6,39 @@
   "size": 222331,
   "hash": "sha256:86cfb1514f348c9b05cf2f006f54f8f86540db806eaceb3407ff4bad937e1d70",
   "meta": {
-    "width": 1080,
-    "height": 1920,
+    "width": 1920,
+    "height": 1080,
     "duration": null,
     "fps": null,
-    "aspect": "9:16"
+    "aspect": "16:9"
   },
   "provenance": {
-    "nodeId": "n_exp",
-    "runId": "run_1793871956_893d22",
+    "nodeId": "n_keyframes",
+    "runId": "run_1794016061_ac215a",
     "provider": "mock",
     "model": "mock-image-v1",
     "params": {
-      "prompt": "Generic execution for platform_export",
-      "aspectRatio": "9:16",
+      "prompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] WS, eye-level angle, 28mm lens. [CHARACTERS] a slim, agile 3-4 year old boy squirrel named Bi, about 100cm tall, NOT fat, flat belly, short slender limbs, head about 1/4 of body height, reddish orange-brown fur with lighter belly and cheeks, big round glossy black eyes with highlights, light pink cheeks, two front teeth, small pointed ears with tufts, very large bushy tail curving up behind his back and darker red-brown toward the tip, fitted yellow crew-neck t-shirt, black shorts, dark sneakers with white soles, wide open cheerful smile showing two cute front teeth, crescent-shaped sparkling black eyes, rosy pink cheeks lifted high, ears perked straight up, large bushy tail wagging high behind his back, bouncing lightly on his toes with both hands raised happily; a playful 3-year-old toddler boy black goat named Mun, about 85cm tall (0.85x the height of Bi the squirrel, Mun's head reaches Bi's nose), chubby-cheeked toddler build, soft glossy jet-black fur with a small white star-shaped patch on his forehead, two tiny rounded nub horns, short floppy ears with gray-pink inner side, big round sparkling brown eyes, wearing a bright red t-shirt with a small yellow star, navy blue shorts, red rubber rain boots, chubby cheeks lifted in a huge gummy toddler grin, big sparkling brown eyes crinkling with joy, short floppy ears flapping as he jumps up in his red rubber rain boots with both short arms raised high; a warm, gentle adult mother squirrel named Me Soc (mother of Bi), about 145cm tall (1.45x the height of Bi the squirrel, Bi's head reaches her chest), graceful slender build, soft cinnamon-reddish-brown fur with cream belly and cheeks, kind big dark brown eyes with soft eyelashes, small pointed ears with neat tufts, large fluffy curving tail, wearing a soft sage-green linen dress with a cream cotton apron tied at the waist with an embroidered acorn pocket, flat brown woven shoes, loving warm maternal smile, dark brown eyes crinkling gently, arms open for a comforting hug. [SCALE] Height order from tallest: Mẹ Sóc (145cm) > Sóc Bi (100cm) > Dê Mun (85cm); Mun's head (85cm) reaches Bi's nose (100cm); Bi's head (100cm) reaches Me Soc's chest (145cm). [ACTION] Wide End Screen shot with characters waving in the lower-left frame while the music gently fades out at 10:00. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized Vietnamese woodland architecture, Bi the squirrel's cozy family treehouse nestled securely in the massive lower fork of an ancient giant oak tree. The exterior features deeply grooved, moss-dappled oak bark with realistic wood grain texture, a charming round honey-oak front door measuring 165cm tall with a polished brass acorn doorknob placed at 55cm height (waist-to-chest level for a 100cm tall character), and circular paned windows glowing with warm amber lantern light. A sturdy wrap-around wooden balcony with a safe 65cm-high carved baluster railing and thick braided hemp rope handrails overlooks the village path. Inside the open cutaway living and bedroom area, warm pine floorboards with subtle knots support a child-sized wooden bed (40cm high, 120cm long) covered in a hand-woven yellow acorn quilt, a tiered wooden wall shelf holding glossy roasted chestnuts and storybooks, a low round study table (48cm tall) with wooden stools (26cm tall), and hanging potted fern baskets with translucent veined leaves catching soft subsurface light. Time of day: morning. [DEPTH] foreground: soft foliage bokeh framing the left side, leaving clean right-side space for End Screen cards, soft bokeh; midground: Sóc Bi, Dê Mun, Mẹ Sóc in bottom-left midground waving goodbye in exact height scale, razor-sharp focus; background: peaceful wide view of Nhà cây của Bi trong cây sồi khổng lồ, creamy atmospheric falloff. [LIGHT] Crisp golden morning sunbeams filtering through dewy green oak leaves at a 30-degree angle, casting dappled leaf shadows across the wooden balcony and filling the bedroom through the round window with cheerful warm bounce light..",
+      "aspectRatio": "16:9",
       "resolution": "1080p",
       "index": 0,
       "seed": null
     },
-    "inputHashes": [],
+    "inputHashes": [
+      "assets/71185678d83cb534675c6e9a7ee746a2e284199e89c8cae92c104b761fbbb046.png",
+      "assets/10ab6377c9b837790af1ed2aa4369e30342b463afbc51927104ab0d62f586407.png",
+      "assets/5afe962ff632d1cd7df7cfa29e2a27e4305e930eccbe8dd82b610ebfc96abdd9.png",
+      "assets/b8164d1dd1699a722c178c0786d409445ed26d64146af7e63992315a512ca2b9.png",
+      "assets/e8601459c5ec6ea806f07e52b8bc665225f860218cc8aed9dffa124e8df1c073.png",
+      "assets/797134193666342748eae0d03f0c9ce504f29d6baccd093a3a0a0188df26c3b8.png",
+      "assets/761a0bc51ef62618a269fe709a54e01f2e5d12be23d9a8392e84ec1b4caa8e8a.png",
+      "assets/763b9a4079673e6e96963c477bf7e872062911b361c510728ded556d602f57b2.png",
+      "assets/4b430f63a2febdae382532f7c37c672d39b0620b891ecc7e210fca4a904780c7.png",
+      "assets/5b339ecd10b748b194aa21afbd559c845afc710dca3e02a48b1f8d984526ce2c.png",
+      "assets/d5f0708b32acd824081e265460af7769fc6b7ff9beb91cb723bc35edc1b88b47.png",
+      "assets/20a520fc735e234cc1427eb41a9c8951d82036acbf7b7e3bb082419da0f5f140.png"
+    ],
     "costUsd": 0.0,
-    "createdAt": "2026-11-05T09:45:56Z"
+    "createdAt": "2026-11-07T01:47:41Z"
   }
 }

@@ -196,5 +196,18 @@
       "Tập 42: Giọt nước tiết kiệm (ep42-giot-nuoc-tiet-kiem)",
       "... cùng 2 tập khác trong tổng số 14/50 tập."
     ]
-  }
+  },
+  "referenceImages": [
+    "/data/projects/soc-nho-tv/files/characters/meo_mimi/meo_mimi_01.png",
+    "/data/projects/soc-nho-tv/files/characters/meo_mimi/meo_mimi_02.png",
+    "/data/projects/soc-nho-tv/files/characters/meo_mimi/meo_mimi_03.png",
+    "/data/projects/soc-nho-tv/files/characters/meo_mimi/meo_mimi_04.png",
+    "/data/projects/soc-nho-tv/files/characters/meo_mimi/meo_mimi_05.png",
+    "/data/projects/soc-nho-tv/files/characters/meo_mimi/meo_mimi_06.png",
+    "/data/projects/soc-nho-tv/files/characters/meo_mimi/meo_mimi_07.png",
+    "/data/projects/soc-nho-tv/files/characters/meo_mimi/meo_mimi_dna_sheet.png"
+  ],
+  "primaryImage": "meo_mimi_06.png",
+  "sampleAudioUrl": "/data/voices/vn-be-03/meo_mimi_catchphrase.mp3",
+  "sampleText": "Meo~ Để Mimi trang trí thêm một chút sắc màu nhé!"
 }

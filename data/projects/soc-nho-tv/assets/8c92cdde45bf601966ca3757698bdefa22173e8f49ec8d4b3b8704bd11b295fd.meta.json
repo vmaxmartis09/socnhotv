@@ -1,0 +1,31 @@
+{
+  "id": "art_8c92cdde45bf",
+  "kind": "audio",
+  "uri": "assets/8c92cdde45bf601966ca3757698bdefa22173e8f49ec8d4b3b8704bd11b295fd.mp3",
+  "mime": "audio/mp3",
+  "size": 142358,
+  "hash": "sha256:8c92cdde45bf601966ca3757698bdefa22173e8f49ec8d4b3b8704bd11b295fd",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 5.872,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "prebuild_voice",
+    "runId": "prebuild_ep01-nui-lua-trong-bung-bi",
+    "provider": "omnivoice",
+    "model": "omnivoice",
+    "params": {
+      "text": "Ấy khoan đã Mun ơi! Coi chừng vấp mép thảm… Ôi thôi, tháp gỗ của Bi!",
+      "voiceId": "soc-nho",
+      "tempo": 1.1,
+      "targetLufs": -14.0,
+      "mastering": "deesser+presence3.2k+comp4:1+loudnorm-14LUFS"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T10:21:23Z"
+  }
+}

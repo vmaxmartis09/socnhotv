@@ -14,7 +14,7 @@
   },
   "provenance": {
     "nodeId": "node_script",
-    "runId": "run_1793842283_87d8de",
+    "runId": "run_1793959187_e05bed",
     "provider": "mock",
     "model": "script-planner-v1",
     "params": {
@@ -23,6 +23,6 @@
     },
     "inputHashes": [],
     "costUsd": 0.0,
-    "createdAt": "2026-11-05T01:31:23Z"
+    "createdAt": "2026-11-06T09:59:47Z"
   }
 }

@@ -1,0 +1,56 @@
+{
+  "runId": "run_1793959021_ce4ecb",
+  "id": "run_1793959021_ce4ecb",
+  "projectId": "soc-nho-tv",
+  "status": "completed",
+  "mode": "single_node",
+  "stage": "Hoàn tất xuất sắc",
+  "currentNodeId": "node_idea",
+  "progress": 1.0,
+  "progressPct": 100,
+  "startedAtTs": 1793959021.4640808,
+  "createdAt": "2026-11-06T09:57:01Z",
+  "updatedAt": "2026-11-06T09:57:01Z",
+  "elapsedSec": 0.0,
+  "actualCostUsd": 0.0,
+  "costUsd": 0.0,
+  "nodes": [
+    {
+      "id": "node_idea",
+      "type": "text",
+      "name": "node_idea",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "node_script",
+      "type": "script",
+      "name": "node_script",
+      "state": "pending",
+      "progressPct": 0,
+      "error": null
+    },
+    {
+      "id": "node_image_gen",
+      "type": "image_gen",
+      "name": "node_image_gen",
+      "state": "pending",
+      "progressPct": 0,
+      "error": null
+    },
+    {
+      "id": "node_video_gen",
+      "type": "video_gen",
+      "name": "node_video_gen",
+      "state": "pending",
+      "progressPct": 0,
+      "error": null
+    }
+  ],
+  "totalNodes": 4,
+  "completedNodes": 1,
+  "output": null,
+  "error": null,
+  "completedAt": "2026-11-06T09:57:01Z"
+}

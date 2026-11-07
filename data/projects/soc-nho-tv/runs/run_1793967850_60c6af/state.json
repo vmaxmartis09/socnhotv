@@ -1,0 +1,38 @@
+{
+  "runId": "run_1793967850_60c6af",
+  "id": "run_1793967850_60c6af",
+  "projectId": "soc-nho-tv",
+  "status": "failed",
+  "mode": "all",
+  "runPolicy": {
+    "image": "mock",
+    "video": "mock",
+    "text": "mock",
+    "voice": "local"
+  },
+  "stage": "Thất bại: node_retry: MockProvider.generate_images() got an unexpected keyword argument 'fallback_models'",
+  "currentNodeId": "node_retry",
+  "progress": 0.05,
+  "progressPct": 5,
+  "startedAtTs": 1793967850.994751,
+  "createdAt": "2026-11-06T12:24:10Z",
+  "updatedAt": "2026-11-06T12:24:11Z",
+  "elapsedSec": 0.6,
+  "actualCostUsd": 0.0,
+  "costUsd": 0.0,
+  "nodes": [
+    {
+      "id": "node_retry",
+      "type": "image_gen",
+      "name": "node_retry",
+      "state": "failed",
+      "progressPct": 0,
+      "error": "Node dừng lại: MockProvider.generate_images() got an unexpected keyword argument 'fallback_models'"
+    }
+  ],
+  "totalNodes": 1,
+  "completedNodes": 0,
+  "output": null,
+  "error": "node_retry: MockProvider.generate_images() got an unexpected keyword argument 'fallback_models'",
+  "completedAt": "2026-11-06T12:24:11Z"
+}

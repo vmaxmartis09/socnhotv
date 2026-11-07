@@ -1,0 +1,107 @@
+{
+  "version": 1,
+  "historyId": "1d270811-ca18-46c3-9d1e-fc875af14d92",
+  "currentRevision": "41957e42-0e0c-46e8-a39e-13382eba1823",
+  "pendingChanges": false,
+  "files": {
+    "assets/gsap.min.js": {
+      "hash": "92bb9a96476f983d212a2bc4f54c889039c1696dd4461d40a736860938570fbb",
+      "content": "/Users/vmaxmartis/.cache/hyperframes/history/1d270811-ca18-46c3-9d1e-fc875af14d92/blobs/92/92bb9a96476f983d212a2bc4f54c889039c1696dd4461d40a736860938570fbb"
+    },
+    "assets/koc_avatar.png": {
+      "hash": "452e63ea99b25e168c077e78f97f5619609c47b960798a6737ce5be52af5a4a0",
+      "content": "/Users/vmaxmartis/.cache/hyperframes/history/1d270811-ca18-46c3-9d1e-fc875af14d92/blobs/45/452e63ea99b25e168c077e78f97f5619609c47b960798a6737ce5be52af5a4a0"
+    },
+    "assets/product.png": {
+      "hash": "452e63ea99b25e168c077e78f97f5619609c47b960798a6737ce5be52af5a4a0",
+      "content": "/Users/vmaxmartis/.cache/hyperframes/history/1d270811-ca18-46c3-9d1e-fc875af14d92/blobs/45/452e63ea99b25e168c077e78f97f5619609c47b960798a6737ce5be52af5a4a0"
+    },
+    "assets/subtitles.json": {
+      "hash": "a726cb37e655a2e06cb4d4a6d60cf14dc8e392188cfddfba161b6cfbff068160",
+      "content": "/Users/vmaxmartis/.cache/hyperframes/history/1d270811-ca18-46c3-9d1e-fc875af14d92/blobs/a7/a726cb37e655a2e06cb4d4a6d60cf14dc8e392188cfddfba161b6cfbff068160"
+    },
+    "assets/voiceover.mp3": {
+      "hash": "0d563afca1439700c0cf319ba358c73d06e26a7ecee04845a0acd14b911228b8",
+      "content": "/Users/vmaxmartis/.cache/hyperframes/history/1d270811-ca18-46c3-9d1e-fc875af14d92/blobs/0d/0d563afca1439700c0cf319ba358c73d06e26a7ecee04845a0acd14b911228b8"
+    },
+    "hyperframes.json": {
+      "hash": "bf1d99090b3effa8f9638a1c5247d7accb5cdc28484235af79cd829d8c6bdd2e",
+      "content": "/Users/vmaxmartis/.cache/hyperframes/history/1d270811-ca18-46c3-9d1e-fc875af14d92/blobs/bf/bf1d99090b3effa8f9638a1c5247d7accb5cdc28484235af79cd829d8c6bdd2e"
+    },
+    "index.html": {
+      "hash": "1ef91e0a1682f53e1a00432430ef5b73cdc819253d08799d331e392e15c01ff1",
+      "content": "/Users/vmaxmartis/.cache/hyperframes/history/1d270811-ca18-46c3-9d1e-fc875af14d92/blobs/1e/1ef91e0a1682f53e1a00432430ef5b73cdc819253d08799d331e392e15c01ff1"
+    }
+  },
+  "revisions": {
+    "41957e42-0e0c-46e8-a39e-13382eba1823": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794039513685,
+      "endedAt": 1794039513686,
+      "files": {
+        "hyperframes.json": {
+          "before": "/Users/vmaxmartis/.cache/hyperframes/history/1d270811-ca18-46c3-9d1e-fc875af14d92/blobs/9d/9d582889c8a8f6f96ab2582ae52454f1a31c8804cb36cd000e2ab8388dcdf3b1",
+          "after": "/Users/vmaxmartis/.cache/hyperframes/history/1d270811-ca18-46c3-9d1e-fc875af14d92/blobs/bf/bf1d99090b3effa8f9638a1c5247d7accb5cdc28484235af79cd829d8c6bdd2e"
+        }
+      }
+    }
+  },
+  "checks": {
+    "latest": {
+      "revision": null,
+      "id": "466d122e-d380-4092-9dbd-a0c2a605351d"
+    },
+    "revisions": {},
+    "unversioned": [
+      {
+        "id": "466d122e-d380-4092-9dbd-a0c2a605351d",
+        "scope": "project",
+        "report": "/Volumes/Data/socnhotv/data/projects/gobi/runs/run_1794039506_bf46ed/n_render_template/bundle/.hyperframes/artifacts/checks/466d122e-d380-4092-9dbd-a0c2a605351d.json",
+        "metadata": {
+          "ok": false,
+          "browserSkipped": false,
+          "options": {
+            "samples": 9,
+            "atTransitions": false,
+            "maxIssues": 80,
+            "collapseStatic": true,
+            "tolerance": 2,
+            "timeout": 45000,
+            "contrast": true,
+            "strict": false,
+            "snapshots": false,
+            "browserGpuMode": "auto"
+          }
+        },
+        "createdAt": 1794039513222,
+        "contentHash": "a232b8cf473b30e613bf3255f09a5610028e7e8b672f3a2ae19e2597deb00790",
+        "revision": null,
+        "inputFingerprint": "72536082f63724ab937e40c6319350bb52cbfa05ec202e98f0ccacab68653580",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      }
+    ]
+  },
+  "snapshots": {
+    "latest": null,
+    "revisions": {},
+    "unversioned": []
+  },
+  "renders": {
+    "latest": {
+      "id": "71059b3b-2b33-472f-a168-546911c03c1f",
+      "completedAt": 1794039520570,
+      "output": "/Volumes/Data/socnhotv/data/projects/gobi/runs/run_1794039506_bf46ed/n_render_template/koc-review-v1_tiktok.mp4",
+      "status": "completed",
+      "revision": "41957e42-0e0c-46e8-a39e-13382eba1823"
+    },
+    "retainedRevisions": [
+      "41957e42-0e0c-46e8-a39e-13382eba1823"
+    ]
+  },
+  "pendingArtifactCleanup": []
+}

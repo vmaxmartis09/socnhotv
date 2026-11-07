@@ -236,5 +236,2588 @@
     "height": 1920,
     "size_mb": 0.0,
     "aspect_ratio": "9:16"
+  },
+  "output/_test_social_pkg/final_45s.mp4_1793808826.0393386": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/youtube.mp4_1793808019.3355427": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/tiktok.mp4_1793808019.327455": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/shorts.mp4_1793808019.3313155": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/tiktok.mp4_1793808018.0670707": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/reels.mp4_1793808018.0711653": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_autodraft_out/tiktok.mp4_1793808019.3992302": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/tiktok.mp4_1793808018.0485406": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/reels.mp4_1793808018.0574372": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_api_test_short_01/shorts.mp4_1793803315.7773266": {
+    "duration_s": 4.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.01,
+    "aspect_ratio": "9:16"
+  },
+  "output/a3_test_render/youtube.mp4_1793800140.044357": {
+    "duration_s": 4.0,
+    "width": 1920,
+    "height": 1080,
+    "size_mb": 0.01,
+    "aspect_ratio": "16:9"
+  },
+  "output/a3_test_render/tiktok.mp4_1793800134.4761086": {
+    "duration_s": 4.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.01,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_api_test_main/youtube.mp4_1793803315.7456672": {
+    "duration_s": 4.0,
+    "width": 1920,
+    "height": 1080,
+    "size_mb": 0.01,
+    "aspect_ratio": "16:9"
+  },
+  "output/loc_douyin_test_mode_r_hook_boost/tiktok.mp4_1793808017.2178216": {
+    "duration_s": 4.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.01,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/tiktok.mp4_1793808018.0449018": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/reels.mp4_1793808018.052762": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/_test_social_pkg/final_45s.mp4_1793808872.9698946": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/_test_social_pkg/final_45s.mp4_1793808900.534857": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/_test_social_pkg/final_45s.mp4_1793808928.9258792": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/_test_social_pkg/final_45s.mp4_1793808948.167934": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/_test_social_pkg/final_45s.mp4_1793809534.7590766": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/cau-vong/final_45s.mp4_1793810297.9101458": {
+    "duration_s": 44.5,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 2.15,
+    "aspect_ratio": "9:16"
+  },
+  "output/_test_social_pkg/final_45s.mp4_1793810480.8957293": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/_test_social_pkg/final_45s.mp4_1793839880.9796703": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/_test_social_pkg/final_45s.mp4_1793840215.2175386": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/_test_social_pkg/final_45s.mp4_1793841692.5532584": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/_test_social_pkg/final_45s.mp4_1793853651.768454": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/_test_social_pkg/final_45s.mp4_1793860987.217435": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/v-sao-c-u-v-ng-c-nhi-u-m-u-2/final_45s.mp4_1793860981.6255405": {
+    "duration_s": 4.2,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.23,
+    "aspect_ratio": "9:16"
+  },
+  "output/v-sao-c-u-v-ng-c-nhi-u-m-u/final_45s.mp4_1793860718.9847436": {
+    "duration_s": 13.65,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.43,
+    "aspect_ratio": "9:16"
+  },
+  "output/probe_la_cay.mp4_1793860718.9847436": {
+    "duration_s": 13.65,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.43,
+    "aspect_ratio": "9:16"
+  },
+  "output/api_test_paste.mp4_1793860981.6255405": {
+    "duration_s": 4.2,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.23,
+    "aspect_ratio": "9:16"
+  },
+  "output/v-sao-c-u-v-ng-c-nhi-u-m-u-2/api_test_paste.mp4_1793860981.6255405": {
+    "duration_s": 4.2,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.23,
+    "aspect_ratio": "9:16"
+  },
+  "output/v-sao-c-u-v-ng-c-nhi-u-m-u/probe_la_cay.mp4_1793860718.9847436": {
+    "duration_s": 13.65,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.43,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/shorts.mp4_1793860988.7875388": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_main/youtube.mp4_1793860988.768104": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/shorts.mp4_1793860988.7712383": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/shorts.mp4_1793860988.7747116": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/_test_social_pkg/final_45s.mp4_1793880021.0638094": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/v-sao-c-u-v-ng-c-nhi-u-m-u-3/final_45s.mp4_1793880010.9155598": {
+    "duration_s": 4.27,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.23,
+    "aspect_ratio": "9:16"
+  },
+  "output/api_test_paste.mp4_1793880010.9155598": {
+    "duration_s": 4.27,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.23,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/youtube.mp4_1793860989.6298318": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/tiktok.mp4_1793860989.625133": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/shorts.mp4_1793860989.6275213": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/v-sao-c-u-v-ng-c-nhi-u-m-u-3/api_test_paste.mp4_1793880010.9155598": {
+    "duration_s": 4.27,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.23,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/tiktok.mp4_1793860988.790718": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/reels.mp4_1793860988.7929094": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_autodraft_out/tiktok.mp4_1793860989.6367657": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/tiktok.mp4_1793860988.7797387": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/reels.mp4_1793860988.7842493": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/loc_douyin_test_mode_r_hook_boost/tiktok.mp4_1793860988.157923": {
+    "duration_s": 4.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.01,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/tiktok.mp4_1793860988.7773166": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/reels.mp4_1793860988.781954": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/shorts.mp4_1793880032.0949254": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_main/youtube.mp4_1793880032.075419": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/shorts.mp4_1793880032.0782988": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/shorts.mp4_1793880032.0824957": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/_test_social_pkg/final_45s.mp4_1793880260.4922936": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/v-sao-c-u-v-ng-c-nhi-u-m-u-4/final_45s.mp4_1793880253.3825977": {
+    "duration_s": 4.27,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.23,
+    "aspect_ratio": "9:16"
+  },
+  "output/api_test_paste.mp4_1793880253.3825977": {
+    "duration_s": 4.27,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.23,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/youtube.mp4_1793880032.9368727": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/tiktok.mp4_1793880032.932429": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/shorts.mp4_1793880032.9347117": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/v-sao-c-u-v-ng-c-nhi-u-m-u-4/api_test_paste.mp4_1793880253.3825977": {
+    "duration_s": 4.27,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.23,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/tiktok.mp4_1793880032.09781": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/reels.mp4_1793880032.0999827": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_autodraft_out/tiktok.mp4_1793880032.9432728": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/tiktok.mp4_1793880032.087371": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/reels.mp4_1793880032.0919397": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/loc_douyin_test_mode_r_hook_boost/tiktok.mp4_1793880031.4920273": {
+    "duration_s": 4.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.01,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/tiktok.mp4_1793880032.084836": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/reels.mp4_1793880032.0895612": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/shorts.mp4_1793880262.1161115": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_main/youtube.mp4_1793880262.0873365": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/shorts.mp4_1793880262.0919416": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/shorts.mp4_1793880262.0997448": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/_test_social_pkg/final_45s.mp4_1793924543.360661": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/v-sao-c-u-v-ng-c-nhi-u-m-u-5/final_45s.mp4_1793924540.1485667": {
+    "duration_s": 4.29,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.23,
+    "aspect_ratio": "9:16"
+  },
+  "output/api_test_paste.mp4_1793924540.1485667": {
+    "duration_s": 4.29,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.23,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/youtube.mp4_1793880263.0719435": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/tiktok.mp4_1793880263.0669193": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/shorts.mp4_1793880263.0689962": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/v-sao-c-u-v-ng-c-nhi-u-m-u-5/api_test_paste.mp4_1793924540.1485667": {
+    "duration_s": 4.29,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.23,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/tiktok.mp4_1793880262.1189847": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/reels.mp4_1793880262.1221538": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_autodraft_out/tiktok.mp4_1793880263.0788746": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/tiktok.mp4_1793880262.1075993": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/reels.mp4_1793880262.11311": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/loc_douyin_test_mode_r_hook_boost/tiktok.mp4_1793880261.50643": {
+    "duration_s": 4.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.01,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/tiktok.mp4_1793880262.1037717": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/reels.mp4_1793880262.110218": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/shorts.mp4_1793924545.2315292": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_main/youtube.mp4_1793924545.2098997": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/shorts.mp4_1793924545.2165606": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/shorts.mp4_1793924545.213048": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/_test_social_pkg/final_45s.mp4_1793925033.2021465": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/v-sao-c-u-v-ng-c-nhi-u-m-u-6/final_45s.mp4_1793925029.3364778": {
+    "duration_s": 3.92,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.22,
+    "aspect_ratio": "9:16"
+  },
+  "output/api_test_paste.mp4_1793925029.3364778": {
+    "duration_s": 3.92,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.22,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/youtube.mp4_1793924546.0876632": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/tiktok.mp4_1793924546.0829594": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/shorts.mp4_1793924546.0854554": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/tiktok.mp4_1793924545.2346773": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/reels.mp4_1793924545.2370598": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_autodraft_out/tiktok.mp4_1793924546.096115": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/tiktok.mp4_1793924545.2217023": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/reels.mp4_1793924545.2263663": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/v-sao-c-u-v-ng-c-nhi-u-m-u-6/api_test_paste.mp4_1793925029.3364778": {
+    "duration_s": 3.92,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.22,
+    "aspect_ratio": "9:16"
+  },
+  "output/loc_douyin_test_mode_r_hook_boost/tiktok.mp4_1793924544.620243": {
+    "duration_s": 4.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.01,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/tiktok.mp4_1793924545.2193596": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/reels.mp4_1793924545.2239335": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/shorts.mp4_1793925034.7338383": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_main/youtube.mp4_1793925034.7121668": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/shorts.mp4_1793925034.7183242": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/shorts.mp4_1793925034.7148592": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/_test_social_pkg/final_45s.mp4_1793925940.1630878": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/v-sao-c-u-v-ng-c-nhi-u-m-u-8/final_45s.mp4_1793925694.2526453": {
+    "duration_s": 36.07,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.21,
+    "aspect_ratio": "9:16"
+  },
+  "output/v-sao-c-u-v-ng-c-nhi-u-m-u-9/final_45s.mp4_1793925935.977976": {
+    "duration_s": 4.29,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.23,
+    "aspect_ratio": "9:16"
+  },
+  "output/v-sao-c-u-v-ng-c-nhi-u-m-u-7/final_45s.mp4_1793925180.0957477": {
+    "duration_s": 4.05,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.22,
+    "aspect_ratio": "9:16"
+  },
+  "output/tap01_nui_lua_trong_bung_bi.mp4_1793925694.2526453": {
+    "duration_s": 36.07,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.21,
+    "aspect_ratio": "9:16"
+  },
+  "output/api_test_paste.mp4_1793925935.977976": {
+    "duration_s": 4.29,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.23,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/youtube.mp4_1793925035.5412261": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/tiktok.mp4_1793925035.5342844": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/shorts.mp4_1793925035.5363224": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/tiktok.mp4_1793925034.7367854": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/reels.mp4_1793925034.738986": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_autodraft_out/tiktok.mp4_1793925035.5474942": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/tiktok.mp4_1793925034.7227478": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/reels.mp4_1793925034.728264": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/v-sao-c-u-v-ng-c-nhi-u-m-u-8/tap01_nui_lua_trong_bung_bi.mp4_1793925694.2526453": {
+    "duration_s": 36.07,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.21,
+    "aspect_ratio": "9:16"
+  },
+  "output/v-sao-c-u-v-ng-c-nhi-u-m-u-9/api_test_paste.mp4_1793925935.977976": {
+    "duration_s": 4.29,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.23,
+    "aspect_ratio": "9:16"
+  },
+  "output/v-sao-c-u-v-ng-c-nhi-u-m-u-7/api_test_paste.mp4_1793925180.0957477": {
+    "duration_s": 4.05,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.22,
+    "aspect_ratio": "9:16"
+  },
+  "output/loc_douyin_test_mode_r_hook_boost/tiktok.mp4_1793925034.1244826": {
+    "duration_s": 4.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.01,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/tiktok.mp4_1793925034.7204297": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/reels.mp4_1793925034.7256484": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/shorts.mp4_1793925941.8457627": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_main/youtube.mp4_1793925941.8267372": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/shorts.mp4_1793925941.8333561": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/shorts.mp4_1793925941.8292174": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/_test_social_pkg/final_45s.mp4_1793928318.2641609": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/v-sao-c-u-v-ng-c-nhi-u-m-u-11/final_45s.mp4_1793928314.0888653": {
+    "duration_s": 4.29,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.23,
+    "aspect_ratio": "9:16"
+  },
+  "output/v-sao-c-u-v-ng-c-nhi-u-m-u-10/final_45s.mp4_1793928083.6916034": {
+    "duration_s": 36.07,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 21.06,
+    "aspect_ratio": "9:16"
+  },
+  "output/tap01_nui_lua_trong_bung_bi.mp4_1793928083.6916034": {
+    "duration_s": 36.07,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 21.06,
+    "aspect_ratio": "9:16"
+  },
+  "output/api_test_paste.mp4_1793928314.0888653": {
+    "duration_s": 4.29,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.23,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/youtube.mp4_1793925942.637661": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/tiktok.mp4_1793925942.6332495": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/shorts.mp4_1793925942.6355422": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/tiktok.mp4_1793925941.848578": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/reels.mp4_1793925941.8522747": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_autodraft_out/tiktok.mp4_1793925942.6453085": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/tiktok.mp4_1793925941.8383715": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/reels.mp4_1793925941.843116": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/v-sao-c-u-v-ng-c-nhi-u-m-u-11/api_test_paste.mp4_1793928314.0888653": {
+    "duration_s": 4.29,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.23,
+    "aspect_ratio": "9:16"
+  },
+  "output/v-sao-c-u-v-ng-c-nhi-u-m-u-10/tap01_nui_lua_trong_bung_bi.mp4_1793928083.6916034": {
+    "duration_s": 36.07,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 21.06,
+    "aspect_ratio": "9:16"
+  },
+  "output/loc_douyin_test_mode_r_hook_boost/tiktok.mp4_1793925941.2529263": {
+    "duration_s": 4.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.01,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/tiktok.mp4_1793925941.8359632": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/reels.mp4_1793925941.8406315": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/shorts.mp4_1793928320.2616296": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_main/youtube.mp4_1793928320.2424905": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/shorts.mp4_1793928320.2486157": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/shorts.mp4_1793928320.245186": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/_test_social_pkg/final_45s.mp4_1793937190.643137": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/v-sao-c-u-v-ng-c-nhi-u-m-u-12/final_45s.mp4_1793937187.8645225": {
+    "duration_s": 4.27,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.23,
+    "aspect_ratio": "9:16"
+  },
+  "output/api_test_paste.mp4_1793937187.8645225": {
+    "duration_s": 4.27,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.23,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/youtube.mp4_1793928321.0739377": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/tiktok.mp4_1793928321.0695267": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/shorts.mp4_1793928321.071615": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/v-sao-c-u-v-ng-c-nhi-u-m-u-12/api_test_paste.mp4_1793937187.8645225": {
+    "duration_s": 4.27,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.23,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/tiktok.mp4_1793928320.2644396": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/reels.mp4_1793928320.2665417": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_autodraft_out/tiktok.mp4_1793928321.0810828": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/tiktok.mp4_1793928320.2540843": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/reels.mp4_1793928320.2589238": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/loc_douyin_test_mode_r_hook_boost/tiktok.mp4_1793928319.6644166": {
+    "duration_s": 4.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.01,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/tiktok.mp4_1793928320.2507834": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/reels.mp4_1793928320.256163": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/shorts.mp4_1793937192.8851094": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_main/youtube.mp4_1793937192.8647342": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/shorts.mp4_1793937192.8714094": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/shorts.mp4_1793937192.8676605": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/_test_social_pkg/final_45s.mp4_1793937691.674295": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/v-sao-c-u-v-ng-c-nhi-u-m-u-13/final_45s.mp4_1793937686.5750942": {
+    "duration_s": 4.29,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.23,
+    "aspect_ratio": "9:16"
+  },
+  "output/api_test_paste.mp4_1793937686.5750942": {
+    "duration_s": 4.29,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.23,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/youtube.mp4_1793937193.7339342": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/tiktok.mp4_1793937193.7284532": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/shorts.mp4_1793937193.731203": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/v-sao-c-u-v-ng-c-nhi-u-m-u-13/api_test_paste.mp4_1793937686.5750942": {
+    "duration_s": 4.29,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.23,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/tiktok.mp4_1793937192.888276": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/reels.mp4_1793937192.8907633": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_autodraft_out/tiktok.mp4_1793937193.7411623": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/tiktok.mp4_1793937192.8771589": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/reels.mp4_1793937192.8820167": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/loc_douyin_test_mode_r_hook_boost/tiktok.mp4_1793937192.2630394": {
+    "duration_s": 4.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.01,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/tiktok.mp4_1793937192.873662": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/reels.mp4_1793937192.8794775": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/shorts.mp4_1793937693.3658457": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_main/youtube.mp4_1793937693.3452325": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/shorts.mp4_1793937693.352298": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/shorts.mp4_1793937693.3484075": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/_test_social_pkg/final_45s.mp4_1793940999.4957035": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/v-sao-c-u-v-ng-c-nhi-u-m-u-14/final_45s.mp4_1793940994.6317928": {
+    "duration_s": 4.27,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.23,
+    "aspect_ratio": "9:16"
+  },
+  "output/api_test_paste.mp4_1793940994.6317928": {
+    "duration_s": 4.27,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.23,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/youtube.mp4_1793937694.2405434": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/tiktok.mp4_1793937694.2359462": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/shorts.mp4_1793937694.238247": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/v-sao-c-u-v-ng-c-nhi-u-m-u-14/api_test_paste.mp4_1793940994.6317928": {
+    "duration_s": 4.27,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.23,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/tiktok.mp4_1793937693.3687477": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/reels.mp4_1793937693.3710365": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_autodraft_out/tiktok.mp4_1793937694.248945": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/tiktok.mp4_1793937693.357586": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/reels.mp4_1793937693.3630016": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/loc_douyin_test_mode_r_hook_boost/tiktok.mp4_1793937692.7585597": {
+    "duration_s": 4.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.01,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/tiktok.mp4_1793937693.3544767": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/reels.mp4_1793937693.360307": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/shorts.mp4_1793941001.4069307": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_main/youtube.mp4_1793941001.3880324": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/shorts.mp4_1793941001.3943381": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/shorts.mp4_1793941001.390766": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/_test_social_pkg/final_45s.mp4_1793941938.2834504": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/v-sao-c-u-v-ng-c-nhi-u-m-u-15/final_45s.mp4_1793941760.9938483": {
+    "duration_s": 600.0,
+    "width": 1920,
+    "height": 1080,
+    "size_mb": 248.1,
+    "aspect_ratio": "16:9"
+  },
+  "output/tap01_nui_lua_trong_bung_bi.mp4_1793941760.9938483": {
+    "duration_s": 600.0,
+    "width": 1920,
+    "height": 1080,
+    "size_mb": 248.1,
+    "aspect_ratio": "16:9"
+  },
+  "output/test_multi_out/youtube.mp4_1793941002.1960707": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/tiktok.mp4_1793941002.1909242": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/shorts.mp4_1793941002.1934986": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/v-sao-c-u-v-ng-c-nhi-u-m-u-15/tap01_nui_lua_trong_bung_bi.mp4_1793941760.9938483": {
+    "duration_s": 600.0,
+    "width": 1920,
+    "height": 1080,
+    "size_mb": 248.1,
+    "aspect_ratio": "16:9"
+  },
+  "output/ep_e2e_draft_test_short_03/tiktok.mp4_1793941001.4098673": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/reels.mp4_1793941001.4120667": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_autodraft_out/tiktok.mp4_1793941002.2024243": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/tiktok.mp4_1793941001.399447": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/reels.mp4_1793941001.4040632": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/loc_douyin_test_mode_r_hook_boost/tiktok.mp4_1793941000.7862976": {
+    "duration_s": 4.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.01,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/tiktok.mp4_1793941001.397039": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/reels.mp4_1793941001.4016523": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/shorts.mp4_0": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 5.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_main/youtube.mp4_0": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 5.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/shorts.mp4_0": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 5.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/shorts.mp4_0": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 5.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/_test_social_pkg/final_45s.mp4_1793954219.6796212": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/v-sao-c-u-v-ng-c-nhi-u-m-u-16/final_45s.mp4_1793954215.8720055": {
+    "duration_s": 4.73,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.24,
+    "aspect_ratio": "9:16"
+  },
+  "output/api_test_paste.mp4_1793954215.8720055": {
+    "duration_s": 4.73,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.24,
+    "aspect_ratio": "9:16"
+  },
+  "output/v-sao-c-u-v-ng-c-nhi-u-m-u-16/api_test_paste.mp4_1793954215.8720055": {
+    "duration_s": 4.73,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.24,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_api_test_short_01/shorts.mp4_1793941940.0011292": {
+    "duration_s": 4.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.01,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_api_test_main/youtube.mp4_1793941939.9969478": {
+    "duration_s": 4.0,
+    "width": 1920,
+    "height": 1080,
+    "size_mb": 0.01,
+    "aspect_ratio": "16:9"
+  },
+  "output/ep_e2e_draft_test_short_03/shorts.mp4_1793954221.3729641": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_main/youtube.mp4_1793954221.3537006": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/shorts.mp4_1793954221.3598096": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/shorts.mp4_1793954221.3563266": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/_test_social_pkg/final_45s.mp4_1793955639.3088264": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/v-sao-c-u-v-ng-c-nhi-u-m-u-18/final_45s.mp4_1793955634.6707702": {
+    "duration_s": 4.5,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.23,
+    "aspect_ratio": "9:16"
+  },
+  "output/v-sao-c-u-v-ng-c-nhi-u-m-u-17/final_45s.mp4_1793955446.9547305": {
+    "duration_s": 600.0,
+    "width": 1920,
+    "height": 1080,
+    "size_mb": 248.4,
+    "aspect_ratio": "16:9"
+  },
+  "output/api_test_paste.mp4_1793955634.6707702": {
+    "duration_s": 4.5,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.23,
+    "aspect_ratio": "9:16"
+  },
+  "output/tap02_mun_so_bong_toi.mp4_1793955446.9547305": {
+    "duration_s": 600.0,
+    "width": 1920,
+    "height": 1080,
+    "size_mb": 248.4,
+    "aspect_ratio": "16:9"
+  },
+  "output/test_multi_out/youtube.mp4_1793954222.2000515": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/tiktok.mp4_1793954222.1957674": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/shorts.mp4_1793954222.1979396": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/tiktok.mp4_1793954221.3762248": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/reels.mp4_1793954221.3784864": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_autodraft_out/tiktok.mp4_1793954222.2068117": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/tiktok.mp4_1793954221.3650908": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/reels.mp4_1793954221.3699644": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/v-sao-c-u-v-ng-c-nhi-u-m-u-18/api_test_paste.mp4_1793955634.6707702": {
+    "duration_s": 4.5,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.23,
+    "aspect_ratio": "9:16"
+  },
+  "output/v-sao-c-u-v-ng-c-nhi-u-m-u-17/tap02_mun_so_bong_toi.mp4_1793955446.9547305": {
+    "duration_s": 600.0,
+    "width": 1920,
+    "height": 1080,
+    "size_mb": 248.4,
+    "aspect_ratio": "16:9"
+  },
+  "output/loc_douyin_test_mode_r_hook_boost/tiktok.mp4_1793954220.7707767": {
+    "duration_s": 4.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.01,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/tiktok.mp4_1793954221.3624327": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/reels.mp4_1793954221.36738": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/shorts.mp4_1793955641.1981413": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_main/youtube.mp4_1793955641.1788936": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/shorts.mp4_1793955641.185415": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/shorts.mp4_1793955641.1817095": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/_test_social_pkg/final_45s.mp4_1793955990.5580628": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/v-sao-c-u-v-ng-c-nhi-u-m-u-19/final_45s.mp4_1793955985.8712127": {
+    "duration_s": 4.73,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.24,
+    "aspect_ratio": "9:16"
+  },
+  "output/api_test_paste.mp4_1793955985.8712127": {
+    "duration_s": 4.73,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.24,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/youtube.mp4_1793955642.0043206": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/tiktok.mp4_1793955642.0001938": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/shorts.mp4_1793955642.0022686": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/tiktok.mp4_1793955641.20105": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/reels.mp4_1793955641.2032065": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_autodraft_out/tiktok.mp4_1793955642.0106697": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/tiktok.mp4_1793955641.190303": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/reels.mp4_1793955641.19524": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/v-sao-c-u-v-ng-c-nhi-u-m-u-19/api_test_paste.mp4_1793955985.8712127": {
+    "duration_s": 4.73,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.24,
+    "aspect_ratio": "9:16"
+  },
+  "output/loc_douyin_test_mode_r_hook_boost/tiktok.mp4_1793955640.6001322": {
+    "duration_s": 4.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.01,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/tiktok.mp4_1793955641.1877706": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/reels.mp4_1793955641.1926599": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/shorts.mp4_1793955992.1346345": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_main/youtube.mp4_1793955992.1140378": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/shorts.mp4_1793955992.1209679": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/shorts.mp4_1793955992.1170144": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/_test_social_pkg/final_45s.mp4_1793958522.3577545": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/youtube.mp4_1793955992.9309416": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/tiktok.mp4_1793955992.9265802": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/shorts.mp4_1793955992.928949": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/tiktok.mp4_1793955992.1378338": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/reels.mp4_1793955992.1400561": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_autodraft_out/tiktok.mp4_1793955992.9375372": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/tiktok.mp4_1793955992.1271749": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/reels.mp4_1793955992.1316602": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/loc_douyin_test_mode_r_hook_boost/tiktok.mp4_1793955991.5427153": {
+    "duration_s": 4.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.01,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/tiktok.mp4_1793955992.1249073": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/reels.mp4_1793955992.1294334": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/shorts.mp4_1793958523.3350677": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_main/youtube.mp4_1793958523.3160877": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/shorts.mp4_1793958523.3222532": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/shorts.mp4_1793958523.3186855": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/_test_social_pkg/final_45s.mp4_1793958973.5358212": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/youtube.mp4_1793958524.4115398": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/tiktok.mp4_1793958524.406238": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/shorts.mp4_1793958524.4087155": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/tiktok.mp4_1793958523.3379016": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/reels.mp4_1793958523.3403845": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_autodraft_out/tiktok.mp4_1793958524.419196": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/tiktok.mp4_1793958523.3271854": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/reels.mp4_1793958523.3322167": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_api_test_short_01/shorts.mp4_1793958524.1203432": {
+    "duration_s": 4.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.01,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_api_test_main/youtube.mp4_1793958524.1142612": {
+    "duration_s": 4.0,
+    "width": 1920,
+    "height": 1080,
+    "size_mb": 0.01,
+    "aspect_ratio": "16:9"
+  },
+  "output/ep_e2e_draft_test_short_01/tiktok.mp4_1793958523.3244889": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/reels.mp4_1793958523.3294082": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/shorts.mp4_1793958974.482731": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_main/youtube.mp4_1793958974.4637048": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/shorts.mp4_1793958974.4703774": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/shorts.mp4_1793958974.46692": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/_test_social_pkg/final_45s.mp4_1793959068.8703606": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/youtube.mp4_1793958975.6042154": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/tiktok.mp4_1793958975.5993607": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/shorts.mp4_1793958975.6019132": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/tiktok.mp4_1793958974.4856284": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/reels.mp4_1793958974.4879243": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_autodraft_out/tiktok.mp4_1793958975.6113381": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/tiktok.mp4_1793958974.474955": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/reels.mp4_1793958974.4798918": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_api_test_short_01/shorts.mp4_1793958975.2747655": {
+    "duration_s": 4.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.01,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_api_test_main/youtube.mp4_1793958975.2768388": {
+    "duration_s": 4.0,
+    "width": 1920,
+    "height": 1080,
+    "size_mb": 0.01,
+    "aspect_ratio": "16:9"
+  },
+  "output/ep_e2e_draft_test_short_01/tiktok.mp4_1793958974.4725697": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/reels.mp4_1793958974.477479": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/shorts.mp4_1793959069.8667862": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_main/youtube.mp4_1793959069.848221": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/shorts.mp4_1793959069.8544686": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/shorts.mp4_1793959069.8509746": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/_test_social_pkg/final_45s.mp4_1793959188.512797": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/v-sao-c-u-v-ng-c-nhi-u-m-u-20/final_45s.mp4_1793959185.6634252": {
+    "duration_s": 4.1,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.22,
+    "aspect_ratio": "9:16"
+  },
+  "output/api_test_paste.mp4_1793959185.6634252": {
+    "duration_s": 4.1,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.22,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/youtube.mp4_1793959071.2107716": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/tiktok.mp4_1793959071.2057214": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/shorts.mp4_1793959071.208358": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/tiktok.mp4_1793959069.8696246": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/reels.mp4_1793959069.8717115": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_autodraft_out/tiktok.mp4_1793959071.2181666": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/tiktok.mp4_1793959069.8592477": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/reels.mp4_1793959069.8639338": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_api_test_short_01/shorts.mp4_1793959070.7456732": {
+    "duration_s": 4.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.01,
+    "aspect_ratio": "9:16"
+  },
+  "output/v-sao-c-u-v-ng-c-nhi-u-m-u-20/api_test_paste.mp4_1793959185.6634252": {
+    "duration_s": 4.1,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.22,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_api_test_main/youtube.mp4_1793959070.8452928": {
+    "duration_s": 4.0,
+    "width": 1920,
+    "height": 1080,
+    "size_mb": 0.01,
+    "aspect_ratio": "16:9"
+  },
+  "output/ep_e2e_draft_test_short_01/tiktok.mp4_1793959069.8567224": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/reels.mp4_1793959069.8613722": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/shorts.mp4_1793959190.3285291": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_main/youtube.mp4_1793959190.3087142": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/shorts.mp4_1793959190.3150237": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/shorts.mp4_1793959190.3113482": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/_test_social_pkg/final_45s.mp4_1793959541.6445396": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/youtube.mp4_1793959191.163196": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/tiktok.mp4_1793959191.157839": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_multi_out/shorts.mp4_1793959191.160512": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/tiktok.mp4_1793959190.3318639": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_03/reels.mp4_1793959190.3344023": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/test_autodraft_out/tiktok.mp4_1793959191.1707335": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/tiktok.mp4_1793959190.3196476": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_02/reels.mp4_1793959190.325229": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/loc_douyin_test_mode_r_hook_boost/tiktok.mp4_1793959189.611067": {
+    "duration_s": 4.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.01,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/tiktok.mp4_1793959190.31728": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
+  },
+  "output/ep_e2e_draft_test_short_01/reels.mp4_1793959190.3224251": {
+    "duration_s": 30.0,
+    "width": 1080,
+    "height": 1920,
+    "size_mb": 0.0,
+    "aspect_ratio": "9:16"
   }
 }

@@ -1,0 +1,30 @@
+{
+  "source": "/private/tmp/claude-501/-Users-vmaxmartis--claude-spares-spare-C7CC1A/f51cf9b9-101f-4bcb-9f1f-ecdd05390f37/scratchpad/sample3.mp4",
+  "duration": 9.0,
+  "scene_count": 3,
+  "params": {
+    "threshold": 3.0,
+    "min_scene_s": 1.0,
+    "aspect": "keep"
+  },
+  "scenes": [
+    {
+      "index": 1,
+      "start": 0.0,
+      "end": 3.0,
+      "duration": 3.0
+    },
+    {
+      "index": 2,
+      "start": 3.0,
+      "end": 6.0,
+      "duration": 3.0
+    },
+    {
+      "index": 3,
+      "start": 6.0,
+      "end": 9.0,
+      "duration": 3.0
+    }
+  ]
+}

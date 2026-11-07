@@ -1,0 +1,31 @@
+{
+  "id": "art_d99d4e3f9588",
+  "kind": "audio",
+  "uri": "assets/d99d4e3f95884d431cd243d4ba994161475ca03129fee9929df09fdbc276a75e.mp3",
+  "mime": "audio/mp3",
+  "size": 43928,
+  "hash": "sha256:d99d4e3f95884d431cd243d4ba994161475ca03129fee9929df09fdbc276a75e",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 1.751,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "voice_say",
+    "runId": "say",
+    "provider": "omnivoice",
+    "model": "omnivoice",
+    "params": {
+      "text": "hi anh vmax martis",
+      "voiceId": "koc-lyly",
+      "tempo": 1.05,
+      "targetLufs": -14.0,
+      "mastering": "deesser+presence3.2k+comp4:1+loudnorm-14LUFS"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-07T08:26:05Z"
+  }
+}

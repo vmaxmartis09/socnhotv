@@ -1,0 +1,39 @@
+{
+  "runId": "run_1793808872_32c203",
+  "id": "run_1793808872_32c203",
+  "projectId": "soc-nho-tv",
+  "status": "cancelled",
+  "mode": "all",
+  "stage": "Đã dừng chạy theo yêu cầu người dùng",
+  "currentNodeId": null,
+  "progress": 0.05,
+  "progressPct": 5,
+  "startedAtTs": 1793808872.941271,
+  "createdAt": "2026-11-04T16:14:32Z",
+  "updatedAt": "2026-11-04T16:27:20Z",
+  "elapsedSec": 763.0,
+  "actualCostUsd": 0.0,
+  "costUsd": 0.0,
+  "nodes": [
+    {
+      "id": "node_text",
+      "type": "text",
+      "name": "node_text",
+      "state": "pending",
+      "progressPct": 0,
+      "error": null
+    },
+    {
+      "id": "node_script",
+      "type": "script",
+      "name": "node_script",
+      "state": "pending",
+      "progressPct": 0,
+      "error": null
+    }
+  ],
+  "totalNodes": 2,
+  "completedNodes": 0,
+  "output": null,
+  "error": null
+}

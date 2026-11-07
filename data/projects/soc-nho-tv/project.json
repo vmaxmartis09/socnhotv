@@ -67,7 +67,7 @@
           "#4CAF50"
         ]
       },
-      "voice_id": "de_bong_v1",
+      "voice_id": "vn-be-01",
       "profile_path": "characters/de_bong/de_bong_profile.json",
       "prompts_path": "characters/de_bong/prompts.md",
       "dna_dir": "characters/de_bong"
@@ -95,7 +95,7 @@
           "#C5A880"
         ]
       },
-      "voice_id": "cho_lu_v1",
+      "voice_id": "vn-be-02",
       "profile_path": "characters/cho_lu/cho_lu_profile.json",
       "prompts_path": "characters/cho_lu/prompts.md",
       "dna_dir": "characters/cho_lu"
@@ -123,7 +123,7 @@
           "#FF8FAB"
         ]
       },
-      "voice_id": "meo_mimi_v1",
+      "voice_id": "vn-be-03",
       "profile_path": "characters/meo_mimi/meo_mimi_profile.json",
       "prompts_path": "characters/meo_mimi/prompts.md",
       "dna_dir": "characters/meo_mimi"
@@ -151,7 +151,7 @@
           "#1A365D"
         ]
       },
-      "voice_id": "de_mun_v1",
+      "voice_id": "vn-be-04",
       "profile_path": "characters/de_mun/de_mun_profile.json",
       "prompts_path": "characters/de_mun/prompts.md",
       "dna_dir": "characters/de_mun"
@@ -178,7 +178,7 @@
           "#6D4C41"
         ]
       },
-      "voice_id": "me_soc_v1",
+      "voice_id": "vn-nam-nu-01",
       "profile_path": "characters/me_soc/me_soc_profile.json",
       "prompts_path": "characters/me_soc/prompts.md",
       "dna_dir": "characters/me_soc"
@@ -205,7 +205,7 @@
           "#4FC3F7"
         ]
       },
-      "voice_id": "koala_doc_v1",
+      "voice_id": "koala-voice",
       "profile_path": "characters/koala/koala_profile.json",
       "prompts_path": "characters/koala/prompts.md",
       "dna_dir": "characters/koala"
@@ -232,7 +232,7 @@
           "#5D4037"
         ]
       },
-      "voice_id": "ong_de_v1",
+      "voice_id": "vn-nam-nam-02",
       "profile_path": "characters/ong_de_rau_bac/ong_de_rau_bac_profile.json",
       "prompts_path": "characters/ong_de_rau_bac/prompts.md",
       "dna_dir": "characters/ong_de_rau_bac"
@@ -259,7 +259,7 @@
           "#4CAF50"
         ]
       },
-      "voice_id": "co_huou_v1",
+      "voice_id": "vn-bac-nu-01",
       "profile_path": "characters/co_huou_sao/co_huou_sao_profile.json",
       "prompts_path": "characters/co_huou_sao/prompts.md",
       "dna_dir": "characters/co_huou_sao"
@@ -286,7 +286,7 @@
           "#F48FB1"
         ]
       },
-      "voice_id": "bac_voi_v1",
+      "voice_id": "vn-chung-nam-02",
       "profile_path": "characters/bac_voi/bac_voi_profile.json",
       "prompts_path": "characters/bac_voi/prompts.md",
       "dna_dir": "characters/bac_voi"

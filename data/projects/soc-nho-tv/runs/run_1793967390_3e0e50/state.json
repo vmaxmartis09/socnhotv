@@ -1,0 +1,203 @@
+{
+  "runId": "run_1793967390_3e0e50",
+  "id": "run_1793967390_3e0e50",
+  "projectId": "soc-nho-tv",
+  "status": "completed",
+  "mode": "all",
+  "stage": "Hoàn tất xuất sắc",
+  "currentNodeId": "n_export",
+  "progress": 1.0,
+  "progressPct": 100,
+  "startedAtTs": 1793967390.063377,
+  "createdAt": "2026-11-06T12:16:30Z",
+  "updatedAt": "2026-11-06T12:16:31Z",
+  "elapsedSec": 1.5,
+  "actualCostUsd": 0.0,
+  "costUsd": 0.0,
+  "nodes": [
+    {
+      "id": "n_script",
+      "type": "script",
+      "name": "n_script",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_quality",
+      "type": "quality_check",
+      "name": "n_quality",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_image",
+      "type": "image_gen",
+      "name": "n_image",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_video",
+      "type": "video_gen",
+      "name": "n_video",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_export",
+      "type": "export",
+      "name": "n_export",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    }
+  ],
+  "totalNodes": 5,
+  "completedNodes": 5,
+  "output": {
+    "id": "vid_ep03-chu-tho-bong-cua-mimi-dau-roi_1793967391",
+    "title": "Tập mới",
+    "topic": "ep03-chu-tho-bong-cua-mimi-dau-roi",
+    "created_at": "2026-11-06T12:16:31Z",
+    "duration_s": 0.0,
+    "size_mb": 0.0,
+    "platforms": [
+      "youtube"
+    ],
+    "template_id": "shorts-fact-v1",
+    "graph_ref": "graph.json",
+    "run_id": "run_1793967390_3e0e50",
+    "voice_id": "soc-nho",
+    "providers_per_scene": {
+      "1": "local_dna_pixar",
+      "2": "local_dna_pixar",
+      "3": "local_dna_pixar",
+      "4": "local_dna_pixar",
+      "5": "local_dna_pixar",
+      "6": "local_dna_pixar",
+      "7": "local_dna_pixar",
+      "8": "local_dna_pixar",
+      "9": "local_dna_pixar",
+      "10": "local_dna_pixar",
+      "11": "local_dna_pixar",
+      "12": "local_dna_pixar",
+      "13": "local_dna_pixar",
+      "14": "local_dna_pixar",
+      "15": "local_dna_pixar",
+      "16": "local_dna_pixar",
+      "17": "local_dna_pixar",
+      "18": "local_dna_pixar",
+      "19": "local_dna_pixar",
+      "20": "local_dna_pixar",
+      "21": "local_dna_pixar",
+      "22": "local_dna_pixar",
+      "23": "local_dna_pixar",
+      "24": "local_dna_pixar",
+      "25": "local_dna_pixar",
+      "26": "local_dna_pixar",
+      "27": "local_dna_pixar",
+      "28": "local_dna_pixar",
+      "29": "local_dna_pixar",
+      "30": "local_dna_pixar"
+    },
+    "cost_usd": 0.0,
+    "files": {
+      "video": "output/ep03-chu-tho-bong-cua-mimi-dau-roi/ep03-chu-tho-bong-cua-mimi-dau-roi.mp4",
+      "thumb": "output/ep03-chu-tho-bong-cua-mimi-dau-roi/thumb.jpg",
+      "contact_sheet": "output/ep03-chu-tho-bong-cua-mimi-dau-roi/contact_sheet.jpg",
+      "script": "output/ep03-chu-tho-bong-cua-mimi-dau-roi/script.md",
+      "voice": "output/ep03-chu-tho-bong-cua-mimi-dau-roi/voice.mp3",
+      "captions": "output/ep03-chu-tho-bong-cua-mimi-dau-roi/captions.srt",
+      "captions_words": "output/ep03-chu-tho-bong-cua-mimi-dau-roi/captions.words.json",
+      "scenes": "output/ep03-chu-tho-bong-cua-mimi-dau-roi/scenes",
+      "composition": "output/ep03-chu-tho-bong-cua-mimi-dau-roi/composition",
+      "verify_report": "output/ep03-chu-tho-bong-cua-mimi-dau-roi/verify_report.json"
+    },
+    "verify": {
+      "pass": false,
+      "scores": {
+        "voice_clarity": 4.5,
+        "captions_sync": 4.5,
+        "visual_diversity": 3.0,
+        "character_consistency": 5.0,
+        "pacing": 3.5
+      }
+    }
+  },
+  "error": null,
+  "completedAt": "2026-11-06T12:16:31Z",
+  "outputs": {
+    "id": "vid_ep03-chu-tho-bong-cua-mimi-dau-roi_1793967391",
+    "title": "Tập mới",
+    "topic": "ep03-chu-tho-bong-cua-mimi-dau-roi",
+    "created_at": "2026-11-06T12:16:31Z",
+    "duration_s": 0.0,
+    "size_mb": 0.0,
+    "platforms": [
+      "youtube"
+    ],
+    "template_id": "shorts-fact-v1",
+    "graph_ref": "graph.json",
+    "run_id": "run_1793967390_3e0e50",
+    "voice_id": "soc-nho",
+    "providers_per_scene": {
+      "1": "local_dna_pixar",
+      "2": "local_dna_pixar",
+      "3": "local_dna_pixar",
+      "4": "local_dna_pixar",
+      "5": "local_dna_pixar",
+      "6": "local_dna_pixar",
+      "7": "local_dna_pixar",
+      "8": "local_dna_pixar",
+      "9": "local_dna_pixar",
+      "10": "local_dna_pixar",
+      "11": "local_dna_pixar",
+      "12": "local_dna_pixar",
+      "13": "local_dna_pixar",
+      "14": "local_dna_pixar",
+      "15": "local_dna_pixar",
+      "16": "local_dna_pixar",
+      "17": "local_dna_pixar",
+      "18": "local_dna_pixar",
+      "19": "local_dna_pixar",
+      "20": "local_dna_pixar",
+      "21": "local_dna_pixar",
+      "22": "local_dna_pixar",
+      "23": "local_dna_pixar",
+      "24": "local_dna_pixar",
+      "25": "local_dna_pixar",
+      "26": "local_dna_pixar",
+      "27": "local_dna_pixar",
+      "28": "local_dna_pixar",
+      "29": "local_dna_pixar",
+      "30": "local_dna_pixar"
+    },
+    "cost_usd": 0.0,
+    "files": {
+      "video": "output/ep03-chu-tho-bong-cua-mimi-dau-roi/ep03-chu-tho-bong-cua-mimi-dau-roi.mp4",
+      "thumb": "output/ep03-chu-tho-bong-cua-mimi-dau-roi/thumb.jpg",
+      "contact_sheet": "output/ep03-chu-tho-bong-cua-mimi-dau-roi/contact_sheet.jpg",
+      "script": "output/ep03-chu-tho-bong-cua-mimi-dau-roi/script.md",
+      "voice": "output/ep03-chu-tho-bong-cua-mimi-dau-roi/voice.mp3",
+      "captions": "output/ep03-chu-tho-bong-cua-mimi-dau-roi/captions.srt",
+      "captions_words": "output/ep03-chu-tho-bong-cua-mimi-dau-roi/captions.words.json",
+      "scenes": "output/ep03-chu-tho-bong-cua-mimi-dau-roi/scenes",
+      "composition": "output/ep03-chu-tho-bong-cua-mimi-dau-roi/composition",
+      "verify_report": "output/ep03-chu-tho-bong-cua-mimi-dau-roi/verify_report.json"
+    },
+    "verify": {
+      "pass": false,
+      "scores": {
+        "voice_clarity": 4.5,
+        "captions_sync": 4.5,
+        "visual_diversity": 3.0,
+        "character_consistency": 5.0,
+        "pacing": 3.5
+      }
+    }
+  }
+}

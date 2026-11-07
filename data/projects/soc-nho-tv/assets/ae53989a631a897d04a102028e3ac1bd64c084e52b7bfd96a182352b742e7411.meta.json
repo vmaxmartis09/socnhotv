@@ -1,0 +1,31 @@
+{
+  "id": "art_ae53989a631a",
+  "kind": "audio",
+  "uri": "assets/ae53989a631a897d04a102028e3ac1bd64c084e52b7bfd96a182352b742e7411.mp3",
+  "mime": "audio/mp3",
+  "size": 250818,
+  "hash": "sha256:ae53989a631a897d04a102028e3ac1bd64c084e52b7bfd96a182352b742e7411",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 10.372,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "node_voice",
+    "runId": "run_1793937611_eee99d",
+    "provider": "omnivoice",
+    "model": "omnivoice",
+    "params": {
+      "text": "Sóc Nhỏ: Chào các bạn, mình là Sóc Bi! Hôm nay mình sẽ ăn thật nhiều kẹo!\n\nBác sĩ Koala: Bi ơi, ăn xong nhớ chải răng nhé!\nSóc Nhỏ: Bi nhớ rồi ạ!",
+      "voiceId": "soc-nho",
+      "tempo": 1.1,
+      "targetLufs": -14.0,
+      "mastering": "deesser+presence3.2k+comp4:1+loudnorm-14LUFS"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T04:00:55Z"
+  }
+}

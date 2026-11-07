@@ -142,5 +142,15 @@
       "Tập 49: Ngày đầu đến trường (ep49-ngay-dau-den-truong)",
       "Tập 50: Lễ hội Rừng Xanh (ep50-le-hoi-rung-xanh)"
     ]
-  }
+  },
+  "referenceImages": [
+    "/data/projects/soc-nho-tv/files/characters/co_huou_sao/co_huou_sao_01.png",
+    "/data/projects/soc-nho-tv/files/characters/co_huou_sao/co_huou_sao_02.png",
+    "/data/projects/soc-nho-tv/files/characters/co_huou_sao/co_huou_sao_03.png",
+    "/data/projects/soc-nho-tv/files/characters/co_huou_sao/co_huou_sao_04.png",
+    "/data/projects/soc-nho-tv/files/characters/co_huou_sao/co_huou_sao_05.png",
+    "/data/projects/soc-nho-tv/files/characters/co_huou_sao/co_huou_sao_dna_sheet.png"
+  ],
+  "sampleAudioUrl": "/data/voices/vn-bac-nu-01/co_huou_sao_catchphrase.mp3",
+  "sampleText": "Lớp Lá Xanh ơi, chúng mình cùng lắng nghe nhé!"
 }

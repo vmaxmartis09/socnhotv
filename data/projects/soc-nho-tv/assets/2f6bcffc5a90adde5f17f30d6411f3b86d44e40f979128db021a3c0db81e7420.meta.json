@@ -1,0 +1,29 @@
+{
+  "id": "art_2f6bcffc5a90",
+  "kind": "audio",
+  "uri": "assets/2f6bcffc5a90adde5f17f30d6411f3b86d44e40f979128db021a3c0db81e7420.wav",
+  "mime": "audio/wav",
+  "size": 1646296,
+  "hash": "sha256:2f6bcffc5a90adde5f17f30d6411f3b86d44e40f979128db021a3c0db81e7420",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 37.33,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "n_voice_mun",
+    "runId": "run_1793925675_f96c3a",
+    "provider": "mock",
+    "model": "mock-omnivoice-v1",
+    "params": {
+      "text": "Anh Bi ơi! Mun mang quả bóng vải sang chơi với anh Bi nè! Oa, ngôi sao đẹp thích nhắm! Cho Mun lại gần xem ngôi sao với anh Bi ơi! Anh Bi ơi… Mun không cố ý đâu… Mun nhặt ngôi sao trả cho anh Bi nè… 🎵 Hít vào ngửi hoa thơm, thở ra chong chóng quay! 'Xòe tay hít sâu, núi lửa nguội mau!' 🎵 Dạ, Mun cũng xin lỗi anh Bi! Bây giờ Mun phụ anh Bi xếp lại tòa tháp cao hơn nữa nhé! Mun cũng thuộc bài thở năm ngón tay của Mẹ Sóc dạy rồi! Lần sau Mun sẽ đi đứng cẩn thận hơn ạ!",
+      "voiceId": "mun",
+      "tempo": 1.0
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T00:41:15Z"
+  }
+}

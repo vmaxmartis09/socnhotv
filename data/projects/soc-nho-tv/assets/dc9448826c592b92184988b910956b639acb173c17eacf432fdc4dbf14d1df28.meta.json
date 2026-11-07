@@ -1,0 +1,31 @@
+{
+  "id": "art_dc9448826c59",
+  "kind": "audio",
+  "uri": "assets/dc9448826c592b92184988b910956b639acb173c17eacf432fdc4dbf14d1df28.mp3",
+  "mime": "audio/mp3",
+  "size": 319781,
+  "hash": "sha256:dc9448826c592b92184988b910956b639acb173c17eacf432fdc4dbf14d1df28",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 13.27,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "prebuild_voice",
+    "runId": "prebuild_ep02-mun-so-bong-toi",
+    "provider": "omnivoice",
+    "model": "omnivoice",
+    "params": {
+      "text": "Oa, thích quá Dê Mun ơi! Hôm nay hai đứa mình sẽ cùng chơi và khám phá ở Nhà của Bông & Mun trên sườn đồi nhé!",
+      "voiceId": "vn-be-01",
+      "tempo": 1.0,
+      "targetLufs": -14.0,
+      "mastering": "deesser+presence3.2k+comp4:1+loudnorm-14LUFS"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T10:30:23Z"
+  }
+}

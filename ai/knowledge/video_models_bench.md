@@ -1,6 +1,6 @@
 # BÁO CÁO BENCHMARK CÁC MÔ HÌNH VIDEO AI CHO SOCNHOTV
 
-> Ngày kiểm thử: **2026-11-06** (Luồng H2 - Hệ thống).
+> Ngày kiểm thử: **2026-11-07** (Luồng H2 - Hệ thống).
 > Chế độ thực thi: **MOCK SIMULATION ($0)**.
 > Shot kiểm thử: **S01 Tập 1** (Khung đầu: DNA Sóc Bi `soc_nho_01.png`, Widescreen 16:9).
 > Giới hạn ngân sách tối đa: **≤ $5.00** (Tuân thủ nghiêm ngặt SpendGuard).
@@ -11,8 +11,8 @@
 
 | Mô hình | Provider | Model ID | Giá / giây | Chi phí 1 shot (5-6s) | Độ phân giải thật | Tốc độ sinh | Giữ DNA nhân vật | Audio gốc | Trang giá chính thức | Trạng thái |
 |---|---|---|---|---|---|---|---|---|---|---|
-| **fal.ai Wan 2.2 / 2.6 (Alibaba I2V)** | `fal` | `wan/v2.6/image-to-video` | $0.050/s | **$0.250** | 1920x1080 | 0.61s | 8.0/10 | Không | [Bảng giá](https://fal.ai/models/fal-ai/wan-i2v) | SUCCESS (MOCK) |
-| **fal.ai Hailuo 02 Pro (MiniMax I2V)** | `fal` | `fal-ai/minimax/hailuo-02/pro/image-to-video` | $0.080/s | **$0.480** | 1920x1080 | 0.56s | 8.0/10 | Không | [Bảng giá](https://fal.ai/models/fal-ai/minimax/hailuo-02/pro/image-to-video) | SUCCESS (MOCK) |
+| **fal.ai Wan 2.2 / 2.6 (Alibaba I2V)** | `fal` | `wan/v2.6/image-to-video` | $0.050/s | **$0.250** | 1920x1080 | 0.58s | 8.0/10 | Không | [Bảng giá](https://fal.ai/models/fal-ai/wan-i2v) | SUCCESS (MOCK) |
+| **fal.ai Hailuo 02 Pro (MiniMax I2V)** | `fal` | `fal-ai/minimax/hailuo-02/pro/image-to-video` | $0.080/s | **$0.480** | 1920x1080 | 0.58s | 8.0/10 | Không | [Bảng giá](https://fal.ai/models/fal-ai/minimax/hailuo-02/pro/image-to-video) | SUCCESS (MOCK) |
 
 - **Tổng chi phí ước tính cho 5 model:** `$0.730` (thấp hơn nhiều so với hạn mức trần **$5.00**).
 - **Tổng chi phí thực tế đã ghi nhận:** `$0.730`.

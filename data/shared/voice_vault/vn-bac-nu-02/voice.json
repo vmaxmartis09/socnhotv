@@ -1,0 +1,17 @@
+{
+  "id": "vn-bac-nu-02",
+  "display_name": "Nữ miền Bắc 2",
+  "aliases": [],
+  "engine": "omnivoice",
+  "lang": "vi",
+  "dialect": "north",
+  "gender": "female",
+  "sample_paths": [
+    "cloned_default_sample.mp3"
+  ],
+  "loudness": -14.0,
+  "status": "ready",
+  "consent_note": "Mẫu lấy từ YouTube https://www.youtube.com/watch?v=R7qTyaPBn50 — người dùng quyết định dùng nội bộ cho giọng nhân vật, chưa xin phép chủ giọng.",
+  "source_url": "https://www.youtube.com/watch?v=R7qTyaPBn50",
+  "created_at": "2026-11-05T23:00:35.014390"
+}

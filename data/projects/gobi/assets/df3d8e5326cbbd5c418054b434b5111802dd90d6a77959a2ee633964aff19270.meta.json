@@ -1,0 +1,41 @@
+{
+  "id": "art_df3d8e5326cb",
+  "kind": "video",
+  "uri": "assets/df3d8e5326cbbd5c418054b434b5111802dd90d6a77959a2ee633964aff19270.mp4",
+  "mime": "video/mp4",
+  "size": 724581,
+  "hash": "sha256:df3d8e5326cbbd5c418054b434b5111802dd90d6a77959a2ee633964aff19270",
+  "meta": {
+    "width": 1080,
+    "height": 1920,
+    "duration": 8.0,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "n_render",
+    "runId": "run_1794036690_eb3993",
+    "provider": "local",
+    "model": "template:koc-review-v1",
+    "params": {
+      "platform": "tiktok",
+      "audioSource": "voice_audio",
+      "slotsFromSample": [
+        "cons_text",
+        "product",
+        "pros_text",
+        "rating_score",
+        "reviewer_badge"
+      ],
+      "warnings": [
+        "Slot lấy từ sample.data.json (không phải dữ liệu người dùng): cons_text, product, pros_text, rating_score, reviewer_badge",
+        "Phụ đề: chữ từ voice_text (25 từ), mốc đầu/cuối từ Whisper; thời điểm từng từ là ước lượng theo độ dài chữ.",
+        "Asset mẫu đóng gói trong template (không phải của người dùng): koc_avatar.png, product.png, subtitles.json",
+        "hyperframes check: {\"ok\": false, \"details\": {\"ok\": false, \"strict\": false, \"browserSkipped\": false, \"lint\": {\"ok\": true, \"errorCount\": 0, \"warningCount\": 6, \"infoCount\": 0, \"findings\": [{\"code\": \"css_transition_used\", \"severity\": \"warning\", \"message\": \"CSS declaration `transition: all 0.1s ease` runs on the browser clock and cannot be seeked deterministically across render workers.\", \"selector\": \".word-span\", \"dataA"
+      ]
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-07T07:32:15Z"
+  }
+}

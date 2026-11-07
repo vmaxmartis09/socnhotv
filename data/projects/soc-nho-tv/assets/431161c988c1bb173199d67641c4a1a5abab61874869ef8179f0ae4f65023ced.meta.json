@@ -1,0 +1,28 @@
+{
+  "id": "art_431161c988c1",
+  "kind": "text",
+  "uri": "assets/431161c988c1bb173199d67641c4a1a5abab61874869ef8179f0ae4f65023ced.json",
+  "mime": "application/json",
+  "size": 323,
+  "hash": "sha256:431161c988c1bb173199d67641c4a1a5abab61874869ef8179f0ae4f65023ced",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": null,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "s1",
+    "runId": "run_1793959187_e7b7fa",
+    "provider": "mock",
+    "model": "script-planner-v1",
+    "params": {
+      "targetSceneCount": 1,
+      "sourceText": "chào bé"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T09:59:47Z"
+  }
+}

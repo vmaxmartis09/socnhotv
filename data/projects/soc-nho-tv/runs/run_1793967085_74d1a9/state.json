@@ -1,0 +1,56 @@
+{
+  "runId": "run_1793967085_74d1a9",
+  "id": "run_1793967085_74d1a9",
+  "projectId": "soc-nho-tv",
+  "status": "failed",
+  "mode": "all",
+  "stage": "Thất bại: n_export: Node 'n_export' (export) không có video đầu vào. Hãy nối cổng 'video' từ node dựng.",
+  "currentNodeId": "n_image",
+  "progress": 0.75,
+  "progressPct": 75,
+  "startedAtTs": 1793967085.2419012,
+  "createdAt": "2026-11-06T12:11:25Z",
+  "updatedAt": "2026-11-06T12:11:26Z",
+  "elapsedSec": 0.9,
+  "actualCostUsd": 0.0,
+  "costUsd": 0.0,
+  "nodes": [
+    {
+      "id": "n_script",
+      "type": "script",
+      "name": "n_script",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_quality",
+      "type": "quality_check",
+      "name": "n_quality",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_image",
+      "type": "image_gen",
+      "name": "n_image",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_export",
+      "type": "export",
+      "name": "n_export",
+      "state": "failed",
+      "progressPct": 0,
+      "error": "Node dừng lại: Node 'n_export' (export) không có video đầu vào. Hãy nối cổng 'video' từ node dựng."
+    }
+  ],
+  "totalNodes": 4,
+  "completedNodes": 3,
+  "output": null,
+  "error": "n_export: Node 'n_export' (export) không có video đầu vào. Hãy nối cổng 'video' từ node dựng.",
+  "completedAt": "2026-11-06T12:11:26Z"
+}

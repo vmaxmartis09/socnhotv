@@ -1,0 +1,40 @@
+{
+  "runId": "run_1793959187_e05bed",
+  "id": "run_1793959187_e05bed",
+  "projectId": "soc-nho-tv",
+  "status": "completed",
+  "mode": "all",
+  "stage": "Hoàn tất xuất sắc",
+  "currentNodeId": "node_script",
+  "progress": 1.0,
+  "progressPct": 100,
+  "startedAtTs": 1793959187.6773372,
+  "createdAt": "2026-11-06T09:59:47Z",
+  "updatedAt": "2026-11-06T09:59:47Z",
+  "elapsedSec": 0.0,
+  "actualCostUsd": 0.0,
+  "costUsd": 0.0,
+  "nodes": [
+    {
+      "id": "node_text",
+      "type": "text",
+      "name": "node_text",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "node_script",
+      "type": "script",
+      "name": "node_script",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    }
+  ],
+  "totalNodes": 2,
+  "completedNodes": 2,
+  "output": null,
+  "error": null,
+  "completedAt": "2026-11-06T09:59:47Z"
+}

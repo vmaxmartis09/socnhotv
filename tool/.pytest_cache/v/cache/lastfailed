@@ -1,0 +1,11 @@
+{
+  "tests/test_video_e2e.py::test_assets_and_voice_pipeline": true,
+  "tests/test_video_e2e.py::test_e2e_queue_and_auto_draft": true,
+  "tests/test_content_policy.py::test_import_text_and_merge_rules": true,
+  "tests/test_g3_composition.py::test_hyperframes_render_failure_does_not_call_generate_video": true,
+  "tests/test_craft_index.py::test_all_techniques_have_valid_frontmatter": true,
+  "tests/test_craft_index.py::test_registry_generation": true,
+  "tests/test_custom_ports.py::test_effective_ports_override_and_validate": true,
+  "tests/test_custom_ports.py::test_default_value_satisfies_required_port": true,
+  "tests/test_h1_short_video.py::test_h1_pipeline_execution_mock": true
+}

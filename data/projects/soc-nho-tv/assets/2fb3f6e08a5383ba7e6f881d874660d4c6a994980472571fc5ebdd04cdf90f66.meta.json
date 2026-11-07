@@ -1,0 +1,29 @@
+{
+  "id": "art_2fb3f6e08a53",
+  "kind": "audio",
+  "uri": "assets/2fb3f6e08a5383ba7e6f881d874660d4c6a994980472571fc5ebdd04cdf90f66.wav",
+  "mime": "audio/wav",
+  "size": 402234,
+  "hash": "sha256:2fb3f6e08a5383ba7e6f881d874660d4c6a994980472571fc5ebdd04cdf90f66",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 9.12,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "c_me_soc",
+    "runId": "run_1793941937_437ee3",
+    "provider": "mock",
+    "model": "mock-omnivoice-v1",
+    "params": {
+      "text": "À, khi đồ chơi bị đổ, trong bụng Bi xuất hiện một 'ngọn núi lửa giận dữ nhỏ' làm mặt nóng và tim đập nhanh đấy con ạ!",
+      "voiceId": "vn-nam-nu-01",
+      "tempo": 1.0231
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T05:12:17Z"
+  }
+}

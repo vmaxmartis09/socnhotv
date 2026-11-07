@@ -1,0 +1,14 @@
+{
+  "project_id": "soc-nho-tv",
+  "template_id": "tiktok-sales-v1",
+  "platforms": [
+    "tiktok",
+    "reels"
+  ],
+  "data": {
+    "headline": "Test Video"
+  },
+  "voice": null,
+  "source_ref": null,
+  "output_name": "test_video_1"
+}

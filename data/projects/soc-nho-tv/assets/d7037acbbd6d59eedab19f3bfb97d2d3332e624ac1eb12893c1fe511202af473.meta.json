@@ -1,0 +1,29 @@
+{
+  "id": "art_d7037acbbd6d",
+  "kind": "audio",
+  "uri": "assets/d7037acbbd6d59eedab19f3bfb97d2d3332e624ac1eb12893c1fe511202af473.wav",
+  "mime": "audio/wav",
+  "size": 321532,
+  "hash": "sha256:d7037acbbd6d59eedab19f3bfb97d2d3332e624ac1eb12893c1fe511202af473",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 7.29,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "c_soc_nho",
+    "runId": "run_1793952339_4e35d7",
+    "provider": "mock",
+    "model": "mock-omnivoice-v1",
+    "params": {
+      "text": "Bạn nhỏ nhớ nhé, mỗi khi thấy bụng nóng ran muốn giận dỗi, hãy đọc ngay: 'Xòe tay hít sâu, núi lửa nguội mau!'",
+      "voiceId": "soc-nho",
+      "tempo": 1.0968
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T08:05:39Z"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "id": "art_ddc31451de26",
+  "kind": "text",
+  "uri": "assets/ddc31451de262f3b7ffebf51c93137d4329801eb8859528accc224c114c9f9be.json",
+  "mime": "application/json",
+  "size": 2225,
+  "hash": "sha256:ddc31451de262f3b7ffebf51c93137d4329801eb8859528accc224c114c9f9be",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": null,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "n_script",
+    "runId": "run_1793895623_4b7f54",
+    "provider": "mock",
+    "model": "script-planner-v1",
+    "params": {
+      "targetSceneCount": 4,
+      "sourceText": "Tập 1: Núi lửa trong bụng Bi (Mùa 1: Cảm xúc của em). Bài học: nhận biết cơn giận 'núi lửa nóng trong bụng' và làm dịu b"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-05T16:20:23Z"
+  }
+}

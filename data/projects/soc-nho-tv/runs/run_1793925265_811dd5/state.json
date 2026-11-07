@@ -1,0 +1,112 @@
+{
+  "runId": "run_1793925265_811dd5",
+  "id": "run_1793925265_811dd5",
+  "projectId": "soc-nho-tv",
+  "status": "failed",
+  "mode": "all",
+  "stage": "Thất bại: n_voice_mun: name 'logger' is not defined; n_voice_me: name 'logger' is not defined",
+  "currentNodeId": "n_export",
+  "progress": 0.636,
+  "progressPct": 64,
+  "startedAtTs": 1793925265.0958982,
+  "createdAt": "2026-11-06T00:34:25Z",
+  "updatedAt": "2026-11-06T00:40:35Z",
+  "elapsedSec": 370.4,
+  "actualCostUsd": 0.0,
+  "costUsd": 0.0,
+  "nodes": [
+    {
+      "id": "n_script",
+      "type": "script",
+      "name": "n_script",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_char_bi",
+      "type": "character",
+      "name": "n_char_bi",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_char_mun",
+      "type": "character",
+      "name": "n_char_mun",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_char_me",
+      "type": "character",
+      "name": "n_char_me",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_keyframes",
+      "type": "image_gen",
+      "name": "n_keyframes",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_voice_bi",
+      "type": "voice_tts",
+      "name": "n_voice_bi",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_voice_mun",
+      "type": "voice_tts",
+      "name": "n_voice_mun",
+      "state": "failed",
+      "progressPct": 0,
+      "error": "Node dừng lại: name 'logger' is not defined"
+    },
+    {
+      "id": "n_voice_me",
+      "type": "voice_tts",
+      "name": "n_voice_me",
+      "state": "failed",
+      "progressPct": 0,
+      "error": "Node dừng lại: name 'logger' is not defined"
+    },
+    {
+      "id": "n_captions",
+      "type": "captions",
+      "name": "n_captions",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_render",
+      "type": "hyperframes_render",
+      "name": "n_render",
+      "state": "failed",
+      "progressPct": 0,
+      "error": "Bỏ qua node 'n_render' do node cha ['n_voice_me', 'n_voice_mun'] bị lỗi."
+    },
+    {
+      "id": "n_export",
+      "type": "export",
+      "name": "n_export",
+      "state": "failed",
+      "progressPct": 0,
+      "error": "Bỏ qua node 'n_export' do node cha ['n_render'] bị lỗi."
+    }
+  ],
+  "totalNodes": 11,
+  "completedNodes": 7,
+  "output": null,
+  "error": "n_voice_mun: name 'logger' is not defined; n_voice_me: name 'logger' is not defined",
+  "completedAt": "2026-11-06T00:40:35Z"
+}

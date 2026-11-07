@@ -1,0 +1,76 @@
+{
+  "totalUsd": 0.0,
+  "capUsd": 5.0,
+  "dailyCapUsd": 5.0,
+  "mcpCapUsd": 2.0,
+  "entries": [
+    {
+      "label": "ảnh smoke",
+      "usd": 0.04
+    },
+    {
+      "label": "hoàn: ảnh smoke lỗi khóa giả, chưa gửi",
+      "usd": -0.04
+    },
+    {
+      "label": "text_complete",
+      "usd": 0.005,
+      "source": "api",
+      "ts": 1793966980.255
+    },
+    {
+      "label": "hoàn: text_complete",
+      "usd": -0.005,
+      "source": "api",
+      "ts": 1793966980.65
+    },
+    {
+      "label": "text_complete",
+      "usd": 0.005,
+      "source": "api",
+      "ts": 1793967059.446
+    },
+    {
+      "label": "hoàn: text_complete",
+      "usd": -0.005,
+      "source": "api",
+      "ts": 1793967059.959
+    },
+    {
+      "label": "text_complete",
+      "usd": 0.005,
+      "source": "api",
+      "ts": 1794015211.068
+    },
+    {
+      "label": "hoàn: text_complete",
+      "usd": -0.005,
+      "source": "api",
+      "ts": 1794015211.44
+    },
+    {
+      "label": "ảnh n_quality",
+      "usd": 0.04,
+      "source": "api",
+      "ts": 1794020349.387
+    },
+    {
+      "label": "hoàn: ảnh n_quality",
+      "usd": -0.04,
+      "source": "api",
+      "ts": 1794020349.758
+    },
+    {
+      "label": "ảnh n_keyframes",
+      "usd": 0.04,
+      "source": "api",
+      "ts": 1794020349.84
+    },
+    {
+      "label": "hoàn: ảnh n_keyframes",
+      "usd": -0.04,
+      "source": "api",
+      "ts": 1794020350.491
+    }
+  ]
+}

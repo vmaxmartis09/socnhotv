@@ -259,5 +259,17 @@
       "Tập 28: Tại gió hay tại Mun? (ep28-tai-gio-hay-tai-mun)",
       "... cùng 9 tập khác trong tổng số 21/50 tập."
     ]
-  }
+  },
+  "referenceImages": [
+    "/data/projects/soc-nho-tv/files/characters/de_mun/de_mun_01.png",
+    "/data/projects/soc-nho-tv/files/characters/de_mun/de_mun_02.png",
+    "/data/projects/soc-nho-tv/files/characters/de_mun/de_mun_03.png",
+    "/data/projects/soc-nho-tv/files/characters/de_mun/de_mun_04.png",
+    "/data/projects/soc-nho-tv/files/characters/de_mun/de_mun_05.png",
+    "/data/projects/soc-nho-tv/files/characters/de_mun/de_mun_06.png",
+    "/data/projects/soc-nho-tv/files/characters/de_mun/de_mun_07.png",
+    "/data/projects/soc-nho-tv/files/characters/de_mun/de_mun_dna_sheet.png"
+  ],
+  "sampleAudioUrl": "/data/voices/vn-be-04/de_mun_catchphrase.mp3",
+  "sampleText": "Anh Bông ơi, đợi Mun với!"
 }

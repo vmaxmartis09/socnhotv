@@ -1,0 +1,31 @@
+{
+  "id": "art_0785d79a3fc9",
+  "kind": "audio",
+  "uri": "assets/0785d79a3fc91cfb758ec28ba5250480a4b4fffcaa19c8c97e37e56754ba0d47.mp3",
+  "mime": "audio/mp3",
+  "size": 523536,
+  "hash": "sha256:0785d79a3fc91cfb758ec28ba5250480a4b4fffcaa19c8c97e37e56754ba0d47",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 21.752,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "voice_say",
+    "runId": "say",
+    "provider": "omnivoice",
+    "model": "omnivoice",
+    "params": {
+      "text": "Đồ thị Gobi đã sửa lại đúng. Còn 7 node: Gobi, Phòng khách, Ảnh sản phẩm, Tách nền, Gobi mặc đồ, Dựng KOC review, Xuất. Hai node dư là Giọng đọc và Lời review đã xoá. Gobi tự đọc bằng giọng koc-lyly, nối thẳng sang ô Dựng. Node ảnh sản phẩm vẫn để trống cho bạn nạp.",
+      "voiceId": "koc-lyly",
+      "tempo": 1.05,
+      "targetLufs": -14.0,
+      "mastering": "deesser+presence3.2k+comp4:1+loudnorm-14LUFS"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-07T08:24:18Z"
+  }
+}

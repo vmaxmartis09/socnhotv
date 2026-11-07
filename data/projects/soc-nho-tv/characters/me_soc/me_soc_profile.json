@@ -10,7 +10,7 @@
   "weight_kg": 32.0,
   "head_body_ratio": "1 : 5.2 (Tỉ lệ người lớn hiền hậu)",
   "scale_note": "Cao 145 cm (1.45x). Đỉnh đầu Sóc Bi (100 cm) chạm đúng ngực Mẹ Sóc.",
-  "voice_id": "me_soc_v1",
+  "voice_id": "vn-nam-nu-01",
   "voice_description": "Giọng phụ nữ trẻ ấm áp, dịu dàng, truyền cảm, luôn kiên nhẫn lắng nghe con.",
   "body": {
     "height_cm": 145,
@@ -66,5 +66,12 @@
     "ep34-mon-qua-tu-lam",
     "ep35-bo-me-met-roi",
     "ep45-man-hinh-vua-du"
+  ],
+  "cutout_images": [
+    "characters/me_soc/cutout/me_soc_01.png",
+    "characters/me_soc/cutout/me_soc_02.png",
+    "characters/me_soc/cutout/me_soc_03.png",
+    "characters/me_soc/cutout/me_soc_04.png",
+    "characters/me_soc/cutout/me_soc_05.png"
   ]
 }

@@ -1,0 +1,19 @@
+{
+  "id": "vn-be-03",
+  "display_name": "Bé 3 (giọng trẻ em)",
+  "aliases": [],
+  "engine": "omnivoice",
+  "lang": "vi",
+  "dialect": "south",
+  "gender": "child",
+  "age_group": "child",
+  "sample_paths": [
+    "cloned_default_sample.mp3"
+  ],
+  "loudness": -14.0,
+  "status": "ready",
+  "consent_note": "Giọng bé từ video YouTube https://www.youtube.com/watch?v=BCXGARH5cy4 (kênh Câu Lạc Bộ Nghệ Thuật Hí Hoáy). Người dùng xác nhận đã hỏi ý kiến phụ huynh, dùng cho phim dành cho các bé.",
+  "source_url": "https://www.youtube.com/watch?v=BCXGARH5cy4",
+  "transcript": "Mà miếch tất cả đêm là một chút quân cao",
+  "created_at": "2026-11-06T07:26:39.421049"
+}

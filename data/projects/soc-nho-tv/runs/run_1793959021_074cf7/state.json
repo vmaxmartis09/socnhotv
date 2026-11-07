@@ -1,0 +1,56 @@
+{
+  "runId": "run_1793959021_074cf7",
+  "id": "run_1793959021_074cf7",
+  "projectId": "soc-nho-tv",
+  "status": "failed",
+  "mode": "all",
+  "stage": "Thất bại: node_faulty: Lỗi mạng cố ý tại node_faulty!",
+  "currentNodeId": "node_good_child",
+  "progress": 0.5,
+  "progressPct": 50,
+  "startedAtTs": 1793959021.2415118,
+  "createdAt": "2026-11-06T09:57:01Z",
+  "updatedAt": "2026-11-06T09:57:01Z",
+  "elapsedSec": 0.0,
+  "actualCostUsd": 0.0,
+  "costUsd": 0.0,
+  "nodes": [
+    {
+      "id": "node_faulty",
+      "type": "image_gen",
+      "name": "node_faulty",
+      "state": "failed",
+      "progressPct": 0,
+      "error": "Node dừng lại: Lỗi mạng cố ý tại node_faulty!"
+    },
+    {
+      "id": "node_faulty_child",
+      "type": "video_gen",
+      "name": "node_faulty_child",
+      "state": "failed",
+      "progressPct": 0,
+      "error": "Bỏ qua node 'node_faulty_child' do node cha ['node_faulty'] bị lỗi."
+    },
+    {
+      "id": "node_good",
+      "type": "text",
+      "name": "node_good",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "node_good_child",
+      "type": "script",
+      "name": "node_good_child",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    }
+  ],
+  "totalNodes": 4,
+  "completedNodes": 2,
+  "output": null,
+  "error": "node_faulty: Lỗi mạng cố ý tại node_faulty!",
+  "completedAt": "2026-11-06T09:57:01Z"
+}

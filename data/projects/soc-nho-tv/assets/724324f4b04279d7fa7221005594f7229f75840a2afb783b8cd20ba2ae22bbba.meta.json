@@ -1,0 +1,31 @@
+{
+  "id": "art_724324f4b042",
+  "kind": "audio",
+  "uri": "assets/724324f4b04279d7fa7221005594f7229f75840a2afb783b8cd20ba2ae22bbba.mp3",
+  "mime": "audio/mp3",
+  "size": 118534,
+  "hash": "sha256:724324f4b04279d7fa7221005594f7229f75840a2afb783b8cd20ba2ae22bbba",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 4.86,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "prebuild_voice",
+    "runId": "prebuild_ep02-mun-so-bong-toi",
+    "provider": "omnivoice",
+    "model": "omnivoice",
+    "params": {
+      "text": "Sao làm hoài vẫn không được thế này! Khó quá đi mất thôi!",
+      "voiceId": "vn-be-04",
+      "tempo": 1.0,
+      "targetLufs": -14.0,
+      "mastering": "deesser+presence3.2k+comp4:1+loudnorm-14LUFS"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T10:56:51Z"
+  }
+}

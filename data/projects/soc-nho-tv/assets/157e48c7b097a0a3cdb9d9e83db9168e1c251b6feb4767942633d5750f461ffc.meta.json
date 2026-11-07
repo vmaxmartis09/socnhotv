@@ -1,0 +1,31 @@
+{
+  "id": "art_157e48c7b097",
+  "kind": "audio",
+  "uri": "assets/157e48c7b097a0a3cdb9d9e83db9168e1c251b6feb4767942633d5750f461ffc.mp3",
+  "mime": "audio/mp3",
+  "size": 3426263,
+  "hash": "sha256:157e48c7b097a0a3cdb9d9e83db9168e1c251b6feb4767942633d5750f461ffc",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 142.69,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "n_voice_bi",
+    "runId": "run_1793925265_811dd5",
+    "provider": "omnivoice",
+    "model": "omnivoice",
+    "params": {
+      "text": "Chào các bạn nhỏ! Sáng nay ở nhà cây, Bi đang xếp một tòa tháp gỗ năm tầng thật cao nè! Ủa, tại sao lúc nãy bụng Bi lại nóng ran như có ngọn núi lửa thế nhỉ? Bạn nhỏ cùng xem chuyện gì đã xảy ra nhé! Mun ngồi bên cạnh xem anh Bi xếp tiếp tầng ba màu vàng và tầng bốn màu xanh lá nhé! Tada! Còn mảnh ghép ngôi sao vàng cuối cùng này, anh Bi đặt lên đỉnh tầng năm nha! Ấy khoan đã Mun ơi! Coi chừng vấp mép thảm… Ôi thôi, tháp gỗ của Bi! Phù… phù… Bao nhiêu công sức Bi xếp từ sáng tới giờ, đổ tan tành hết cả rồi! Bi không cần đâu! Tại Mun chạy ẩu làm hỏng tháp của Bi đấy! Hừ! Ơ… Mun khóc mất rồi… Sao lúc nãy bụng Bi nóng quá làm Bi lỡ quát em thế nhỉ? Mẹ ơi… Mun làm đổ tháp gỗ của con, tự nhiên bụng con nóng ran lên nên con lỡ mắng em Mun ạ… Thế làm sao để dập tắt ngọn núi lửa nóng trong bụng hả mẹ? Bạn nhỏ ơi, cùng nghe mẹ dạy bí quyết nhé! Ngón hai, ngón ba, ngón bốn, ngón năm! Hít vào thơm hoa cúc… Thổi ra chong chóng quay tít! Bụng Bi mát dịu lại thật rồi mẹ ơi! Mình nhớ câu thần chú rồi: 'Xòe tay hít sâu, núi lửa nguội mau!' Bạn nhỏ đọc to cùng Bi và Mun nào! 🎵 Khi bụng em nóng ran, muốn hét lên thật to. Dừng lại ngay một chút, xòe bàn tay nhỏ ra! 🎵 Đố bạn nhỏ nhé: Khi đang giận, chúng mình nên quát to hay nên xòe bàn tay năm ngón hít thở sâu nào? … Đúng rồi, xòe tay hít thở sâu nhé! Mun ơi, anh Bi xin lỗi vì lúc nãy đã quát to làm Mun sợ nhé! Anh em mình làm hòa nha! Cầm chong chóng ra ban công đón gió mát thôi Mun ơi! Nhìn chong chóng của hai anh em mình quay đẹp chưa kìa! Bạn nhỏ nhớ nhé, mỗi khi thấy bụng nóng ran muốn giận dỗi, hãy đọc ngay: 'Xòe tay hít sâu, núi lửa nguội mau!' 🎵 'Xòe tay hít sâu, núi lửa nguội mau!' — Trái tim êm dịu lại, mình nói lời yêu thương! 🎵 Cảm ơn bạn nhỏ đã đến nhà cây chơi với anh em Bi và Mun hôm nay nhé! Chúc bạn nhỏ luôn vui vẻ và ngoan ngoãn!",
+      "voiceId": "soc-nho",
+      "tempo": 1.0,
+      "targetLufs": -14.0,
+      "mastering": "deesser+presence3.2k+comp4:1+loudnorm-14LUFS"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T00:40:24Z"
+  }
+}

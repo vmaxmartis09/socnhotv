@@ -1,0 +1,249 @@
+{
+  "runId": "run_1793928054_633584",
+  "id": "run_1793928054_633584",
+  "projectId": "soc-nho-tv",
+  "status": "completed",
+  "mode": "downstream",
+  "stage": "Hoàn tất xuất sắc",
+  "currentNodeId": "n_export",
+  "progress": 1.0,
+  "progressPct": 100,
+  "startedAtTs": 1793928054.645368,
+  "createdAt": "2026-11-06T01:20:54Z",
+  "updatedAt": "2026-11-06T01:21:46Z",
+  "elapsedSec": 52.1,
+  "actualCostUsd": 0.0,
+  "costUsd": 0.0,
+  "nodes": [
+    {
+      "id": "n_script",
+      "type": "script",
+      "name": "n_script",
+      "state": "pending",
+      "progressPct": 0,
+      "error": null
+    },
+    {
+      "id": "n_char_bi",
+      "type": "character",
+      "name": "n_char_bi",
+      "state": "pending",
+      "progressPct": 0,
+      "error": null
+    },
+    {
+      "id": "n_char_mun",
+      "type": "character",
+      "name": "n_char_mun",
+      "state": "pending",
+      "progressPct": 0,
+      "error": null
+    },
+    {
+      "id": "n_char_me",
+      "type": "character",
+      "name": "n_char_me",
+      "state": "pending",
+      "progressPct": 0,
+      "error": null
+    },
+    {
+      "id": "n_keyframes",
+      "type": "image_gen",
+      "name": "n_keyframes",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_voice_bi",
+      "type": "voice_tts",
+      "name": "n_voice_bi",
+      "state": "pending",
+      "progressPct": 0,
+      "error": null
+    },
+    {
+      "id": "n_voice_mun",
+      "type": "voice_tts",
+      "name": "n_voice_mun",
+      "state": "pending",
+      "progressPct": 0,
+      "error": null
+    },
+    {
+      "id": "n_voice_me",
+      "type": "voice_tts",
+      "name": "n_voice_me",
+      "state": "pending",
+      "progressPct": 0,
+      "error": null
+    },
+    {
+      "id": "n_captions",
+      "type": "captions",
+      "name": "n_captions",
+      "state": "pending",
+      "progressPct": 0,
+      "error": null
+    },
+    {
+      "id": "n_render",
+      "type": "hyperframes_render",
+      "name": "n_render",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_export",
+      "type": "export",
+      "name": "n_export",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    }
+  ],
+  "totalNodes": 11,
+  "completedNodes": 3,
+  "output": {
+    "id": "vid_v-sao-c-u-v-ng-c-nhi-u-m-u-10_1793928106",
+    "title": "Vì sao cầu vồng có nhiều màu?",
+    "topic": "v-sao-c-u-v-ng-c-nhi-u-m-u-10",
+    "created_at": "2026-11-06T01:21:46Z",
+    "duration_s": 36.07,
+    "size_mb": 21.06,
+    "platforms": [
+      "youtube"
+    ],
+    "template_id": "shorts-fact-v1",
+    "graph_ref": "graph.json",
+    "run_id": "run_1793928054_633584",
+    "voice_id": "soc-nho",
+    "providers_per_scene": {
+      "1": "local_dna_pixar",
+      "2": "local_dna_pixar",
+      "3": "local_dna_pixar",
+      "4": "local_dna_pixar",
+      "5": "local_dna_pixar",
+      "6": "local_dna_pixar",
+      "7": "local_dna_pixar",
+      "8": "local_dna_pixar",
+      "9": "local_dna_pixar",
+      "10": "local_dna_pixar",
+      "11": "local_dna_pixar",
+      "12": "local_dna_pixar",
+      "13": "local_dna_pixar",
+      "14": "local_dna_pixar",
+      "15": "local_dna_pixar",
+      "16": "local_dna_pixar",
+      "17": "local_dna_pixar",
+      "18": "local_dna_pixar",
+      "19": "local_dna_pixar",
+      "20": "local_dna_pixar",
+      "21": "local_dna_pixar",
+      "22": "local_dna_pixar",
+      "23": "local_dna_pixar",
+      "24": "local_dna_pixar",
+      "25": "local_dna_pixar",
+      "26": "local_dna_pixar",
+      "27": "local_dna_pixar",
+      "28": "local_dna_pixar",
+      "29": "local_dna_pixar",
+      "30": "local_dna_pixar"
+    },
+    "cost_usd": 0.0,
+    "files": {
+      "video": "output/v-sao-c-u-v-ng-c-nhi-u-m-u-10/final_45s.mp4",
+      "thumb": "output/v-sao-c-u-v-ng-c-nhi-u-m-u-10/thumb.jpg",
+      "script": "output/v-sao-c-u-v-ng-c-nhi-u-m-u-10/script.md",
+      "voice": "output/v-sao-c-u-v-ng-c-nhi-u-m-u-10/voice.mp3",
+      "captions": "output/v-sao-c-u-v-ng-c-nhi-u-m-u-10/captions.srt",
+      "captions_words": "output/v-sao-c-u-v-ng-c-nhi-u-m-u-10/captions.words.json",
+      "scenes": "output/v-sao-c-u-v-ng-c-nhi-u-m-u-10/scenes",
+      "composition": "output/v-sao-c-u-v-ng-c-nhi-u-m-u-10/composition",
+      "verify_report": "output/v-sao-c-u-v-ng-c-nhi-u-m-u-10/verify_report.json"
+    },
+    "verify": {
+      "pass": false,
+      "scores": {
+        "voice_clarity": 3.5,
+        "captions_sync": 3.5,
+        "visual_diversity": 3.0,
+        "character_consistency": 5.0,
+        "pacing": 3.5
+      }
+    }
+  },
+  "error": null,
+  "completedAt": "2026-11-06T01:21:46Z",
+  "outputs": {
+    "id": "vid_v-sao-c-u-v-ng-c-nhi-u-m-u-10_1793928106",
+    "title": "Vì sao cầu vồng có nhiều màu?",
+    "topic": "v-sao-c-u-v-ng-c-nhi-u-m-u-10",
+    "created_at": "2026-11-06T01:21:46Z",
+    "duration_s": 36.07,
+    "size_mb": 21.06,
+    "platforms": [
+      "youtube"
+    ],
+    "template_id": "shorts-fact-v1",
+    "graph_ref": "graph.json",
+    "run_id": "run_1793928054_633584",
+    "voice_id": "soc-nho",
+    "providers_per_scene": {
+      "1": "local_dna_pixar",
+      "2": "local_dna_pixar",
+      "3": "local_dna_pixar",
+      "4": "local_dna_pixar",
+      "5": "local_dna_pixar",
+      "6": "local_dna_pixar",
+      "7": "local_dna_pixar",
+      "8": "local_dna_pixar",
+      "9": "local_dna_pixar",
+      "10": "local_dna_pixar",
+      "11": "local_dna_pixar",
+      "12": "local_dna_pixar",
+      "13": "local_dna_pixar",
+      "14": "local_dna_pixar",
+      "15": "local_dna_pixar",
+      "16": "local_dna_pixar",
+      "17": "local_dna_pixar",
+      "18": "local_dna_pixar",
+      "19": "local_dna_pixar",
+      "20": "local_dna_pixar",
+      "21": "local_dna_pixar",
+      "22": "local_dna_pixar",
+      "23": "local_dna_pixar",
+      "24": "local_dna_pixar",
+      "25": "local_dna_pixar",
+      "26": "local_dna_pixar",
+      "27": "local_dna_pixar",
+      "28": "local_dna_pixar",
+      "29": "local_dna_pixar",
+      "30": "local_dna_pixar"
+    },
+    "cost_usd": 0.0,
+    "files": {
+      "video": "output/v-sao-c-u-v-ng-c-nhi-u-m-u-10/final_45s.mp4",
+      "thumb": "output/v-sao-c-u-v-ng-c-nhi-u-m-u-10/thumb.jpg",
+      "script": "output/v-sao-c-u-v-ng-c-nhi-u-m-u-10/script.md",
+      "voice": "output/v-sao-c-u-v-ng-c-nhi-u-m-u-10/voice.mp3",
+      "captions": "output/v-sao-c-u-v-ng-c-nhi-u-m-u-10/captions.srt",
+      "captions_words": "output/v-sao-c-u-v-ng-c-nhi-u-m-u-10/captions.words.json",
+      "scenes": "output/v-sao-c-u-v-ng-c-nhi-u-m-u-10/scenes",
+      "composition": "output/v-sao-c-u-v-ng-c-nhi-u-m-u-10/composition",
+      "verify_report": "output/v-sao-c-u-v-ng-c-nhi-u-m-u-10/verify_report.json"
+    },
+    "verify": {
+      "pass": false,
+      "scores": {
+        "voice_clarity": 3.5,
+        "captions_sync": 3.5,
+        "visual_diversity": 3.0,
+        "character_consistency": 5.0,
+        "pacing": 3.5
+      }
+    }
+  }
+}

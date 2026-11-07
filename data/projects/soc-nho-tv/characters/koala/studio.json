@@ -76,5 +76,21 @@
       "Tập 18: Nước lọc là siêu anh hùng (ep18-nuoc-loc-la-sieu-anh-hung)",
       "Tập 20: Đi khám Bác sĩ Koala (ep20-di-kham-bac-si-koala)"
     ]
-  }
+  },
+  "referenceImages": [
+    "/data/projects/soc-nho-tv/files/characters/koala/koala_01.png",
+    "/data/projects/soc-nho-tv/files/characters/koala/koala_02.png",
+    "/data/projects/soc-nho-tv/files/characters/koala/koala_03.png",
+    "/data/projects/soc-nho-tv/files/characters/koala/koala_04.png",
+    "/data/projects/soc-nho-tv/files/characters/koala/koala_05.png",
+    "/data/projects/soc-nho-tv/files/characters/koala/koala_06.png",
+    "/data/projects/soc-nho-tv/files/characters/koala/koala_07.png",
+    "/data/projects/soc-nho-tv/files/characters/koala/koala_08.png",
+    "/data/projects/soc-nho-tv/files/characters/koala/koala_09.png",
+    "/data/projects/soc-nho-tv/files/characters/koala/koala_10.png",
+    "/data/projects/soc-nho-tv/files/characters/koala/koala_11.png",
+    "/data/projects/soc-nho-tv/files/characters/koala/koala_dna_sheet.png"
+  ],
+  "sampleAudioUrl": "/data/voices/koala-voice/koala_catchphrase.mp3",
+  "sampleText": "Chà, để Bác sĩ Koala xem bạn nhỏ nào dũng cảm nhất hôm nay nhé!"
 }

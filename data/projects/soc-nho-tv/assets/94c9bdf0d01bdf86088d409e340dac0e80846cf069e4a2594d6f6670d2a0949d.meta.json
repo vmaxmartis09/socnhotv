@@ -1,0 +1,31 @@
+{
+  "id": "art_94c9bdf0d01b",
+  "kind": "audio",
+  "uri": "assets/94c9bdf0d01bdf86088d409e340dac0e80846cf069e4a2594d6f6670d2a0949d.mp3",
+  "mime": "audio/mp3",
+  "size": 137969,
+  "hash": "sha256:94c9bdf0d01bdf86088d409e340dac0e80846cf069e4a2594d6f6670d2a0949d",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 5.68,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "prebuild_voice",
+    "runId": "prebuild_ep02-mun-so-bong-toi",
+    "provider": "omnivoice",
+    "model": "omnivoice",
+    "params": {
+      "text": "Huhuhu… Bao nhiêu công sức của mình từ nãy đến giờ, thế là hỏng mất rồi!",
+      "voiceId": "vn-be-04",
+      "tempo": 1.0,
+      "targetLufs": -14.0,
+      "mastering": "deesser+presence3.2k+comp4:1+loudnorm-14LUFS"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T10:32:17Z"
+  }
+}

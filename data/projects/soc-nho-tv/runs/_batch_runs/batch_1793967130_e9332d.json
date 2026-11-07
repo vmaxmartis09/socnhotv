@@ -1,0 +1,36 @@
+{
+  "batchId": "batch_1793967130_e9332d",
+  "projectId": "soc-nho-tv",
+  "totalEpisodes": 1,
+  "completedCount": 1,
+  "failedCount": 0,
+  "cancelledCount": 0,
+  "totalCostUsd": 0.0,
+  "isSuccess": true,
+  "episodeResults": [
+    {
+      "episodeId": "ep01-nui-lua-trong-bung-bi",
+      "runId": "run_1793967130_e72ee6",
+      "isSuccess": true,
+      "status": "completed",
+      "totalCostUsd": 0.0,
+      "executedNodes": [
+        "n_export"
+      ],
+      "skippedNodes": [],
+      "failedNodes": [],
+      "cachedNodes": [
+        "n_script",
+        "n_quality",
+        "n_image",
+        "n_video"
+      ],
+      "errors": {},
+      "outputVideoPath": "output/ep01-nui-lua-trong-bung-bi/ep01-nui-lua-trong-bung-bi.mp4",
+      "durationSec": 2.52
+    }
+  ],
+  "startedAt": "2026-11-06T12:12:10Z",
+  "finishedAt": "2026-11-06T12:12:13Z",
+  "durationSec": 2.52
+}

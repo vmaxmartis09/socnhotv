@@ -1,0 +1,40 @@
+{
+  "runId": "run_1793959187_76231d",
+  "id": "run_1793959187_76231d",
+  "projectId": "soc-nho-tv",
+  "status": "failed",
+  "mode": "all",
+  "stage": "Thất bại: r: Chính sách nội dung của dự án chặn việc dựng video:\nChính sách: KHÔNG ĐẠT — 12 vi phạm chặn, 0 cảnh báo.\n- [BLOCK] Bạo lực: “đánh nhau” trong scene1.dialogue …Sóc Bi: Mình sẽ đánh nhau và đổ máu!…\n- [BLOCK] Bạo lực: “đổ máu” trong scene1.dialogue …i: Mình sẽ đánh nhau và đổ máu!…\n- [BLOCK] Bạo lực: “đánh nhau” trong scene1.imagePrompt …ình 3D: Sóc Bi: Mình sẽ đánh nhau và đổ máu!…\n- [BLOCK] Bạo lực: “đổ máu” trong scene1.imagePrompt …i: Mình sẽ đánh nhau và đổ máu!…\n- [BLOCK] Bạo lực: “đánh nhau” trong s.dialogue …Sóc Bi: Mình sẽ đánh nhau và đổ máu!…\n- [BLOCK] Bạo lực: “đổ máu” trong s.dialogue …i: Mình sẽ đánh nhau và đổ máu!…\n- [BLOCK] Bạo lực: “đánh nhau” trong s.prompt …ình 3D: Sóc Bi: Mình sẽ đánh nhau và đổ máu!…\n- [BLOCK] Bạo lực: “đổ máu” trong s.prompt …i: Mình sẽ đánh nhau và đổ máu!…\n- [BLOCK] Bạo lực: “đánh nhau” trong s.scene1.dialogue …Sóc Bi: Mình sẽ đánh nhau và đổ máu!…\n- [BLOCK] Bạo lực: “đổ máu” trong s.scene1.dialogue …i: Mình sẽ đánh nhau và đổ máu!…\n- [BLOCK] Bạo lực: “đánh nhau” trong s.scene1.imagePrompt …ình 3D: Sóc Bi: Mình sẽ đánh nhau và đổ máu!…\n- [BLOCK] Bạo lực: “đổ máu” trong s.scene1.imagePrompt …i: Mình sẽ đánh nhau và đổ máu!…",
+  "currentNodeId": "r",
+  "progress": 0.5,
+  "progressPct": 50,
+  "startedAtTs": 1793959187.235565,
+  "createdAt": "2026-11-06T09:59:47Z",
+  "updatedAt": "2026-11-06T09:59:47Z",
+  "elapsedSec": 0.0,
+  "actualCostUsd": 0.0,
+  "costUsd": 0.0,
+  "nodes": [
+    {
+      "id": "s",
+      "type": "script",
+      "name": "s",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "r",
+      "type": "hyperframes_render",
+      "name": "r",
+      "state": "failed",
+      "progressPct": 0,
+      "error": "Node dừng lại: Chính sách nội dung của dự án chặn việc dựng video:\nChính sách: KHÔNG ĐẠT — 12 vi phạm chặn, 0 cảnh báo.\n- [BLOCK] Bạo lực: “đánh nhau” trong scene1.dialogue …Sóc Bi: Mình sẽ đánh nhau và đổ máu!…\n- [BLOCK] Bạo lực: “đổ máu” trong scene1.dialogue …i: Mình sẽ đánh nhau và đổ máu!…\n- [BLOCK] Bạo lực: “đánh nhau” trong scene1.imagePrompt …ình 3D: Sóc Bi: Mình sẽ đánh nhau và đổ máu!…\n- [BLOCK] Bạo lực: “đổ máu” trong scene1.imagePrompt …i: Mình sẽ đánh nhau và đổ máu!…\n- [BLOCK] Bạo lực: “đánh nhau” trong s.dialogue …Sóc Bi: Mình sẽ đánh nhau và đổ máu!…\n- [BLOCK] Bạo lực: “đổ máu” trong s.dialogue …i: Mình sẽ đánh nhau và đổ máu!…\n- [BLOCK] Bạo lực: “đánh nhau” trong s.prompt …ình 3D: Sóc Bi: Mình sẽ đánh nhau và đổ máu!…\n- [BLOCK] Bạo lực: “đổ máu” trong s.prompt …i: Mình sẽ đánh nhau và đổ máu!…\n- [BLOCK] Bạo lực: “đánh nhau” trong s.scene1.dialogue …Sóc Bi: Mình sẽ đánh nhau và đổ máu!…\n- [BLOCK] Bạo lực: “đổ máu” trong s.scene1.dialogue …i: Mình sẽ đánh nhau và đổ máu!…\n- [BLOCK] Bạo lực: “đánh nhau” trong s.scene1.imagePrompt …ình 3D: Sóc Bi: Mình sẽ đánh nhau và đổ máu!…\n- [BLOCK] Bạo lực: “đổ máu” trong s.scene1.imagePrompt …i: Mình sẽ đánh nhau và đổ máu!…"
+    }
+  ],
+  "totalNodes": 2,
+  "completedNodes": 1,
+  "output": null,
+  "error": "r: Chính sách nội dung của dự án chặn việc dựng video:\nChính sách: KHÔNG ĐẠT — 12 vi phạm chặn, 0 cảnh báo.\n- [BLOCK] Bạo lực: “đánh nhau” trong scene1.dialogue …Sóc Bi: Mình sẽ đánh nhau và đổ máu!…\n- [BLOCK] Bạo lực: “đổ máu” trong scene1.dialogue …i: Mình sẽ đánh nhau và đổ máu!…\n- [BLOCK] Bạo lực: “đánh nhau” trong scene1.imagePrompt …ình 3D: Sóc Bi: Mình sẽ đánh nhau và đổ máu!…\n- [BLOCK] Bạo lực: “đổ máu” trong scene1.imagePrompt …i: Mình sẽ đánh nhau và đổ máu!…\n- [BLOCK] Bạo lực: “đánh nhau” trong s.dialogue …Sóc Bi: Mình sẽ đánh nhau và đổ máu!…\n- [BLOCK] Bạo lực: “đổ máu” trong s.dialogue …i: Mình sẽ đánh nhau và đổ máu!…\n- [BLOCK] Bạo lực: “đánh nhau” trong s.prompt …ình 3D: Sóc Bi: Mình sẽ đánh nhau và đổ máu!…\n- [BLOCK] Bạo lực: “đổ máu” trong s.prompt …i: Mình sẽ đánh nhau và đổ máu!…\n- [BLOCK] Bạo lực: “đánh nhau” trong s.scene1.dialogue …Sóc Bi: Mình sẽ đánh nhau và đổ máu!…\n- [BLOCK] Bạo lực: “đổ máu” trong s.scene1.dialogue …i: Mình sẽ đánh nhau và đổ máu!…\n- [BLOCK] Bạo lực: “đánh nhau” trong s.scene1.imagePrompt …ình 3D: Sóc Bi: Mình sẽ đánh nhau và đổ máu!…\n- [BLOCK] Bạo lực: “đổ máu” trong s.scene1.imagePrompt …i: Mình sẽ đánh nhau và đổ máu!…",
+  "completedAt": "2026-11-06T09:59:47Z"
+}

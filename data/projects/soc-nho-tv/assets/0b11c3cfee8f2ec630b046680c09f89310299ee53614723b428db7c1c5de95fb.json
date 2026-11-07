@@ -1,0 +1,13 @@
+{
+  "title": "Cảnh 1",
+  "scenes": [
+    {
+      "sceneNumber": 1,
+      "title": "Cảnh 1",
+      "imagePrompt": "Cảnh hoạt hình 3D: Sóc Bi: Mình sẽ đánh nhau và đổ máu!",
+      "videoPrompt": "Camera góc trung chuyển động mượt mà, diễn hoạt sinh động theo nội dung Cảnh 1",
+      "dialogue": "Sóc Bi: Mình sẽ đánh nhau và đổ máu!",
+      "durationSec": 20.0
+    }
+  ]
+}

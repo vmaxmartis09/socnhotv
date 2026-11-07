@@ -1,0 +1,31 @@
+{
+  "id": "art_f05fca7999d4",
+  "kind": "audio",
+  "uri": "assets/f05fca7999d4e4dde974eee25c973f46fbb059271e01da576725acab36dfc079.mp3",
+  "mime": "audio/mp3",
+  "size": 125430,
+  "hash": "sha256:f05fca7999d4e4dde974eee25c973f46fbb059271e01da576725acab36dfc079",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 5.17,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "prebuild_voice",
+    "runId": "prebuild_ep02-mun-so-bong-toi",
+    "provider": "omnivoice",
+    "model": "omnivoice",
+    "params": {
+      "text": "Hẹn gặp lại các bạn nhỏ ở tập tiếp theo của Sóc Nhỏ TV nhé! Tạm biệt!",
+      "voiceId": "vn-nam-nam-02",
+      "tempo": 1.0,
+      "targetLufs": -14.0,
+      "mastering": "deesser+presence3.2k+comp4:1+loudnorm-14LUFS"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T10:41:49Z"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "id": "art_7f62e7a3008f",
+  "kind": "video",
+  "uri": "assets/7f62e7a3008f43ffd3e8e0db63917533614b9d9a7fd82baf36799aaa6710388a.mp4",
+  "mime": "video/mp4",
+  "size": 260467705,
+  "hash": "sha256:7f62e7a3008f43ffd3e8e0db63917533614b9d9a7fd82baf36799aaa6710388a",
+  "meta": {
+    "width": 1920,
+    "height": 1080,
+    "duration": 600.0,
+    "fps": null,
+    "aspect": "9:16"
+  },
+  "provenance": {
+    "nodeId": "n_export",
+    "runId": "run_1793965970_ba090b",
+    "provider": "local",
+    "model": "export_package_v1",
+    "params": {
+      "outputFileName": "tap01_nui_lua_trong_bung_bi.mp4",
+      "slug": "t-p-m-i",
+      "platforms": [
+        "youtube"
+      ]
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T11:53:17Z"
+  }
+}

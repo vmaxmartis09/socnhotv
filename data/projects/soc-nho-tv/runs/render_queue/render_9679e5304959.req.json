@@ -1,0 +1,23 @@
+{
+  "project_id": "soc-nho-tv",
+  "template_id": "remake-v1",
+  "platforms": [
+    "tiktok",
+    "youtube"
+  ],
+  "data": {
+    "mode": "R",
+    "source_id": "douyin_test_mode_r",
+    "video_path": null,
+    "voice_path": "raw/douyin_test_mode_r/voice.vi.mp3",
+    "script_path": "content/scripts/douyin_test_mode_r.hook_boost.json",
+    "style": "hook_boost"
+  },
+  "voice": {
+    "voice_id": "soc-nho",
+    "script": null,
+    "audio_path": "raw/douyin_test_mode_r/voice.vi.mp3"
+  },
+  "source_ref": "douyin_test_mode_r",
+  "output_name": "loc_douyin_test_mode_r_hook_boost"
+}

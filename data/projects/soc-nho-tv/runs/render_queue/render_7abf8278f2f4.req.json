@@ -1,0 +1,23 @@
+{
+  "project_id": "soc-nho-tv",
+  "template_id": "story-cartoon-v1",
+  "platforms": [
+    "shorts",
+    "tiktok",
+    "reels"
+  ],
+  "data": {
+    "story_title": "Bài Học Ý Nghĩa - EP_E2E_DRAFT_TEST",
+    "book_page_text": "Răng em hết đau rồi, cảm ơn Bác sĩ Koala! Chúc Bi luôn vui khỏe và có nụ cười thật tươi!",
+    "moral_lesson": "Hãy cùng theo dõi chuyến phiêu lưu tiếp theo!",
+    "auto_draft": true,
+    "title": "Shorts 3 - ep_e2e_draft_test"
+  },
+  "voice": {
+    "voice_id": null,
+    "script": null,
+    "audio_path": "/Volumes/Data/socnhotv/data/projects/soc-nho-tv/output/ep_e2e_draft_test/audio/episode_master_voice.mp3"
+  },
+  "source_ref": null,
+  "output_name": "ep_e2e_draft_test_short_03"
+}

@@ -10,7 +10,7 @@
   "weight_kg": 13.5,
   "head_body_ratio": "1 : 4.0 (Đầu = 24cm, Thân & Chân = 71cm)",
   "scale_note": "Cao 95 cm (0.95x). Thấp hơn Sóc Bi 5 cm (đỉnh đầu Mimi ngang trán Bi), cao hơn Dê Mun 10 cm.",
-  "voice_id": "meo_mimi_v1",
+  "voice_id": "vn-be-03",
   "voice_description": "Giọng bé gái 4.5 tuổi nhẹ nhàng, trong trẻo, giàu cảm xúc, thích ngân nga hát.",
   "body": {
     "height_cm": 95,
@@ -76,5 +76,14 @@
     "ep42-giot-nuoc-tiet-kiem",
     "ep47-long-den-trung-thu",
     "ep50-le-hoi-rung-xanh"
+  ],
+  "cutout_images": [
+    "characters/meo_mimi/cutout/meo_mimi_01.png",
+    "characters/meo_mimi/cutout/meo_mimi_02.png",
+    "characters/meo_mimi/cutout/meo_mimi_03.png",
+    "characters/meo_mimi/cutout/meo_mimi_04.png",
+    "characters/meo_mimi/cutout/meo_mimi_05.png",
+    "characters/meo_mimi/cutout/meo_mimi_06.png",
+    "characters/meo_mimi/cutout/meo_mimi_07.png"
   ]
 }

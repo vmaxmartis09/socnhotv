@@ -1,0 +1,29 @@
+{
+  "id": "art_d19d229767f4",
+  "kind": "audio",
+  "uri": "assets/d19d229767f4388173894c7ecdf5ccb86b281434dcc131791b8e918151c2499b.wav",
+  "mime": "audio/wav",
+  "size": 389006,
+  "hash": "sha256:d19d229767f4388173894c7ecdf5ccb86b281434dcc131791b8e918151c2499b",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 8.82,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "c_soc_nho",
+    "runId": "run_1793955922_5c467e",
+    "provider": "mock",
+    "model": "mock-omnivoice-v1",
+    "params": {
+      "text": "Cảm ơn bạn nhỏ đã đến nhà cây chơi với anh em Bi và Mun hôm nay nhé! Chúc bạn nhỏ luôn vui vẻ và ngoan ngoãn!",
+      "voiceId": "soc-nho",
+      "tempo": 1.0209
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T09:05:22Z"
+  }
+}

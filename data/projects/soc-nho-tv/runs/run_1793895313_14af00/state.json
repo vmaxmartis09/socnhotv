@@ -1,0 +1,272 @@
+{
+  "runId": "run_1793895313_14af00",
+  "id": "run_1793895313_14af00",
+  "projectId": "soc-nho-tv",
+  "status": "failed",
+  "mode": "all",
+  "stage": "Thất bại: n_voice_mun: Node 'n_voice_mun' (voice_tts) thiếu nội dung văn bản cho giọng đọc (chưa nối dây cổng 'text' và chưa nhập text).; n_voice_me: Node 'n_voice_me' (voice_tts) thiếu nội dung văn bản cho giọng đọc (chưa nối dây cổng 'text' và chưa nhập text).",
+  "currentNodeId": "n_export",
+  "progress": 0.677,
+  "progressPct": 68,
+  "startedAtTs": 1793895313.219753,
+  "createdAt": "2026-11-05T16:15:13Z",
+  "updatedAt": "2026-11-05T16:15:16Z",
+  "elapsedSec": 3.1,
+  "actualCostUsd": 0.0,
+  "costUsd": 0.0,
+  "nodes": [
+    {
+      "id": "n_text",
+      "type": "text",
+      "name": "n_text",
+      "state": "pending",
+      "progressPct": 0,
+      "error": null
+    },
+    {
+      "id": "n_char_bi",
+      "type": "character",
+      "name": "n_char_bi",
+      "state": "pending",
+      "progressPct": 0,
+      "error": null
+    },
+    {
+      "id": "n_char_mun",
+      "type": "character",
+      "name": "n_char_mun",
+      "state": "pending",
+      "progressPct": 0,
+      "error": null
+    },
+    {
+      "id": "n_char_me",
+      "type": "character",
+      "name": "n_char_me",
+      "state": "pending",
+      "progressPct": 0,
+      "error": null
+    },
+    {
+      "id": "n_script",
+      "type": "script",
+      "name": "n_script",
+      "state": "pending",
+      "progressPct": 0,
+      "error": null
+    },
+    {
+      "id": "n_voice_bi",
+      "type": "voice_tts",
+      "name": "n_voice_bi",
+      "state": "pending",
+      "progressPct": 0,
+      "error": null
+    },
+    {
+      "id": "n_voice_mun",
+      "type": "voice_tts",
+      "name": "n_voice_mun",
+      "state": "failed",
+      "progressPct": 0,
+      "error": "Node dừng lại: Node 'n_voice_mun' (voice_tts) thiếu nội dung văn bản cho giọng đọc (chưa nối dây cổng 'text' và chưa nhập text)."
+    },
+    {
+      "id": "n_voice_me",
+      "type": "voice_tts",
+      "name": "n_voice_me",
+      "state": "failed",
+      "progressPct": 0,
+      "error": "Node dừng lại: Node 'n_voice_me' (voice_tts) thiếu nội dung văn bản cho giọng đọc (chưa nối dây cổng 'text' và chưa nhập text)."
+    },
+    {
+      "id": "n_captions",
+      "type": "captions",
+      "name": "n_captions",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_render",
+      "type": "hyperframes_render",
+      "name": "n_render",
+      "state": "failed",
+      "progressPct": 0,
+      "error": "Bỏ qua node 'n_render' do node cha ['n_voice_mun', 'n_voice_me'] bị lỗi."
+    },
+    {
+      "id": "n_export",
+      "type": "export",
+      "name": "n_export",
+      "state": "failed",
+      "progressPct": 0,
+      "error": "Bỏ qua node 'n_export' do node cha ['n_render'] bị lỗi."
+    },
+    {
+      "id": "n_key_01",
+      "type": "image_gen",
+      "name": "n_key_01",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_scene_01",
+      "type": "scene",
+      "name": "Cảnh 1: Mở đầu & giới thiệu nhà cây",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_key_02",
+      "type": "image_gen",
+      "name": "n_key_02",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_scene_02",
+      "type": "scene",
+      "name": "Cảnh 2: Sinh hoạt đời thường",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_key_03",
+      "type": "image_gen",
+      "name": "n_key_03",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_scene_03",
+      "type": "scene",
+      "name": "Cảnh 3: Sự cố: tháp đổ",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_key_04",
+      "type": "image_gen",
+      "name": "n_key_04",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_scene_04",
+      "type": "scene",
+      "name": "Cảnh 4: Núi lửa nóng trong bụng",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_key_05",
+      "type": "image_gen",
+      "name": "n_key_05",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_scene_05",
+      "type": "scene",
+      "name": "Cảnh 5: Mẹ lắng nghe & gọi tên cảm xúc",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_key_06",
+      "type": "image_gen",
+      "name": "n_key_06",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_scene_06",
+      "type": "scene",
+      "name": "Cảnh 6: Thở 5 ngón tay & thần chú",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_key_07",
+      "type": "image_gen",
+      "name": "n_key_07",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_scene_07",
+      "type": "scene",
+      "name": "Cảnh 7: Đồng dao & tương tác",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_key_08",
+      "type": "image_gen",
+      "name": "n_key_08",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_scene_08",
+      "type": "scene",
+      "name": "Cảnh 8: Bi tự khắc phục",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_key_09",
+      "type": "image_gen",
+      "name": "n_key_09",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_scene_09",
+      "type": "scene",
+      "name": "Cảnh 9: Xếp lại tháp & đúc kết",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_key_10",
+      "type": "image_gen",
+      "name": "n_key_10",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_scene_10",
+      "type": "scene",
+      "name": "Cảnh 10: Chào tạm biệt",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    }
+  ],
+  "totalNodes": 31,
+  "completedNodes": 21,
+  "output": null,
+  "error": "n_voice_mun: Node 'n_voice_mun' (voice_tts) thiếu nội dung văn bản cho giọng đọc (chưa nối dây cổng 'text' và chưa nhập text).; n_voice_me: Node 'n_voice_me' (voice_tts) thiếu nội dung văn bản cho giọng đọc (chưa nối dây cổng 'text' và chưa nhập text).",
+  "completedAt": "2026-11-05T16:15:16Z"
+}

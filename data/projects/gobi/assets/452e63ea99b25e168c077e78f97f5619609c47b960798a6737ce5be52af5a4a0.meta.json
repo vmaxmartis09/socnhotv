@@ -1,0 +1,35 @@
+{
+  "id": "art_452e63ea99b2",
+  "kind": "image",
+  "uri": "assets/452e63ea99b25e168c077e78f97f5619609c47b960798a6737ce5be52af5a4a0.png",
+  "mime": "image/png",
+  "size": 11176,
+  "hash": "sha256:452e63ea99b25e168c077e78f97f5619609c47b960798a6737ce5be52af5a4a0",
+  "meta": {
+    "width": 1080,
+    "height": 1920,
+    "duration": null,
+    "fps": null,
+    "aspect": "9:16"
+  },
+  "provenance": {
+    "nodeId": "n_tryon",
+    "runId": "run_1794039506_bf46ed",
+    "provider": "mock",
+    "model": "mock-image-v1",
+    "params": {
+      "prompt": "Full body front and back view of the same woman wearing the item in the product reference, in her living room: white brick wall, large cream sectional sofa with rust-orange cushions, black chandelier, large white art panel, big green plant, warm soft light. Keep face, hair, body identical to the character reference. this exact Vietnamese woman, long straight black hair, natural makeup, photoreal",
+      "aspectRatio": "9:16",
+      "resolution": "1080p",
+      "index": 0,
+      "seed": null
+    },
+    "inputHashes": [
+      "assets/452e63ea99b25e168c077e78f97f5619609c47b960798a6737ce5be52af5a4a0.png",
+      "assets/452e63ea99b25e168c077e78f97f5619609c47b960798a6737ce5be52af5a4a0.png",
+      "assets/290bcb9b6efb68c074469d1c42b0144954150371fe8988a49d8c70d12f5cf0d9.jpg"
+    ],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-07T08:18:26Z"
+  }
+}

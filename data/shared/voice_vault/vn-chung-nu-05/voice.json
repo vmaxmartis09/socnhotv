@@ -1,0 +1,17 @@
+{
+  "id": "vn-chung-nu-05",
+  "display_name": "Nữ phổ thông 5",
+  "aliases": [],
+  "engine": "omnivoice",
+  "lang": "vi",
+  "dialect": "unknown",
+  "gender": "female",
+  "sample_paths": [
+    "cloned_default_sample.mp3"
+  ],
+  "loudness": -14.0,
+  "status": "ready",
+  "consent_note": "Mẫu lấy từ YouTube https://www.youtube.com/watch?v=L4XBHhvQ7vQ — người dùng quyết định dùng nội bộ cho giọng nhân vật, chưa xin phép chủ giọng.",
+  "source_url": "https://www.youtube.com/watch?v=L4XBHhvQ7vQ",
+  "created_at": "2026-11-05T22:59:45.441738"
+}

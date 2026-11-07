@@ -1,0 +1,31 @@
+{
+  "id": "art_b18fe0c3971f",
+  "kind": "audio",
+  "uri": "assets/b18fe0c3971f92b4cc04516e1a7c77c74eae9b3cb7f241eef47c6abdff461c41.mp3",
+  "mime": "audio/mp3",
+  "size": 265238,
+  "hash": "sha256:b18fe0c3971f92b4cc04516e1a7c77c74eae9b3cb7f241eef47c6abdff461c41",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 10.98,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "prebuild_voice",
+    "runId": "prebuild_ep02-mun-so-bong-toi",
+    "provider": "omnivoice",
+    "model": "omnivoice",
+    "params": {
+      "text": "🎵 'Bóng tối dịu êm, đèn sao sáng thêm!' — Làm đúng ngay từ đầu, ai cũng khen bé ngoan! 🎵",
+      "voiceId": "vn-be-01",
+      "tempo": 1.0,
+      "targetLufs": -14.0,
+      "mastering": "deesser+presence3.2k+comp4:1+loudnorm-14LUFS"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T10:37:30Z"
+  }
+}

@@ -1,0 +1,1177 @@
+{
+  "id": "ep02-mun-so-bong-toi",
+  "episodeNumber": 2,
+  "title": "Mun sợ bóng tối",
+  "series": "Bi và Những Người Bạn (Kênh: Sóc Nhỏ TV)",
+  "season": "Mùa 1: Cảm xúc của em",
+  "durationSec": 600,
+  "aspect": "16:9 Widescreen",
+  "style": "3D Pixar Stylized Animation",
+  "leadCharacter": "Dê Mun",
+  "cast": [
+    {
+      "name": "Dê Mun",
+      "heightCm": 85,
+      "id": "de_mun"
+    },
+    {
+      "name": "Dê Bông",
+      "heightCm": 115,
+      "id": "de_bong"
+    },
+    {
+      "name": "Ông Dê Râu Bạc",
+      "heightCm": 155,
+      "id": "ong_de_rau_bac"
+    }
+  ],
+  "setting": {
+    "name": "Nhà của Bông & Mun trên sườn đồi (goat_farmhouse)",
+    "code": "goat_farmhouse",
+    "timeOfDay": "Buổi tối"
+  },
+  "lesson": "Gọi tên nỗi sợ bóng tối, nói ra với người thân, khám phá sự thật sau chiếc bóng và bật đèn ngủ vàng ấm",
+  "mantra": "Bóng tối dịu êm, đèn sao sáng thêm!",
+  "summary": "### 1.1. Tóm tắt câu chuyện đời thường\n- **Hoàn cảnh mở đầu**: Câu chuyện diễn ra gần gũi ngay tại **Nhà của Bông & Mun trên sườn đồi**, xoay quanh **Dê Mun (85cm), Dê Bông (115cm), Ông Dê Râu Bạc (155cm)** (tuyệt đối không nhồi nhét đông nhân vật không cần thiết để bé dễ tập trung theo dõi). Buổi tối tại phòng ngủ nhà nông trại Dê, khi vừa tắt đèn lớn, Dê Mun (85cm) nhìn thấy chiếc bóng dài ngoằng rung rinh trên tường liền tưởng là quái vật nên trùm chăn run cầm cập.\n- **Diễn biến tâm lý & Phản ứng của trẻ**: Mun (85cm) ôm chặt gối, mắt nâu ươn ướt gọi anh Dê Bông (115cm) nằm ở giường bên cạnh. Đây là phản ứng tâm sinh lý hoàn toàn có thật và rất phổ biến ở trẻ nhỏ từ 3 đến 7 tuổi trong đời sống hàng ngày.\n- **Cách tháo gỡ trực quan & Bài học**: Anh Bông (115cm) và Ông Dê Râu Bạc (155cm) cầm đèn lồng nhỏ cùng Mun mở rèm kiểm tra: hóa ra chỉ là cành bưởi ngoài hiên đung đưa trong gió đêm, rồi dạy Mun trò chơi tạo hình chú thỏ bằng bóng bàn tay dưới ánh đèn ngủ hình ngôi sao. Qua đó, các bé tự mình khắc phục sự cố và ghi nhớ câu thần chú: **\"Bóng tối dịu êm, đèn sao sáng thêm!\"**.\n\n### 1.2. Cấu trúc 3 Lớp Sư Phạm Mầm Non\n1. **Lớp 1 — Khơi gợi tò mò & Đồng cảm (`00:00 - 03:00`)**: Đặt trẻ vào tình huống sinh hoạt quen thuộc tại **Nhà của Bông & Mun trên sườn đồi** với đạo cụ thực tế (*Đèn ngủ gỗ hình ngôi sao vàng ấm, chú dê bông nhỏ và bóng cành cây bưởi in trên rèm cửa sổ*). Khi sự cố xảy ra, kịch bản mô tả trung thực cảm xúc trên khuôn mặt và cơ thể trẻ thay vì trách mắng.\n2. **Lớp 2 — Trải nghiệm trực quan & Hướng dẫn từng bước (`03:00 - 07:00`)**: Nhân vật đồng hành (**Ông Dê Râu Bạc (155cm)**) ngồi xuống ngang tầm mắt trẻ, dùng hình ảnh và đồ vật cụ thể để hướng dẫn bài học: *Gọi tên nỗi sợ bóng tối, nói ra với người thân, khám phá sự thật sau chiếc bóng và bật đèn ngủ vàng ấm*, kết hợp bài hát đồng dao và câu hỏi tương tác dừng 2–3 giây chờ khán giả nhí trả lời.\n3. **Lớp 3 — Tự tay thực hành & Đúc kết thói quen (`07:00 - 10:00`)**: Nhân vật nhí tự lực áp dụng kỹ năng vừa học để giải quyết trọn vẹn tình huống ban đầu và lặp lại đủ 3 lần câu thần chú **\"Bóng tối dịu êm, đèn sao sáng thêm!\"**.\n\n---",
+  "environmentPromptLock": "[LOCATION LOCK - GOAT_FARMHOUSE] 3D Pixar-style animated film environment, photoreal-stylized Vietnamese countryside hillside farmhouse belonging to Bong and Mun the goats. The traditional single-story timber house features weathered hand-fired red terracotta roof tiles with patches of velvety green moss, warm lime-washed cream walls, and a wide covered wooden veranda raised 25cm off the ground. Surrounding the sunny packed-earth courtyard is a neat woven split-bamboo lattice fence standing 70cm tall (chest height to a 100cm character) and an arched bamboo trellis draped with lush green loofah vines, bright yellow gourd blossoms, and hanging gourds at 175cm overhead height. In the side garden, straight raised soil beds with moist dark earth texture grow crisp green mustard cabbages, carrots, and herbs. On the veranda sits a polished bamboo tea table (52cm high) with a ceramic teapot, wooden stools (28cm high), child-sized tin watering cans, and a stone water jar with a bamboo ladle, all rendered with tactile surface detail and shallow depth of field. Lighting (night): Peaceful countryside evening under a starry sky and crescent moon; warm yellow porch lanterns illuminating the wooden veranda while crickets chirp in the bamboo hedge.",
+  "characters": [
+    {
+      "name": "Dê Mun",
+      "heightCm": 85,
+      "species": "Dê đen (black goat) nhân hóa",
+      "personality": "hồn nhiên, tinh nghịch, hay bắt chước, dễ khóc dễ cười, nói ngọng nhẹ đáng yêu (chỉ vài từ, không lạm dụng), rất thương anh Bông",
+      "catchphrase": "Mun cũng muốn! Mun cũng muốn!",
+      "voiceDirection": "Cao độ: cao, trong veo, non nớt đúng chuẩn em bé 3 tuổi. Tốc độ: câu ngắn, nhịp nảy tưng tửng, đôi chỗ ngọng nhẹ rất tự nhiên (ví dụ 'anh Bông ơi' -> 'anh Bông ưi', 'thích lắm' -> 'thích nhắm' — chỉ điểm xuyết 1 từ trong câu, không làm khó nghe). Chất giọng: ngọt ngào, nũng nịu đáng yêu.",
+      "do": "Luôn giữ chiều cao 85 cm (thấp nhất nhóm, đỉnh đầu Mun chỉ chạm tới mũi Bi); Luôn giữ đốm lông trắng hình ngôi sao nhỏ trên trán và hai mầm sừng tròn nhỏ xíu; Hay chạy lon ton theo sau anh Bông hoặc bắt chước động tác của Bi và Lu chậm hơn nửa nhịp",
+      "dont": "Không lạm dụng nói ngọng khiến trẻ em xem video học phát âm sai (các từ khóa bài học và Câu Thần Chú Mun phải nói chuẩn 100%); Không vẽ sừng Mun dài nhọn như dê lớn; sừng Mun chỉ là hai mầm tròn nhỏ xíu (tiny rounded nub horns); Không để Mun cao bằng Mimi hoặc Bi",
+      "promptLock": "a playful 3-year-old toddler boy black goat named Mun, about 85cm tall (0.85x the height of Bi the squirrel, Mun's head reaches Bi's nose), chubby-cheeked toddler build, soft glossy jet-black fur with a small white star-shaped patch on his forehead, two tiny rounded nub horns, short floppy ears with gray-pink inner side, big round sparkling brown eyes, wearing a bright red t-shirt with a small yellow star, navy blue shorts, red rubber rain boots",
+      "id": "de_mun"
+    },
+    {
+      "name": "Dê Bông",
+      "heightCm": 115,
+      "species": "Dê trắng (white goat) nhân hóa",
+      "personality": "chín chắn, cẩn thận, thích đọc sách, thích ghi chép, đôi khi ra vẻ người lớn, đôi lúc chưa kiên nhẫn với em Mun",
+      "catchphrase": "Để anh Bông xem nào…",
+      "voiceDirection": "Cao độ: giọng bé trai 6 tuổi trầm ấm hơn Bi một chút, phát âm tròn vành rõ chữ. Tốc độ: điềm đạm, khoan thai, hay ngân nhẹ ở chữ 'nào…' khi suy nghĩ. Chất giọng: chững chạc kiểu anh cả, ấm áp, đôi khi hơi nghiêm nghị trẻ con khi nhắc nhở các em.",
+      "do": "Luôn giữ chiều cao 115 cm (cao nhất nhóm bạn nhỏ, đỉnh đầu Bi chạm tới cằm Bông); Hay rút cuốn sổ tay nhỏ màu xanh lá ở túi ngực quần yếm ra xem hoặc ghi chép; Dáng đứng thẳng, cử chỉ điềm tĩnh, hay xoa đầu hoặc nắm tay em trai Dê Mun",
+      "dont": "Không biến Bông thành nhân vật mọt sách kiêu căng hay lạnh lùng với bạn; Không quên hai chiếc sừng ngắn cong màu kem và chùm râu cằm nhỏ mềm màu trắng; Không để Bông thấp bằng hoặc thấp hơn Cún Lu và Sóc Bi",
+      "promptLock": "a gentle, thoughtful 6-year-old boy white goat named Bong, about 115cm tall (1.15x the height of Bi the squirrel, Bi's head reaches Bong's chin), slim upright build, fluffy clean snow-white curly fur, a small soft chin tuft, two short curved cream-colored horns, long floppy ears with pink inner side, big round warm brown eyes, small pink nose, wearing sky-blue denim overalls over a white-and-navy striped t-shirt, a tiny green notebook in the front pocket, brown sandals over small dark hooves",
+      "id": "de_bong"
+    },
+    {
+      "name": "Ông Dê Râu Bạc",
+      "heightCm": 155,
+      "species": "Dê núi râu bạc (elderly white-and-silver goat) nhân hóa",
+      "personality": "hiền từ, điềm đạm, yêu thiên nhiên",
+      "catchphrase": "Khà khà, cái gì cũng cần có thời gian các cháu ạ!",
+      "voiceDirection": "Giọng ông nội trầm ấm, hào sảng, nhịp chậm khoan thai, có tiếng cười 'khà khà' hiền hậu.",
+      "do": "Luôn giữ chiều cao 155 cm (1.55x Bi; Bông cao 115 cm đứng ngang ngực Ông Dê, Mun 85 cm đứng ngang bụng Ông Dê); Hay đội nón lá khi làm vườn hoặc cầm quạt nan ngồi hiên nhà gỗ",
+      "dont": "Không tỏ ra khó tính hay cổ hủ; Không quên chòm râu bạc dài mềm mại ở cằm",
+      "promptLock": "a kind elderly grandfather goat named Ong De Rau Bac (grandfather of Bong and Mun), about 155cm tall (1.55x the height of Bi the squirrel), sturdy slightly stooped warm build, silver-white fur, a long soft braided silver chin beard, curved amber-cream horns, warm crinkled brown eyes, wearing a traditional Vietnamese brown cotton Ba Ba shirt with wooden buttons, loose dark linen trousers, a woven bamboo straw hat resting on his back, brown wooden clogs over hooves",
+      "id": "ong_de_rau_bac"
+    }
+  ],
+  "scenes": [
+    {
+      "index": 1,
+      "title": "Mở đầu gây tò mò & Giới thiệu không gian Nhà của Bông & Mun trên sườn đồi",
+      "startSec": 0,
+      "endSec": 60,
+      "location": "Nhà của Bông & Mun trên sườn đồi — Khu vực trung tâm (Bộ bàn ghế tre trên hiên nhà ông Dê)",
+      "purpose": "Giới thiệu bối cảnh thực tế tại Nhà của Bông & Mun trên sườn đồi và chỉ 3 nhân vật xuất hiện trong tập (Dê Mun (85cm), Dê Bông (115cm), Ông Dê Râu Bạc (155cm)), khơi gợi sự tò mò của khán giả nhí.",
+      "shots": [
+        {
+          "id": "S01",
+          "sceneIndex": 1,
+          "sceneTitle": "Mở đầu gây tò mò & Giới thiệu không gian Nhà của Bông & Mun trên sườn đồi",
+          "startSec": 0,
+          "endSec": 20,
+          "durationSec": 20.0,
+          "shotSize": "WS",
+          "camera": "eye-level, 28mm, push-in",
+          "characters": [
+            "Dê Mun (85cm)"
+          ],
+          "action": "[0-7s] Máy quay đẩy nhẹ vào không gian Nhà của Bông & Mun trên sườn đồi bình yên, giới thiệu Đèn ngủ gỗ hình ngôi sao vàng ấm, chú dê bông nhỏ và bóng cành cây bưởi in trên rèm cửa sổ. [7-14s] Dê Mun (85cm) bước ra giữa khung hình, hào hứng sắp xếp đồ vật. [14-20s] Dê Mun vẫy tay chào các bạn nhỏ trước màn hình.",
+          "expression": "Dê Mun (vui): Hai má phúng phính nâng cao với nụ cười trẻ thơ rạng rỡ, mắt nâu to tròn lấp lánh, đôi tai ngắn vẫy nhẹ khi nhún nhảy trong đôi ủng cao su đỏ.",
+          "actingNotes": "Dê Mun: Bước đi linh hoạt, cử chỉ tự nhiên đúng lứa tuổi mầm non, tay nâng niu món đồ chơi/đạo cụ, ánh mắt nhìn thẳng ống kính thân thiện.",
+          "speaker": "Dê Mun (85cm)",
+          "dialogue": "Chào các bạn nhỏ! Hôm nay ở Nhà của Bông & Mun trên sườn đồi, Dê Mun có một món đồ rất vui nè, các bạn nhìn xem là gì đây?",
+          "voiceDelivery": "Giọng trong trẻo, hào hứng, nhấn nhẹ ở cuối câu để gợi mở sự tò mò",
+          "sfx": "Tiếng chim hót buổi sớm và tiếng động tự nhiên tại Nhà của Bông & Mun trên sườn đồi",
+          "bgm": "Nhạc dạo đầu bằng đàn marimba và guitar gỗ mộc mạc, nhịp 104 BPM tươi sáng",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] WS, eye-level angle, 28mm lens. [CHARACTERS] a playful 3-year-old toddler boy black goat named Mun, about 85cm tall (0.85x the height of Bi the squirrel, Mun's head reaches Bi's nose), chubby-cheeked toddler build, soft glossy jet-black fur with a small white star-shaped patch on his forehead, two tiny rounded nub horns, short floppy ears with gray-pink inner side, big round sparkling brown eyes, wearing a bright red t-shirt with a small yellow star, navy blue shorts, red rubber rain boots, chubby cheeks lifted in a huge gummy toddler grin, big sparkling brown eyes crinkling with joy, short floppy ears flapping as he jumps up in his red rubber rain boots with both short arms raised high. [ACTION] Wide establishing shot of Nhà của Bông & Mun trên sườn đồi as Dê Mun happily prepares props and waves warmly at the camera. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized Vietnamese countryside hillside farmhouse belonging to Bong and Mun the goats. The traditional single-story timber house features weathered hand-fired red terracotta roof tiles with patches of velvety green moss, warm lime-washed cream walls, and a wide covered wooden veranda raised 25cm off the ground. Surrounding the sunny packed-earth courtyard is a neat woven split-bamboo lattice fence standing 70cm tall (chest height to a 100cm character) and an arched bamboo trellis draped with lush green loofah vines, bright yellow gourd blossoms, and hanging gourds at 175cm overhead height. In the side garden, straight raised soil beds with moist dark earth texture grow crisp green mustard cabbages, carrots, and herbs. On the veranda sits a polished bamboo tea table (52cm high) with a ceramic teapot, wooden stools (28cm high), child-sized tin watering cans, and a stone water jar with a bamboo ladle, all rendered with tactile surface detail and shallow depth of field. Time of day: night. [DEPTH] foreground: soft foreground foliage and wooden prop bokeh, soft bokeh; midground: Dê Mun (85cm) interacting with Đèn ngủ gỗ hình ngôi sao vàng ấm, chú dê bông nhỏ và bóng cành cây bưởi in trên rèm cửa sổ in sharp focus, razor-sharp focus; background: cozy background of Nhà của Bông & Mun trên sườn đồi, creamy atmospheric falloff. [LIGHT] Peaceful countryside evening under a starry sky and crescent moon; warm yellow porch lanterns illuminating the wooden veranda while crickets chirp in the bamboo hedge..",
+          "videoPrompt": "5-second 3D Pixar-style animated clip — hero moment of shot S01 (shot window 00:00-00:20, 20s; the clip plays at the start of the shot, then the editor holds its last frame with a slow camera drift): Wide establishing shot of Nhà của Bông & Mun trên sườn đồi as Dê Mun happily prepares props and waves warmly at the camera. Camera movement: smooth push-in. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Dê Mun), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "de_mun"
+          ],
+          "speakerId": "de_mun",
+          "priority": 1,
+          "priorityNote": "mở đầu",
+          "clipDurationSec": 5
+        },
+        {
+          "id": "S02",
+          "sceneIndex": 1,
+          "sceneTitle": "Mở đầu gây tò mò & Giới thiệu không gian Nhà của Bông & Mun trên sườn đồi",
+          "startSec": 20,
+          "endSec": 40,
+          "durationSec": 20.0,
+          "shotSize": "MS",
+          "camera": "eye-level, 35mm, static",
+          "characters": [
+            "Dê Mun (85cm)",
+            "Dê Bông (115cm)"
+          ],
+          "action": "[0-7s] Dê Bông (115cm) bước vào khung hình đứng cạnh Dê Mun (85cm) (khóa cứng tỉ lệ chiều cao: Dê Bông (115 cm) > Dê Mun (85 cm)). [7-14s] Dê Bông nghiêng đầu quan sát Đèn ngủ gỗ hình ngôi sao vàng ấm, chú dê bông nhỏ và bóng cành cây bưởi in trên rèm cửa sổ. [14-20s] Hai nhân vật mỉm cười trò chuyện gần gũi.",
+          "expression": "Dê Mun (vui): Hai má phúng phính nâng cao với nụ cười trẻ thơ rạng rỡ, mắt nâu to tròn lấp lánh, đôi tai ngắn vẫy nhẹ khi nhún nhảy trong đôi ủng cao su đỏ. | Dê Bông (tò mò): Hơi cúi nhẹ về phía trước, một tay vuốt chòm râu cằm trắng mềm, đôi mắt nâu quan sát tỉ mỉ.",
+          "actingNotes": "Dê Bông: Hơi nghiêng đầu tò mò, ánh mắt chăm chú nhìn vào món đồ trên tay Dê Mun. Dê Mun: Nhiệt tình giới thiệu cho người bạn/người thân của mình.",
+          "speaker": "Dê Bông (115cm)",
+          "dialogue": "Oa, thích quá Dê Mun ơi! Hôm nay hai đứa mình sẽ cùng chơi và khám phá ở Nhà của Bông & Mun trên sườn đồi nhé!",
+          "voiceDelivery": "Giọng tự nhiên, ấm áp, tràn đầy niềm vui đời thường",
+          "sfx": "Tiếng bước chân nhẹ nhàng và tiếng đồ vật gỗ chạm nhau lách cách",
+          "bgm": "Tiết tấu pizzicato dây đàn vui nhộn nối tiếp",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] MS, eye-level angle, 35mm lens. [CHARACTERS] a playful 3-year-old toddler boy black goat named Mun, about 85cm tall (0.85x the height of Bi the squirrel, Mun's head reaches Bi's nose), chubby-cheeked toddler build, soft glossy jet-black fur with a small white star-shaped patch on his forehead, two tiny rounded nub horns, short floppy ears with gray-pink inner side, big round sparkling brown eyes, wearing a bright red t-shirt with a small yellow star, navy blue shorts, red rubber rain boots, chubby cheeks lifted in a huge gummy toddler grin, big sparkling brown eyes crinkling with joy, short floppy ears flapping as he jumps up in his red rubber rain boots with both short arms raised high; a gentle, thoughtful 6-year-old boy white goat named Bong, about 115cm tall (1.15x the height of Bi the squirrel, Bi's head reaches Bong's chin), slim upright build, fluffy clean snow-white curly fur, a small soft chin tuft, two short curved cream-colored horns, long floppy ears with pink inner side, big round warm brown eyes, small pink nose, wearing sky-blue denim overalls over a white-and-navy striped t-shirt, a tiny green notebook in the front pocket, brown sandals over small dark hooves, leaning slightly forward, one hand stroking his small soft white chin tuft, warm brown eyes squinting thoughtfully as he studies an object closely. [SCALE] Height order from tallest: Dê Bông (115cm) > Dê Mun (85cm); Mun (85cm) reaches Bong's chest (115cm). [ACTION] Medium two-shot of Dê Mun and Dê Bông examining the props together with natural preschool chemistry. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized Vietnamese countryside hillside farmhouse belonging to Bong and Mun the goats. The traditional single-story timber house features weathered hand-fired red terracotta roof tiles with patches of velvety green moss, warm lime-washed cream walls, and a wide covered wooden veranda raised 25cm off the ground. Surrounding the sunny packed-earth courtyard is a neat woven split-bamboo lattice fence standing 70cm tall (chest height to a 100cm character) and an arched bamboo trellis draped with lush green loofah vines, bright yellow gourd blossoms, and hanging gourds at 175cm overhead height. In the side garden, straight raised soil beds with moist dark earth texture grow crisp green mustard cabbages, carrots, and herbs. On the veranda sits a polished bamboo tea table (52cm high) with a ceramic teapot, wooden stools (28cm high), child-sized tin watering cans, and a stone water jar with a bamboo ladle, all rendered with tactile surface detail and shallow depth of field. Time of day: night. [DEPTH] foreground: foreground tabletop details in soft bokeh, soft bokeh; midground: Dê Mun (85cm) and Dê Bông (115cm) standing together in exact height scale, razor-sharp focus; background: warm interior/courtyard background, creamy atmospheric falloff. [LIGHT] Peaceful countryside evening under a starry sky and crescent moon; warm yellow porch lanterns illuminating the wooden veranda while crickets chirp in the bamboo hedge..",
+          "videoPrompt": "5-second 3D Pixar-style animated clip — hero moment of shot S02 (shot window 00:20-00:40, 20s; the clip plays at the start of the shot, then the editor holds its last frame with a slow camera drift): Medium two-shot of Dê Mun and Dê Bông examining the props together with natural preschool chemistry. Camera movement: smooth static. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Height order from tallest: Dê Bông (115cm) > Dê Mun (85cm); Mun (85cm) reaches Bong's chest (115cm).), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "de_mun",
+            "de_bong"
+          ],
+          "speakerId": "de_bong",
+          "priority": 3,
+          "clipDurationSec": 5
+        },
+        {
+          "id": "S03",
+          "sceneIndex": 1,
+          "sceneTitle": "Mở đầu gây tò mò & Giới thiệu không gian Nhà của Bông & Mun trên sườn đồi",
+          "startSec": 40,
+          "endSec": 60,
+          "durationSec": 20.0,
+          "shotSize": "MCU",
+          "camera": "eye-level, 50mm, push-in",
+          "characters": [
+            "Dê Mun (85cm)"
+          ],
+          "action": "[0-7s] Dê Mun quay sang nhìn thẳng vào ống kính (tương tác trực tiếp với bé đang xem). [7-14s] Dê Mun đặt ngón trỏ lên má suy nghĩ rồi mở bàn tay đặt câu hỏi. [14-20s] Dừng 2 giây mỉm cười chờ khán giả nhí trả lời.",
+          "expression": "Dê Mun (tò mò): Đầu nghiêng hẳn sang một bên, đôi mắt nâu tròn xoe cúi sát quan sát món đồ, một ngón tay nhỏ chỉ nhẹ.",
+          "actingNotes": "Dê Mun: Một bên chân mày nhướng nhẹ lém lỉnh, ánh mắt ấm áp nhìn thẳng vào mắt bé như người bạn thân thiết ngoài đời thực.",
+          "speaker": "Dê Mun (85cm)",
+          "dialogue": "Bạn nhỏ ơi, hôm nay câu chuyện 'Mun sợ bóng tối' sẽ bắt đầu ngay bây giờ! Bạn nhỏ đã sẵn sàng cùng Dê Mun chưa nào?",
+          "voiceDelivery": "Thân mật, rõ chữ, dừng 2 giây cuối câu chờ bé đáp lại",
+          "sfx": "Tiếng chuông lấp lánh 'ting-ting' mở màn câu chuyện",
+          "bgm": "Hợp âm chuyển cảnh tươi sáng sang Màn 1",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] MCU, eye-level angle, 50mm lens. [CHARACTERS] a playful 3-year-old toddler boy black goat named Mun, about 85cm tall (0.85x the height of Bi the squirrel, Mun's head reaches Bi's nose), chubby-cheeked toddler build, soft glossy jet-black fur with a small white star-shaped patch on his forehead, two tiny rounded nub horns, short floppy ears with gray-pink inner side, big round sparkling brown eyes, wearing a bright red t-shirt with a small yellow star, navy blue shorts, red rubber rain boots, head tilted far to one side, big sparkling brown eyes peering closely at something near the ground, squatting down in his navy shorts and red rain boots with one finger extended cautiously. [ACTION] Medium close-up of Dê Mun breaking the fourth wall, asking the young viewer a question and pausing for 2 seconds. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized Vietnamese countryside hillside farmhouse belonging to Bong and Mun the goats. The traditional single-story timber house features weathered hand-fired red terracotta roof tiles with patches of velvety green moss, warm lime-washed cream walls, and a wide covered wooden veranda raised 25cm off the ground. Surrounding the sunny packed-earth courtyard is a neat woven split-bamboo lattice fence standing 70cm tall (chest height to a 100cm character) and an arched bamboo trellis draped with lush green loofah vines, bright yellow gourd blossoms, and hanging gourds at 175cm overhead height. In the side garden, straight raised soil beds with moist dark earth texture grow crisp green mustard cabbages, carrots, and herbs. On the veranda sits a polished bamboo tea table (52cm high) with a ceramic teapot, wooden stools (28cm high), child-sized tin watering cans, and a stone water jar with a bamboo ladle, all rendered with tactile surface detail and shallow depth of field. Time of day: night. [DEPTH] foreground: warm sunlit bokeh particles, soft bokeh; midground: medium close-up of Dê Mun looking directly at the lens with a curious tilt of the head, razor-sharp focus; background: creamy blurred background, creamy atmospheric falloff. [LIGHT] Peaceful countryside evening under a starry sky and crescent moon; warm yellow porch lanterns illuminating the wooden veranda while crickets chirp in the bamboo hedge..",
+          "videoPrompt": "5-second 3D Pixar-style animated clip — hero moment of shot S03 (shot window 00:40-01:00, 20s; the clip plays at the start of the shot, then the editor holds its last frame with a slow camera drift): Medium close-up of Dê Mun breaking the fourth wall, asking the young viewer a question and pausing for 2 seconds. Camera movement: smooth push-in. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Dê Mun), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "de_mun"
+          ],
+          "speakerId": "de_mun",
+          "priority": 3,
+          "clipDurationSec": 5
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Sinh hoạt đời thường tại Nhà của Bông & Mun trên sườn đồi",
+      "startSec": 60,
+      "endSec": 120,
+      "location": "Nhà của Bông & Mun trên sườn đồi — Góc hoạt động chính",
+      "purpose": "Xây dựng tình huống sinh hoạt tự nhiên, gần gũi với trẻ 3–7 tuổi trước khi sự cố xảy ra.",
+      "shots": [
+        {
+          "id": "S04",
+          "sceneIndex": 2,
+          "sceneTitle": "Sinh hoạt đời thường tại Nhà của Bông & Mun trên sườn đồi",
+          "startSec": 60,
+          "endSec": 80,
+          "durationSec": 20.0,
+          "shotSize": "MS",
+          "camera": "eye-level, 35mm, lateral-pan",
+          "characters": [
+            "Dê Mun (85cm)",
+            "Dê Bông (115cm)"
+          ],
+          "action": "[0-7s] Máy lia nhẹ theo đôi tay của Dê Mun đang tỉ mỉ chuẩn bị Đèn ngủ gỗ hình ngôi sao vàng ấm, chú dê bông nhỏ và bóng cành cây bưởi in trên rèm cửa sổ. [7-14s] Dê Bông đứng bên cạnh quan sát và phụ giúp từng việc nhỏ. [14-20s] Cả hai gật đầu hài lòng với công việc đang làm.",
+          "expression": "Dê Mun (vui): Hai má phúng phính nâng cao với nụ cười trẻ thơ rạng rỡ, mắt nâu to tròn lấp lánh, đôi tai ngắn vẫy nhẹ khi nhún nhảy trong đôi ủng cao su đỏ. | Dê Bông (vui): Nụ cười hiền hậu ấm áp, đôi mắt nâu tròn ánh lên niềm vui, đôi tai dài cụp đung đưa nhẹ, vỗ hai tay khích lệ em.",
+          "actingNotes": "Tập trung diễn tả sự tỉ mỉ của trẻ nhỏ khi chơi hoặc làm việc: mắt nhìn theo tay, đầu hơi nghiêng nhẹ, miệng mỉm cười chăm chú.",
+          "speaker": "Dê Mun (85cm)",
+          "dialogue": "Mình làm từ từ từng bước một nhé! Sắp hoàn thành xong phần đầu tiên rồi đây!",
+          "voiceDelivery": "Chăm chú, chậm rãi, vui tươi",
+          "sfx": "Tiếng sột soạt nhẹ nhàng của đạo cụ",
+          "bgm": "Nhạc nền acoustic guitar êm dịu 100 BPM",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] MS, eye-level angle, 35mm lens. [CHARACTERS] a playful 3-year-old toddler boy black goat named Mun, about 85cm tall (0.85x the height of Bi the squirrel, Mun's head reaches Bi's nose), chubby-cheeked toddler build, soft glossy jet-black fur with a small white star-shaped patch on his forehead, two tiny rounded nub horns, short floppy ears with gray-pink inner side, big round sparkling brown eyes, wearing a bright red t-shirt with a small yellow star, navy blue shorts, red rubber rain boots, chubby cheeks lifted in a huge gummy toddler grin, big sparkling brown eyes crinkling with joy, short floppy ears flapping as he jumps up in his red rubber rain boots with both short arms raised high; a gentle, thoughtful 6-year-old boy white goat named Bong, about 115cm tall (1.15x the height of Bi the squirrel, Bi's head reaches Bong's chin), slim upright build, fluffy clean snow-white curly fur, a small soft chin tuft, two short curved cream-colored horns, long floppy ears with pink inner side, big round warm brown eyes, small pink nose, wearing sky-blue denim overalls over a white-and-navy striped t-shirt, a tiny green notebook in the front pocket, brown sandals over small dark hooves, warm gentle smile, bright crinkling warm brown eyes, long floppy ears bouncing lightly, standing tall and clapping both hands together cheerfully. [SCALE] Height order from tallest: Dê Bông (115cm) > Dê Mun (85cm); Mun (85cm) reaches Bong's chest (115cm). [ACTION] Lateral pan showing Dê Mun and Dê Bông carefully working with their props at Nhà của Bông & Mun trên sườn đồi. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized Vietnamese countryside hillside farmhouse belonging to Bong and Mun the goats. The traditional single-story timber house features weathered hand-fired red terracotta roof tiles with patches of velvety green moss, warm lime-washed cream walls, and a wide covered wooden veranda raised 25cm off the ground. Surrounding the sunny packed-earth courtyard is a neat woven split-bamboo lattice fence standing 70cm tall (chest height to a 100cm character) and an arched bamboo trellis draped with lush green loofah vines, bright yellow gourd blossoms, and hanging gourds at 175cm overhead height. In the side garden, straight raised soil beds with moist dark earth texture grow crisp green mustard cabbages, carrots, and herbs. On the veranda sits a polished bamboo tea table (52cm high) with a ceramic teapot, wooden stools (28cm high), child-sized tin watering cans, and a stone water jar with a bamboo ladle, all rendered with tactile surface detail and shallow depth of field. Time of day: night. [DEPTH] foreground: foreground props in soft focus, soft bokeh; midground: Dê Mun and Dê Bông happily engaged in their everyday activity, razor-sharp focus; background: detailed Nhà của Bông & Mun trên sườn đồi environment, creamy atmospheric falloff. [LIGHT] Peaceful countryside evening under a starry sky and crescent moon; warm yellow porch lanterns illuminating the wooden veranda while crickets chirp in the bamboo hedge..",
+          "videoPrompt": "5-second 3D Pixar-style animated clip — hero moment of shot S04 (shot window 01:00-01:20, 20s; the clip plays at the start of the shot, then the editor holds its last frame with a slow camera drift): Lateral pan showing Dê Mun and Dê Bông carefully working with their props at Nhà của Bông & Mun trên sườn đồi. Camera movement: smooth lateral-pan. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Height order from tallest: Dê Bông (115cm) > Dê Mun (85cm); Mun (85cm) reaches Bong's chest (115cm).), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "de_mun",
+            "de_bong"
+          ],
+          "speakerId": "de_mun",
+          "priority": 2,
+          "priorityNote": "đầu cảnh",
+          "clipDurationSec": 5
+        },
+        {
+          "id": "S05",
+          "sceneIndex": 2,
+          "sceneTitle": "Sinh hoạt đời thường tại Nhà của Bông & Mun trên sườn đồi",
+          "startSec": 80,
+          "endSec": 100,
+          "durationSec": 20.0,
+          "shotSize": "CU",
+          "camera": "high, 50mm, push-in",
+          "characters": [
+            "Dê Mun (85cm)"
+          ],
+          "action": "[0-7s] Cận cảnh đôi bàn tay nhỏ của Dê Mun đặt mảnh ghép/món đồ quan trọng vào đúng vị trí. [7-14s] Đôi mắt của Dê Mun sáng lấp lánh khi thấy mọi thứ đẹp đẽ. [14-20s] Dê Mun thở phào vui sướng.",
+          "expression": "Dê Mun (tự hào): Đứng thẳng hết cỡ chiều cao 85cm của bé 3 tuổi, cười tươi hết cỡ, hai ngón cái chỉ vào ngôi sao vàng trên áo thun đỏ.",
+          "actingNotes": "Dê Mun: Hơi nín thở một nhịp khi căn chỉnh món đồ rồi nở nụ cười rạng rỡ tự hào khi hoàn tất.",
+          "speaker": "Dê Mun (85cm)",
+          "dialogue": "Tada! Bạn nhỏ nhìn xem, Dê Mun đã xếp ngay ngắn và đẹp ơi là đẹp chưa nè!",
+          "voiceDelivery": "Reo vui tự hào, giọng sáng rõ",
+          "sfx": "Tiếng 'tách' nhẹ khi đặt đồ vật vừa khít",
+          "bgm": "Tiếng đàn glockenspiel trong trẻo điểm xuyết",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] CU, high angle, 50mm lens. [CHARACTERS] a playful 3-year-old toddler boy black goat named Mun, about 85cm tall (0.85x the height of Bi the squirrel, Mun's head reaches Bi's nose), chubby-cheeked toddler build, soft glossy jet-black fur with a small white star-shaped patch on his forehead, two tiny rounded nub horns, short floppy ears with gray-pink inner side, big round sparkling brown eyes, wearing a bright red t-shirt with a small yellow star, navy blue shorts, red rubber rain boots, standing as tall as his 85cm toddler frame allows, beaming with a huge proud smile, pointing both thumbs at the yellow star on his bright red t-shirt. [ACTION] Close-up of Dê Mun's hands carefully placing the item and beaming with pride. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized Vietnamese countryside hillside farmhouse belonging to Bong and Mun the goats. The traditional single-story timber house features weathered hand-fired red terracotta roof tiles with patches of velvety green moss, warm lime-washed cream walls, and a wide covered wooden veranda raised 25cm off the ground. Surrounding the sunny packed-earth courtyard is a neat woven split-bamboo lattice fence standing 70cm tall (chest height to a 100cm character) and an arched bamboo trellis draped with lush green loofah vines, bright yellow gourd blossoms, and hanging gourds at 175cm overhead height. In the side garden, straight raised soil beds with moist dark earth texture grow crisp green mustard cabbages, carrots, and herbs. On the veranda sits a polished bamboo tea table (52cm high) with a ceramic teapot, wooden stools (28cm high), child-sized tin watering cans, and a stone water jar with a bamboo ladle, all rendered with tactile surface detail and shallow depth of field. Time of day: night. [DEPTH] foreground: close-up details of the wooden/fabric props, soft bokeh; midground: Dê Mun's expressive face and small hands working carefully, razor-sharp focus; background: warm wooden surface texture, creamy atmospheric falloff. [LIGHT] Peaceful countryside evening under a starry sky and crescent moon; warm yellow porch lanterns illuminating the wooden veranda while crickets chirp in the bamboo hedge..",
+          "videoPrompt": "5-second 3D Pixar-style animated clip — hero moment of shot S05 (shot window 01:20-01:40, 20s; the clip plays at the start of the shot, then the editor holds its last frame with a slow camera drift): Close-up of Dê Mun's hands carefully placing the item and beaming with pride. Camera movement: smooth push-in. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Dê Mun), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "de_mun"
+          ],
+          "speakerId": "de_mun",
+          "priority": 3,
+          "clipDurationSec": 5
+        },
+        {
+          "id": "S06",
+          "sceneIndex": 2,
+          "sceneTitle": "Sinh hoạt đời thường tại Nhà của Bông & Mun trên sườn đồi",
+          "startSec": 100,
+          "endSec": 120,
+          "durationSec": 20.0,
+          "shotSize": "MS",
+          "camera": "eye-level, 35mm, static",
+          "characters": [
+            "Dê Bông (115cm)",
+            "Dê Mun (85cm)"
+          ],
+          "action": "[0-7s] Dê Bông (115cm) hào hứng chạy lon ton lại gần để cùng xem và tham gia. [7-14s] Vì quá háo hức nên Dê Bông chưa chú ý quan sát kỹ xung quanh. [14-20s] Một chi tiết bất ngờ bắt đầu xuất hiện.",
+          "expression": "Dê Bông (vui): Nụ cười hiền hậu ấm áp, đôi mắt nâu tròn ánh lên niềm vui, đôi tai dài cụp đung đưa nhẹ, vỗ hai tay khích lệ em. | Dê Mun (vui): Hai má phúng phính nâng cao với nụ cười trẻ thơ rạng rỡ, mắt nâu to tròn lấp lánh, đôi tai ngắn vẫy nhẹ khi nhún nhảy trong đôi ủng cao su đỏ.",
+          "actingNotes": "Dê Bông: Biểu cảm háo hức hồn nhiên, bước chân hơi nhanh tạo tiền đề tự nhiên cho tình huống phát sinh.",
+          "speaker": "Dê Bông (115cm)",
+          "dialogue": "Đẹp quá đi mất! Cho Dê Bông lại gần xem thử cùng với nhé!",
+          "voiceDelivery": "Hào hứng, nhịp nói hơi nhanh",
+          "sfx": "Tiếng bước chân chạy lon ton trên sàn",
+          "bgm": "Nhạc nền tăng nhẹ nhịp độ báo hiệu tình huống",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] MS, eye-level angle, 35mm lens. [CHARACTERS] a gentle, thoughtful 6-year-old boy white goat named Bong, about 115cm tall (1.15x the height of Bi the squirrel, Bi's head reaches Bong's chin), slim upright build, fluffy clean snow-white curly fur, a small soft chin tuft, two short curved cream-colored horns, long floppy ears with pink inner side, big round warm brown eyes, small pink nose, wearing sky-blue denim overalls over a white-and-navy striped t-shirt, a tiny green notebook in the front pocket, brown sandals over small dark hooves, warm gentle smile, bright crinkling warm brown eyes, long floppy ears bouncing lightly, standing tall and clapping both hands together cheerfully; a playful 3-year-old toddler boy black goat named Mun, about 85cm tall (0.85x the height of Bi the squirrel, Mun's head reaches Bi's nose), chubby-cheeked toddler build, soft glossy jet-black fur with a small white star-shaped patch on his forehead, two tiny rounded nub horns, short floppy ears with gray-pink inner side, big round sparkling brown eyes, wearing a bright red t-shirt with a small yellow star, navy blue shorts, red rubber rain boots, chubby cheeks lifted in a huge gummy toddler grin, big sparkling brown eyes crinkling with joy, short floppy ears flapping as he jumps up in his red rubber rain boots with both short arms raised high. [SCALE] Height order from tallest: Dê Bông (115cm) > Dê Mun (85cm); Mun (85cm) reaches Bong's chest (115cm). [ACTION] Medium shot as Dê Bông approaches eagerly, setting up the everyday turning point. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized Vietnamese countryside hillside farmhouse belonging to Bong and Mun the goats. The traditional single-story timber house features weathered hand-fired red terracotta roof tiles with patches of velvety green moss, warm lime-washed cream walls, and a wide covered wooden veranda raised 25cm off the ground. Surrounding the sunny packed-earth courtyard is a neat woven split-bamboo lattice fence standing 70cm tall (chest height to a 100cm character) and an arched bamboo trellis draped with lush green loofah vines, bright yellow gourd blossoms, and hanging gourds at 175cm overhead height. In the side garden, straight raised soil beds with moist dark earth texture grow crisp green mustard cabbages, carrots, and herbs. On the veranda sits a polished bamboo tea table (52cm high) with a ceramic teapot, wooden stools (28cm high), child-sized tin watering cans, and a stone water jar with a bamboo ladle, all rendered with tactile surface detail and shallow depth of field. Time of day: night. [DEPTH] foreground: warm sunbeams in foreground, soft bokeh; midground: Dê Bông stepping closer to Dê Mun with excitement, razor-sharp focus; background: background of Nhà của Bông & Mun trên sườn đồi, creamy atmospheric falloff. [LIGHT] Peaceful countryside evening under a starry sky and crescent moon; warm yellow porch lanterns illuminating the wooden veranda while crickets chirp in the bamboo hedge..",
+          "videoPrompt": "5-second 3D Pixar-style animated clip — hero moment of shot S06 (shot window 01:40-02:00, 20s; the clip plays at the start of the shot, then the editor holds its last frame with a slow camera drift): Medium shot as Dê Bông approaches eagerly, setting up the everyday turning point. Camera movement: smooth static. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Height order from tallest: Dê Bông (115cm) > Dê Mun (85cm); Mun (85cm) reaches Bong's chest (115cm).), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "de_bong",
+            "de_mun"
+          ],
+          "speakerId": "de_bong",
+          "priority": 3,
+          "clipDurationSec": 5
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Tình huống bất ngờ xảy ra (Lớp Sư Phạm 1 - Khơi gợi)",
+      "startSec": 120,
+      "endSec": 180,
+      "location": "Nhà của Bông & Mun trên sườn đồi — Ngay tại vị trí Bộ bàn ghế tre trên hiên nhà ông Dê",
+      "purpose": "Tái hiện chân thực tình huống cốt lõi: Buổi tối tại phòng ngủ nhà nông trại Dê, khi vừa tắt đèn lớn, Dê Mun (85cm) nhìn thấy chiếc bóng dài ngoằng rung rinh trên tường liền tưởng là quái vật nên trùm chăn run cầm cập.",
+      "shots": [
+        {
+          "id": "S07",
+          "sceneIndex": 3,
+          "sceneTitle": "Tình huống bất ngờ xảy ra (Lớp Sư Phạm 1 - Khơi gợi)",
+          "startSec": 120,
+          "endSec": 140,
+          "durationSec": 20.0,
+          "shotSize": "MS",
+          "camera": "low, 35mm, dutch-angle",
+          "characters": [
+            "Dê Mun (85cm)",
+            "Dê Bông (115cm)"
+          ],
+          "action": "[0-7s] Tình huống bất ngờ diễn ra: Buổi tối tại phòng ngủ nhà nông trại Dê, khi vừa tắt đèn lớn, Dê Mun (85cm) nhìn thấy chiếc bóng dài ngoằng rung rinh trên tường liền tưởng là quái vật nên trùm chăn run cầm cập. [7-14s] Cả Dê Mun và Dê Bông đều giật mình sững lại nhìn hiện trường. [14-20s] Mọi thứ dừng lại trong một khoảng lặng bất ngờ.",
+          "expression": "Dê Mun (ngạc nhiên): Miệng há chữ O nhỏ xíu cực kỳ đáng yêu, mắt sáng long lanh như sao, hai bàn tay mũm mĩm áp lên hai má. | Dê Bông (ngạc nhiên): Mắt mở to, chân mày nâng cao gần chạm cặp sừng ngắn màu kem, miệng chữ O gọn gàng.",
+          "actingNotes": "Cả hai nhân vật mở to mắt, miệng chữ O nhỏ vì bất ngờ; động tác dừng khựng lại rất rõ nét để trẻ nhỏ hiểu chuyện gì vừa xảy ra.",
+          "speaker": "Dê Mun (85cm)",
+          "dialogue": "Á! Ôi thôi… Sao lại bị như thế này rồi?!",
+          "voiceDelivery": "Thốt lên bất ngờ, giọng cao nhẹ rồi chùng xuống",
+          "sfx": "Tiếng đồ vật đổ/va chạm 'lạch cạch, bụp' rõ ràng nhưng an toàn",
+          "bgm": "Nhạc trượt xuống một quãng rồi tạm ngưng tạo kịch tính",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] MS, low angle, 35mm lens. [CHARACTERS] a playful 3-year-old toddler boy black goat named Mun, about 85cm tall (0.85x the height of Bi the squirrel, Mun's head reaches Bi's nose), chubby-cheeked toddler build, soft glossy jet-black fur with a small white star-shaped patch on his forehead, two tiny rounded nub horns, short floppy ears with gray-pink inner side, big round sparkling brown eyes, wearing a bright red t-shirt with a small yellow star, navy blue shorts, red rubber rain boots, mouth wide open in an adorable tiny 'O', big round eyes sparkling like stars, both chubby hands pressed flat against his cheeks, standing on tiptoes in his red rubber rain boots; a gentle, thoughtful 6-year-old boy white goat named Bong, about 115cm tall (1.15x the height of Bi the squirrel, Bi's head reaches Bong's chin), slim upright build, fluffy clean snow-white curly fur, a small soft chin tuft, two short curved cream-colored horns, long floppy ears with pink inner side, big round warm brown eyes, small pink nose, wearing sky-blue denim overalls over a white-and-navy striped t-shirt, a tiny green notebook in the front pocket, brown sandals over small dark hooves, eyes wide open, eyebrows lifted high toward his short cream horns, mouth forming a neat 'O', long ears perked outward as he nearly drops his tiny green notebook. [SCALE] Height order from tallest: Dê Bông (115cm) > Dê Mun (85cm); Mun (85cm) reaches Bong's chest (115cm). [ACTION] Medium low-angle shot capturing the exact moment the preschool incident occurs, with both characters gasping in surprise. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized Vietnamese countryside hillside farmhouse belonging to Bong and Mun the goats. The traditional single-story timber house features weathered hand-fired red terracotta roof tiles with patches of velvety green moss, warm lime-washed cream walls, and a wide covered wooden veranda raised 25cm off the ground. Surrounding the sunny packed-earth courtyard is a neat woven split-bamboo lattice fence standing 70cm tall (chest height to a 100cm character) and an arched bamboo trellis draped with lush green loofah vines, bright yellow gourd blossoms, and hanging gourds at 175cm overhead height. In the side garden, straight raised soil beds with moist dark earth texture grow crisp green mustard cabbages, carrots, and herbs. On the veranda sits a polished bamboo tea table (52cm high) with a ceramic teapot, wooden stools (28cm high), child-sized tin watering cans, and a stone water jar with a bamboo ladle, all rendered with tactile surface detail and shallow depth of field. Time of day: night. [DEPTH] foreground: tilted/scattered props in foreground, soft bokeh; midground: Dê Mun and Dê Bông reacting in surprise as the incident happens, razor-sharp focus; background: Nhà của Bông & Mun trên sườn đồi background, creamy atmospheric falloff. [LIGHT] Peaceful countryside evening under a starry sky and crescent moon; warm yellow porch lanterns illuminating the wooden veranda while crickets chirp in the bamboo hedge..",
+          "videoPrompt": "5-second 3D Pixar-style animated clip — hero moment of shot S07 (shot window 02:00-02:20, 20s; the clip plays at the start of the shot, then the editor holds its last frame with a slow camera drift): Medium low-angle shot capturing the exact moment the preschool incident occurs, with both characters gasping in surprise. Camera movement: smooth dutch-angle. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Height order from tallest: Dê Bông (115cm) > Dê Mun (85cm); Mun (85cm) reaches Bong's chest (115cm).), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "de_mun",
+            "de_bong"
+          ],
+          "speakerId": "de_mun",
+          "priority": 1,
+          "priorityNote": "tình huống: bóng tối",
+          "clipDurationSec": 5
+        },
+        {
+          "id": "S08",
+          "sceneIndex": 3,
+          "sceneTitle": "Tình huống bất ngờ xảy ra (Lớp Sư Phạm 1 - Khơi gợi)",
+          "startSec": 140,
+          "endSec": 160,
+          "durationSec": 20.0,
+          "shotSize": "CU",
+          "camera": "high, 50mm, static",
+          "characters": [
+            "Dê Mun (85cm)"
+          ],
+          "action": "[0-7s] Máy quay đặc tả hiện trạng của Đèn ngủ gỗ hình ngôi sao vàng ấm, chú dê bông nhỏ và bóng cành cây bưởi in trên rèm cửa sổ sau sự cố. [7-14s] Phản ứng tâm lý tự nhiên xuất hiện: Mun (85cm) ôm chặt gối, mắt nâu ươn ướt gọi anh Dê Bông (115cm) nằm ở giường bên cạnh. [14-20s] Hơi thở của Dê Mun thay đổi rõ rệt.",
+          "expression": "Dê Mun (buồn): Môi dưới trề ra run rẩy sắp khóc, đôi mắt nâu to tròn ngấn nước long lanh, tai ngắn cụp xuống, bàn tay mũm mĩm dụi mắt.",
+          "actingNotes": "Diễn tả thật chi tiết phản ứng tâm sinh lý của trẻ nhỏ: nhịp thở nhanh hơn, vai hơi căng hoặc rủ xuống, bàn tay nắm nhẹ.",
+          "speaker": "Dê Mun (85cm)",
+          "dialogue": "Huhuhu… Bao nhiêu công sức của mình từ nãy đến giờ, thế là hỏng mất rồi!",
+          "voiceDelivery": "Giọng run nhẹ, đầy tiếc nuối hoặc dỗi hờn trẻ thơ",
+          "sfx": "Tiếng thở dài hoặc nhịp tim đập 'thình thịch' nhẹ",
+          "bgm": "Tiếng đàn dây trầm lắng đi vào cảm xúc nhân vật",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] CU, high angle, 50mm lens. [CHARACTERS] a playful 3-year-old toddler boy black goat named Mun, about 85cm tall (0.85x the height of Bi the squirrel, Mun's head reaches Bi's nose), chubby-cheeked toddler build, soft glossy jet-black fur with a small white star-shaped patch on his forehead, two tiny rounded nub horns, short floppy ears with gray-pink inner side, big round sparkling brown eyes, wearing a bright red t-shirt with a small yellow star, navy blue shorts, red rubber rain boots, lower lip pushed out in a big trembling toddler pout, big round brown eyes welling with shiny tears, short ears drooping down, rubbing one eye with a small black furry fist. [ACTION] Close-up focusing on Dê Mun's immediate emotional and physical reaction to the problem. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized Vietnamese countryside hillside farmhouse belonging to Bong and Mun the goats. The traditional single-story timber house features weathered hand-fired red terracotta roof tiles with patches of velvety green moss, warm lime-washed cream walls, and a wide covered wooden veranda raised 25cm off the ground. Surrounding the sunny packed-earth courtyard is a neat woven split-bamboo lattice fence standing 70cm tall (chest height to a 100cm character) and an arched bamboo trellis draped with lush green loofah vines, bright yellow gourd blossoms, and hanging gourds at 175cm overhead height. In the side garden, straight raised soil beds with moist dark earth texture grow crisp green mustard cabbages, carrots, and herbs. On the veranda sits a polished bamboo tea table (52cm high) with a ceramic teapot, wooden stools (28cm high), child-sized tin watering cans, and a stone water jar with a bamboo ladle, all rendered with tactile surface detail and shallow depth of field. Time of day: night. [DEPTH] foreground: close-up of the affected prop in foreground, soft bokeh; midground: close-up of Dê Mun reacting emotionally, razor-sharp focus; background: softly blurred floor texture, creamy atmospheric falloff. [LIGHT] Peaceful countryside evening under a starry sky and crescent moon; warm yellow porch lanterns illuminating the wooden veranda while crickets chirp in the bamboo hedge..",
+          "videoPrompt": "5-second 3D Pixar-style animated clip — hero moment of shot S08 (shot window 02:20-02:40, 20s; the clip plays at the start of the shot, then the editor holds its last frame with a slow camera drift): Close-up focusing on Dê Mun's immediate emotional and physical reaction to the problem. Camera movement: smooth static. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Dê Mun), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "de_mun"
+          ],
+          "speakerId": "de_mun",
+          "priority": 3,
+          "clipDurationSec": 5
+        },
+        {
+          "id": "S09",
+          "sceneIndex": 3,
+          "sceneTitle": "Tình huống bất ngờ xảy ra (Lớp Sư Phạm 1 - Khơi gợi)",
+          "startSec": 160,
+          "endSec": 180,
+          "durationSec": 20.0,
+          "shotSize": "MCU",
+          "camera": "eye-level, 50mm, push-in",
+          "characters": [
+            "Dê Bông (115cm)"
+          ],
+          "action": "[0-7s] Dê Bông (115cm) đứng bên cạnh nhìn Dê Mun với ánh mắt bối rối. [7-14s] Dê Bông muốn giúp hoặc xin lỗi nhưng chưa biết phải làm thế nào cho đúng. [14-20s] Hai bàn tay đan vào nhau lúng túng.",
+          "expression": "Dê Bông (sợ): Mắt nâu mở to lo lắng, tai cụp về sau, hai tay dang ra che chở phía trước cho em nhỏ.",
+          "actingNotes": "Dê Bông: Đôi mắt mở to long lanh, tai hơi cụp xuống, thể hiện sự lúng túng rất thật của trẻ nhỏ khi gặp rắc rối.",
+          "speaker": "Dê Bông (115cm)",
+          "dialogue": "Dê Mun ơi… Bây giờ chúng mình phải làm sao đây?",
+          "voiceDelivery": "Nhỏ nhẹ, rụt rè, chân thành",
+          "sfx": "Tiếng sột soạt nhẹ của quần áo",
+          "bgm": "Tiếng piano đơn âm nhẹ nhàng",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] MCU, eye-level angle, 50mm lens. [CHARACTERS] a gentle, thoughtful 6-year-old boy white goat named Bong, about 115cm tall (1.15x the height of Bi the squirrel, Bi's head reaches Bong's chin), slim upright build, fluffy clean snow-white curly fur, a small soft chin tuft, two short curved cream-colored horns, long floppy ears with pink inner side, big round warm brown eyes, small pink nose, wearing sky-blue denim overalls over a white-and-navy striped t-shirt, a tiny green notebook in the front pocket, brown sandals over small dark hooves, warm brown eyes widened in alarm, floppy ears pulled back against his head, both hands raised defensively near his chest while instinctively stepping in front of younger kids to protect them. [ACTION] Medium close-up of Dê Bông clasping hands nervously, wanting to help make things right. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized Vietnamese countryside hillside farmhouse belonging to Bong and Mun the goats. The traditional single-story timber house features weathered hand-fired red terracotta roof tiles with patches of velvety green moss, warm lime-washed cream walls, and a wide covered wooden veranda raised 25cm off the ground. Surrounding the sunny packed-earth courtyard is a neat woven split-bamboo lattice fence standing 70cm tall (chest height to a 100cm character) and an arched bamboo trellis draped with lush green loofah vines, bright yellow gourd blossoms, and hanging gourds at 175cm overhead height. In the side garden, straight raised soil beds with moist dark earth texture grow crisp green mustard cabbages, carrots, and herbs. On the veranda sits a polished bamboo tea table (52cm high) with a ceramic teapot, wooden stools (28cm high), child-sized tin watering cans, and a stone water jar with a bamboo ladle, all rendered with tactile surface detail and shallow depth of field. Time of day: night. [DEPTH] foreground: soft foreground bokeh, soft bokeh; midground: medium close-up of Dê Bông looking concerned and unsure what to do, razor-sharp focus; background: blurred Nhà của Bông & Mun trên sườn đồi wall, creamy atmospheric falloff. [LIGHT] Peaceful countryside evening under a starry sky and crescent moon; warm yellow porch lanterns illuminating the wooden veranda while crickets chirp in the bamboo hedge..",
+          "videoPrompt": "5-second 3D Pixar-style animated clip — hero moment of shot S09 (shot window 02:40-03:00, 20s; the clip plays at the start of the shot, then the editor holds its last frame with a slow camera drift): Medium close-up of Dê Bông clasping hands nervously, wanting to help make things right. Camera movement: smooth push-in. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Dê Bông), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "de_bong"
+          ],
+          "speakerId": "de_bong",
+          "priority": 3,
+          "clipDurationSec": 5
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Cảm xúc dâng trào & Phản ứng lúng túng ban đầu",
+      "startSec": 180,
+      "endSec": 240,
+      "location": "Nhà của Bông & Mun trên sườn đồi — Góc phòng/sân",
+      "purpose": "Khắc họa rõ nét khó khăn khi trẻ chưa biết kỹ năng xử lý đúng cách, giúp khán giả nhí thấy chính mình trong đó.",
+      "shots": [
+        {
+          "id": "S10",
+          "sceneIndex": 4,
+          "sceneTitle": "Cảm xúc dâng trào & Phản ứng lúng túng ban đầu",
+          "startSec": 180,
+          "endSec": 200,
+          "durationSec": 20.0,
+          "shotSize": "MS",
+          "camera": "eye-level, 35mm, static",
+          "characters": [
+            "Dê Mun (85cm)",
+            "Dê Bông (115cm)"
+          ],
+          "action": "[0-7s] Do chưa bình tĩnh và chưa biết cách giải quyết, Dê Mun thử làm vội vàng theo ý mình. [7-14s] Càng vội thì mọi việc lại càng rối hơn: Mun (85cm) ôm chặt gối, mắt nâu ươn ướt gọi anh Dê Bông (115cm) nằm ở giường bên cạnh. [14-20s] Dê Mun phồng má hoặc ngồi thụp xuống thở dài.",
+          "expression": "Dê Mun (buồn): Môi dưới trề ra run rẩy sắp khóc, đôi mắt nâu to tròn ngấn nước long lanh, tai ngắn cụp xuống, bàn tay mũm mĩm dụi mắt. | Dê Bông (buồn): Đôi tai dài rủ thấp, mắt nâu nhìn xuống đầy suy tư, vai hơi trùng xuống, hai tay ôm cuốn sổ tay nhỏ màu xanh lá trước ngực quần yếm.",
+          "actingNotes": "Dê Mun: Động tác tay vội vã, thiếu kiên nhẫn, chân mày nhíu lại, thể hiện rõ việc làm khi đang mất bình tĩnh sẽ không hiệu quả.",
+          "speaker": "Dê Mun (85cm)",
+          "dialogue": "Sao làm hoài vẫn không được thế này! Khó quá đi mất thôi!",
+          "voiceDelivery": "Gấp gáp, hơi nản lòng",
+          "sfx": "Tiếng đồ vật trượt lạch cạch",
+          "bgm": "Nhạc nền pizzicato hơi rối nhịp mô tả sự luống cuống",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] MS, eye-level angle, 35mm lens. [CHARACTERS] a playful 3-year-old toddler boy black goat named Mun, about 85cm tall (0.85x the height of Bi the squirrel, Mun's head reaches Bi's nose), chubby-cheeked toddler build, soft glossy jet-black fur with a small white star-shaped patch on his forehead, two tiny rounded nub horns, short floppy ears with gray-pink inner side, big round sparkling brown eyes, wearing a bright red t-shirt with a small yellow star, navy blue shorts, red rubber rain boots, lower lip pushed out in a big trembling toddler pout, big round brown eyes welling with shiny tears, short ears drooping down, rubbing one eye with a small black furry fist; a gentle, thoughtful 6-year-old boy white goat named Bong, about 115cm tall (1.15x the height of Bi the squirrel, Bi's head reaches Bong's chin), slim upright build, fluffy clean snow-white curly fur, a small soft chin tuft, two short curved cream-colored horns, long floppy ears with pink inner side, big round warm brown eyes, small pink nose, wearing sky-blue denim overalls over a white-and-navy striped t-shirt, a tiny green notebook in the front pocket, brown sandals over small dark hooves, long floppy ears hanging heavy and low, warm brown eyes looking down with furrowed brows, shoulders drooping slightly, holding his tiny green notebook against his chest. [SCALE] Height order from tallest: Dê Bông (115cm) > Dê Mun (85cm); Mun (85cm) reaches Bong's chest (115cm). [ACTION] Medium shot showing Dê Mun trying to fix things hastily while upset, only making it more tangled. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized Vietnamese countryside hillside farmhouse belonging to Bong and Mun the goats. The traditional single-story timber house features weathered hand-fired red terracotta roof tiles with patches of velvety green moss, warm lime-washed cream walls, and a wide covered wooden veranda raised 25cm off the ground. Surrounding the sunny packed-earth courtyard is a neat woven split-bamboo lattice fence standing 70cm tall (chest height to a 100cm character) and an arched bamboo trellis draped with lush green loofah vines, bright yellow gourd blossoms, and hanging gourds at 175cm overhead height. In the side garden, straight raised soil beds with moist dark earth texture grow crisp green mustard cabbages, carrots, and herbs. On the veranda sits a polished bamboo tea table (52cm high) with a ceramic teapot, wooden stools (28cm high), child-sized tin watering cans, and a stone water jar with a bamboo ladle, all rendered with tactile surface detail and shallow depth of field. Time of day: night. [DEPTH] foreground: scattered props in foreground, soft bokeh; midground: Dê Mun struggling with the problem while Dê Bông watches sadly, razor-sharp focus; background: Nhà của Bông & Mun trên sườn đồi interior, creamy atmospheric falloff. [LIGHT] Peaceful countryside evening under a starry sky and crescent moon; warm yellow porch lanterns illuminating the wooden veranda while crickets chirp in the bamboo hedge..",
+          "videoPrompt": "5-second 3D Pixar-style animated clip — hero moment of shot S10 (shot window 03:00-03:20, 20s; the clip plays at the start of the shot, then the editor holds its last frame with a slow camera drift): Medium shot showing Dê Mun trying to fix things hastily while upset, only making it more tangled. Camera movement: smooth static. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Height order from tallest: Dê Bông (115cm) > Dê Mun (85cm); Mun (85cm) reaches Bong's chest (115cm).), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "de_mun",
+            "de_bong"
+          ],
+          "speakerId": "de_mun",
+          "priority": 2,
+          "priorityNote": "đầu cảnh",
+          "clipDurationSec": 5
+        },
+        {
+          "id": "S11",
+          "sceneIndex": 4,
+          "sceneTitle": "Cảm xúc dâng trào & Phản ứng lúng túng ban đầu",
+          "startSec": 200,
+          "endSec": 220,
+          "durationSec": 20.0,
+          "shotSize": "CU",
+          "camera": "eye-level, 50mm, push-in",
+          "characters": [
+            "Dê Mun (85cm)"
+          ],
+          "action": "[0-7s] Máy đẩy sát vào gương mặt của Dê Mun. [7-14s] Đôi tai hơi cụp xuống, đôi mắt to tròn chớp nhẹ nhận ra cách làm vừa rồi chưa ổn. [14-20s] Dê Mun đặt tay lên ngực/bụng lắng nghe cảm xúc của mình.",
+          "expression": "Dê Mun (buồn): Môi dưới trề ra run rẩy sắp khóc, đôi mắt nâu to tròn ngấn nước long lanh, tai ngắn cụp xuống, bàn tay mũm mĩm dụi mắt.",
+          "actingNotes": "Biểu cảm chuyển biến tinh tế từ căng thẳng sang lắng lại; đôi mắt long lanh rất truyền cảm.",
+          "speaker": "Dê Mun (85cm)",
+          "dialogue": "Làm như vậy chẳng vui chút nào cả… Tim mình đang đập nhanh quá!",
+          "voiceDelivery": "Chậm lại, nhỏ nhẹ, tự nhận thức cảm xúc",
+          "sfx": "Tiếng thở sâu nhẹ nhàng",
+          "bgm": "Tiếng sáo trúc hoặc clarinet ấm áp vang lên",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] CU, eye-level angle, 50mm lens. [CHARACTERS] a playful 3-year-old toddler boy black goat named Mun, about 85cm tall (0.85x the height of Bi the squirrel, Mun's head reaches Bi's nose), chubby-cheeked toddler build, soft glossy jet-black fur with a small white star-shaped patch on his forehead, two tiny rounded nub horns, short floppy ears with gray-pink inner side, big round sparkling brown eyes, wearing a bright red t-shirt with a small yellow star, navy blue shorts, red rubber rain boots, lower lip pushed out in a big trembling toddler pout, big round brown eyes welling with shiny tears, short ears drooping down, rubbing one eye with a small black furry fist. [ACTION] Close-up of Dê Mun pausing, drooping ears slightly, and placing a hand on the chest. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized Vietnamese countryside hillside farmhouse belonging to Bong and Mun the goats. The traditional single-story timber house features weathered hand-fired red terracotta roof tiles with patches of velvety green moss, warm lime-washed cream walls, and a wide covered wooden veranda raised 25cm off the ground. Surrounding the sunny packed-earth courtyard is a neat woven split-bamboo lattice fence standing 70cm tall (chest height to a 100cm character) and an arched bamboo trellis draped with lush green loofah vines, bright yellow gourd blossoms, and hanging gourds at 175cm overhead height. In the side garden, straight raised soil beds with moist dark earth texture grow crisp green mustard cabbages, carrots, and herbs. On the veranda sits a polished bamboo tea table (52cm high) with a ceramic teapot, wooden stools (28cm high), child-sized tin watering cans, and a stone water jar with a bamboo ladle, all rendered with tactile surface detail and shallow depth of field. Time of day: night. [DEPTH] foreground: soft window light bokeh, soft bokeh; midground: close-up of Dê Mun's face showing vulnerable preschool emotion, razor-sharp focus; background: warm blurred background, creamy atmospheric falloff. [LIGHT] Peaceful countryside evening under a starry sky and crescent moon; warm yellow porch lanterns illuminating the wooden veranda while crickets chirp in the bamboo hedge..",
+          "videoPrompt": "5-second 3D Pixar-style animated clip — hero moment of shot S11 (shot window 03:20-03:40, 20s; the clip plays at the start of the shot, then the editor holds its last frame with a slow camera drift): Close-up of Dê Mun pausing, drooping ears slightly, and placing a hand on the chest. Camera movement: smooth push-in. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Dê Mun), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "de_mun"
+          ],
+          "speakerId": "de_mun",
+          "priority": 1,
+          "priorityNote": "cao trào: Mun sợ hãi",
+          "clipDurationSec": 5
+        },
+        {
+          "id": "S12",
+          "sceneIndex": 4,
+          "sceneTitle": "Cảm xúc dâng trào & Phản ứng lúng túng ban đầu",
+          "startSec": 220,
+          "endSec": 240,
+          "durationSec": 20.0,
+          "shotSize": "MS",
+          "camera": "eye-level, 35mm, lateral-pan",
+          "characters": [
+            "Dê Mun (85cm)",
+            "Dê Bông (115cm)",
+            "Ông Dê Râu Bạc (155cm)"
+          ],
+          "action": "[0-7s] Đúng lúc đó, Ông Dê Râu Bạc (155cm) bước tới với ánh mắt hiền từ, hoàn toàn không la mắng. [7-14s] Ông Dê Râu Bạc ngồi xuống ngang tầm mắt của Dê Mun (85cm). [14-20s] Ông Dê Râu Bạc mở vòng tay hoặc đặt tay nhẹ lên vai khích lệ.",
+          "expression": "Dê Mun (tò mò): Đầu nghiêng hẳn sang một bên, đôi mắt nâu tròn xoe cúi sát quan sát món đồ, một ngón tay nhỏ chỉ nhẹ. | Dê Bông (tò mò): Hơi cúi nhẹ về phía trước, một tay vuốt chòm râu cằm trắng mềm, đôi mắt nâu quan sát tỉ mỉ. | Ông Dê Râu Bạc (tò mò): Hơi cúi người chống gậy tre, nghiêng đầu lắng nghe câu chuyện của các cháu nhỏ.",
+          "actingNotes": "Ông Dê Râu Bạc: Luôn hạ thấp người ngang tầm mắt trẻ, nụ cười bao dung, ánh mắt truyền sự an tâm tuyệt đối.",
+          "speaker": "Ông Dê Râu Bạc (155cm)",
+          "dialogue": "Có chuyện gì thế các con? Cứ bình tĩnh kể cho Ông Dê Râu Bạc nghe nào, không sao đâu nhé!",
+          "voiceDelivery": "Trầm ấm, dịu dàng, vỗ về",
+          "sfx": "Tiếng bước chân êm ái",
+          "bgm": "Nhạc nền chuyển sang giai điệu ấm áp, nâng đỡ tâm lý",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] MS, eye-level angle, 35mm lens. [CHARACTERS] a playful 3-year-old toddler boy black goat named Mun, about 85cm tall (0.85x the height of Bi the squirrel, Mun's head reaches Bi's nose), chubby-cheeked toddler build, soft glossy jet-black fur with a small white star-shaped patch on his forehead, two tiny rounded nub horns, short floppy ears with gray-pink inner side, big round sparkling brown eyes, wearing a bright red t-shirt with a small yellow star, navy blue shorts, red rubber rain boots, head tilted far to one side, big sparkling brown eyes peering closely at something near the ground, squatting down in his navy shorts and red rain boots with one finger extended cautiously; a gentle, thoughtful 6-year-old boy white goat named Bong, about 115cm tall (1.15x the height of Bi the squirrel, Bi's head reaches Bong's chin), slim upright build, fluffy clean snow-white curly fur, a small soft chin tuft, two short curved cream-colored horns, long floppy ears with pink inner side, big round warm brown eyes, small pink nose, wearing sky-blue denim overalls over a white-and-navy striped t-shirt, a tiny green notebook in the front pocket, brown sandals over small dark hooves, leaning slightly forward, one hand stroking his small soft white chin tuft, warm brown eyes squinting thoughtfully as he studies an object closely; a kind elderly grandfather goat named Ong De Rau Bac (grandfather of Bong and Mun), about 155cm tall (1.55x the height of Bi the squirrel), sturdy slightly stooped warm build, silver-white fur, a long soft braided silver chin beard, curved amber-cream horns, warm crinkled brown eyes, wearing a traditional Vietnamese brown cotton Ba Ba shirt with wooden buttons, loose dark linen trousers, a woven bamboo straw hat resting on his back, brown wooden clogs over hooves, leaning down slightly with hands on his knees to inspect a seedling with the children. [SCALE] Height order from tallest: Ông Dê Râu Bạc (155cm) > Dê Bông (115cm) > Dê Mun (85cm); Mun (85cm) reaches Bong's chest (115cm); Grandfather Goat is 155cm tall (taller than all children). [ACTION] Medium shot as Ông Dê Râu Bạc arrives calmly and kneels down to eye level with Dê Mun. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized Vietnamese countryside hillside farmhouse belonging to Bong and Mun the goats. The traditional single-story timber house features weathered hand-fired red terracotta roof tiles with patches of velvety green moss, warm lime-washed cream walls, and a wide covered wooden veranda raised 25cm off the ground. Surrounding the sunny packed-earth courtyard is a neat woven split-bamboo lattice fence standing 70cm tall (chest height to a 100cm character) and an arched bamboo trellis draped with lush green loofah vines, bright yellow gourd blossoms, and hanging gourds at 175cm overhead height. In the side garden, straight raised soil beds with moist dark earth texture grow crisp green mustard cabbages, carrots, and herbs. On the veranda sits a polished bamboo tea table (52cm high) with a ceramic teapot, wooden stools (28cm high), child-sized tin watering cans, and a stone water jar with a bamboo ladle, all rendered with tactile surface detail and shallow depth of field. Time of day: night. [DEPTH] foreground: doorframe or garden arch in foreground bokeh, soft bokeh; midground: Ông Dê Râu Bạc (155cm) joining gently in exact height ratio, razor-sharp focus; background: Nhà của Bông & Mun trên sườn đồi background, creamy atmospheric falloff. [LIGHT] Peaceful countryside evening under a starry sky and crescent moon; warm yellow porch lanterns illuminating the wooden veranda while crickets chirp in the bamboo hedge..",
+          "videoPrompt": "5-second 3D Pixar-style animated clip — hero moment of shot S12 (shot window 03:40-04:00, 20s; the clip plays at the start of the shot, then the editor holds its last frame with a slow camera drift): Medium shot as Ông Dê Râu Bạc arrives calmly and kneels down to eye level with Dê Mun. Camera movement: smooth lateral-pan. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Height order from tallest: Ông Dê Râu Bạc (155cm) > Dê Bông (115cm) > Dê Mun (85cm); Mun (85cm) reaches Bong's chest (115cm); Grandfather Goat is 155cm tall (taller than all children).), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "de_mun",
+            "de_bong",
+            "ong_de_rau_bac"
+          ],
+          "speakerId": "ong_de_rau_bac",
+          "priority": 3,
+          "clipDurationSec": 5
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "title": "Lắng nghe, Thấu cảm & Gọi tên vấn đề (Lớp Sư Phạm 2A)",
+      "startSec": 240,
+      "endSec": 300,
+      "location": "Nhà của Bông & Mun trên sườn đồi — Góc trò chuyện thân mật",
+      "purpose": "Giúp trẻ gọi tên đúng cảm xúc/nguyên nhân của sự việc thay vì phán xét hay trách phạt.",
+      "shots": [
+        {
+          "id": "S13",
+          "sceneIndex": 5,
+          "sceneTitle": "Lắng nghe, Thấu cảm & Gọi tên vấn đề (Lớp Sư Phạm 2A)",
+          "startSec": 240,
+          "endSec": 260,
+          "durationSec": 20.0,
+          "shotSize": "MCU",
+          "camera": "eye-level, 50mm, static",
+          "characters": [
+            "Dê Mun (85cm)",
+            "Ông Dê Râu Bạc (155cm)"
+          ],
+          "action": "[0-7s] Trong vòng tay ấm áp của Ông Dê Râu Bạc, Dê Mun chỉ tay vào Đèn ngủ gỗ hình ngôi sao vàng ấm, chú dê bông nhỏ và bóng cành cây bưởi in trên rèm cửa sổ và thật thà kể lại chuyện vừa xảy ra. [7-14s] Ông Dê Râu Bạc gật đầu lắng nghe từng lời. [14-20s] Ông Dê Râu Bạc xoa nhẹ lưng/đầu giúp Dê Mun dịu lại.",
+          "expression": "Dê Mun (buồn): Môi dưới trề ra run rẩy sắp khóc, đôi mắt nâu to tròn ngấn nước long lanh, tai ngắn cụp xuống, bàn tay mũm mĩm dụi mắt. | Ông Dê Râu Bạc (vui): Nụ cười ông nội hiền từ, đôi mắt nheo lại ấm áp sau cặp kính tròn, chòm râu bạc rung rinh theo tiếng cười 'Khà khà!'.",
+          "actingNotes": "Dê Mun: Vừa nói vừa dùng cử chỉ tay miêu tả lại, gương mặt dần giãn ra khi được lắng nghe. Ông Dê Râu Bạc: Ánh mắt chăm chú, trìu mến.",
+          "speaker": "Dê Mun (85cm)",
+          "dialogue": "Dạ… lúc nãy tắt đèn lớn đi ngủ, con nhìn thấy chiếc bóng dài ngoằng rung rinh trên tường, con tưởng là quái vật nên trùm chăn run cầm cập, nên trong lòng con mới thấy rối bời như vậy ạ…",
+          "voiceDelivery": "Chân thật, lễ phép, cảm xúc dịu dần",
+          "sfx": "Tiếng gió thổi nhẹ qua khung cửa",
+          "bgm": "Tiếng đàn guitar gỗ và cello ấm áp 96 BPM",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] MCU, eye-level angle, 50mm lens. [CHARACTERS] a playful 3-year-old toddler boy black goat named Mun, about 85cm tall (0.85x the height of Bi the squirrel, Mun's head reaches Bi's nose), chubby-cheeked toddler build, soft glossy jet-black fur with a small white star-shaped patch on his forehead, two tiny rounded nub horns, short floppy ears with gray-pink inner side, big round sparkling brown eyes, wearing a bright red t-shirt with a small yellow star, navy blue shorts, red rubber rain boots, lower lip pushed out in a big trembling toddler pout, big round brown eyes welling with shiny tears, short ears drooping down, rubbing one eye with a small black furry fist; a kind elderly grandfather goat named Ong De Rau Bac (grandfather of Bong and Mun), about 155cm tall (1.55x the height of Bi the squirrel), sturdy slightly stooped warm build, silver-white fur, a long soft braided silver chin beard, curved amber-cream horns, warm crinkled brown eyes, wearing a traditional Vietnamese brown cotton Ba Ba shirt with wooden buttons, loose dark linen trousers, a woven bamboo straw hat resting on his back, brown wooden clogs over hooves, hearty grandfatherly laugh, eyes crinkled into warm crescents, stroking his long silver chin beard. [SCALE] Height order from tallest: Ông Dê Râu Bạc (155cm) > Dê Mun (85cm); Grandfather Goat is 155cm tall (taller than all children). [ACTION] Medium close-up two-shot as Dê Mun shares what happened and Ông Dê Râu Bạc nods empathetically. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized Vietnamese countryside hillside farmhouse belonging to Bong and Mun the goats. The traditional single-story timber house features weathered hand-fired red terracotta roof tiles with patches of velvety green moss, warm lime-washed cream walls, and a wide covered wooden veranda raised 25cm off the ground. Surrounding the sunny packed-earth courtyard is a neat woven split-bamboo lattice fence standing 70cm tall (chest height to a 100cm character) and an arched bamboo trellis draped with lush green loofah vines, bright yellow gourd blossoms, and hanging gourds at 175cm overhead height. In the side garden, straight raised soil beds with moist dark earth texture grow crisp green mustard cabbages, carrots, and herbs. On the veranda sits a polished bamboo tea table (52cm high) with a ceramic teapot, wooden stools (28cm high), child-sized tin watering cans, and a stone water jar with a bamboo ladle, all rendered with tactile surface detail and shallow depth of field. Time of day: night. [DEPTH] foreground: warm ambient foreground bokeh, soft bokeh; midground: Dê Mun explaining feelings honestly while Ông Dê Râu Bạc listens attentively, razor-sharp focus; background: cozy Nhà của Bông & Mun trên sườn đồi background, creamy atmospheric falloff. [LIGHT] Peaceful countryside evening under a starry sky and crescent moon; warm yellow porch lanterns illuminating the wooden veranda while crickets chirp in the bamboo hedge..",
+          "videoPrompt": "5-second 3D Pixar-style animated clip — hero moment of shot S13 (shot window 04:00-04:20, 20s; the clip plays at the start of the shot, then the editor holds its last frame with a slow camera drift): Medium close-up two-shot as Dê Mun shares what happened and Ông Dê Râu Bạc nods empathetically. Camera movement: smooth static. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Height order from tallest: Ông Dê Râu Bạc (155cm) > Dê Mun (85cm); Grandfather Goat is 155cm tall (taller than all children).), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "de_mun",
+            "ong_de_rau_bac"
+          ],
+          "speakerId": "de_mun",
+          "priority": 2,
+          "priorityNote": "đầu cảnh",
+          "clipDurationSec": 5
+        },
+        {
+          "id": "S14",
+          "sceneIndex": 5,
+          "sceneTitle": "Lắng nghe, Thấu cảm & Gọi tên vấn đề (Lớp Sư Phạm 2A)",
+          "startSec": 260,
+          "endSec": 280,
+          "durationSec": 20.0,
+          "shotSize": "MCU",
+          "camera": "eye-level, 50mm, push-in",
+          "characters": [
+            "Ông Dê Râu Bạc (155cm)",
+            "Dê Bông (115cm)"
+          ],
+          "action": "[0-7s] Ông Dê Râu Bạc (155cm) cầm Đèn ngủ gỗ hình ngôi sao vàng ấm, chú dê bông nhỏ và bóng cành cây bưởi in trên rèm cửa sổ lên làm ví dụ trực quan ngay trước mắt trẻ. [7-14s] Giải thích ngắn gọn, sinh động về bài học: Gọi tên nỗi sợ bóng tối, nói ra với người thân, khám phá sự thật sau chiếc bóng và bật đèn ngủ vàng ấm. [14-20s] Cả Dê Mun và Dê Bông đều tròn mắt gật đầu hiểu ra.",
+          "expression": "Ông Dê Râu Bạc (vui): Nụ cười ông nội hiền từ, đôi mắt nheo lại ấm áp sau cặp kính tròn, chòm râu bạc rung rinh theo tiếng cười 'Khà khà!'. | Dê Bông (tò mò): Hơi cúi nhẹ về phía trước, một tay vuốt chòm râu cằm trắng mềm, đôi mắt nâu quan sát tỉ mỉ.",
+          "actingNotes": "Ông Dê Râu Bạc: Không nói lý thuyết dài dòng mà vừa nói vừa làm mẫu bằng tay thật rõ ràng, chậm rãi.",
+          "speaker": "Ông Dê Râu Bạc (155cm)",
+          "dialogue": "À, ra là thế! Cảm giác đó hoàn toàn bình thường thôi. Bây giờ Ông Dê Râu Bạc có một bí quyết cực hay giúp mình xử lý việc này nhé!",
+          "voiceDelivery": "Truyền cảm, khích lệ, nhấn vào cụm 'bí quyết cực hay'",
+          "sfx": "Tiếng chuông nhỏ 'ting' báo hiệu ý tưởng mới",
+          "bgm": "Nhạc nền chuyển sang gam trưởng tươi sáng, giàu hy vọng",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] MCU, eye-level angle, 50mm lens. [CHARACTERS] a kind elderly grandfather goat named Ong De Rau Bac (grandfather of Bong and Mun), about 155cm tall (1.55x the height of Bi the squirrel), sturdy slightly stooped warm build, silver-white fur, a long soft braided silver chin beard, curved amber-cream horns, warm crinkled brown eyes, wearing a traditional Vietnamese brown cotton Ba Ba shirt with wooden buttons, loose dark linen trousers, a woven bamboo straw hat resting on his back, brown wooden clogs over hooves, hearty grandfatherly laugh, eyes crinkled into warm crescents, stroking his long silver chin beard; a gentle, thoughtful 6-year-old boy white goat named Bong, about 115cm tall (1.15x the height of Bi the squirrel, Bi's head reaches Bong's chin), slim upright build, fluffy clean snow-white curly fur, a small soft chin tuft, two short curved cream-colored horns, long floppy ears with pink inner side, big round warm brown eyes, small pink nose, wearing sky-blue denim overalls over a white-and-navy striped t-shirt, a tiny green notebook in the front pocket, brown sandals over small dark hooves, leaning slightly forward, one hand stroking his small soft white chin tuft, warm brown eyes squinting thoughtfully as he studies an object closely. [SCALE] Height order from tallest: Ông Dê Râu Bạc (155cm) > Dê Bông (115cm); Grandfather Goat is 155cm tall (taller than all children). [ACTION] Ông Dê Râu Bạc uses a hands-on visual demonstration with the prop to explain Gọi tên nỗi sợ bóng tối, nói ra với người thân, khám phá sự thật sau chiếc bóng và bật đèn ngủ vàng ấm. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized Vietnamese countryside hillside farmhouse belonging to Bong and Mun the goats. The traditional single-story timber house features weathered hand-fired red terracotta roof tiles with patches of velvety green moss, warm lime-washed cream walls, and a wide covered wooden veranda raised 25cm off the ground. Surrounding the sunny packed-earth courtyard is a neat woven split-bamboo lattice fence standing 70cm tall (chest height to a 100cm character) and an arched bamboo trellis draped with lush green loofah vines, bright yellow gourd blossoms, and hanging gourds at 175cm overhead height. In the side garden, straight raised soil beds with moist dark earth texture grow crisp green mustard cabbages, carrots, and herbs. On the veranda sits a polished bamboo tea table (52cm high) with a ceramic teapot, wooden stools (28cm high), child-sized tin watering cans, and a stone water jar with a bamboo ladle, all rendered with tactile surface detail and shallow depth of field. Time of day: night. [DEPTH] foreground: soft foreground prop bokeh, soft bokeh; midground: Ông Dê Râu Bạc explaining the core lesson visually to the children, razor-sharp focus; background: warm background, creamy atmospheric falloff. [LIGHT] Peaceful countryside evening under a starry sky and crescent moon; warm yellow porch lanterns illuminating the wooden veranda while crickets chirp in the bamboo hedge..",
+          "videoPrompt": "5-second 3D Pixar-style animated clip — hero moment of shot S14 (shot window 04:20-04:40, 20s; the clip plays at the start of the shot, then the editor holds its last frame with a slow camera drift): Ông Dê Râu Bạc uses a hands-on visual demonstration with the prop to explain Gọi tên nỗi sợ bóng tối, nói ra với người thân, khám phá sự thật sau chiếc bóng và bật đèn ngủ vàng ấm. Camera movement: smooth push-in. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Height order from tallest: Ông Dê Râu Bạc (155cm) > Dê Bông (115cm); Grandfather Goat is 155cm tall (taller than all children).), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "ong_de_rau_bac",
+            "de_bong"
+          ],
+          "speakerId": "ong_de_rau_bac",
+          "priority": 3,
+          "clipDurationSec": 5
+        },
+        {
+          "id": "S15",
+          "sceneIndex": 5,
+          "sceneTitle": "Lắng nghe, Thấu cảm & Gọi tên vấn đề (Lớp Sư Phạm 2A)",
+          "startSec": 280,
+          "endSec": 300,
+          "durationSec": 20.0,
+          "shotSize": "CU",
+          "camera": "eye-level, 50mm, zoom-in",
+          "characters": [
+            "Dê Mun (85cm)"
+          ],
+          "action": "[0-7s] Nghe tới bí quyết mới, đôi tai của Dê Mun dựng thẳng lên. [7-14s] Đôi mắt to tròn sáng rực như có ánh sao. [14-20s] Dê Mun quay sang ống kính rủ các bạn nhỏ cùng học bí quyết.",
+          "expression": "Dê Mun (ngạc nhiên): Miệng há chữ O nhỏ xíu cực kỳ đáng yêu, mắt sáng long lanh như sao, hai bàn tay mũm mĩm áp lên hai má.",
+          "actingNotes": "Dê Mun: Biểu cảm 'ngạc nhiên + tò mò' chuẩn Pixar: lông mày nhướng cao, miệng chữ O nhỏ lộ niềm thích thú.",
+          "speaker": "Dê Mun (85cm)",
+          "dialogue": "Oa, bí quyết gì thế ạ? Bạn nhỏ ơi, chúng mình cùng xem và làm thử ngay bây giờ nhé!",
+          "voiceDelivery": "Hào hứng, tươi tỉnh trở lại",
+          "sfx": "Tiếng 'boing' nhẹ vui tai khi đôi tai dựng lên",
+          "bgm": "Nhạc marimba rộn ràng bắt đầu nhịp thực hành",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] CU, eye-level angle, 50mm lens. [CHARACTERS] a playful 3-year-old toddler boy black goat named Mun, about 85cm tall (0.85x the height of Bi the squirrel, Mun's head reaches Bi's nose), chubby-cheeked toddler build, soft glossy jet-black fur with a small white star-shaped patch on his forehead, two tiny rounded nub horns, short floppy ears with gray-pink inner side, big round sparkling brown eyes, wearing a bright red t-shirt with a small yellow star, navy blue shorts, red rubber rain boots, mouth wide open in an adorable tiny 'O', big round eyes sparkling like stars, both chubby hands pressed flat against his cheeks, standing on tiptoes in his red rubber rain boots. [ACTION] Close-up of Dê Mun's ears perking up and eyes sparkling with excitement, inviting the viewer to watch. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized Vietnamese countryside hillside farmhouse belonging to Bong and Mun the goats. The traditional single-story timber house features weathered hand-fired red terracotta roof tiles with patches of velvety green moss, warm lime-washed cream walls, and a wide covered wooden veranda raised 25cm off the ground. Surrounding the sunny packed-earth courtyard is a neat woven split-bamboo lattice fence standing 70cm tall (chest height to a 100cm character) and an arched bamboo trellis draped with lush green loofah vines, bright yellow gourd blossoms, and hanging gourds at 175cm overhead height. In the side garden, straight raised soil beds with moist dark earth texture grow crisp green mustard cabbages, carrots, and herbs. On the veranda sits a polished bamboo tea table (52cm high) with a ceramic teapot, wooden stools (28cm high), child-sized tin watering cans, and a stone water jar with a bamboo ladle, all rendered with tactile surface detail and shallow depth of field. Time of day: night. [DEPTH] foreground: sparkling light bokeh, soft bokeh; midground: close-up of Dê Mun with wide sparkling eyes and perked ears, razor-sharp focus; background: softly blurred background, creamy atmospheric falloff. [LIGHT] Peaceful countryside evening under a starry sky and crescent moon; warm yellow porch lanterns illuminating the wooden veranda while crickets chirp in the bamboo hedge..",
+          "videoPrompt": "5-second 3D Pixar-style animated clip — hero moment of shot S15 (shot window 04:40-05:00, 20s; the clip plays at the start of the shot, then the editor holds its last frame with a slow camera drift): Close-up of Dê Mun's ears perking up and eyes sparkling with excitement, inviting the viewer to watch. Camera movement: smooth zoom-in. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Dê Mun), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "de_mun"
+          ],
+          "speakerId": "de_mun",
+          "priority": 3,
+          "clipDurationSec": 5
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "title": "Hướng dẫn trực quan từng bước & Câu Thần Chú (Lớp Sư Phạm 2B)",
+      "startSec": 300,
+      "endSec": 360,
+      "location": "Nhà của Bông & Mun trên sườn đồi — Bàn/Thảm thực hành",
+      "purpose": "Dạy trẻ quy trình hành động cụ thể (Anh Bông (115cm) và Ông Dê Râu Bạc (155cm) cầm đèn lồng nhỏ cùng Mun mở rèm kiểm tra: hóa ra chỉ là cành bưởi ngoài hiên đung đưa trong gió đêm, rồi dạy Mun trò chơi tạo hình chú thỏ bằng bóng bàn tay dưới ánh đèn ngủ hình ngôi sao) và đọc Câu thần chú 'Bóng tối dịu êm, đèn sao sáng thêm!' lần 1.",
+      "shots": [
+        {
+          "id": "S16",
+          "sceneIndex": 6,
+          "sceneTitle": "Hướng dẫn trực quan từng bước & Câu Thần Chú (Lớp Sư Phạm 2B)",
+          "startSec": 300,
+          "endSec": 320,
+          "durationSec": 20.0,
+          "shotSize": "MS",
+          "camera": "eye-level, 35mm, static",
+          "characters": [
+            "Dê Mun (85cm)",
+            "Dê Bông (115cm)",
+            "Ông Dê Râu Bạc (155cm)"
+          ],
+          "action": "[0-7s] Anh Bông (115cm) và Ông Dê Râu Bạc (155cm) cầm đèn lồng nhỏ cùng Mun mở rèm kiểm tra: hóa ra chỉ là cành bưởi ngoài hiên đung đưa trong gió đêm, rồi dạy Mun trò chơi tạo hình chú thỏ bằng bóng bàn tay dưới ánh đèn ngủ hình ngôi sao. [7-14s] Ông Dê Râu Bạc làm mẫu Bước 1 và Bước 2 thật chậm rãi để Dê Mun làm theo. [14-20s] Cả nhóm cùng mỉm cười khi thấy bước đầu tiên thật dễ làm.",
+          "expression": "Dê Mun (tò mò): Đầu nghiêng hẳn sang một bên, đôi mắt nâu tròn xoe cúi sát quan sát món đồ, một ngón tay nhỏ chỉ nhẹ. | Dê Bông (tò mò): Hơi cúi nhẹ về phía trước, một tay vuốt chòm râu cằm trắng mềm, đôi mắt nâu quan sát tỉ mỉ. | Ông Dê Râu Bạc (tò mò): Hơi cúi người chống gậy tre, nghiêng đầu lắng nghe câu chuyện của các cháu nhỏ.",
+          "actingNotes": "Động tác tay chân rõ ràng, dứt khoát theo từng nhịp đếm 1 - 2 để trẻ mầm non nhìn vào là bắt chước làm theo được ngay.",
+          "speaker": "Ông Dê Râu Bạc (155cm)",
+          "dialogue": "Đầu tiên là Bước một: Mình dừng lại hít sâu nhé! Tiếp theo là Bước hai: Quan sát thật kỹ nào!",
+          "voiceDelivery": "Rõ ràng từng bước, nhịp điệu chậm rãi dễ nhớ",
+          "sfx": "Tiếng chuông gỗ đếm nhịp 'Một — Hai'",
+          "bgm": "Nhạc nền nhịp 4/4 đều đặn hỗ trợ ghi nhớ kỹ năng",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] MS, eye-level angle, 35mm lens. [CHARACTERS] a playful 3-year-old toddler boy black goat named Mun, about 85cm tall (0.85x the height of Bi the squirrel, Mun's head reaches Bi's nose), chubby-cheeked toddler build, soft glossy jet-black fur with a small white star-shaped patch on his forehead, two tiny rounded nub horns, short floppy ears with gray-pink inner side, big round sparkling brown eyes, wearing a bright red t-shirt with a small yellow star, navy blue shorts, red rubber rain boots, head tilted far to one side, big sparkling brown eyes peering closely at something near the ground, squatting down in his navy shorts and red rain boots with one finger extended cautiously; a gentle, thoughtful 6-year-old boy white goat named Bong, about 115cm tall (1.15x the height of Bi the squirrel, Bi's head reaches Bong's chin), slim upright build, fluffy clean snow-white curly fur, a small soft chin tuft, two short curved cream-colored horns, long floppy ears with pink inner side, big round warm brown eyes, small pink nose, wearing sky-blue denim overalls over a white-and-navy striped t-shirt, a tiny green notebook in the front pocket, brown sandals over small dark hooves, leaning slightly forward, one hand stroking his small soft white chin tuft, warm brown eyes squinting thoughtfully as he studies an object closely; a kind elderly grandfather goat named Ong De Rau Bac (grandfather of Bong and Mun), about 155cm tall (1.55x the height of Bi the squirrel), sturdy slightly stooped warm build, silver-white fur, a long soft braided silver chin beard, curved amber-cream horns, warm crinkled brown eyes, wearing a traditional Vietnamese brown cotton Ba Ba shirt with wooden buttons, loose dark linen trousers, a woven bamboo straw hat resting on his back, brown wooden clogs over hooves, leaning down slightly with hands on his knees to inspect a seedling with the children. [SCALE] Height order from tallest: Ông Dê Râu Bạc (155cm) > Dê Bông (115cm) > Dê Mun (85cm); Mun (85cm) reaches Bong's chest (115cm); Grandfather Goat is 155cm tall (taller than all children). [ACTION] Medium shot showing Ông Dê Râu Bạc demonstrating the first steps slowly while Dê Mun follows along. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized Vietnamese countryside hillside farmhouse belonging to Bong and Mun the goats. The traditional single-story timber house features weathered hand-fired red terracotta roof tiles with patches of velvety green moss, warm lime-washed cream walls, and a wide covered wooden veranda raised 25cm off the ground. Surrounding the sunny packed-earth courtyard is a neat woven split-bamboo lattice fence standing 70cm tall (chest height to a 100cm character) and an arched bamboo trellis draped with lush green loofah vines, bright yellow gourd blossoms, and hanging gourds at 175cm overhead height. In the side garden, straight raised soil beds with moist dark earth texture grow crisp green mustard cabbages, carrots, and herbs. On the veranda sits a polished bamboo tea table (52cm high) with a ceramic teapot, wooden stools (28cm high), child-sized tin watering cans, and a stone water jar with a bamboo ladle, all rendered with tactile surface detail and shallow depth of field. Time of day: night. [DEPTH] foreground: clear view of the practice props in foreground, soft bokeh; midground: Dê Mun, Dê Bông, Ông Dê Râu Bạc practicing step 1 and step 2 together in exact height order, razor-sharp focus; background: Nhà của Bông & Mun trên sườn đồi background, creamy atmospheric falloff. [LIGHT] Peaceful countryside evening under a starry sky and crescent moon; warm yellow porch lanterns illuminating the wooden veranda while crickets chirp in the bamboo hedge..",
+          "videoPrompt": "5-second 3D Pixar-style animated clip — hero moment of shot S16 (shot window 05:00-05:20, 20s; the clip plays at the start of the shot, then the editor holds its last frame with a slow camera drift): Medium shot showing Ông Dê Râu Bạc demonstrating the first steps slowly while Dê Mun follows along. Camera movement: smooth static. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Height order from tallest: Ông Dê Râu Bạc (155cm) > Dê Bông (115cm) > Dê Mun (85cm); Mun (85cm) reaches Bong's chest (115cm); Grandfather Goat is 155cm tall (taller than all children).), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "de_mun",
+            "de_bong",
+            "ong_de_rau_bac"
+          ],
+          "speakerId": "ong_de_rau_bac",
+          "priority": 1,
+          "priorityNote": "bài học: mở rèm kiểm tra",
+          "clipDurationSec": 5
+        },
+        {
+          "id": "S17",
+          "sceneIndex": 6,
+          "sceneTitle": "Hướng dẫn trực quan từng bước & Câu Thần Chú (Lớp Sư Phạm 2B)",
+          "startSec": 320,
+          "endSec": 340,
+          "durationSec": 20.0,
+          "shotSize": "CU",
+          "camera": "eye-level, 50mm, push-in",
+          "characters": [
+            "Dê Mun (85cm)",
+            "Dê Bông (115cm)"
+          ],
+          "action": "[0-7s] Dê Mun và Dê Bông tự tay thực hiện tiếp Bước 3 của bài học (Gọi tên nỗi sợ bóng tối, nói ra với người thân, khám phá sự thật sau chiếc bóng và bật đèn ngủ vàng ấm). [7-14s] Gương mặt của Dê Mun giãn ra hoàn toàn, hai má hồng tươi tắn. [14-20s] Hai bạn đập tay 'High-five' vui vẻ.",
+          "expression": "Dê Mun (vui): Hai má phúng phính nâng cao với nụ cười trẻ thơ rạng rỡ, mắt nâu to tròn lấp lánh, đôi tai ngắn vẫy nhẹ khi nhún nhảy trong đôi ủng cao su đỏ. | Dê Bông (vui): Nụ cười hiền hậu ấm áp, đôi mắt nâu tròn ánh lên niềm vui, đôi tai dài cụp đung đưa nhẹ, vỗ hai tay khích lệ em.",
+          "actingNotes": "Dê Mun & Dê Bông: Ánh mắt sáng lên vì cảm giác 'Mình tự làm được rồi!', nụ cười tự nhiên khoe răng trắng.",
+          "speaker": "Dê Mun (85cm)",
+          "dialogue": "Và Bước ba: Tự tay thực hiện thật khéo léo! Oa, dễ ơi là dễ luôn nè Dê Bông ơi!",
+          "voiceDelivery": "Phấn khởi, tự tin",
+          "sfx": "Tiếng đập tay 'bốp' vui nhộn và tiếng chuông hoàn thành",
+          "bgm": "Giai điệu xylophone đi lên tươi sáng",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] CU, eye-level angle, 50mm lens. [CHARACTERS] a playful 3-year-old toddler boy black goat named Mun, about 85cm tall (0.85x the height of Bi the squirrel, Mun's head reaches Bi's nose), chubby-cheeked toddler build, soft glossy jet-black fur with a small white star-shaped patch on his forehead, two tiny rounded nub horns, short floppy ears with gray-pink inner side, big round sparkling brown eyes, wearing a bright red t-shirt with a small yellow star, navy blue shorts, red rubber rain boots, chubby cheeks lifted in a huge gummy toddler grin, big sparkling brown eyes crinkling with joy, short floppy ears flapping as he jumps up in his red rubber rain boots with both short arms raised high; a gentle, thoughtful 6-year-old boy white goat named Bong, about 115cm tall (1.15x the height of Bi the squirrel, Bi's head reaches Bong's chin), slim upright build, fluffy clean snow-white curly fur, a small soft chin tuft, two short curved cream-colored horns, long floppy ears with pink inner side, big round warm brown eyes, small pink nose, wearing sky-blue denim overalls over a white-and-navy striped t-shirt, a tiny green notebook in the front pocket, brown sandals over small dark hooves, warm gentle smile, bright crinkling warm brown eyes, long floppy ears bouncing lightly, standing tall and clapping both hands together cheerfully. [SCALE] Height order from tallest: Dê Bông (115cm) > Dê Mun (85cm); Mun (85cm) reaches Bong's chest (115cm). [ACTION] Close-up of Dê Mun and Dê Bông successfully performing step 3 and giving each other a cheerful high-five. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized Vietnamese countryside hillside farmhouse belonging to Bong and Mun the goats. The traditional single-story timber house features weathered hand-fired red terracotta roof tiles with patches of velvety green moss, warm lime-washed cream walls, and a wide covered wooden veranda raised 25cm off the ground. Surrounding the sunny packed-earth courtyard is a neat woven split-bamboo lattice fence standing 70cm tall (chest height to a 100cm character) and an arched bamboo trellis draped with lush green loofah vines, bright yellow gourd blossoms, and hanging gourds at 175cm overhead height. In the side garden, straight raised soil beds with moist dark earth texture grow crisp green mustard cabbages, carrots, and herbs. On the veranda sits a polished bamboo tea table (52cm high) with a ceramic teapot, wooden stools (28cm high), child-sized tin watering cans, and a stone water jar with a bamboo ladle, all rendered with tactile surface detail and shallow depth of field. Time of day: night. [DEPTH] foreground: close-up of hands interacting with the prop, soft bokeh; midground: Dê Mun and Dê Bông completing the third step with bright smiles, razor-sharp focus; background: warm blurred background, creamy atmospheric falloff. [LIGHT] Peaceful countryside evening under a starry sky and crescent moon; warm yellow porch lanterns illuminating the wooden veranda while crickets chirp in the bamboo hedge..",
+          "videoPrompt": "5-second 3D Pixar-style animated clip — hero moment of shot S17 (shot window 05:20-05:40, 20s; the clip plays at the start of the shot, then the editor holds its last frame with a slow camera drift): Close-up of Dê Mun and Dê Bông successfully performing step 3 and giving each other a cheerful high-five. Camera movement: smooth push-in. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Height order from tallest: Dê Bông (115cm) > Dê Mun (85cm); Mun (85cm) reaches Bong's chest (115cm).), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "de_mun",
+            "de_bong"
+          ],
+          "speakerId": "de_mun",
+          "priority": 3,
+          "clipDurationSec": 5
+        },
+        {
+          "id": "S18",
+          "sceneIndex": 6,
+          "sceneTitle": "Hướng dẫn trực quan từng bước & Câu Thần Chú (Lớp Sư Phạm 2B)",
+          "startSec": 340,
+          "endSec": 360,
+          "durationSec": 20.0,
+          "shotSize": "MCU",
+          "camera": "low, 35mm, zoom-in",
+          "characters": [
+            "Dê Mun (85cm)",
+            "Dê Bông (115cm)",
+            "Ông Dê Râu Bạc (155cm)"
+          ],
+          "action": "[0-7s] Các nhân vật đứng thẳng đúng chuẩn tỉ lệ chiều cao (Ông Dê Râu Bạc (155 cm) > Dê Bông (115 cm) > Dê Mun (85 cm)). [7-14s] Cùng giơ tay làm động tác biểu tượng và đọc to Câu thần chú lần 1. [14-20s] Dừng 2 giây mời khán giả nhí đọc theo.",
+          "expression": "Dê Mun (tự hào): Đứng thẳng hết cỡ chiều cao 85cm của bé 3 tuổi, cười tươi hết cỡ, hai ngón cái chỉ vào ngôi sao vàng trên áo thun đỏ. | Dê Bông (tự hào): Đứng thẳng đĩnh đạc đúng chiều cao 115cm, cười tự tin ấm áp, một tay cầm cuốn sổ xanh mở rộng. | Ông Dê Râu Bạc (tự hào): Gật đầu hài lòng, chòm râu bạc đung đưa, giơ ngón cái khen ngợi sự trưởng thành của các cháu.",
+          "actingNotes": "Ngực ưỡn nhẹ tự hào, nhịp tay vẫy đều theo từng chữ của câu thần chú để khắc sâu vào trí nhớ trẻ.",
+          "speaker": "Dê Mun (85cm)",
+          "dialogue": "Chúng mình cùng đọc to câu thần chú nhé: 'Bóng tối dịu êm, đèn sao sáng thêm!' Bạn nhỏ đọc lại cùng Dê Mun nào!",
+          "voiceDelivery": "Đọc vang theo nhịp vè thiếu nhi, dừng 2 giây cuối chờ bé đọc theo",
+          "sfx": "Tiếng vỗ tay theo nhịp phách và tiếng chuông sao lấp lánh",
+          "bgm": "Hợp âm điểm nhấn rộn ràng",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] MCU, low angle, 35mm lens. [CHARACTERS] a playful 3-year-old toddler boy black goat named Mun, about 85cm tall (0.85x the height of Bi the squirrel, Mun's head reaches Bi's nose), chubby-cheeked toddler build, soft glossy jet-black fur with a small white star-shaped patch on his forehead, two tiny rounded nub horns, short floppy ears with gray-pink inner side, big round sparkling brown eyes, wearing a bright red t-shirt with a small yellow star, navy blue shorts, red rubber rain boots, standing as tall as his 85cm toddler frame allows, beaming with a huge proud smile, pointing both thumbs at the yellow star on his bright red t-shirt; a gentle, thoughtful 6-year-old boy white goat named Bong, about 115cm tall (1.15x the height of Bi the squirrel, Bi's head reaches Bong's chin), slim upright build, fluffy clean snow-white curly fur, a small soft chin tuft, two short curved cream-colored horns, long floppy ears with pink inner side, big round warm brown eyes, small pink nose, wearing sky-blue denim overalls over a white-and-navy striped t-shirt, a tiny green notebook in the front pocket, brown sandals over small dark hooves, upright posture at full 115cm height, warm confident smile, holding up his open green notebook with one hand and pointing to a neat drawing with the other; a kind elderly grandfather goat named Ong De Rau Bac (grandfather of Bong and Mun), about 155cm tall (1.55x the height of Bi the squirrel), sturdy slightly stooped warm build, silver-white fur, a long soft braided silver chin beard, curved amber-cream horns, warm crinkled brown eyes, wearing a traditional Vietnamese brown cotton Ba Ba shirt with wooden buttons, loose dark linen trousers, a woven bamboo straw hat resting on his back, brown wooden clogs over hooves, standing tall with hands behind his back, nodding approvingly with a warm smile. [SCALE] Height order from tallest: Ông Dê Râu Bạc (155cm) > Dê Bông (115cm) > Dê Mun (85cm); Mun (85cm) reaches Bong's chest (115cm); Grandfather Goat is 155cm tall (taller than all children). [ACTION] Medium close-up of the characters standing in exact height order and chanting the magic phrase with hand gestures. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized Vietnamese countryside hillside farmhouse belonging to Bong and Mun the goats. The traditional single-story timber house features weathered hand-fired red terracotta roof tiles with patches of velvety green moss, warm lime-washed cream walls, and a wide covered wooden veranda raised 25cm off the ground. Surrounding the sunny packed-earth courtyard is a neat woven split-bamboo lattice fence standing 70cm tall (chest height to a 100cm character) and an arched bamboo trellis draped with lush green loofah vines, bright yellow gourd blossoms, and hanging gourds at 175cm overhead height. In the side garden, straight raised soil beds with moist dark earth texture grow crisp green mustard cabbages, carrots, and herbs. On the veranda sits a polished bamboo tea table (52cm high) with a ceramic teapot, wooden stools (28cm high), child-sized tin watering cans, and a stone water jar with a bamboo ladle, all rendered with tactile surface detail and shallow depth of field. Time of day: night. [DEPTH] foreground: golden light bokeh, soft bokeh; midground: Dê Mun, Dê Bông, Ông Dê Râu Bạc chanting the episode mantra together with proud postures, razor-sharp focus; background: Nhà của Bông & Mun trên sườn đồi background, creamy atmospheric falloff. [LIGHT] Peaceful countryside evening under a starry sky and crescent moon; warm yellow porch lanterns illuminating the wooden veranda while crickets chirp in the bamboo hedge..",
+          "videoPrompt": "5-second 3D Pixar-style animated clip — hero moment of shot S18 (shot window 05:40-06:00, 20s; the clip plays at the start of the shot, then the editor holds its last frame with a slow camera drift): Medium close-up of the characters standing in exact height order and chanting the magic phrase with hand gestures. Camera movement: smooth zoom-in. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Height order from tallest: Ông Dê Râu Bạc (155cm) > Dê Bông (115cm) > Dê Mun (85cm); Mun (85cm) reaches Bong's chest (115cm); Grandfather Goat is 155cm tall (taller than all children).), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "de_mun",
+            "de_bong",
+            "ong_de_rau_bac"
+          ],
+          "speakerId": "de_mun",
+          "priority": 2,
+          "priorityNote": "câu thần chú/điệp khúc",
+          "clipDurationSec": 5
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "title": "Khúc ca đồng dao & Tương tác cùng khán giả nhí",
+      "startSec": 360,
+      "endSec": 420,
+      "location": "Nhà của Bông & Mun trên sườn đồi — Khoảng sân/phòng ngập nắng",
+      "purpose": "Củng cố bài học qua bài hát đồng dao ngắn vui nhộn và mời bé trước màn hình cùng vận động tay chân.",
+      "shots": [
+        {
+          "id": "S19",
+          "sceneIndex": 7,
+          "sceneTitle": "Khúc ca đồng dao & Tương tác cùng khán giả nhí",
+          "startSec": 360,
+          "endSec": 380,
+          "durationSec": 20.0,
+          "shotSize": "WS",
+          "camera": "eye-level, 28mm, lateral-pan",
+          "characters": [
+            "Dê Mun (85cm)",
+            "Dê Bông (115cm)",
+            "Ông Dê Râu Bạc (155cm)"
+          ],
+          "action": "[0-7s] Tiếng nhạc đồng dao vang lên, Dê Mun, Dê Bông, Ông Dê Râu Bạc đứng thành hàng ngang đúng tỉ lệ chiều cao nhún nhảy. [7-14s] Thực hiện động tác múa minh họa cho 'Mun sợ bóng tối'. [14-20s] Đuôi và tai đung đưa theo nhịp 4/4.",
+          "expression": "Dê Mun (vui): Hai má phúng phính nâng cao với nụ cười trẻ thơ rạng rỡ, mắt nâu to tròn lấp lánh, đôi tai ngắn vẫy nhẹ khi nhún nhảy trong đôi ủng cao su đỏ. | Dê Bông (vui): Nụ cười hiền hậu ấm áp, đôi mắt nâu tròn ánh lên niềm vui, đôi tai dài cụp đung đưa nhẹ, vỗ hai tay khích lệ em. | Ông Dê Râu Bạc (vui): Nụ cười ông nội hiền từ, đôi mắt nheo lại ấm áp sau cặp kính tròn, chòm râu bạc rung rinh theo tiếng cười 'Khà khà!'.",
+          "actingNotes": "Động tác nhún đầu gối, vẫy tay đơn giản, tươi vui, đồng đều như một tiết mục vận động mầm non.",
+          "speaker": "Dê Mun (85cm)",
+          "dialogue": "🎵 Nào mình cùng nhớ nhé, mỗi ngày một niềm vui! Gặp chuyện khó đừng lo, mình làm theo từng bước! 🎵",
+          "voiceDelivery": "Hát giai điệu đồng dao tươi sáng, nhịp 108 BPM",
+          "sfx": "Tiếng phách tre và lục lạc gỗ gõ nhịp",
+          "bgm": "Bài hát đồng dao của tập phim — Đoạn 1 (Ukulele, đàn t'rưng, marimba)",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] WS, eye-level angle, 28mm lens. [CHARACTERS] a playful 3-year-old toddler boy black goat named Mun, about 85cm tall (0.85x the height of Bi the squirrel, Mun's head reaches Bi's nose), chubby-cheeked toddler build, soft glossy jet-black fur with a small white star-shaped patch on his forehead, two tiny rounded nub horns, short floppy ears with gray-pink inner side, big round sparkling brown eyes, wearing a bright red t-shirt with a small yellow star, navy blue shorts, red rubber rain boots, chubby cheeks lifted in a huge gummy toddler grin, big sparkling brown eyes crinkling with joy, short floppy ears flapping as he jumps up in his red rubber rain boots with both short arms raised high; a gentle, thoughtful 6-year-old boy white goat named Bong, about 115cm tall (1.15x the height of Bi the squirrel, Bi's head reaches Bong's chin), slim upright build, fluffy clean snow-white curly fur, a small soft chin tuft, two short curved cream-colored horns, long floppy ears with pink inner side, big round warm brown eyes, small pink nose, wearing sky-blue denim overalls over a white-and-navy striped t-shirt, a tiny green notebook in the front pocket, brown sandals over small dark hooves, warm gentle smile, bright crinkling warm brown eyes, long floppy ears bouncing lightly, standing tall and clapping both hands together cheerfully; a kind elderly grandfather goat named Ong De Rau Bac (grandfather of Bong and Mun), about 155cm tall (1.55x the height of Bi the squirrel), sturdy slightly stooped warm build, silver-white fur, a long soft braided silver chin beard, curved amber-cream horns, warm crinkled brown eyes, wearing a traditional Vietnamese brown cotton Ba Ba shirt with wooden buttons, loose dark linen trousers, a woven bamboo straw hat resting on his back, brown wooden clogs over hooves, hearty grandfatherly laugh, eyes crinkled into warm crescents, stroking his long silver chin beard. [SCALE] Height order from tallest: Ông Dê Râu Bạc (155cm) > Dê Bông (115cm) > Dê Mun (85cm); Mun (85cm) reaches Bong's chest (115cm); Grandfather Goat is 155cm tall (taller than all children). [ACTION] Wide shot of the characters singing and performing simple preschool dance moves in exact height order. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized Vietnamese countryside hillside farmhouse belonging to Bong and Mun the goats. The traditional single-story timber house features weathered hand-fired red terracotta roof tiles with patches of velvety green moss, warm lime-washed cream walls, and a wide covered wooden veranda raised 25cm off the ground. Surrounding the sunny packed-earth courtyard is a neat woven split-bamboo lattice fence standing 70cm tall (chest height to a 100cm character) and an arched bamboo trellis draped with lush green loofah vines, bright yellow gourd blossoms, and hanging gourds at 175cm overhead height. In the side garden, straight raised soil beds with moist dark earth texture grow crisp green mustard cabbages, carrots, and herbs. On the veranda sits a polished bamboo tea table (52cm high) with a ceramic teapot, wooden stools (28cm high), child-sized tin watering cans, and a stone water jar with a bamboo ladle, all rendered with tactile surface detail and shallow depth of field. Time of day: night. [DEPTH] foreground: foreground leaves and petals swaying in bokeh, soft bokeh; midground: Dê Mun, Dê Bông, Ông Dê Râu Bạc dancing rhythmically in strict height scale, razor-sharp focus; background: bright Nhà của Bông & Mun trên sườn đồi scenery, creamy atmospheric falloff. [LIGHT] Peaceful countryside evening under a starry sky and crescent moon; warm yellow porch lanterns illuminating the wooden veranda while crickets chirp in the bamboo hedge..",
+          "videoPrompt": "5-second 3D Pixar-style animated clip — hero moment of shot S19 (shot window 06:00-06:20, 20s; the clip plays at the start of the shot, then the editor holds its last frame with a slow camera drift): Wide shot of the characters singing and performing simple preschool dance moves in exact height order. Camera movement: smooth lateral-pan. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Height order from tallest: Ông Dê Râu Bạc (155cm) > Dê Bông (115cm) > Dê Mun (85cm); Mun (85cm) reaches Bong's chest (115cm); Grandfather Goat is 155cm tall (taller than all children).), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "de_mun",
+            "de_bong",
+            "ong_de_rau_bac"
+          ],
+          "speakerId": "de_mun",
+          "priority": 1,
+          "priorityNote": "bài hát đồng dao",
+          "clipDurationSec": 5
+        },
+        {
+          "id": "S20",
+          "sceneIndex": 7,
+          "sceneTitle": "Khúc ca đồng dao & Tương tác cùng khán giả nhí",
+          "startSec": 380,
+          "endSec": 400,
+          "durationSec": 20.0,
+          "shotSize": "MS",
+          "camera": "eye-level, 35mm, push-in",
+          "characters": [
+            "Dê Mun (85cm)",
+            "Dê Bông (115cm)"
+          ],
+          "action": "[0-7s] Dê Mun và Dê Bông quay mặt vào nhau làm động tác minh họa bài học 'Gọi tên nỗi sợ bóng tối, nói ra với người thân, khám phá sự thật sau chiếc bóng và bật đèn ngủ vàng ấm'. [7-14s] Cùng giơ ngón cái khen nhau làm đúng. [14-20s] Cả hai quay ra phía camera cười rạng rỡ.",
+          "expression": "Dê Mun (vui): Hai má phúng phính nâng cao với nụ cười trẻ thơ rạng rỡ, mắt nâu to tròn lấp lánh, đôi tai ngắn vẫy nhẹ khi nhún nhảy trong đôi ủng cao su đỏ. | Dê Bông (tự hào): Đứng thẳng đĩnh đạc đúng chiều cao 115cm, cười tự tin ấm áp, một tay cầm cuốn sổ xanh mở rộng.",
+          "actingNotes": "Biểu cảm gương mặt rạng rỡ, mắt cong hình trăng khuyết, phối hợp ăn ý với nhau.",
+          "speaker": "Dê Bông (115cm)",
+          "dialogue": "🎵 'Bóng tối dịu êm, đèn sao sáng thêm!' — Làm đúng ngay từ đầu, ai cũng khen bé ngoan! 🎵",
+          "voiceDelivery": "Hát vang câu thần chú trong điệp khúc (Lần 2)",
+          "sfx": "Tiếng vỗ tay nhịp nhàng",
+          "bgm": "Bài hát đồng dao của tập phim — Điệp khúc rộn rã",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] MS, eye-level angle, 35mm lens. [CHARACTERS] a playful 3-year-old toddler boy black goat named Mun, about 85cm tall (0.85x the height of Bi the squirrel, Mun's head reaches Bi's nose), chubby-cheeked toddler build, soft glossy jet-black fur with a small white star-shaped patch on his forehead, two tiny rounded nub horns, short floppy ears with gray-pink inner side, big round sparkling brown eyes, wearing a bright red t-shirt with a small yellow star, navy blue shorts, red rubber rain boots, chubby cheeks lifted in a huge gummy toddler grin, big sparkling brown eyes crinkling with joy, short floppy ears flapping as he jumps up in his red rubber rain boots with both short arms raised high; a gentle, thoughtful 6-year-old boy white goat named Bong, about 115cm tall (1.15x the height of Bi the squirrel, Bi's head reaches Bong's chin), slim upright build, fluffy clean snow-white curly fur, a small soft chin tuft, two short curved cream-colored horns, long floppy ears with pink inner side, big round warm brown eyes, small pink nose, wearing sky-blue denim overalls over a white-and-navy striped t-shirt, a tiny green notebook in the front pocket, brown sandals over small dark hooves, upright posture at full 115cm height, warm confident smile, holding up his open green notebook with one hand and pointing to a neat drawing with the other. [SCALE] Height order from tallest: Dê Bông (115cm) > Dê Mun (85cm); Mun (85cm) reaches Bong's chest (115cm). [ACTION] Medium shot of Dê Mun and Dê Bông acting out the song lyrics and giving thumbs-up to the camera. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized Vietnamese countryside hillside farmhouse belonging to Bong and Mun the goats. The traditional single-story timber house features weathered hand-fired red terracotta roof tiles with patches of velvety green moss, warm lime-washed cream walls, and a wide covered wooden veranda raised 25cm off the ground. Surrounding the sunny packed-earth courtyard is a neat woven split-bamboo lattice fence standing 70cm tall (chest height to a 100cm character) and an arched bamboo trellis draped with lush green loofah vines, bright yellow gourd blossoms, and hanging gourds at 175cm overhead height. In the side garden, straight raised soil beds with moist dark earth texture grow crisp green mustard cabbages, carrots, and herbs. On the veranda sits a polished bamboo tea table (52cm high) with a ceramic teapot, wooden stools (28cm high), child-sized tin watering cans, and a stone water jar with a bamboo ladle, all rendered with tactile surface detail and shallow depth of field. Time of day: night. [DEPTH] foreground: prop detail in corner bokeh, soft bokeh; midground: Dê Mun and Dê Bông singing the second verse with hand motions, razor-sharp focus; background: Nhà của Bông & Mun trên sườn đồi background, creamy atmospheric falloff. [LIGHT] Peaceful countryside evening under a starry sky and crescent moon; warm yellow porch lanterns illuminating the wooden veranda while crickets chirp in the bamboo hedge..",
+          "videoPrompt": "5-second 3D Pixar-style animated clip — hero moment of shot S20 (shot window 06:20-06:40, 20s; the clip plays at the start of the shot, then the editor holds its last frame with a slow camera drift): Medium shot of Dê Mun and Dê Bông acting out the song lyrics and giving thumbs-up to the camera. Camera movement: smooth push-in. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Height order from tallest: Dê Bông (115cm) > Dê Mun (85cm); Mun (85cm) reaches Bong's chest (115cm).), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "de_mun",
+            "de_bong"
+          ],
+          "speakerId": "de_bong",
+          "priority": 3,
+          "clipDurationSec": 5
+        },
+        {
+          "id": "S21",
+          "sceneIndex": 7,
+          "sceneTitle": "Khúc ca đồng dao & Tương tác cùng khán giả nhí",
+          "startSec": 400,
+          "endSec": 420,
+          "durationSec": 20.0,
+          "shotSize": "MCU",
+          "camera": "eye-level, 50mm, static",
+          "characters": [
+            "Dê Mun (85cm)"
+          ],
+          "action": "[0-7s] Dê Mun bước lên gần ống kính, giơ Đèn ngủ gỗ hình ngôi sao vàng ấm, chú dê bông nhỏ và bóng cành cây bưởi in trên rèm cửa sổ lên đố các bạn nhỏ. [7-14s] Nghiêng đầu lắng nghe câu trả lời của bé (nghỉ 3 giây). [14-20s] Bật nhảy vỗ tay khen bé trả lời đúng.",
+          "expression": "Dê Mun (tò mò): Đầu nghiêng hẳn sang một bên, đôi mắt nâu tròn xoe cúi sát quan sát món đồ, một ngón tay nhỏ chỉ nhẹ.",
+          "actingNotes": "Dê Mun: Đặt tay lên vành tai lắng nghe thật sự trong 3 giây nghỉ, sau đó gật đầu lia lịa khen ngợi khán giả.",
+          "speaker": "Dê Mun (85cm)",
+          "dialogue": "Đố bạn nhỏ nhé: Khi gặp tình huống như vừa rồi, chúng mình nên làm gì đầu tiên nào? … Đúng rồi, bạn nhỏ giỏi quá!",
+          "voiceDelivery": "Lém lỉnh, dừng 3 giây ở dấu ba chấm chờ bé trả lời rồi reo vui khen bé",
+          "sfx": "Tiếng tích tắc đồng hồ đố vui 3 giây + tiếng chuông 'Đinh đong' chiến thắng",
+          "bgm": "Nhạc dừng nhịp đố vui rồi bung mở tươi vui",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] MCU, eye-level angle, 50mm lens. [CHARACTERS] a playful 3-year-old toddler boy black goat named Mun, about 85cm tall (0.85x the height of Bi the squirrel, Mun's head reaches Bi's nose), chubby-cheeked toddler build, soft glossy jet-black fur with a small white star-shaped patch on his forehead, two tiny rounded nub horns, short floppy ears with gray-pink inner side, big round sparkling brown eyes, wearing a bright red t-shirt with a small yellow star, navy blue shorts, red rubber rain boots, head tilted far to one side, big sparkling brown eyes peering closely at something near the ground, squatting down in his navy shorts and red rain boots with one finger extended cautiously. [ACTION] Dê Mun holds up the prop to quiz the child viewer, pauses 3 seconds to listen, then claps in praise. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized Vietnamese countryside hillside farmhouse belonging to Bong and Mun the goats. The traditional single-story timber house features weathered hand-fired red terracotta roof tiles with patches of velvety green moss, warm lime-washed cream walls, and a wide covered wooden veranda raised 25cm off the ground. Surrounding the sunny packed-earth courtyard is a neat woven split-bamboo lattice fence standing 70cm tall (chest height to a 100cm character) and an arched bamboo trellis draped with lush green loofah vines, bright yellow gourd blossoms, and hanging gourds at 175cm overhead height. In the side garden, straight raised soil beds with moist dark earth texture grow crisp green mustard cabbages, carrots, and herbs. On the veranda sits a polished bamboo tea table (52cm high) with a ceramic teapot, wooden stools (28cm high), child-sized tin watering cans, and a stone water jar with a bamboo ladle, all rendered with tactile surface detail and shallow depth of field. Time of day: night. [DEPTH] foreground: warm bokeh frame, soft bokeh; midground: medium close-up of Dê Mun asking an interactive question to the viewer, razor-sharp focus; background: blurred Nhà của Bông & Mun trên sườn đồi, creamy atmospheric falloff. [LIGHT] Peaceful countryside evening under a starry sky and crescent moon; warm yellow porch lanterns illuminating the wooden veranda while crickets chirp in the bamboo hedge..",
+          "videoPrompt": "5-second 3D Pixar-style animated clip — hero moment of shot S21 (shot window 06:40-07:00, 20s; the clip plays at the start of the shot, then the editor holds its last frame with a slow camera drift): Dê Mun holds up the prop to quiz the child viewer, pauses 3 seconds to listen, then claps in praise. Camera movement: smooth static. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Dê Mun), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "de_mun"
+          ],
+          "speakerId": "de_mun",
+          "priority": 3,
+          "clipDurationSec": 5
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "title": "Tự tay khắc phục sự cố & Hoàn thành thử thách (Lớp Sư Phạm 3A)",
+      "startSec": 420,
+      "endSec": 480,
+      "location": "Nhà của Bông & Mun trên sườn đồi — Khu vực Bộ bàn ghế tre trên hiên nhà ông Dê",
+      "purpose": "Trẻ tự mình áp dụng bài học vào thực tế để giải quyết trọn vẹn vấn đề ban đầu mà không cần người lớn làm hộ.",
+      "shots": [
+        {
+          "id": "S22",
+          "sceneIndex": 8,
+          "sceneTitle": "Tự tay khắc phục sự cố & Hoàn thành thử thách (Lớp Sư Phạm 3A)",
+          "startSec": 420,
+          "endSec": 440,
+          "durationSec": 20.0,
+          "shotSize": "MS",
+          "camera": "eye-level, 35mm, static",
+          "characters": [
+            "Dê Mun (85cm)",
+            "Dê Bông (115cm)"
+          ],
+          "action": "[0-7s] Quay trở lại hiện trường lúc nãy, Dê Mun và Dê Bông không còn cuống quýt nữa mà bình tĩnh phối hợp cùng nhau. [7-14s] Người giữ người xếp/thực hiện đúng theo từng bước đã học. [14-20s] Công việc tiến triển nhanh chóng và gọn gàng.",
+          "expression": "Dê Mun (vui): Hai má phúng phính nâng cao với nụ cười trẻ thơ rạng rỡ, mắt nâu to tròn lấp lánh, đôi tai ngắn vẫy nhẹ khi nhún nhảy trong đôi ủng cao su đỏ. | Dê Bông (vui): Nụ cười hiền hậu ấm áp, đôi mắt nâu tròn ánh lên niềm vui, đôi tai dài cụp đung đưa nhẹ, vỗ hai tay khích lệ em.",
+          "actingNotes": "Thái độ điềm tĩnh, cẩn thận, biết nhường nhịn và hỗ trợ nhau từng động tác nhỏ.",
+          "speaker": "Dê Mun (85cm)",
+          "dialogue": "Bây giờ mình bình tĩnh làm lại từng bước một với Dê Bông nhé! Cẩn thận, nhẹ tay thôi nào!",
+          "voiceDelivery": "Điềm đạm, ấm áp, chững chạc hơn hẳn đầu phim",
+          "sfx": "Tiếng sắp xếp đạo cụ gọn gàng, nhịp nhàng",
+          "bgm": "Nhạc nền guitar và sáo trúc tươi vui, nhịp 106 BPM",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] MS, eye-level angle, 35mm lens. [CHARACTERS] a playful 3-year-old toddler boy black goat named Mun, about 85cm tall (0.85x the height of Bi the squirrel, Mun's head reaches Bi's nose), chubby-cheeked toddler build, soft glossy jet-black fur with a small white star-shaped patch on his forehead, two tiny rounded nub horns, short floppy ears with gray-pink inner side, big round sparkling brown eyes, wearing a bright red t-shirt with a small yellow star, navy blue shorts, red rubber rain boots, chubby cheeks lifted in a huge gummy toddler grin, big sparkling brown eyes crinkling with joy, short floppy ears flapping as he jumps up in his red rubber rain boots with both short arms raised high; a gentle, thoughtful 6-year-old boy white goat named Bong, about 115cm tall (1.15x the height of Bi the squirrel, Bi's head reaches Bong's chin), slim upright build, fluffy clean snow-white curly fur, a small soft chin tuft, two short curved cream-colored horns, long floppy ears with pink inner side, big round warm brown eyes, small pink nose, wearing sky-blue denim overalls over a white-and-navy striped t-shirt, a tiny green notebook in the front pocket, brown sandals over small dark hooves, warm gentle smile, bright crinkling warm brown eyes, long floppy ears bouncing lightly, standing tall and clapping both hands together cheerfully. [SCALE] Height order from tallest: Dê Bông (115cm) > Dê Mun (85cm); Mun (85cm) reaches Bong's chest (115cm). [ACTION] Medium shot of Dê Mun and Dê Bông calmly applying the lesson together to solve the problem. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized Vietnamese countryside hillside farmhouse belonging to Bong and Mun the goats. The traditional single-story timber house features weathered hand-fired red terracotta roof tiles with patches of velvety green moss, warm lime-washed cream walls, and a wide covered wooden veranda raised 25cm off the ground. Surrounding the sunny packed-earth courtyard is a neat woven split-bamboo lattice fence standing 70cm tall (chest height to a 100cm character) and an arched bamboo trellis draped with lush green loofah vines, bright yellow gourd blossoms, and hanging gourds at 175cm overhead height. In the side garden, straight raised soil beds with moist dark earth texture grow crisp green mustard cabbages, carrots, and herbs. On the veranda sits a polished bamboo tea table (52cm high) with a ceramic teapot, wooden stools (28cm high), child-sized tin watering cans, and a stone water jar with a bamboo ladle, all rendered with tactile surface detail and shallow depth of field. Time of day: night. [DEPTH] foreground: foreground prop elements, soft bokeh; midground: Dê Mun and Dê Bông working together calmly and skillfully, razor-sharp focus; background: Ông Dê Râu Bạc watching proudly in background, creamy atmospheric falloff. [LIGHT] Peaceful countryside evening under a starry sky and crescent moon; warm yellow porch lanterns illuminating the wooden veranda while crickets chirp in the bamboo hedge..",
+          "videoPrompt": "5-second 3D Pixar-style animated clip — hero moment of shot S22 (shot window 07:00-07:20, 20s; the clip plays at the start of the shot, then the editor holds its last frame with a slow camera drift): Medium shot of Dê Mun and Dê Bông calmly applying the lesson together to solve the problem. Camera movement: smooth static. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Height order from tallest: Dê Bông (115cm) > Dê Mun (85cm); Mun (85cm) reaches Bong's chest (115cm).), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "de_mun",
+            "de_bong"
+          ],
+          "speakerId": "de_mun",
+          "priority": 2,
+          "priorityNote": "đầu cảnh",
+          "clipDurationSec": 5
+        },
+        {
+          "id": "S23",
+          "sceneIndex": 8,
+          "sceneTitle": "Tự tay khắc phục sự cố & Hoàn thành thử thách (Lớp Sư Phạm 3A)",
+          "startSec": 440,
+          "endSec": 460,
+          "durationSec": 20.0,
+          "shotSize": "CU",
+          "camera": "low, 50mm, push-in",
+          "characters": [
+            "Dê Mun (85cm)",
+            "Dê Bông (115cm)"
+          ],
+          "action": "[0-7s] Cận cảnh bước hoàn thiện cuối cùng trên Đèn ngủ gỗ hình ngôi sao vàng ấm, chú dê bông nhỏ và bóng cành cây bưởi in trên rèm cửa sổ. [7-14s] Thành quả hiện ra ngay ngắn, sạch đẹp và trọn vẹn. [14-20s] Dê Mun và Dê Bông nhìn nhau cười sung sướng.",
+          "expression": "Dê Mun (tự hào): Đứng thẳng hết cỡ chiều cao 85cm của bé 3 tuổi, cười tươi hết cỡ, hai ngón cái chỉ vào ngôi sao vàng trên áo thun đỏ. | Dê Bông (tự hào): Đứng thẳng đĩnh đạc đúng chiều cao 115cm, cười tự tin ấm áp, một tay cầm cuốn sổ xanh mở rộng.",
+          "actingNotes": "Đôi mắt sáng lấp lánh, nụ cười rộng mở ngập tràn niềm hạnh phúc khi tự lực hoàn thành công việc.",
+          "speaker": "Dê Bông (115cm)",
+          "dialogue": "Hoan hô! Xong rồi Dê Mun ơi! Lần này tụi mình làm còn đẹp và chắc chắn hơn cả lúc nãy nữa!",
+          "voiceDelivery": "Reo vang sung sướng, tràn đầy tự hào",
+          "sfx": "Tiếng chuông ngân vang 'Ting-ling-ling!' báo hiệu hoàn thành",
+          "bgm": "Hợp âm dàn dây và glockenspiel dâng cao rực rỡ",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] CU, low angle, 50mm lens. [CHARACTERS] a playful 3-year-old toddler boy black goat named Mun, about 85cm tall (0.85x the height of Bi the squirrel, Mun's head reaches Bi's nose), chubby-cheeked toddler build, soft glossy jet-black fur with a small white star-shaped patch on his forehead, two tiny rounded nub horns, short floppy ears with gray-pink inner side, big round sparkling brown eyes, wearing a bright red t-shirt with a small yellow star, navy blue shorts, red rubber rain boots, standing as tall as his 85cm toddler frame allows, beaming with a huge proud smile, pointing both thumbs at the yellow star on his bright red t-shirt; a gentle, thoughtful 6-year-old boy white goat named Bong, about 115cm tall (1.15x the height of Bi the squirrel, Bi's head reaches Bong's chin), slim upright build, fluffy clean snow-white curly fur, a small soft chin tuft, two short curved cream-colored horns, long floppy ears with pink inner side, big round warm brown eyes, small pink nose, wearing sky-blue denim overalls over a white-and-navy striped t-shirt, a tiny green notebook in the front pocket, brown sandals over small dark hooves, upright posture at full 115cm height, warm confident smile, holding up his open green notebook with one hand and pointing to a neat drawing with the other. [SCALE] Height order from tallest: Dê Bông (115cm) > Dê Mun (85cm); Mun (85cm) reaches Bong's chest (115cm). [ACTION] Close-up as the final piece falls into place, completing the task beautifully. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized Vietnamese countryside hillside farmhouse belonging to Bong and Mun the goats. The traditional single-story timber house features weathered hand-fired red terracotta roof tiles with patches of velvety green moss, warm lime-washed cream walls, and a wide covered wooden veranda raised 25cm off the ground. Surrounding the sunny packed-earth courtyard is a neat woven split-bamboo lattice fence standing 70cm tall (chest height to a 100cm character) and an arched bamboo trellis draped with lush green loofah vines, bright yellow gourd blossoms, and hanging gourds at 175cm overhead height. In the side garden, straight raised soil beds with moist dark earth texture grow crisp green mustard cabbages, carrots, and herbs. On the veranda sits a polished bamboo tea table (52cm high) with a ceramic teapot, wooden stools (28cm high), child-sized tin watering cans, and a stone water jar with a bamboo ladle, all rendered with tactile surface detail and shallow depth of field. Time of day: night. [DEPTH] foreground: sparkling highlight on the completed prop, soft bokeh; midground: the completed Đèn ngủ gỗ hình ngôi sao vàng ấm, chú dê bông nhỏ và bóng cành cây bưởi in trên rèm cửa sổ in razor-sharp focus, razor-sharp focus; background: proud smiling faces of Dê Mun and Dê Bông, creamy atmospheric falloff. [LIGHT] Peaceful countryside evening under a starry sky and crescent moon; warm yellow porch lanterns illuminating the wooden veranda while crickets chirp in the bamboo hedge..",
+          "videoPrompt": "5-second 3D Pixar-style animated clip — hero moment of shot S23 (shot window 07:20-07:40, 20s; the clip plays at the start of the shot, then the editor holds its last frame with a slow camera drift): Close-up as the final piece falls into place, completing the task beautifully. Camera movement: smooth push-in. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Height order from tallest: Dê Bông (115cm) > Dê Mun (85cm); Mun (85cm) reaches Bong's chest (115cm).), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "de_mun",
+            "de_bong"
+          ],
+          "speakerId": "de_bong",
+          "priority": 3,
+          "clipDurationSec": 5
+        },
+        {
+          "id": "S24",
+          "sceneIndex": 8,
+          "sceneTitle": "Tự tay khắc phục sự cố & Hoàn thành thử thách (Lớp Sư Phạm 3A)",
+          "startSec": 460,
+          "endSec": 480,
+          "durationSec": 20.0,
+          "shotSize": "MS",
+          "camera": "eye-level, 35mm, static",
+          "characters": [
+            "Dê Mun (85cm)",
+            "Dê Bông (115cm)",
+            "Ông Dê Râu Bạc (155cm)"
+          ],
+          "action": "[0-7s] Ông Dê Râu Bạc (155cm) bước lại gần, cúi xuống xoa đầu và trao cái ôm ấm áp cho Dê Mun cùng Dê Bông. [7-14s] Cả nhóm cùng ngắm nhìn thành quả. [14-20s] Cùng gật đầu khẳng định giá trị bài học.",
+          "expression": "Dê Mun (tự hào): Đứng thẳng hết cỡ chiều cao 85cm của bé 3 tuổi, cười tươi hết cỡ, hai ngón cái chỉ vào ngôi sao vàng trên áo thun đỏ. | Dê Bông (tự hào): Đứng thẳng đĩnh đạc đúng chiều cao 115cm, cười tự tin ấm áp, một tay cầm cuốn sổ xanh mở rộng. | Ông Dê Râu Bạc (tự hào): Gật đầu hài lòng, chòm râu bạc đung đưa, giơ ngón cái khen ngợi sự trưởng thành của các cháu.",
+          "actingNotes": "Ông Dê Râu Bạc: Nụ cười hiền hậu, ánh mắt tự hào. Dê Mun & Dê Bông: Đứng thẳng tự tin nhưng lễ phép.",
+          "speaker": "Ông Dê Râu Bạc (155cm)",
+          "dialogue": "Các con giỏi lắm! Khi biết gọi tên nỗi sợ bóng tối, nói ra với người thân, khám phá sự thật sau chiếc bóng và bật đèn ngủ vàng ấm, mọi chuyện khó khăn đều được giải quyết thật nhẹ nhàng phải không nào?",
+          "voiceDelivery": "Trầm ấm, ngợi khen chân thành",
+          "sfx": "Tiếng vỗ tay ấm áp",
+          "bgm": "Giai điệu êm đềm, hạnh phúc",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] MS, eye-level angle, 35mm lens. [CHARACTERS] a playful 3-year-old toddler boy black goat named Mun, about 85cm tall (0.85x the height of Bi the squirrel, Mun's head reaches Bi's nose), chubby-cheeked toddler build, soft glossy jet-black fur with a small white star-shaped patch on his forehead, two tiny rounded nub horns, short floppy ears with gray-pink inner side, big round sparkling brown eyes, wearing a bright red t-shirt with a small yellow star, navy blue shorts, red rubber rain boots, standing as tall as his 85cm toddler frame allows, beaming with a huge proud smile, pointing both thumbs at the yellow star on his bright red t-shirt; a gentle, thoughtful 6-year-old boy white goat named Bong, about 115cm tall (1.15x the height of Bi the squirrel, Bi's head reaches Bong's chin), slim upright build, fluffy clean snow-white curly fur, a small soft chin tuft, two short curved cream-colored horns, long floppy ears with pink inner side, big round warm brown eyes, small pink nose, wearing sky-blue denim overalls over a white-and-navy striped t-shirt, a tiny green notebook in the front pocket, brown sandals over small dark hooves, upright posture at full 115cm height, warm confident smile, holding up his open green notebook with one hand and pointing to a neat drawing with the other; a kind elderly grandfather goat named Ong De Rau Bac (grandfather of Bong and Mun), about 155cm tall (1.55x the height of Bi the squirrel), sturdy slightly stooped warm build, silver-white fur, a long soft braided silver chin beard, curved amber-cream horns, warm crinkled brown eyes, wearing a traditional Vietnamese brown cotton Ba Ba shirt with wooden buttons, loose dark linen trousers, a woven bamboo straw hat resting on his back, brown wooden clogs over hooves, standing tall with hands behind his back, nodding approvingly with a warm smile. [SCALE] Height order from tallest: Ông Dê Râu Bạc (155cm) > Dê Bông (115cm) > Dê Mun (85cm); Mun (85cm) reaches Bong's chest (115cm); Grandfather Goat is 155cm tall (taller than all children). [ACTION] Ông Dê Râu Bạc congratulates Dê Mun and Dê Bông with a warm hug and proud smile. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized Vietnamese countryside hillside farmhouse belonging to Bong and Mun the goats. The traditional single-story timber house features weathered hand-fired red terracotta roof tiles with patches of velvety green moss, warm lime-washed cream walls, and a wide covered wooden veranda raised 25cm off the ground. Surrounding the sunny packed-earth courtyard is a neat woven split-bamboo lattice fence standing 70cm tall (chest height to a 100cm character) and an arched bamboo trellis draped with lush green loofah vines, bright yellow gourd blossoms, and hanging gourds at 175cm overhead height. In the side garden, straight raised soil beds with moist dark earth texture grow crisp green mustard cabbages, carrots, and herbs. On the veranda sits a polished bamboo tea table (52cm high) with a ceramic teapot, wooden stools (28cm high), child-sized tin watering cans, and a stone water jar with a bamboo ladle, all rendered with tactile surface detail and shallow depth of field. Time of day: night. [DEPTH] foreground: completed prop in foreground, soft bokeh; midground: Ông Dê Râu Bạc praising the children warmly in exact height scale, razor-sharp focus; background: sunny Nhà của Bông & Mun trên sườn đồi background, creamy atmospheric falloff. [LIGHT] Peaceful countryside evening under a starry sky and crescent moon; warm yellow porch lanterns illuminating the wooden veranda while crickets chirp in the bamboo hedge..",
+          "videoPrompt": "5-second 3D Pixar-style animated clip — hero moment of shot S24 (shot window 07:40-08:00, 20s; the clip plays at the start of the shot, then the editor holds its last frame with a slow camera drift): Ông Dê Râu Bạc congratulates Dê Mun and Dê Bông with a warm hug and proud smile. Camera movement: smooth static. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Height order from tallest: Ông Dê Râu Bạc (155cm) > Dê Bông (115cm) > Dê Mun (85cm); Mun (85cm) reaches Bong's chest (115cm); Grandfather Goat is 155cm tall (taller than all children).), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "de_mun",
+            "de_bong",
+            "ong_de_rau_bac"
+          ],
+          "speakerId": "ong_de_rau_bac",
+          "priority": 3,
+          "clipDurationSec": 5
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "title": "Niềm vui gắn kết & Đúc kết bài học thực tế (Lớp Sư Phạm 3B)",
+      "startSec": 480,
+      "endSec": 540,
+      "location": "Nhà của Bông & Mun trên sườn đồi — Hiên nhà / Sân nắng ấm",
+      "purpose": "Khắc sâu sự trưởng thành của nhân vật và lặp lại Câu thần chú lần 3 để trẻ mang bài học vào đời sống hàng ngày.",
+      "shots": [
+        {
+          "id": "S25",
+          "sceneIndex": 9,
+          "sceneTitle": "Niềm vui gắn kết & Đúc kết bài học thực tế (Lớp Sư Phạm 3B)",
+          "startSec": 480,
+          "endSec": 500,
+          "durationSec": 20.0,
+          "shotSize": "MS",
+          "camera": "eye-level, 35mm, lateral-pan",
+          "characters": [
+            "Dê Mun (85cm)",
+            "Dê Bông (115cm)"
+          ],
+          "action": "[0-7s] Sau khi mọi việc đã được giải quyết êm đẹp, Dê Mun và Dê Bông cùng nhau chia sẻ niềm vui bên Đèn ngủ gỗ hình ngôi sao vàng ấm, chú dê bông nhỏ và bóng cành cây bưởi in trên rèm cửa sổ. [7-14s] Tiếng cười trong trẻo vang lên khắp Nhà của Bông & Mun trên sườn đồi. [14-20s] Tình cảm anh em/bạn bè/gia đình càng thêm gắn bó.",
+          "expression": "Dê Mun (vui): Hai má phúng phính nâng cao với nụ cười trẻ thơ rạng rỡ, mắt nâu to tròn lấp lánh, đôi tai ngắn vẫy nhẹ khi nhún nhảy trong đôi ủng cao su đỏ. | Dê Bông (vui): Nụ cười hiền hậu ấm áp, đôi mắt nâu tròn ánh lên niềm vui, đôi tai dài cụp đung đưa nhẹ, vỗ hai tay khích lệ em.",
+          "actingNotes": "Cử chỉ quan tâm, nhường nhịn nhau tự nhiên; ánh mắt nhìn nhau ấm áp, tràn ngập yêu thương.",
+          "speaker": "Dê Mun (85cm)",
+          "dialogue": "Chơi cùng nhau thế này vui gấp mười lần luôn! Cảm ơn Ông Dê Râu Bạc và Dê Bông nhiều lắm nhé!",
+          "voiceDelivery": "Trong trẻo, rạng rỡ niềm vui",
+          "sfx": "Tiếng cười khúc khích trẻ thơ",
+          "bgm": "Nhạc nền acoustic tươi sáng, bình yên",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] MS, eye-level angle, 35mm lens. [CHARACTERS] a playful 3-year-old toddler boy black goat named Mun, about 85cm tall (0.85x the height of Bi the squirrel, Mun's head reaches Bi's nose), chubby-cheeked toddler build, soft glossy jet-black fur with a small white star-shaped patch on his forehead, two tiny rounded nub horns, short floppy ears with gray-pink inner side, big round sparkling brown eyes, wearing a bright red t-shirt with a small yellow star, navy blue shorts, red rubber rain boots, chubby cheeks lifted in a huge gummy toddler grin, big sparkling brown eyes crinkling with joy, short floppy ears flapping as he jumps up in his red rubber rain boots with both short arms raised high; a gentle, thoughtful 6-year-old boy white goat named Bong, about 115cm tall (1.15x the height of Bi the squirrel, Bi's head reaches Bong's chin), slim upright build, fluffy clean snow-white curly fur, a small soft chin tuft, two short curved cream-colored horns, long floppy ears with pink inner side, big round warm brown eyes, small pink nose, wearing sky-blue denim overalls over a white-and-navy striped t-shirt, a tiny green notebook in the front pocket, brown sandals over small dark hooves, warm gentle smile, bright crinkling warm brown eyes, long floppy ears bouncing lightly, standing tall and clapping both hands together cheerfully. [SCALE] Height order from tallest: Dê Bông (115cm) > Dê Mun (85cm); Mun (85cm) reaches Bong's chest (115cm). [ACTION] Lateral pan showing Dê Mun and Dê Bông sharing a joyful moment together after solving the challenge. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized Vietnamese countryside hillside farmhouse belonging to Bong and Mun the goats. The traditional single-story timber house features weathered hand-fired red terracotta roof tiles with patches of velvety green moss, warm lime-washed cream walls, and a wide covered wooden veranda raised 25cm off the ground. Surrounding the sunny packed-earth courtyard is a neat woven split-bamboo lattice fence standing 70cm tall (chest height to a 100cm character) and an arched bamboo trellis draped with lush green loofah vines, bright yellow gourd blossoms, and hanging gourds at 175cm overhead height. In the side garden, straight raised soil beds with moist dark earth texture grow crisp green mustard cabbages, carrots, and herbs. On the veranda sits a polished bamboo tea table (52cm high) with a ceramic teapot, wooden stools (28cm high), child-sized tin watering cans, and a stone water jar with a bamboo ladle, all rendered with tactile surface detail and shallow depth of field. Time of day: night. [DEPTH] foreground: colorful flowers in foreground bokeh, soft bokeh; midground: Dê Mun and Dê Bông playing/sharing happily together, razor-sharp focus; background: warm Nhà của Bông & Mun trên sườn đồi background, creamy atmospheric falloff. [LIGHT] Peaceful countryside evening under a starry sky and crescent moon; warm yellow porch lanterns illuminating the wooden veranda while crickets chirp in the bamboo hedge..",
+          "videoPrompt": "5-second 3D Pixar-style animated clip — hero moment of shot S25 (shot window 08:00-08:20, 20s; the clip plays at the start of the shot, then the editor holds its last frame with a slow camera drift): Lateral pan showing Dê Mun and Dê Bông sharing a joyful moment together after solving the challenge. Camera movement: smooth lateral-pan. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Height order from tallest: Dê Bông (115cm) > Dê Mun (85cm); Mun (85cm) reaches Bong's chest (115cm).), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "de_mun",
+            "de_bong"
+          ],
+          "speakerId": "de_mun",
+          "priority": 2,
+          "priorityNote": "đầu cảnh",
+          "clipDurationSec": 5
+        },
+        {
+          "id": "S26",
+          "sceneIndex": 9,
+          "sceneTitle": "Niềm vui gắn kết & Đúc kết bài học thực tế (Lớp Sư Phạm 3B)",
+          "startSec": 500,
+          "endSec": 520,
+          "durationSec": 20.0,
+          "shotSize": "MCU",
+          "camera": "eye-level, 50mm, push-in",
+          "characters": [
+            "Dê Mun (85cm)"
+          ],
+          "action": "[0-7s] Dê Mun quay sang nhìn thẳng ống kính, đặt một tay lên ngực tự hào. [7-14s] Nhắc lại bài học cốt lõi của tập phim và đọc vang Câu thần chú (Lần 3). [14-20s] Giơ ngón cái khích lệ các bạn nhỏ ở nhà làm theo.",
+          "expression": "Dê Mun (tự hào): Đứng thẳng hết cỡ chiều cao 85cm của bé 3 tuổi, cười tươi hết cỡ, hai ngón cái chỉ vào ngôi sao vàng trên áo thun đỏ.",
+          "actingNotes": "Dê Mun: Phong thái tự tin, đĩnh đạc, giọng nói rõ ràng truyền cảm hứng cho các bạn nhỏ.",
+          "speaker": "Dê Mun (85cm)",
+          "dialogue": "Bạn nhỏ nhớ câu thần chú của chúng mình hôm nay nhé: 'Bóng tối dịu êm, đèn sao sáng thêm!' Ở nhà bạn nhỏ cũng làm giống Dê Mun nha!",
+          "voiceDelivery": "Rõ từng chữ, nhấn mạnh câu thần chú lần 3",
+          "sfx": "Tiếng chuông sao lấp lánh",
+          "bgm": "Giai điệu chủ đề của tập phim ngân vang ấm áp",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] MCU, eye-level angle, 50mm lens. [CHARACTERS] a playful 3-year-old toddler boy black goat named Mun, about 85cm tall (0.85x the height of Bi the squirrel, Mun's head reaches Bi's nose), chubby-cheeked toddler build, soft glossy jet-black fur with a small white star-shaped patch on his forehead, two tiny rounded nub horns, short floppy ears with gray-pink inner side, big round sparkling brown eyes, wearing a bright red t-shirt with a small yellow star, navy blue shorts, red rubber rain boots, standing as tall as his 85cm toddler frame allows, beaming with a huge proud smile, pointing both thumbs at the yellow star on his bright red t-shirt. [ACTION] Medium close-up of Dê Mun speaking directly to the young viewer, repeating the mantra for the third time. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized Vietnamese countryside hillside farmhouse belonging to Bong and Mun the goats. The traditional single-story timber house features weathered hand-fired red terracotta roof tiles with patches of velvety green moss, warm lime-washed cream walls, and a wide covered wooden veranda raised 25cm off the ground. Surrounding the sunny packed-earth courtyard is a neat woven split-bamboo lattice fence standing 70cm tall (chest height to a 100cm character) and an arched bamboo trellis draped with lush green loofah vines, bright yellow gourd blossoms, and hanging gourds at 175cm overhead height. In the side garden, straight raised soil beds with moist dark earth texture grow crisp green mustard cabbages, carrots, and herbs. On the veranda sits a polished bamboo tea table (52cm high) with a ceramic teapot, wooden stools (28cm high), child-sized tin watering cans, and a stone water jar with a bamboo ladle, all rendered with tactile surface detail and shallow depth of field. Time of day: night. [DEPTH] foreground: soft golden sunlight bokeh, soft bokeh; midground: medium close-up of Dê Mun summarizing the core lesson to the camera, razor-sharp focus; background: warm blurred background, creamy atmospheric falloff. [LIGHT] Peaceful countryside evening under a starry sky and crescent moon; warm yellow porch lanterns illuminating the wooden veranda while crickets chirp in the bamboo hedge..",
+          "videoPrompt": "5-second 3D Pixar-style animated clip — hero moment of shot S26 (shot window 08:20-08:40, 20s; the clip plays at the start of the shot, then the editor holds its last frame with a slow camera drift): Medium close-up of Dê Mun speaking directly to the young viewer, repeating the mantra for the third time. Camera movement: smooth push-in. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Dê Mun), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "de_mun"
+          ],
+          "speakerId": "de_mun",
+          "priority": 3,
+          "clipDurationSec": 5
+        },
+        {
+          "id": "S27",
+          "sceneIndex": 9,
+          "sceneTitle": "Niềm vui gắn kết & Đúc kết bài học thực tế (Lớp Sư Phạm 3B)",
+          "startSec": 520,
+          "endSec": 540,
+          "durationSec": 20.0,
+          "shotSize": "WS",
+          "camera": "eye-level, 28mm, dolly-out",
+          "characters": [
+            "Dê Mun (85cm)",
+            "Dê Bông (115cm)",
+            "Ông Dê Râu Bạc (155cm)"
+          ],
+          "action": "[0-7s] Máy quay lùi nhẹ mở rộng khung hình tại Nhà của Bông & Mun trên sườn đồi. [7-14s] Dê Mun (85cm), Dê Bông (115cm), Ông Dê Râu Bạc (155cm) đứng cạnh nhau đúng chuẩn tỉ lệ chiều cao khóa cứng. [14-20s] Cả nhóm cùng nắm tay nhau đung đưa vui vẻ.",
+          "expression": "Dê Mun (vui): Hai má phúng phính nâng cao với nụ cười trẻ thơ rạng rỡ, mắt nâu to tròn lấp lánh, đôi tai ngắn vẫy nhẹ khi nhún nhảy trong đôi ủng cao su đỏ. | Dê Bông (vui): Nụ cười hiền hậu ấm áp, đôi mắt nâu tròn ánh lên niềm vui, đôi tai dài cụp đung đưa nhẹ, vỗ hai tay khích lệ em. | Ông Dê Râu Bạc (vui): Nụ cười ông nội hiền từ, đôi mắt nheo lại ấm áp sau cặp kính tròn, chòm râu bạc rung rinh theo tiếng cười 'Khà khà!'.",
+          "actingNotes": "Tất cả nhân vật trong tập đều nở nụ cười rạng rỡ nhất, thể hiện cái kết trọn vẹn, ấm áp.",
+          "speaker": "Dê Bông (115cm)",
+          "dialogue": "Mỗi ngày học thêm một điều hay, chúng mình ai cũng lớn khôn và ngoan ngoãn hơn!",
+          "voiceDelivery": "Vui tươi, ấm áp",
+          "sfx": "Tiếng chim hót líu lo và tiếng gió nhẹ",
+          "bgm": "Nhạc nền chuyển dần sang khúc vĩ thanh (Outro)",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] WS, eye-level angle, 28mm lens. [CHARACTERS] a playful 3-year-old toddler boy black goat named Mun, about 85cm tall (0.85x the height of Bi the squirrel, Mun's head reaches Bi's nose), chubby-cheeked toddler build, soft glossy jet-black fur with a small white star-shaped patch on his forehead, two tiny rounded nub horns, short floppy ears with gray-pink inner side, big round sparkling brown eyes, wearing a bright red t-shirt with a small yellow star, navy blue shorts, red rubber rain boots, chubby cheeks lifted in a huge gummy toddler grin, big sparkling brown eyes crinkling with joy, short floppy ears flapping as he jumps up in his red rubber rain boots with both short arms raised high; a gentle, thoughtful 6-year-old boy white goat named Bong, about 115cm tall (1.15x the height of Bi the squirrel, Bi's head reaches Bong's chin), slim upright build, fluffy clean snow-white curly fur, a small soft chin tuft, two short curved cream-colored horns, long floppy ears with pink inner side, big round warm brown eyes, small pink nose, wearing sky-blue denim overalls over a white-and-navy striped t-shirt, a tiny green notebook in the front pocket, brown sandals over small dark hooves, warm gentle smile, bright crinkling warm brown eyes, long floppy ears bouncing lightly, standing tall and clapping both hands together cheerfully; a kind elderly grandfather goat named Ong De Rau Bac (grandfather of Bong and Mun), about 155cm tall (1.55x the height of Bi the squirrel), sturdy slightly stooped warm build, silver-white fur, a long soft braided silver chin beard, curved amber-cream horns, warm crinkled brown eyes, wearing a traditional Vietnamese brown cotton Ba Ba shirt with wooden buttons, loose dark linen trousers, a woven bamboo straw hat resting on his back, brown wooden clogs over hooves, hearty grandfatherly laugh, eyes crinkled into warm crescents, stroking his long silver chin beard. [SCALE] Height order from tallest: Ông Dê Râu Bạc (155cm) > Dê Bông (115cm) > Dê Mun (85cm); Mun (85cm) reaches Bong's chest (115cm); Grandfather Goat is 155cm tall (taller than all children). [ACTION] Wide dolly-out shot of the episode cast standing side by side in strict height order at Nhà của Bông & Mun trên sườn đồi. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized Vietnamese countryside hillside farmhouse belonging to Bong and Mun the goats. The traditional single-story timber house features weathered hand-fired red terracotta roof tiles with patches of velvety green moss, warm lime-washed cream walls, and a wide covered wooden veranda raised 25cm off the ground. Surrounding the sunny packed-earth courtyard is a neat woven split-bamboo lattice fence standing 70cm tall (chest height to a 100cm character) and an arched bamboo trellis draped with lush green loofah vines, bright yellow gourd blossoms, and hanging gourds at 175cm overhead height. In the side garden, straight raised soil beds with moist dark earth texture grow crisp green mustard cabbages, carrots, and herbs. On the veranda sits a polished bamboo tea table (52cm high) with a ceramic teapot, wooden stools (28cm high), child-sized tin watering cans, and a stone water jar with a bamboo ladle, all rendered with tactile surface detail and shallow depth of field. Time of day: night. [DEPTH] foreground: foreground leaves and wildflowers bokeh, soft bokeh; midground: Dê Mun, Dê Bông, Ông Dê Râu Bạc standing together in exact height order, razor-sharp focus; background: scenic wide view of Nhà của Bông & Mun trên sườn đồi, creamy atmospheric falloff. [LIGHT] Peaceful countryside evening under a starry sky and crescent moon; warm yellow porch lanterns illuminating the wooden veranda while crickets chirp in the bamboo hedge..",
+          "videoPrompt": "5-second 3D Pixar-style animated clip — hero moment of shot S27 (shot window 08:40-09:00, 20s; the clip plays at the start of the shot, then the editor holds its last frame with a slow camera drift): Wide dolly-out shot of the episode cast standing side by side in strict height order at Nhà của Bông & Mun trên sườn đồi. Camera movement: smooth dolly-out. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Height order from tallest: Ông Dê Râu Bạc (155cm) > Dê Bông (115cm) > Dê Mun (85cm); Mun (85cm) reaches Bong's chest (115cm); Grandfather Goat is 155cm tall (taller than all children).), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "de_mun",
+            "de_bong",
+            "ong_de_rau_bac"
+          ],
+          "speakerId": "de_bong",
+          "priority": 3,
+          "clipDurationSec": 5
+        }
+      ]
+    },
+    {
+      "index": 10,
+      "title": "Khúc kết & Chào tạm biệt khán giả (End Screen chuẩn Made for Kids)",
+      "startSec": 540,
+      "endSec": 600,
+      "location": "Nhà của Bông & Mun trên sườn đồi — Toàn cảnh khép lại tập phim",
+      "purpose": "Khép lại tập phim trọn vẹn đúng mốc 10:00, ôn lại điệp khúc và vẫy tay chào tạm biệt các bạn nhỏ.",
+      "shots": [
+        {
+          "id": "S28",
+          "sceneIndex": 10,
+          "sceneTitle": "Khúc kết & Chào tạm biệt khán giả (End Screen chuẩn Made for Kids)",
+          "startSec": 540,
+          "endSec": 560,
+          "durationSec": 20.0,
+          "shotSize": "MS",
+          "camera": "eye-level, 35mm, static",
+          "characters": [
+            "Dê Mun (85cm)",
+            "Dê Bông (115cm)",
+            "Ông Dê Râu Bạc (155cm)"
+          ],
+          "action": "[0-7s] Các nhân vật cùng vỗ tay theo nhịp nhạc kết bài. [7-14s] Cùng hát vang câu điệp khúc của tập phim 'Mun sợ bóng tối'. [14-20s] Nghiêng người chào nhau đầy yêu thương.",
+          "expression": "Dê Mun (vui): Hai má phúng phính nâng cao với nụ cười trẻ thơ rạng rỡ, mắt nâu to tròn lấp lánh, đôi tai ngắn vẫy nhẹ khi nhún nhảy trong đôi ủng cao su đỏ. | Dê Bông (vui): Nụ cười hiền hậu ấm áp, đôi mắt nâu tròn ánh lên niềm vui, đôi tai dài cụp đung đưa nhẹ, vỗ hai tay khích lệ em. | Ông Dê Râu Bạc (vui): Nụ cười ông nội hiền từ, đôi mắt nheo lại ấm áp sau cặp kính tròn, chòm râu bạc rung rinh theo tiếng cười 'Khà khà!'.",
+          "actingNotes": "Vỗ tay đều theo nhịp, gương mặt tươi tắn, tràn đầy năng lượng tích cực.",
+          "speaker": "Dê Mun (85cm)",
+          "dialogue": "🎵 'Bóng tối dịu êm, đèn sao sáng thêm!' — Cùng nhau khôn lớn, mỗi ngày thật vui! 🎵",
+          "voiceDelivery": "Hát đồng ca trong trẻo, nhịp nhàng",
+          "sfx": "Tiếng vỗ tay theo nhịp",
+          "bgm": "Nhạc kết đồng dao rộn ràng 108 BPM",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] MS, eye-level angle, 35mm lens. [CHARACTERS] a playful 3-year-old toddler boy black goat named Mun, about 85cm tall (0.85x the height of Bi the squirrel, Mun's head reaches Bi's nose), chubby-cheeked toddler build, soft glossy jet-black fur with a small white star-shaped patch on his forehead, two tiny rounded nub horns, short floppy ears with gray-pink inner side, big round sparkling brown eyes, wearing a bright red t-shirt with a small yellow star, navy blue shorts, red rubber rain boots, chubby cheeks lifted in a huge gummy toddler grin, big sparkling brown eyes crinkling with joy, short floppy ears flapping as he jumps up in his red rubber rain boots with both short arms raised high; a gentle, thoughtful 6-year-old boy white goat named Bong, about 115cm tall (1.15x the height of Bi the squirrel, Bi's head reaches Bong's chin), slim upright build, fluffy clean snow-white curly fur, a small soft chin tuft, two short curved cream-colored horns, long floppy ears with pink inner side, big round warm brown eyes, small pink nose, wearing sky-blue denim overalls over a white-and-navy striped t-shirt, a tiny green notebook in the front pocket, brown sandals over small dark hooves, warm gentle smile, bright crinkling warm brown eyes, long floppy ears bouncing lightly, standing tall and clapping both hands together cheerfully; a kind elderly grandfather goat named Ong De Rau Bac (grandfather of Bong and Mun), about 155cm tall (1.55x the height of Bi the squirrel), sturdy slightly stooped warm build, silver-white fur, a long soft braided silver chin beard, curved amber-cream horns, warm crinkled brown eyes, wearing a traditional Vietnamese brown cotton Ba Ba shirt with wooden buttons, loose dark linen trousers, a woven bamboo straw hat resting on his back, brown wooden clogs over hooves, hearty grandfatherly laugh, eyes crinkled into warm crescents, stroking his long silver chin beard. [SCALE] Height order from tallest: Ông Dê Râu Bạc (155cm) > Dê Bông (115cm) > Dê Mun (85cm); Mun (85cm) reaches Bong's chest (115cm); Grandfather Goat is 155cm tall (taller than all children). [ACTION] Medium shot of the characters clapping in rhythm and singing the joyful closing chorus. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized Vietnamese countryside hillside farmhouse belonging to Bong and Mun the goats. The traditional single-story timber house features weathered hand-fired red terracotta roof tiles with patches of velvety green moss, warm lime-washed cream walls, and a wide covered wooden veranda raised 25cm off the ground. Surrounding the sunny packed-earth courtyard is a neat woven split-bamboo lattice fence standing 70cm tall (chest height to a 100cm character) and an arched bamboo trellis draped with lush green loofah vines, bright yellow gourd blossoms, and hanging gourds at 175cm overhead height. In the side garden, straight raised soil beds with moist dark earth texture grow crisp green mustard cabbages, carrots, and herbs. On the veranda sits a polished bamboo tea table (52cm high) with a ceramic teapot, wooden stools (28cm high), child-sized tin watering cans, and a stone water jar with a bamboo ladle, all rendered with tactile surface detail and shallow depth of field. Time of day: night. [DEPTH] foreground: warm sunlit bokeh, soft bokeh; midground: Dê Mun, Dê Bông, Ông Dê Râu Bạc clapping and singing the closing verse together, razor-sharp focus; background: Nhà của Bông & Mun trên sườn đồi background, creamy atmospheric falloff. [LIGHT] Peaceful countryside evening under a starry sky and crescent moon; warm yellow porch lanterns illuminating the wooden veranda while crickets chirp in the bamboo hedge..",
+          "videoPrompt": "5-second 3D Pixar-style animated clip — hero moment of shot S28 (shot window 09:00-09:20, 20s; the clip plays at the start of the shot, then the editor holds its last frame with a slow camera drift): Medium shot of the characters clapping in rhythm and singing the joyful closing chorus. Camera movement: smooth static. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Height order from tallest: Ông Dê Râu Bạc (155cm) > Dê Bông (115cm) > Dê Mun (85cm); Mun (85cm) reaches Bong's chest (115cm); Grandfather Goat is 155cm tall (taller than all children).), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "de_mun",
+            "de_bong",
+            "ong_de_rau_bac"
+          ],
+          "speakerId": "de_mun",
+          "priority": 2,
+          "priorityNote": "đầu cảnh",
+          "clipDurationSec": 5
+        },
+        {
+          "id": "S29",
+          "sceneIndex": 10,
+          "sceneTitle": "Khúc kết & Chào tạm biệt khán giả (End Screen chuẩn Made for Kids)",
+          "startSec": 560,
+          "endSec": 580,
+          "durationSec": 20.0,
+          "shotSize": "MCU",
+          "camera": "eye-level, 50mm, push-in",
+          "characters": [
+            "Dê Mun (85cm)",
+            "Dê Bông (115cm)"
+          ],
+          "action": "[0-7s] Dê Mun và Dê Bông bước lại gần ống kính, vẫy cao cả hai bàn tay nhỏ. [7-14s] Gửi lời chúc ngoan ngoãn tới các bạn nhỏ đang xem. [14-20s] Nháy mắt tinh nghịch hẹn gặp lại ở tập tiếp theo.",
+          "expression": "Dê Mun (vui): Hai má phúng phính nâng cao với nụ cười trẻ thơ rạng rỡ, mắt nâu to tròn lấp lánh, đôi tai ngắn vẫy nhẹ khi nhún nhảy trong đôi ủng cao su đỏ. | Dê Bông (vui): Nụ cười hiền hậu ấm áp, đôi mắt nâu tròn ánh lên niềm vui, đôi tai dài cụp đung đưa nhẹ, vỗ hai tay khích lệ em.",
+          "actingNotes": "Ánh mắt lưu luyến, nụ cười ngọt ngào, vẫy tay chậm rãi thân thương.",
+          "speaker": "Dê Mun (85cm)",
+          "dialogue": "Cảm ơn bạn nhỏ đã cùng chơi với tụi mình trong tập 'Mun sợ bóng tối' hôm nay nhé! Chúc bạn nhỏ luôn chăm ngoan!",
+          "voiceDelivery": "Tình cảm, ấm áp, rõ chữ",
+          "sfx": "Tiếng chuông gió ngân nhẹ",
+          "bgm": "Nhạc nền dịu dần chuẩn bị vào màn hình kết thúc",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] MCU, eye-level angle, 50mm lens. [CHARACTERS] a playful 3-year-old toddler boy black goat named Mun, about 85cm tall (0.85x the height of Bi the squirrel, Mun's head reaches Bi's nose), chubby-cheeked toddler build, soft glossy jet-black fur with a small white star-shaped patch on his forehead, two tiny rounded nub horns, short floppy ears with gray-pink inner side, big round sparkling brown eyes, wearing a bright red t-shirt with a small yellow star, navy blue shorts, red rubber rain boots, chubby cheeks lifted in a huge gummy toddler grin, big sparkling brown eyes crinkling with joy, short floppy ears flapping as he jumps up in his red rubber rain boots with both short arms raised high; a gentle, thoughtful 6-year-old boy white goat named Bong, about 115cm tall (1.15x the height of Bi the squirrel, Bi's head reaches Bong's chin), slim upright build, fluffy clean snow-white curly fur, a small soft chin tuft, two short curved cream-colored horns, long floppy ears with pink inner side, big round warm brown eyes, small pink nose, wearing sky-blue denim overalls over a white-and-navy striped t-shirt, a tiny green notebook in the front pocket, brown sandals over small dark hooves, warm gentle smile, bright crinkling warm brown eyes, long floppy ears bouncing lightly, standing tall and clapping both hands together cheerfully. [SCALE] Height order from tallest: Dê Bông (115cm) > Dê Mun (85cm); Mun (85cm) reaches Bong's chest (115cm). [ACTION] Medium close-up of Dê Mun and Dê Bông waving both hands affectionately at the camera. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized Vietnamese countryside hillside farmhouse belonging to Bong and Mun the goats. The traditional single-story timber house features weathered hand-fired red terracotta roof tiles with patches of velvety green moss, warm lime-washed cream walls, and a wide covered wooden veranda raised 25cm off the ground. Surrounding the sunny packed-earth courtyard is a neat woven split-bamboo lattice fence standing 70cm tall (chest height to a 100cm character) and an arched bamboo trellis draped with lush green loofah vines, bright yellow gourd blossoms, and hanging gourds at 175cm overhead height. In the side garden, straight raised soil beds with moist dark earth texture grow crisp green mustard cabbages, carrots, and herbs. On the veranda sits a polished bamboo tea table (52cm high) with a ceramic teapot, wooden stools (28cm high), child-sized tin watering cans, and a stone water jar with a bamboo ladle, all rendered with tactile surface detail and shallow depth of field. Time of day: night. [DEPTH] foreground: soft floral bokeh, soft bokeh; midground: Dê Mun and Dê Bông waving both hands warmly at the camera, razor-sharp focus; background: warm Nhà của Bông & Mun trên sườn đồi backdrop, creamy atmospheric falloff. [LIGHT] Peaceful countryside evening under a starry sky and crescent moon; warm yellow porch lanterns illuminating the wooden veranda while crickets chirp in the bamboo hedge..",
+          "videoPrompt": "5-second 3D Pixar-style animated clip — hero moment of shot S29 (shot window 09:20-09:40, 20s; the clip plays at the start of the shot, then the editor holds its last frame with a slow camera drift): Medium close-up of Dê Mun and Dê Bông waving both hands affectionately at the camera. Camera movement: smooth push-in. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Height order from tallest: Dê Bông (115cm) > Dê Mun (85cm); Mun (85cm) reaches Bong's chest (115cm).), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "de_mun",
+            "de_bong"
+          ],
+          "speakerId": "de_mun",
+          "priority": 3,
+          "clipDurationSec": 5
+        },
+        {
+          "id": "S30",
+          "sceneIndex": 10,
+          "sceneTitle": "Khúc kết & Chào tạm biệt khán giả (End Screen chuẩn Made for Kids)",
+          "startSec": 580,
+          "endSec": 600,
+          "durationSec": 20.0,
+          "shotSize": "WS",
+          "camera": "eye-level, 28mm, dolly-out",
+          "characters": [
+            "Dê Mun (85cm)",
+            "Dê Bông (115cm)",
+            "Ông Dê Râu Bạc (155cm)"
+          ],
+          "action": "[0-7s] Bố cục khung hình chuẩn End Screen 20 giây cuối: các nhân vật đứng ở nửa trái khung hình vẫy tay chào. [7-14s] Nửa phải khung hình thoáng đãng hiển thị ô Tập tiếp theo. [14-20s] Nhạc nền hạ nhẹ về -18 LUFS và khép lại mượt mà ở 10:00.",
+          "expression": "Dê Mun (vui): Hai má phúng phính nâng cao với nụ cười trẻ thơ rạng rỡ, mắt nâu to tròn lấp lánh, đôi tai ngắn vẫy nhẹ khi nhún nhảy trong đôi ủng cao su đỏ. | Dê Bông (vui): Nụ cười hiền hậu ấm áp, đôi mắt nâu tròn ánh lên niềm vui, đôi tai dài cụp đung đưa nhẹ, vỗ hai tay khích lệ em. | Ông Dê Râu Bạc (vui): Nụ cười ông nội hiền từ, đôi mắt nheo lại ấm áp sau cặp kính tròn, chòm râu bạc rung rinh theo tiếng cười 'Khà khà!'.",
+          "actingNotes": "Vẫy tay nhịp nhàng trên nền nhạc không lời êm dịu, tuyệt đối tuân thủ chuẩn YouTube Made for Kids.",
+          "speaker": "Ông Dê Râu Bạc (155cm)",
+          "dialogue": "Hẹn gặp lại các bạn nhỏ ở tập tiếp theo của Sóc Nhỏ TV nhé! Tạm biệt!",
+          "voiceDelivery": "Nhẹ nhàng, ngân ấm, khép lại tập phim trọn vẹn",
+          "sfx": "Tiếng chuông kết phim trong trẻo",
+          "bgm": "Nhạc Outro đàn t'rưng và guitar gỗ fade-out mượt mà ở 10:00 (-18 LUFS)",
+          "imagePrompt": "[STYLE] 3D Pixar-style animated film still, photoreal-stylized environment, cinematic soft lighting, vibrant warm pastel palette, shallow depth of field, 16:9 widescreen. [SHOT] WS, eye-level angle, 28mm lens. [CHARACTERS] a playful 3-year-old toddler boy black goat named Mun, about 85cm tall (0.85x the height of Bi the squirrel, Mun's head reaches Bi's nose), chubby-cheeked toddler build, soft glossy jet-black fur with a small white star-shaped patch on his forehead, two tiny rounded nub horns, short floppy ears with gray-pink inner side, big round sparkling brown eyes, wearing a bright red t-shirt with a small yellow star, navy blue shorts, red rubber rain boots, chubby cheeks lifted in a huge gummy toddler grin, big sparkling brown eyes crinkling with joy, short floppy ears flapping as he jumps up in his red rubber rain boots with both short arms raised high; a gentle, thoughtful 6-year-old boy white goat named Bong, about 115cm tall (1.15x the height of Bi the squirrel, Bi's head reaches Bong's chin), slim upright build, fluffy clean snow-white curly fur, a small soft chin tuft, two short curved cream-colored horns, long floppy ears with pink inner side, big round warm brown eyes, small pink nose, wearing sky-blue denim overalls over a white-and-navy striped t-shirt, a tiny green notebook in the front pocket, brown sandals over small dark hooves, warm gentle smile, bright crinkling warm brown eyes, long floppy ears bouncing lightly, standing tall and clapping both hands together cheerfully; a kind elderly grandfather goat named Ong De Rau Bac (grandfather of Bong and Mun), about 155cm tall (1.55x the height of Bi the squirrel), sturdy slightly stooped warm build, silver-white fur, a long soft braided silver chin beard, curved amber-cream horns, warm crinkled brown eyes, wearing a traditional Vietnamese brown cotton Ba Ba shirt with wooden buttons, loose dark linen trousers, a woven bamboo straw hat resting on his back, brown wooden clogs over hooves, hearty grandfatherly laugh, eyes crinkled into warm crescents, stroking his long silver chin beard. [SCALE] Height order from tallest: Ông Dê Râu Bạc (155cm) > Dê Bông (115cm) > Dê Mun (85cm); Mun (85cm) reaches Bong's chest (115cm); Grandfather Goat is 155cm tall (taller than all children). [ACTION] Wide End Screen shot with characters waving in the lower-left frame while the music gently fades out at 10:00. [LOCATION] 3D Pixar-style animated film environment, photoreal-stylized Vietnamese countryside hillside farmhouse belonging to Bong and Mun the goats. The traditional single-story timber house features weathered hand-fired red terracotta roof tiles with patches of velvety green moss, warm lime-washed cream walls, and a wide covered wooden veranda raised 25cm off the ground. Surrounding the sunny packed-earth courtyard is a neat woven split-bamboo lattice fence standing 70cm tall (chest height to a 100cm character) and an arched bamboo trellis draped with lush green loofah vines, bright yellow gourd blossoms, and hanging gourds at 175cm overhead height. In the side garden, straight raised soil beds with moist dark earth texture grow crisp green mustard cabbages, carrots, and herbs. On the veranda sits a polished bamboo tea table (52cm high) with a ceramic teapot, wooden stools (28cm high), child-sized tin watering cans, and a stone water jar with a bamboo ladle, all rendered with tactile surface detail and shallow depth of field. Time of day: night. [DEPTH] foreground: soft foliage bokeh framing the left side, leaving clean right-side space for End Screen cards, soft bokeh; midground: Dê Mun, Dê Bông, Ông Dê Râu Bạc in bottom-left midground waving goodbye in exact height scale, razor-sharp focus; background: peaceful wide view of Nhà của Bông & Mun trên sườn đồi, creamy atmospheric falloff. [LIGHT] Peaceful countryside evening under a starry sky and crescent moon; warm yellow porch lanterns illuminating the wooden veranda while crickets chirp in the bamboo hedge..",
+          "videoPrompt": "5-second 3D Pixar-style animated clip — hero moment of shot S30 (shot window 09:40-10:00, 20s; the clip plays at the start of the shot, then the editor holds its last frame with a slow camera drift): Wide End Screen shot with characters waving in the lower-left frame while the music gently fades out at 10:00. Camera movement: smooth dolly-out. Characters' mouths moving naturally speaking Vietnamese preschool dialogue, expressive eyes and ears, strictly maintaining height ratio (Height order from tallest: Ông Dê Râu Bạc (155cm) > Dê Bông (115cm) > Dê Mun (85cm); Mun (85cm) reaches Bong's chest (115cm); Grandfather Goat is 155cm tall (taller than all children).), smooth 24fps animation, no text, no subtitles, no watermark.",
+          "negativePrompt": "extra limbs, extra fingers, deformed hands, distorted face, wrong species, inconsistent outfit, wrong height ratio, realistic human, scary, horror, dark gore, text, watermark, logo, blurry character, duplicate character, adult content",
+          "characterIds": [
+            "de_mun",
+            "de_bong",
+            "ong_de_rau_bac"
+          ],
+          "speakerId": "ong_de_rau_bac",
+          "priority": 1,
+          "priorityNote": "kết: chào tạm biệt",
+          "clipDurationSec": 5
+        }
+      ]
+    }
+  ],
+  "castIds": [
+    "de_mun",
+    "de_bong",
+    "ong_de_rau_bac"
+  ],
+  "unmatched": [],
+  "schemaVersion": 1,
+  "locked": true,
+  "source": {
+    "file": "KICH-BAN-TAP-02-mun-so-bong-toi.md",
+    "sha": "39e7977c3f7c2d77"
+  },
+  "compiledAt": "2026-11-06T09:03:39Z",
+  "manualEdits": [
+    {
+      "at": "2026-11-06T10:20:40Z",
+      "by": "G4",
+      "summary": "videoPrompt: '8-second clip' -> clip 5s cho khoảnh khắc chính của shot 20s (giữ khung cuối); thêm priority 1/2/3 + clipDurationSec; khoá locked",
+      "dialogue": [
+        {
+          "shot": "S13",
+          "field": "dialogue",
+          "before": "Dạ… lúc nãy vì buổi tối tại phòng ngủ nhà nông trại dê, khi vừa tắt đèn lớn, dê mun (85cm) nhìn thấy chiếc bóng dài ngoằng rung rinh trên tường liền tưởng là quái vật nên trùm chăn run cầm cập, nên trong lòng con mới thấy rối bời như vậy ạ…",
+          "after": "Dạ… lúc nãy tắt đèn lớn đi ngủ, con nhìn thấy chiếc bóng dài ngoằng rung rinh trên tường, con tưởng là quái vật nên trùm chăn run cầm cập, nên trong lòng con mới thấy rối bời như vậy ạ…",
+          "why": "lời thoại dính câu mô tả hành động (đọc cả '85cm', ngôi thứ ba)"
+        }
+      ]
+    }
+  ]
+}

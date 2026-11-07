@@ -214,5 +214,18 @@
       "Tập 41: Rác về đúng nhà (ep41-rac-ve-dung-nha)",
       "... cùng 4 tập khác trong tổng số 16/50 tập."
     ]
-  }
+  },
+  "referenceImages": [
+    "/data/projects/soc-nho-tv/files/characters/cho_lu/cho_lu_01.png",
+    "/data/projects/soc-nho-tv/files/characters/cho_lu/cho_lu_02.png",
+    "/data/projects/soc-nho-tv/files/characters/cho_lu/cho_lu_03.png",
+    "/data/projects/soc-nho-tv/files/characters/cho_lu/cho_lu_04.png",
+    "/data/projects/soc-nho-tv/files/characters/cho_lu/cho_lu_05.png",
+    "/data/projects/soc-nho-tv/files/characters/cho_lu/cho_lu_06.png",
+    "/data/projects/soc-nho-tv/files/characters/cho_lu/cho_lu_07.png",
+    "/data/projects/soc-nho-tv/files/characters/cho_lu/cho_lu_dna_sheet.png"
+  ],
+  "primaryImage": "cho_lu_05.png",
+  "sampleAudioUrl": "/data/voices/vn-be-02/cho_lu_catchphrase.mp3",
+  "sampleText": "Mũi thính của Thám tử Lu đã đánh hơi thấy manh mối rồi!"
 }

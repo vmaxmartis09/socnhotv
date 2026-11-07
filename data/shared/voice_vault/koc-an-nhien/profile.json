@@ -1,0 +1,21 @@
+{
+  "profile_id": "koc-an-nhien",
+  "speaker_name": "Giọng nữ An Nhiên (Podcast Chữa Lành, Radio Tâm Sự)",
+  "dialect": "north",
+  "style": "healing_podcast_meditation",
+  "duration": 5.95,
+  "rms": 0.1058,
+  "transcript": "Và là lần đầu tiên sau rất lâu, thì mình thấy cuộc đời thật ra cũng không tệ như thế.",
+  "default_greeting": "Hello gô bi thúi của em , em là Gô bi của anh đây nè !",
+  "created_at": "1792405925.6116717",
+  "engine": "omnivoice",
+  "updated_at": "2026-10-19",
+  "files": {
+    "prompt": "omnivoice_prompt.pt",
+    "ref_slice": "reference_clean_slice.wav",
+    "transcript": "reference_transcript.txt",
+    "full_clean": "raw_extracted_clean.wav",
+    "source_preview": "source_original_preview.mp3",
+    "cloned_sample": "cloned_default_sample.mp3"
+  }
+}

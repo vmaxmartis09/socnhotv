@@ -1,0 +1,9 @@
+{
+  "name": "hf_composition_n_render",
+  "version": "1.0.0",
+  "fps": 30,
+  "width": 1920,
+  "height": 1080,
+  "duration": 600,
+  "authoringSkill": "hyperframes"
+}

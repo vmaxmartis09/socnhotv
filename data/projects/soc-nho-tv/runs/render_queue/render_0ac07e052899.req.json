@@ -1,0 +1,58 @@
+{
+  "project_id": "soc-nho-tv",
+  "template_id": "yt-animation-episode-v1",
+  "platforms": [
+    "youtube"
+  ],
+  "data": {
+    "episode_number": "TẬP EP_BENCHMARK",
+    "episode_title": "Sóc Nhỏ và Chiếc Răng Sâu",
+    "character_scale_lock": "Sóc Nhỏ 100cm · Bạn Koala 150cm (Scale Lock)",
+    "scenes": [
+      {
+        "sceneNumber": 1,
+        "scene_id": "ep_benchmark_sc_01",
+        "image": "/Volumes/Data/socnhotv/data/projects/soc-nho-tv/output/ep_benchmark/scenes/ep_benchmark_sc_01_8ae28cfa40.png",
+        "img": "/Volumes/Data/socnhotv/data/projects/soc-nho-tv/output/ep_benchmark/scenes/ep_benchmark_sc_01_8ae28cfa40.png",
+        "durationSec": 9.1,
+        "dialogue": "Bi: Bác sĩ Koala ơi, răng của em bị sâu đau quá! Koala: Để bác xem nào, em nhớ đánh răng mỗi ngày nhé!",
+        "characters": [
+          "koala",
+          "soc_nho"
+        ]
+      },
+      {
+        "sceneNumber": 2,
+        "scene_id": "ep_benchmark_sc_02",
+        "image": "/Volumes/Data/socnhotv/data/projects/soc-nho-tv/output/ep_benchmark/scenes/ep_benchmark_sc_02_b84d5cdcf2.png",
+        "img": "/Volumes/Data/socnhotv/data/projects/soc-nho-tv/output/ep_benchmark/scenes/ep_benchmark_sc_02_b84d5cdcf2.png",
+        "durationSec": 6.2,
+        "dialogue": "Koala: Mỗi ngày đánh răng 2 lần sáng và tối! Bi: Dạ em nhớ rồi ạ!",
+        "characters": [
+          "koala",
+          "soc_nho"
+        ]
+      },
+      {
+        "sceneNumber": 3,
+        "scene_id": "ep_benchmark_sc_03",
+        "image": "/Volumes/Data/socnhotv/data/projects/soc-nho-tv/output/ep_benchmark/scenes/ep_benchmark_sc_03_c2e197d5e7.png",
+        "img": "/Volumes/Data/socnhotv/data/projects/soc-nho-tv/output/ep_benchmark/scenes/ep_benchmark_sc_03_c2e197d5e7.png",
+        "durationSec": 3.7,
+        "dialogue": "Bi: Cảm ơn Bác sĩ Koala nhiều ạ!",
+        "characters": [
+          "soc_nho"
+        ]
+      }
+    ],
+    "auto_draft": true,
+    "title": "Sóc Nhỏ và Chiếc Răng Sâu"
+  },
+  "voice": {
+    "voice_id": null,
+    "script": null,
+    "audio_path": "/Volumes/Data/socnhotv/data/projects/soc-nho-tv/output/ep_benchmark/audio/episode_master_voice.mp3"
+  },
+  "source_ref": null,
+  "output_name": "ep_benchmark_main"
+}

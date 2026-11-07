@@ -1,0 +1,31 @@
+{
+  "id": "art_2b163b2d8536",
+  "kind": "audio",
+  "uri": "assets/2b163b2d85361d78fc02a5af1b92c5d59116ed6cc0594a913593cad9c09b325a.mp3",
+  "mime": "audio/mp3",
+  "size": 176212,
+  "hash": "sha256:2b163b2d85361d78fc02a5af1b92c5d59116ed6cc0594a913593cad9c09b325a",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 7.27,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "prebuild_voice",
+    "runId": "prebuild_ep02-mun-so-bong-toi",
+    "provider": "omnivoice",
+    "model": "omnivoice",
+    "params": {
+      "text": "Bạn nhỏ ơi, hôm nay câu chuyện 'Mun sợ bóng tối' sẽ bắt đầu ngay bây giờ! Bạn nhỏ đã sẵn sàng cùng Dê Mun chưa nào?",
+      "voiceId": "vn-be-04",
+      "tempo": 1.0,
+      "targetLufs": -14.0,
+      "mastering": "deesser+presence3.2k+comp4:1+loudnorm-14LUFS"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T10:31:01Z"
+  }
+}

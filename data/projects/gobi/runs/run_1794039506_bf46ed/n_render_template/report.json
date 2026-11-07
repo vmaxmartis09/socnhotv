@@ -1,0 +1,37 @@
+{
+  "template_id": "koc-review-v1",
+  "platform": "tiktok",
+  "ok": true,
+  "mp4": "/Volumes/Data/socnhotv/data/projects/gobi/runs/run_1794039506_bf46ed/n_render_template/koc-review-v1_tiktok.mp4",
+  "contact_sheet": "/Volumes/Data/socnhotv/data/projects/gobi/runs/run_1794039506_bf46ed/n_render_template/koc-review-v1_tiktok_contact.jpg",
+  "engine": "hyperframes",
+  "width": 1080,
+  "height": 1920,
+  "duration_sec": 9.23,
+  "size_bytes": 731984,
+  "has_audio_stream": true,
+  "render_sec": 7.8,
+  "slots_from_user": [
+    "cons_text",
+    "product",
+    "pros_text",
+    "rating_score",
+    "reviewer_badge"
+  ],
+  "slots_from_sample": [],
+  "audio_source": "voice_audio",
+  "assets_from_user": [
+    "product.png",
+    "koc_avatar.png"
+  ],
+  "assets_from_template": [
+    "subtitles.json",
+    "gsap.min.js"
+  ],
+  "warnings": [
+    "Phụ đề: chữ từ voice_text (25 từ), mốc đầu/cuối từ Whisper; thời điểm từng từ là ước lượng theo độ dài chữ.",
+    "Asset mẫu đóng gói trong template (không phải của người dùng): subtitles.json",
+    "hyperframes check: {\"ok\": false, \"details\": {\"ok\": false, \"strict\": false, \"browserSkipped\": false, \"lint\": {\"ok\": true, \"errorCount\": 0, \"warningCount\": 5, \"infoCount\": 0, \"findings\": [{\"code\": \"css_transition_used\", \"severity\": \"warning\", \"message\": \"CSS declaration `transition: all 0.1s ease` runs on the browser clock and cannot be seeked deterministically across render workers.\", \"selector\": \".word-span\", \"dataA"
+  ],
+  "error": ""
+}

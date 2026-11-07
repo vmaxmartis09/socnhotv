@@ -1,0 +1,31 @@
+{
+  "id": "art_0ac4e1c156fb",
+  "kind": "video",
+  "uri": "assets/0ac4e1c156fb5ecb0d6b6a6153df3cb737584cd9ac759ea51fbee9860c010fe5.mp4",
+  "mime": "video/mp4",
+  "size": 251000,
+  "hash": "sha256:0ac4e1c156fb5ecb0d6b6a6153df3cb737584cd9ac759ea51fbee9860c010fe5",
+  "meta": {
+    "width": 1080,
+    "height": 1920,
+    "duration": 4.733333,
+    "fps": null,
+    "aspect": "9:16"
+  },
+  "provenance": {
+    "nodeId": "node_export_out",
+    "runId": "run_1793954185_daf0fc",
+    "provider": "local",
+    "model": "export_package_v1",
+    "params": {
+      "outputFileName": "api_test_paste.mp4",
+      "slug": "v-sao-c-u-v-ng-c-nhi-u-m-u-16",
+      "platforms": [
+        "tiktok"
+      ]
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T08:36:58Z"
+  }
+}

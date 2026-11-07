@@ -1,0 +1,30 @@
+{
+  "source": "/private/var/folders/6v/_3_pxmbs5f73zn8wz5qw0ns80000gn/T/pytest-of-vmaxmartis/pytest-69/test_real_scene_cut_three_colo0/data/projects/i5-test/assets/4cd1c48fdfbdcfcc6ba690e07bca1201bb1cbe2d05d5bf408d50c79031d5999f.mp4",
+  "duration": 6.0,
+  "scene_count": 3,
+  "params": {
+    "threshold": 3.0,
+    "min_scene_s": 1.0,
+    "aspect": "keep"
+  },
+  "scenes": [
+    {
+      "index": 1,
+      "start": 0.0,
+      "end": 2.0,
+      "duration": 2.0
+    },
+    {
+      "index": 2,
+      "start": 2.0,
+      "end": 4.0,
+      "duration": 2.0
+    },
+    {
+      "index": 3,
+      "start": 4.0,
+      "end": 6.0,
+      "duration": 2.0
+    }
+  ]
+}

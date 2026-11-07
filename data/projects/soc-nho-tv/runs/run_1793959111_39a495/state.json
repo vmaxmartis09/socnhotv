@@ -1,0 +1,56 @@
+{
+  "runId": "run_1793959111_39a495",
+  "id": "run_1793959111_39a495",
+  "projectId": "soc-nho-tv",
+  "status": "completed",
+  "mode": "all",
+  "stage": "Hoàn tất xuất sắc",
+  "currentNodeId": "c_me_soc",
+  "progress": 1.0,
+  "progressPct": 100,
+  "startedAtTs": 1793959111.6575081,
+  "createdAt": "2026-11-06T09:58:31Z",
+  "updatedAt": "2026-11-06T09:58:31Z",
+  "elapsedSec": 0.0,
+  "actualCostUsd": 0.0,
+  "costUsd": 0.0,
+  "nodes": [
+    {
+      "id": "s",
+      "type": "script",
+      "name": "s",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "c_soc_nho",
+      "type": "character",
+      "name": "c_soc_nho",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "c_de_mun",
+      "type": "character",
+      "name": "c_de_mun",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "c_me_soc",
+      "type": "character",
+      "name": "c_me_soc",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    }
+  ],
+  "totalNodes": 4,
+  "completedNodes": 4,
+  "output": null,
+  "error": null,
+  "completedAt": "2026-11-06T09:58:31Z"
+}

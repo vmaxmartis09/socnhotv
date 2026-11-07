@@ -1,0 +1,29 @@
+{
+  "id": "art_a07f0188496b",
+  "kind": "audio",
+  "uri": "assets/a07f0188496bcb60a55fc72b7ee33b2667050379886047659924861f2d274424.wav",
+  "mime": "audio/wav",
+  "size": 331234,
+  "hash": "sha256:a07f0188496bcb60a55fc72b7ee33b2667050379886047659924861f2d274424",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 7.51,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "c_de_mun",
+    "runId": "run_1793955922_5c467e",
+    "provider": "mock",
+    "model": "mock-omnivoice-v1",
+    "params": {
+      "text": "Mun cũng thuộc bài thở năm ngón tay của Mẹ Sóc dạy rồi! Lần sau Mun sẽ đi đứng cẩn thận hơn ạ!",
+      "voiceId": "vn-be-04",
+      "tempo": 1.0209
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T09:05:22Z"
+  }
+}

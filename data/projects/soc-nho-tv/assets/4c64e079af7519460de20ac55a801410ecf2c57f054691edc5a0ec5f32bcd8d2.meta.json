@@ -14,7 +14,7 @@
   },
   "provenance": {
     "nodeId": "node_script",
-    "runId": "run_1793842246_99c8af",
+    "runId": "run_1793959112_c220e4",
     "provider": "local",
     "model": "script_parser",
     "params": {
@@ -23,6 +23,6 @@
     },
     "inputHashes": [],
     "costUsd": 0.0,
-    "createdAt": "2026-11-05T01:30:46Z"
+    "createdAt": "2026-11-06T09:58:32Z"
   }
 }

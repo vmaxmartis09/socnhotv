@@ -1,0 +1,17 @@
+{
+  "id": "vn-nam-nu-07",
+  "display_name": "Nữ miền Nam 7",
+  "aliases": [],
+  "engine": "omnivoice",
+  "lang": "vi",
+  "dialect": "south",
+  "gender": "female",
+  "sample_paths": [
+    "cloned_default_sample.mp3"
+  ],
+  "loudness": -14.0,
+  "status": "ready",
+  "consent_note": "Mẫu lấy từ YouTube https://www.youtube.com/watch?v=vhzJj6hN7To — người dùng quyết định dùng nội bộ cho giọng nhân vật, chưa xin phép chủ giọng.",
+  "source_url": "https://www.youtube.com/watch?v=vhzJj6hN7To",
+  "created_at": "2026-11-05T23:05:27.659926"
+}

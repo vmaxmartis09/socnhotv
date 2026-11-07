@@ -10,7 +10,7 @@
   "weight_kg": 65.0,
   "head_body_ratio": "1 : 4.8 (To lớn, vạm vỡ nhưng tròn trịa thân thiện)",
   "scale_note": "Cao lớn nhất toàn series (180 cm, 1.80x). Sóc Bi (100 cm) đứng ngang thắt lưng/bụng dưới của Bác Voi; Dê Mun (85 cm) đứng ngang hông Bác Voi.",
-  "voice_id": "bac_voi_v1",
+  "voice_id": "vn-chung-nam-02",
   "voice_description": "Giọng nam trầm vang, hào sảng, vui tính, tiếng cười rộn rã cả góc chợ.",
   "body": {
     "height_cm": 180,
@@ -59,5 +59,12 @@
     "ep30-chiec-vi-o-san-da",
     "ep43-heo-dat-cua-lu",
     "ep48-di-cho-cung-bac-voi"
+  ],
+  "cutout_images": [
+    "characters/bac_voi/cutout/bac_voi_01.png",
+    "characters/bac_voi/cutout/bac_voi_02.png",
+    "characters/bac_voi/cutout/bac_voi_03.png",
+    "characters/bac_voi/cutout/bac_voi_04.png",
+    "characters/bac_voi/cutout/bac_voi_05.png"
   ]
 }

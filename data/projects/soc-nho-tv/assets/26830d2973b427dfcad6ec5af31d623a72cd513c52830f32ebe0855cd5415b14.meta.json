@@ -1,0 +1,30 @@
+{
+  "id": "art_26830d2973b4",
+  "kind": "captions",
+  "uri": "assets/26830d2973b427dfcad6ec5af31d623a72cd513c52830f32ebe0855cd5415b14.srt",
+  "mime": "application/octet-stream",
+  "size": 70,
+  "hash": "sha256:26830d2973b427dfcad6ec5af31d623a72cd513c52830f32ebe0855cd5415b14",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 1.68,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "caption_node",
+    "runId": "run_cap_test",
+    "provider": "faster-whisper",
+    "model": "whisper-tiny",
+    "params": {
+      "language": "vi",
+      "segmentCount": 1
+    },
+    "inputHashes": [
+      "sha256:698748a3ce3c7692dbe16d1fb5c42471078740f27216de18da2519317125f1d3"
+    ],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T00:43:46Z"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "id": "art_a94b15527155",
+  "kind": "audio",
+  "uri": "assets/a94b155271554b6a5e4ae35633f74aed50b1e3b88a5f7038632c63255414dec0.mp3",
+  "mime": "audio/mp3",
+  "size": 121042,
+  "hash": "sha256:a94b155271554b6a5e4ae35633f74aed50b1e3b88a5f7038632c63255414dec0",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 4.97,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "prebuild_voice",
+    "runId": "prebuild_ep01-nui-lua-trong-bung-bi",
+    "provider": "omnivoice",
+    "model": "omnivoice",
+    "params": {
+      "text": "Oa, ngôi sao đẹp thích nhắm! Cho Mun lại gần xem ngôi sao với anh Bi ơi!",
+      "voiceId": "vn-be-04",
+      "tempo": 1.0,
+      "targetLufs": -14.0,
+      "mastering": "deesser+presence3.2k+comp4:1+loudnorm-14LUFS"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T10:20:29Z"
+  }
+}

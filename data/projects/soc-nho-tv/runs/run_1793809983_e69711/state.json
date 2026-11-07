@@ -1,0 +1,80 @@
+{
+  "runId": "run_1793809983_e69711",
+  "id": "run_1793809983_e69711",
+  "projectId": "soc-nho-tv",
+  "status": "failed",
+  "mode": "all",
+  "stage": "Thất bại: node_voice_tts: Node 'node_voice_tts' (voice_tts) thiếu nội dung văn bản cho giọng đọc (chưa nối dây cổng 'text' và chưa nhập text).",
+  "currentNodeId": "node_export",
+  "progress": 0.05,
+  "progressPct": 5,
+  "startedAtTs": 1793809983.4344661,
+  "createdAt": "2026-11-04T16:33:03Z",
+  "updatedAt": "2026-11-04T16:33:04Z",
+  "elapsedSec": 0.6,
+  "actualCostUsd": 0.0,
+  "costUsd": 0.0,
+  "nodes": [
+    {
+      "id": "node_text",
+      "type": "text",
+      "name": "node_text",
+      "state": "pending",
+      "progressPct": 0,
+      "error": null
+    },
+    {
+      "id": "node_character",
+      "type": "character",
+      "name": "node_character",
+      "state": "pending",
+      "progressPct": 0,
+      "error": null
+    },
+    {
+      "id": "node_script",
+      "type": "script",
+      "name": "node_script",
+      "state": "pending",
+      "progressPct": 0,
+      "error": null
+    },
+    {
+      "id": "node_voice_tts",
+      "type": "voice_tts",
+      "name": "node_voice_tts",
+      "state": "failed",
+      "progressPct": 0,
+      "error": "Node dừng lại: Node 'node_voice_tts' (voice_tts) thiếu nội dung văn bản cho giọng đọc (chưa nối dây cổng 'text' và chưa nhập text)."
+    },
+    {
+      "id": "node_captions",
+      "type": "captions",
+      "name": "node_captions",
+      "state": "failed",
+      "progressPct": 0,
+      "error": "Bỏ qua node 'node_captions' do node cha ['node_voice_tts'] bị lỗi."
+    },
+    {
+      "id": "node_hyperframes_render",
+      "type": "hyperframes_render",
+      "name": "Vì sao cầu vồng có nhiều màu?",
+      "state": "failed",
+      "progressPct": 0,
+      "error": "Bỏ qua node 'node_hyperframes_render' do node cha ['node_voice_tts', 'node_captions'] bị lỗi."
+    },
+    {
+      "id": "node_export",
+      "type": "export",
+      "name": "Vì sao cầu vồng có nhiều màu?",
+      "state": "failed",
+      "progressPct": 0,
+      "error": "Bỏ qua node 'node_export' do node cha ['node_hyperframes_render'] bị lỗi."
+    }
+  ],
+  "totalNodes": 7,
+  "completedNodes": 0,
+  "output": null,
+  "error": "node_voice_tts: Node 'node_voice_tts' (voice_tts) thiếu nội dung văn bản cho giọng đọc (chưa nối dây cổng 'text' và chưa nhập text).",
+  "completedAt": "2026-11-04T16:33:04Z"
+}

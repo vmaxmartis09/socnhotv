@@ -1,0 +1,31 @@
+{
+  "id": "art_fa8c6d164f12",
+  "kind": "audio",
+  "uri": "assets/fa8c6d164f129702c4eeeb34a34e1437c4d8f07ff3f5dc3ccae2502f39c50bd7.mp3",
+  "mime": "audio/mp3",
+  "size": 131700,
+  "hash": "sha256:fa8c6d164f129702c4eeeb34a34e1437c4d8f07ff3f5dc3ccae2502f39c50bd7",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 5.42,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "prebuild_voice",
+    "runId": "prebuild_ep02-mun-so-bong-toi",
+    "provider": "omnivoice",
+    "model": "omnivoice",
+    "params": {
+      "text": "Mỗi ngày học thêm một điều hay, chúng mình ai cũng lớn khôn và ngoan ngoãn hơn!",
+      "voiceId": "vn-be-01",
+      "tempo": 1.0,
+      "targetLufs": -14.0,
+      "mastering": "deesser+presence3.2k+comp4:1+loudnorm-14LUFS"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T11:00:24Z"
+  }
+}

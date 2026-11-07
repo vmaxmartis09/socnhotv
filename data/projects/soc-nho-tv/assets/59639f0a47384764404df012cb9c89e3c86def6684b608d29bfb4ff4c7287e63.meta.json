@@ -1,0 +1,31 @@
+{
+  "id": "art_59639f0a4738",
+  "kind": "audio",
+  "uri": "assets/59639f0a47384764404df012cb9c89e3c86def6684b608d29bfb4ff4c7287e63.mp3",
+  "mime": "audio/mp3",
+  "size": 149881,
+  "hash": "sha256:59639f0a47384764404df012cb9c89e3c86def6684b608d29bfb4ff4c7287e63",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 6.18,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "prebuild_voice",
+    "runId": "prebuild_ep01-nui-lua-trong-bung-bi",
+    "provider": "omnivoice",
+    "model": "omnivoice",
+    "params": {
+      "text": "Mun cũng thuộc bài thở năm ngón tay của Mẹ Sóc dạy rồi! Lần sau Mun sẽ đi đứng cẩn thận hơn ạ!",
+      "voiceId": "vn-be-04",
+      "tempo": 1.0,
+      "targetLufs": -14.0,
+      "mastering": "deesser+presence3.2k+comp4:1+loudnorm-14LUFS"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T10:28:46Z"
+  }
+}

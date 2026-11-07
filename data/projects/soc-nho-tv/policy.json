@@ -1,0 +1,224 @@
+{
+  "name": "Chính sách nội dung trẻ em (Made for Kids)",
+  "mode": "strict",
+  "scopes": {
+    "dialogue": true,
+    "caption": true,
+    "script": true,
+    "prompt": true
+  },
+  "allowlist": [],
+  "references": [],
+  "documents": [
+    {
+      "id": "chinh-sach-youtube",
+      "name": "chinh-sach-youtube",
+      "file": "policy/chinh-sach-youtube.md",
+      "chars": 167403,
+      "sha": "4a7520e702987539",
+      "sections": [
+        "YOUTUBE CHANNEL MONETISATION POLICIES - COMPLETE COLLECTION",
+        "YouTube Channel Monetisation Policies",
+        "What we check when we review your channel",
+        "Follow the YouTube Community Guidelines",
+        "Generic or repetitive content",
+        "What is allowed for monetisation",
+        "Content that violates this guideline",
+        "Reused content",
+        "Unsatisfying or off-putting content",
+        "AI personas related to sensitive topics",
+        "The application of quality principles for monetisation eligibility",
+        "Limited availability",
+        "Limit ad earnings from your videos",
+        "Data retention",
+        "Suspend or even terminate your YouTube channel",
+        "How we'll inform you of actions that affect your monetisation",
+        "How to get help with issues that affect you",
+        "Advertiser-friendly content guidelines",
+        "Inappropriate language",
+        "Violence",
+        "Adult content",
+        "Shocking content",
+        "Harmful acts and unreliable content",
+        "Hateful and derogatory content",
+        "Recreational drugs and drug-related content",
+        "Firearms-related content",
+        "Controversial issues",
+        "Sensitive events",
+        "Enabling dishonest behaviour",
+        "Inappropriate content for children and families",
+        "Content that encourages negative behaviour",
+        "Mature content aimed at children",
+        "Shocking content aimed at children",
+        "Tobacco-related content",
+        "Incendiary and demeaning",
+        "Definitions",
+        "YouTube's Community Guidelines",
+        "Spam and deceptive practices",
+        "Sensitive content",
+        "Violent or dangerous content",
+        "Regulated goods",
+        "Misinformation",
+        "Educational, documentary, scientific and artistic (EDSA) content",
+        "YouTube Shorts monetisation policies",
+        "Policies that apply to YouTube Shorts monetisation",
+        "Turning on Shorts ads revenue sharing",
+        "Content suitable for ads",
+        "Ineligible Shorts views",
+        "Blocked Shorts",
+        "Ads eligible for Shorts revenue sharing",
+        "How ads revenue sharing works for Shorts",
+        "Understand Creator Pool with an example",
+        "Understand targeted Shorts ads",
+        "Use of third-party content in Shorts",
+        "YouTube Premium and Premium Lite subscription revenue sharing for Shorts",
+        "Where to see your Shorts Feed ad revenue",
+        "Studio Content Manager",
+        "Learn more about YouTube Shorts monetisation",
+        "Why is Shorts ad revenue being pooled?",
+        "Do creators actually get to keep 45% of Shorts revenue?"
+      ],
+      "importedAt": "2026-11-06T08:31:03Z"
+    }
+  ],
+  "rules": [
+    {
+      "id": "violence",
+      "category": "Bạo lực",
+      "label": "Bạo lực, gây thương tích",
+      "severity": "block",
+      "enabled": true,
+      "terms": [
+        "giết",
+        "đánh nhau",
+        "đấm",
+        "đá vào mặt",
+        "máu me",
+        "đổ máu",
+        "tra tấn",
+        "dao găm",
+        "súng",
+        "bắn chết",
+        "kill",
+        "gore",
+        "blood"
+      ],
+      "note": "Nội dung dành cho trẻ 3–7 tuổi: không mô tả hoặc cổ xuý bạo lực."
+    },
+    {
+      "id": "scary",
+      "category": "Gây sợ hãi",
+      "label": "Kinh dị, đáng sợ",
+      "severity": "warn",
+      "enabled": true,
+      "terms": [
+        "ma quỷ",
+        "kinh dị",
+        "xác chết",
+        "rùng rợn",
+        "ác mộng kinh hoàng",
+        "horror"
+      ],
+      "note": "Tránh gây ám ảnh; nếu cần (vd. bài học sợ bóng tối) phải xử lý nhẹ nhàng."
+    },
+    {
+      "id": "adult",
+      "category": "Người lớn",
+      "label": "Nội dung người lớn",
+      "severity": "block",
+      "enabled": true,
+      "terms": [
+        "khiêu dâm",
+        "sex",
+        "làm tình",
+        "nude",
+        "khỏa thân",
+        "18+"
+      ],
+      "note": ""
+    },
+    {
+      "id": "profanity",
+      "category": "Thô tục",
+      "label": "Chửi thề, lăng mạ",
+      "severity": "block",
+      "enabled": true,
+      "terms": [
+        "đồ ngu",
+        "ngu ngốc",
+        "đm",
+        "đ.m",
+        "chết tiệt",
+        "khốn nạn",
+        "đồ điên",
+        "stupid",
+        "idiot",
+        "damn"
+      ],
+      "note": "Tránh lời lẽ xúc phạm; dùng cách nói ôn hòa."
+    },
+    {
+      "id": "hate",
+      "category": "Phân biệt đối xử",
+      "label": "Kỳ thị, miệt thị",
+      "severity": "block",
+      "enabled": true,
+      "terms": [
+        "kỳ thị",
+        "miệt thị",
+        "đồ béo",
+        "đồ lùn",
+        "đồ xấu xí",
+        "dân tộc thấp kém"
+      ],
+      "note": ""
+    },
+    {
+      "id": "danger",
+      "category": "Hành vi nguy hiểm",
+      "label": "Hành vi trẻ có thể bắt chước gây nguy hiểm",
+      "severity": "warn",
+      "enabled": true,
+      "terms": [
+        "nhảy từ trên cao",
+        "chơi với lửa",
+        "uống thuốc một mình",
+        "đi một mình ra đường",
+        "đùa với điện",
+        "leo lên mái nhà"
+      ],
+      "note": ""
+    },
+    {
+      "id": "commercial",
+      "category": "Quảng cáo",
+      "label": "Quảng cáo, mua bán, thương hiệu",
+      "severity": "warn",
+      "enabled": true,
+      "terms": [
+        "mua ngay",
+        "đặt hàng",
+        "giảm giá",
+        "khuyến mãi",
+        "link bio",
+        "đăng ký kênh ngay"
+      ],
+      "note": "Made for Kids hạn chế kêu gọi hành động thương mại."
+    },
+    {
+      "id": "personal",
+      "category": "Thông tin cá nhân",
+      "label": "Thông tin cá nhân / liên hệ",
+      "severity": "block",
+      "enabled": true,
+      "terms": [
+        "số điện thoại",
+        "địa chỉ nhà",
+        "zalo",
+        "facebook của bé",
+        "gmail.com"
+      ],
+      "note": ""
+    }
+  ]
+}

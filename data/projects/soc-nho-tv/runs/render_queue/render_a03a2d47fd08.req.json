@@ -1,0 +1,23 @@
+{
+  "project_id": "soc-nho-tv",
+  "template_id": "tiktok-sales-v1",
+  "platforms": [
+    "tiktok",
+    "youtube"
+  ],
+  "data": {
+    "hook_text": "Bí kíp săn Deal hot giảm 50% hôm nay!",
+    "product": {
+      "title": "Áo Thun Unisex Sóc Nhỏ Bi Limited",
+      "price": 149000,
+      "image": "assets/product.png"
+    },
+    "original_price": "299.000đ",
+    "discount_price": "149.000đ",
+    "discount_badge": "-50%",
+    "cta": "Bấm giỏ hàng góc trái ngay!"
+  },
+  "voice": null,
+  "source_ref": null,
+  "output_name": "a3_test_render"
+}

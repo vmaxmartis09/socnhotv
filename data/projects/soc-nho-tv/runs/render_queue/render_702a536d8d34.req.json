@@ -1,0 +1,59 @@
+{
+  "project_id": "soc-nho-tv",
+  "template_id": "yt-animation-episode-v1",
+  "platforms": [
+    "youtube"
+  ],
+  "data": {
+    "episode_number": "TẬP EP_API_TEST",
+    "episode_title": "Tập Kiểm Tra API",
+    "character_scale_lock": "Sóc Nhỏ 100cm · Bạn Koala 150cm (Scale Lock)",
+    "scenes": [
+      {
+        "sceneNumber": 1,
+        "scene_id": "ep_api_test_sc_01",
+        "image": "/Volumes/Data/socnhotv/data/projects/soc-nho-tv/output/ep_api_test/scenes/ep_api_test_sc_01_8ae28cfa40.png",
+        "img": "/Volumes/Data/socnhotv/data/projects/soc-nho-tv/output/ep_api_test/scenes/ep_api_test_sc_01_8ae28cfa40.png",
+        "durationSec": 10.5,
+        "dialogue": "Bi: Bác sĩ Koala ơi, răng của em bị sâu đau quá! Koala: Để bác xem nào, em ăn nhiều kẹo ngọt mà quên đánh răng đúng không?",
+        "characters": [
+          "koala",
+          "soc_nho"
+        ]
+      },
+      {
+        "sceneNumber": 2,
+        "scene_id": "ep_api_test_sc_02",
+        "image": "/Volumes/Data/socnhotv/data/projects/soc-nho-tv/output/ep_api_test/scenes/ep_api_test_sc_02_c4fbadb937.png",
+        "img": "/Volumes/Data/socnhotv/data/projects/soc-nho-tv/output/ep_api_test/scenes/ep_api_test_sc_02_c4fbadb937.png",
+        "durationSec": 9.4,
+        "dialogue": "Koala: Mỗi ngày em phải đánh răng 2 lần, sáng và tối nhé! Bi: Dạ, em nhớ rồi ạ, em sẽ chăm chỉ đánh răng!",
+        "characters": [
+          "koala",
+          "soc_nho"
+        ]
+      },
+      {
+        "sceneNumber": 3,
+        "scene_id": "ep_api_test_sc_03",
+        "image": "/Volumes/Data/socnhotv/data/projects/soc-nho-tv/output/ep_api_test/scenes/ep_api_test_sc_03_03dc8c7f4b.png",
+        "img": "/Volumes/Data/socnhotv/data/projects/soc-nho-tv/output/ep_api_test/scenes/ep_api_test_sc_03_03dc8c7f4b.png",
+        "durationSec": 8.7,
+        "dialogue": "Bi: Răng em hết đau rồi, cảm ơn Bác sĩ Koala! Koala: Chúc Bi luôn vui khỏe và có nụ cười thật tươi!",
+        "characters": [
+          "koala",
+          "soc_nho"
+        ]
+      }
+    ],
+    "auto_draft": true,
+    "title": "Tập Kiểm Tra API"
+  },
+  "voice": {
+    "voice_id": null,
+    "script": null,
+    "audio_path": "/Volumes/Data/socnhotv/data/projects/soc-nho-tv/output/ep_api_test/audio/episode_master_voice.mp3"
+  },
+  "source_ref": null,
+  "output_name": "ep_api_test_main"
+}

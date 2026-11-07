@@ -1,0 +1,23 @@
+{
+  "id": "koc-1-mb",
+  "display_name": "Giọng nữ 1 miền Bắc",
+  "aliases": [
+    "voice-fm-1-mb"
+  ],
+  "engine": "omnivoice",
+  "lang": "vi",
+  "dialect": "north (Miền Bắc)",
+  "gender": "female",
+  "style": "tiktok_action_review",
+  "description": "Giọng nữ KOC trẻ trung, phương ngữ miền Bắc chuẩn, năng lượng cao, nhịp nói nhanh dồn dập, ngữ điệu tự nhiên chuẩn review TikTok Shop.",
+  "sample_paths": [
+    "cloned_default_sample.mp3"
+  ],
+  "loudness": -14.0,
+  "status": "needs_fix",
+  "group": "koc-review",
+  "consent_note": "Nhập từ gobi-social/data/_shared/voices/vault/voice-fm-1-mb; dùng nội bộ cho KOC review",
+  "transcript": "Vừa thời trang lại vừa rất nhiều công năng cho mấy bà luôn nha.",
+  "created_at": "2026-11-07T00:00:00",
+  "note": "Lát mẫu có vài từ thừa ở đầu không có trong transcript (sẽ chèn câu mẫu vào lời đọc); cần cắt lại lát mẫu + tạo lại omnivoice_prompt.pt"
+}

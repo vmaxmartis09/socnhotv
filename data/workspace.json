@@ -32,7 +32,7 @@
       "path": "projects/gobi",
       "status": "active",
       "default_character": "gobi",
-      "default_voice_id": "vn-chung-nu-01",
+      "default_voice_id": "koc-lyly",
       "target_platforms": [
         "tiktok",
         "youtube"

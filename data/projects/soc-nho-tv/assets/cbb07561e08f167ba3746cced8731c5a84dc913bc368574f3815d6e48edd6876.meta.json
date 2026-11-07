@@ -1,0 +1,28 @@
+{
+  "id": "art_cbb07561e08f",
+  "kind": "image",
+  "uri": "assets/cbb07561e08f167ba3746cced8731c5a84dc913bc368574f3815d6e48edd6876.png",
+  "mime": "image/png",
+  "size": 492037,
+  "hash": "sha256:cbb07561e08f167ba3746cced8731c5a84dc913bc368574f3815d6e48edd6876",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": null,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "node_cast_mw542014",
+    "runId": "run_1794020349_26c6e1",
+    "provider": "local",
+    "model": "master_dna",
+    "params": {
+      "characterId": "ong_de_rau_bac",
+      "file": "ong_de_rau_bac_02.png"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-07T02:59:09Z"
+  }
+}

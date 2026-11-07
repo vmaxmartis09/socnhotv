@@ -1,0 +1,28 @@
+{
+  "id": "art_83e7ae808cc1",
+  "kind": "text",
+  "uri": "assets/83e7ae808cc1533324cd5687f279c4d81968457a58a86f26acf9e4965995bad2.json",
+  "mime": "application/json",
+  "size": 132333,
+  "hash": "sha256:83e7ae808cc1533324cd5687f279c4d81968457a58a86f26acf9e4965995bad2",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": null,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "s",
+    "runId": "run_1793955568_c15929",
+    "provider": "local",
+    "model": "episode_script",
+    "params": {
+      "targetSceneCount": 30,
+      "sourceText": "Mun sợ bóng tối"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T08:59:28Z"
+  }
+}

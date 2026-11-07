@@ -8,7 +8,7 @@
       "type": "script",
       "params": {
         "mode": "episode",
-        "episodeId": "ep01-nui-lua-trong-bung-bi",
+        "episodeId": "ep02-mun-so-bong-toi",
         "granularity": "shot",
         "targetSceneCount": 30,
         "targetDurationSec": 600,
@@ -16,37 +16,24 @@
       },
       "inputs": {},
       "position": {
-        "x": 60.0,
-        "y": 160.0
+        "x": 40.0,
+        "y": 258.0
       },
       "ui": {},
-      "state": "idle",
+      "state": "failed",
       "isStale": false,
-      "pinnedGenerationId": null,
-      "generations": []
-    },
-    {
-      "id": "n_cast",
-      "type": "cast",
-      "params": {
-        "speak": {
-          "enabled": true
-        },
-        "include": [],
-        "exclude": [],
-        "onMissingVoice": "stop",
-        "_customName": "Dàn diễn viên (tự theo tập)"
-      },
-      "inputs": {},
-      "position": {
-        "x": 420.0,
-        "y": 40.0
-      },
-      "ui": {},
-      "state": "idle",
-      "isStale": false,
-      "pinnedGenerationId": null,
-      "generations": []
+      "pinnedGenerationId": "gen_mw5te9tz_0bj",
+      "generations": [
+        {
+          "id": "gen_mw5te9tz_0bj",
+          "nodeId": "n_script",
+          "params": {},
+          "artifactId": "gen_mw5te9tz_0bj",
+          "costUsd": 0.0,
+          "createdAt": "2026-11-07T02:59:10.535Z",
+          "isPinned": false
+        }
+      ]
     },
     {
       "id": "n_quality",
@@ -58,11 +45,11 @@
       },
       "inputs": {},
       "position": {
-        "x": 420.0,
-        "y": 320.0
+        "x": 450.0,
+        "y": 695.0
       },
       "ui": {},
-      "state": "idle",
+      "state": "failed",
       "isStale": false,
       "pinnedGenerationId": null,
       "generations": []
@@ -80,11 +67,11 @@
       },
       "inputs": {},
       "position": {
-        "x": 780.0,
-        "y": 160.0
+        "x": 860.0,
+        "y": 208.0
       },
       "ui": {},
-      "state": "idle",
+      "state": "failed",
       "isStale": false,
       "pinnedGenerationId": null,
       "generations": []
@@ -103,11 +90,11 @@
       },
       "inputs": {},
       "position": {
-        "x": 1140.0,
-        "y": 160.0
+        "x": 1270.0,
+        "y": 258.0
       },
       "ui": {},
-      "state": "idle",
+      "state": "failed",
       "isStale": false,
       "pinnedGenerationId": null,
       "generations": []
@@ -124,31 +111,49 @@
       },
       "inputs": {},
       "position": {
-        "x": 1500.0,
-        "y": 160.0
+        "x": 1680.0,
+        "y": 258.0
       },
       "ui": {},
-      "state": "idle",
+      "state": "failed",
       "isStale": false,
       "pinnedGenerationId": null,
       "generations": []
+    },
+    {
+      "id": "node_cast_mw542014",
+      "type": "cast",
+      "params": {
+        "speak": {
+          "enabled": true
+        },
+        "include": [],
+        "exclude": [],
+        "onMissingVoice": "stop"
+      },
+      "inputs": {},
+      "position": {
+        "x": 450.0,
+        "y": 40.0
+      },
+      "ui": {},
+      "state": "failed",
+      "isStale": false,
+      "pinnedGenerationId": "gen_mw5te9u1_fgi",
+      "generations": [
+        {
+          "id": "gen_mw5te9u1_fgi",
+          "nodeId": "node_cast_mw542014",
+          "params": {},
+          "artifactId": "gen_mw5te9u1_fgi",
+          "costUsd": 0.0,
+          "createdAt": "2026-11-07T02:59:10.537Z",
+          "isPinned": false
+        }
+      ]
     }
   ],
   "edges": [
-    {
-      "id": "e_n_script_lines__n_cast_lines",
-      "sourceNodeId": "n_script",
-      "sourcePort": "lines",
-      "targetNodeId": "n_cast",
-      "targetPort": "lines"
-    },
-    {
-      "id": "e_n_script_scenes__n_cast_scenes",
-      "sourceNodeId": "n_script",
-      "sourcePort": "scenes",
-      "targetNodeId": "n_cast",
-      "targetPort": "scenes"
-    },
     {
       "id": "e_n_script_scenes__n_quality_scenes",
       "sourceNodeId": "n_script",
@@ -171,25 +176,11 @@
       "targetPort": "scenes"
     },
     {
-      "id": "e_n_cast_reference_images__n_keyframes_references",
-      "sourceNodeId": "n_cast",
-      "sourcePort": "reference_images",
-      "targetNodeId": "n_keyframes",
-      "targetPort": "references"
-    },
-    {
       "id": "e_n_keyframes_scenes__n_render_scenes",
       "sourceNodeId": "n_keyframes",
       "sourcePort": "scenes",
       "targetNodeId": "n_render",
       "targetPort": "scenes"
-    },
-    {
-      "id": "e_n_cast_voice__n_render_voice_clips",
-      "sourceNodeId": "n_cast",
-      "sourcePort": "voice",
-      "targetNodeId": "n_render",
-      "targetPort": "voice_clips"
     },
     {
       "id": "e_n_quality_pass_fail__n_render_gate",
@@ -204,7 +195,35 @@
       "sourcePort": "video",
       "targetNodeId": "n_export",
       "targetPort": "video"
+    },
+    {
+      "id": "edge_z4mzfxy",
+      "sourceNodeId": "n_script",
+      "sourcePort": "lines",
+      "targetNodeId": "node_cast_mw542014",
+      "targetPort": "lines"
+    },
+    {
+      "id": "edge_l1pbf4l",
+      "sourceNodeId": "n_script",
+      "sourcePort": "scenes",
+      "targetNodeId": "node_cast_mw542014",
+      "targetPort": "scenes"
+    },
+    {
+      "id": "edge_zp0ihrr",
+      "sourceNodeId": "node_cast_mw542014",
+      "sourcePort": "reference_images",
+      "targetNodeId": "n_keyframes",
+      "targetPort": "references"
+    },
+    {
+      "id": "edge_8medjf1",
+      "sourceNodeId": "node_cast_mw542014",
+      "sourcePort": "voice",
+      "targetNodeId": "n_render",
+      "targetPort": "voice_clips"
     }
   ],
-  "updatedAt": "2026-11-06T15:08:04Z"
+  "updatedAt": "2026-11-07T08:28:06Z"
 }

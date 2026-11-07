@@ -1,0 +1,17 @@
+{
+  "id": "vn-bac-nu-05",
+  "display_name": "Nữ miền Bắc 5",
+  "aliases": [],
+  "engine": "omnivoice",
+  "lang": "vi",
+  "dialect": "north",
+  "gender": "female",
+  "sample_paths": [
+    "cloned_default_sample.mp3"
+  ],
+  "loudness": -14.0,
+  "status": "ready",
+  "consent_note": "Mẫu lấy từ YouTube https://www.youtube.com/watch?v=fsEr-ZkeL_M — người dùng quyết định dùng nội bộ cho giọng nhân vật, chưa xin phép chủ giọng.",
+  "source_url": "https://www.youtube.com/watch?v=fsEr-ZkeL_M",
+  "created_at": "2026-11-05T23:03:45.211027"
+}

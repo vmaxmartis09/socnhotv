@@ -1,0 +1,31 @@
+{
+  "id": "art_2685220f9c28",
+  "kind": "audio",
+  "uri": "assets/2685220f9c28a5b4c627cc779cf191e3a6eebcf80394e1c37e3f38ca5eb563cb.mp3",
+  "mime": "audio/mp3",
+  "size": 159285,
+  "hash": "sha256:2685220f9c28a5b4c627cc779cf191e3a6eebcf80394e1c37e3f38ca5eb563cb",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 6.58,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "prebuild_voice",
+    "runId": "prebuild_ep02-mun-so-bong-toi",
+    "provider": "omnivoice",
+    "model": "omnivoice",
+    "params": {
+      "text": "Dê Mun ơi… Bây giờ chúng mình phải làm sao đây?",
+      "voiceId": "vn-be-01",
+      "tempo": 1.0,
+      "targetLufs": -14.0,
+      "mastering": "deesser+presence3.2k+comp4:1+loudnorm-14LUFS"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T10:32:53Z"
+  }
+}

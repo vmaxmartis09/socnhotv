@@ -1,0 +1,27 @@
+{
+  "id": "art_290bcb9b6efb",
+  "kind": "image",
+  "uri": "assets/290bcb9b6efb68c074469d1c42b0144954150371fe8988a49d8c70d12f5cf0d9.jpg",
+  "mime": "image/jpg",
+  "size": 146546,
+  "hash": "sha256:290bcb9b6efb68c074469d1c42b0144954150371fe8988a49d8c70d12f5cf0d9",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": null,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "n_room",
+    "runId": "run_1794039506_bf46ed",
+    "provider": "local",
+    "model": "upload",
+    "params": {
+      "uri": "characters/gobi/room/phong_khach.jpg"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-07T08:18:26Z"
+  }
+}

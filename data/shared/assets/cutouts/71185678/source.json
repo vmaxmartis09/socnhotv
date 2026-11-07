@@ -1,10 +1,10 @@
 {
   "sha8": "71185678",
   "full_sha256": "71185678d83cb534675c6e9a7ee746a2e284199e89c8cae92c104b761fbbb046",
-  "original_file": "D:\\socnhotv\\data\\projects\\soc-nho-tv\\characters\\soc_nho\\soc_nho_01.png",
+  "original_file": "/private/tmp/claude-501/-Users-vmaxmartis--claude-spares-spare-C7CC1A/f51cf9b9-101f-4bcb-9f1f-ecdd05390f37/scratchpad/repo/data/projects/x/characters/soc_nho/soc_nho_01.png",
   "original_filename": "soc_nho_01.png",
   "width": 1024,
   "height": 572,
   "model": "u2net",
-  "processed_at": "2026-11-05T16:44:05.313060"
+  "processed_at": "2026-11-06T19:16:49.895318"
 }

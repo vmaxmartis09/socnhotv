@@ -1,0 +1,31 @@
+{
+  "id": "art_cd4b6ec3696f",
+  "kind": "audio",
+  "uri": "assets/cd4b6ec3696f63d49fa8c94186cf425a144bb54f410e85e8c889ea24b01c5bc9.mp3",
+  "mime": "audio/mp3",
+  "size": 288434,
+  "hash": "sha256:cd4b6ec3696f63d49fa8c94186cf425a144bb54f410e85e8c889ea24b01c5bc9",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 11.96,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "prebuild_voice",
+    "runId": "prebuild_ep02-mun-so-bong-toi",
+    "provider": "omnivoice",
+    "model": "omnivoice",
+    "params": {
+      "text": "Hoan hô! Xong rồi Dê Mun ơi! Lần này tụi mình làm còn đẹp và chắc chắn hơn cả lúc nãy nữa!",
+      "voiceId": "vn-be-01",
+      "tempo": 1.0,
+      "targetLufs": -14.0,
+      "mastering": "deesser+presence3.2k+comp4:1+loudnorm-14LUFS"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T10:39:52Z"
+  }
+}

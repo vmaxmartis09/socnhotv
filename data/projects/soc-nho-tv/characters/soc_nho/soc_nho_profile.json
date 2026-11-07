@@ -10,7 +10,7 @@
   "weight_kg": 15.0,
   "head_body_ratio": "1 : 4.0 (Đầu = 25cm, Thân & Chân = 75cm)",
   "scale_note": "Mốc chuẩn 1.0x (100 cm). Cao ngang cằm Dê Bông (115 cm), thấp hơn Cún Lu 5 cm, cao hơn Mèo Mimi 5 cm, đỉnh đầu Dê Mun chạm mũi Bi.",
-  "voice_id": "soc_nho_v1",
+  "voice_id": "soc-nho",
   "voice_description": "Giọng bé trai 4.5 tuổi, trong trẻo, lanh lợi, giàu năng lượng, đôi khi hơi vội vàng.",
   "body": {
     "height_cm": 100,
@@ -85,5 +85,25 @@
     "ep46-banh-chung-ngay-tet",
     "ep47-long-den-trung-thu",
     "ep50-le-hoi-rung-xanh"
+  ],
+  "cutout_images": [
+    "characters/soc_nho/cutout/soc_nho_01.png",
+    "characters/soc_nho/cutout/soc_nho_02.png",
+    "characters/soc_nho/cutout/soc_nho_03.png",
+    "characters/soc_nho/cutout/soc_nho_04.png",
+    "characters/soc_nho/cutout/soc_nho_05.png",
+    "characters/soc_nho/cutout/soc_nho_06.png",
+    "characters/soc_nho/cutout/soc_nho_07.png",
+    "characters/soc_nho/cutout/soc_nho_08.png",
+    "characters/soc_nho/cutout/soc_nho_09.png",
+    "characters/soc_nho/cutout/soc_nho_10.png",
+    "characters/soc_nho/cutout/soc_nho_11.png",
+    "characters/soc_nho/cutout/soc_nho_12.png",
+    "characters/soc_nho/cutout/soc_nho_13.png",
+    "characters/soc_nho/cutout/soc_nho_14.png",
+    "characters/soc_nho/cutout/soc_nho_15.png",
+    "characters/soc_nho/cutout/soc_nho_16.png",
+    "characters/soc_nho/cutout/soc_nho_17.png",
+    "characters/soc_nho/cutout/soc_nho_18.png"
   ]
 }

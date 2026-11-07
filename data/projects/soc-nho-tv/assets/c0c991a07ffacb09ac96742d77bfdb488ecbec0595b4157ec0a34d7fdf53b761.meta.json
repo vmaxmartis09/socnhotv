@@ -1,0 +1,29 @@
+{
+  "id": "art_c0c991a07ffa",
+  "kind": "audio",
+  "uri": "assets/c0c991a07ffacb09ac96742d77bfdb488ecbec0595b4157ec0a34d7fdf53b761.wav",
+  "mime": "audio/wav",
+  "size": 296396,
+  "hash": "sha256:c0c991a07ffacb09ac96742d77bfdb488ecbec0595b4157ec0a34d7fdf53b761",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 6.72,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "c_soc_nho",
+    "runId": "run_1793955568_516ca3",
+    "provider": "mock",
+    "model": "mock-omnivoice-v1",
+    "params": {
+      "text": "Mun ơi, anh Bi xin lỗi vì lúc nãy đã quát to làm Mun sợ nhé! Anh em mình làm hòa nha!",
+      "voiceId": "soc-nho",
+      "tempo": 1.0912
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T08:59:28Z"
+  }
+}

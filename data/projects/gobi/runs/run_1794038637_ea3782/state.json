@@ -1,0 +1,94 @@
+{
+  "runId": "run_1794038637_ea3782",
+  "id": "run_1794038637_ea3782",
+  "projectId": "gobi",
+  "status": "completed",
+  "mode": "all",
+  "runPolicy": {
+    "image": "mock",
+    "video": "off",
+    "text": "mock",
+    "voice": "local"
+  },
+  "stage": "Hoàn tất xuất sắc",
+  "currentNodeId": "n_export",
+  "progress": 1.0,
+  "progressPct": 100,
+  "startedAtTs": 1794038637.2935328,
+  "createdAt": "2026-11-07T08:03:57Z",
+  "updatedAt": "2026-11-07T08:04:12Z",
+  "elapsedSec": 14.9,
+  "actualCostUsd": 0.0,
+  "costUsd": 0.0,
+  "nodes": [
+    {
+      "id": "n_char",
+      "type": "character",
+      "name": "n_char",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_room",
+      "type": "image",
+      "name": "n_room",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_prod",
+      "type": "image",
+      "name": "n_prod",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_bg",
+      "type": "bg_remove",
+      "name": "n_bg",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_tryon",
+      "type": "image_gen",
+      "name": "n_tryon",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_text",
+      "type": "text",
+      "name": "n_text",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_render",
+      "type": "template_render",
+      "name": "n_render",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    },
+    {
+      "id": "n_export",
+      "type": "platform_export",
+      "name": "n_export",
+      "state": "completed",
+      "progressPct": 100,
+      "error": null
+    }
+  ],
+  "totalNodes": 8,
+  "completedNodes": 8,
+  "output": null,
+  "error": null,
+  "completedAt": "2026-11-07T08:04:12Z"
+}

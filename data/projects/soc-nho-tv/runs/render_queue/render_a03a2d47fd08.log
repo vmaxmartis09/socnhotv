@@ -1,0 +1,192 @@
+--- HyperFrames CLI Render (code: 1) ---
+STDOUT:
+
+◆  Rendering bundle_tiktok_idk0bg1m → /Volumes/Data/socnhotv/data/projects/soc-nho-tv/output/a3_test_render/tiktok.mp4
+   30fps · standard · auto workers (10 cores detected)
+   GPU: browser GPU (auto-detect)
+
+
+  Lint: 2 error(s), 0 warning(s) — run `hyperframes lint` for full output.
+  Continuing render despite lint issues. Use --strict to block errors.
+
+  █░░░░░░░░░░░░░░░░░░░░░░░░  5%  Compiling composition
+@hf-progress {"code":"compile","pct":5}
+  ██░░░░░░░░░░░░░░░░░░░░░░░  10%  Extracting video frames
+@hf-progress {"code":"extract_video","pct":10}
+  █████░░░░░░░░░░░░░░░░░░░░  20%  Processing audio tracks
+@hf-progress {"code":"process_audio","pct":20}
+  ██████░░░░░░░░░░░░░░░░░░░  25%  Starting frame capture
+@hf-progress {"code":"start_browsers","pct":25}
+  ██████░░░░░░░░░░░░░░░░░░░  25%  Checking browser GPU
+@hf-progress {"code":"start_browsers","pct":25}
+  ██████░░░░░░░░░░░░░░░░░░░  25%  Measuring capture speed
+@hf-progress {"code":"start_browsers","pct":25}
+  ██████░░░░░░░░░░░░░░░░░░░  25%  Failed: Render blocked by 1 correctness warning:
+- audio_processing_failed: Audio mix failed; output would be video-only: Audio processing failed: Source not found for audio element audio-voiceover: src="[path]" resolved to [path]
+@hf-diagnostic {"version":1,"operation":"render","code":"AUDIO_PROCESSING_FAILED","audioFailures":[{"stage":"source","reason":"source_not_found","owner":"user","retryable":false}]}
+
+STDERR:
+Checking browser...
+Browser: cache
+[INFO] [Render] Pipeline started {"renderJobId":"ebcbffee-7334-4663-845a-6902c2ab8aeb","platform":"darwin","arch":"arm64","nodeVersion":"v26.8.2","fps":{"num":30,"den":1},"format":"mp4","quality":"standard","browserGpuMode":"auto","forceScreenshot":false,"protocolTimeout":300000,"browserTimeout":120000,"pageNavigationTimeout":60000,"playerReadyTimeout":45000}
+[INFO] [Render:trace] {"renderJobId":"ebcbffee-7334-4663-845a-6902c2ab8aeb","phase":"pipeline","status":"checkpoint","elapsedMs":1,"message":"started","format":"mp4","quality":"standard","browserGpuMode":"auto","forceScreenshot":false,"protocolTimeoutMs":300000,"pageNavigationTimeoutMs":60000,"playerReadyTimeoutMs":45000,"requestedWorkers":"auto"}
+[INFO] [Render:trace] {"renderJobId":"ebcbffee-7334-4663-845a-6902c2ab8aeb","phase":"compile","status":"start","elapsedMs":2,"needsAlpha":false}
+[INFO] [Compiler] Inlined CDN script: https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js
+[INFO] Compiled composition metadata {"renderJobId":"ebcbffee-7334-4663-845a-6902c2ab8aeb","entryFile":"index.html","staticDuration":15,"width":1080,"height":1920,"videoCount":0,"audioCount":1,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
+[INFO] [Render:trace] {"renderJobId":"ebcbffee-7334-4663-845a-6902c2ab8aeb","phase":"compile","status":"end","elapsedMs":232,"durationMs":230,"needsAlpha":false}
+[INFO] [Render:trace] {"renderJobId":"ebcbffee-7334-4663-845a-6902c2ab8aeb","phase":"compile","status":"checkpoint","elapsedMs":233,"message":"composition metadata resolved","width":1080,"height":1920,"videoCount":0,"audioCount":1,"imageCount":0,"deviceScaleFactor":1,"forceScreenshot":false,"compositionHash":"8d420e791bb96410"}
+[INFO] [Render:trace] {"renderJobId":"ebcbffee-7334-4663-845a-6902c2ab8aeb","phase":"browser_probe","status":"start","elapsedMs":233,"forceScreenshot":false,"stagePhase":"calibrating"}
+[INFO] [Render:trace] {"renderJobId":"ebcbffee-7334-4663-845a-6902c2ab8aeb","phase":"browser_probe","status":"end","elapsedMs":279,"durationMs":46,"forceScreenshot":false,"stagePhase":"calibrating"}
+[INFO] [Render:trace] {"renderJobId":"ebcbffee-7334-4663-845a-6902c2ab8aeb","phase":"browser_probe","status":"checkpoint","elapsedMs":280,"message":"duration resolved","durationSeconds":15,"totalFrames":450,"compositionHash":"8d420e791bb96410","beginFrameStalled":false}
+[INFO] [Render:trace] {"renderJobId":"ebcbffee-7334-4663-845a-6902c2ab8aeb","phase":"video_extract","status":"start","elapsedMs":280,"videoCount":0}
+[INFO] [Render:trace] {"renderJobId":"ebcbffee-7334-4663-845a-6902c2ab8aeb","phase":"video_extract","status":"end","elapsedMs":280,"durationMs":0,"videoCount":0}
+[INFO] [Render:trace] {"renderJobId":"ebcbffee-7334-4663-845a-6902c2ab8aeb","phase":"video_extract","status":"checkpoint","elapsedMs":281,"message":"frames resolved","videoCount":0,"extractedVideoCount":0,"totalFramesExtracted":0,"maxFramesPerVideo":0,"avgFramesPerExtractedVideo":null,"vfrPreflightCount":null,"vfrPreflightMs":null,"cacheHits":null,"cacheMisses":null,"transientRetries":null,"minVideoFrameCoverageRatio":null,"authoredTimedClipCount":5}
+[INFO] [Render] No HDR sources detected, rendering SDR {"renderJobId":"ebcbffee-7334-4663-845a-6902c2ab8aeb"}
+[INFO] [Render:trace] {"renderJobId":"ebcbffee-7334-4663-845a-6902c2ab8aeb","phase":"hdr_detection","status":"checkpoint","elapsedMs":281,"message":"resolved","requestedHdrMode":"auto","effectiveHdr":"sdr","nativeHdrVideoCount":0,"nativeHdrImageCount":0}
+[INFO] [Render:trace] {"renderJobId":"ebcbffee-7334-4663-845a-6902c2ab8aeb","phase":"audio_process","status":"start","elapsedMs":281,"audioCount":1}
+[INFO] [Render:trace] {"renderJobId":"ebcbffee-7334-4663-845a-6902c2ab8aeb","phase":"file_server","status":"start","elapsedMs":282,"reused":false}
+[WARN] Audio track failed {"renderJobId":"ebcbffee-7334-4663-845a-6902c2ab8aeb","elementId":"audio-voiceover","stage":"source","reason":"source_not_found","owner":"user","retryable":false,"detail":"Source not found for audio element audio-voiceover: src=\"assets/voiceover.mp3\" resolved to assets/voiceover.mp3"}
+[INFO] [Render:trace] {"renderJobId":"ebcbffee-7334-4663-845a-6902c2ab8aeb","phase":"audio_process","status":"end","elapsedMs":285,"durationMs":4,"audioCount":1}
+[INFO] [Render:trace] {"renderJobId":"ebcbffee-7334-4663-845a-6902c2ab8aeb","phase":"file_server","status":"end","elapsedMs":286,"durationMs":4}
+[hyperframes] browserGpuMode probe → hardware (WebGL renderer vendor="Google Inc. (Apple)" renderer="ANGLE (Apple, ANGLE Metal Renderer: Apple M4, Unspecified Version)")
+[INFO] [Render:trace] {"renderJobId":"ebcbffee-7334-4663-845a-6902c2ab8aeb","phase":"capture_calibration","status":"start","elapsedMs":604,"stagePhase":"calibrating","forceScreenshot":false,"totalFrames":450,"framesCompleted":0,"captureMode":"drawelement","captureOperation":"drawElement"}
+[INFO] [Render] Calibration config {"renderJobId":"ebcbffee-7334-4663-845a-6902c2ab8aeb","protocolTimeout":30000,"parentProtocolTimeout":300000,"forceScreenshot":false,"totalFrames":450}
+[INFO] Launching browser for capture calibration... {"renderJobId":"ebcbffee-7334-4663-845a-6902c2ab8aeb"}
+[BrowserManager] Browser launched (HeadlessChrome/152.0.7977.30, screenshot, gl=--use-gl=angle --use-angle=metal, headlessShell=true, platform=darwin)
+[INFO] Initializing calibration session... {"renderJobId":"ebcbffee-7334-4663-845a-6902c2ab8aeb"}
+[initSession:screenshot] page.goto start (0ms)
+[initSession:screenshot] page.goto complete (68ms)
+[FileServer] 404 Not Found: /assets/voiceover.mp3
+[initSession:screenshot] GSAP proxy flush complete (76ms)
+[non-blocking] Failed to load resource: the server responded with a status of 404 (Not Found)
+[HyperFrames] render runtime fps {"canonicalFps":30,"source":"render-options","rawFpsSource":"render-options","rawFps":30}
+[FileServer] 404 Not Found: /assets/voiceover.mp3
+[non-blocking] Failed to load resource: the server responded with a status of 404 (Not Found)
+[initSession:screenshot] pollHfReady complete (178ms)
+[initSession:screenshot] pollSubCompositionTimelines complete (ready) (179ms)
+[initSession:screenshot] applyVideoMetadataHints complete (179ms)
+[initSession:screenshot] media + fonts + tailwind ready (180ms)
+[FileServer] 404 Not Found: /assets/voiceover.mp3
+[FileServer] 404 Not Found: /assets/voiceover.mp3
+[initSession:screenshot] static-frame dedup: 396/397 predicted frame(s) reusable (outcome=verified, runs=3/3, screenshots=27, seeks=28, elapsedMs=1266) (1627ms)
+[INFO] Calibration session ready, capturing test frames... {"renderJobId":"ebcbffee-7334-4663-845a-6902c2ab8aeb"}
+[INFO] Calibration: capturing test frame 1/5... {"renderJobId":"ebcbffee-7334-4663-845a-6902c2ab8aeb"}
+[INFO] Calibration: capturing test frame 2/5... {"renderJobId":"ebcbffee-7334-4663-845a-6902c2ab8aeb"}
+[INFO] Calibration: capturing test frame 3/5... {"renderJobId":"ebcbffee-7334-4663-845a-6902c2ab8aeb"}
+[INFO] Calibration: capturing test frame 4/5... {"renderJobId":"ebcbffee-7334-4663-845a-6902c2ab8aeb"}
+[INFO] Calibration: capturing test frame 5/5... {"renderJobId":"ebcbffee-7334-4663-845a-6902c2ab8aeb"}
+[INFO] Calibration complete, estimated cost: 51ms/frame (p95) {"renderJobId":"ebcbffee-7334-4663-845a-6902c2ab8aeb"}
+[INFO] [Render:trace] {"renderJobId":"ebcbffee-7334-4663-845a-6902c2ab8aeb","phase":"capture_calibration","status":"end","elapsedMs":2575,"durationMs":1971,"stagePhase":"calibrating","forceScreenshot":false,"totalFrames":450,"framesCompleted":0,"captureMode":"drawelement","captureOperation":"drawElement"}
+[INFO] [Render:trace] {"renderJobId":"ebcbffee-7334-4663-845a-6902c2ab8aeb","phase":"capture_calibration","status":"checkpoint","elapsedMs":2576,"message":"resolved","forceScreenshot":false,"multiplier":1,"p95Ms":51}
+[INFO] [Render:trace] {"renderJobId":"ebcbffee-7334-4663-845a-6902c2ab8aeb","phase":"worker_resolution","status":"checkpoint","elapsedMs":2576,"message":"resolved","workerCount":5}
+[INFO] [Render] Fast capture: default-on drawElement disabled for this render: parallel capture has no runtime self-verification. Set PRODUCER_EXPERIMENTAL_FAST_CAPTURE=true to override. {"renderJobId":"ebcbffee-7334-4663-845a-6902c2ab8aeb"}
+[INFO] streaming-encode gate {"renderJobId":"ebcbffee-7334-4663-845a-6902c2ab8aeb","enabled":false,"reason":"multi_worker","configFlag":true,"durationCapEnabled":false,"outputFormat":"mp4","workerCount":5,"durationSeconds":15,"maxDurationSeconds":240}
+[INFO] [Render:trace] {"renderJobId":"ebcbffee-7334-4663-845a-6902c2ab8aeb","phase":"capture_strategy","status":"checkpoint","elapsedMs":2576,"message":"resolved","workerCount":5,"forceScreenshot":false,"captureBeyondViewport":null,"useStreamingEncode":false,"useLayeredComposite":false,"usePageSideCompositing":false,"hasHdrContent":false,"hasShaderTransitions":false,"isPngSequence":false}
+[WARN] Render completed capture with correctness warnings {"renderJobId":"ebcbffee-7334-4663-845a-6902c2ab8aeb","strictness":"best-effort","warningCodes":["audio_processing_failed"],"warningReasons":["source_not_found"],"warningStages":["source"],"warningOwners":["user"],"warningRetryable":false}
+[INFO] [Render:trace] {"renderJobId":"ebcbffee-7334-4663-845a-6902c2ab8aeb","phase":"Measuring capture speed","status":"error","elapsedMs":2580,"durationMs":0,"message":"Render blocked by 1 correctness warning:\n- audio_processing_failed: Audio mix failed; output would be video-only: Audio processing failed: Source not found for audio element audio-voiceover: src=\"[path]\" resolved to [path]"}
+[INFO] [Render] Failure summary {"renderJobId":"ebcbffee-7334-4663-845a-6902c2ab8aeb","failedStage":"Measuring capture speed","error":"Render blocked by 1 correctness warning:\n- audio_processing_failed: Audio mix failed; output would be video-only: Audio processing failed: Source not found for audio element audio-voiceover: src=\"[path]\" resolved to [path]","elapsedMs":2580,"stageTimings":{"compileOnlyMs":185,"browserProbeMs":45,"compileMs":278,"videoExtractMs":0,"audioProcessMs":4},"isTimeout":false,"workers":"auto","protocolTimeout":300000,"observedFailedPhase":"Measuring capture speed","observedLastPhase":"Measuring capture speed","observedLastStatus":"error","browserDiagnostics":{"total":7,"errors":0,"pageErrors":0,"requestFailed":0,"httpErrors":2,"navigationStarts":1,"navigationFailures":0,"consoleErrors":0,"consoleWarnings":0},"extraction":{"videoCount":0,"extractedVideoCount":0,"totalFramesExtracted":0,"maxFramesPerVideo":0,"authoredTimedClipCount":5},"browserConsoleErrors":["[FrameCapture:NAV] page.goto start mode=screenshot timeoutMs=60000 url=http://localhost:62056/index.html","[Browser:HTTP404] GET http://localhost:62056/assets/voiceover.mp3 resource=media Not Found","[Browser:HTTP404] GET http://localhost:62056/assets/voiceover.mp3 resource=media Not Found"]}
+
+✗  Render failed
+
+   Render blocked by 1 correctness warning:
+   - audio_processing_failed: Audio mix failed; output would be video-only: Audio processing failed: Source not found for audio element audio-voiceover: src="[path]" resolved to [path]
+   Try --docker for containerized rendering
+
+
+FALLBACK_USED: rendered via FFmpeg fallback to /Volumes/Data/socnhotv/data/projects/soc-nho-tv/output/a3_test_render/tiktok.mp4
+--- HyperFrames CLI Render (code: 1) ---
+STDOUT:
+
+◆  Rendering bundle_youtube_v7ol5isp → /Volumes/Data/socnhotv/data/projects/soc-nho-tv/output/a3_test_render/youtube.mp4
+   30fps · standard · auto workers (10 cores detected)
+   GPU: browser GPU (auto-detect)
+
+
+  Lint: 2 error(s), 0 warning(s) — run `hyperframes lint` for full output.
+  Continuing render despite lint issues. Use --strict to block errors.
+
+  █░░░░░░░░░░░░░░░░░░░░░░░░  5%  Compiling composition
+@hf-progress {"code":"compile","pct":5}
+  ██░░░░░░░░░░░░░░░░░░░░░░░  10%  Extracting video frames
+@hf-progress {"code":"extract_video","pct":10}
+  █████░░░░░░░░░░░░░░░░░░░░  20%  Processing audio tracks
+@hf-progress {"code":"process_audio","pct":20}
+  ██████░░░░░░░░░░░░░░░░░░░  25%  Starting frame capture
+@hf-progress {"code":"start_browsers","pct":25}
+  ██████░░░░░░░░░░░░░░░░░░░  25%  Checking browser GPU
+@hf-progress {"code":"start_browsers","pct":25}
+  ██████░░░░░░░░░░░░░░░░░░░  25%  Measuring capture speed
+@hf-progress {"code":"start_browsers","pct":25}
+  ██████░░░░░░░░░░░░░░░░░░░  25%  Failed: Render blocked by 1 correctness warning:
+- audio_processing_failed: Audio mix failed; output would be video-only: Audio processing failed: Source not found for audio element audio-voiceover: src="[path]" resolved to [path]
+@hf-diagnostic {"version":1,"operation":"render","code":"AUDIO_PROCESSING_FAILED","audioFailures":[{"stage":"source","reason":"source_not_found","owner":"user","retryable":false}]}
+
+STDERR:
+Checking browser...
+Browser: cache
+[INFO] [Render] Pipeline started {"renderJobId":"b464a41e-0953-4cb4-9aca-4c9e8e49a6e3","platform":"darwin","arch":"arm64","nodeVersion":"v26.8.2","fps":{"num":30,"den":1},"format":"mp4","quality":"standard","browserGpuMode":"auto","forceScreenshot":false,"protocolTimeout":300000,"browserTimeout":120000,"pageNavigationTimeout":60000,"playerReadyTimeout":45000}
+[INFO] [Render:trace] {"renderJobId":"b464a41e-0953-4cb4-9aca-4c9e8e49a6e3","phase":"pipeline","status":"checkpoint","elapsedMs":1,"message":"started","format":"mp4","quality":"standard","browserGpuMode":"auto","forceScreenshot":false,"protocolTimeoutMs":300000,"pageNavigationTimeoutMs":60000,"playerReadyTimeoutMs":45000,"requestedWorkers":"auto"}
+[INFO] [Render:trace] {"renderJobId":"b464a41e-0953-4cb4-9aca-4c9e8e49a6e3","phase":"compile","status":"start","elapsedMs":2,"needsAlpha":false}
+[INFO] [Compiler] Inlined CDN script: https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js
+[INFO] Compiled composition metadata {"renderJobId":"b464a41e-0953-4cb4-9aca-4c9e8e49a6e3","entryFile":"index.html","staticDuration":15,"width":1920,"height":1080,"videoCount":0,"audioCount":1,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
+[INFO] [Render:trace] {"renderJobId":"b464a41e-0953-4cb4-9aca-4c9e8e49a6e3","phase":"compile","status":"end","elapsedMs":168,"durationMs":166,"needsAlpha":false}
+[INFO] [Render:trace] {"renderJobId":"b464a41e-0953-4cb4-9aca-4c9e8e49a6e3","phase":"compile","status":"checkpoint","elapsedMs":169,"message":"composition metadata resolved","width":1920,"height":1080,"videoCount":0,"audioCount":1,"imageCount":0,"deviceScaleFactor":1,"forceScreenshot":false,"compositionHash":"ba4bf2e22ce49f0e"}
+[INFO] [Render:trace] {"renderJobId":"b464a41e-0953-4cb4-9aca-4c9e8e49a6e3","phase":"browser_probe","status":"start","elapsedMs":169,"forceScreenshot":false,"stagePhase":"calibrating"}
+[INFO] [Render:trace] {"renderJobId":"b464a41e-0953-4cb4-9aca-4c9e8e49a6e3","phase":"browser_probe","status":"end","elapsedMs":208,"durationMs":39,"forceScreenshot":false,"stagePhase":"calibrating"}
+[INFO] [Render:trace] {"renderJobId":"b464a41e-0953-4cb4-9aca-4c9e8e49a6e3","phase":"browser_probe","status":"checkpoint","elapsedMs":208,"message":"duration resolved","durationSeconds":15,"totalFrames":450,"compositionHash":"ba4bf2e22ce49f0e","beginFrameStalled":false}
+[INFO] [Render:trace] {"renderJobId":"b464a41e-0953-4cb4-9aca-4c9e8e49a6e3","phase":"video_extract","status":"start","elapsedMs":208,"videoCount":0}
+[INFO] [Render:trace] {"renderJobId":"b464a41e-0953-4cb4-9aca-4c9e8e49a6e3","phase":"video_extract","status":"end","elapsedMs":209,"durationMs":1,"videoCount":0}
+[INFO] [Render:trace] {"renderJobId":"b464a41e-0953-4cb4-9aca-4c9e8e49a6e3","phase":"video_extract","status":"checkpoint","elapsedMs":209,"message":"frames resolved","videoCount":0,"extractedVideoCount":0,"totalFramesExtracted":0,"maxFramesPerVideo":0,"avgFramesPerExtractedVideo":null,"vfrPreflightCount":null,"vfrPreflightMs":null,"cacheHits":null,"cacheMisses":null,"transientRetries":null,"minVideoFrameCoverageRatio":null,"authoredTimedClipCount":5}
+[INFO] [Render] No HDR sources detected, rendering SDR {"renderJobId":"b464a41e-0953-4cb4-9aca-4c9e8e49a6e3"}
+[INFO] [Render:trace] {"renderJobId":"b464a41e-0953-4cb4-9aca-4c9e8e49a6e3","phase":"hdr_detection","status":"checkpoint","elapsedMs":209,"message":"resolved","requestedHdrMode":"auto","effectiveHdr":"sdr","nativeHdrVideoCount":0,"nativeHdrImageCount":0}
+[INFO] [Render:trace] {"renderJobId":"b464a41e-0953-4cb4-9aca-4c9e8e49a6e3","phase":"audio_process","status":"start","elapsedMs":209,"audioCount":1}
+[INFO] [Render:trace] {"renderJobId":"b464a41e-0953-4cb4-9aca-4c9e8e49a6e3","phase":"file_server","status":"start","elapsedMs":210,"reused":false}
+[WARN] Audio track failed {"renderJobId":"b464a41e-0953-4cb4-9aca-4c9e8e49a6e3","elementId":"audio-voiceover","stage":"source","reason":"source_not_found","owner":"user","retryable":false,"detail":"Source not found for audio element audio-voiceover: src=\"assets/voiceover.mp3\" resolved to assets/voiceover.mp3"}
+[INFO] [Render:trace] {"renderJobId":"b464a41e-0953-4cb4-9aca-4c9e8e49a6e3","phase":"audio_process","status":"end","elapsedMs":212,"durationMs":3,"audioCount":1}
+[INFO] [Render:trace] {"renderJobId":"b464a41e-0953-4cb4-9aca-4c9e8e49a6e3","phase":"file_server","status":"end","elapsedMs":212,"durationMs":2}
+[hyperframes] browserGpuMode probe → hardware (WebGL renderer vendor="Google Inc. (Apple)" renderer="ANGLE (Apple, ANGLE Metal Renderer: Apple M4, Unspecified Version)")
+[INFO] [Render:trace] {"renderJobId":"b464a41e-0953-4cb4-9aca-4c9e8e49a6e3","phase":"capture_calibration","status":"start","elapsedMs":366,"stagePhase":"calibrating","forceScreenshot":false,"totalFrames":450,"framesCompleted":0,"captureMode":"drawelement","captureOperation":"drawElement"}
+[INFO] [Render] Calibration config {"renderJobId":"b464a41e-0953-4cb4-9aca-4c9e8e49a6e3","protocolTimeout":30000,"parentProtocolTimeout":300000,"forceScreenshot":false,"totalFrames":450}
+[INFO] Launching browser for capture calibration... {"renderJobId":"b464a41e-0953-4cb4-9aca-4c9e8e49a6e3"}
+[BrowserManager] Browser launched (HeadlessChrome/152.0.7977.30, screenshot, gl=--use-gl=angle --use-angle=metal, headlessShell=true, platform=darwin)
+[INFO] Initializing calibration session... {"renderJobId":"b464a41e-0953-4cb4-9aca-4c9e8e49a6e3"}
+[initSession:screenshot] page.goto start (1ms)
+[FileServer] 404 Not Found: /assets/voiceover.mp3
+[initSession:screenshot] page.goto complete (45ms)
+[non-blocking] Failed to load resource: the server responded with a status of 404 (Not Found)
+[HyperFrames] render runtime fps {"canonicalFps":30,"source":"render-options","rawFpsSource":"render-options","rawFps":30}
+[initSession:screenshot] GSAP proxy flush complete (87ms)
+[FileServer] 404 Not Found: /assets/voiceover.mp3
+[initSession:screenshot] pollHfReady complete (89ms)
+[non-blocking] Failed to load resource: the server responded with a status of 404 (Not Found)
+[initSession:screenshot] pollSubCompositionTimelines complete (ready) (89ms)
+[initSession:screenshot] applyVideoMetadataHints complete (90ms)
+[initSession:screenshot] media + fonts + tailwind ready (91ms)
+[FileServer] 404 Not Found: /assets/voiceover.mp3
+[FileServer] 404 Not Found: /assets/voiceover.mp3
+[initSession:screenshot] static-frame dedup: 396/397 predicted frame(s) reusable (outcome=verified, runs=3/3, screenshots=27, seeks=28, elapsedMs=1083) (1349ms)
+[INFO] Calibration session ready, capturing test frames... {"renderJobId":"b464a41e-0953-4cb4-9aca-4c9e8e49a6e3"}
+[INFO] Calibration: capturing test frame 1/5... {"renderJobId":"b464a41e-0953-4cb4-9aca-4c9e8e49a6e3"}
+[INFO] Calibration: capturing test frame 2/5... {"renderJobId":"b464a41e-0953-4cb4-9aca-4c9e8e49a6e3"}
+[INFO] Calibration: capturing test frame 3/5... {"renderJobId":"b464a41e-0953-4cb4-9aca-4c9e8e49a6e3"}
+[INFO] Calibration: capturing test frame 4/5... {"renderJobId":"b464a41e-0953-4cb4-9aca-4c9e8e49a6e3"}
+[INFO] Calibration: capturing test frame 5/5... {"renderJobId":"b464a41e-0953-4cb4-9aca-4c9e8e49a6e3"}
+[INFO] Calibration complete, estimated cost: 50ms/frame (p95) {"renderJobId":"b464a41e-0953-4cb4-9aca-4c9e8e49a6e3"}
+[INFO] [Render:trace] {"renderJobId":"b464a41e-0953-4cb4-9aca-4c9e8e49a6e3","phase":"capture_calibration","status":"end","elapsedMs":2062,"durationMs":1695,"stagePhase":"calibrating","forceScreenshot":false,"totalFrames":450,"framesCompleted":0,"captureMode":"drawelement","captureOperation":"drawElement"}
+[INFO] [Render:trace] {"renderJobId":"b464a41e-0953-4cb4-9aca-4c9e8e49a6e3","phase":"capture_calibration","status":"checkpoint","elapsedMs":2062,"message":"resolved","forceScreenshot":false,"multiplier":1,"p95Ms":50}
+[INFO] [Render:trace] {"renderJobId":"b464a41e-0953-4cb4-9aca-4c9e8e49a6e3","phase":"worker_resolution","status":"checkpoint","elapsedMs":2063,"message":"resolved","workerCount":5}
+[INFO] [Render] Fast capture: default-on drawElement disabled for this render: parallel capture has no runtime self-verification. Set PRODUCER_EXPERIMENTAL_FAST_CAPTURE=true to override. {"renderJobId":"b464a41e-0953-4cb4-9aca-4c9e8e49a6e3"}
+[INFO] streaming-encode gate {"renderJobId":"b464a41e-0953-4cb4-9aca-4c9e8e49a6e3","enabled":false,"reason":"multi_worker","configFlag":true,"durationCapEnabled":false,"outputFormat":"mp4","workerCount":5,"durationSeconds":15,"maxDurationSeconds":240}
+[INFO] [Render:trace] {"renderJobId":"b464a41e-0953-4cb4-9aca-4c9e8e49a6e3","phase":"capture_strategy","status":"checkpoint","elapsedMs":2063,"message":"resolved","workerCount":5,"forceScreenshot":false,"captureBeyondViewport":null,"useStreamingEncode":false,"useLayeredComposite":false,"usePageSideCompositing":false,"hasHdrContent":false,"hasShaderTransitions":false,"isPngSequence":false}
+[WARN] Render completed capture with correctness warnings {"renderJobId":"b464a41e-0953-4cb4-9aca-4c9e8e49a6e3","strictness":"best-effort","warningCodes":["audio_processing_failed"],"warningReasons":["source_not_found"],"warningStages":["source"],"warningOwners":["user"],"warningRetryable":false}
+[INFO] [Render:trace] {"renderJobId":"b464a41e-0953-4cb4-9aca-4c9e8e49a6e3","phase":"Measuring capture speed","status":"error","elapsedMs":2067,"durationMs":0,"message":"Render blocked by 1 correctness warning:\n- audio_processing_failed: Audio mix failed; output would be video-only: Audio processing failed: Source not found for audio element audio-voiceover: src=\"[path]\" resolved to [path]"}
+[INFO] [Render] Failure summary {"renderJobId":"b464a41e-0953-4cb4-9aca-4c9e8e49a6e3","failedStage":"Measuring capture speed","error":"Render blocked by 1 correctness warning:\n- audio_processing_failed: Audio mix failed; output would be video-only: Audio processing failed: Source not found for audio element audio-voiceover: src=\"[path]\" resolved to [path]","elapsedMs":2067,"stageTimings":{"compileOnlyMs":166,"browserProbeMs":39,"compileMs":206,"videoExtractMs":0,"audioProcessMs":3},"isTimeout":false,"workers":"auto","protocolTimeout":300000,"observedFailedPhase":"Measuring capture speed","observedLastPhase":"Measuring capture speed","observedLastStatus":"error","browserDiagnostics":{"total":7,"errors":0,"pageErrors":0,"requestFailed":0,"httpErrors":2,"navigationStarts":1,"navigationFailures":0,"consoleErrors":0,"consoleWarnings":0},"extraction":{"videoCount":0,"extractedVideoCount":0,"totalFramesExtracted":0,"maxFramesPerVideo":0,"authoredTimedClipCount":5},"browserConsoleErrors":["[FrameCapture:NAV] page.goto start mode=screenshot timeoutMs=60000 url=http://localhost:62167/index.html","[Browser:HTTP404] GET http://localhost:62167/assets/voiceover.mp3 resource=media Not Found","[Browser:HTTP404] GET http://localhost:62167/assets/voiceover.mp3 resource=media Not Found"]}
+
+✗  Render failed
+
+   Render blocked by 1 correctness warning:
+   - audio_processing_failed: Audio mix failed; output would be video-only: Audio processing failed: Source not found for audio element audio-voiceover: src="[path]" resolved to [path]
+   Try --docker for containerized rendering
+
+
+FALLBACK_USED: rendered via FFmpeg fallback to /Volumes/Data/socnhotv/data/projects/soc-nho-tv/output/a3_test_render/youtube.mp4

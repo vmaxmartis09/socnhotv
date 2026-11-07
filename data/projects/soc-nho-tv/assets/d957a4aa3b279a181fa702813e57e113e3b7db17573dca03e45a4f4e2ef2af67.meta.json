@@ -1,0 +1,31 @@
+{
+  "id": "art_d957a4aa3b27",
+  "kind": "audio",
+  "uri": "assets/d957a4aa3b279a181fa702813e57e113e3b7db17573dca03e45a4f4e2ef2af67.mp3",
+  "mime": "audio/mp3",
+  "size": 124176,
+  "hash": "sha256:d957a4aa3b279a181fa702813e57e113e3b7db17573dca03e45a4f4e2ef2af67",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 5.1,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "prebuild_voice",
+    "runId": "prebuild_ep01-nui-lua-trong-bung-bi",
+    "provider": "omnivoice",
+    "model": "omnivoice",
+    "params": {
+      "text": "Anh Bi ơi! Mun mang quả bóng vải sang chơi với anh Bi nè!",
+      "voiceId": "vn-be-04",
+      "tempo": 1.0,
+      "targetLufs": -14.0,
+      "mastering": "deesser+presence3.2k+comp4:1+loudnorm-14LUFS"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T10:52:54Z"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "job_id": "render_ee5eb49c68b5",
+  "project_id": "soc-nho-tv",
+  "status": "failed",
+  "outputs": {},
+  "error": "Cancelled before processing",
+  "created_at": "2026-11-06T00:45:42.639897+00:00"
+}

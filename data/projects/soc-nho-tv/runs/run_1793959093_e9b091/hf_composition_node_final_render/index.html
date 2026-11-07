@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920, initial-scale=1.0" />
+    <title>SÓC NHỎ TV • TẬP ĐẶC BIỆT</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        user-select: none;
+      }
+      body, html {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #000000;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      }
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+      }
+      .scene-container {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        pointer-events: none;
+      }
+      .media-clip {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+      .vignette-overlay {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at center, transparent 40%, rgba(0, 0, 0, 0.45) 100%),
+                    linear-gradient(180deg, rgba(0,0,0,0.65) 0%, transparent 22%, transparent 75%, rgba(0,0,0,0.85) 100%);
+        pointer-events: none;
+        z-index: 5;
+      }
+      /* Header Safe Zone */
+      .top-badge-wrapper {
+        position: absolute;
+        top: 200px;
+        left: 40px;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+      }
+      .top-badge-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        background: rgba(15, 23, 42, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1.5px solid rgba(255, 255, 255, 0.2);
+        padding: 10px 24px;
+        border-radius: 9999px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      }
+      .badge-dot {
+        width: 14px;
+        height: 14px;
+        background: #ffb400;
+        border-radius: 50%;
+        box-shadow: 0 0 12px #ffb400;
+      }
+      .top-badge-text {
+        color: #ffffff;
+        font-size: 28px;
+        font-weight: 800;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+      /* Subtitle Safe Zone */
+      .subtitle-wrapper {
+        position: absolute;
+        top: 1360px;
+        left: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 40px 120px;
+        z-index: 10;
+      }
+      .subtitle-pill {
+        background: rgba(0, 0, 0, 0.82);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1.5px solid rgba(255, 255, 255, 0.22);
+        border-radius: 26px;
+        padding: 18px 36px;
+        max-width: 920px;
+        text-align: center;
+        box-shadow: 0 12px 35px rgba(0,0,0,0.6);
+      }
+      .sub-text {
+        color: #ffe600;
+        font-size: 44px;
+        font-weight: 800;
+        line-height: 1.35;
+        letter-spacing: -0.01em;
+        text-shadow: 0 3px 12px rgba(0, 0, 0, 0.95);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"
+         data-composition-id="main"
+         data-start="0"
+         data-duration="2.000"
+         data-width="1080"
+         data-height="1920">
+
+      <!-- Header Top Safe Zone -->
+      <div id="top-badge" class="top-badge-wrapper clip"
+           data-start="0"
+           data-duration="2.000"
+           data-track-index="2">
+        <div class="top-badge-pill">
+          <div class="badge-dot"></div>
+          <span class="top-badge-text">SÓC NHỎ TV • TẬP ĐẶC BIỆT</span>
+        </div>
+      </div>
+
+      <!-- Vignette Overlay -->
+      <div class="vignette-overlay clip"
+           data-start="0"
+           data-duration="2.000"
+           data-track-index="2"></div>
+
+      <!-- Scene Visuals & Subtitles -->
+      
+      <!-- SCENE_1 -->
+      <div id="scene_1" class="scene-container">
+        
+        <img id="img_scene_1" class="clip media-clip"
+             src=""
+             data-start="0.000"
+             data-duration="6.000"
+             data-track-index="0" />
+        <div id="sub_scene_1" class="subtitle-wrapper clip"
+             data-start="0.000"
+             data-duration="6.000"
+             data-track-index="1">
+          <div class="subtitle-pill">
+            <span class="sub-text">Sóc Nhỏ Bi TV</span>
+          </div>
+        </div>
+      </div>
+
+      
+      <audio id="audio-voiceover" class="clip"
+             src="assets/voiceover.mp3"
+             data-start="0"
+             data-duration="2.000"
+             data-track-index="3"></audio>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#top-badge", { y: -40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" }, 0.1);
+      
+      // Shot SCENE_1 (push-in, 6.00s)
+      tl.set("#scene_1", { opacity: 1, pointerEvents: "auto" }, 0.000);
+      // Camera Move (Short Shot): Dramatic Push-In (tiêu cự 50mm, tiến gần chủ thể tăng độ tập trung)
+      tl.fromTo("#img_scene_1",
+        { scale: 1.0, x: 0.0, y: 0.0, rotation: 0.0, opacity: 0 },
+        { scale: 1.0, x: 0.0, y: 0.0, rotation: 0.0, opacity: 1, duration: 0.45, ease: "power2.out" },
+        0.000
+      );
+      tl.to("#img_scene_1",
+        { scale: 1.08, x: 0.0, y: -15.0, rotation: 0.0, duration: 5.550, ease: "power1.out" },
+        0.450
+      );
+      tl.fromTo("#sub_scene_1", { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "back.out(1.4)" }, 0.100);
+      tl.to("#sub_scene_1", { opacity: 0, duration: 0.2 }, 5.800);
+      tl.set("#scene_1", { opacity: 0, pointerEvents: "none" }, 6.000);
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

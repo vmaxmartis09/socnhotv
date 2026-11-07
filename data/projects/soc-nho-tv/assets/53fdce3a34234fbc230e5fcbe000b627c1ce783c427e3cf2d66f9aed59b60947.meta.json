@@ -1,0 +1,31 @@
+{
+  "id": "art_53fdce3a3423",
+  "kind": "audio",
+  "uri": "assets/53fdce3a34234fbc230e5fcbe000b627c1ce783c427e3cf2d66f9aed59b60947.mp3",
+  "mime": "audio/mp3",
+  "size": 144239,
+  "hash": "sha256:53fdce3a34234fbc230e5fcbe000b627c1ce783c427e3cf2d66f9aed59b60947",
+  "meta": {
+    "width": null,
+    "height": null,
+    "duration": 5.94,
+    "fps": null,
+    "aspect": null
+  },
+  "provenance": {
+    "nodeId": "prebuild_voice",
+    "runId": "prebuild_ep02-mun-so-bong-toi",
+    "provider": "omnivoice",
+    "model": "omnivoice",
+    "params": {
+      "text": "Oa, bí quyết gì thế ạ? Bạn nhỏ ơi, chúng mình cùng xem và làm thử ngay bây giờ nhé!",
+      "voiceId": "vn-be-04",
+      "tempo": 1.0,
+      "targetLufs": -14.0,
+      "mastering": "deesser+presence3.2k+comp4:1+loudnorm-14LUFS"
+    },
+    "inputHashes": [],
+    "costUsd": 0.0,
+    "createdAt": "2026-11-06T10:35:21Z"
+  }
+}
