@@ -13,13 +13,23 @@ OMNIVOICE_DIR = PROJECT_ROOT / "integrations" / "OmniVoice"
 WORKER = Path(__file__).resolve().with_name("omnivoice_worker.py")
 
 
+def _is_windows() -> bool:
+    return os.name == "nt"
+
+
 def resolve_python() -> str:
     """OMNIVOICE_PYTHON > integrations/OmniVoice/.venv > interpreter hiện tại."""
     env = os.environ.get("OMNIVOICE_PYTHON")
     if env:
         return env
-    venv_py = OMNIVOICE_DIR / ".venv" / "bin" / "python"
-    return str(venv_py) if venv_py.exists() else sys.executable
+    if _is_windows():
+        cands = [OMNIVOICE_DIR / ".venv" / "Scripts" / "python.exe"]
+    else:
+        cands = [OMNIVOICE_DIR / ".venv" / "bin" / "python"]
+    for venv_py in cands:
+        if venv_py.exists():
+            return str(venv_py)
+    return sys.executable
 
 
 class OmniVoiceEngine:

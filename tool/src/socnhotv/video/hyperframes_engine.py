@@ -23,26 +23,33 @@ logger = logging.getLogger("socnhotv.video.engine")
 FFMPEG_EXE = imageio_ffmpeg.get_ffmpeg_exe()
 
 
+def _is_windows() -> bool:
+    return os.name == "nt"
+
+
 def find_hyperframes_bin(repo_root: Optional[Path] = None) -> Optional[str]:
     """Tìm binary hyperframes cục bộ đã cài (ghim bản 0.9.12) hoặc qua env HYPERFRAMES_BIN."""
     env_bin = os.environ.get("HYPERFRAMES_BIN")
     if env_bin and os.path.isfile(env_bin) and os.access(env_bin, os.X_OK):
         return env_bin
 
-    candidates = []
+    win = _is_windows()
+    names = ["hyperframes.cmd", "hyperframes.exe", "hyperframes"] if win else ["hyperframes"]
+    bases = []
     if repo_root:
-        candidates.append(repo_root / "tool" / "dashboard" / "node_modules" / ".bin" / "hyperframes")
-        candidates.append(repo_root / "node_modules" / ".bin" / "hyperframes")
-
+        repo_root = Path(repo_root)
+        bases += [repo_root / "tool" / "dashboard" / "node_modules" / ".bin", repo_root / "node_modules" / ".bin"]
     this_file = Path(__file__).resolve()
     if len(this_file.parents) >= 5:
-        candidates.append(this_file.parents[4] / "tool" / "dashboard" / "node_modules" / ".bin" / "hyperframes")
+        bases.append(this_file.parents[4] / "tool" / "dashboard" / "node_modules" / ".bin")
+    bases.append(Path.cwd() / "tool" / "dashboard" / "node_modules" / ".bin")
 
-    candidates.append(Path.cwd() / "tool" / "dashboard" / "node_modules" / ".bin" / "hyperframes")
-
-    for cand in candidates:
-        if cand.is_file() and os.access(str(cand), os.X_OK):
-            return str(cand.resolve())
+    for base in bases:
+        for name in names:
+            cand = base / name
+            # Windows: npm tạo shim .cmd/.exe (không có quyền X_OK theo nghĩa POSIX)
+            if cand.is_file() and (win or os.access(str(cand), os.X_OK)):
+                return str(cand.resolve())
 
     which_bin = shutil.which("hyperframes")
     if which_bin:
