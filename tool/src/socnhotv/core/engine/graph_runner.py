@@ -10,6 +10,7 @@ import shutil
 import subprocess
 import time
 import uuid
+from pathlib import Path
 from typing import Any, Callable, Dict, List, Optional, Set, Tuple
 
 logger = logging.getLogger(__name__)
@@ -2735,6 +2736,63 @@ class GraphRunner:
                 )
                 primary_artifact = arts[0] if arts else None
                 outputs["media"] = primary_artifact
+
+        elif node_type in ("template_render", "platform_export"):
+            # I4: trước đây hai node này rơi vào nhánh `else` (ảnh mock + báo thành công giả).
+            # template_render dựng MP4 thật qua video/templates/runner.py (cục bộ, miễn phí); lỗi thì ném lỗi thật.
+            from socnhotv.video.templates.runner import run_template
+
+            def _abs_uri(a: Any) -> Optional[Path]:
+                u = a.uri if isinstance(a, Artifact) else (str(a) if a else "")
+                if not u:
+                    return None
+                pth = Path(u)
+                return pth if pth.is_absolute() else self.store.project_dir / u.lstrip("/")
+
+            if node_type == "platform_export":
+                vid = _abs_uri(resolved_inputs.get("video"))
+                if not vid or not vid.is_file():
+                    raise ValueError("Node Xuất đa nền tảng cần video đầu vào (nối từ node Dựng video theo Template).")
+                # Video đã đúng khung nền tảng do template_render dựng theo `platforms`; chuyển tiếp nguyên bản,
+                # chưa biến đổi tỉ lệ (fit_strategy chưa được hỗ trợ) — nói thật thay vì giả vờ.
+                outputs["video"] = resolved_inputs.get("video")
+                primary_artifact = outputs["video"]
+                cost_usd = 0.0
+            else:
+                tid = str(node.params.get("template_id") or "")
+                plats = list(node.params.get("platforms") or [])
+                voice = _abs_uri(resolved_inputs.get("audio"))
+                slots = dict(node.params.get("slot_mapping") or {})
+                txt = resolved_inputs.get("text")
+                voice_text = txt if isinstance(txt, str) else None
+                out_dir = self.store.runs_dir / run_id / f"{node.id}_template"
+                rep = await asyncio.to_thread(
+                    run_template,
+                    tid,
+                    out_dir,
+                    slots=slots,
+                    platform=(plats[0] if plats else None),
+                    voice_audio=voice if (voice and voice.is_file()) else None,
+                    voice_text=voice_text,
+                )
+                if not rep.ok or not rep.mp4:
+                    raise ValueError(f"Dựng template '{tid}' thất bại: {rep.error or 'không ra MP4'}")
+                now = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+                art = self.store.store_bytes(
+                    data=Path(rep.mp4).read_bytes(),
+                    ext="mp4",
+                    kind=ArtifactKind.VIDEO,
+                    provenance=ArtifactProvenance(
+                        node_id=node.id, run_id=run_id, provider="local", model=f"template:{tid}",
+                        params={"platform": rep.platform, "audioSource": rep.audio_source,
+                                "slotsFromSample": rep.slots_from_sample, "warnings": rep.warnings},
+                        cost_usd=0.0, created_at=now,
+                    ),
+                    meta=ArtifactMeta(width=rep.width, height=rep.height, duration=rep.duration_sec),
+                )
+                outputs["video"] = art
+                primary_artifact = art
+                cost_usd = 0.0
 
         elif node_type == "vision_analyze":
             media_obj = resolved_inputs.get("video") or resolved_inputs.get("image")
