@@ -24,6 +24,20 @@
       "path": "projects/anti-gate",
       "status": "active",
       "created_at": "2026-11-03"
+    },
+    {
+      "id": "gobi",
+      "name": "Gobi KOC",
+      "description": "KOC AI thử đồ review thời trang",
+      "path": "projects/gobi",
+      "status": "active",
+      "default_character": "gobi",
+      "default_voice_id": "vn-chung-nu-01",
+      "target_platforms": [
+        "tiktok",
+        "youtube"
+      ],
+      "created_at": "2026-11-07"
     }
   ],
   "storage": {
