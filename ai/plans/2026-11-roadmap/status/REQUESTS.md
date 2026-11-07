@@ -14,3 +14,11 @@ Danh sách yêu cầu phụ thuộc giữa các session:
 
 - **Session S (2026-11-04) -> Session E2:** Đổi nhãn tiếng Anh của các tab phải trong Studio sang tiếng Việt: Dự án / Nhân vật / Chat / Lịch đăng / Công việc / Node / Phím tắt (thay cho Project / Characters / Chat / Schedule / Jobs / Node / Shortcuts).
 
+
+- **Session I5 (2026-11-07) -> chủ `core/engine/graph_runner.py` (G2/I0):** thêm nhánh chạy cho 6 node Toolbox (`bg_remove`, `word_captions`, `scene_cut`, `depth_layers`, `handdraw`, `voice_clone`). Hiện loại node lạ rơi vào `else` của `_execute_node_handler` và sinh ảnh mock "Generic execution". Thêm trước `else`:
+  ```python
+  elif node_type in TOOLBOX_NODE_TYPES:
+      outputs, primary_artifact, cost_usd = await execute_toolbox_node(
+          node_type, node.id, node.params, resolved_inputs, self.store, run_id, is_mock)
+  ```
+  với `from socnhotv.core.nodes.plugins.toolbox import TOOLBOX_NODE_TYPES, execute_toolbox_node`. Hàm trả đúng khuôn `(outputs, primary_artifact, cost)`, cost 0 (chạy cục bộ). Chi tiết và số đo: `status/I5.md`.
