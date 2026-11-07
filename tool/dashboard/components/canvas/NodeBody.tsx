@@ -55,10 +55,16 @@ function SpeakTextBox({ text, onChange, voiceId }: { text: string; onChange: (t:
   const [err, setErr] = React.useState("");
   const ref = React.useRef<HTMLAudioElement | null>(null);
   React.useEffect(() => () => { ref.current?.pause(); }, []);
+  // Trình duyệt chặn phát âm thanh nếu chờ API quá lâu sau cú bấm: "mở khoá" bằng đoạn lặng ngay lúc bấm.
+  const SILENT = "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAESsAACJWAAACABAAZGF0YQAAAAA=";
   const say = async () => {
     const t = text.trim();
     if (!t || !voiceId) return;
     setBusy(true); setErr("");
+    const a = new Audio(SILENT);
+    ref.current?.pause();
+    ref.current = a;
+    try { await a.play(); } catch { /* bỏ qua */ }
     try {
       const r = await fetch(`${CORE_URL}/projects/${projectId}/voice/say`, {
         method: "POST", headers: { "Content-Type": "application/json" },
@@ -66,9 +72,7 @@ function SpeakTextBox({ text, onChange, voiceId }: { text: string; onChange: (t:
       });
       const j = await r.json();
       if (!r.ok) throw new Error(j?.detail || `Lỗi ${r.status}`);
-      ref.current?.pause();
-      const a = new Audio(`${CORE_URL}${j.audioUrl}`);
-      ref.current = a;
+      a.src = `${CORE_URL}${j.audioUrl}`;
       await a.play();
     } catch (e: any) { setErr(String(e?.message || e)); } finally { setBusy(false); }
   };
@@ -92,7 +96,7 @@ function SpeakTextBox({ text, onChange, voiceId }: { text: string; onChange: (t:
           className="inline-flex h-6 items-center gap-1 rounded-full border border-border px-2 text-[11px] font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground disabled:opacity-50"
         >
           <MorphIcon icon={Volume2Node} spring="snappy" size={12} />
-          {busy ? "Đang đọc…" : "Nghe thử câu này"}
+          {busy ? `Đang đọc… (~${Math.max(5, Math.round(text.length / 3))}s)` : "Nghe thử câu này"}
         </button>
         <span className="text-[10px] text-muted-foreground">{text.length}/400</span>
       </div>
