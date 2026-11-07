@@ -2,7 +2,7 @@
 
 > Dán **nguyên văn phần "PROMPT" bên dưới** cho một AI Agent (Claude Code, Codex, Cursor…) mở sẵn trong thư mục repo vừa clone.
 > Repo chứa **cả code lẫn toàn bộ dữ liệu** (không bỏ qua phần nào), kể cả `.venv` của máy gốc, trừ `.env` (khoá API) (macOS Apple Silicon).
-> Chỉ có **hai thứ không nằm trong repo**: `integrations/OmniVoice` (repo upstream lồng nhau, kèm `.venv` ≈1 GB có tệp > 100 MB nên GitHub từ chối) và trọng số mô hình tải từ Hugging Face. Agent phải clone/tạo lại (mục 5).
+> Trọng số mô hình tải từ Hugging Face lần đầu dùng. `integrations/OmniVoice` là repo upstream lồng nhau (mục 5).
 
 ---
 
@@ -16,13 +16,11 @@ Bạn đang ở thư mục gốc của repo `socnhotv` (đã clone). Hãy dựng
 - Không xoá, không ghi đè `data/`. Muốn thử thì dùng bản sao.
 - Commit chỉ kèm đường dẫn tệp của mình (`git commit -- <tệp>`), không `git add -A`.
 
-### 1. Lấy đủ dữ liệu (Git LFS)
+### 1. Lấy dữ liệu
 ```bash
-git lfs install
-git lfs pull                      # tải các video lớn (> 90 MB) lưu bằng LFS
-git lfs ls-files | head           # kiểm: không còn "-" ở đầu dòng (nghĩa là đã tải)
+git lfs install && git lfs pull   # chỉ còn 1 tệp mô hình ≈99 MB (depth-anything) qua LFS
 ```
-Nếu `git lfs pull` báo hết hạn mức LFS: báo người dùng, **không** tự mua thêm.
+Nếu báo hết hạn mức LFS: báo người dùng, **không** tự mua thêm. Video demo/thành phẩm cũ đã bị xoá; flow sẽ tạo video mới khi chạy.
 
 ### 2. Công cụ hệ thống (macOS)
 Cần: Python 3.12, Node.js ≥ 20, ffmpeg (có `ffprobe`), git-lfs, Chrome/Chromium (HyperFrames dùng Chrome headless).
@@ -32,7 +30,7 @@ python3.12 --version && node -v && ffmpeg -version | head -1
 ```
 
 ### 3. Backend Python
-`.venv` của máy gốc được commit nhưng gắn với đường dẫn/kiến trúc máy gốc. **Tạo lại cho chắc**:
+Repo không có `.venv`. Tạo mới:
 ```bash
 rm -rf .venv && python3.12 -m venv .venv
 .venv/bin/pip install --upgrade pip
