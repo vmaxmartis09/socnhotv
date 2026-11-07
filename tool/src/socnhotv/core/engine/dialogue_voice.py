@@ -105,6 +105,11 @@ def _clip_duration(art: Artifact, project_dir: Path) -> float:
         return 0.0
 
 
+def definition_text(node) -> str:
+    sp = (node.params or {}).get("speak")
+    return str(sp.get("text") or "").strip() if isinstance(sp, dict) else ""
+
+
 class SpeakCapability(CapabilityRuntime):
     def cache_inputs(self, node, resolved_inputs, definition, core_outputs=None):
         char = (core_outputs or {}).get("character") or {}
@@ -113,7 +118,7 @@ class SpeakCapability(CapabilityRuntime):
         mine = lines_for_character(lines, cid, char.get("aliases") or []) if isinstance(lines, list) else []
         return {
             "lines": [{"id": l.get("id"), "text": l.get("text"), "order": l.get("order"), "sceneIndex": l.get("sceneIndex")} for l in mine],
-            "text": resolved_inputs.get("text") if not mine else None,
+            "text": (str(definition_text(node)) or resolved_inputs.get("text")) if not mine else None,
             "voiceId": char.get("voiceId"),
             "tempo": char.get("defaultTempo"),
         }
@@ -125,7 +130,8 @@ class SpeakCapability(CapabilityRuntime):
         lines = resolved_inputs.get("lines")
         mine = lines_for_character(lines, cid, char.get("aliases") or []) if isinstance(lines, list) else []
         if not mine:
-            text = str(resolved_inputs.get("text") or "").strip()
+            # Lời đọc tuỳ chỉnh gõ ngay trên node (speak.text) được ưu tiên hơn văn bản nối vào cổng text
+            text = definition_text(node) or str(resolved_inputs.get("text") or "").strip()
             if text and not (isinstance(lines, list) and lines):
                 mine = [{"id": f"{node.id}-1", "order": 0, "speaker": name, "characterId": cid, "text": text}]
         if not mine:

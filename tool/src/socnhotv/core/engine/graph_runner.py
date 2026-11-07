@@ -2805,7 +2805,11 @@ class GraphRunner:
                     if av and av.is_file():
                         asset_files["koc_avatar.png"] = av
                 txt = resolved_inputs.get("text")
-                voice_text = txt if isinstance(txt, str) else None
+                voice_text = txt if isinstance(txt, str) and txt.strip() else None
+                if voice_text is None and isinstance(clips_in, list):
+                    # Không nối văn bản: phụ đề dùng đúng chữ các câu nhân vật đã đọc (speak.text hoặc lời thoại)
+                    joined_txt = " ".join(str(c.get("text") or "").strip() for c in clips_in if isinstance(c, dict)).strip()
+                    voice_text = joined_txt or None
                 rep = await asyncio.to_thread(
                     run_template,
                     tid,

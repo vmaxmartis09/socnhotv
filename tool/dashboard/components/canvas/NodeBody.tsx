@@ -48,6 +48,59 @@ interface Props {
   onPickCharacter?: () => void;
 }
 
+/** Lời nhân vật đọc (tuỳ chỉnh) + nghe thử câu này bằng đúng giọng đã cấu hình (OmniVoice thật, ~15 giây). */
+function SpeakTextBox({ text, onChange, voiceId }: { text: string; onChange: (t: string) => void; voiceId?: string }) {
+  const projectId = useStudioStore((st: any) => st.activeProjectId) as string;
+  const [busy, setBusy] = React.useState(false);
+  const [err, setErr] = React.useState("");
+  const ref = React.useRef<HTMLAudioElement | null>(null);
+  React.useEffect(() => () => { ref.current?.pause(); }, []);
+  const say = async () => {
+    const t = text.trim();
+    if (!t || !voiceId) return;
+    setBusy(true); setErr("");
+    try {
+      const r = await fetch(`${CORE_URL}/projects/${projectId}/voice/say`, {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: t, voiceId }),
+      });
+      const j = await r.json();
+      if (!r.ok) throw new Error(j?.detail || `Lỗi ${r.status}`);
+      ref.current?.pause();
+      const a = new Audio(`${CORE_URL}${j.audioUrl}`);
+      ref.current = a;
+      await a.play();
+    } catch (e: any) { setErr(String(e?.message || e)); } finally { setBusy(false); }
+  };
+  return (
+    <div className="nodrag nowheel space-y-1">
+      <textarea
+        value={text}
+        onChange={(e) => onChange(e.target.value)}
+        onClick={(e) => e.stopPropagation()}
+        onKeyDown={(e) => e.stopPropagation()}
+        rows={3}
+        maxLength={400}
+        placeholder="Gõ lời nhân vật sẽ đọc (bỏ trống = dùng văn bản nối vào cổng text)"
+        className="w-full resize-none rounded-md border border-border bg-card px-2 py-1 text-[11px] leading-snug outline-none focus:border-foreground"
+      />
+      <div className="flex items-center gap-2">
+        <button
+          type="button"
+          disabled={busy || !text.trim() || !voiceId}
+          onClick={(e) => { e.stopPropagation(); void say(); }}
+          className="inline-flex h-6 items-center gap-1 rounded-full border border-border px-2 text-[11px] font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground disabled:opacity-50"
+        >
+          <MorphIcon icon={Volume2Node} spring="snappy" size={12} />
+          {busy ? "Đang đọc…" : "Nghe thử câu này"}
+        </button>
+        <span className="text-[10px] text-muted-foreground">{text.length}/400</span>
+      </div>
+      {err && <p className="text-[10px] text-semantic-danger">{err}</p>}
+    </div>
+  );
+}
+
 /** Chip giọng: bấm để nghe mẫu giọng đã cấu hình của nhân vật (bấm lần nữa để dừng). */
 function VoiceChip({ voiceId, sampleUrl }: { voiceId?: string; sampleUrl?: string }) {
   const ref = React.useRef<HTMLAudioElement | null>(null);
@@ -159,7 +212,7 @@ function CharacterHero({
   detailed?: boolean;
   onPick?: () => void;
   /** Chức năng "Nói" của node Nhân vật (chỉ có khi Core khai báo chức năng speak) */
-  speak?: { enabled: boolean; hasLines: boolean; onToggle: () => void };
+  speak?: { enabled: boolean; hasLines: boolean; onToggle: () => void; text: string; onTextChange: (t: string) => void };
 }) {
   const gallery = c.referenceImages.slice(1, 5);
   return (
@@ -231,6 +284,9 @@ function CharacterHero({
           </button>
         )}
       </div>
+      {speak?.enabled && !speak.hasLines && (
+        <SpeakTextBox text={speak.text} onChange={speak.onTextChange} voiceId={c.voiceId} />
+      )}
       {speak?.enabled && !speak.hasLines && (
         <p className="text-[10px] leading-snug text-muted-foreground">
           Nối cổng <span className="font-medium text-foreground">lines</span> của Kịch bản vào nhân vật, rồi nối cổng{" "}
@@ -782,6 +838,8 @@ export const NodeBody = React.memo(function NodeBody({
                       hasLines: connectedInputs.includes("lines"),
                       onToggle: () =>
                         updateNodeParams(nodeId, { speak: { ...(p.speak || {}), enabled: !p.speak?.enabled } }),
+                      text: String(p.speak?.text || ""),
+                      onTextChange: (t: string) => updateNodeParams(nodeId, { speak: { ...(p.speak || {}), text: t } }),
                     }
                   : undefined
               }
