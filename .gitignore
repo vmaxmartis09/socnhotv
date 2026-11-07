@@ -1,1 +1,7 @@
 # Không ignore file nào: mọi file trong repo đều được version hoá.
+
+# Khoá API (không commit). .env.example được giữ lại.
+.env
+.env.local
+.env.*.local
+!.env.example
