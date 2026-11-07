@@ -572,16 +572,36 @@ function normalizeGraphForCore(graph: Graph): Graph {
   } as Graph;
 }
 
+/** Mốc `updatedAt` của đồ thị lần nạp/lưu gần nhất theo dự án — để không lưu đè bản mới hơn do nơi khác ghi. */
+const graphBaseline: Record<string, string> = {};
+
 export async function saveGraphToCore(
   projectId: string,
   graph: Graph
 ): Promise<boolean> {
   try {
+    const base = graphBaseline[projectId];
+    if (base) {
+      const cur = await fetch(`${CORE_URL}/projects/${projectId}/graph`, { cache: "no-store" })
+        .then((r) => (r.ok ? r.json() : null))
+        .catch(() => null);
+      if (cur?.updatedAt && cur.updatedAt !== base) {
+        // Đồ thị đã bị thay ở nơi khác (tab khác, công cụ): KHÔNG lưu đè, nạp lại bản mới
+        if (typeof window !== "undefined") {
+          window.dispatchEvent(new CustomEvent("studio:graph-conflict", { detail: { projectId } }));
+        }
+        return false;
+      }
+    }
     const res = await fetch(`${CORE_URL}/projects/${projectId}/graph`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(normalizeGraphForCore(graph)),
     });
+    if (res.ok) {
+      const j = await res.json().catch(() => null);
+      if (j?.updatedAt) graphBaseline[projectId] = j.updatedAt;
+    }
     return res.ok;
   } catch {
     return false;
@@ -840,7 +860,9 @@ export async function fetchGraphFromCore(projectId: string): Promise<Graph | nul
   try {
     const res = await fetch(`${CORE_URL}/projects/${projectId}/graph`, { cache: "no-store" });
     if (!res.ok) return null;
-    return (await res.json()) as Graph;
+    const g = (await res.json()) as Graph;
+    if ((g as any)?.updatedAt) graphBaseline[projectId] = (g as any).updatedAt;
+    return g;
   } catch {
     return null;
   }

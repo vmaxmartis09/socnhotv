@@ -415,6 +415,15 @@ function StudioCanvasInner() {
     loadProjectGraph(activeProjectId);
   }, [activeProjectId, loadProjectGraph]);
 
+  // Đồ thị bị thay ở nơi khác (tab khác/công cụ) -> nạp lại bản mới thay vì lưu đè
+  useEffect(() => {
+    const onConflict = (e: Event) => {
+      if ((e as CustomEvent).detail?.projectId === activeProjectId) loadProjectGraph(activeProjectId);
+    };
+    window.addEventListener("studio:graph-conflict", onConflict);
+    return () => window.removeEventListener("studio:graph-conflict", onConflict);
+  }, [activeProjectId, loadProjectGraph]);
+
   // Debounced auto-save to Core (chỉ sau khi đã nạp đồ thị của dự án này)
   useEffect(() => {
     if (!graphLoaded) return;
