@@ -284,3 +284,23 @@ def test_api_verify_key_endpoint():
     assert r_bad.status_code == 400
     assert r_bad.json()["valid"] is False
 
+
+
+def test_cast_and_character_follow_voice_policy_not_text():
+    """Hồi quy kiểm toán 2026-11-07: node cast/character đọc giọng nên phải theo policy.voice, không theo policy.text."""
+    store = ProjectStore("soc-nho-tv")
+    runner = GraphRunner(store=store, provider=MockProvider(store=store))
+    local_voice = GraphRunRequest(
+        project_id="soc-nho-tv",
+        run_policy=RunPolicy(image="mock", video="off", text="mock", voice="local"),
+    )
+    mock_voice = GraphRunRequest(
+        project_id="soc-nho-tv",
+        run_policy=RunPolicy(image="mock", video="off", text="mock", voice="mock"),
+    )
+    for ntype in ("cast", "character"):
+        node = NodeInstance(id="n1", type=ntype, params={})
+        assert runner._is_mock_for(node, local_voice) is False
+        assert runner._is_mock_for(node, mock_voice) is True
+    # script vẫn theo text
+    assert runner._is_mock_for(NodeInstance(id="s", type="script", params={}), local_voice) is True

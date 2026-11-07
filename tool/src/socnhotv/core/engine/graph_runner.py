@@ -329,6 +329,9 @@ class GraphRunner:
                 kind = "video"
             elif ntype == "voice_tts":
                 kind = "voice"
+            elif ntype in ("cast", "character"):
+                # Dàn diễn viên/Nhân vật đọc lời thoại bằng giọng thật trên máy: theo policy.voice, không theo text
+                kind = "voice"
             elif ntype in ("text", "script", "vision_analyze", "quality_check"):
                 kind = "text"
             else:
