@@ -179,7 +179,7 @@ def run_template(
         sample_file = t_dir / "sample.data.json"
         if sample_file.exists():
             sample = json.loads(sample_file.read_text(encoding="utf-8"))
-        user = {k: v for k, v in (slots or {}).items() if v not in (None, "")}
+        user = {k: v for k, v in (slots or {}).items() if v is not None}  # "" = người dùng chủ động để trống, không lấy chữ mẫu
         data = {**sample, **user}
         rep.slots_from_user = sorted(user)
         rep.slots_from_sample = sorted(k for k in sample if k not in user)

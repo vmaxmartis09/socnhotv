@@ -21,6 +21,8 @@ def register(registry: Any) -> None:
                 PortDefinition(name="image", port_type=PortType.IMAGE, description="Ảnh đơn sản phẩm", required=False),
                 PortDefinition(name="video", port_type=PortType.VIDEO, description="Clip video nguồn", required=False),
                 PortDefinition(name="audio", port_type=PortType.AUDIO, description="Thoại chính voiceover", required=False),
+                PortDefinition(name="voice_clips", port_type=PortType.VOICE_CLIPS, description="Thoại từng câu từ chức năng Nói của nhân vật (tự ghép thành 1 giọng)", required=False),
+                PortDefinition(name="reference_images", port_type=PortType.IMAGE_LIST, description="Ảnh nhân vật (làm avatar KOC)", required=False),
             ],
             output_ports=[
                 PortDefinition(name="video", port_type=PortType.VIDEO, description="Video thành phẩm MP4")

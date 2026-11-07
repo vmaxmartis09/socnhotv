@@ -2766,14 +2766,52 @@ class GraphRunner:
                 plats = list(node.params.get("platforms") or [])
                 voice = _abs_uri(resolved_inputs.get("audio"))
                 slots = dict(node.params.get("slot_mapping") or {})
+                out_dir = self.store.runs_dir / run_id / f"{node.id}_template"
+                out_dir.mkdir(parents=True, exist_ok=True)
+                # Thoại từng câu (chức năng Nói của nhân vật) -> ghép thành 1 tệp giọng theo thứ tự câu
+                clips_in = resolved_inputs.get("voice_clips")
+                if (not voice or not voice.is_file()) and isinstance(clips_in, list):
+                    parts = [
+                        _abs_uri(c.get("audio")) for c in clips_in if isinstance(c, dict) and c.get("audio")
+                    ]
+                    parts = [x for x in parts if x and x.is_file()]
+                    if parts:
+                        lst = out_dir / "voice_concat.txt"
+                        lst.write_text("".join(f"file '{x.resolve()}'\n" for x in parts), encoding="utf-8")
+                        joined = out_dir / "voice_joined.mp3"
+                        r = await asyncio.to_thread(
+                            subprocess.run,
+                            ["ffmpeg", "-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", str(lst),
+                             "-c:a", "libmp3lame", "-b:a", "192k", str(joined)],
+                            capture_output=True, text=True,
+                        )
+                        if r.returncode != 0 or not joined.is_file():
+                            raise ValueError(f"Không ghép được thoại các câu: {r.stderr[-300:]}")
+                        voice = joined
+                # Ảnh sản phẩm / avatar từ cổng của node (trước đây bị bỏ qua, template luôn dùng ảnh mẫu)
+                asset_files: Dict[str, Any] = {}
+                imgs_in = resolved_inputs.get("images")
+                one = resolved_inputs.get("image")
+                first_img = None
+                if isinstance(imgs_in, list) and imgs_in:
+                    first_img = _abs_uri(imgs_in[0])
+                elif one is not None:
+                    first_img = _abs_uri(one)
+                if first_img and first_img.is_file():
+                    asset_files["product.png"] = first_img
+                refs_in = resolved_inputs.get("reference_images")
+                if isinstance(refs_in, list) and refs_in:
+                    av = _abs_uri(refs_in[0])
+                    if av and av.is_file():
+                        asset_files["koc_avatar.png"] = av
                 txt = resolved_inputs.get("text")
                 voice_text = txt if isinstance(txt, str) else None
-                out_dir = self.store.runs_dir / run_id / f"{node.id}_template"
                 rep = await asyncio.to_thread(
                     run_template,
                     tid,
                     out_dir,
                     slots=slots,
+                    asset_files=asset_files or None,
                     platform=(plats[0] if plats else None),
                     voice_audio=voice if (voice and voice.is_file()) else None,
                     voice_text=voice_text,

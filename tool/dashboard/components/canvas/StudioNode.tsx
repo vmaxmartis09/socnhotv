@@ -640,7 +640,7 @@ export const StudioNode = memo(function StudioNode({
           <CategoryIcon className="h-3.5 w-3.5" />
         </span>
         <span
-          className="min-w-0 flex-1 cursor-pointer line-clamp-2 break-words text-[15px] font-semibold leading-tight"
+          className="min-w-0 flex-1 cursor-pointer line-clamp-3 break-words text-[12px] font-semibold leading-snug"
           title={isModeNode ? `${def.displayName} · nhấn để ${expanded ? "thu gọn" : "chỉnh sửa"}` : `${def.displayName} · nhấn đúp để ${collapsed ? "mở rộng" : "thu gọn"}`}
           onClick={isModeNode && !alwaysOpen ? () => setExpanded((v) => !v) : undefined}
           onDoubleClick={(e) => {
@@ -664,7 +664,7 @@ export const StudioNode = memo(function StudioNode({
                 if (e.key === "Enter") (e.target as HTMLInputElement).blur();
                 if (e.key === "Escape") setRenaming(false);
               }}
-              className="nodrag w-full rounded border border-border bg-card px-1 text-[15px] font-semibold outline-none focus:border-foreground"
+              className="nodrag w-full rounded border border-border bg-card px-1 text-[12px] font-semibold outline-none focus:border-foreground"
             />
           ) : (
             nodeTitle
