@@ -238,7 +238,7 @@ export const StudioNode = memo(function StudioNode({
 
 
   // Bố cục 3 vùng: NHẬN (trên) · LÀM (giữa) · TRẢ (dưới). Cổng bám theo hàng của vùng tương ứng.
-  const HEADER = 44;
+  const HEADER = 68;
   const LABEL = 22;
   const ROW = 22;
   const FOOTER = 30;
@@ -620,28 +620,43 @@ export const StudioNode = memo(function StudioNode({
       {plusBtn("in")}
       {plusBtn("out")}
 
-      {/* Đầu card */}
-      <div className="flex items-center gap-2 px-3 py-1.5" style={{ minHeight: HEADER + 4 }}>
-        {stepInfo[id] && (
-          <span
-            title={stepInfo[id].main ? `Bước ${stepInfo[id].step} · trục chính` : `Bước ${stepInfo[id].step} · hỗ trợ`}
-            className={cn(
-              "flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[11px] font-semibold tnum",
-              stepInfo[id].main ? "bg-foreground text-background" : "border border-border text-muted-foreground"
-            )}
-          >
-            {stepInfo[id].step}
+      {/* Đầu card: hàng 1 = thanh công cụ gọn (bước · loại · trạng thái · nút), hàng 2 = tiêu đề đầy đủ */}
+      <div className="flex flex-col justify-center gap-1 border-b border-border/60 px-3 py-1" style={{ height: HEADER + 4 }}>
+        <div className="flex items-center gap-1.5">
+          {stepInfo[id] && (
+            <span
+              title={stepInfo[id].main ? `Bước ${stepInfo[id].step} · trục chính` : `Bước ${stepInfo[id].step} · hỗ trợ`}
+              className={cn(
+                "flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[10px] font-semibold tnum",
+                stepInfo[id].main ? "bg-foreground text-background" : "border border-border text-muted-foreground"
+              )}
+            >
+              {stepInfo[id].step}
+            </span>
+          )}
+          <span title={categoryLabel} className="flex min-w-0 items-center gap-1 text-muted-foreground">
+            <CategoryIcon className="h-3 w-3 shrink-0" />
+            <span className="truncate text-[10px] font-medium uppercase tracking-wider">{categoryLabel}</span>
           </span>
-        )}
-        <span
-          title={categoryLabel}
-          className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-accent text-foreground"
-        >
-          <CategoryIcon className="h-3.5 w-3.5" />
-        </span>
-        <span
-          className="min-w-0 flex-1 cursor-pointer line-clamp-3 break-words text-[12px] font-semibold leading-snug"
-          title={isModeNode ? `${def.displayName} · nhấn để ${expanded ? "thu gọn" : "chỉnh sửa"}` : `${def.displayName} · nhấn đúp để ${collapsed ? "mở rộng" : "thu gọn"}`}
+          <span className="flex-1" />
+          {stateKey !== "ready" && stateKey !== "idle" && (
+            <span title={`${stateLabel}${stateKey === "running" && typeof data.progressPct === "number" ? ` ${Math.round(data.progressPct)}%` : ""}`} className={cn("flex h-5 w-5 items-center justify-center", statusColor)}>
+              <StatusIcon className={cn("h-3 w-3", stateKey === "running" && "animate-spin")} />
+            </span>
+          )}
+          <IconBtn label="Đổi tên node" onClick={() => setRenaming(true)}>
+            <Pencil className="h-3 w-3" />
+          </IconBtn>
+          <IconBtn label={t("editInNodeTab")} onClick={() => { setSelectedNodeId(id); onOpenNodeInspector(id); }}>
+            <Sliders className="h-3 w-3" />
+          </IconBtn>
+          <IconBtn label={t("runNode")} onClick={() => onRequestRun("single_node", id)}>
+            <Play className="h-3 w-3" />
+          </IconBtn>
+        </div>
+        <div
+          className="min-w-0 cursor-pointer line-clamp-2 break-words text-[13px] font-semibold leading-tight tracking-tight"
+          title={isModeNode ? `${def.displayName} · nhấn để ${expanded ? "thu gọn" : "chỉnh sửa"}` : `${nodeTitle} · nhấn đúp để ${collapsed ? "mở rộng" : "thu gọn"}`}
           onClick={isModeNode && !alwaysOpen ? () => setExpanded((v) => !v) : undefined}
           onDoubleClick={(e) => {
             if (isModeNode) return;
@@ -664,26 +679,12 @@ export const StudioNode = memo(function StudioNode({
                 if (e.key === "Enter") (e.target as HTMLInputElement).blur();
                 if (e.key === "Escape") setRenaming(false);
               }}
-              className="nodrag w-full rounded border border-border bg-card px-1 text-[12px] font-semibold outline-none focus:border-foreground"
+              className="nodrag w-full rounded border border-border bg-card px-1 text-[13px] font-semibold outline-none focus:border-foreground"
             />
           ) : (
             nodeTitle
           )}
-        </span>
-        {stateKey !== "ready" && stateKey !== "idle" && (
-        <span title={`${stateLabel}${stateKey === "running" && typeof data.progressPct === "number" ? ` ${Math.round(data.progressPct)}%` : ""}`} className={cn("flex h-6 w-6 items-center justify-center", statusColor)}>
-          <StatusIcon className={cn("h-3.5 w-3.5", stateKey === "running" && "animate-spin")} />
-        </span>
-        )}
-        <IconBtn label="Đổi tên node" onClick={() => setRenaming(true)}>
-          <Pencil className="h-3 w-3" />
-        </IconBtn>
-        <IconBtn label={t("editInNodeTab")} onClick={() => { setSelectedNodeId(id); onOpenNodeInspector(id); }}>
-          <Sliders className="h-3.5 w-3.5" />
-        </IconBtn>
-        <IconBtn label={t("runNode")} onClick={() => onRequestRun("single_node", id)}>
-          <Play className="h-3 w-3" />
-        </IconBtn>
+        </div>
       </div>
 
       {/* 1. NHẬN — chỉ hiện khi node có đầu vào */}
