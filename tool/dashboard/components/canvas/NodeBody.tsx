@@ -48,6 +48,36 @@ interface Props {
   onPickCharacter?: () => void;
 }
 
+/** Chip giọng: bấm để nghe mẫu giọng đã cấu hình của nhân vật (bấm lần nữa để dừng). */
+function VoiceChip({ voiceId, sampleUrl }: { voiceId?: string; sampleUrl?: string }) {
+  const ref = React.useRef<HTMLAudioElement | null>(null);
+  const [playing, setPlaying] = React.useState(false);
+  React.useEffect(() => () => { ref.current?.pause(); }, []);
+  const url = sampleUrl ? (/^https?:/.test(sampleUrl) ? sampleUrl : `${CORE_URL}${sampleUrl}`) : "";
+  if (!url) return <Chip title="Giọng">{voiceId || "—"}</Chip>;
+  return (
+    <button
+      type="button"
+      title={playing ? "Dừng nghe thử" : "Bấm để nghe thử giọng"}
+      aria-label="Nghe thử giọng"
+      onClick={(e) => {
+        e.stopPropagation();
+        if (playing) { ref.current?.pause(); setPlaying(false); return; }
+        const a = ref.current ?? new Audio(url);
+        ref.current = a;
+        a.onended = () => setPlaying(false);
+        a.onerror = () => setPlaying(false);
+        a.currentTime = 0;
+        a.play().then(() => setPlaying(true)).catch(() => setPlaying(false));
+      }}
+      className="nodrag inline-flex h-6 items-center gap-1 rounded-full border border-border px-2 text-[11px] font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+    >
+      <MorphIcon icon={playing ? Volume2Node : VolumeXNode} spring="snappy" size={12} />
+      {voiceId || "—"}
+    </button>
+  );
+}
+
 const Chip = ({
   children,
   title,
@@ -175,7 +205,7 @@ function CharacterHero({
           </button>
         )}
         <Chip title="Chiều cao">{c.heightCm} cm</Chip>
-        <Chip title="Giọng">{c.voiceId || "—"}</Chip>
+        <VoiceChip voiceId={c.voiceId} sampleUrl={c.sampleAudioUrl} />
         {speak && (
           <button
             type="button"
